@@ -1,4 +1,4 @@
-module trb_proto
+module github.com/Mar1eena/trb_protos
 
 go 1.24.1
 
