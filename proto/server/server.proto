@@ -2,10 +2,11 @@ syntax = "proto3";
 
 option go_package = "src/proto";
 
-package chat;
+package server;
 
 service ExampleService {
   rpc SendMessage (MessageRequest) returns (MessageResponse);
+  rpc SendPolice (PoliceRequest) returns (PoliceResponse);
 }
 
 message MessageRequest {
@@ -14,4 +15,13 @@ message MessageRequest {
 
 message MessageResponse {
   string reply = 1;
+}
+
+message PoliceRequest{
+  string token = 1;
+}
+
+message PoliceResponse{
+  string token = 1;
+  string message = 2;
 }

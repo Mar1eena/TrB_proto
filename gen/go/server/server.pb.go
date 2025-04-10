@@ -109,17 +109,120 @@ func (x *MessageResponse) GetReply() string {
 	return ""
 }
 
+type PoliceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PoliceRequest) Reset() {
+	*x = PoliceRequest{}
+	mi := &file_server_server_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PoliceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PoliceRequest) ProtoMessage() {}
+
+func (x *PoliceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_server_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PoliceRequest.ProtoReflect.Descriptor instead.
+func (*PoliceRequest) Descriptor() ([]byte, []int) {
+	return file_server_server_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PoliceRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type PoliceResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PoliceResponse) Reset() {
+	*x = PoliceResponse{}
+	mi := &file_server_server_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PoliceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PoliceResponse) ProtoMessage() {}
+
+func (x *PoliceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_server_server_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PoliceResponse.ProtoReflect.Descriptor instead.
+func (*PoliceResponse) Descriptor() ([]byte, []int) {
+	return file_server_server_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PoliceResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *PoliceResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_server_server_proto protoreflect.FileDescriptor
 
 const file_server_server_proto_rawDesc = "" +
 	"\n" +
-	"\x13server/server.proto\x12\x04chat\"$\n" +
+	"\x13server/server.proto\x12\x06server\"$\n" +
 	"\x0eMessageRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"'\n" +
 	"\x0fMessageResponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2L\n" +
-	"\x0eExampleService\x12:\n" +
-	"\vSendMessage\x12\x14.chat.MessageRequest\x1a\x15.chat.MessageResponseB\vZ\tsrc/protob\x06proto3"
+	"\x05reply\x18\x01 \x01(\tR\x05reply\"%\n" +
+	"\rPoliceRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"@\n" +
+	"\x0ePoliceResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\x8d\x01\n" +
+	"\x0eExampleService\x12>\n" +
+	"\vSendMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\x12;\n" +
+	"\n" +
+	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponseB\vZ\tsrc/protob\x06proto3"
 
 var (
 	file_server_server_proto_rawDescOnce sync.Once
@@ -133,16 +236,20 @@ func file_server_server_proto_rawDescGZIP() []byte {
 	return file_server_server_proto_rawDescData
 }
 
-var file_server_server_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_server_server_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_server_server_proto_goTypes = []any{
-	(*MessageRequest)(nil),  // 0: chat.MessageRequest
-	(*MessageResponse)(nil), // 1: chat.MessageResponse
+	(*MessageRequest)(nil),  // 0: server.MessageRequest
+	(*MessageResponse)(nil), // 1: server.MessageResponse
+	(*PoliceRequest)(nil),   // 2: server.PoliceRequest
+	(*PoliceResponse)(nil),  // 3: server.PoliceResponse
 }
 var file_server_server_proto_depIdxs = []int32{
-	0, // 0: chat.ExampleService.SendMessage:input_type -> chat.MessageRequest
-	1, // 1: chat.ExampleService.SendMessage:output_type -> chat.MessageResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 0: server.ExampleService.SendMessage:input_type -> server.MessageRequest
+	2, // 1: server.ExampleService.SendPolice:input_type -> server.PoliceRequest
+	1, // 2: server.ExampleService.SendMessage:output_type -> server.MessageResponse
+	3, // 3: server.ExampleService.SendPolice:output_type -> server.PoliceResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -159,7 +266,7 @@ func file_server_server_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_server_server_proto_rawDesc), len(file_server_server_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

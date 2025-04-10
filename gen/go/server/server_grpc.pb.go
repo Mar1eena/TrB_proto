@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ExampleService_SendMessage_FullMethodName = "/chat.ExampleService/SendMessage"
+	ExampleService_SendMessage_FullMethodName = "/server.ExampleService/SendMessage"
+	ExampleService_SendPolice_FullMethodName  = "/server.ExampleService/SendPolice"
 )
 
 // ExampleServiceClient is the client API for ExampleService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExampleServiceClient interface {
 	SendMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
+	SendPolice(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (*PoliceResponse, error)
 }
 
 type exampleServiceClient struct {
@@ -47,11 +49,22 @@ func (c *exampleServiceClient) SendMessage(ctx context.Context, in *MessageReque
 	return out, nil
 }
 
+func (c *exampleServiceClient) SendPolice(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (*PoliceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PoliceResponse)
+	err := c.cc.Invoke(ctx, ExampleService_SendPolice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ExampleServiceServer is the server API for ExampleService service.
 // All implementations must embed UnimplementedExampleServiceServer
 // for forward compatibility.
 type ExampleServiceServer interface {
 	SendMessage(context.Context, *MessageRequest) (*MessageResponse, error)
+	SendPolice(context.Context, *PoliceRequest) (*PoliceResponse, error)
 	mustEmbedUnimplementedExampleServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedExampleServiceServer struct{}
 
 func (UnimplementedExampleServiceServer) SendMessage(context.Context, *MessageRequest) (*MessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMessage not implemented")
+}
+func (UnimplementedExampleServiceServer) SendPolice(context.Context, *PoliceRequest) (*PoliceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendPolice not implemented")
 }
 func (UnimplementedExampleServiceServer) mustEmbedUnimplementedExampleServiceServer() {}
 func (UnimplementedExampleServiceServer) testEmbeddedByValue()                        {}
@@ -104,16 +120,38 @@ func _ExampleService_SendMessage_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ExampleService_SendPolice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PoliceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExampleServiceServer).SendPolice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ExampleService_SendPolice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExampleServiceServer).SendPolice(ctx, req.(*PoliceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ExampleService_ServiceDesc is the grpc.ServiceDesc for ExampleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ExampleService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "chat.ExampleService",
+	ServiceName: "server.ExampleService",
 	HandlerType: (*ExampleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SendMessage",
 			Handler:    _ExampleService_SendMessage_Handler,
+		},
+		{
+			MethodName: "SendPolice",
+			Handler:    _ExampleService_SendPolice_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
