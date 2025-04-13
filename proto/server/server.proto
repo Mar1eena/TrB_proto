@@ -5,10 +5,23 @@ option go_package = "src/proto";
 package server;
 
 service ExampleService {
+  // Unary RPC (один запрос - один ответ)
   rpc SendMessage (MessageRequest) returns (MessageResponse);
+  
+  // Unary RPC для полиции
   rpc SendPolice (PoliceRequest) returns (PoliceResponse);
+  
+  // Server-side streaming (один запрос - поток ответов)
+  rpc StreamPoliceUpdates (PoliceRequest) returns (stream PoliceStreamResponse);
+  
+  // Client-side streaming (поток запросов - один ответ)
+  rpc ClientStreamingExample (stream ClientStreamRequest) returns (StreamSummary);
+  
+  // Bidirectional streaming (двусторонний поток)
+  rpc BidirectionalStream (stream BidirectionalMessage) returns (stream BidirectionalMessage);
 }
 
+// Сообщения для unary-методов
 message MessageRequest {
   string text = 1;
 }
@@ -17,11 +30,36 @@ message MessageResponse {
   string reply = 1;
 }
 
-message PoliceRequest{
+message PoliceRequest {
   string token = 1;
 }
 
-message PoliceResponse{
+message PoliceResponse {
   string token = 1;
   string message = 2;
+}
+
+// Сообщения для server-side streaming
+message PoliceStreamResponse {
+  string update = 1;
+  int32 severity = 2;
+  string timestamp = 3;
+}
+
+// Сообщения для client-side streaming
+message ClientStreamRequest {
+  string client_id = 1;
+  bytes payload = 2;
+}
+
+message StreamSummary {
+  int32 total_requests = 1;
+  int64 total_bytes = 2;
+}
+
+// Сообщения для bidirectional streaming
+message BidirectionalMessage {
+  string sender = 1;
+  string content = 2;
+  int64 sequence = 3;
 }
