@@ -8,7 +8,7 @@ service ExampleService {
   // Unary RPC (один запрос - один ответ)
   rpc SendMessage (MessageRequest) returns (MessageResponse);
   
-  // Unary RPC для полиции
+  // Unary RPC
   rpc SendPolice (PoliceRequest) returns (PoliceResponse);
   
   // Server-side streaming (один запрос - поток ответов)

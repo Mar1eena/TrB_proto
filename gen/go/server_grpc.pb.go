@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.30.2
-// source: server/server.proto
+// source: server.proto
 
 package proto
 
@@ -270,5 +270,5 @@ var ExampleService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "server/server.proto",
+	Metadata: "server.proto",
 }
