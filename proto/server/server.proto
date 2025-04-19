@@ -19,7 +19,12 @@ service ExampleService {
   rpc SendPolice (PoliceRequest) returns (PoliceResponse);
   
   // Server-side streaming (один запрос - поток ответов)
-  rpc StreamPoliceUpdates (PoliceRequest) returns (stream PoliceStreamResponse);
+  rpc StreamPoliceUpdates (PoliceRequest) returns (stream PoliceStreamResponse){
+    option (google.api.http) = {
+      post: "/stream"
+      body: "*"
+    };
+  };
   
   // Client-side streaming (поток запросов - один ответ)
   rpc ClientStreamingExample (stream ClientStreamRequest) returns (StreamSummary);

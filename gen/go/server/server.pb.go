@@ -462,12 +462,12 @@ const file_server_server_proto_rawDesc = "" +
 	"\x14BidirectionalMessage\x12\x16\n" +
 	"\x06sender\x18\x01 \x01(\tR\x06sender\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x1a\n" +
-	"\bsequence\x18\x03 \x01(\x03R\bsequence2\x93\x03\n" +
+	"\bsequence\x18\x03 \x01(\x03R\bsequence2\xa7\x03\n" +
 	"\x0eExampleService\x12O\n" +
 	"\vSendMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12;\n" +
 	"\n" +
-	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponse\x12L\n" +
-	"\x13StreamPoliceUpdates\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse0\x01\x12N\n" +
+	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponse\x12`\n" +
+	"\x13StreamPoliceUpdates\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12N\n" +
 	"\x16ClientStreamingExample\x12\x1b.server.ClientStreamRequest\x1a\x15.server.StreamSummary(\x01\x12U\n" +
 	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B\vZ\tsrc/protob\x06proto3"
 
