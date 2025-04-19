@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.30.2
-// source: server.proto
+// source: server/server.proto
 
 package proto
 
@@ -32,7 +32,7 @@ const (
 type ExampleServiceClient interface {
 	// Unary RPC (один запрос - один ответ)
 	SendMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
-	// Unary RPC для полиции
+	// Unary RPC
 	SendPolice(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (*PoliceResponse, error)
 	// Server-side streaming (один запрос - поток ответов)
 	StreamPoliceUpdates(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PoliceStreamResponse], error)
@@ -121,7 +121,7 @@ type ExampleService_BidirectionalStreamClient = grpc.BidiStreamingClient[Bidirec
 type ExampleServiceServer interface {
 	// Unary RPC (один запрос - один ответ)
 	SendMessage(context.Context, *MessageRequest) (*MessageResponse, error)
-	// Unary RPC для полиции
+	// Unary RPC
 	SendPolice(context.Context, *PoliceRequest) (*PoliceResponse, error)
 	// Server-side streaming (один запрос - поток ответов)
 	StreamPoliceUpdates(*PoliceRequest, grpc.ServerStreamingServer[PoliceStreamResponse]) error
@@ -270,5 +270,5 @@ var ExampleService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "server.proto",
+	Metadata: "server/server.proto",
 }
