@@ -462,9 +462,9 @@ const file_server_server_proto_rawDesc = "" +
 	"\x14BidirectionalMessage\x12\x16\n" +
 	"\x06sender\x18\x01 \x01(\tR\x06sender\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x1a\n" +
-	"\bsequence\x18\x03 \x01(\x03R\bsequence2\x90\x03\n" +
-	"\x0eExampleService\x12L\n" +
-	"\vSendMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\f\x82\xd3\xe4\x93\x02\x06\x12\x04/say\x12;\n" +
+	"\bsequence\x18\x03 \x01(\x03R\bsequence2\x93\x03\n" +
+	"\x0eExampleService\x12O\n" +
+	"\vSendMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12;\n" +
 	"\n" +
 	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponse\x12L\n" +
 	"\x13StreamPoliceUpdates\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse0\x01\x12N\n" +

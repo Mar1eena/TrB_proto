@@ -3,15 +3,17 @@ syntax = "proto3";
 package server;
 option go_package = "src/proto";
 
+// Не обращать внимание на ошибку
 import "google/api/annotations.proto";
 
 service ExampleService {
   // Unary RPC (один запрос - один ответ)
   rpc SendMessage (MessageRequest) returns (MessageResponse){
     option (google.api.http) = {
-      get: "/say"
+      post: "/say"
+      body: "*"
     };
-  }
+  };
   
   // Unary RPC
   rpc SendPolice (PoliceRequest) returns (PoliceResponse);
