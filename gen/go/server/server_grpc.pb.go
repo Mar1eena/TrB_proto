@@ -4,7 +4,7 @@
 // - protoc             v6.30.2
 // source: server/server.proto
 
-package proto
+package trb_proto
 
 import (
 	context "context"

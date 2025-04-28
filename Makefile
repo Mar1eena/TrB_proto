@@ -14,3 +14,8 @@ tools:
 
 gen-descriptor:
 	protoc -I./proto/googleapis -I./proto/server --include_imports --include_source_info --descriptor_set_out=./gen/descriptor/proto.pb proto/server/server.proto 
+
+update-pkg-cache:
+    GOPROXY=https://proxy.golang.org GO111MODULE=on \
+	go get github.com/Mar1eena/trb_proto@v0.0.3	
+	

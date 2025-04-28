@@ -4,7 +4,7 @@
 // 	protoc        v6.30.2
 // source: server/server.proto
 
-package proto
+package trb_proto
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -469,7 +469,7 @@ const file_server_server_proto_rawDesc = "" +
 	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponse\x12`\n" +
 	"\x13StreamPoliceUpdates\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12N\n" +
 	"\x16ClientStreamingExample\x12\x1b.server.ClientStreamRequest\x1a\x15.server.StreamSummary(\x01\x12U\n" +
-	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B\vZ\tsrc/protob\x06proto3"
+	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B\x1fZ\x1dgithub.com/Mar1eena/trb_protob\x06proto3"
 
 var (
 	file_server_server_proto_rawDescOnce sync.Once

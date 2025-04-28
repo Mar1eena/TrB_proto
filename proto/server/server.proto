@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package server;
-option go_package = "src/proto";
+option go_package = "github.com/Mar1eena/trb_proto";
 
 // Не обращать внимание на ошибку
 import "google/api/annotations.proto";
