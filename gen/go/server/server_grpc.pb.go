@@ -19,11 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ExampleService_SendMessage_FullMethodName            = "/server.ExampleService/SendMessage"
-	ExampleService_SendPolice_FullMethodName             = "/server.ExampleService/SendPolice"
-	ExampleService_StreamPoliceUpdates_FullMethodName    = "/server.ExampleService/StreamPoliceUpdates"
-	ExampleService_ClientStreamingExample_FullMethodName = "/server.ExampleService/ClientStreamingExample"
-	ExampleService_BidirectionalStream_FullMethodName    = "/server.ExampleService/BidirectionalStream"
+	ExampleService_UnaryRPCMessage_FullMethodName     = "/server.ExampleService/UnaryRPCMessage"
+	ExampleService_ServerSideStream_FullMethodName    = "/server.ExampleService/ServerSideStream"
+	ExampleService_ClientSideStream_FullMethodName    = "/server.ExampleService/ClientSideStream"
+	ExampleService_BidirectionalStream_FullMethodName = "/server.ExampleService/BidirectionalStream"
 )
 
 // ExampleServiceClient is the client API for ExampleService service.
@@ -31,13 +30,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExampleServiceClient interface {
 	// Unary RPC (один запрос - один ответ)
-	SendMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
-	// Unary RPC
-	SendPolice(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (*PoliceResponse, error)
+	UnaryRPCMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
 	// Server-side streaming (один запрос - поток ответов)
-	StreamPoliceUpdates(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PoliceStreamResponse], error)
+	ServerSideStream(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PoliceStreamResponse], error)
 	// Client-side streaming (поток запросов - один ответ)
-	ClientStreamingExample(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary], error)
+	ClientSideStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary], error)
 	// Bidirectional streaming (двусторонний поток)
 	BidirectionalStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[BidirectionalMessage, BidirectionalMessage], error)
 }
@@ -50,29 +47,19 @@ func NewExampleServiceClient(cc grpc.ClientConnInterface) ExampleServiceClient {
 	return &exampleServiceClient{cc}
 }
 
-func (c *exampleServiceClient) SendMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
+func (c *exampleServiceClient) UnaryRPCMessage(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MessageResponse)
-	err := c.cc.Invoke(ctx, ExampleService_SendMessage_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ExampleService_UnaryRPCMessage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *exampleServiceClient) SendPolice(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (*PoliceResponse, error) {
+func (c *exampleServiceClient) ServerSideStream(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PoliceStreamResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PoliceResponse)
-	err := c.cc.Invoke(ctx, ExampleService_SendPolice_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *exampleServiceClient) StreamPoliceUpdates(ctx context.Context, in *PoliceRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PoliceStreamResponse], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ExampleService_ServiceDesc.Streams[0], ExampleService_StreamPoliceUpdates_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ExampleService_ServiceDesc.Streams[0], ExampleService_ServerSideStream_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,11 +74,11 @@ func (c *exampleServiceClient) StreamPoliceUpdates(ctx context.Context, in *Poli
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExampleService_StreamPoliceUpdatesClient = grpc.ServerStreamingClient[PoliceStreamResponse]
+type ExampleService_ServerSideStreamClient = grpc.ServerStreamingClient[PoliceStreamResponse]
 
-func (c *exampleServiceClient) ClientStreamingExample(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary], error) {
+func (c *exampleServiceClient) ClientSideStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ExampleService_ServiceDesc.Streams[1], ExampleService_ClientStreamingExample_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ExampleService_ServiceDesc.Streams[1], ExampleService_ClientSideStream_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +87,7 @@ func (c *exampleServiceClient) ClientStreamingExample(ctx context.Context, opts 
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExampleService_ClientStreamingExampleClient = grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary]
+type ExampleService_ClientSideStreamClient = grpc.ClientStreamingClient[ClientStreamRequest, StreamSummary]
 
 func (c *exampleServiceClient) BidirectionalStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[BidirectionalMessage, BidirectionalMessage], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -120,13 +107,11 @@ type ExampleService_BidirectionalStreamClient = grpc.BidiStreamingClient[Bidirec
 // for forward compatibility.
 type ExampleServiceServer interface {
 	// Unary RPC (один запрос - один ответ)
-	SendMessage(context.Context, *MessageRequest) (*MessageResponse, error)
-	// Unary RPC
-	SendPolice(context.Context, *PoliceRequest) (*PoliceResponse, error)
+	UnaryRPCMessage(context.Context, *MessageRequest) (*MessageResponse, error)
 	// Server-side streaming (один запрос - поток ответов)
-	StreamPoliceUpdates(*PoliceRequest, grpc.ServerStreamingServer[PoliceStreamResponse]) error
+	ServerSideStream(*PoliceRequest, grpc.ServerStreamingServer[PoliceStreamResponse]) error
 	// Client-side streaming (поток запросов - один ответ)
-	ClientStreamingExample(grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]) error
+	ClientSideStream(grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]) error
 	// Bidirectional streaming (двусторонний поток)
 	BidirectionalStream(grpc.BidiStreamingServer[BidirectionalMessage, BidirectionalMessage]) error
 	mustEmbedUnimplementedExampleServiceServer()
@@ -139,17 +124,14 @@ type ExampleServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedExampleServiceServer struct{}
 
-func (UnimplementedExampleServiceServer) SendMessage(context.Context, *MessageRequest) (*MessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendMessage not implemented")
+func (UnimplementedExampleServiceServer) UnaryRPCMessage(context.Context, *MessageRequest) (*MessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnaryRPCMessage not implemented")
 }
-func (UnimplementedExampleServiceServer) SendPolice(context.Context, *PoliceRequest) (*PoliceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendPolice not implemented")
+func (UnimplementedExampleServiceServer) ServerSideStream(*PoliceRequest, grpc.ServerStreamingServer[PoliceStreamResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method ServerSideStream not implemented")
 }
-func (UnimplementedExampleServiceServer) StreamPoliceUpdates(*PoliceRequest, grpc.ServerStreamingServer[PoliceStreamResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method StreamPoliceUpdates not implemented")
-}
-func (UnimplementedExampleServiceServer) ClientStreamingExample(grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]) error {
-	return status.Errorf(codes.Unimplemented, "method ClientStreamingExample not implemented")
+func (UnimplementedExampleServiceServer) ClientSideStream(grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]) error {
+	return status.Errorf(codes.Unimplemented, "method ClientSideStream not implemented")
 }
 func (UnimplementedExampleServiceServer) BidirectionalStream(grpc.BidiStreamingServer[BidirectionalMessage, BidirectionalMessage]) error {
 	return status.Errorf(codes.Unimplemented, "method BidirectionalStream not implemented")
@@ -175,59 +157,41 @@ func RegisterExampleServiceServer(s grpc.ServiceRegistrar, srv ExampleServiceSer
 	s.RegisterService(&ExampleService_ServiceDesc, srv)
 }
 
-func _ExampleService_SendMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ExampleService_UnaryRPCMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MessageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExampleServiceServer).SendMessage(ctx, in)
+		return srv.(ExampleServiceServer).UnaryRPCMessage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ExampleService_SendMessage_FullMethodName,
+		FullMethod: ExampleService_UnaryRPCMessage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExampleServiceServer).SendMessage(ctx, req.(*MessageRequest))
+		return srv.(ExampleServiceServer).UnaryRPCMessage(ctx, req.(*MessageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ExampleService_SendPolice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PoliceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ExampleServiceServer).SendPolice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ExampleService_SendPolice_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExampleServiceServer).SendPolice(ctx, req.(*PoliceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ExampleService_StreamPoliceUpdates_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _ExampleService_ServerSideStream_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(PoliceRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ExampleServiceServer).StreamPoliceUpdates(m, &grpc.GenericServerStream[PoliceRequest, PoliceStreamResponse]{ServerStream: stream})
+	return srv.(ExampleServiceServer).ServerSideStream(m, &grpc.GenericServerStream[PoliceRequest, PoliceStreamResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExampleService_StreamPoliceUpdatesServer = grpc.ServerStreamingServer[PoliceStreamResponse]
+type ExampleService_ServerSideStreamServer = grpc.ServerStreamingServer[PoliceStreamResponse]
 
-func _ExampleService_ClientStreamingExample_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ExampleServiceServer).ClientStreamingExample(&grpc.GenericServerStream[ClientStreamRequest, StreamSummary]{ServerStream: stream})
+func _ExampleService_ClientSideStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ExampleServiceServer).ClientSideStream(&grpc.GenericServerStream[ClientStreamRequest, StreamSummary]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExampleService_ClientStreamingExampleServer = grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]
+type ExampleService_ClientSideStreamServer = grpc.ClientStreamingServer[ClientStreamRequest, StreamSummary]
 
 func _ExampleService_BidirectionalStream_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ExampleServiceServer).BidirectionalStream(&grpc.GenericServerStream[BidirectionalMessage, BidirectionalMessage]{ServerStream: stream})
@@ -244,23 +208,19 @@ var ExampleService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ExampleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendMessage",
-			Handler:    _ExampleService_SendMessage_Handler,
-		},
-		{
-			MethodName: "SendPolice",
-			Handler:    _ExampleService_SendPolice_Handler,
+			MethodName: "UnaryRPCMessage",
+			Handler:    _ExampleService_UnaryRPCMessage_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StreamPoliceUpdates",
-			Handler:       _ExampleService_StreamPoliceUpdates_Handler,
+			StreamName:    "ServerSideStream",
+			Handler:       _ExampleService_ServerSideStream_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "ClientStreamingExample",
-			Handler:       _ExampleService_ClientStreamingExample_Handler,
+			StreamName:    "ClientSideStream",
+			Handler:       _ExampleService_ClientSideStream_Handler,
 			ClientStreams: true,
 		},
 		{

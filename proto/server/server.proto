@@ -8,18 +8,15 @@ import "google/api/annotations.proto";
 
 service ExampleService {
   // Unary RPC (один запрос - один ответ)
-  rpc SendMessage (MessageRequest) returns (MessageResponse){
+  rpc UnaryRPCMessage (MessageRequest) returns (MessageResponse){
     option (google.api.http) = {
       post: "/say"
       body: "*"
     };
   };
   
-  // Unary RPC
-  rpc SendPolice (PoliceRequest) returns (PoliceResponse);
-  
   // Server-side streaming (один запрос - поток ответов)
-  rpc StreamPoliceUpdates (PoliceRequest) returns (stream PoliceStreamResponse){
+  rpc ServerSideStream (PoliceRequest) returns (stream PoliceStreamResponse){
     option (google.api.http) = {
       post: "/stream"
       body: "*"
@@ -27,7 +24,7 @@ service ExampleService {
   };
   
   // Client-side streaming (поток запросов - один ответ)
-  rpc ClientStreamingExample (stream ClientStreamRequest) returns (StreamSummary);
+  rpc ClientSideStream (stream ClientStreamRequest) returns (StreamSummary);
   
   // Bidirectional streaming (двусторонний поток)
   rpc BidirectionalStream (stream BidirectionalMessage) returns (stream BidirectionalMessage);

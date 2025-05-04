@@ -462,13 +462,11 @@ const file_server_server_proto_rawDesc = "" +
 	"\x14BidirectionalMessage\x12\x16\n" +
 	"\x06sender\x18\x01 \x01(\tR\x06sender\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x1a\n" +
-	"\bsequence\x18\x03 \x01(\x03R\bsequence2\xa7\x03\n" +
-	"\x0eExampleService\x12O\n" +
-	"\vSendMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12;\n" +
-	"\n" +
-	"SendPolice\x12\x15.server.PoliceRequest\x1a\x16.server.PoliceResponse\x12`\n" +
-	"\x13StreamPoliceUpdates\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12N\n" +
-	"\x16ClientStreamingExample\x12\x1b.server.ClientStreamRequest\x1a\x15.server.StreamSummary(\x01\x12U\n" +
+	"\bsequence\x18\x03 \x01(\x03R\bsequence2\xe5\x02\n" +
+	"\x0eExampleService\x12S\n" +
+	"\x0fUnaryRPCMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12]\n" +
+	"\x10ServerSideStream\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12H\n" +
+	"\x10ClientSideStream\x12\x1b.server.ClientStreamRequest\x1a\x15.server.StreamSummary(\x01\x12U\n" +
 	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B\x1fZ\x1dgithub.com/Mar1eena/trb_protob\x06proto3"
 
 var (
@@ -495,18 +493,16 @@ var file_server_server_proto_goTypes = []any{
 	(*BidirectionalMessage)(nil), // 7: server.BidirectionalMessage
 }
 var file_server_server_proto_depIdxs = []int32{
-	0, // 0: server.ExampleService.SendMessage:input_type -> server.MessageRequest
-	2, // 1: server.ExampleService.SendPolice:input_type -> server.PoliceRequest
-	2, // 2: server.ExampleService.StreamPoliceUpdates:input_type -> server.PoliceRequest
-	5, // 3: server.ExampleService.ClientStreamingExample:input_type -> server.ClientStreamRequest
-	7, // 4: server.ExampleService.BidirectionalStream:input_type -> server.BidirectionalMessage
-	1, // 5: server.ExampleService.SendMessage:output_type -> server.MessageResponse
-	3, // 6: server.ExampleService.SendPolice:output_type -> server.PoliceResponse
-	4, // 7: server.ExampleService.StreamPoliceUpdates:output_type -> server.PoliceStreamResponse
-	6, // 8: server.ExampleService.ClientStreamingExample:output_type -> server.StreamSummary
-	7, // 9: server.ExampleService.BidirectionalStream:output_type -> server.BidirectionalMessage
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
+	0, // 0: server.ExampleService.UnaryRPCMessage:input_type -> server.MessageRequest
+	2, // 1: server.ExampleService.ServerSideStream:input_type -> server.PoliceRequest
+	5, // 2: server.ExampleService.ClientSideStream:input_type -> server.ClientStreamRequest
+	7, // 3: server.ExampleService.BidirectionalStream:input_type -> server.BidirectionalMessage
+	1, // 4: server.ExampleService.UnaryRPCMessage:output_type -> server.MessageResponse
+	4, // 5: server.ExampleService.ServerSideStream:output_type -> server.PoliceStreamResponse
+	6, // 6: server.ExampleService.ClientSideStream:output_type -> server.StreamSummary
+	7, // 7: server.ExampleService.BidirectionalStream:output_type -> server.BidirectionalMessage
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
