@@ -1,4 +1,9 @@
-Генерация кода из proto файлов для go:
-make gen
+Структура сервисов должна быть по стандарту:
 
-надо powershell windows выполнять
+└── 📁services
+    └── 📁service
+        └── 📁gen
+            └── 📁descriptor
+            └── 📁go
+        └── 📁proto
+            └── *.proto

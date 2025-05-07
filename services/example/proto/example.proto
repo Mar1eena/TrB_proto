@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package server;
+option go_package = "github.com/Mar1eena/trb_proto/services/example";
+
+// Не обращать внимание на ошибку
+import "google/api/annotations.proto";
+
+service ExampleService {
+  // Unary RPC (один запрос - один ответ)
+  rpc UnaryRPCMessage (MessageRequest) returns (MessageResponse){
+    option (google.api.http) = {
+      post: "/say"
+      body: "*"
+    };
+  };
+}
+
+// Сообщения для unary-методов
+message MessageRequest {
+  string text = 1;
+}
+
+message MessageResponse {
+  string reply = 1;
+}

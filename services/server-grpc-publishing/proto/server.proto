@@ -1,9 +1,8 @@
 syntax = "proto3";
 
 package server;
-option go_package = "github.com/Mar1eena/trb_proto";
+option go_package = "github.com/Mar1eena/trb_proto/services/server-grpc-publishing";
 
-// Не обращать внимание на ошибку
 import "google/api/annotations.proto";
 
 service ExampleService {
@@ -30,7 +29,6 @@ service ExampleService {
   rpc BidirectionalStream (stream BidirectionalMessage) returns (stream BidirectionalMessage);
 }
 
-// Сообщения для unary-методов
 message MessageRequest {
   string text = 1;
 }
@@ -48,14 +46,12 @@ message PoliceResponse {
   string message = 2;
 }
 
-// Сообщения для server-side streaming
 message PoliceStreamResponse {
   string update = 1;
   int32 severity = 2;
   string timestamp = 3;
 }
 
-// Сообщения для client-side streaming
 message ClientStreamRequest {
   string client_id = 1;
   bytes payload = 2;
@@ -66,7 +62,6 @@ message StreamSummary {
   int64 total_bytes = 2;
 }
 
-// Сообщения для bidirectional streaming
 message BidirectionalMessage {
   string sender = 1;
   string content = 2;

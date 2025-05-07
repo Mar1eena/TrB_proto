@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package server;
+option go_package = "github.com/Mar1eena/trb_proto/services/server-grpc-receiving";
+
+import "google/api/annotations.proto";
+
+service ExampleService {
+  // Unary RPC (один запрос - один ответ)
+  rpc UnaryRPCMessage (MessageRequest) returns (MessageResponse){
+    option (google.api.http) = {
+      post: "/say"
+      body: "*"
+    };
+  };
+  
+  rpc ServerSideStream (PoliceRequest) returns (stream PoliceStreamResponse){
+    option (google.api.http) = {
+      post: "/stream"
+      body: "*"
+    };
+  };
+  
+  rpc ClientSideStream (stream ClientStreamRequest) returns (StreamSummary);
+  
+  // Bidirectional streaming (двусторонний поток)
+  rpc BidirectionalStream (stream BidirectionalMessage) returns (stream BidirectionalMessage);
+}
+
+message MessageRequest {
+  string text = 1;
+}
+
+message MessageResponse {
+  string reply = 1;
+}
+
+message PoliceRequest {
+  string token = 1;
+}
+
+message PoliceResponse {
+  string token = 1;
+  string message = 2;
+}
+
+message PoliceStreamResponse {
+  string update = 1;
+  int32 severity = 2;
+  string timestamp = 3;
+}
+
+message ClientStreamRequest {
+  string client_id = 1;
+  bytes payload = 2;
+}
+
+message StreamSummary {
+  int32 total_requests = 1;
+  int64 total_bytes = 2;
+}
+
+message BidirectionalMessage {
+  string sender = 1;
+  string content = 2;
+  int64 sequence = 3;
+}

@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: server/server.proto
+// source: services/server-grpc-publishing/proto/server.proto
 
-package trb_proto
+package server_grpc_publishing
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -32,7 +32,7 @@ type MessageRequest struct {
 
 func (x *MessageRequest) Reset() {
 	*x = MessageRequest{}
-	mi := &file_server_server_proto_msgTypes[0]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *MessageRequest) String() string {
 func (*MessageRequest) ProtoMessage() {}
 
 func (x *MessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[0]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *MessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageRequest.ProtoReflect.Descriptor instead.
 func (*MessageRequest) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{0}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *MessageRequest) GetText() string {
@@ -76,7 +76,7 @@ type MessageResponse struct {
 
 func (x *MessageResponse) Reset() {
 	*x = MessageResponse{}
-	mi := &file_server_server_proto_msgTypes[1]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +88,7 @@ func (x *MessageResponse) String() string {
 func (*MessageResponse) ProtoMessage() {}
 
 func (x *MessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[1]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +101,7 @@ func (x *MessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageResponse.ProtoReflect.Descriptor instead.
 func (*MessageResponse) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{1}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *MessageResponse) GetReply() string {
@@ -120,7 +120,7 @@ type PoliceRequest struct {
 
 func (x *PoliceRequest) Reset() {
 	*x = PoliceRequest{}
-	mi := &file_server_server_proto_msgTypes[2]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -132,7 +132,7 @@ func (x *PoliceRequest) String() string {
 func (*PoliceRequest) ProtoMessage() {}
 
 func (x *PoliceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[2]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -145,7 +145,7 @@ func (x *PoliceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoliceRequest.ProtoReflect.Descriptor instead.
 func (*PoliceRequest) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{2}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PoliceRequest) GetToken() string {
@@ -165,7 +165,7 @@ type PoliceResponse struct {
 
 func (x *PoliceResponse) Reset() {
 	*x = PoliceResponse{}
-	mi := &file_server_server_proto_msgTypes[3]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -177,7 +177,7 @@ func (x *PoliceResponse) String() string {
 func (*PoliceResponse) ProtoMessage() {}
 
 func (x *PoliceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[3]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -190,7 +190,7 @@ func (x *PoliceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoliceResponse.ProtoReflect.Descriptor instead.
 func (*PoliceResponse) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{3}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PoliceResponse) GetToken() string {
@@ -219,7 +219,7 @@ type PoliceStreamResponse struct {
 
 func (x *PoliceStreamResponse) Reset() {
 	*x = PoliceStreamResponse{}
-	mi := &file_server_server_proto_msgTypes[4]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -231,7 +231,7 @@ func (x *PoliceStreamResponse) String() string {
 func (*PoliceStreamResponse) ProtoMessage() {}
 
 func (x *PoliceStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[4]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -244,7 +244,7 @@ func (x *PoliceStreamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoliceStreamResponse.ProtoReflect.Descriptor instead.
 func (*PoliceStreamResponse) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{4}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PoliceStreamResponse) GetUpdate() string {
@@ -279,7 +279,7 @@ type ClientStreamRequest struct {
 
 func (x *ClientStreamRequest) Reset() {
 	*x = ClientStreamRequest{}
-	mi := &file_server_server_proto_msgTypes[5]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -291,7 +291,7 @@ func (x *ClientStreamRequest) String() string {
 func (*ClientStreamRequest) ProtoMessage() {}
 
 func (x *ClientStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[5]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -304,7 +304,7 @@ func (x *ClientStreamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientStreamRequest.ProtoReflect.Descriptor instead.
 func (*ClientStreamRequest) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{5}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ClientStreamRequest) GetClientId() string {
@@ -331,7 +331,7 @@ type StreamSummary struct {
 
 func (x *StreamSummary) Reset() {
 	*x = StreamSummary{}
-	mi := &file_server_server_proto_msgTypes[6]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -343,7 +343,7 @@ func (x *StreamSummary) String() string {
 func (*StreamSummary) ProtoMessage() {}
 
 func (x *StreamSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[6]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -356,7 +356,7 @@ func (x *StreamSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamSummary.ProtoReflect.Descriptor instead.
 func (*StreamSummary) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{6}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *StreamSummary) GetTotalRequests() int32 {
@@ -385,7 +385,7 @@ type BidirectionalMessage struct {
 
 func (x *BidirectionalMessage) Reset() {
 	*x = BidirectionalMessage{}
-	mi := &file_server_server_proto_msgTypes[7]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -397,7 +397,7 @@ func (x *BidirectionalMessage) String() string {
 func (*BidirectionalMessage) ProtoMessage() {}
 
 func (x *BidirectionalMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_server_server_proto_msgTypes[7]
+	mi := &file_services_server_grpc_publishing_proto_server_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,7 +410,7 @@ func (x *BidirectionalMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BidirectionalMessage.ProtoReflect.Descriptor instead.
 func (*BidirectionalMessage) Descriptor() ([]byte, []int) {
-	return file_server_server_proto_rawDescGZIP(), []int{7}
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *BidirectionalMessage) GetSender() string {
@@ -434,11 +434,11 @@ func (x *BidirectionalMessage) GetSequence() int64 {
 	return 0
 }
 
-var File_server_server_proto protoreflect.FileDescriptor
+var File_services_server_grpc_publishing_proto_server_proto protoreflect.FileDescriptor
 
-const file_server_server_proto_rawDesc = "" +
+const file_services_server_grpc_publishing_proto_server_proto_rawDesc = "" +
 	"\n" +
-	"\x13server/server.proto\x12\x06server\x1a\x1cgoogle/api/annotations.proto\"$\n" +
+	"2services/server-grpc-publishing/proto/server.proto\x12\x06server\x1a\x1cgoogle/api/annotations.proto\"$\n" +
 	"\x0eMessageRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"'\n" +
 	"\x0fMessageResponse\x12\x14\n" +
@@ -467,22 +467,22 @@ const file_server_server_proto_rawDesc = "" +
 	"\x0fUnaryRPCMessage\x12\x16.server.MessageRequest\x1a\x17.server.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12]\n" +
 	"\x10ServerSideStream\x12\x15.server.PoliceRequest\x1a\x1c.server.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12H\n" +
 	"\x10ClientSideStream\x12\x1b.server.ClientStreamRequest\x1a\x15.server.StreamSummary(\x01\x12U\n" +
-	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B\x1fZ\x1dgithub.com/Mar1eena/trb_protob\x06proto3"
+	"\x13BidirectionalStream\x12\x1c.server.BidirectionalMessage\x1a\x1c.server.BidirectionalMessage(\x010\x01B?Z=github.com/Mar1eena/trb_proto/services/server-grpc-publishingb\x06proto3"
 
 var (
-	file_server_server_proto_rawDescOnce sync.Once
-	file_server_server_proto_rawDescData []byte
+	file_services_server_grpc_publishing_proto_server_proto_rawDescOnce sync.Once
+	file_services_server_grpc_publishing_proto_server_proto_rawDescData []byte
 )
 
-func file_server_server_proto_rawDescGZIP() []byte {
-	file_server_server_proto_rawDescOnce.Do(func() {
-		file_server_server_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_server_server_proto_rawDesc), len(file_server_server_proto_rawDesc)))
+func file_services_server_grpc_publishing_proto_server_proto_rawDescGZIP() []byte {
+	file_services_server_grpc_publishing_proto_server_proto_rawDescOnce.Do(func() {
+		file_services_server_grpc_publishing_proto_server_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_services_server_grpc_publishing_proto_server_proto_rawDesc), len(file_services_server_grpc_publishing_proto_server_proto_rawDesc)))
 	})
-	return file_server_server_proto_rawDescData
+	return file_services_server_grpc_publishing_proto_server_proto_rawDescData
 }
 
-var file_server_server_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_server_server_proto_goTypes = []any{
+var file_services_server_grpc_publishing_proto_server_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_services_server_grpc_publishing_proto_server_proto_goTypes = []any{
 	(*MessageRequest)(nil),       // 0: server.MessageRequest
 	(*MessageResponse)(nil),      // 1: server.MessageResponse
 	(*PoliceRequest)(nil),        // 2: server.PoliceRequest
@@ -492,7 +492,7 @@ var file_server_server_proto_goTypes = []any{
 	(*StreamSummary)(nil),        // 6: server.StreamSummary
 	(*BidirectionalMessage)(nil), // 7: server.BidirectionalMessage
 }
-var file_server_server_proto_depIdxs = []int32{
+var file_services_server_grpc_publishing_proto_server_proto_depIdxs = []int32{
 	0, // 0: server.ExampleService.UnaryRPCMessage:input_type -> server.MessageRequest
 	2, // 1: server.ExampleService.ServerSideStream:input_type -> server.PoliceRequest
 	5, // 2: server.ExampleService.ClientSideStream:input_type -> server.ClientStreamRequest
@@ -508,26 +508,26 @@ var file_server_server_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_server_server_proto_init() }
-func file_server_server_proto_init() {
-	if File_server_server_proto != nil {
+func init() { file_services_server_grpc_publishing_proto_server_proto_init() }
+func file_services_server_grpc_publishing_proto_server_proto_init() {
+	if File_services_server_grpc_publishing_proto_server_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_server_server_proto_rawDesc), len(file_server_server_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_services_server_grpc_publishing_proto_server_proto_rawDesc), len(file_services_server_grpc_publishing_proto_server_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_server_server_proto_goTypes,
-		DependencyIndexes: file_server_server_proto_depIdxs,
-		MessageInfos:      file_server_server_proto_msgTypes,
+		GoTypes:           file_services_server_grpc_publishing_proto_server_proto_goTypes,
+		DependencyIndexes: file_services_server_grpc_publishing_proto_server_proto_depIdxs,
+		MessageInfos:      file_services_server_grpc_publishing_proto_server_proto_msgTypes,
 	}.Build()
-	File_server_server_proto = out.File
-	file_server_server_proto_goTypes = nil
-	file_server_server_proto_depIdxs = nil
+	File_services_server_grpc_publishing_proto_server_proto = out.File
+	file_services_server_grpc_publishing_proto_server_proto_goTypes = nil
+	file_services_server_grpc_publishing_proto_server_proto_depIdxs = nil
 }
