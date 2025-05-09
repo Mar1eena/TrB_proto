@@ -1,18 +1,5 @@
 # make gen service='Название сервиса'
-service=example
-# Кодогенерация gRPC
-gen: 
-	protoc -I. \
-	./services/$(service)/proto/*.proto \
-	--go_out=./services/$(service)/gen/go  \
-	--go_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
-	--go-grpc_out=./services/$(service)/gen/go \
-	--go-grpc_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
-	--grpc-gateway_out=./services/$(service)/gen/go \
-	--grpc-gateway_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
-	--include_imports --include_source_info --descriptor_set_out=./services/$(service)/gen/descriptor/proto.pb 
-
-gen1: 
+gen1:
 	protoc -I./services \
 	./services/*.proto \
 	--go_out=./gen/go  \
@@ -21,10 +8,20 @@ gen1:
 	--go-grpc_opt=module=github.com/Mar1eena/trb_proto/services \
 	--grpc-gateway_out=./gen/go \
 	--grpc-gateway_opt=module=github.com/Mar1eena/trb_proto/services \
-	--include_imports --include_source_info --descriptor_set_out=./gen/descriptor/trb_proto.pb 
-
+	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_proto.pb 
 buf:
 	buf generate
+
+# gen: 
+# 	protoc -I. \
+# 	./services/$(service)/proto/*.proto \
+# 	--go_out=./services/$(service)/gen/go  \
+# 	--go_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
+# 	--go-grpc_out=./services/$(service)/gen/go \
+# 	--go-grpc_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
+# 	--grpc-gateway_out=./services/$(service)/gen/go \
+# 	--grpc-gateway_opt=module=github.com/Mar1eena/trb_proto/services/$(service) \
+# 	--include_imports --include_source_info --descriptor_set_out=./services/$(service)/gen/descriptor/proto.pb 
 
 desc: 
 	protoc -I. \

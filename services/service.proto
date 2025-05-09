@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package server;
+option go_package = "github.com/Mar1eena/trb_proto/services";
+
+
+service service {
+    // Unary RPC (один запрос - один ответ)
+    rpc hello (hellorequest) returns (helloresponse);
+  }
+  
+  // Сообщения для unary-методов
+  message hellorequest {
+    string text = 1;
+  }
+  
+  message helloresponse {
+    string reply = 1;
+  }

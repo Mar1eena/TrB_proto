@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: service1.proto
+// source: service.proto
 
 package services
 
@@ -31,7 +31,7 @@ type Hellorequest struct {
 
 func (x *Hellorequest) Reset() {
 	*x = Hellorequest{}
-	mi := &file_service1_proto_msgTypes[0]
+	mi := &file_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *Hellorequest) String() string {
 func (*Hellorequest) ProtoMessage() {}
 
 func (x *Hellorequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service1_proto_msgTypes[0]
+	mi := &file_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *Hellorequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Hellorequest.ProtoReflect.Descriptor instead.
 func (*Hellorequest) Descriptor() ([]byte, []int) {
-	return file_service1_proto_rawDescGZIP(), []int{0}
+	return file_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Hellorequest) GetText() string {
@@ -75,7 +75,7 @@ type Helloresponse struct {
 
 func (x *Helloresponse) Reset() {
 	*x = Helloresponse{}
-	mi := &file_service1_proto_msgTypes[1]
+	mi := &file_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +87,7 @@ func (x *Helloresponse) String() string {
 func (*Helloresponse) ProtoMessage() {}
 
 func (x *Helloresponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service1_proto_msgTypes[1]
+	mi := &file_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,7 +100,7 @@ func (x *Helloresponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Helloresponse.ProtoReflect.Descriptor instead.
 func (*Helloresponse) Descriptor() ([]byte, []int) {
-	return file_service1_proto_rawDescGZIP(), []int{1}
+	return file_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Helloresponse) GetReply() string {
@@ -110,11 +110,11 @@ func (x *Helloresponse) GetReply() string {
 	return ""
 }
 
-var File_service1_proto protoreflect.FileDescriptor
+var File_service_proto protoreflect.FileDescriptor
 
-const file_service1_proto_rawDesc = "" +
+const file_service_proto_rawDesc = "" +
 	"\n" +
-	"\x0eservice1.proto\x12\x06server\"\"\n" +
+	"\rservice.proto\x12\x06server\"\"\n" +
 	"\fhellorequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"%\n" +
 	"\rhelloresponse\x12\x14\n" +
@@ -123,23 +123,23 @@ const file_service1_proto_rawDesc = "" +
 	"\x05hello\x12\x14.server.hellorequest\x1a\x15.server.helloresponseB(Z&github.com/Mar1eena/trb_proto/servicesb\x06proto3"
 
 var (
-	file_service1_proto_rawDescOnce sync.Once
-	file_service1_proto_rawDescData []byte
+	file_service_proto_rawDescOnce sync.Once
+	file_service_proto_rawDescData []byte
 )
 
-func file_service1_proto_rawDescGZIP() []byte {
-	file_service1_proto_rawDescOnce.Do(func() {
-		file_service1_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_service1_proto_rawDesc), len(file_service1_proto_rawDesc)))
+func file_service_proto_rawDescGZIP() []byte {
+	file_service_proto_rawDescOnce.Do(func() {
+		file_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_service_proto_rawDesc), len(file_service_proto_rawDesc)))
 	})
-	return file_service1_proto_rawDescData
+	return file_service_proto_rawDescData
 }
 
-var file_service1_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_service1_proto_goTypes = []any{
+var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_proto_goTypes = []any{
 	(*Hellorequest)(nil),  // 0: server.hellorequest
 	(*Helloresponse)(nil), // 1: server.helloresponse
 }
-var file_service1_proto_depIdxs = []int32{
+var file_service_proto_depIdxs = []int32{
 	0, // 0: server.service.hello:input_type -> server.hellorequest
 	1, // 1: server.service.hello:output_type -> server.helloresponse
 	1, // [1:2] is the sub-list for method output_type
@@ -149,26 +149,26 @@ var file_service1_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_service1_proto_init() }
-func file_service1_proto_init() {
-	if File_service1_proto != nil {
+func init() { file_service_proto_init() }
+func file_service_proto_init() {
+	if File_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service1_proto_rawDesc), len(file_service1_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_proto_rawDesc), len(file_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_service1_proto_goTypes,
-		DependencyIndexes: file_service1_proto_depIdxs,
-		MessageInfos:      file_service1_proto_msgTypes,
+		GoTypes:           file_service_proto_goTypes,
+		DependencyIndexes: file_service_proto_depIdxs,
+		MessageInfos:      file_service_proto_msgTypes,
 	}.Build()
-	File_service1_proto = out.File
-	file_service1_proto_goTypes = nil
-	file_service1_proto_depIdxs = nil
+	File_service_proto = out.File
+	file_service_proto_goTypes = nil
+	file_service_proto_depIdxs = nil
 }
