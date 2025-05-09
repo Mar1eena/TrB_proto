@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.30.2
-// source: services/server-grpc-publishing/proto/server.proto
+// source: ExampleService.proto
 
-package server_grpc_publishing
+package services
 
 import (
 	context "context"
@@ -230,5 +230,5 @@ var ExampleService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "services/server-grpc-publishing/proto/server.proto",
+	Metadata: "ExampleService.proto",
 }
