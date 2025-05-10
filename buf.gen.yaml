@@ -14,7 +14,7 @@ inputs:
   - directory: services
     paths:
       - services/trb
-      - services/t-invest
+      - services/tinvest
     exclude_paths:
       - services/google/api/annotations.proto
       - services/google/api/http.proto

@@ -4,7 +4,7 @@
 gene:
 	protoc -I./services \
 	./services/trb/*.proto \
-	./services/t-invest/*.proto \
+	./services/tinvest/*.proto \
 	--go_out=./gen/go  \
 	--go_opt=paths=source_relative \
 	--go-grpc_out=./gen/go/ \
@@ -16,7 +16,7 @@ gene:
 desc: 
 	protoc -I./services \
 	./services/trb/*.proto \
-	./services/t-invest/*.proto \
+	./services/tinvest/*.proto \
 	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_proto.pb
 
 buf:
