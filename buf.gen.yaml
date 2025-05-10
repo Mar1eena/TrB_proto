@@ -12,6 +12,10 @@ plugins:
     opt: paths=source_relative
 inputs:
   - directory: services
+    paths:
+      - services/trb
+      - services/t-invest
     exclude_paths:
       - services/google/api/annotations.proto
       - services/google/api/http.proto
+      - services/google/api/field_behavior.proto
