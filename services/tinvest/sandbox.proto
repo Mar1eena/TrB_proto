@@ -21,7 +21,7 @@ service SandboxService { // Методы для работы с песочниц
   rpc OpenSandboxAccount(OpenSandboxAccountRequest) returns (OpenSandboxAccountResponse);
 
   //GetSandboxAccounts — счета пользователя
-  rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse);
+  rpc GetSandboxAccounts_trb(GetAccountsRequest) returns (GetAccountsResponse);
 
   //CloseSandboxAccount — закрыть счет
   rpc CloseSandboxAccount(CloseSandboxAccountRequest) returns (CloseSandboxAccountResponse);
