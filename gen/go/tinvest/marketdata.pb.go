@@ -5105,8 +5105,8 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\x0fGetTechAnalysis\x12\x1f.tinvest.GetTechAnalysisRequest\x1a .tinvest.GetTechAnalysisResponse2\xd3\x01\n" +
 	"\x17MarketDataStreamService\x12O\n" +
 	"\x10MarketDataStream\x12\x1a.tinvest.MarketDataRequest\x1a\x1b.tinvest.MarketDataResponse(\x010\x01\x12g\n" +
-	"\x1aMarketDataServerSideStream\x12*.tinvest.MarketDataServerSideStreamRequest\x1a\x1b.tinvest.MarketDataResponse0\x01Bz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x1aMarketDataServerSideStream\x12*.tinvest.MarketDataServerSideStreamRequest\x1a\x1b.tinvest.MarketDataResponse0\x01B\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_marketdata_proto_rawDescOnce sync.Once

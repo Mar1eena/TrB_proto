@@ -4825,8 +4825,8 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x15GetOperationsByCursor\x12%.tinvest.GetOperationsByCursorRequest\x1a&.tinvest.GetOperationsByCursorResponse2\xc9\x01\n" +
 	"\x17OperationsStreamService\x12V\n" +
 	"\x0fPortfolioStream\x12\x1f.tinvest.PortfolioStreamRequest\x1a .tinvest.PortfolioStreamResponse0\x01\x12V\n" +
-	"\x0fPositionsStream\x12\x1f.tinvest.PositionsStreamRequest\x1a .tinvest.PositionsStreamResponse0\x01Bz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x0fPositionsStream\x12\x1f.tinvest.PositionsStreamRequest\x1a .tinvest.PositionsStreamResponse0\x01B\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_operations_proto_rawDescOnce sync.Once

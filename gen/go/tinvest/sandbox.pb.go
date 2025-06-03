@@ -330,8 +330,8 @@ const file_tinvest_sandbox_proto_rawDesc = "" +
 	"\x13GetSandboxPortfolio\x12\x19.tinvest.PortfolioRequest\x1a\x1a.tinvest.PortfolioResponse\x12K\n" +
 	"\fSandboxPayIn\x12\x1c.tinvest.SandboxPayInRequest\x1a\x1d.tinvest.SandboxPayInResponse\x12[\n" +
 	"\x18GetSandboxWithdrawLimits\x12\x1e.tinvest.WithdrawLimitsRequest\x1a\x1f.tinvest.WithdrawLimitsResponse\x12L\n" +
-	"\x11GetSandboxMaxLots\x12\x1a.tinvest.GetMaxLotsRequest\x1a\x1b.tinvest.GetMaxLotsResponseBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x11GetSandboxMaxLots\x12\x1a.tinvest.GetMaxLotsRequest\x1a\x1b.tinvest.GetMaxLotsResponseB\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_sandbox_proto_rawDescOnce sync.Once

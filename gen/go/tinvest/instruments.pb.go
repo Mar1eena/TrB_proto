@@ -11995,8 +11995,7 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x0fGetAssetReports\x12\x1f.tinvest.GetAssetReportsRequest\x1a .tinvest.GetAssetReportsResponse\x12f\n" +
 	"\x15GetConsensusForecasts\x12%.tinvest.GetConsensusForecastsRequest\x1a&.tinvest.GetConsensusForecastsResponse\x12J\n" +
 	"\rGetForecastBy\x12\x1b.tinvest.GetForecastRequest\x1a\x1c.tinvest.GetForecastResponse\x12E\n" +
-	"\fGetRiskRates\x12\x19.tinvest.RiskRatesRequest\x1a\x1a.tinvest.RiskRatesResponseBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\fGetRiskRates\x12\x19.tinvest.RiskRatesRequest\x1a\x1a.tinvest.RiskRatesResponseB0Z.github.com/Mar1eena/trb_proto/services/tinvestb\x06proto3"
 
 var (
 	file_tinvest_instruments_proto_rawDescOnce sync.Once

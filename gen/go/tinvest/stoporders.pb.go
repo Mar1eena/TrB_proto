@@ -1329,8 +1329,8 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\x11StopOrdersService\x12N\n" +
 	"\rPostStopOrder\x12\x1d.tinvest.PostStopOrderRequest\x1a\x1e.tinvest.PostStopOrderResponse\x12N\n" +
 	"\rGetStopOrders\x12\x1d.tinvest.GetStopOrdersRequest\x1a\x1e.tinvest.GetStopOrdersResponse\x12T\n" +
-	"\x0fCancelStopOrder\x12\x1f.tinvest.CancelStopOrderRequest\x1a .tinvest.CancelStopOrderResponseBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x0fCancelStopOrder\x12\x1f.tinvest.CancelStopOrderRequest\x1a .tinvest.CancelStopOrderResponseB\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_stoporders_proto_rawDescOnce sync.Once

@@ -463,7 +463,7 @@ const file_trb_ExampleService_proto_rawDesc = "" +
 	"\x0fUnaryRPCMessage\x12\x13.trb.MessageRequest\x1a\x14.trb.MessageResponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/say\x12W\n" +
 	"\x10ServerSideStream\x12\x12.trb.PoliceRequest\x1a\x19.trb.PoliceStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12B\n" +
 	"\x10ClientSideStream\x12\x18.trb.ClientStreamRequest\x1a\x12.trb.StreamSummary(\x01\x12O\n" +
-	"\x13BidirectionalStream\x12\x19.trb.BidirectionalMessage\x1a\x19.trb.BidirectionalMessage(\x010\x01B#Z!github.com/Mar1eena/trb_proto/trbb\x06proto3"
+	"\x13BidirectionalStream\x12\x19.trb.BidirectionalMessage\x1a\x19.trb.BidirectionalMessage(\x010\x01B,Z*github.com/Mar1eena/trb_proto/services/trbb\x06proto3"
 
 var (
 	file_trb_ExampleService_proto_rawDescOnce sync.Once

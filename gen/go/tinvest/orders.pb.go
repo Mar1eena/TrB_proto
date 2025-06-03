@@ -3190,8 +3190,8 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\fReplaceOrder\x12\x1c.tinvest.ReplaceOrderRequest\x1a\x1a.tinvest.PostOrderResponse\x12E\n" +
 	"\n" +
 	"GetMaxLots\x12\x1a.tinvest.GetMaxLotsRequest\x1a\x1b.tinvest.GetMaxLotsResponse\x12N\n" +
-	"\rGetOrderPrice\x12\x1d.tinvest.GetOrderPriceRequest\x1a\x1e.tinvest.GetOrderPriceResponseBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\rGetOrderPrice\x12\x1d.tinvest.GetOrderPriceRequest\x1a\x1e.tinvest.GetOrderPriceResponseB\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_orders_proto_rawDescOnce sync.Once

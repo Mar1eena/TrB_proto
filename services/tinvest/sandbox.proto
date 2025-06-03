@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package tinvest;
 
-option go_package = "github.com/Mar1eena/trb_proto/tinvest";
+option go_package = "github.com/Mar1eena/trb_proto/services/tinvest";
 option java_package = "ru.tinkoff.piapi.contract.v1";
 option java_multiple_files = true;
 option csharp_namespace = "Tinkoff.InvestApi.V1";
@@ -21,7 +21,7 @@ service SandboxService { // Методы для работы с песочниц
   rpc OpenSandboxAccount(OpenSandboxAccountRequest) returns (OpenSandboxAccountResponse);
 
   //GetSandboxAccounts — счета пользователя
-  rpc GetSandboxAccounts_trb(GetAccountsRequest) returns (GetAccountsResponse);
+  rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
   //CloseSandboxAccount — закрыть счет
   rpc CloseSandboxAccount(CloseSandboxAccountRequest) returns (CloseSandboxAccountResponse);

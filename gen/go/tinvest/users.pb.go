@@ -915,8 +915,8 @@ const file_tinvest_users_proto_rawDesc = "" +
 	"\vGetAccounts\x12\x1b.tinvest.GetAccountsRequest\x1a\x1c.tinvest.GetAccountsResponse\x12`\n" +
 	"\x13GetMarginAttributes\x12#.tinvest.GetMarginAttributesRequest\x1a$.tinvest.GetMarginAttributesResponse\x12N\n" +
 	"\rGetUserTariff\x12\x1d.tinvest.GetUserTariffRequest\x1a\x1e.tinvest.GetUserTariffResponse\x12<\n" +
-	"\aGetInfo\x12\x17.tinvest.GetInfoRequest\x1a\x18.tinvest.GetInfoResponseBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\aGetInfo\x12\x17.tinvest.GetInfoRequest\x1a\x18.tinvest.GetInfoResponseB\x83\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z.github.com/Mar1eena/trb_proto/services/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_users_proto_rawDescOnce sync.Once

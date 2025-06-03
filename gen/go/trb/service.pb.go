@@ -120,7 +120,7 @@ const file_trb_service_proto_rawDesc = "" +
 	"\rhelloresponse\x12\x14\n" +
 	"\x05reply\x18\x01 \x01(\tR\x05reply29\n" +
 	"\aservice\x12.\n" +
-	"\x05hello\x12\x11.trb.hellorequest\x1a\x12.trb.helloresponseB#Z!github.com/Mar1eena/trb_proto/trbb\x06proto3"
+	"\x05hello\x12\x11.trb.hellorequest\x1a\x12.trb.helloresponseB,Z*github.com/Mar1eena/trb_proto/services/trbb\x06proto3"
 
 var (
 	file_trb_service_proto_rawDescOnce sync.Once

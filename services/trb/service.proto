@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package trb;
-option go_package = "github.com/Mar1eena/trb_proto/trb";
+option go_package = "github.com/Mar1eena/trb_proto/services/trb";
 
 
 service service {

@@ -971,8 +971,7 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"\x18ResultSubscriptionStatus\x12*\n" +
 	"&RESULT_SUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12!\n" +
 	"\x1dRESULT_SUBSCRIPTION_STATUS_OK\x10\x01\x12$\n" +
-	" RESULT_SUBSCRIPTION_STATUS_ERROR\x10\rBz\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	" RESULT_SUBSCRIPTION_STATUS_ERROR\x10\rB0Z.github.com/Mar1eena/trb_proto/services/tinvestb\x06proto3"
 
 var (
 	file_tinvest_common_proto_rawDescOnce sync.Once
