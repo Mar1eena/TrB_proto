@@ -269,18 +269,18 @@ func (x *GetStrategiesResponse) GetStrategies() []*Strategy {
 // Стратегия
 type Strategy struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	StrategyId             string                 `protobuf:"bytes,1,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`                                                                //Идентификатор стратегии.
-	StrategyName           string                 `protobuf:"bytes,2,opt,name=strategy_name,json=strategyName,proto3" json:"strategy_name,omitempty"`                                                          //Название стратегии.
-	StrategyDescription    *string                `protobuf:"bytes,3,opt,name=strategy_description,json=strategyDescription,proto3,oneof" json:"strategy_description,omitempty"`                               //Описание стратегии.
-	StrategyUrl            *string                `protobuf:"bytes,4,opt,name=strategy_url,json=strategyUrl,proto3,oneof" json:"strategy_url,omitempty"`                                                       //Ссылка на страницу с описанием стратегии.
-	StrategyType           StrategyType           `protobuf:"varint,5,opt,name=strategy_type,json=strategyType,proto3,enum=tinkoff.public.invest.api.contract.v1.StrategyType" json:"strategy_type,omitempty"` //Тип стратегии.
-	ActiveSignals          int32                  `protobuf:"varint,6,opt,name=active_signals,json=activeSignals,proto3" json:"active_signals,omitempty"`                                                      //Количество активных сигналов.
-	TotalSignals           int32                  `protobuf:"varint,7,opt,name=total_signals,json=totalSignals,proto3" json:"total_signals,omitempty"`                                                         //Общее количество сигналов.
-	TimeInPosition         int64                  `protobuf:"varint,8,opt,name=time_in_position,json=timeInPosition,proto3" json:"time_in_position,omitempty"`                                                 //Среднее время нахождения сигнала в позиции.
-	AverageSignalYield     *Quotation             `protobuf:"bytes,9,opt,name=average_signal_yield,json=averageSignalYield,proto3" json:"average_signal_yield,omitempty"`                                      //Средняя доходность сигнала в стратегии.
-	AverageSignalYieldYear *Quotation             `protobuf:"bytes,10,opt,name=average_signal_yield_year,json=averageSignalYieldYear,proto3" json:"average_signal_yield_year,omitempty"`                       //Средняя доходность сигналов в стратегии за последний год.
-	Yield                  *Quotation             `protobuf:"bytes,11,opt,name=yield,proto3" json:"yield,omitempty"`                                                                                           //Доходность стратегии.
-	YieldYear              *Quotation             `protobuf:"bytes,12,opt,name=yield_year,json=yieldYear,proto3" json:"yield_year,omitempty"`                                                                  //Доходность стратегии за последний год.
+	StrategyId             string                 `protobuf:"bytes,1,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`                                          //Идентификатор стратегии.
+	StrategyName           string                 `protobuf:"bytes,2,opt,name=strategy_name,json=strategyName,proto3" json:"strategy_name,omitempty"`                                    //Название стратегии.
+	StrategyDescription    *string                `protobuf:"bytes,3,opt,name=strategy_description,json=strategyDescription,proto3,oneof" json:"strategy_description,omitempty"`         //Описание стратегии.
+	StrategyUrl            *string                `protobuf:"bytes,4,opt,name=strategy_url,json=strategyUrl,proto3,oneof" json:"strategy_url,omitempty"`                                 //Ссылка на страницу с описанием стратегии.
+	StrategyType           StrategyType           `protobuf:"varint,5,opt,name=strategy_type,json=strategyType,proto3,enum=tinvest.StrategyType" json:"strategy_type,omitempty"`         //Тип стратегии.
+	ActiveSignals          int32                  `protobuf:"varint,6,opt,name=active_signals,json=activeSignals,proto3" json:"active_signals,omitempty"`                                //Количество активных сигналов.
+	TotalSignals           int32                  `protobuf:"varint,7,opt,name=total_signals,json=totalSignals,proto3" json:"total_signals,omitempty"`                                   //Общее количество сигналов.
+	TimeInPosition         int64                  `protobuf:"varint,8,opt,name=time_in_position,json=timeInPosition,proto3" json:"time_in_position,omitempty"`                           //Среднее время нахождения сигнала в позиции.
+	AverageSignalYield     *Quotation             `protobuf:"bytes,9,opt,name=average_signal_yield,json=averageSignalYield,proto3" json:"average_signal_yield,omitempty"`                //Средняя доходность сигнала в стратегии.
+	AverageSignalYieldYear *Quotation             `protobuf:"bytes,10,opt,name=average_signal_yield_year,json=averageSignalYieldYear,proto3" json:"average_signal_yield_year,omitempty"` //Средняя доходность сигналов в стратегии за последний год.
+	Yield                  *Quotation             `protobuf:"bytes,11,opt,name=yield,proto3" json:"yield,omitempty"`                                                                     //Доходность стратегии.
+	YieldYear              *Quotation             `protobuf:"bytes,12,opt,name=yield_year,json=yieldYear,proto3" json:"yield_year,omitempty"`                                            //Доходность стратегии за последний год.
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -402,15 +402,15 @@ func (x *Strategy) GetYieldYear() *Quotation {
 // Запрос сигналов.
 type GetSignalsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SignalId      *string                `protobuf:"bytes,1,opt,name=signal_id,json=signalId,proto3,oneof" json:"signal_id,omitempty"`                                                                      //Идентификатор сигнала.
-	StrategyId    *string                `protobuf:"bytes,2,opt,name=strategy_id,json=strategyId,proto3,oneof" json:"strategy_id,omitempty"`                                                                //Идентификатор стратегии.
-	StrategyType  *StrategyType          `protobuf:"varint,3,opt,name=strategy_type,json=strategyType,proto3,enum=tinkoff.public.invest.api.contract.v1.StrategyType,oneof" json:"strategy_type,omitempty"` //Тип стратегии.
-	InstrumentUid *string                `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3,oneof" json:"instrument_uid,omitempty"`                                                       //	Идентификатор бумаги.
-	From          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=from,proto3,oneof" json:"from,omitempty"`                                                                                              //	Дата начала запрашиваемого интервала по UTC.
-	To            *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=to,proto3,oneof" json:"to,omitempty"`                                                                                                  //	Дата конца запрашиваемого интервала по UTC.
-	Direction     *SignalDirection       `protobuf:"varint,7,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.SignalDirection,oneof" json:"direction,omitempty"`                        //	Направление сигнала.
-	Active        *SignalState           `protobuf:"varint,8,opt,name=active,proto3,enum=tinkoff.public.invest.api.contract.v1.SignalState,oneof" json:"active,omitempty"`                                  //Состояние сигнала.
-	Paging        *Page                  `protobuf:"bytes,9,opt,name=paging,proto3,oneof" json:"paging,omitempty"`                                                                                          //Настройки пагинации.
+	SignalId      *string                `protobuf:"bytes,1,opt,name=signal_id,json=signalId,proto3,oneof" json:"signal_id,omitempty"`                                        //Идентификатор сигнала.
+	StrategyId    *string                `protobuf:"bytes,2,opt,name=strategy_id,json=strategyId,proto3,oneof" json:"strategy_id,omitempty"`                                  //Идентификатор стратегии.
+	StrategyType  *StrategyType          `protobuf:"varint,3,opt,name=strategy_type,json=strategyType,proto3,enum=tinvest.StrategyType,oneof" json:"strategy_type,omitempty"` //Тип стратегии.
+	InstrumentUid *string                `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3,oneof" json:"instrument_uid,omitempty"`                         //	Идентификатор бумаги.
+	From          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=from,proto3,oneof" json:"from,omitempty"`                                                                //	Дата начала запрашиваемого интервала по UTC.
+	To            *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=to,proto3,oneof" json:"to,omitempty"`                                                                    //	Дата конца запрашиваемого интервала по UTC.
+	Direction     *SignalDirection       `protobuf:"varint,7,opt,name=direction,proto3,enum=tinvest.SignalDirection,oneof" json:"direction,omitempty"`                        //	Направление сигнала.
+	Active        *SignalState           `protobuf:"varint,8,opt,name=active,proto3,enum=tinvest.SignalState,oneof" json:"active,omitempty"`                                  //Состояние сигнала.
+	Paging        *Page                  `protobuf:"bytes,9,opt,name=paging,proto3,oneof" json:"paging,omitempty"`                                                            //Настройки пагинации.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -564,21 +564,21 @@ func (x *GetSignalsResponse) GetPaging() *PageResponse {
 // Сигнал.
 type Signal struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SignalId      string                 `protobuf:"bytes,1,opt,name=signal_id,json=signalId,proto3" json:"signal_id,omitempty"`                                               //Идентификатор сигнала.
-	StrategyId    string                 `protobuf:"bytes,2,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`                                         //Идентификатор стратегии.
-	StrategyName  string                 `protobuf:"bytes,3,opt,name=strategy_name,json=strategyName,proto3" json:"strategy_name,omitempty"`                                   //Название стратегии.
-	InstrumentUid string                 `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                //Идентификатор бумаги.
-	CreateDt      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_dt,json=createDt,proto3" json:"create_dt,omitempty"`                                               //Дата и время создания сигнала по UTC.
-	Direction     SignalDirection        `protobuf:"varint,6,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.SignalDirection" json:"direction,omitempty"` //Направление сигнала.
-	InitialPrice  *Quotation             `protobuf:"bytes,7,opt,name=initial_price,json=initialPrice,proto3" json:"initial_price,omitempty"`                                   //Цена бумаги на момент формирования сигнала.
-	Info          *string                `protobuf:"bytes,8,opt,name=info,proto3,oneof" json:"info,omitempty"`                                                                 //Дополнительная информация о сигнале.
-	Name          string                 `protobuf:"bytes,9,opt,name=name,proto3" json:"name,omitempty"`                                                                       //Название сигнала.
-	TargetPrice   *Quotation             `protobuf:"bytes,10,opt,name=target_price,json=targetPrice,proto3" json:"target_price,omitempty"`                                     //Целевая цена.
-	EndDt         *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_dt,json=endDt,proto3" json:"end_dt,omitempty"`                                                       //Дата и время дедлайна сигнала по UTC.
-	Probability   *int32                 `protobuf:"varint,12,opt,name=probability,proto3,oneof" json:"probability,omitempty"`                                                 //Вероятность сигнала.
-	Stoploss      *Quotation             `protobuf:"bytes,13,opt,name=stoploss,proto3,oneof" json:"stoploss,omitempty"`                                                        //Порог закрытия сигнала по стоплосс.
-	ClosePrice    *Quotation             `protobuf:"bytes,14,opt,name=close_price,json=closePrice,proto3,oneof" json:"close_price,omitempty"`                                  //Цена закрытия сигнала.
-	CloseDt       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=close_dt,json=closeDt,proto3,oneof" json:"close_dt,omitempty"`                                           //Дата и время закрытия сигнала по UTC.
+	SignalId      string                 `protobuf:"bytes,1,opt,name=signal_id,json=signalId,proto3" json:"signal_id,omitempty"`                 //Идентификатор сигнала.
+	StrategyId    string                 `protobuf:"bytes,2,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`           //Идентификатор стратегии.
+	StrategyName  string                 `protobuf:"bytes,3,opt,name=strategy_name,json=strategyName,proto3" json:"strategy_name,omitempty"`     //Название стратегии.
+	InstrumentUid string                 `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`  //Идентификатор бумаги.
+	CreateDt      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_dt,json=createDt,proto3" json:"create_dt,omitempty"`                 //Дата и время создания сигнала по UTC.
+	Direction     SignalDirection        `protobuf:"varint,6,opt,name=direction,proto3,enum=tinvest.SignalDirection" json:"direction,omitempty"` //Направление сигнала.
+	InitialPrice  *Quotation             `protobuf:"bytes,7,opt,name=initial_price,json=initialPrice,proto3" json:"initial_price,omitempty"`     //Цена бумаги на момент формирования сигнала.
+	Info          *string                `protobuf:"bytes,8,opt,name=info,proto3,oneof" json:"info,omitempty"`                                   //Дополнительная информация о сигнале.
+	Name          string                 `protobuf:"bytes,9,opt,name=name,proto3" json:"name,omitempty"`                                         //Название сигнала.
+	TargetPrice   *Quotation             `protobuf:"bytes,10,opt,name=target_price,json=targetPrice,proto3" json:"target_price,omitempty"`       //Целевая цена.
+	EndDt         *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_dt,json=endDt,proto3" json:"end_dt,omitempty"`                         //Дата и время дедлайна сигнала по UTC.
+	Probability   *int32                 `protobuf:"varint,12,opt,name=probability,proto3,oneof" json:"probability,omitempty"`                   //Вероятность сигнала.
+	Stoploss      *Quotation             `protobuf:"bytes,13,opt,name=stoploss,proto3,oneof" json:"stoploss,omitempty"`                          //Порог закрытия сигнала по стоплосс.
+	ClosePrice    *Quotation             `protobuf:"bytes,14,opt,name=close_price,json=closePrice,proto3,oneof" json:"close_price,omitempty"`    //Цена закрытия сигнала.
+	CloseDt       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=close_dt,json=closeDt,proto3,oneof" json:"close_dt,omitempty"`             //Дата и время закрытия сигнала по UTC.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -722,44 +722,44 @@ var File_tinvest_signals_proto protoreflect.FileDescriptor
 
 const file_tinvest_signals_proto_rawDesc = "" +
 	"\n" +
-	"\x15tinvest/signals.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"L\n" +
+	"\x15tinvest/signals.proto\x12\atinvest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"L\n" +
 	"\x14GetStrategiesRequest\x12$\n" +
 	"\vstrategy_id\x18\x01 \x01(\tH\x00R\n" +
 	"strategyId\x88\x01\x01B\x0e\n" +
-	"\f_strategy_id\"h\n" +
-	"\x15GetStrategiesResponse\x12O\n" +
+	"\f_strategy_id\"J\n" +
+	"\x15GetStrategiesResponse\x121\n" +
 	"\n" +
-	"strategies\x18\x01 \x03(\v2/.tinkoff.public.invest.api.contract.v1.StrategyR\n" +
-	"strategies\"\xd0\x06\n" +
+	"strategies\x18\x01 \x03(\v2\x11.tinvest.StrategyR\n" +
+	"strategies\"\xba\x05\n" +
 	"\bStrategy\x12%\n" +
 	"\vstrategy_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
 	"strategyId\x12)\n" +
 	"\rstrategy_name\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\fstrategyName\x126\n" +
 	"\x14strategy_description\x18\x03 \x01(\tH\x00R\x13strategyDescription\x88\x01\x01\x12&\n" +
-	"\fstrategy_url\x18\x04 \x01(\tH\x01R\vstrategyUrl\x88\x01\x01\x12^\n" +
-	"\rstrategy_type\x18\x05 \x01(\x0e23.tinkoff.public.invest.api.contract.v1.StrategyTypeB\x04\xe2A\x01\x02R\fstrategyType\x12+\n" +
+	"\fstrategy_url\x18\x04 \x01(\tH\x01R\vstrategyUrl\x88\x01\x01\x12@\n" +
+	"\rstrategy_type\x18\x05 \x01(\x0e2\x15.tinvest.StrategyTypeB\x04\xe2A\x01\x02R\fstrategyType\x12+\n" +
 	"\x0eactive_signals\x18\x06 \x01(\x05B\x04\xe2A\x01\x02R\ractiveSignals\x12)\n" +
 	"\rtotal_signals\x18\a \x01(\x05B\x04\xe2A\x01\x02R\ftotalSignals\x12.\n" +
-	"\x10time_in_position\x18\b \x01(\x03B\x04\xe2A\x01\x02R\x0etimeInPosition\x12h\n" +
-	"\x14average_signal_yield\x18\t \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\x12averageSignalYield\x12q\n" +
+	"\x10time_in_position\x18\b \x01(\x03B\x04\xe2A\x01\x02R\x0etimeInPosition\x12J\n" +
+	"\x14average_signal_yield\x18\t \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\x12averageSignalYield\x12S\n" +
 	"\x19average_signal_yield_year\x18\n" +
-	" \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\x16averageSignalYieldYear\x12L\n" +
-	"\x05yield\x18\v \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\x05yield\x12U\n" +
+	" \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\x16averageSignalYieldYear\x12.\n" +
+	"\x05yield\x18\v \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\x05yield\x127\n" +
 	"\n" +
-	"yield_year\x18\f \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\tyieldYearB\x17\n" +
+	"yield_year\x18\f \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\tyieldYearB\x17\n" +
 	"\x15_strategy_descriptionB\x0f\n" +
-	"\r_strategy_url\"\xb9\x05\n" +
+	"\r_strategy_url\"\xc1\x04\n" +
 	"\x11GetSignalsRequest\x12 \n" +
 	"\tsignal_id\x18\x01 \x01(\tH\x00R\bsignalId\x88\x01\x01\x12$\n" +
 	"\vstrategy_id\x18\x02 \x01(\tH\x01R\n" +
-	"strategyId\x88\x01\x01\x12]\n" +
-	"\rstrategy_type\x18\x03 \x01(\x0e23.tinkoff.public.invest.api.contract.v1.StrategyTypeH\x02R\fstrategyType\x88\x01\x01\x12*\n" +
+	"strategyId\x88\x01\x01\x12?\n" +
+	"\rstrategy_type\x18\x03 \x01(\x0e2\x15.tinvest.StrategyTypeH\x02R\fstrategyType\x88\x01\x01\x12*\n" +
 	"\x0einstrument_uid\x18\x04 \x01(\tH\x03R\rinstrumentUid\x88\x01\x01\x123\n" +
 	"\x04from\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x04from\x88\x01\x01\x12/\n" +
-	"\x02to\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x05R\x02to\x88\x01\x01\x12Y\n" +
-	"\tdirection\x18\a \x01(\x0e26.tinkoff.public.invest.api.contract.v1.SignalDirectionH\x06R\tdirection\x88\x01\x01\x12O\n" +
-	"\x06active\x18\b \x01(\x0e22.tinkoff.public.invest.api.contract.v1.SignalStateH\aR\x06active\x88\x01\x01\x12H\n" +
-	"\x06paging\x18\t \x01(\v2+.tinkoff.public.invest.api.contract.v1.PageH\bR\x06paging\x88\x01\x01B\f\n" +
+	"\x02to\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x05R\x02to\x88\x01\x01\x12;\n" +
+	"\tdirection\x18\a \x01(\x0e2\x18.tinvest.SignalDirectionH\x06R\tdirection\x88\x01\x01\x121\n" +
+	"\x06active\x18\b \x01(\x0e2\x14.tinvest.SignalStateH\aR\x06active\x88\x01\x01\x12*\n" +
+	"\x06paging\x18\t \x01(\v2\r.tinvest.PageH\bR\x06paging\x88\x01\x01B\f\n" +
 	"\n" +
 	"_signal_idB\x0e\n" +
 	"\f_strategy_idB\x10\n" +
@@ -770,27 +770,27 @@ const file_tinvest_signals_proto_rawDesc = "" +
 	"\n" +
 	"_directionB\t\n" +
 	"\a_activeB\t\n" +
-	"\a_paging\"\xaa\x01\n" +
-	"\x12GetSignalsResponse\x12G\n" +
-	"\asignals\x18\x01 \x03(\v2-.tinkoff.public.invest.api.contract.v1.SignalR\asignals\x12K\n" +
-	"\x06paging\x18\x02 \x01(\v23.tinkoff.public.invest.api.contract.v1.PageResponseR\x06paging\"\xba\a\n" +
+	"\a_paging\"n\n" +
+	"\x12GetSignalsResponse\x12)\n" +
+	"\asignals\x18\x01 \x03(\v2\x0f.tinvest.SignalR\asignals\x12-\n" +
+	"\x06paging\x18\x02 \x01(\v2\x15.tinvest.PageResponseR\x06paging\"\xa4\x06\n" +
 	"\x06Signal\x12!\n" +
 	"\tsignal_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bsignalId\x12%\n" +
 	"\vstrategy_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\n" +
 	"strategyId\x12)\n" +
 	"\rstrategy_name\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\fstrategyName\x12+\n" +
 	"\x0einstrument_uid\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\rinstrumentUid\x12=\n" +
-	"\tcreate_dt\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\bcreateDt\x12Z\n" +
-	"\tdirection\x18\x06 \x01(\x0e26.tinkoff.public.invest.api.contract.v1.SignalDirectionB\x04\xe2A\x01\x02R\tdirection\x12[\n" +
-	"\rinitial_price\x18\a \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\finitialPrice\x12\x17\n" +
+	"\tcreate_dt\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\bcreateDt\x12<\n" +
+	"\tdirection\x18\x06 \x01(\x0e2\x18.tinvest.SignalDirectionB\x04\xe2A\x01\x02R\tdirection\x12=\n" +
+	"\rinitial_price\x18\a \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\finitialPrice\x12\x17\n" +
 	"\x04info\x18\b \x01(\tH\x00R\x04info\x88\x01\x01\x12\x18\n" +
-	"\x04name\x18\t \x01(\tB\x04\xe2A\x01\x02R\x04name\x12Y\n" +
+	"\x04name\x18\t \x01(\tB\x04\xe2A\x01\x02R\x04name\x12;\n" +
 	"\ftarget_price\x18\n" +
-	" \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationB\x04\xe2A\x01\x02R\vtargetPrice\x127\n" +
+	" \x01(\v2\x12.tinvest.QuotationB\x04\xe2A\x01\x02R\vtargetPrice\x127\n" +
 	"\x06end_dt\x18\v \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x05endDt\x12%\n" +
-	"\vprobability\x18\f \x01(\x05H\x01R\vprobability\x88\x01\x01\x12Q\n" +
-	"\bstoploss\x18\r \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x02R\bstoploss\x88\x01\x01\x12V\n" +
-	"\vclose_price\x18\x0e \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x03R\n" +
+	"\vprobability\x18\f \x01(\x05H\x01R\vprobability\x88\x01\x01\x123\n" +
+	"\bstoploss\x18\r \x01(\v2\x12.tinvest.QuotationH\x02R\bstoploss\x88\x01\x01\x128\n" +
+	"\vclose_price\x18\x0e \x01(\v2\x12.tinvest.QuotationH\x03R\n" +
 	"closePrice\x88\x01\x01\x12:\n" +
 	"\bclose_dt\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampH\x04R\acloseDt\x88\x01\x01B\a\n" +
 	"\x05_infoB\x0e\n" +
@@ -810,11 +810,11 @@ const file_tinvest_signals_proto_rawDesc = "" +
 	"\x18SIGNAL_STATE_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13SIGNAL_STATE_ACTIVE\x10\x01\x12\x17\n" +
 	"\x13SIGNAL_STATE_CLOSED\x10\x02\x12\x14\n" +
-	"\x10SIGNAL_STATE_ALL\x10\x032\xa0\x02\n" +
-	"\rSignalService\x12\x8a\x01\n" +
-	"\rGetStrategies\x12;.tinkoff.public.invest.api.contract.v1.GetStrategiesRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetStrategiesResponse\x12\x81\x01\n" +
+	"\x10SIGNAL_STATE_ALL\x10\x032\xa6\x01\n" +
+	"\rSignalService\x12N\n" +
+	"\rGetStrategies\x12\x1d.tinvest.GetStrategiesRequest\x1a\x1e.tinvest.GetStrategiesResponse\x12E\n" +
 	"\n" +
-	"GetSignals\x128.tinkoff.public.invest.api.contract.v1.GetSignalsRequest\x1a9.tinkoff.public.invest.api.contract.v1.GetSignalsResponseBz\n" +
+	"GetSignals\x12\x1a.tinvest.GetSignalsRequest\x1a\x1b.tinvest.GetSignalsResponseBz\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -832,47 +832,47 @@ func file_tinvest_signals_proto_rawDescGZIP() []byte {
 var file_tinvest_signals_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_tinvest_signals_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_tinvest_signals_proto_goTypes = []any{
-	(StrategyType)(0),             // 0: tinkoff.public.invest.api.contract.v1.StrategyType
-	(SignalDirection)(0),          // 1: tinkoff.public.invest.api.contract.v1.SignalDirection
-	(SignalState)(0),              // 2: tinkoff.public.invest.api.contract.v1.SignalState
-	(*GetStrategiesRequest)(nil),  // 3: tinkoff.public.invest.api.contract.v1.GetStrategiesRequest
-	(*GetStrategiesResponse)(nil), // 4: tinkoff.public.invest.api.contract.v1.GetStrategiesResponse
-	(*Strategy)(nil),              // 5: tinkoff.public.invest.api.contract.v1.Strategy
-	(*GetSignalsRequest)(nil),     // 6: tinkoff.public.invest.api.contract.v1.GetSignalsRequest
-	(*GetSignalsResponse)(nil),    // 7: tinkoff.public.invest.api.contract.v1.GetSignalsResponse
-	(*Signal)(nil),                // 8: tinkoff.public.invest.api.contract.v1.Signal
-	(*Quotation)(nil),             // 9: tinkoff.public.invest.api.contract.v1.Quotation
+	(StrategyType)(0),             // 0: tinvest.StrategyType
+	(SignalDirection)(0),          // 1: tinvest.SignalDirection
+	(SignalState)(0),              // 2: tinvest.SignalState
+	(*GetStrategiesRequest)(nil),  // 3: tinvest.GetStrategiesRequest
+	(*GetStrategiesResponse)(nil), // 4: tinvest.GetStrategiesResponse
+	(*Strategy)(nil),              // 5: tinvest.Strategy
+	(*GetSignalsRequest)(nil),     // 6: tinvest.GetSignalsRequest
+	(*GetSignalsResponse)(nil),    // 7: tinvest.GetSignalsResponse
+	(*Signal)(nil),                // 8: tinvest.Signal
+	(*Quotation)(nil),             // 9: tinvest.Quotation
 	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
-	(*Page)(nil),                  // 11: tinkoff.public.invest.api.contract.v1.Page
-	(*PageResponse)(nil),          // 12: tinkoff.public.invest.api.contract.v1.PageResponse
+	(*Page)(nil),                  // 11: tinvest.Page
+	(*PageResponse)(nil),          // 12: tinvest.PageResponse
 }
 var file_tinvest_signals_proto_depIdxs = []int32{
-	5,  // 0: tinkoff.public.invest.api.contract.v1.GetStrategiesResponse.strategies:type_name -> tinkoff.public.invest.api.contract.v1.Strategy
-	0,  // 1: tinkoff.public.invest.api.contract.v1.Strategy.strategy_type:type_name -> tinkoff.public.invest.api.contract.v1.StrategyType
-	9,  // 2: tinkoff.public.invest.api.contract.v1.Strategy.average_signal_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	9,  // 3: tinkoff.public.invest.api.contract.v1.Strategy.average_signal_yield_year:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	9,  // 4: tinkoff.public.invest.api.contract.v1.Strategy.yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	9,  // 5: tinkoff.public.invest.api.contract.v1.Strategy.yield_year:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	0,  // 6: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.strategy_type:type_name -> tinkoff.public.invest.api.contract.v1.StrategyType
-	10, // 7: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.from:type_name -> google.protobuf.Timestamp
-	10, // 8: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.to:type_name -> google.protobuf.Timestamp
-	1,  // 9: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.SignalDirection
-	2,  // 10: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.active:type_name -> tinkoff.public.invest.api.contract.v1.SignalState
-	11, // 11: tinkoff.public.invest.api.contract.v1.GetSignalsRequest.paging:type_name -> tinkoff.public.invest.api.contract.v1.Page
-	8,  // 12: tinkoff.public.invest.api.contract.v1.GetSignalsResponse.signals:type_name -> tinkoff.public.invest.api.contract.v1.Signal
-	12, // 13: tinkoff.public.invest.api.contract.v1.GetSignalsResponse.paging:type_name -> tinkoff.public.invest.api.contract.v1.PageResponse
-	10, // 14: tinkoff.public.invest.api.contract.v1.Signal.create_dt:type_name -> google.protobuf.Timestamp
-	1,  // 15: tinkoff.public.invest.api.contract.v1.Signal.direction:type_name -> tinkoff.public.invest.api.contract.v1.SignalDirection
-	9,  // 16: tinkoff.public.invest.api.contract.v1.Signal.initial_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	9,  // 17: tinkoff.public.invest.api.contract.v1.Signal.target_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10, // 18: tinkoff.public.invest.api.contract.v1.Signal.end_dt:type_name -> google.protobuf.Timestamp
-	9,  // 19: tinkoff.public.invest.api.contract.v1.Signal.stoploss:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	9,  // 20: tinkoff.public.invest.api.contract.v1.Signal.close_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10, // 21: tinkoff.public.invest.api.contract.v1.Signal.close_dt:type_name -> google.protobuf.Timestamp
-	3,  // 22: tinkoff.public.invest.api.contract.v1.SignalService.GetStrategies:input_type -> tinkoff.public.invest.api.contract.v1.GetStrategiesRequest
-	6,  // 23: tinkoff.public.invest.api.contract.v1.SignalService.GetSignals:input_type -> tinkoff.public.invest.api.contract.v1.GetSignalsRequest
-	4,  // 24: tinkoff.public.invest.api.contract.v1.SignalService.GetStrategies:output_type -> tinkoff.public.invest.api.contract.v1.GetStrategiesResponse
-	7,  // 25: tinkoff.public.invest.api.contract.v1.SignalService.GetSignals:output_type -> tinkoff.public.invest.api.contract.v1.GetSignalsResponse
+	5,  // 0: tinvest.GetStrategiesResponse.strategies:type_name -> tinvest.Strategy
+	0,  // 1: tinvest.Strategy.strategy_type:type_name -> tinvest.StrategyType
+	9,  // 2: tinvest.Strategy.average_signal_yield:type_name -> tinvest.Quotation
+	9,  // 3: tinvest.Strategy.average_signal_yield_year:type_name -> tinvest.Quotation
+	9,  // 4: tinvest.Strategy.yield:type_name -> tinvest.Quotation
+	9,  // 5: tinvest.Strategy.yield_year:type_name -> tinvest.Quotation
+	0,  // 6: tinvest.GetSignalsRequest.strategy_type:type_name -> tinvest.StrategyType
+	10, // 7: tinvest.GetSignalsRequest.from:type_name -> google.protobuf.Timestamp
+	10, // 8: tinvest.GetSignalsRequest.to:type_name -> google.protobuf.Timestamp
+	1,  // 9: tinvest.GetSignalsRequest.direction:type_name -> tinvest.SignalDirection
+	2,  // 10: tinvest.GetSignalsRequest.active:type_name -> tinvest.SignalState
+	11, // 11: tinvest.GetSignalsRequest.paging:type_name -> tinvest.Page
+	8,  // 12: tinvest.GetSignalsResponse.signals:type_name -> tinvest.Signal
+	12, // 13: tinvest.GetSignalsResponse.paging:type_name -> tinvest.PageResponse
+	10, // 14: tinvest.Signal.create_dt:type_name -> google.protobuf.Timestamp
+	1,  // 15: tinvest.Signal.direction:type_name -> tinvest.SignalDirection
+	9,  // 16: tinvest.Signal.initial_price:type_name -> tinvest.Quotation
+	9,  // 17: tinvest.Signal.target_price:type_name -> tinvest.Quotation
+	10, // 18: tinvest.Signal.end_dt:type_name -> google.protobuf.Timestamp
+	9,  // 19: tinvest.Signal.stoploss:type_name -> tinvest.Quotation
+	9,  // 20: tinvest.Signal.close_price:type_name -> tinvest.Quotation
+	10, // 21: tinvest.Signal.close_dt:type_name -> google.protobuf.Timestamp
+	3,  // 22: tinvest.SignalService.GetStrategies:input_type -> tinvest.GetStrategiesRequest
+	6,  // 23: tinvest.SignalService.GetSignals:input_type -> tinvest.GetSignalsRequest
+	4,  // 24: tinvest.SignalService.GetStrategies:output_type -> tinvest.GetStrategiesResponse
+	7,  // 25: tinvest.SignalService.GetSignals:output_type -> tinvest.GetSignalsResponse
 	24, // [24:26] is the sub-list for method output_type
 	22, // [22:24] is the sub-list for method input_type
 	22, // [22:22] is the sub-list for extension type_name

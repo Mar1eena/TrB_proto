@@ -19,22 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SandboxService_OpenSandboxAccount_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.SandboxService/OpenSandboxAccount"
-	SandboxService_GetSandboxAccounts_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxAccounts"
-	SandboxService_CloseSandboxAccount_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.SandboxService/CloseSandboxAccount"
-	SandboxService_PostSandboxOrder_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder"
-	SandboxService_PostSandboxOrderAsync_FullMethodName        = "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrderAsync"
-	SandboxService_ReplaceSandboxOrder_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.SandboxService/ReplaceSandboxOrder"
-	SandboxService_GetSandboxOrders_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrders"
-	SandboxService_CancelSandboxOrder_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxOrder"
-	SandboxService_GetSandboxOrderState_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderState"
-	SandboxService_GetSandboxPositions_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPositions"
-	SandboxService_GetSandboxOperations_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperations"
-	SandboxService_GetSandboxOperationsByCursor_FullMethodName = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperationsByCursor"
-	SandboxService_GetSandboxPortfolio_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPortfolio"
-	SandboxService_SandboxPayIn_FullMethodName                 = "/tinkoff.public.invest.api.contract.v1.SandboxService/SandboxPayIn"
-	SandboxService_GetSandboxWithdrawLimits_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxWithdrawLimits"
-	SandboxService_GetSandboxMaxLots_FullMethodName            = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxMaxLots"
+	SandboxService_OpenSandboxAccount_FullMethodName           = "/tinvest.SandboxService/OpenSandboxAccount"
+	SandboxService_GetSandboxAccounts_FullMethodName           = "/tinvest.SandboxService/GetSandboxAccounts"
+	SandboxService_CloseSandboxAccount_FullMethodName          = "/tinvest.SandboxService/CloseSandboxAccount"
+	SandboxService_PostSandboxOrder_FullMethodName             = "/tinvest.SandboxService/PostSandboxOrder"
+	SandboxService_PostSandboxOrderAsync_FullMethodName        = "/tinvest.SandboxService/PostSandboxOrderAsync"
+	SandboxService_ReplaceSandboxOrder_FullMethodName          = "/tinvest.SandboxService/ReplaceSandboxOrder"
+	SandboxService_GetSandboxOrders_FullMethodName             = "/tinvest.SandboxService/GetSandboxOrders"
+	SandboxService_CancelSandboxOrder_FullMethodName           = "/tinvest.SandboxService/CancelSandboxOrder"
+	SandboxService_GetSandboxOrderState_FullMethodName         = "/tinvest.SandboxService/GetSandboxOrderState"
+	SandboxService_GetSandboxPositions_FullMethodName          = "/tinvest.SandboxService/GetSandboxPositions"
+	SandboxService_GetSandboxOperations_FullMethodName         = "/tinvest.SandboxService/GetSandboxOperations"
+	SandboxService_GetSandboxOperationsByCursor_FullMethodName = "/tinvest.SandboxService/GetSandboxOperationsByCursor"
+	SandboxService_GetSandboxPortfolio_FullMethodName          = "/tinvest.SandboxService/GetSandboxPortfolio"
+	SandboxService_SandboxPayIn_FullMethodName                 = "/tinvest.SandboxService/SandboxPayIn"
+	SandboxService_GetSandboxWithdrawLimits_FullMethodName     = "/tinvest.SandboxService/GetSandboxWithdrawLimits"
+	SandboxService_GetSandboxMaxLots_FullMethodName            = "/tinvest.SandboxService/GetSandboxMaxLots"
 )
 
 // SandboxServiceClient is the client API for SandboxService service.
@@ -656,7 +656,7 @@ func _SandboxService_GetSandboxMaxLots_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SandboxService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.SandboxService",
+	ServiceName: "tinvest.SandboxService",
 	HandlerType: (*SandboxServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrdersStreamService_TradesStream_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.OrdersStreamService/TradesStream"
-	OrdersStreamService_OrderStateStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OrdersStreamService/OrderStateStream"
+	OrdersStreamService_TradesStream_FullMethodName     = "/tinvest.OrdersStreamService/TradesStream"
+	OrdersStreamService_OrderStateStream_FullMethodName = "/tinvest.OrdersStreamService/OrderStateStream"
 )
 
 // OrdersStreamServiceClient is the client API for OrdersStreamService service.
@@ -152,7 +152,7 @@ type OrdersStreamService_OrderStateStreamServer = grpc.ServerStreamingServer[Ord
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrdersStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.OrdersStreamService",
+	ServiceName: "tinvest.OrdersStreamService",
 	HandlerType: (*OrdersStreamServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -171,14 +171,14 @@ var OrdersStreamService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	OrdersService_PostOrder_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.OrdersService/PostOrder"
-	OrdersService_PostOrderAsync_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OrdersService/PostOrderAsync"
-	OrdersService_CancelOrder_FullMethodName    = "/tinkoff.public.invest.api.contract.v1.OrdersService/CancelOrder"
-	OrdersService_GetOrderState_FullMethodName  = "/tinkoff.public.invest.api.contract.v1.OrdersService/GetOrderState"
-	OrdersService_GetOrders_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.OrdersService/GetOrders"
-	OrdersService_ReplaceOrder_FullMethodName   = "/tinkoff.public.invest.api.contract.v1.OrdersService/ReplaceOrder"
-	OrdersService_GetMaxLots_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.OrdersService/GetMaxLots"
-	OrdersService_GetOrderPrice_FullMethodName  = "/tinkoff.public.invest.api.contract.v1.OrdersService/GetOrderPrice"
+	OrdersService_PostOrder_FullMethodName      = "/tinvest.OrdersService/PostOrder"
+	OrdersService_PostOrderAsync_FullMethodName = "/tinvest.OrdersService/PostOrderAsync"
+	OrdersService_CancelOrder_FullMethodName    = "/tinvest.OrdersService/CancelOrder"
+	OrdersService_GetOrderState_FullMethodName  = "/tinvest.OrdersService/GetOrderState"
+	OrdersService_GetOrders_FullMethodName      = "/tinvest.OrdersService/GetOrders"
+	OrdersService_ReplaceOrder_FullMethodName   = "/tinvest.OrdersService/ReplaceOrder"
+	OrdersService_GetMaxLots_FullMethodName     = "/tinvest.OrdersService/GetMaxLots"
+	OrdersService_GetOrderPrice_FullMethodName  = "/tinvest.OrdersService/GetOrderPrice"
 )
 
 // OrdersServiceClient is the client API for OrdersService service.
@@ -516,7 +516,7 @@ func _OrdersService_GetOrderPrice_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrdersService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.OrdersService",
+	ServiceName: "tinvest.OrdersService",
 	HandlerType: (*OrdersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

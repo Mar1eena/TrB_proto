@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MarketDataService_GetCandles_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetCandles"
-	MarketDataService_GetLastPrices_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastPrices"
-	MarketDataService_GetOrderBook_FullMethodName       = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetOrderBook"
-	MarketDataService_GetTradingStatus_FullMethodName   = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus"
-	MarketDataService_GetTradingStatuses_FullMethodName = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatuses"
-	MarketDataService_GetLastTrades_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastTrades"
-	MarketDataService_GetClosePrices_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetClosePrices"
-	MarketDataService_GetTechAnalysis_FullMethodName    = "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTechAnalysis"
+	MarketDataService_GetCandles_FullMethodName         = "/tinvest.MarketDataService/GetCandles"
+	MarketDataService_GetLastPrices_FullMethodName      = "/tinvest.MarketDataService/GetLastPrices"
+	MarketDataService_GetOrderBook_FullMethodName       = "/tinvest.MarketDataService/GetOrderBook"
+	MarketDataService_GetTradingStatus_FullMethodName   = "/tinvest.MarketDataService/GetTradingStatus"
+	MarketDataService_GetTradingStatuses_FullMethodName = "/tinvest.MarketDataService/GetTradingStatuses"
+	MarketDataService_GetLastTrades_FullMethodName      = "/tinvest.MarketDataService/GetLastTrades"
+	MarketDataService_GetClosePrices_FullMethodName     = "/tinvest.MarketDataService/GetClosePrices"
+	MarketDataService_GetTechAnalysis_FullMethodName    = "/tinvest.MarketDataService/GetTechAnalysis"
 )
 
 // MarketDataServiceClient is the client API for MarketDataService service.
@@ -364,7 +364,7 @@ func _MarketDataService_GetTechAnalysis_Handler(srv interface{}, ctx context.Con
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MarketDataService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.MarketDataService",
+	ServiceName: "tinvest.MarketDataService",
 	HandlerType: (*MarketDataServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -405,8 +405,8 @@ var MarketDataService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	MarketDataStreamService_MarketDataStream_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataStream"
-	MarketDataStreamService_MarketDataServerSideStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataServerSideStream"
+	MarketDataStreamService_MarketDataStream_FullMethodName           = "/tinvest.MarketDataStreamService/MarketDataStream"
+	MarketDataStreamService_MarketDataServerSideStream_FullMethodName = "/tinvest.MarketDataStreamService/MarketDataServerSideStream"
 )
 
 // MarketDataStreamServiceClient is the client API for MarketDataStreamService service.
@@ -527,7 +527,7 @@ type MarketDataStreamService_MarketDataServerSideStreamServer = grpc.ServerStrea
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MarketDataStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.MarketDataStreamService",
+	ServiceName: "tinvest.MarketDataStreamService",
 	HandlerType: (*MarketDataStreamServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

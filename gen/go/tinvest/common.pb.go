@@ -885,7 +885,7 @@ var File_tinvest_common_proto protoreflect.FileDescriptor
 
 const file_tinvest_common_proto_rawDesc = "" +
 	"\n" +
-	"\x14tinvest/common.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
+	"\x14tinvest/common.proto\x12\atinvest\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
 	"\n" +
 	"MoneyValue\x12\x1a\n" +
 	"\bcurrency\x18\x01 \x01(\tR\bcurrency\x12\x14\n" +
@@ -989,28 +989,28 @@ func file_tinvest_common_proto_rawDescGZIP() []byte {
 var file_tinvest_common_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_tinvest_common_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_tinvest_common_proto_goTypes = []any{
-	(InstrumentType)(0),           // 0: tinkoff.public.invest.api.contract.v1.InstrumentType
-	(InstrumentStatus)(0),         // 1: tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	(SecurityTradingStatus)(0),    // 2: tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	(PriceType)(0),                // 3: tinkoff.public.invest.api.contract.v1.PriceType
-	(ResultSubscriptionStatus)(0), // 4: tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
-	(*MoneyValue)(nil),            // 5: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*Quotation)(nil),             // 6: tinkoff.public.invest.api.contract.v1.Quotation
-	(*PingRequest)(nil),           // 7: tinkoff.public.invest.api.contract.v1.PingRequest
-	(*PingDelaySettings)(nil),     // 8: tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	(*Ping)(nil),                  // 9: tinkoff.public.invest.api.contract.v1.Ping
-	(*Page)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.Page
-	(*PageResponse)(nil),          // 11: tinkoff.public.invest.api.contract.v1.PageResponse
-	(*ResponseMetadata)(nil),      // 12: tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	(*BrandData)(nil),             // 13: tinkoff.public.invest.api.contract.v1.BrandData
-	(*ErrorDetail)(nil),           // 14: tinkoff.public.invest.api.contract.v1.ErrorDetail
+	(InstrumentType)(0),           // 0: tinvest.InstrumentType
+	(InstrumentStatus)(0),         // 1: tinvest.InstrumentStatus
+	(SecurityTradingStatus)(0),    // 2: tinvest.SecurityTradingStatus
+	(PriceType)(0),                // 3: tinvest.PriceType
+	(ResultSubscriptionStatus)(0), // 4: tinvest.ResultSubscriptionStatus
+	(*MoneyValue)(nil),            // 5: tinvest.MoneyValue
+	(*Quotation)(nil),             // 6: tinvest.Quotation
+	(*PingRequest)(nil),           // 7: tinvest.PingRequest
+	(*PingDelaySettings)(nil),     // 8: tinvest.PingDelaySettings
+	(*Ping)(nil),                  // 9: tinvest.Ping
+	(*Page)(nil),                  // 10: tinvest.Page
+	(*PageResponse)(nil),          // 11: tinvest.PageResponse
+	(*ResponseMetadata)(nil),      // 12: tinvest.ResponseMetadata
+	(*BrandData)(nil),             // 13: tinvest.BrandData
+	(*ErrorDetail)(nil),           // 14: tinvest.ErrorDetail
 	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
 }
 var file_tinvest_common_proto_depIdxs = []int32{
-	15, // 0: tinkoff.public.invest.api.contract.v1.PingRequest.time:type_name -> google.protobuf.Timestamp
-	15, // 1: tinkoff.public.invest.api.contract.v1.Ping.time:type_name -> google.protobuf.Timestamp
-	15, // 2: tinkoff.public.invest.api.contract.v1.Ping.ping_request_time:type_name -> google.protobuf.Timestamp
-	15, // 3: tinkoff.public.invest.api.contract.v1.ResponseMetadata.server_time:type_name -> google.protobuf.Timestamp
+	15, // 0: tinvest.PingRequest.time:type_name -> google.protobuf.Timestamp
+	15, // 1: tinvest.Ping.time:type_name -> google.protobuf.Timestamp
+	15, // 2: tinvest.Ping.ping_request_time:type_name -> google.protobuf.Timestamp
+	15, // 3: tinvest.ResponseMetadata.server_time:type_name -> google.protobuf.Timestamp
 	4,  // [4:4] is the sub-list for method output_type
 	4,  // [4:4] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name

@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UsersService_GetAccounts_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.UsersService/GetAccounts"
-	UsersService_GetMarginAttributes_FullMethodName = "/tinkoff.public.invest.api.contract.v1.UsersService/GetMarginAttributes"
-	UsersService_GetUserTariff_FullMethodName       = "/tinkoff.public.invest.api.contract.v1.UsersService/GetUserTariff"
-	UsersService_GetInfo_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.UsersService/GetInfo"
+	UsersService_GetAccounts_FullMethodName         = "/tinvest.UsersService/GetAccounts"
+	UsersService_GetMarginAttributes_FullMethodName = "/tinvest.UsersService/GetMarginAttributes"
+	UsersService_GetUserTariff_FullMethodName       = "/tinvest.UsersService/GetUserTariff"
+	UsersService_GetInfo_FullMethodName             = "/tinvest.UsersService/GetInfo"
 )
 
 // UsersServiceClient is the client API for UsersService service.
@@ -226,7 +226,7 @@ func _UsersService_GetInfo_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UsersService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.UsersService",
+	ServiceName: "tinvest.UsersService",
 	HandlerType: (*UsersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StopOrdersService_PostStopOrder_FullMethodName   = "/tinkoff.public.invest.api.contract.v1.StopOrdersService/PostStopOrder"
-	StopOrdersService_GetStopOrders_FullMethodName   = "/tinkoff.public.invest.api.contract.v1.StopOrdersService/GetStopOrders"
-	StopOrdersService_CancelStopOrder_FullMethodName = "/tinkoff.public.invest.api.contract.v1.StopOrdersService/CancelStopOrder"
+	StopOrdersService_PostStopOrder_FullMethodName   = "/tinvest.StopOrdersService/PostStopOrder"
+	StopOrdersService_GetStopOrders_FullMethodName   = "/tinvest.StopOrdersService/GetStopOrders"
+	StopOrdersService_CancelStopOrder_FullMethodName = "/tinvest.StopOrdersService/CancelStopOrder"
 )
 
 // StopOrdersServiceClient is the client API for StopOrdersService service.
@@ -182,7 +182,7 @@ func _StopOrdersService_CancelStopOrder_Handler(srv interface{}, ctx context.Con
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StopOrdersService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.StopOrdersService",
+	ServiceName: "tinvest.StopOrdersService",
 	HandlerType: (*StopOrdersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

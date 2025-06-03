@@ -439,21 +439,21 @@ func (TrailingStopStatus) EnumDescriptor() ([]byte, []int) {
 type PostStopOrderRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/stoporders.proto.
-	Figi              *string                            `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                                                                               //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	Quantity          int64                              `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                                                            //Количество лотов.
-	Price             *Quotation                         `protobuf:"bytes,3,opt,name=price,proto3,oneof" json:"price,omitempty"`                                                                                                             //Цена за 1 инструмент биржевой заявки, которая будет выставлена при срабатывании по достижению `stop_price`. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
-	StopPrice         *Quotation                         `protobuf:"bytes,4,opt,name=stop_price,json=stopPrice,proto3,oneof" json:"stop_price,omitempty"`                                                                                    //Стоп-цена заявки за 1 инструмент. При достижении стоп-цены происходит активация стоп-заявки, в результате чего выставляется биржевая заявка. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
-	Direction         StopOrderDirection                 `protobuf:"varint,5,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderDirection" json:"direction,omitempty"`                                            //Направление операции.
-	AccountId         string                             `protobuf:"bytes,6,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                                                          //Номер счета.
-	ExpirationType    StopOrderExpirationType            `protobuf:"varint,7,opt,name=expiration_type,json=expirationType,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderExpirationType" json:"expiration_type,omitempty"`       //Тип экспирации заявки.
-	StopOrderType     StopOrderType                      `protobuf:"varint,8,opt,name=stop_order_type,json=stopOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderType" json:"stop_order_type,omitempty"`                  //Тип заявки.
-	ExpireDate        *timestamppb.Timestamp             `protobuf:"bytes,9,opt,name=expire_date,json=expireDate,proto3,oneof" json:"expire_date,omitempty"`                                                                                 //Дата и время окончания действия стоп-заявки по UTC. Для `ExpirationType = GoodTillDate` заполнение обязательно, для `GoodTillCancel` игнорируется.
-	InstrumentId      string                             `protobuf:"bytes,10,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                                //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
-	ExchangeOrderType ExchangeOrderType                  `protobuf:"varint,11,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки.
-	TakeProfitType    TakeProfitType                     `protobuf:"varint,12,opt,name=take_profit_type,json=takeProfitType,proto3,enum=tinkoff.public.invest.api.contract.v1.TakeProfitType" json:"take_profit_type,omitempty"`             //Подтип стоп-заявки — `TakeProfit`.
-	TrailingData      *PostStopOrderRequest_TrailingData `protobuf:"bytes,13,opt,name=trailing_data,json=trailingData,proto3" json:"trailing_data,omitempty"`                                                                                //Массив с параметрами трейлинг-стопа.
-	PriceType         PriceType                          `protobuf:"varint,14,opt,name=price_type,json=priceType,proto3,enum=tinkoff.public.invest.api.contract.v1.PriceType" json:"price_type,omitempty"`                                   //Тип цены.
-	OrderId           string                             `protobuf:"bytes,15,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                                               //Идентификатор запроса выставления поручения для целей идемпотентности в формате `UID`. Максимальная длина — 36 символов.
+	Figi              *string                            `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                                                 //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	Quantity          int64                              `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                              //Количество лотов.
+	Price             *Quotation                         `protobuf:"bytes,3,opt,name=price,proto3,oneof" json:"price,omitempty"`                                                                               //Цена за 1 инструмент биржевой заявки, которая будет выставлена при срабатывании по достижению `stop_price`. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
+	StopPrice         *Quotation                         `protobuf:"bytes,4,opt,name=stop_price,json=stopPrice,proto3,oneof" json:"stop_price,omitempty"`                                                      //Стоп-цена заявки за 1 инструмент. При достижении стоп-цены происходит активация стоп-заявки, в результате чего выставляется биржевая заявка. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
+	Direction         StopOrderDirection                 `protobuf:"varint,5,opt,name=direction,proto3,enum=tinvest.StopOrderDirection" json:"direction,omitempty"`                                            //Направление операции.
+	AccountId         string                             `protobuf:"bytes,6,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                            //Номер счета.
+	ExpirationType    StopOrderExpirationType            `protobuf:"varint,7,opt,name=expiration_type,json=expirationType,proto3,enum=tinvest.StopOrderExpirationType" json:"expiration_type,omitempty"`       //Тип экспирации заявки.
+	StopOrderType     StopOrderType                      `protobuf:"varint,8,opt,name=stop_order_type,json=stopOrderType,proto3,enum=tinvest.StopOrderType" json:"stop_order_type,omitempty"`                  //Тип заявки.
+	ExpireDate        *timestamppb.Timestamp             `protobuf:"bytes,9,opt,name=expire_date,json=expireDate,proto3,oneof" json:"expire_date,omitempty"`                                                   //Дата и время окончания действия стоп-заявки по UTC. Для `ExpirationType = GoodTillDate` заполнение обязательно, для `GoodTillCancel` игнорируется.
+	InstrumentId      string                             `protobuf:"bytes,10,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                  //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	ExchangeOrderType ExchangeOrderType                  `protobuf:"varint,11,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinvest.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки.
+	TakeProfitType    TakeProfitType                     `protobuf:"varint,12,opt,name=take_profit_type,json=takeProfitType,proto3,enum=tinvest.TakeProfitType" json:"take_profit_type,omitempty"`             //Подтип стоп-заявки — `TakeProfit`.
+	TrailingData      *PostStopOrderRequest_TrailingData `protobuf:"bytes,13,opt,name=trailing_data,json=trailingData,proto3" json:"trailing_data,omitempty"`                                                  //Массив с параметрами трейлинг-стопа.
+	PriceType         PriceType                          `protobuf:"varint,14,opt,name=price_type,json=priceType,proto3,enum=tinvest.PriceType" json:"price_type,omitempty"`                                   //Тип цены.
+	OrderId           string                             `protobuf:"bytes,15,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                 //Идентификатор запроса выставления поручения для целей идемпотентности в формате `UID`. Максимальная длина — 36 символов.
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -658,10 +658,10 @@ func (x *PostStopOrderResponse) GetResponseMetadata() *ResponseMetadata {
 // Запрос получения списка активных стоп-заявок.
 type GetStopOrdersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                            //Идентификатор счета клиента.
-	Status        StopOrderStatusOption  `protobuf:"varint,2,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderStatusOption" json:"status,omitempty"` //Статус заявок.
-	From          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`                                                                       //Левая граница.
-	To            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`                                                                           //Правая граница.
+	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`              //Идентификатор счета клиента.
+	Status        StopOrderStatusOption  `protobuf:"varint,2,opt,name=status,proto3,enum=tinvest.StopOrderStatusOption" json:"status,omitempty"` //Статус заявок.
+	From          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`                                         //Левая граница.
+	To            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`                                             //Правая граница.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -870,23 +870,23 @@ func (x *CancelStopOrderResponse) GetTime() *timestamppb.Timestamp {
 // Информация о стоп-заявке.
 type StopOrder struct {
 	state              protoimpl.MessageState  `protogen:"open.v1"`
-	StopOrderId        string                  `protobuf:"bytes,1,opt,name=stop_order_id,json=stopOrderId,proto3" json:"stop_order_id,omitempty"`                                                                                  //Уникальный идентификатор стоп-заявки.
-	LotsRequested      int64                   `protobuf:"varint,2,opt,name=lots_requested,json=lotsRequested,proto3" json:"lots_requested,omitempty"`                                                                             //Запрошено лотов.
-	Figi               string                  `protobuf:"bytes,3,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                     //FIGI-идентификатор инструмента.
-	Direction          StopOrderDirection      `protobuf:"varint,4,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderDirection" json:"direction,omitempty"`                                            //Направление операции.
-	Currency           string                  `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`                                                                                                             //Валюта стоп-заявки.
-	OrderType          StopOrderType           `protobuf:"varint,6,opt,name=order_type,json=orderType,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderType" json:"order_type,omitempty"`                                //Тип стоп-заявки.
-	CreateDate         *timestamppb.Timestamp  `protobuf:"bytes,7,opt,name=create_date,json=createDate,proto3" json:"create_date,omitempty"`                                                                                       //Дата и время выставления заявки по UTC.
-	ActivationDateTime *timestamppb.Timestamp  `protobuf:"bytes,8,opt,name=activation_date_time,json=activationDateTime,proto3" json:"activation_date_time,omitempty"`                                                             //Дата и время конвертации стоп-заявки в биржевую по UTC.
-	ExpirationTime     *timestamppb.Timestamp  `protobuf:"bytes,9,opt,name=expiration_time,json=expirationTime,proto3" json:"expiration_time,omitempty"`                                                                           //Дата и время снятия заявки по UTC.
-	Price              *MoneyValue             `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty"`                                                                                                                  //Цена заявки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
-	StopPrice          *MoneyValue             `protobuf:"bytes,11,opt,name=stop_price,json=stopPrice,proto3" json:"stop_price,omitempty"`                                                                                         //Цена активации стоп-заявки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
-	InstrumentUid      string                  `protobuf:"bytes,12,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                             //`instrument_uid`-идентификатор инструмента.
-	TakeProfitType     TakeProfitType          `protobuf:"varint,13,opt,name=take_profit_type,json=takeProfitType,proto3,enum=tinkoff.public.invest.api.contract.v1.TakeProfitType" json:"take_profit_type,omitempty"`             //Подтип стоп-заявки — `TakeProfit`.
-	TrailingData       *StopOrder_TrailingData `protobuf:"bytes,14,opt,name=trailing_data,json=trailingData,proto3" json:"trailing_data,omitempty"`                                                                                //Параметры трейлинг-стопа.
-	Status             StopOrderStatusOption   `protobuf:"varint,15,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderStatusOption" json:"status,omitempty"`                                              //Статус заявки.
-	ExchangeOrderType  ExchangeOrderType       `protobuf:"varint,16,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки для тейкпрофита.
-	ExchangeOrderId    *string                 `protobuf:"bytes,17,opt,name=exchange_order_id,json=exchangeOrderId,proto3,oneof" json:"exchange_order_id,omitempty"`                                                               //Идентификатор биржевой заявки.
+	StopOrderId        string                  `protobuf:"bytes,1,opt,name=stop_order_id,json=stopOrderId,proto3" json:"stop_order_id,omitempty"`                                                    //Уникальный идентификатор стоп-заявки.
+	LotsRequested      int64                   `protobuf:"varint,2,opt,name=lots_requested,json=lotsRequested,proto3" json:"lots_requested,omitempty"`                                               //Запрошено лотов.
+	Figi               string                  `protobuf:"bytes,3,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                       //FIGI-идентификатор инструмента.
+	Direction          StopOrderDirection      `protobuf:"varint,4,opt,name=direction,proto3,enum=tinvest.StopOrderDirection" json:"direction,omitempty"`                                            //Направление операции.
+	Currency           string                  `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`                                                                               //Валюта стоп-заявки.
+	OrderType          StopOrderType           `protobuf:"varint,6,opt,name=order_type,json=orderType,proto3,enum=tinvest.StopOrderType" json:"order_type,omitempty"`                                //Тип стоп-заявки.
+	CreateDate         *timestamppb.Timestamp  `protobuf:"bytes,7,opt,name=create_date,json=createDate,proto3" json:"create_date,omitempty"`                                                         //Дата и время выставления заявки по UTC.
+	ActivationDateTime *timestamppb.Timestamp  `protobuf:"bytes,8,opt,name=activation_date_time,json=activationDateTime,proto3" json:"activation_date_time,omitempty"`                               //Дата и время конвертации стоп-заявки в биржевую по UTC.
+	ExpirationTime     *timestamppb.Timestamp  `protobuf:"bytes,9,opt,name=expiration_time,json=expirationTime,proto3" json:"expiration_time,omitempty"`                                             //Дата и время снятия заявки по UTC.
+	Price              *MoneyValue             `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty"`                                                                                    //Цена заявки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
+	StopPrice          *MoneyValue             `protobuf:"bytes,11,opt,name=stop_price,json=stopPrice,proto3" json:"stop_price,omitempty"`                                                           //Цена активации стоп-заявки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
+	InstrumentUid      string                  `protobuf:"bytes,12,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                               //`instrument_uid`-идентификатор инструмента.
+	TakeProfitType     TakeProfitType          `protobuf:"varint,13,opt,name=take_profit_type,json=takeProfitType,proto3,enum=tinvest.TakeProfitType" json:"take_profit_type,omitempty"`             //Подтип стоп-заявки — `TakeProfit`.
+	TrailingData       *StopOrder_TrailingData `protobuf:"bytes,14,opt,name=trailing_data,json=trailingData,proto3" json:"trailing_data,omitempty"`                                                  //Параметры трейлинг-стопа.
+	Status             StopOrderStatusOption   `protobuf:"varint,15,opt,name=status,proto3,enum=tinvest.StopOrderStatusOption" json:"status,omitempty"`                                              //Статус заявки.
+	ExchangeOrderType  ExchangeOrderType       `protobuf:"varint,16,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinvest.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки для тейкпрофита.
+	ExchangeOrderId    *string                 `protobuf:"bytes,17,opt,name=exchange_order_id,json=exchangeOrderId,proto3,oneof" json:"exchange_order_id,omitempty"`                                 //Идентификатор биржевой заявки.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1042,10 +1042,10 @@ func (x *StopOrder) GetExchangeOrderId() string {
 
 type PostStopOrderRequest_TrailingData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Indent        *Quotation             `protobuf:"bytes,1,opt,name=indent,proto3" json:"indent,omitempty"`                                                                                         //Отступ.
-	IndentType    TrailingValueType      `protobuf:"varint,2,opt,name=indent_type,json=indentType,proto3,enum=tinkoff.public.invest.api.contract.v1.TrailingValueType" json:"indent_type,omitempty"` //Тип величины отступа.
-	Spread        *Quotation             `protobuf:"bytes,3,opt,name=spread,proto3" json:"spread,omitempty"`                                                                                         //Размер защитного спреда.
-	SpreadType    TrailingValueType      `protobuf:"varint,4,opt,name=spread_type,json=spreadType,proto3,enum=tinkoff.public.invest.api.contract.v1.TrailingValueType" json:"spread_type,omitempty"` //Тип величины защитного спреда.
+	Indent        *Quotation             `protobuf:"bytes,1,opt,name=indent,proto3" json:"indent,omitempty"`                                                           //Отступ.
+	IndentType    TrailingValueType      `protobuf:"varint,2,opt,name=indent_type,json=indentType,proto3,enum=tinvest.TrailingValueType" json:"indent_type,omitempty"` //Тип величины отступа.
+	Spread        *Quotation             `protobuf:"bytes,3,opt,name=spread,proto3" json:"spread,omitempty"`                                                           //Размер защитного спреда.
+	SpreadType    TrailingValueType      `protobuf:"varint,4,opt,name=spread_type,json=spreadType,proto3,enum=tinvest.TrailingValueType" json:"spread_type,omitempty"` //Тип величины защитного спреда.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1110,13 +1110,13 @@ func (x *PostStopOrderRequest_TrailingData) GetSpreadType() TrailingValueType {
 
 type StopOrder_TrailingData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Indent        *Quotation             `protobuf:"bytes,1,opt,name=indent,proto3" json:"indent,omitempty"`                                                                                         //Отступ.
-	IndentType    TrailingValueType      `protobuf:"varint,2,opt,name=indent_type,json=indentType,proto3,enum=tinkoff.public.invest.api.contract.v1.TrailingValueType" json:"indent_type,omitempty"` //Тип величины отступа.
-	Spread        *Quotation             `protobuf:"bytes,3,opt,name=spread,proto3" json:"spread,omitempty"`                                                                                         //Размер защитного спреда.
-	SpreadType    TrailingValueType      `protobuf:"varint,4,opt,name=spread_type,json=spreadType,proto3,enum=tinkoff.public.invest.api.contract.v1.TrailingValueType" json:"spread_type,omitempty"` //Тип величины защитного спреда.
-	Status        TrailingStopStatus     `protobuf:"varint,5,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.TrailingStopStatus" json:"status,omitempty"`                          //Статус трейлинг-стопа.
-	Price         *Quotation             `protobuf:"bytes,7,opt,name=price,proto3" json:"price,omitempty"`                                                                                           //Цена исполнения.
-	Extr          *Quotation             `protobuf:"bytes,8,opt,name=extr,proto3" json:"extr,omitempty"`                                                                                             //Локальный экстремум.
+	Indent        *Quotation             `protobuf:"bytes,1,opt,name=indent,proto3" json:"indent,omitempty"`                                                           //Отступ.
+	IndentType    TrailingValueType      `protobuf:"varint,2,opt,name=indent_type,json=indentType,proto3,enum=tinvest.TrailingValueType" json:"indent_type,omitempty"` //Тип величины отступа.
+	Spread        *Quotation             `protobuf:"bytes,3,opt,name=spread,proto3" json:"spread,omitempty"`                                                           //Размер защитного спреда.
+	SpreadType    TrailingValueType      `protobuf:"varint,4,opt,name=spread_type,json=spreadType,proto3,enum=tinvest.TrailingValueType" json:"spread_type,omitempty"` //Тип величины защитного спреда.
+	Status        TrailingStopStatus     `protobuf:"varint,5,opt,name=status,proto3,enum=tinvest.TrailingStopStatus" json:"status,omitempty"`                          //Статус трейлинг-стопа.
+	Price         *Quotation             `protobuf:"bytes,7,opt,name=price,proto3" json:"price,omitempty"`                                                             //Цена исполнения.
+	Extr          *Quotation             `protobuf:"bytes,8,opt,name=extr,proto3" json:"extr,omitempty"`                                                               //Локальный экстремум.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1204,90 +1204,91 @@ var File_tinvest_stoporders_proto protoreflect.FileDescriptor
 
 const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\n" +
-	"\x18tinvest/stoporders.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"\xf5\v\n" +
+	"\x18tinvest/stoporders.proto\x12\atinvest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"\xef\b\n" +
 	"\x14PostStopOrderRequest\x12\x1b\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01H\x00R\x04figi\x88\x01\x01\x12 \n" +
-	"\bquantity\x18\x02 \x01(\x03B\x04\xe2A\x01\x02R\bquantity\x12K\n" +
-	"\x05price\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x01R\x05price\x88\x01\x01\x12T\n" +
+	"\bquantity\x18\x02 \x01(\x03B\x04\xe2A\x01\x02R\bquantity\x12-\n" +
+	"\x05price\x18\x03 \x01(\v2\x12.tinvest.QuotationH\x01R\x05price\x88\x01\x01\x126\n" +
 	"\n" +
-	"stop_price\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x02R\tstopPrice\x88\x01\x01\x12]\n" +
-	"\tdirection\x18\x05 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.StopOrderDirectionB\x04\xe2A\x01\x02R\tdirection\x12#\n" +
+	"stop_price\x18\x04 \x01(\v2\x12.tinvest.QuotationH\x02R\tstopPrice\x88\x01\x01\x12?\n" +
+	"\tdirection\x18\x05 \x01(\x0e2\x1b.tinvest.StopOrderDirectionB\x04\xe2A\x01\x02R\tdirection\x12#\n" +
 	"\n" +
-	"account_id\x18\x06 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12m\n" +
-	"\x0fexpiration_type\x18\a \x01(\x0e2>.tinkoff.public.invest.api.contract.v1.StopOrderExpirationTypeB\x04\xe2A\x01\x02R\x0eexpirationType\x12b\n" +
-	"\x0fstop_order_type\x18\b \x01(\x0e24.tinkoff.public.invest.api.contract.v1.StopOrderTypeB\x04\xe2A\x01\x02R\rstopOrderType\x12@\n" +
+	"account_id\x18\x06 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12O\n" +
+	"\x0fexpiration_type\x18\a \x01(\x0e2 .tinvest.StopOrderExpirationTypeB\x04\xe2A\x01\x02R\x0eexpirationType\x12D\n" +
+	"\x0fstop_order_type\x18\b \x01(\x0e2\x16.tinvest.StopOrderTypeB\x04\xe2A\x01\x02R\rstopOrderType\x12@\n" +
 	"\vexpire_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x03R\n" +
 	"expireDate\x88\x01\x01\x12)\n" +
 	"\rinstrument_id\x18\n" +
-	" \x01(\tB\x04\xe2A\x01\x02R\finstrumentId\x12h\n" +
-	"\x13exchange_order_type\x18\v \x01(\x0e28.tinkoff.public.invest.api.contract.v1.ExchangeOrderTypeR\x11exchangeOrderType\x12_\n" +
-	"\x10take_profit_type\x18\f \x01(\x0e25.tinkoff.public.invest.api.contract.v1.TakeProfitTypeR\x0etakeProfitType\x12m\n" +
-	"\rtrailing_data\x18\r \x01(\v2H.tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingDataR\ftrailingData\x12O\n" +
+	" \x01(\tB\x04\xe2A\x01\x02R\finstrumentId\x12J\n" +
+	"\x13exchange_order_type\x18\v \x01(\x0e2\x1a.tinvest.ExchangeOrderTypeR\x11exchangeOrderType\x12A\n" +
+	"\x10take_profit_type\x18\f \x01(\x0e2\x17.tinvest.TakeProfitTypeR\x0etakeProfitType\x12O\n" +
+	"\rtrailing_data\x18\r \x01(\v2*.tinvest.PostStopOrderRequest.TrailingDataR\ftrailingData\x121\n" +
 	"\n" +
-	"price_type\x18\x0e \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeR\tpriceType\x12\x1f\n" +
-	"\border_id\x18\x0f \x01(\tB\x04\xe2A\x01\x02R\aorderId\x1a\xd8\x02\n" +
-	"\fTrailingData\x12H\n" +
-	"\x06indent\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06indent\x12Y\n" +
-	"\vindent_type\x18\x02 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +
-	"indentType\x12H\n" +
-	"\x06spread\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06spread\x12Y\n" +
-	"\vspread_type\x18\x04 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +
+	"price_type\x18\x0e \x01(\x0e2\x12.tinvest.PriceTypeR\tpriceType\x12\x1f\n" +
+	"\border_id\x18\x0f \x01(\tB\x04\xe2A\x01\x02R\aorderId\x1a\xe0\x01\n" +
+	"\fTrailingData\x12*\n" +
+	"\x06indent\x18\x01 \x01(\v2\x12.tinvest.QuotationR\x06indent\x12;\n" +
+	"\vindent_type\x18\x02 \x01(\x0e2\x1a.tinvest.TrailingValueTypeR\n" +
+	"indentType\x12*\n" +
+	"\x06spread\x18\x03 \x01(\v2\x12.tinvest.QuotationR\x06spread\x12;\n" +
+	"\vspread_type\x18\x04 \x01(\x0e2\x1a.tinvest.TrailingValueTypeR\n" +
 	"spreadTypeB\a\n" +
 	"\x05_figiB\b\n" +
 	"\x06_priceB\r\n" +
 	"\v_stop_priceB\x0e\n" +
-	"\f_expire_date\"\xcc\x01\n" +
+	"\f_expire_date\"\xae\x01\n" +
 	"\x15PostStopOrderResponse\x12\"\n" +
 	"\rstop_order_id\x18\x01 \x01(\tR\vstopOrderId\x12(\n" +
-	"\x10order_request_id\x18\x02 \x01(\tR\x0eorderRequestId\x12e\n" +
-	"\x11response_metadata\x18\xfe\x01 \x01(\v27.tinkoff.public.invest.api.contract.v1.ResponseMetadataR\x10responseMetadata\"\xed\x01\n" +
+	"\x10order_request_id\x18\x02 \x01(\tR\x0eorderRequestId\x12G\n" +
+	"\x11response_metadata\x18\xfe\x01 \x01(\v2\x19.tinvest.ResponseMetadataR\x10responseMetadata\"\xcf\x01\n" +
 	"\x14GetStopOrdersRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12T\n" +
-	"\x06status\x18\x02 \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.StopOrderStatusOptionR\x06status\x12.\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x126\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x1e.tinvest.StopOrderStatusOptionR\x06status\x12.\n" +
 	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
-	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"j\n" +
-	"\x15GetStopOrdersResponse\x12Q\n" +
-	"\vstop_orders\x18\x01 \x03(\v20.tinkoff.public.invest.api.contract.v1.StopOrderR\n" +
+	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"L\n" +
+	"\x15GetStopOrdersResponse\x123\n" +
+	"\vstop_orders\x18\x01 \x03(\v2\x12.tinvest.StopOrderR\n" +
 	"stopOrders\"g\n" +
 	"\x16CancelStopOrderRequest\x12#\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12(\n" +
 	"\rstop_order_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\vstopOrderId\"I\n" +
 	"\x17CancelStopOrderResponse\x12.\n" +
-	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\xce\r\n" +
+	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\x8c\n" +
+	"\n" +
 	"\tStopOrder\x12\"\n" +
 	"\rstop_order_id\x18\x01 \x01(\tR\vstopOrderId\x12%\n" +
 	"\x0elots_requested\x18\x02 \x01(\x03R\rlotsRequested\x12\x12\n" +
-	"\x04figi\x18\x03 \x01(\tR\x04figi\x12W\n" +
-	"\tdirection\x18\x04 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.StopOrderDirectionR\tdirection\x12\x1a\n" +
-	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12S\n" +
+	"\x04figi\x18\x03 \x01(\tR\x04figi\x129\n" +
+	"\tdirection\x18\x04 \x01(\x0e2\x1b.tinvest.StopOrderDirectionR\tdirection\x12\x1a\n" +
+	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x125\n" +
 	"\n" +
-	"order_type\x18\x06 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.StopOrderTypeR\torderType\x12;\n" +
+	"order_type\x18\x06 \x01(\x0e2\x16.tinvest.StopOrderTypeR\torderType\x12;\n" +
 	"\vcreate_date\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createDate\x12L\n" +
 	"\x14activation_date_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x12activationDateTime\x12C\n" +
-	"\x0fexpiration_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x0eexpirationTime\x12G\n" +
+	"\x0fexpiration_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x0eexpirationTime\x12)\n" +
 	"\x05price\x18\n" +
-	" \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05price\x12P\n" +
+	" \x01(\v2\x13.tinvest.MoneyValueR\x05price\x122\n" +
 	"\n" +
-	"stop_price\x18\v \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\tstopPrice\x12%\n" +
-	"\x0einstrument_uid\x18\f \x01(\tR\rinstrumentUid\x12_\n" +
-	"\x10take_profit_type\x18\r \x01(\x0e25.tinkoff.public.invest.api.contract.v1.TakeProfitTypeR\x0etakeProfitType\x12b\n" +
-	"\rtrailing_data\x18\x0e \x01(\v2=.tinkoff.public.invest.api.contract.v1.StopOrder.TrailingDataR\ftrailingData\x12T\n" +
-	"\x06status\x18\x0f \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.StopOrderStatusOptionR\x06status\x12h\n" +
-	"\x13exchange_order_type\x18\x10 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.ExchangeOrderTypeR\x11exchangeOrderType\x12/\n" +
-	"\x11exchange_order_id\x18\x11 \x01(\tH\x00R\x0fexchangeOrderId\x88\x01\x01\x1a\xb9\x04\n" +
-	"\fTrailingData\x12H\n" +
-	"\x06indent\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06indent\x12Y\n" +
-	"\vindent_type\x18\x02 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +
-	"indentType\x12H\n" +
-	"\x06spread\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06spread\x12Y\n" +
-	"\vspread_type\x18\x04 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +
-	"spreadType\x12Q\n" +
-	"\x06status\x18\x05 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.TrailingStopStatusR\x06status\x12F\n" +
-	"\x05price\x18\a \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12D\n" +
-	"\x04extr\x18\b \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x04extrB\x14\n" +
+	"stop_price\x18\v \x01(\v2\x13.tinvest.MoneyValueR\tstopPrice\x12%\n" +
+	"\x0einstrument_uid\x18\f \x01(\tR\rinstrumentUid\x12A\n" +
+	"\x10take_profit_type\x18\r \x01(\x0e2\x17.tinvest.TakeProfitTypeR\x0etakeProfitType\x12D\n" +
+	"\rtrailing_data\x18\x0e \x01(\v2\x1f.tinvest.StopOrder.TrailingDataR\ftrailingData\x126\n" +
+	"\x06status\x18\x0f \x01(\x0e2\x1e.tinvest.StopOrderStatusOptionR\x06status\x12J\n" +
+	"\x13exchange_order_type\x18\x10 \x01(\x0e2\x1a.tinvest.ExchangeOrderTypeR\x11exchangeOrderType\x12/\n" +
+	"\x11exchange_order_id\x18\x11 \x01(\tH\x00R\x0fexchangeOrderId\x88\x01\x01\x1a\xe7\x02\n" +
+	"\fTrailingData\x12*\n" +
+	"\x06indent\x18\x01 \x01(\v2\x12.tinvest.QuotationR\x06indent\x12;\n" +
+	"\vindent_type\x18\x02 \x01(\x0e2\x1a.tinvest.TrailingValueTypeR\n" +
+	"indentType\x12*\n" +
+	"\x06spread\x18\x03 \x01(\v2\x12.tinvest.QuotationR\x06spread\x12;\n" +
+	"\vspread_type\x18\x04 \x01(\x0e2\x1a.tinvest.TrailingValueTypeR\n" +
+	"spreadType\x123\n" +
+	"\x06status\x18\x05 \x01(\x0e2\x1b.tinvest.TrailingStopStatusR\x06status\x12(\n" +
+	"\x05price\x18\a \x01(\v2\x12.tinvest.QuotationR\x05price\x12&\n" +
+	"\x04extr\x18\b \x01(\v2\x12.tinvest.QuotationR\x04extrB\x14\n" +
 	"\x12_exchange_order_id*w\n" +
 	"\x12StopOrderDirection\x12$\n" +
 	" STOP_ORDER_DIRECTION_UNSPECIFIED\x10\x00\x12\x1c\n" +
@@ -1324,11 +1325,11 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\x12TrailingStopStatus\x12\x1d\n" +
 	"\x19TRAILING_STOP_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14TRAILING_STOP_ACTIVE\x10\x01\x12\x1b\n" +
-	"\x17TRAILING_STOP_ACTIVATED\x10\x022\xc0\x03\n" +
-	"\x11StopOrdersService\x12\x8a\x01\n" +
-	"\rPostStopOrder\x12;.tinkoff.public.invest.api.contract.v1.PostStopOrderRequest\x1a<.tinkoff.public.invest.api.contract.v1.PostStopOrderResponse\x12\x8a\x01\n" +
-	"\rGetStopOrders\x12;.tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetStopOrdersResponse\x12\x90\x01\n" +
-	"\x0fCancelStopOrder\x12=.tinkoff.public.invest.api.contract.v1.CancelStopOrderRequest\x1a>.tinkoff.public.invest.api.contract.v1.CancelStopOrderResponseBz\n" +
+	"\x17TRAILING_STOP_ACTIVATED\x10\x022\x89\x02\n" +
+	"\x11StopOrdersService\x12N\n" +
+	"\rPostStopOrder\x12\x1d.tinvest.PostStopOrderRequest\x1a\x1e.tinvest.PostStopOrderResponse\x12N\n" +
+	"\rGetStopOrders\x12\x1d.tinvest.GetStopOrdersRequest\x1a\x1e.tinvest.GetStopOrdersResponse\x12T\n" +
+	"\x0fCancelStopOrder\x12\x1f.tinvest.CancelStopOrderRequest\x1a .tinvest.CancelStopOrderResponseBz\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -1346,74 +1347,74 @@ func file_tinvest_stoporders_proto_rawDescGZIP() []byte {
 var file_tinvest_stoporders_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
 var file_tinvest_stoporders_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_tinvest_stoporders_proto_goTypes = []any{
-	(StopOrderDirection)(0),                   // 0: tinkoff.public.invest.api.contract.v1.StopOrderDirection
-	(StopOrderExpirationType)(0),              // 1: tinkoff.public.invest.api.contract.v1.StopOrderExpirationType
-	(StopOrderType)(0),                        // 2: tinkoff.public.invest.api.contract.v1.StopOrderType
-	(StopOrderStatusOption)(0),                // 3: tinkoff.public.invest.api.contract.v1.StopOrderStatusOption
-	(ExchangeOrderType)(0),                    // 4: tinkoff.public.invest.api.contract.v1.ExchangeOrderType
-	(TakeProfitType)(0),                       // 5: tinkoff.public.invest.api.contract.v1.TakeProfitType
-	(TrailingValueType)(0),                    // 6: tinkoff.public.invest.api.contract.v1.TrailingValueType
-	(TrailingStopStatus)(0),                   // 7: tinkoff.public.invest.api.contract.v1.TrailingStopStatus
-	(*PostStopOrderRequest)(nil),              // 8: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest
-	(*PostStopOrderResponse)(nil),             // 9: tinkoff.public.invest.api.contract.v1.PostStopOrderResponse
-	(*GetStopOrdersRequest)(nil),              // 10: tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest
-	(*GetStopOrdersResponse)(nil),             // 11: tinkoff.public.invest.api.contract.v1.GetStopOrdersResponse
-	(*CancelStopOrderRequest)(nil),            // 12: tinkoff.public.invest.api.contract.v1.CancelStopOrderRequest
-	(*CancelStopOrderResponse)(nil),           // 13: tinkoff.public.invest.api.contract.v1.CancelStopOrderResponse
-	(*StopOrder)(nil),                         // 14: tinkoff.public.invest.api.contract.v1.StopOrder
-	(*PostStopOrderRequest_TrailingData)(nil), // 15: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData
-	(*StopOrder_TrailingData)(nil),            // 16: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData
-	(*Quotation)(nil),                         // 17: tinkoff.public.invest.api.contract.v1.Quotation
+	(StopOrderDirection)(0),                   // 0: tinvest.StopOrderDirection
+	(StopOrderExpirationType)(0),              // 1: tinvest.StopOrderExpirationType
+	(StopOrderType)(0),                        // 2: tinvest.StopOrderType
+	(StopOrderStatusOption)(0),                // 3: tinvest.StopOrderStatusOption
+	(ExchangeOrderType)(0),                    // 4: tinvest.ExchangeOrderType
+	(TakeProfitType)(0),                       // 5: tinvest.TakeProfitType
+	(TrailingValueType)(0),                    // 6: tinvest.TrailingValueType
+	(TrailingStopStatus)(0),                   // 7: tinvest.TrailingStopStatus
+	(*PostStopOrderRequest)(nil),              // 8: tinvest.PostStopOrderRequest
+	(*PostStopOrderResponse)(nil),             // 9: tinvest.PostStopOrderResponse
+	(*GetStopOrdersRequest)(nil),              // 10: tinvest.GetStopOrdersRequest
+	(*GetStopOrdersResponse)(nil),             // 11: tinvest.GetStopOrdersResponse
+	(*CancelStopOrderRequest)(nil),            // 12: tinvest.CancelStopOrderRequest
+	(*CancelStopOrderResponse)(nil),           // 13: tinvest.CancelStopOrderResponse
+	(*StopOrder)(nil),                         // 14: tinvest.StopOrder
+	(*PostStopOrderRequest_TrailingData)(nil), // 15: tinvest.PostStopOrderRequest.TrailingData
+	(*StopOrder_TrailingData)(nil),            // 16: tinvest.StopOrder.TrailingData
+	(*Quotation)(nil),                         // 17: tinvest.Quotation
 	(*timestamppb.Timestamp)(nil),             // 18: google.protobuf.Timestamp
-	(PriceType)(0),                            // 19: tinkoff.public.invest.api.contract.v1.PriceType
-	(*ResponseMetadata)(nil),                  // 20: tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	(*MoneyValue)(nil),                        // 21: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(PriceType)(0),                            // 19: tinvest.PriceType
+	(*ResponseMetadata)(nil),                  // 20: tinvest.ResponseMetadata
+	(*MoneyValue)(nil),                        // 21: tinvest.MoneyValue
 }
 var file_tinvest_stoporders_proto_depIdxs = []int32{
-	17, // 0: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	17, // 1: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.stop_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	0,  // 2: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderDirection
-	1,  // 3: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.expiration_type:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderExpirationType
-	2,  // 4: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.stop_order_type:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderType
-	18, // 5: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.expire_date:type_name -> google.protobuf.Timestamp
-	4,  // 6: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.exchange_order_type:type_name -> tinkoff.public.invest.api.contract.v1.ExchangeOrderType
-	5,  // 7: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.take_profit_type:type_name -> tinkoff.public.invest.api.contract.v1.TakeProfitType
-	15, // 8: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.trailing_data:type_name -> tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData
-	19, // 9: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
-	20, // 10: tinkoff.public.invest.api.contract.v1.PostStopOrderResponse.response_metadata:type_name -> tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	3,  // 11: tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest.status:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderStatusOption
-	18, // 12: tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest.from:type_name -> google.protobuf.Timestamp
-	18, // 13: tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest.to:type_name -> google.protobuf.Timestamp
-	14, // 14: tinkoff.public.invest.api.contract.v1.GetStopOrdersResponse.stop_orders:type_name -> tinkoff.public.invest.api.contract.v1.StopOrder
-	18, // 15: tinkoff.public.invest.api.contract.v1.CancelStopOrderResponse.time:type_name -> google.protobuf.Timestamp
-	0,  // 16: tinkoff.public.invest.api.contract.v1.StopOrder.direction:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderDirection
-	2,  // 17: tinkoff.public.invest.api.contract.v1.StopOrder.order_type:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderType
-	18, // 18: tinkoff.public.invest.api.contract.v1.StopOrder.create_date:type_name -> google.protobuf.Timestamp
-	18, // 19: tinkoff.public.invest.api.contract.v1.StopOrder.activation_date_time:type_name -> google.protobuf.Timestamp
-	18, // 20: tinkoff.public.invest.api.contract.v1.StopOrder.expiration_time:type_name -> google.protobuf.Timestamp
-	21, // 21: tinkoff.public.invest.api.contract.v1.StopOrder.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	21, // 22: tinkoff.public.invest.api.contract.v1.StopOrder.stop_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	5,  // 23: tinkoff.public.invest.api.contract.v1.StopOrder.take_profit_type:type_name -> tinkoff.public.invest.api.contract.v1.TakeProfitType
-	16, // 24: tinkoff.public.invest.api.contract.v1.StopOrder.trailing_data:type_name -> tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData
-	3,  // 25: tinkoff.public.invest.api.contract.v1.StopOrder.status:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderStatusOption
-	4,  // 26: tinkoff.public.invest.api.contract.v1.StopOrder.exchange_order_type:type_name -> tinkoff.public.invest.api.contract.v1.ExchangeOrderType
-	17, // 27: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData.indent:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	6,  // 28: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData.indent_type:type_name -> tinkoff.public.invest.api.contract.v1.TrailingValueType
-	17, // 29: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData.spread:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	6,  // 30: tinkoff.public.invest.api.contract.v1.PostStopOrderRequest.TrailingData.spread_type:type_name -> tinkoff.public.invest.api.contract.v1.TrailingValueType
-	17, // 31: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.indent:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	6,  // 32: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.indent_type:type_name -> tinkoff.public.invest.api.contract.v1.TrailingValueType
-	17, // 33: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.spread:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	6,  // 34: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.spread_type:type_name -> tinkoff.public.invest.api.contract.v1.TrailingValueType
-	7,  // 35: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.status:type_name -> tinkoff.public.invest.api.contract.v1.TrailingStopStatus
-	17, // 36: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	17, // 37: tinkoff.public.invest.api.contract.v1.StopOrder.TrailingData.extr:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	8,  // 38: tinkoff.public.invest.api.contract.v1.StopOrdersService.PostStopOrder:input_type -> tinkoff.public.invest.api.contract.v1.PostStopOrderRequest
-	10, // 39: tinkoff.public.invest.api.contract.v1.StopOrdersService.GetStopOrders:input_type -> tinkoff.public.invest.api.contract.v1.GetStopOrdersRequest
-	12, // 40: tinkoff.public.invest.api.contract.v1.StopOrdersService.CancelStopOrder:input_type -> tinkoff.public.invest.api.contract.v1.CancelStopOrderRequest
-	9,  // 41: tinkoff.public.invest.api.contract.v1.StopOrdersService.PostStopOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostStopOrderResponse
-	11, // 42: tinkoff.public.invest.api.contract.v1.StopOrdersService.GetStopOrders:output_type -> tinkoff.public.invest.api.contract.v1.GetStopOrdersResponse
-	13, // 43: tinkoff.public.invest.api.contract.v1.StopOrdersService.CancelStopOrder:output_type -> tinkoff.public.invest.api.contract.v1.CancelStopOrderResponse
+	17, // 0: tinvest.PostStopOrderRequest.price:type_name -> tinvest.Quotation
+	17, // 1: tinvest.PostStopOrderRequest.stop_price:type_name -> tinvest.Quotation
+	0,  // 2: tinvest.PostStopOrderRequest.direction:type_name -> tinvest.StopOrderDirection
+	1,  // 3: tinvest.PostStopOrderRequest.expiration_type:type_name -> tinvest.StopOrderExpirationType
+	2,  // 4: tinvest.PostStopOrderRequest.stop_order_type:type_name -> tinvest.StopOrderType
+	18, // 5: tinvest.PostStopOrderRequest.expire_date:type_name -> google.protobuf.Timestamp
+	4,  // 6: tinvest.PostStopOrderRequest.exchange_order_type:type_name -> tinvest.ExchangeOrderType
+	5,  // 7: tinvest.PostStopOrderRequest.take_profit_type:type_name -> tinvest.TakeProfitType
+	15, // 8: tinvest.PostStopOrderRequest.trailing_data:type_name -> tinvest.PostStopOrderRequest.TrailingData
+	19, // 9: tinvest.PostStopOrderRequest.price_type:type_name -> tinvest.PriceType
+	20, // 10: tinvest.PostStopOrderResponse.response_metadata:type_name -> tinvest.ResponseMetadata
+	3,  // 11: tinvest.GetStopOrdersRequest.status:type_name -> tinvest.StopOrderStatusOption
+	18, // 12: tinvest.GetStopOrdersRequest.from:type_name -> google.protobuf.Timestamp
+	18, // 13: tinvest.GetStopOrdersRequest.to:type_name -> google.protobuf.Timestamp
+	14, // 14: tinvest.GetStopOrdersResponse.stop_orders:type_name -> tinvest.StopOrder
+	18, // 15: tinvest.CancelStopOrderResponse.time:type_name -> google.protobuf.Timestamp
+	0,  // 16: tinvest.StopOrder.direction:type_name -> tinvest.StopOrderDirection
+	2,  // 17: tinvest.StopOrder.order_type:type_name -> tinvest.StopOrderType
+	18, // 18: tinvest.StopOrder.create_date:type_name -> google.protobuf.Timestamp
+	18, // 19: tinvest.StopOrder.activation_date_time:type_name -> google.protobuf.Timestamp
+	18, // 20: tinvest.StopOrder.expiration_time:type_name -> google.protobuf.Timestamp
+	21, // 21: tinvest.StopOrder.price:type_name -> tinvest.MoneyValue
+	21, // 22: tinvest.StopOrder.stop_price:type_name -> tinvest.MoneyValue
+	5,  // 23: tinvest.StopOrder.take_profit_type:type_name -> tinvest.TakeProfitType
+	16, // 24: tinvest.StopOrder.trailing_data:type_name -> tinvest.StopOrder.TrailingData
+	3,  // 25: tinvest.StopOrder.status:type_name -> tinvest.StopOrderStatusOption
+	4,  // 26: tinvest.StopOrder.exchange_order_type:type_name -> tinvest.ExchangeOrderType
+	17, // 27: tinvest.PostStopOrderRequest.TrailingData.indent:type_name -> tinvest.Quotation
+	6,  // 28: tinvest.PostStopOrderRequest.TrailingData.indent_type:type_name -> tinvest.TrailingValueType
+	17, // 29: tinvest.PostStopOrderRequest.TrailingData.spread:type_name -> tinvest.Quotation
+	6,  // 30: tinvest.PostStopOrderRequest.TrailingData.spread_type:type_name -> tinvest.TrailingValueType
+	17, // 31: tinvest.StopOrder.TrailingData.indent:type_name -> tinvest.Quotation
+	6,  // 32: tinvest.StopOrder.TrailingData.indent_type:type_name -> tinvest.TrailingValueType
+	17, // 33: tinvest.StopOrder.TrailingData.spread:type_name -> tinvest.Quotation
+	6,  // 34: tinvest.StopOrder.TrailingData.spread_type:type_name -> tinvest.TrailingValueType
+	7,  // 35: tinvest.StopOrder.TrailingData.status:type_name -> tinvest.TrailingStopStatus
+	17, // 36: tinvest.StopOrder.TrailingData.price:type_name -> tinvest.Quotation
+	17, // 37: tinvest.StopOrder.TrailingData.extr:type_name -> tinvest.Quotation
+	8,  // 38: tinvest.StopOrdersService.PostStopOrder:input_type -> tinvest.PostStopOrderRequest
+	10, // 39: tinvest.StopOrdersService.GetStopOrders:input_type -> tinvest.GetStopOrdersRequest
+	12, // 40: tinvest.StopOrdersService.CancelStopOrder:input_type -> tinvest.CancelStopOrderRequest
+	9,  // 41: tinvest.StopOrdersService.PostStopOrder:output_type -> tinvest.PostStopOrderResponse
+	11, // 42: tinvest.StopOrdersService.GetStopOrders:output_type -> tinvest.GetStopOrdersResponse
+	13, // 43: tinvest.StopOrdersService.CancelStopOrder:output_type -> tinvest.CancelStopOrderResponse
 	41, // [41:44] is the sub-list for method output_type
 	38, // [38:41] is the sub-list for method input_type
 	38, // [38:38] is the sub-list for extension type_name

@@ -19,13 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OperationsService_GetOperations_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperations"
-	OperationsService_GetPortfolio_FullMethodName              = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPortfolio"
-	OperationsService_GetPositions_FullMethodName              = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPositions"
-	OperationsService_GetWithdrawLimits_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetWithdrawLimits"
-	OperationsService_GetBrokerReport_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetBrokerReport"
-	OperationsService_GetDividendsForeignIssuer_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetDividendsForeignIssuer"
-	OperationsService_GetOperationsByCursor_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperationsByCursor"
+	OperationsService_GetOperations_FullMethodName             = "/tinvest.OperationsService/GetOperations"
+	OperationsService_GetPortfolio_FullMethodName              = "/tinvest.OperationsService/GetPortfolio"
+	OperationsService_GetPositions_FullMethodName              = "/tinvest.OperationsService/GetPositions"
+	OperationsService_GetWithdrawLimits_FullMethodName         = "/tinvest.OperationsService/GetWithdrawLimits"
+	OperationsService_GetBrokerReport_FullMethodName           = "/tinvest.OperationsService/GetBrokerReport"
+	OperationsService_GetDividendsForeignIssuer_FullMethodName = "/tinvest.OperationsService/GetDividendsForeignIssuer"
+	OperationsService_GetOperationsByCursor_FullMethodName     = "/tinvest.OperationsService/GetOperationsByCursor"
 )
 
 // OperationsServiceClient is the client API for OperationsService service.
@@ -330,7 +330,7 @@ func _OperationsService_GetOperationsByCursor_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OperationsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.OperationsService",
+	ServiceName: "tinvest.OperationsService",
 	HandlerType: (*OperationsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -367,8 +367,8 @@ var OperationsService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	OperationsStreamService_PortfolioStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PortfolioStream"
-	OperationsStreamService_PositionsStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PositionsStream"
+	OperationsStreamService_PortfolioStream_FullMethodName = "/tinvest.OperationsStreamService/PortfolioStream"
+	OperationsStreamService_PositionsStream_FullMethodName = "/tinvest.OperationsStreamService/PositionsStream"
 )
 
 // OperationsStreamServiceClient is the client API for OperationsStreamService service.
@@ -499,7 +499,7 @@ type OperationsStreamService_PositionsStreamServer = grpc.ServerStreamingServer[
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OperationsStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tinkoff.public.invest.api.contract.v1.OperationsStreamService",
+	ServiceName: "tinvest.OperationsStreamService",
 	HandlerType: (*OperationsStreamServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

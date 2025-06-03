@@ -191,7 +191,7 @@ func (AccessLevel) EnumDescriptor() ([]byte, []int) {
 // Запрос получения счетов пользователя.
 type GetAccountsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        *AccountStatus         `protobuf:"varint,1,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountStatus,oneof" json:"status,omitempty"` //Статус счета.
+	Status        *AccountStatus         `protobuf:"varint,1,opt,name=status,proto3,enum=tinvest.AccountStatus,oneof" json:"status,omitempty"` //Статус счета.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -285,17 +285,17 @@ type Account struct {
 	// Идентификатор счeта.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Тип счeта.
-	Type AccountType `protobuf:"varint,2,opt,name=type,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountType" json:"type,omitempty"`
+	Type AccountType `protobuf:"varint,2,opt,name=type,proto3,enum=tinvest.AccountType" json:"type,omitempty"`
 	// Название счeта.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// Статус счeта.
-	Status AccountStatus `protobuf:"varint,4,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountStatus" json:"status,omitempty"`
+	Status AccountStatus `protobuf:"varint,4,opt,name=status,proto3,enum=tinvest.AccountStatus" json:"status,omitempty"`
 	// Дата открытия счeта в часовом поясе UTC.
 	OpenedDate *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=opened_date,json=openedDate,proto3" json:"opened_date,omitempty"`
 	// Дата закрытия счeта в часовом поясе UTC.
 	ClosedDate *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=closed_date,json=closedDate,proto3" json:"closed_date,omitempty"`
 	// Уровень доступа к текущему счeту (определяется токеном).
-	AccessLevel   AccessLevel `protobuf:"varint,7,opt,name=access_level,json=accessLevel,proto3,enum=tinkoff.public.invest.api.contract.v1.AccessLevel" json:"access_level,omitempty"`
+	AccessLevel   AccessLevel `protobuf:"varint,7,opt,name=access_level,json=accessLevel,proto3,enum=tinvest.AccessLevel" json:"access_level,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -846,36 +846,36 @@ var File_tinvest_users_proto protoreflect.FileDescriptor
 
 const file_tinvest_users_proto_rawDesc = "" +
 	"\n" +
-	"\x13tinvest/users.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"r\n" +
-	"\x12GetAccountsRequest\x12Q\n" +
-	"\x06status\x18\x01 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.AccountStatusH\x00R\x06status\x88\x01\x01B\t\n" +
-	"\a_status\"a\n" +
-	"\x13GetAccountsResponse\x12J\n" +
-	"\baccounts\x18\x01 \x03(\v2..tinkoff.public.invest.api.contract.v1.AccountR\baccounts\"\x94\x03\n" +
+	"\x13tinvest/users.proto\x12\atinvest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"T\n" +
+	"\x12GetAccountsRequest\x123\n" +
+	"\x06status\x18\x01 \x01(\x0e2\x16.tinvest.AccountStatusH\x00R\x06status\x88\x01\x01B\t\n" +
+	"\a_status\"C\n" +
+	"\x13GetAccountsResponse\x12,\n" +
+	"\baccounts\x18\x01 \x03(\v2\x10.tinvest.AccountR\baccounts\"\xba\x02\n" +
 	"\aAccount\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12F\n" +
-	"\x04type\x18\x02 \x01(\x0e22.tinkoff.public.invest.api.contract.v1.AccountTypeR\x04type\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12L\n" +
-	"\x06status\x18\x04 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.AccountStatusR\x06status\x12;\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12(\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x14.tinvest.AccountTypeR\x04type\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12.\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x16.tinvest.AccountStatusR\x06status\x12;\n" +
 	"\vopened_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"openedDate\x12;\n" +
 	"\vclosed_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"closedDate\x12U\n" +
-	"\faccess_level\x18\a \x01(\x0e22.tinkoff.public.invest.api.contract.v1.AccessLevelR\vaccessLevel\"A\n" +
+	"closedDate\x127\n" +
+	"\faccess_level\x18\a \x01(\x0e2\x14.tinvest.AccessLevelR\vaccessLevel\"A\n" +
 	"\x1aGetMarginAttributesRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\xe3\x04\n" +
-	"\x1bGetMarginAttributesResponse\x12\\\n" +
-	"\x10liquid_portfolio\x18\x01 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0fliquidPortfolio\x12Z\n" +
-	"\x0fstarting_margin\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0estartingMargin\x12X\n" +
-	"\x0eminimal_margin\x18\x03 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\rminimalMargin\x12h\n" +
-	"\x17funds_sufficiency_level\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x15fundsSufficiencyLevel\x12h\n" +
-	"\x17amount_of_missing_funds\x18\x05 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x14amountOfMissingFunds\x12\\\n" +
-	"\x10corrected_margin\x18\x06 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0fcorrectedMargin\"\x16\n" +
-	"\x14GetUserTariffRequest\"\xc6\x01\n" +
-	"\x15GetUserTariffResponse\x12T\n" +
-	"\funary_limits\x18\x01 \x03(\v21.tinkoff.public.invest.api.contract.v1.UnaryLimitR\vunaryLimits\x12W\n" +
-	"\rstream_limits\x18\x02 \x03(\v22.tinkoff.public.invest.api.contract.v1.StreamLimitR\fstreamLimits\"P\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\xaf\x03\n" +
+	"\x1bGetMarginAttributesResponse\x12>\n" +
+	"\x10liquid_portfolio\x18\x01 \x01(\v2\x13.tinvest.MoneyValueR\x0fliquidPortfolio\x12<\n" +
+	"\x0fstarting_margin\x18\x02 \x01(\v2\x13.tinvest.MoneyValueR\x0estartingMargin\x12:\n" +
+	"\x0eminimal_margin\x18\x03 \x01(\v2\x13.tinvest.MoneyValueR\rminimalMargin\x12J\n" +
+	"\x17funds_sufficiency_level\x18\x04 \x01(\v2\x12.tinvest.QuotationR\x15fundsSufficiencyLevel\x12J\n" +
+	"\x17amount_of_missing_funds\x18\x05 \x01(\v2\x13.tinvest.MoneyValueR\x14amountOfMissingFunds\x12>\n" +
+	"\x10corrected_margin\x18\x06 \x01(\v2\x13.tinvest.MoneyValueR\x0fcorrectedMargin\"\x16\n" +
+	"\x14GetUserTariffRequest\"\x8a\x01\n" +
+	"\x15GetUserTariffResponse\x126\n" +
+	"\funary_limits\x18\x01 \x03(\v2\x13.tinvest.UnaryLimitR\vunaryLimits\x129\n" +
+	"\rstream_limits\x18\x02 \x03(\v2\x14.tinvest.StreamLimitR\fstreamLimits\"P\n" +
 	"\n" +
 	"UnaryLimit\x12(\n" +
 	"\x10limit_per_minute\x18\x01 \x01(\x05R\x0elimitPerMinute\x12\x18\n" +
@@ -910,12 +910,12 @@ const file_tinvest_users_proto_rawDesc = "" +
 	" ACCOUNT_ACCESS_LEVEL_UNSPECIFIED\x10\x00\x12$\n" +
 	" ACCOUNT_ACCESS_LEVEL_FULL_ACCESS\x10\x01\x12\"\n" +
 	"\x1eACCOUNT_ACCESS_LEVEL_READ_ONLY\x10\x02\x12\"\n" +
-	"\x1eACCOUNT_ACCESS_LEVEL_NO_ACCESS\x10\x032\xbb\x04\n" +
-	"\fUsersService\x12\x84\x01\n" +
-	"\vGetAccounts\x129.tinkoff.public.invest.api.contract.v1.GetAccountsRequest\x1a:.tinkoff.public.invest.api.contract.v1.GetAccountsResponse\x12\x9c\x01\n" +
-	"\x13GetMarginAttributes\x12A.tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest\x1aB.tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse\x12\x8a\x01\n" +
-	"\rGetUserTariff\x12;.tinkoff.public.invest.api.contract.v1.GetUserTariffRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetUserTariffResponse\x12x\n" +
-	"\aGetInfo\x125.tinkoff.public.invest.api.contract.v1.GetInfoRequest\x1a6.tinkoff.public.invest.api.contract.v1.GetInfoResponseBz\n" +
+	"\x1eACCOUNT_ACCESS_LEVEL_NO_ACCESS\x10\x032\xc8\x02\n" +
+	"\fUsersService\x12H\n" +
+	"\vGetAccounts\x12\x1b.tinvest.GetAccountsRequest\x1a\x1c.tinvest.GetAccountsResponse\x12`\n" +
+	"\x13GetMarginAttributes\x12#.tinvest.GetMarginAttributesRequest\x1a$.tinvest.GetMarginAttributesResponse\x12N\n" +
+	"\rGetUserTariff\x12\x1d.tinvest.GetUserTariffRequest\x1a\x1e.tinvest.GetUserTariffResponse\x12<\n" +
+	"\aGetInfo\x12\x17.tinvest.GetInfoRequest\x1a\x18.tinvest.GetInfoResponseBz\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -933,48 +933,48 @@ func file_tinvest_users_proto_rawDescGZIP() []byte {
 var file_tinvest_users_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_tinvest_users_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_tinvest_users_proto_goTypes = []any{
-	(AccountType)(0),                    // 0: tinkoff.public.invest.api.contract.v1.AccountType
-	(AccountStatus)(0),                  // 1: tinkoff.public.invest.api.contract.v1.AccountStatus
-	(AccessLevel)(0),                    // 2: tinkoff.public.invest.api.contract.v1.AccessLevel
-	(*GetAccountsRequest)(nil),          // 3: tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	(*GetAccountsResponse)(nil),         // 4: tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	(*Account)(nil),                     // 5: tinkoff.public.invest.api.contract.v1.Account
-	(*GetMarginAttributesRequest)(nil),  // 6: tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
-	(*GetMarginAttributesResponse)(nil), // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
-	(*GetUserTariffRequest)(nil),        // 8: tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
-	(*GetUserTariffResponse)(nil),       // 9: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
-	(*UnaryLimit)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.UnaryLimit
-	(*StreamLimit)(nil),                 // 11: tinkoff.public.invest.api.contract.v1.StreamLimit
-	(*GetInfoRequest)(nil),              // 12: tinkoff.public.invest.api.contract.v1.GetInfoRequest
-	(*GetInfoResponse)(nil),             // 13: tinkoff.public.invest.api.contract.v1.GetInfoResponse
+	(AccountType)(0),                    // 0: tinvest.AccountType
+	(AccountStatus)(0),                  // 1: tinvest.AccountStatus
+	(AccessLevel)(0),                    // 2: tinvest.AccessLevel
+	(*GetAccountsRequest)(nil),          // 3: tinvest.GetAccountsRequest
+	(*GetAccountsResponse)(nil),         // 4: tinvest.GetAccountsResponse
+	(*Account)(nil),                     // 5: tinvest.Account
+	(*GetMarginAttributesRequest)(nil),  // 6: tinvest.GetMarginAttributesRequest
+	(*GetMarginAttributesResponse)(nil), // 7: tinvest.GetMarginAttributesResponse
+	(*GetUserTariffRequest)(nil),        // 8: tinvest.GetUserTariffRequest
+	(*GetUserTariffResponse)(nil),       // 9: tinvest.GetUserTariffResponse
+	(*UnaryLimit)(nil),                  // 10: tinvest.UnaryLimit
+	(*StreamLimit)(nil),                 // 11: tinvest.StreamLimit
+	(*GetInfoRequest)(nil),              // 12: tinvest.GetInfoRequest
+	(*GetInfoResponse)(nil),             // 13: tinvest.GetInfoResponse
 	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
-	(*MoneyValue)(nil),                  // 15: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*Quotation)(nil),                   // 16: tinkoff.public.invest.api.contract.v1.Quotation
+	(*MoneyValue)(nil),                  // 15: tinvest.MoneyValue
+	(*Quotation)(nil),                   // 16: tinvest.Quotation
 }
 var file_tinvest_users_proto_depIdxs = []int32{
-	1,  // 0: tinkoff.public.invest.api.contract.v1.GetAccountsRequest.status:type_name -> tinkoff.public.invest.api.contract.v1.AccountStatus
-	5,  // 1: tinkoff.public.invest.api.contract.v1.GetAccountsResponse.accounts:type_name -> tinkoff.public.invest.api.contract.v1.Account
-	0,  // 2: tinkoff.public.invest.api.contract.v1.Account.type:type_name -> tinkoff.public.invest.api.contract.v1.AccountType
-	1,  // 3: tinkoff.public.invest.api.contract.v1.Account.status:type_name -> tinkoff.public.invest.api.contract.v1.AccountStatus
-	14, // 4: tinkoff.public.invest.api.contract.v1.Account.opened_date:type_name -> google.protobuf.Timestamp
-	14, // 5: tinkoff.public.invest.api.contract.v1.Account.closed_date:type_name -> google.protobuf.Timestamp
-	2,  // 6: tinkoff.public.invest.api.contract.v1.Account.access_level:type_name -> tinkoff.public.invest.api.contract.v1.AccessLevel
-	15, // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.liquid_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 8: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.starting_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 9: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.minimal_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	16, // 10: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.funds_sufficiency_level:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	15, // 11: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.amount_of_missing_funds:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 12: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.corrected_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	10, // 13: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.unary_limits:type_name -> tinkoff.public.invest.api.contract.v1.UnaryLimit
-	11, // 14: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.stream_limits:type_name -> tinkoff.public.invest.api.contract.v1.StreamLimit
-	3,  // 15: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:input_type -> tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	6,  // 16: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:input_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
-	8,  // 17: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:input_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
-	12, // 18: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:input_type -> tinkoff.public.invest.api.contract.v1.GetInfoRequest
-	4,  // 19: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:output_type -> tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	7,  // 20: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:output_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
-	9,  // 21: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:output_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
-	13, // 22: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:output_type -> tinkoff.public.invest.api.contract.v1.GetInfoResponse
+	1,  // 0: tinvest.GetAccountsRequest.status:type_name -> tinvest.AccountStatus
+	5,  // 1: tinvest.GetAccountsResponse.accounts:type_name -> tinvest.Account
+	0,  // 2: tinvest.Account.type:type_name -> tinvest.AccountType
+	1,  // 3: tinvest.Account.status:type_name -> tinvest.AccountStatus
+	14, // 4: tinvest.Account.opened_date:type_name -> google.protobuf.Timestamp
+	14, // 5: tinvest.Account.closed_date:type_name -> google.protobuf.Timestamp
+	2,  // 6: tinvest.Account.access_level:type_name -> tinvest.AccessLevel
+	15, // 7: tinvest.GetMarginAttributesResponse.liquid_portfolio:type_name -> tinvest.MoneyValue
+	15, // 8: tinvest.GetMarginAttributesResponse.starting_margin:type_name -> tinvest.MoneyValue
+	15, // 9: tinvest.GetMarginAttributesResponse.minimal_margin:type_name -> tinvest.MoneyValue
+	16, // 10: tinvest.GetMarginAttributesResponse.funds_sufficiency_level:type_name -> tinvest.Quotation
+	15, // 11: tinvest.GetMarginAttributesResponse.amount_of_missing_funds:type_name -> tinvest.MoneyValue
+	15, // 12: tinvest.GetMarginAttributesResponse.corrected_margin:type_name -> tinvest.MoneyValue
+	10, // 13: tinvest.GetUserTariffResponse.unary_limits:type_name -> tinvest.UnaryLimit
+	11, // 14: tinvest.GetUserTariffResponse.stream_limits:type_name -> tinvest.StreamLimit
+	3,  // 15: tinvest.UsersService.GetAccounts:input_type -> tinvest.GetAccountsRequest
+	6,  // 16: tinvest.UsersService.GetMarginAttributes:input_type -> tinvest.GetMarginAttributesRequest
+	8,  // 17: tinvest.UsersService.GetUserTariff:input_type -> tinvest.GetUserTariffRequest
+	12, // 18: tinvest.UsersService.GetInfo:input_type -> tinvest.GetInfoRequest
+	4,  // 19: tinvest.UsersService.GetAccounts:output_type -> tinvest.GetAccountsResponse
+	7,  // 20: tinvest.UsersService.GetMarginAttributes:output_type -> tinvest.GetMarginAttributesResponse
+	9,  // 21: tinvest.UsersService.GetUserTariff:output_type -> tinvest.GetUserTariffResponse
+	13, // 22: tinvest.UsersService.GetInfo:output_type -> tinvest.GetInfoResponse
 	19, // [19:23] is the sub-list for method output_type
 	15, // [15:19] is the sub-list for method input_type
 	15, // [15:15] is the sub-list for extension type_name

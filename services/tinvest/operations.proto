@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package tinkoff.public.invest.api.contract.v1;
+package tinvest;
 
 option go_package = "github.com/Mar1eena/trb_proto/tinvest";
 option java_package = "ru.tinkoff.piapi.contract.v1";

@@ -1317,10 +1317,10 @@ func (*MarketDataResponse_LastPrice) isMarketDataResponse_Payload() {}
 // subscribeCandles | Изменения статуса подписки на свечи.
 type SubscribeCandlesRequest struct {
 	state              protoimpl.MessageState          `protogen:"open.v1"`
-	SubscriptionAction SubscriptionAction              `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionAction" json:"subscription_action,omitempty"`               //Изменение статуса подписки.
-	Instruments        []*CandleInstrument             `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                                      //Массив инструментов для подписки на свечи.
-	WaitingClose       bool                            `protobuf:"varint,3,opt,name=waiting_close,json=waitingClose,proto3" json:"waiting_close,omitempty"`                                                                                               //Флаг ожидания закрытия временного интервала для отправки свечи.
-	CandleSourceType   *GetCandlesRequest_CandleSource `protobuf:"varint,9,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinkoff.public.invest.api.contract.v1.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Источник свечей.
+	SubscriptionAction SubscriptionAction              `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinvest.SubscriptionAction" json:"subscription_action,omitempty"`               //Изменение статуса подписки.
+	Instruments        []*CandleInstrument             `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                        //Массив инструментов для подписки на свечи.
+	WaitingClose       bool                            `protobuf:"varint,3,opt,name=waiting_close,json=waitingClose,proto3" json:"waiting_close,omitempty"`                                                                 //Флаг ожидания закрытия временного интервала для отправки свечи.
+	CandleSourceType   *GetCandlesRequest_CandleSource `protobuf:"varint,9,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinvest.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Источник свечей.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1387,9 +1387,9 @@ func (x *SubscribeCandlesRequest) GetCandleSourceType() GetCandlesRequest_Candle
 type CandleInstrument struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/marketdata.proto.
-	Figi          string               `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                          // Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	Interval      SubscriptionInterval `protobuf:"varint,2,opt,name=interval,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionInterval" json:"interval,omitempty"` //Интервал свечей. Двухчасовые и четырехчасовые свечи в стриме отсчитываются с 0:00 по UTC.
-	InstrumentId  string               `protobuf:"bytes,3,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                      //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	Figi          string               `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                            // Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	Interval      SubscriptionInterval `protobuf:"varint,2,opt,name=interval,proto3,enum=tinvest.SubscriptionInterval" json:"interval,omitempty"` //Интервал свечей. Двухчасовые и четырехчасовые свечи в стриме отсчитываются с 0:00 по UTC.
+	InstrumentId  string               `protobuf:"bytes,3,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`        //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1502,14 +1502,14 @@ func (x *SubscribeCandlesResponse) GetCandlesSubscriptions() []*CandleSubscripti
 // Статус подписки на свечи.
 type CandleSubscription struct {
 	state              protoimpl.MessageState          `protogen:"open.v1"`
-	Figi               string                          `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                                    //FIGI-идентификатор инструмента.
-	Interval           SubscriptionInterval            `protobuf:"varint,2,opt,name=interval,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionInterval" json:"interval,omitempty"`                                                           //Интервал свечей.
-	SubscriptionStatus SubscriptionStatus              `protobuf:"varint,3,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionStatus" json:"subscription_status,omitempty"`               //Статус подписки.
-	InstrumentUid      string                          `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                                             //UID инструмента.
-	WaitingClose       bool                            `protobuf:"varint,5,opt,name=waiting_close,json=waitingClose,proto3" json:"waiting_close,omitempty"`                                                                                               //Флаг ожидания закрытия временного интервала для отправки свечи.
-	StreamId           string                          `protobuf:"bytes,6,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                                            //Идентификатор открытого соединения.
-	SubscriptionId     string                          `protobuf:"bytes,7,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                                                          //Идентификатор подписки в формате `UUID`.
-	CandleSourceType   *GetCandlesRequest_CandleSource `protobuf:"varint,9,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinkoff.public.invest.api.contract.v1.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Источник свечей.
+	Figi               string                          `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                      //FIGI-идентификатор инструмента.
+	Interval           SubscriptionInterval            `protobuf:"varint,2,opt,name=interval,proto3,enum=tinvest.SubscriptionInterval" json:"interval,omitempty"`                                                           //Интервал свечей.
+	SubscriptionStatus SubscriptionStatus              `protobuf:"varint,3,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinvest.SubscriptionStatus" json:"subscription_status,omitempty"`               //Статус подписки.
+	InstrumentUid      string                          `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                               //UID инструмента.
+	WaitingClose       bool                            `protobuf:"varint,5,opt,name=waiting_close,json=waitingClose,proto3" json:"waiting_close,omitempty"`                                                                 //Флаг ожидания закрытия временного интервала для отправки свечи.
+	StreamId           string                          `protobuf:"bytes,6,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                              //Идентификатор открытого соединения.
+	SubscriptionId     string                          `protobuf:"bytes,7,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                            //Идентификатор подписки в формате `UUID`.
+	CandleSourceType   *GetCandlesRequest_CandleSource `protobuf:"varint,9,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinvest.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Источник свечей.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1603,8 +1603,8 @@ func (x *CandleSubscription) GetCandleSourceType() GetCandlesRequest_CandleSourc
 // Запрос на изменение статуса подписки на стаканы.
 type SubscribeOrderBookRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
-	Instruments        []*OrderBookInstrument `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                        //Массив инструментов для подписки на стаканы.
+	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinvest.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
+	Instruments        []*OrderBookInstrument `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                          //Массив инструментов для подписки на стаканы.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1657,10 +1657,10 @@ func (x *SubscribeOrderBookRequest) GetInstruments() []*OrderBookInstrument {
 type OrderBookInstrument struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/marketdata.proto.
-	Figi          string        `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                    //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	Depth         int32         `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                                                 //Глубина стакана.
-	InstrumentId  string        `protobuf:"bytes,3,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
-	OrderBookType OrderBookType `protobuf:"varint,4,opt,name=order_book_type,json=orderBookType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderBookType" json:"order_book_type,omitempty"` //Тип стакана. Значение по умолчанию — `ORDERBOOK_TYPE_ALL`, стакан биржевой и дилера.
+	Figi          string        `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                      //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	Depth         int32         `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                   //Глубина стакана.
+	InstrumentId  string        `protobuf:"bytes,3,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                  //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	OrderBookType OrderBookType `protobuf:"varint,4,opt,name=order_book_type,json=orderBookType,proto3,enum=tinvest.OrderBookType" json:"order_book_type,omitempty"` //Тип стакана. Значение по умолчанию — `ORDERBOOK_TYPE_ALL`, стакан биржевой и дилера.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1780,13 +1780,13 @@ func (x *SubscribeOrderBookResponse) GetOrderBookSubscriptions() []*OrderBookSub
 // Статус подписки.
 type OrderBookSubscription struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                      //FIGI-идентификатор инструмента.
-	Depth              int32                  `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                                                                   //Глубина стакана.
-	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,3,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
-	InstrumentUid      string                 `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                               //UID инструмента.
-	StreamId           string                 `protobuf:"bytes,5,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                              //Идентификатор открытого соединения.
-	SubscriptionId     string                 `protobuf:"bytes,6,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                                            //Идентификатор подписки в формате `UUID`.
-	OrderBookType      OrderBookType          `protobuf:"varint,7,opt,name=order_book_type,json=orderBookType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderBookType" json:"order_book_type,omitempty"`                   //Тип стакана.
+	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                        //FIGI-идентификатор инструмента.
+	Depth              int32                  `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                                     //Глубина стакана.
+	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,3,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinvest.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
+	InstrumentUid      string                 `protobuf:"bytes,4,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                 //UID инструмента.
+	StreamId           string                 `protobuf:"bytes,5,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                //Идентификатор открытого соединения.
+	SubscriptionId     string                 `protobuf:"bytes,6,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                              //Идентификатор подписки в формате `UUID`.
+	OrderBookType      OrderBookType          `protobuf:"varint,7,opt,name=order_book_type,json=orderBookType,proto3,enum=tinvest.OrderBookType" json:"order_book_type,omitempty"`                   //Тип стакана.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1873,9 +1873,9 @@ func (x *OrderBookSubscription) GetOrderBookType() OrderBookType {
 // Изменение статуса подписки на поток обезличенных сделок.
 type SubscribeTradesRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
-	Instruments        []*TradeInstrument     `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                        //Массив инструментов для подписки на поток обезличенных сделок.
-	TradeSource        TradeSourceType        `protobuf:"varint,3,opt,name=trade_source,json=tradeSource,proto3,enum=tinkoff.public.invest.api.contract.v1.TradeSourceType" json:"trade_source,omitempty"`                         //Тип источника сделок. Значение по умолчанию — `TRADE_SOURCE_ALL`, все сделки.
+	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinvest.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
+	Instruments        []*TradeInstrument     `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                          //Массив инструментов для подписки на поток обезличенных сделок.
+	TradeSource        TradeSourceType        `protobuf:"varint,3,opt,name=trade_source,json=tradeSource,proto3,enum=tinvest.TradeSourceType" json:"trade_source,omitempty"`                         //Тип источника сделок. Значение по умолчанию — `TRADE_SOURCE_ALL`, все сделки.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1989,9 +1989,9 @@ func (x *TradeInstrument) GetInstrumentId() string {
 // Результат изменения статуса подписки на поток обезличенных сделок.
 type SubscribeTradesResponse struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	TrackingId         string                 `protobuf:"bytes,1,opt,name=tracking_id,json=trackingId,proto3" json:"tracking_id,omitempty"`                                                                //Уникальный идентификатор запроса. [Подробнее](./grpc#tracking-id).
-	TradeSubscriptions []*TradeSubscription   `protobuf:"bytes,2,rep,name=trade_subscriptions,json=tradeSubscriptions,proto3" json:"trade_subscriptions,omitempty"`                                        //Массив статусов подписки на поток сделок.
-	TradeSource        TradeSourceType        `protobuf:"varint,3,opt,name=trade_source,json=tradeSource,proto3,enum=tinkoff.public.invest.api.contract.v1.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделок.
+	TrackingId         string                 `protobuf:"bytes,1,opt,name=tracking_id,json=trackingId,proto3" json:"tracking_id,omitempty"`                                  //Уникальный идентификатор запроса. [Подробнее](./grpc#tracking-id).
+	TradeSubscriptions []*TradeSubscription   `protobuf:"bytes,2,rep,name=trade_subscriptions,json=tradeSubscriptions,proto3" json:"trade_subscriptions,omitempty"`          //Массив статусов подписки на поток сделок.
+	TradeSource        TradeSourceType        `protobuf:"varint,3,opt,name=trade_source,json=tradeSource,proto3,enum=tinvest.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделок.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2050,11 +2050,11 @@ func (x *SubscribeTradesResponse) GetTradeSource() TradeSourceType {
 // Статус подписки.
 type TradeSubscription struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                      //FIGI-идентификатор инструмента.
-	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
-	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                               //UID инструмента.
-	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                              //Идентификатор открытого соединения.
-	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                                            //Идентификатор подписки в формате UUID.
+	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                        //FIGI-идентификатор инструмента.
+	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinvest.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
+	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                 //UID инструмента.
+	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                //Идентификатор открытого соединения.
+	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                              //Идентификатор подписки в формате UUID.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2127,8 +2127,8 @@ func (x *TradeSubscription) GetSubscriptionId() string {
 // Изменение статуса подписки на торговый статус инструмента.
 type SubscribeInfoRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
-	Instruments        []*InfoInstrument      `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                        //Массив инструментов для подписки на торговый статус.
+	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinvest.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
+	Instruments        []*InfoInstrument      `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                          //Массив инструментов для подписки на торговый статус.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2288,11 +2288,11 @@ func (x *SubscribeInfoResponse) GetInfoSubscriptions() []*InfoSubscription {
 // Статус подписки.
 type InfoSubscription struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                      //FIGI-идентификатор инструмента.
-	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
-	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                               //UID инструмента.
-	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                              //Идентификатор открытого соединения.
-	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                                            //Идентификатор подписки в формате UUID.
+	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                        //FIGI-идентификатор инструмента.
+	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinvest.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
+	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                 //UID инструмента.
+	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                //Идентификатор открытого соединения.
+	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                              //Идентификатор подписки в формате UUID.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2365,8 +2365,8 @@ func (x *InfoSubscription) GetSubscriptionId() string {
 // Изменение статуса подписки на цену последней сделки по инструменту.
 type SubscribeLastPriceRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
-	Instruments        []*LastPriceInstrument `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                        //Массив инструментов для подписки на цену последней сделки.
+	SubscriptionAction SubscriptionAction     `protobuf:"varint,1,opt,name=subscription_action,json=subscriptionAction,proto3,enum=tinvest.SubscriptionAction" json:"subscription_action,omitempty"` //Изменение статуса подписки.
+	Instruments        []*LastPriceInstrument `protobuf:"bytes,2,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                          //Массив инструментов для подписки на цену последней сделки.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2526,11 +2526,11 @@ func (x *SubscribeLastPriceResponse) GetLastPriceSubscriptions() []*LastPriceSub
 // Статус подписки на цену последней сделки.
 type LastPriceSubscription struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                      //FIGI-идентификатор инструмента.
-	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
-	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                               //UID инструмента.
-	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                              //Идентификатор открытого соединения.
-	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                                                            //Идентификатор подписки в формате `UUID`.
+	Figi               string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                        //FIGI-идентификатор инструмента.
+	SubscriptionStatus SubscriptionStatus     `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinvest.SubscriptionStatus" json:"subscription_status,omitempty"` //Статус подписки.
+	InstrumentUid      string                 `protobuf:"bytes,3,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                 //UID инструмента.
+	StreamId           string                 `protobuf:"bytes,4,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                //Идентификатор открытого соединения.
+	SubscriptionId     string                 `protobuf:"bytes,5,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty"`                                              //Идентификатор подписки в формате `UUID`.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2603,17 +2603,17 @@ func (x *LastPriceSubscription) GetSubscriptionId() string {
 // Пакет свечей в рамках стрима.
 type Candle struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Figi             string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                             //FIGI-идентификатор инструмента.
-	Interval         SubscriptionInterval   `protobuf:"varint,2,opt,name=interval,proto3,enum=tinkoff.public.invest.api.contract.v1.SubscriptionInterval" json:"interval,omitempty"`                                    //Интервал свечи.
-	Open             *Quotation             `protobuf:"bytes,3,opt,name=open,proto3" json:"open,omitempty"`                                                                                                             //Цена открытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	High             *Quotation             `protobuf:"bytes,4,opt,name=high,proto3" json:"high,omitempty"`                                                                                                             //Максимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Low              *Quotation             `protobuf:"bytes,5,opt,name=low,proto3" json:"low,omitempty"`                                                                                                               //Минимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Close            *Quotation             `protobuf:"bytes,6,opt,name=close,proto3" json:"close,omitempty"`                                                                                                           //Цена закрытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Volume           int64                  `protobuf:"varint,7,opt,name=volume,proto3" json:"volume,omitempty"`                                                                                                        //Объем сделок в лотах.
-	Time             *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=time,proto3" json:"time,omitempty"`                                                                                                             //Время начала интервала свечи по UTC.
-	LastTradeTs      *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=last_trade_ts,json=lastTradeTs,proto3" json:"last_trade_ts,omitempty"`                                                                          //Время последней сделки, вошедшей в свечу по UTC.
-	InstrumentUid    string                 `protobuf:"bytes,10,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                     //UID инструмента.
-	CandleSourceType CandleSource           `protobuf:"varint,19,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinkoff.public.invest.api.contract.v1.CandleSource" json:"candle_source_type,omitempty"` //Источник свечей.
+	Figi             string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                               //FIGI-идентификатор инструмента.
+	Interval         SubscriptionInterval   `protobuf:"varint,2,opt,name=interval,proto3,enum=tinvest.SubscriptionInterval" json:"interval,omitempty"`                                    //Интервал свечи.
+	Open             *Quotation             `protobuf:"bytes,3,opt,name=open,proto3" json:"open,omitempty"`                                                                               //Цена открытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	High             *Quotation             `protobuf:"bytes,4,opt,name=high,proto3" json:"high,omitempty"`                                                                               //Максимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Low              *Quotation             `protobuf:"bytes,5,opt,name=low,proto3" json:"low,omitempty"`                                                                                 //Минимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Close            *Quotation             `protobuf:"bytes,6,opt,name=close,proto3" json:"close,omitempty"`                                                                             //Цена закрытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Volume           int64                  `protobuf:"varint,7,opt,name=volume,proto3" json:"volume,omitempty"`                                                                          //Объем сделок в лотах.
+	Time             *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=time,proto3" json:"time,omitempty"`                                                                               //Время начала интервала свечи по UTC.
+	LastTradeTs      *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=last_trade_ts,json=lastTradeTs,proto3" json:"last_trade_ts,omitempty"`                                            //Время последней сделки, вошедшей в свечу по UTC.
+	InstrumentUid    string                 `protobuf:"bytes,10,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                       //UID инструмента.
+	CandleSourceType CandleSource           `protobuf:"varint,19,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinvest.CandleSource" json:"candle_source_type,omitempty"` //Источник свечей.
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -2728,16 +2728,16 @@ func (x *Candle) GetCandleSourceType() CandleSource {
 // Пакет стаканов в рамках стрима.
 type OrderBook struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                     //FIGI-идентификатор инструмента.
-	Depth         int32                  `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                                                  //Глубина стакана.
-	IsConsistent  bool                   `protobuf:"varint,3,opt,name=is_consistent,json=isConsistent,proto3" json:"is_consistent,omitempty"`                                                                //Флаг консистентности стакана. **false** — не все заявки попали в стакан из-за сетевых задержек или нарушения порядка доставки.
-	Bids          []*Order               `protobuf:"bytes,4,rep,name=bids,proto3" json:"bids,omitempty"`                                                                                                     //Массив предложений.
-	Asks          []*Order               `protobuf:"bytes,5,rep,name=asks,proto3" json:"asks,omitempty"`                                                                                                     //Массив спроса.
-	Time          *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=time,proto3" json:"time,omitempty"`                                                                                                     //Время формирования стакана в часовом поясе UTC по времени биржи.
-	LimitUp       *Quotation             `protobuf:"bytes,7,opt,name=limit_up,json=limitUp,proto3" json:"limit_up,omitempty"`                                                                                //Верхний лимит цены за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	LimitDown     *Quotation             `protobuf:"bytes,8,opt,name=limit_down,json=limitDown,proto3" json:"limit_down,omitempty"`                                                                          //Нижний лимит цены за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	InstrumentUid string                 `protobuf:"bytes,9,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                              //UID инструмента.
-	OrderBookType OrderBookType          `protobuf:"varint,10,opt,name=order_book_type,json=orderBookType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderBookType" json:"order_book_type,omitempty"` //Тип стакана.
+	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                       //FIGI-идентификатор инструмента.
+	Depth         int32                  `protobuf:"varint,2,opt,name=depth,proto3" json:"depth,omitempty"`                                                                    //Глубина стакана.
+	IsConsistent  bool                   `protobuf:"varint,3,opt,name=is_consistent,json=isConsistent,proto3" json:"is_consistent,omitempty"`                                  //Флаг консистентности стакана. **false** — не все заявки попали в стакан из-за сетевых задержек или нарушения порядка доставки.
+	Bids          []*Order               `protobuf:"bytes,4,rep,name=bids,proto3" json:"bids,omitempty"`                                                                       //Массив предложений.
+	Asks          []*Order               `protobuf:"bytes,5,rep,name=asks,proto3" json:"asks,omitempty"`                                                                       //Массив спроса.
+	Time          *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=time,proto3" json:"time,omitempty"`                                                                       //Время формирования стакана в часовом поясе UTC по времени биржи.
+	LimitUp       *Quotation             `protobuf:"bytes,7,opt,name=limit_up,json=limitUp,proto3" json:"limit_up,omitempty"`                                                  //Верхний лимит цены за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	LimitDown     *Quotation             `protobuf:"bytes,8,opt,name=limit_down,json=limitDown,proto3" json:"limit_down,omitempty"`                                            //Нижний лимит цены за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	InstrumentUid string                 `protobuf:"bytes,9,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                //UID инструмента.
+	OrderBookType OrderBookType          `protobuf:"varint,10,opt,name=order_book_type,json=orderBookType,proto3,enum=tinvest.OrderBookType" json:"order_book_type,omitempty"` //Тип стакана.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2898,13 +2898,13 @@ func (x *Order) GetQuantity() int64 {
 // Информация о сделке.
 type Trade struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                              //FIGI-идентификатор инструмента.
-	Direction     TradeDirection         `protobuf:"varint,2,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.TradeDirection" json:"direction,omitempty"`                         //Направление сделки.
-	Price         *Quotation             `protobuf:"bytes,3,opt,name=price,proto3" json:"price,omitempty"`                                                                                            //Цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Quantity      int64                  `protobuf:"varint,4,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                                     //Количество лотов.
-	Time          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`                                                                                              //Время сделки в часовом поясе UTC по времени биржи.
-	InstrumentUid string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                       //UID инструмента.
-	TradeSource   TradeSourceType        `protobuf:"varint,7,opt,name=trade_source,json=tradeSource,proto3,enum=tinkoff.public.invest.api.contract.v1.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделки.
+	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                //FIGI-идентификатор инструмента.
+	Direction     TradeDirection         `protobuf:"varint,2,opt,name=direction,proto3,enum=tinvest.TradeDirection" json:"direction,omitempty"`                         //Направление сделки.
+	Price         *Quotation             `protobuf:"bytes,3,opt,name=price,proto3" json:"price,omitempty"`                                                              //Цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Quantity      int64                  `protobuf:"varint,4,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                       //Количество лотов.
+	Time          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`                                                                //Время сделки в часовом поясе UTC по времени биржи.
+	InstrumentUid string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                         //UID инструмента.
+	TradeSource   TradeSourceType        `protobuf:"varint,7,opt,name=trade_source,json=tradeSource,proto3,enum=tinvest.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделки.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2991,12 +2991,12 @@ func (x *Trade) GetTradeSource() TradeSourceType {
 // Пакет изменения торгового статуса.
 type TradingStatus struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
-	Figi                     string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                          //FIGI-идентификатор инструмента.
-	TradingStatus            SecurityTradingStatus  `protobuf:"varint,2,opt,name=trading_status,json=tradingStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SecurityTradingStatus" json:"trading_status,omitempty"` //Статус торговли инструментом.
-	Time                     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`                                                                                                          //Время изменения торгового статуса по UTC.
-	LimitOrderAvailableFlag  bool                   `protobuf:"varint,4,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`                                //Признак доступности выставления лимитной заявки по инструменту.
-	MarketOrderAvailableFlag bool                   `protobuf:"varint,5,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"`                             //Признак доступности выставления рыночной заявки по инструменту.
-	InstrumentUid            string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                   //UID инструмента.
+	Figi                     string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                              //FIGI-идентификатор инструмента.
+	TradingStatus            SecurityTradingStatus  `protobuf:"varint,2,opt,name=trading_status,json=tradingStatus,proto3,enum=tinvest.SecurityTradingStatus" json:"trading_status,omitempty"`   //Статус торговли инструментом.
+	Time                     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`                                                                              //Время изменения торгового статуса по UTC.
+	LimitOrderAvailableFlag  bool                   `protobuf:"varint,4,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`    //Признак доступности выставления лимитной заявки по инструменту.
+	MarketOrderAvailableFlag bool                   `protobuf:"varint,5,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"` //Признак доступности выставления рыночной заявки по инструменту.
+	InstrumentUid            string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                       //UID инструмента.
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -3077,13 +3077,13 @@ func (x *TradingStatus) GetInstrumentUid() string {
 type GetCandlesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/marketdata.proto.
-	Figi             *string                         `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                                                                                              //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	From             *timestamppb.Timestamp          `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`                                                                                                                                    //Начало запрашиваемого периода по UTC.
-	To               *timestamppb.Timestamp          `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`                                                                                                                                        //Окончание запрашиваемого периода по UTC.
-	Interval         CandleInterval                  `protobuf:"varint,4,opt,name=interval,proto3,enum=tinkoff.public.invest.api.contract.v1.CandleInterval" json:"interval,omitempty"`                                                                 //Интервал запрошенных свечей.
-	InstrumentId     *string                         `protobuf:"bytes,5,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                                                                                          //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
-	CandleSourceType *GetCandlesRequest_CandleSource `protobuf:"varint,7,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinkoff.public.invest.api.contract.v1.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Тип источника свечи.
-	Limit            *int32                          `protobuf:"varint,10,opt,name=limit,proto3,oneof" json:"limit,omitempty"`                                                                                                                          //Максимальное количество свечей в ответе.
+	Figi             *string                         `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                                                                //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	From             *timestamppb.Timestamp          `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`                                                                                                      //Начало запрашиваемого периода по UTC.
+	To               *timestamppb.Timestamp          `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`                                                                                                          //Окончание запрашиваемого периода по UTC.
+	Interval         CandleInterval                  `protobuf:"varint,4,opt,name=interval,proto3,enum=tinvest.CandleInterval" json:"interval,omitempty"`                                                                 //Интервал запрошенных свечей.
+	InstrumentId     *string                         `protobuf:"bytes,5,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                                                            //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	CandleSourceType *GetCandlesRequest_CandleSource `protobuf:"varint,7,opt,name=candle_source_type,json=candleSourceType,proto3,enum=tinvest.GetCandlesRequest_CandleSource,oneof" json:"candle_source_type,omitempty"` //Тип источника свечи.
+	Limit            *int32                          `protobuf:"varint,10,opt,name=limit,proto3,oneof" json:"limit,omitempty"`                                                                                            //Максимальное количество свечей в ответе.
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -3216,14 +3216,14 @@ func (x *GetCandlesResponse) GetCandles() []*HistoricCandle {
 // Информация о свече.
 type HistoricCandle struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Open          *Quotation             `protobuf:"bytes,1,opt,name=open,proto3" json:"open,omitempty"`                                                                                              //Цена открытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	High          *Quotation             `protobuf:"bytes,2,opt,name=high,proto3" json:"high,omitempty"`                                                                                              //Максимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Low           *Quotation             `protobuf:"bytes,3,opt,name=low,proto3" json:"low,omitempty"`                                                                                                //Минимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Close         *Quotation             `protobuf:"bytes,4,opt,name=close,proto3" json:"close,omitempty"`                                                                                            //Цена закрытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Volume        int64                  `protobuf:"varint,5,opt,name=volume,proto3" json:"volume,omitempty"`                                                                                         //Объем торгов в лотах.
-	Time          *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=time,proto3" json:"time,omitempty"`                                                                                              //Время свечи в часовом поясе UTC.
-	IsComplete    bool                   `protobuf:"varint,7,opt,name=is_complete,json=isComplete,proto3" json:"is_complete,omitempty"`                                                               //Признак завершенности свечи. **false** — свеча за текущие интервал еще сформирована не полностью.
-	CandleSource  CandleSource           `protobuf:"varint,9,opt,name=candle_source,json=candleSource,proto3,enum=tinkoff.public.invest.api.contract.v1.CandleSource" json:"candle_source,omitempty"` //Тип источника свечи
+	Open          *Quotation             `protobuf:"bytes,1,opt,name=open,proto3" json:"open,omitempty"`                                                                //Цена открытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	High          *Quotation             `protobuf:"bytes,2,opt,name=high,proto3" json:"high,omitempty"`                                                                //Максимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Low           *Quotation             `protobuf:"bytes,3,opt,name=low,proto3" json:"low,omitempty"`                                                                  //Минимальная цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Close         *Quotation             `protobuf:"bytes,4,opt,name=close,proto3" json:"close,omitempty"`                                                              //Цена закрытия за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Volume        int64                  `protobuf:"varint,5,opt,name=volume,proto3" json:"volume,omitempty"`                                                           //Объем торгов в лотах.
+	Time          *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=time,proto3" json:"time,omitempty"`                                                                //Время свечи в часовом поясе UTC.
+	IsComplete    bool                   `protobuf:"varint,7,opt,name=is_complete,json=isComplete,proto3" json:"is_complete,omitempty"`                                 //Признак завершенности свечи. **false** — свеча за текущие интервал еще сформирована не полностью.
+	CandleSource  CandleSource           `protobuf:"varint,9,opt,name=candle_source,json=candleSource,proto3,enum=tinvest.CandleSource" json:"candle_source,omitempty"` //Тип источника свечи
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3318,10 +3318,10 @@ func (x *HistoricCandle) GetCandleSource() CandleSource {
 type GetLastPricesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/marketdata.proto.
-	Figi             []string          `protobuf:"bytes,1,rep,name=figi,proto3" json:"figi,omitempty"`                                                                                                                    //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	InstrumentId     []string          `protobuf:"bytes,2,rep,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                                //Массив идентификаторов инструмента. Принимает значения `figi` или `instrument_uid`.
-	LastPriceType    LastPriceType     `protobuf:"varint,3,opt,name=last_price_type,json=lastPriceType,proto3,enum=tinkoff.public.invest.api.contract.v1.LastPriceType" json:"last_price_type,omitempty"`                 //Тип запрашиваемой последней цены.
-	InstrumentStatus *InstrumentStatus `protobuf:"varint,9,opt,name=instrument_status,json=instrumentStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentStatus,oneof" json:"instrument_status,omitempty"` //Статус запрашиваемых инструментов. [Возможные значения](#instrumentstatus).
+	Figi             []string          `protobuf:"bytes,1,rep,name=figi,proto3" json:"figi,omitempty"`                                                                                      //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	InstrumentId     []string          `protobuf:"bytes,2,rep,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                  //Массив идентификаторов инструмента. Принимает значения `figi` или `instrument_uid`.
+	LastPriceType    LastPriceType     `protobuf:"varint,3,opt,name=last_price_type,json=lastPriceType,proto3,enum=tinvest.LastPriceType" json:"last_price_type,omitempty"`                 //Тип запрашиваемой последней цены.
+	InstrumentStatus *InstrumentStatus `protobuf:"varint,9,opt,name=instrument_status,json=instrumentStatus,proto3,enum=tinvest.InstrumentStatus,oneof" json:"instrument_status,omitempty"` //Статус запрашиваемых инструментов. [Возможные значения](#instrumentstatus).
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -3433,11 +3433,11 @@ func (x *GetLastPricesResponse) GetLastPrices() []*LastPrice {
 // Информация о цене последней сделки.
 type LastPrice struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                     //FIGI инструмента.
-	Price         *Quotation             `protobuf:"bytes,2,opt,name=price,proto3" json:"price,omitempty"`                                                                                                   //Цена последней сделки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
-	Time          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`                                                                                                     //Время получения последней цены в часовом поясе UTC по времени биржи.
-	InstrumentUid string                 `protobuf:"bytes,11,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                             //UID инструмента.
-	LastPriceType LastPriceType          `protobuf:"varint,12,opt,name=last_price_type,json=lastPriceType,proto3,enum=tinkoff.public.invest.api.contract.v1.LastPriceType" json:"last_price_type,omitempty"` //Тип последней цены.
+	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                       //FIGI инструмента.
+	Price         *Quotation             `protobuf:"bytes,2,opt,name=price,proto3" json:"price,omitempty"`                                                                     //Цена последней сделки за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента. [Подробнее про перевод цен в валюту](./faq_marketdata/#_15).
+	Time          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`                                                                       //Время получения последней цены в часовом поясе UTC по времени биржи.
+	InstrumentUid string                 `protobuf:"bytes,11,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                               //UID инструмента.
+	LastPriceType LastPriceType          `protobuf:"varint,12,opt,name=last_price_type,json=lastPriceType,proto3,enum=tinvest.LastPriceType" json:"last_price_type,omitempty"` //Тип последней цены.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3851,14 +3851,14 @@ func (x *GetTradingStatusesResponse) GetTradingStatuses() []*GetTradingStatusRes
 // Информация о торговом статусе.
 type GetTradingStatusResponse struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	Figi                        string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                          //FIGI-идентификатор инструмента.
-	TradingStatus               SecurityTradingStatus  `protobuf:"varint,2,opt,name=trading_status,json=tradingStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SecurityTradingStatus" json:"trading_status,omitempty"` //Статус торговли инструментом.
-	LimitOrderAvailableFlag     bool                   `protobuf:"varint,3,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`                                //Признак доступности выставления лимитной заявки по инструменту.
-	MarketOrderAvailableFlag    bool                   `protobuf:"varint,4,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"`                             //Признак доступности выставления рыночной заявки по инструменту.
-	ApiTradeAvailableFlag       bool                   `protobuf:"varint,5,opt,name=api_trade_available_flag,json=apiTradeAvailableFlag,proto3" json:"api_trade_available_flag,omitempty"`                                      //Признак доступности торгов через API.
-	InstrumentUid               string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                   //UID инструмента.
-	BestpriceOrderAvailableFlag bool                   `protobuf:"varint,8,opt,name=bestprice_order_available_flag,json=bestpriceOrderAvailableFlag,proto3" json:"bestprice_order_available_flag,omitempty"`                    //Признак доступности завяки по лучшей цене.
-	OnlyBestPrice               bool                   `protobuf:"varint,9,opt,name=only_best_price,json=onlyBestPrice,proto3" json:"only_best_price,omitempty"`                                                                //Признак доступности только заявки по лучшей цене.
+	Figi                        string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                       //FIGI-идентификатор инструмента.
+	TradingStatus               SecurityTradingStatus  `protobuf:"varint,2,opt,name=trading_status,json=tradingStatus,proto3,enum=tinvest.SecurityTradingStatus" json:"trading_status,omitempty"`            //Статус торговли инструментом.
+	LimitOrderAvailableFlag     bool                   `protobuf:"varint,3,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`             //Признак доступности выставления лимитной заявки по инструменту.
+	MarketOrderAvailableFlag    bool                   `protobuf:"varint,4,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"`          //Признак доступности выставления рыночной заявки по инструменту.
+	ApiTradeAvailableFlag       bool                   `protobuf:"varint,5,opt,name=api_trade_available_flag,json=apiTradeAvailableFlag,proto3" json:"api_trade_available_flag,omitempty"`                   //Признак доступности торгов через API.
+	InstrumentUid               string                 `protobuf:"bytes,6,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                //UID инструмента.
+	BestpriceOrderAvailableFlag bool                   `protobuf:"varint,8,opt,name=bestprice_order_available_flag,json=bestpriceOrderAvailableFlag,proto3" json:"bestprice_order_available_flag,omitempty"` //Признак доступности завяки по лучшей цене.
+	OnlyBestPrice               bool                   `protobuf:"varint,9,opt,name=only_best_price,json=onlyBestPrice,proto3" json:"only_best_price,omitempty"`                                             //Признак доступности только заявки по лучшей цене.
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
@@ -3953,11 +3953,11 @@ func (x *GetTradingStatusResponse) GetOnlyBestPrice() bool {
 type GetLastTradesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/marketdata.proto.
-	Figi          *string                `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                                                        //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
-	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`                                                                                              //Начало запрашиваемого периода по UTC.
-	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`                                                                                                  //Окончание запрашиваемого периода по UTC.
-	InstrumentId  *string                `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                                                    //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
-	TradeSource   TradeSourceType        `protobuf:"varint,5,opt,name=trade_source,json=tradeSource,proto3,enum=tinkoff.public.invest.api.contract.v1.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделок. Значение по умолчанию — `TRADE_SOURCE_ALL`, все сделки.
+	Figi          *string                `protobuf:"bytes,1,opt,name=figi,proto3,oneof" json:"figi,omitempty"`                                                          //Deprecated FIGI-идентификатор инструмента. Используйте `instrument_id`.
+	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`                                                                //Начало запрашиваемого периода по UTC.
+	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`                                                                    //Окончание запрашиваемого периода по UTC.
+	InstrumentId  *string                `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                      //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	TradeSource   TradeSourceType        `protobuf:"varint,5,opt,name=trade_source,json=tradeSource,proto3,enum=tinvest.TradeSourceType" json:"trade_source,omitempty"` //Тип источника сделок. Значение по умолчанию — `TRADE_SOURCE_ALL`, все сделки.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4113,8 +4113,8 @@ func (*GetMySubscriptions) Descriptor() ([]byte, []int) {
 // Запрос цен закрытия торговой сессии по инструментам.
 type GetClosePricesRequest struct {
 	state            protoimpl.MessageState         `protogen:"open.v1"`
-	Instruments      []*InstrumentClosePriceRequest `protobuf:"bytes,1,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                                                      //Массив по инструментам.
-	InstrumentStatus *InstrumentStatus              `protobuf:"varint,9,opt,name=instrument_status,json=instrumentStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentStatus,oneof" json:"instrument_status,omitempty"` //Статус запрашиваемых инструментов. [Возможные значения](#instrumentstatus).
+	Instruments      []*InstrumentClosePriceRequest `protobuf:"bytes,1,rep,name=instruments,proto3" json:"instruments,omitempty"`                                                                        //Массив по инструментам.
+	InstrumentStatus *InstrumentStatus              `protobuf:"varint,9,opt,name=instrument_status,json=instrumentStatus,proto3,enum=tinvest.InstrumentStatus,oneof" json:"instrument_status,omitempty"` //Статус запрашиваемых инструментов. [Возможные значения](#instrumentstatus).
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -4332,15 +4332,15 @@ func (x *InstrumentClosePriceResponse) GetTime() *timestamppb.Timestamp {
 
 type GetTechAnalysisRequest struct {
 	state         protoimpl.MessageState                   `protogen:"open.v1"`
-	IndicatorType GetTechAnalysisRequest_IndicatorType     `protobuf:"varint,1,opt,name=indicator_type,json=indicatorType,proto3,enum=tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest_IndicatorType" json:"indicator_type,omitempty"` //Тип технического индикатора.
-	InstrumentUid string                                   `protobuf:"bytes,2,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                                  //UID инструмента.
-	From          *timestamppb.Timestamp                   `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`                                                                                                                         //Начало запрашиваемого периода по UTC.
-	To            *timestamppb.Timestamp                   `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`                                                                                                                             //Окончание запрашиваемого периода по UTC.
-	Interval      GetTechAnalysisRequest_IndicatorInterval `protobuf:"varint,5,opt,name=interval,proto3,enum=tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest_IndicatorInterval" json:"interval,omitempty"`                            //Интервал, за который рассчитывается индикатор.
-	TypeOfPrice   GetTechAnalysisRequest_TypeOfPrice       `protobuf:"varint,6,opt,name=type_of_price,json=typeOfPrice,proto3,enum=tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest_TypeOfPrice" json:"type_of_price,omitempty"`       //Тип цены, который используется при расчете индикатора.
-	Length        int32                                    `protobuf:"varint,7,opt,name=length,proto3" json:"length,omitempty"`                                                                                                                    //Торговый период, за который рассчитывается индикатор.
-	Deviation     *GetTechAnalysisRequest_Deviation        `protobuf:"bytes,8,opt,name=deviation,proto3" json:"deviation,omitempty"`                                                                                                               //Параметры отклонения.
-	Smoothing     *GetTechAnalysisRequest_Smoothing        `protobuf:"bytes,9,opt,name=smoothing,proto3" json:"smoothing,omitempty"`                                                                                                               //Параметры сглаживания.
+	IndicatorType GetTechAnalysisRequest_IndicatorType     `protobuf:"varint,1,opt,name=indicator_type,json=indicatorType,proto3,enum=tinvest.GetTechAnalysisRequest_IndicatorType" json:"indicator_type,omitempty"` //Тип технического индикатора.
+	InstrumentUid string                                   `protobuf:"bytes,2,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                    //UID инструмента.
+	From          *timestamppb.Timestamp                   `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`                                                                                           //Начало запрашиваемого периода по UTC.
+	To            *timestamppb.Timestamp                   `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`                                                                                               //Окончание запрашиваемого периода по UTC.
+	Interval      GetTechAnalysisRequest_IndicatorInterval `protobuf:"varint,5,opt,name=interval,proto3,enum=tinvest.GetTechAnalysisRequest_IndicatorInterval" json:"interval,omitempty"`                            //Интервал, за который рассчитывается индикатор.
+	TypeOfPrice   GetTechAnalysisRequest_TypeOfPrice       `protobuf:"varint,6,opt,name=type_of_price,json=typeOfPrice,proto3,enum=tinvest.GetTechAnalysisRequest_TypeOfPrice" json:"type_of_price,omitempty"`       //Тип цены, который используется при расчете индикатора.
+	Length        int32                                    `protobuf:"varint,7,opt,name=length,proto3" json:"length,omitempty"`                                                                                      //Торговый период, за который рассчитывается индикатор.
+	Deviation     *GetTechAnalysisRequest_Deviation        `protobuf:"bytes,8,opt,name=deviation,proto3" json:"deviation,omitempty"`                                                                                 //Параметры отклонения.
+	Smoothing     *GetTechAnalysisRequest_Smoothing        `protobuf:"bytes,9,opt,name=smoothing,proto3" json:"smoothing,omitempty"`                                                                                 //Параметры сглаживания.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4674,184 +4674,184 @@ var File_tinvest_marketdata_proto protoreflect.FileDescriptor
 
 const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\n" +
-	"\x18tinvest/marketdata.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14tinvest/common.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xb2\a\n" +
-	"\x11MarketDataRequest\x12|\n" +
-	"\x19subscribe_candles_request\x18\x01 \x01(\v2>.tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequestH\x00R\x17subscribeCandlesRequest\x12\x83\x01\n" +
-	"\x1csubscribe_order_book_request\x18\x02 \x01(\v2@.tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequestH\x00R\x19subscribeOrderBookRequest\x12y\n" +
-	"\x18subscribe_trades_request\x18\x03 \x01(\v2=.tinkoff.public.invest.api.contract.v1.SubscribeTradesRequestH\x00R\x16subscribeTradesRequest\x12s\n" +
-	"\x16subscribe_info_request\x18\x04 \x01(\v2;.tinkoff.public.invest.api.contract.v1.SubscribeInfoRequestH\x00R\x14subscribeInfoRequest\x12\x83\x01\n" +
-	"\x1csubscribe_last_price_request\x18\x05 \x01(\v2@.tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequestH\x00R\x19subscribeLastPriceRequest\x12m\n" +
-	"\x14get_my_subscriptions\x18\x06 \x01(\v29.tinkoff.public.invest.api.contract.v1.GetMySubscriptionsH\x00R\x12getMySubscriptions\x12H\n" +
-	"\x04ping\x18\a \x01(\v22.tinkoff.public.invest.api.contract.v1.PingRequestH\x00R\x04ping\x12_\n" +
-	"\rping_settings\x18\x0f \x01(\v28.tinkoff.public.invest.api.contract.v1.PingDelaySettingsH\x00R\fpingSettingsB\t\n" +
-	"\apayload\"\xf2\x05\n" +
-	"!MarketDataServerSideStreamRequest\x12z\n" +
-	"\x19subscribe_candles_request\x18\x01 \x01(\v2>.tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequestR\x17subscribeCandlesRequest\x12\x81\x01\n" +
-	"\x1csubscribe_order_book_request\x18\x02 \x01(\v2@.tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequestR\x19subscribeOrderBookRequest\x12w\n" +
-	"\x18subscribe_trades_request\x18\x03 \x01(\v2=.tinkoff.public.invest.api.contract.v1.SubscribeTradesRequestR\x16subscribeTradesRequest\x12q\n" +
-	"\x16subscribe_info_request\x18\x04 \x01(\v2;.tinkoff.public.invest.api.contract.v1.SubscribeInfoRequestR\x14subscribeInfoRequest\x12\x81\x01\n" +
-	"\x1csubscribe_last_price_request\x18\x05 \x01(\v2@.tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequestR\x19subscribeLastPriceRequest\x12]\n" +
-	"\rping_settings\x18\x0f \x01(\v28.tinkoff.public.invest.api.contract.v1.PingDelaySettingsR\fpingSettings\"\xfe\b\n" +
-	"\x12MarketDataResponse\x12\x7f\n" +
-	"\x1asubscribe_candles_response\x18\x01 \x01(\v2?.tinkoff.public.invest.api.contract.v1.SubscribeCandlesResponseH\x00R\x18subscribeCandlesResponse\x12\x86\x01\n" +
-	"\x1dsubscribe_order_book_response\x18\x02 \x01(\v2A.tinkoff.public.invest.api.contract.v1.SubscribeOrderBookResponseH\x00R\x1asubscribeOrderBookResponse\x12|\n" +
-	"\x19subscribe_trades_response\x18\x03 \x01(\v2>.tinkoff.public.invest.api.contract.v1.SubscribeTradesResponseH\x00R\x17subscribeTradesResponse\x12v\n" +
-	"\x17subscribe_info_response\x18\x04 \x01(\v2<.tinkoff.public.invest.api.contract.v1.SubscribeInfoResponseH\x00R\x15subscribeInfoResponse\x12G\n" +
-	"\x06candle\x18\x05 \x01(\v2-.tinkoff.public.invest.api.contract.v1.CandleH\x00R\x06candle\x12D\n" +
-	"\x05trade\x18\x06 \x01(\v2,.tinkoff.public.invest.api.contract.v1.TradeH\x00R\x05trade\x12P\n" +
-	"\torderbook\x18\a \x01(\v20.tinkoff.public.invest.api.contract.v1.OrderBookH\x00R\torderbook\x12]\n" +
-	"\x0etrading_status\x18\b \x01(\v24.tinkoff.public.invest.api.contract.v1.TradingStatusH\x00R\rtradingStatus\x12A\n" +
-	"\x04ping\x18\t \x01(\v2+.tinkoff.public.invest.api.contract.v1.PingH\x00R\x04ping\x12\x86\x01\n" +
+	"\x18tinvest/marketdata.proto\x12\atinvest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14tinvest/common.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xc0\x05\n" +
+	"\x11MarketDataRequest\x12^\n" +
+	"\x19subscribe_candles_request\x18\x01 \x01(\v2 .tinvest.SubscribeCandlesRequestH\x00R\x17subscribeCandlesRequest\x12e\n" +
+	"\x1csubscribe_order_book_request\x18\x02 \x01(\v2\".tinvest.SubscribeOrderBookRequestH\x00R\x19subscribeOrderBookRequest\x12[\n" +
+	"\x18subscribe_trades_request\x18\x03 \x01(\v2\x1f.tinvest.SubscribeTradesRequestH\x00R\x16subscribeTradesRequest\x12U\n" +
+	"\x16subscribe_info_request\x18\x04 \x01(\v2\x1d.tinvest.SubscribeInfoRequestH\x00R\x14subscribeInfoRequest\x12e\n" +
+	"\x1csubscribe_last_price_request\x18\x05 \x01(\v2\".tinvest.SubscribeLastPriceRequestH\x00R\x19subscribeLastPriceRequest\x12O\n" +
+	"\x14get_my_subscriptions\x18\x06 \x01(\v2\x1b.tinvest.GetMySubscriptionsH\x00R\x12getMySubscriptions\x12*\n" +
+	"\x04ping\x18\a \x01(\v2\x14.tinvest.PingRequestH\x00R\x04ping\x12A\n" +
+	"\rping_settings\x18\x0f \x01(\v2\x1a.tinvest.PingDelaySettingsH\x00R\fpingSettingsB\t\n" +
+	"\apayload\"\xbc\x04\n" +
+	"!MarketDataServerSideStreamRequest\x12\\\n" +
+	"\x19subscribe_candles_request\x18\x01 \x01(\v2 .tinvest.SubscribeCandlesRequestR\x17subscribeCandlesRequest\x12c\n" +
+	"\x1csubscribe_order_book_request\x18\x02 \x01(\v2\".tinvest.SubscribeOrderBookRequestR\x19subscribeOrderBookRequest\x12Y\n" +
+	"\x18subscribe_trades_request\x18\x03 \x01(\v2\x1f.tinvest.SubscribeTradesRequestR\x16subscribeTradesRequest\x12S\n" +
+	"\x16subscribe_info_request\x18\x04 \x01(\v2\x1d.tinvest.SubscribeInfoRequestR\x14subscribeInfoRequest\x12c\n" +
+	"\x1csubscribe_last_price_request\x18\x05 \x01(\v2\".tinvest.SubscribeLastPriceRequestR\x19subscribeLastPriceRequest\x12?\n" +
+	"\rping_settings\x18\x0f \x01(\v2\x1a.tinvest.PingDelaySettingsR\fpingSettings\"\xb2\x06\n" +
+	"\x12MarketDataResponse\x12a\n" +
+	"\x1asubscribe_candles_response\x18\x01 \x01(\v2!.tinvest.SubscribeCandlesResponseH\x00R\x18subscribeCandlesResponse\x12h\n" +
+	"\x1dsubscribe_order_book_response\x18\x02 \x01(\v2#.tinvest.SubscribeOrderBookResponseH\x00R\x1asubscribeOrderBookResponse\x12^\n" +
+	"\x19subscribe_trades_response\x18\x03 \x01(\v2 .tinvest.SubscribeTradesResponseH\x00R\x17subscribeTradesResponse\x12X\n" +
+	"\x17subscribe_info_response\x18\x04 \x01(\v2\x1e.tinvest.SubscribeInfoResponseH\x00R\x15subscribeInfoResponse\x12)\n" +
+	"\x06candle\x18\x05 \x01(\v2\x0f.tinvest.CandleH\x00R\x06candle\x12&\n" +
+	"\x05trade\x18\x06 \x01(\v2\x0e.tinvest.TradeH\x00R\x05trade\x122\n" +
+	"\torderbook\x18\a \x01(\v2\x12.tinvest.OrderBookH\x00R\torderbook\x12?\n" +
+	"\x0etrading_status\x18\b \x01(\v2\x16.tinvest.TradingStatusH\x00R\rtradingStatus\x12#\n" +
+	"\x04ping\x18\t \x01(\v2\r.tinvest.PingH\x00R\x04ping\x12h\n" +
 	"\x1dsubscribe_last_price_response\x18\n" +
-	" \x01(\v2A.tinkoff.public.invest.api.contract.v1.SubscribeLastPriceResponseH\x00R\x1asubscribeLastPriceResponse\x12Q\n" +
+	" \x01(\v2#.tinvest.SubscribeLastPriceResponseH\x00R\x1asubscribeLastPriceResponse\x123\n" +
 	"\n" +
-	"last_price\x18\v \x01(\v20.tinkoff.public.invest.api.contract.v1.LastPriceH\x00R\tlastPriceB\t\n" +
-	"\apayload\"\x96\x03\n" +
-	"\x17SubscribeCandlesRequest\x12j\n" +
-	"\x13subscription_action\x18\x01 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionActionR\x12subscriptionAction\x12Y\n" +
-	"\vinstruments\x18\x02 \x03(\v27.tinkoff.public.invest.api.contract.v1.CandleInstrumentR\vinstruments\x12#\n" +
-	"\rwaiting_close\x18\x03 \x01(\bR\fwaitingClose\x12x\n" +
-	"\x12candle_source_type\x18\t \x01(\x0e2E.tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSourceH\x00R\x10candleSourceType\x88\x01\x01B\x15\n" +
-	"\x13_candle_source_type\"\xa8\x01\n" +
+	"last_price\x18\v \x01(\v2\x12.tinvest.LastPriceH\x00R\tlastPriceB\t\n" +
+	"\apayload\"\xbc\x02\n" +
+	"\x17SubscribeCandlesRequest\x12L\n" +
+	"\x13subscription_action\x18\x01 \x01(\x0e2\x1b.tinvest.SubscriptionActionR\x12subscriptionAction\x12;\n" +
+	"\vinstruments\x18\x02 \x03(\v2\x19.tinvest.CandleInstrumentR\vinstruments\x12#\n" +
+	"\rwaiting_close\x18\x03 \x01(\bR\fwaitingClose\x12Z\n" +
+	"\x12candle_source_type\x18\t \x01(\x0e2'.tinvest.GetCandlesRequest.CandleSourceH\x00R\x10candleSourceType\x88\x01\x01B\x15\n" +
+	"\x13_candle_source_type\"\x8a\x01\n" +
 	"\x10CandleInstrument\x12\x16\n" +
-	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x12W\n" +
-	"\binterval\x18\x02 \x01(\x0e2;.tinkoff.public.invest.api.contract.v1.SubscriptionIntervalR\binterval\x12#\n" +
-	"\rinstrument_id\x18\x03 \x01(\tR\finstrumentId\"\xab\x01\n" +
+	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x129\n" +
+	"\binterval\x18\x02 \x01(\x0e2\x1d.tinvest.SubscriptionIntervalR\binterval\x12#\n" +
+	"\rinstrument_id\x18\x03 \x01(\tR\finstrumentId\"\x8d\x01\n" +
 	"\x18SubscribeCandlesResponse\x12\x1f\n" +
 	"\vtracking_id\x18\x01 \x01(\tR\n" +
-	"trackingId\x12n\n" +
-	"\x15candles_subscriptions\x18\x02 \x03(\v29.tinkoff.public.invest.api.contract.v1.CandleSubscriptionR\x14candlesSubscriptions\"\x90\x04\n" +
+	"trackingId\x12P\n" +
+	"\x15candles_subscriptions\x18\x02 \x03(\v2\x1b.tinvest.CandleSubscriptionR\x14candlesSubscriptions\"\xb6\x03\n" +
 	"\x12CandleSubscription\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12W\n" +
-	"\binterval\x18\x02 \x01(\x0e2;.tinkoff.public.invest.api.contract.v1.SubscriptionIntervalR\binterval\x12j\n" +
-	"\x13subscription_status\x18\x03 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x129\n" +
+	"\binterval\x18\x02 \x01(\x0e2\x1d.tinvest.SubscriptionIntervalR\binterval\x12L\n" +
+	"\x13subscription_status\x18\x03 \x01(\x0e2\x1b.tinvest.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
 	"\x0einstrument_uid\x18\x04 \x01(\tR\rinstrumentUid\x12#\n" +
 	"\rwaiting_close\x18\x05 \x01(\bR\fwaitingClose\x12\x1b\n" +
 	"\tstream_id\x18\x06 \x01(\tR\bstreamId\x12'\n" +
-	"\x0fsubscription_id\x18\a \x01(\tR\x0esubscriptionId\x12x\n" +
-	"\x12candle_source_type\x18\t \x01(\x0e2E.tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSourceH\x00R\x10candleSourceType\x88\x01\x01B\x15\n" +
-	"\x13_candle_source_type\"\xe5\x01\n" +
-	"\x19SubscribeOrderBookRequest\x12j\n" +
-	"\x13subscription_action\x18\x01 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionActionR\x12subscriptionAction\x12\\\n" +
-	"\vinstruments\x18\x02 \x03(\v2:.tinkoff.public.invest.api.contract.v1.OrderBookInstrumentR\vinstruments\"\xc6\x01\n" +
+	"\x0fsubscription_id\x18\a \x01(\tR\x0esubscriptionId\x12Z\n" +
+	"\x12candle_source_type\x18\t \x01(\x0e2'.tinvest.GetCandlesRequest.CandleSourceH\x00R\x10candleSourceType\x88\x01\x01B\x15\n" +
+	"\x13_candle_source_type\"\xa9\x01\n" +
+	"\x19SubscribeOrderBookRequest\x12L\n" +
+	"\x13subscription_action\x18\x01 \x01(\x0e2\x1b.tinvest.SubscriptionActionR\x12subscriptionAction\x12>\n" +
+	"\vinstruments\x18\x02 \x03(\v2\x1c.tinvest.OrderBookInstrumentR\vinstruments\"\xa8\x01\n" +
 	"\x13OrderBookInstrument\x12\x16\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x12\x14\n" +
 	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12#\n" +
-	"\rinstrument_id\x18\x03 \x01(\tR\finstrumentId\x12\\\n" +
-	"\x0forder_book_type\x18\x04 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.OrderBookTypeR\rorderBookType\"\xb5\x01\n" +
+	"\rinstrument_id\x18\x03 \x01(\tR\finstrumentId\x12>\n" +
+	"\x0forder_book_type\x18\x04 \x01(\x0e2\x16.tinvest.OrderBookTypeR\rorderBookType\"\x97\x01\n" +
 	"\x1aSubscribeOrderBookResponse\x12\x1f\n" +
 	"\vtracking_id\x18\x01 \x01(\tR\n" +
-	"trackingId\x12v\n" +
-	"\x18order_book_subscriptions\x18\x02 \x03(\v2<.tinkoff.public.invest.api.contract.v1.OrderBookSubscriptionR\x16orderBookSubscriptions\"\xf8\x02\n" +
+	"trackingId\x12X\n" +
+	"\x18order_book_subscriptions\x18\x02 \x03(\v2\x1e.tinvest.OrderBookSubscriptionR\x16orderBookSubscriptions\"\xbc\x02\n" +
 	"\x15OrderBookSubscription\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x14\n" +
-	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12j\n" +
-	"\x13subscription_status\x18\x03 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
+	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12L\n" +
+	"\x13subscription_status\x18\x03 \x01(\x0e2\x1b.tinvest.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
 	"\x0einstrument_uid\x18\x04 \x01(\tR\rinstrumentUid\x12\x1b\n" +
 	"\tstream_id\x18\x05 \x01(\tR\bstreamId\x12'\n" +
-	"\x0fsubscription_id\x18\x06 \x01(\tR\x0esubscriptionId\x12\\\n" +
-	"\x0forder_book_type\x18\a \x01(\x0e24.tinkoff.public.invest.api.contract.v1.OrderBookTypeR\rorderBookType\"\xb9\x02\n" +
-	"\x16SubscribeTradesRequest\x12j\n" +
-	"\x13subscription_action\x18\x01 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionActionR\x12subscriptionAction\x12X\n" +
-	"\vinstruments\x18\x02 \x03(\v26.tinkoff.public.invest.api.contract.v1.TradeInstrumentR\vinstruments\x12Y\n" +
-	"\ftrade_source\x18\x03 \x01(\x0e26.tinkoff.public.invest.api.contract.v1.TradeSourceTypeR\vtradeSource\"N\n" +
+	"\x0fsubscription_id\x18\x06 \x01(\tR\x0esubscriptionId\x12>\n" +
+	"\x0forder_book_type\x18\a \x01(\x0e2\x16.tinvest.OrderBookTypeR\rorderBookType\"\xdf\x01\n" +
+	"\x16SubscribeTradesRequest\x12L\n" +
+	"\x13subscription_action\x18\x01 \x01(\x0e2\x1b.tinvest.SubscriptionActionR\x12subscriptionAction\x12:\n" +
+	"\vinstruments\x18\x02 \x03(\v2\x18.tinvest.TradeInstrumentR\vinstruments\x12;\n" +
+	"\ftrade_source\x18\x03 \x01(\x0e2\x18.tinvest.TradeSourceTypeR\vtradeSource\"N\n" +
 	"\x0fTradeInstrument\x12\x16\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x12#\n" +
-	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\x80\x02\n" +
+	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\xc4\x01\n" +
 	"\x17SubscribeTradesResponse\x12\x1f\n" +
 	"\vtracking_id\x18\x01 \x01(\tR\n" +
-	"trackingId\x12i\n" +
-	"\x13trade_subscriptions\x18\x02 \x03(\v28.tinkoff.public.invest.api.contract.v1.TradeSubscriptionR\x12tradeSubscriptions\x12Y\n" +
-	"\ftrade_source\x18\x03 \x01(\x0e26.tinkoff.public.invest.api.contract.v1.TradeSourceTypeR\vtradeSource\"\x80\x02\n" +
+	"trackingId\x12K\n" +
+	"\x13trade_subscriptions\x18\x02 \x03(\v2\x1a.tinvest.TradeSubscriptionR\x12tradeSubscriptions\x12;\n" +
+	"\ftrade_source\x18\x03 \x01(\x0e2\x18.tinvest.TradeSourceTypeR\vtradeSource\"\xe2\x01\n" +
 	"\x11TradeSubscription\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12j\n" +
-	"\x13subscription_status\x18\x02 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12L\n" +
+	"\x13subscription_status\x18\x02 \x01(\x0e2\x1b.tinvest.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
 	"\x0einstrument_uid\x18\x03 \x01(\tR\rinstrumentUid\x12\x1b\n" +
 	"\tstream_id\x18\x04 \x01(\tR\bstreamId\x12'\n" +
-	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\xdb\x01\n" +
-	"\x14SubscribeInfoRequest\x12j\n" +
-	"\x13subscription_action\x18\x01 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionActionR\x12subscriptionAction\x12W\n" +
-	"\vinstruments\x18\x02 \x03(\v25.tinkoff.public.invest.api.contract.v1.InfoInstrumentR\vinstruments\"M\n" +
+	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\x9f\x01\n" +
+	"\x14SubscribeInfoRequest\x12L\n" +
+	"\x13subscription_action\x18\x01 \x01(\x0e2\x1b.tinvest.SubscriptionActionR\x12subscriptionAction\x129\n" +
+	"\vinstruments\x18\x02 \x03(\v2\x17.tinvest.InfoInstrumentR\vinstruments\"M\n" +
 	"\x0eInfoInstrument\x12\x16\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x12#\n" +
-	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\xa0\x01\n" +
+	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\x82\x01\n" +
 	"\x15SubscribeInfoResponse\x12\x1f\n" +
 	"\vtracking_id\x18\x01 \x01(\tR\n" +
-	"trackingId\x12f\n" +
-	"\x12info_subscriptions\x18\x02 \x03(\v27.tinkoff.public.invest.api.contract.v1.InfoSubscriptionR\x11infoSubscriptions\"\xff\x01\n" +
+	"trackingId\x12H\n" +
+	"\x12info_subscriptions\x18\x02 \x03(\v2\x19.tinvest.InfoSubscriptionR\x11infoSubscriptions\"\xe1\x01\n" +
 	"\x10InfoSubscription\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12j\n" +
-	"\x13subscription_status\x18\x02 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12L\n" +
+	"\x13subscription_status\x18\x02 \x01(\x0e2\x1b.tinvest.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
 	"\x0einstrument_uid\x18\x03 \x01(\tR\rinstrumentUid\x12\x1b\n" +
 	"\tstream_id\x18\x04 \x01(\tR\bstreamId\x12'\n" +
-	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\xe5\x01\n" +
-	"\x19SubscribeLastPriceRequest\x12j\n" +
-	"\x13subscription_action\x18\x01 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionActionR\x12subscriptionAction\x12\\\n" +
-	"\vinstruments\x18\x02 \x03(\v2:.tinkoff.public.invest.api.contract.v1.LastPriceInstrumentR\vinstruments\"R\n" +
+	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\xa9\x01\n" +
+	"\x19SubscribeLastPriceRequest\x12L\n" +
+	"\x13subscription_action\x18\x01 \x01(\x0e2\x1b.tinvest.SubscriptionActionR\x12subscriptionAction\x12>\n" +
+	"\vinstruments\x18\x02 \x03(\v2\x1c.tinvest.LastPriceInstrumentR\vinstruments\"R\n" +
 	"\x13LastPriceInstrument\x12\x16\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x12#\n" +
-	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\xb5\x01\n" +
+	"\rinstrument_id\x18\x02 \x01(\tR\finstrumentId\"\x97\x01\n" +
 	"\x1aSubscribeLastPriceResponse\x12\x1f\n" +
 	"\vtracking_id\x18\x01 \x01(\tR\n" +
-	"trackingId\x12v\n" +
-	"\x18last_price_subscriptions\x18\x02 \x03(\v2<.tinkoff.public.invest.api.contract.v1.LastPriceSubscriptionR\x16lastPriceSubscriptions\"\x84\x02\n" +
+	"trackingId\x12X\n" +
+	"\x18last_price_subscriptions\x18\x02 \x03(\v2\x1e.tinvest.LastPriceSubscriptionR\x16lastPriceSubscriptions\"\xe6\x01\n" +
 	"\x15LastPriceSubscription\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12j\n" +
-	"\x13subscription_status\x18\x02 \x01(\x0e29.tinkoff.public.invest.api.contract.v1.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12L\n" +
+	"\x13subscription_status\x18\x02 \x01(\x0e2\x1b.tinvest.SubscriptionStatusR\x12subscriptionStatus\x12%\n" +
 	"\x0einstrument_uid\x18\x03 \x01(\tR\rinstrumentUid\x12\x1b\n" +
 	"\tstream_id\x18\x04 \x01(\tR\bstreamId\x12'\n" +
-	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\x9f\x05\n" +
+	"\x0fsubscription_id\x18\x05 \x01(\tR\x0esubscriptionId\"\xeb\x03\n" +
 	"\x06Candle\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12W\n" +
-	"\binterval\x18\x02 \x01(\x0e2;.tinkoff.public.invest.api.contract.v1.SubscriptionIntervalR\binterval\x12D\n" +
-	"\x04open\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x04open\x12D\n" +
-	"\x04high\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x04high\x12B\n" +
-	"\x03low\x18\x05 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x03low\x12F\n" +
-	"\x05close\x18\x06 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05close\x12\x16\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x129\n" +
+	"\binterval\x18\x02 \x01(\x0e2\x1d.tinvest.SubscriptionIntervalR\binterval\x12&\n" +
+	"\x04open\x18\x03 \x01(\v2\x12.tinvest.QuotationR\x04open\x12&\n" +
+	"\x04high\x18\x04 \x01(\v2\x12.tinvest.QuotationR\x04high\x12$\n" +
+	"\x03low\x18\x05 \x01(\v2\x12.tinvest.QuotationR\x03low\x12(\n" +
+	"\x05close\x18\x06 \x01(\v2\x12.tinvest.QuotationR\x05close\x12\x16\n" +
 	"\x06volume\x18\a \x01(\x03R\x06volume\x12.\n" +
 	"\x04time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12>\n" +
 	"\rlast_trade_ts\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\vlastTradeTs\x12%\n" +
 	"\x0einstrument_uid\x18\n" +
-	" \x01(\tR\rinstrumentUid\x12a\n" +
-	"\x12candle_source_type\x18\x13 \x01(\x0e23.tinkoff.public.invest.api.contract.v1.CandleSourceR\x10candleSourceType\"\xb1\x04\n" +
+	" \x01(\tR\rinstrumentUid\x12C\n" +
+	"\x12candle_source_type\x18\x13 \x01(\x0e2\x15.tinvest.CandleSourceR\x10candleSourceType\"\x9b\x03\n" +
 	"\tOrderBook\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x14\n" +
 	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12#\n" +
-	"\ris_consistent\x18\x03 \x01(\bR\fisConsistent\x12@\n" +
-	"\x04bids\x18\x04 \x03(\v2,.tinkoff.public.invest.api.contract.v1.OrderR\x04bids\x12@\n" +
-	"\x04asks\x18\x05 \x03(\v2,.tinkoff.public.invest.api.contract.v1.OrderR\x04asks\x12.\n" +
-	"\x04time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12K\n" +
-	"\blimit_up\x18\a \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\alimitUp\x12O\n" +
+	"\ris_consistent\x18\x03 \x01(\bR\fisConsistent\x12\"\n" +
+	"\x04bids\x18\x04 \x03(\v2\x0e.tinvest.OrderR\x04bids\x12\"\n" +
+	"\x04asks\x18\x05 \x03(\v2\x0e.tinvest.OrderR\x04asks\x12.\n" +
+	"\x04time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12-\n" +
+	"\blimit_up\x18\a \x01(\v2\x12.tinvest.QuotationR\alimitUp\x121\n" +
 	"\n" +
-	"limit_down\x18\b \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\tlimitDown\x12%\n" +
-	"\x0einstrument_uid\x18\t \x01(\tR\rinstrumentUid\x12\\\n" +
+	"limit_down\x18\b \x01(\v2\x12.tinvest.QuotationR\tlimitDown\x12%\n" +
+	"\x0einstrument_uid\x18\t \x01(\tR\rinstrumentUid\x12>\n" +
 	"\x0forder_book_type\x18\n" +
-	" \x01(\x0e24.tinkoff.public.invest.api.contract.v1.OrderBookTypeR\rorderBookType\"k\n" +
-	"\x05Order\x12F\n" +
-	"\x05price\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x03R\bquantity\"\x86\x03\n" +
+	" \x01(\x0e2\x16.tinvest.OrderBookTypeR\rorderBookType\"M\n" +
+	"\x05Order\x12(\n" +
+	"\x05price\x18\x01 \x01(\v2\x12.tinvest.QuotationR\x05price\x12\x1a\n" +
+	"\bquantity\x18\x02 \x01(\x03R\bquantity\"\xac\x02\n" +
 	"\x05Trade\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12S\n" +
-	"\tdirection\x18\x02 \x01(\x0e25.tinkoff.public.invest.api.contract.v1.TradeDirectionR\tdirection\x12F\n" +
-	"\x05price\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12\x1a\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x125\n" +
+	"\tdirection\x18\x02 \x01(\x0e2\x17.tinvest.TradeDirectionR\tdirection\x12(\n" +
+	"\x05price\x18\x03 \x01(\v2\x12.tinvest.QuotationR\x05price\x12\x1a\n" +
 	"\bquantity\x18\x04 \x01(\x03R\bquantity\x12.\n" +
 	"\x04time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12%\n" +
-	"\x0einstrument_uid\x18\x06 \x01(\tR\rinstrumentUid\x12Y\n" +
-	"\ftrade_source\x18\a \x01(\x0e26.tinkoff.public.invest.api.contract.v1.TradeSourceTypeR\vtradeSource\"\xdb\x02\n" +
+	"\x0einstrument_uid\x18\x06 \x01(\tR\rinstrumentUid\x12;\n" +
+	"\ftrade_source\x18\a \x01(\x0e2\x18.tinvest.TradeSourceTypeR\vtradeSource\"\xbd\x02\n" +
 	"\rTradingStatus\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12c\n" +
-	"\x0etrading_status\x18\x02 \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.SecurityTradingStatusR\rtradingStatus\x12.\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12E\n" +
+	"\x0etrading_status\x18\x02 \x01(\x0e2\x1e.tinvest.SecurityTradingStatusR\rtradingStatus\x12.\n" +
 	"\x04time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12;\n" +
 	"\x1alimit_order_available_flag\x18\x04 \x01(\bR\x17limitOrderAvailableFlag\x12=\n" +
 	"\x1bmarket_order_available_flag\x18\x05 \x01(\bR\x18marketOrderAvailableFlag\x12%\n" +
-	"\x0einstrument_uid\x18\x06 \x01(\tR\rinstrumentUid\"\xda\x04\n" +
+	"\x0einstrument_uid\x18\x06 \x01(\tR\rinstrumentUid\"\x9e\x04\n" +
 	"\x11GetCandlesRequest\x12\x1b\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01H\x00R\x04figi\x88\x01\x01\x124\n" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x04from\x120\n" +
-	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x02to\x12W\n" +
-	"\binterval\x18\x04 \x01(\x0e25.tinkoff.public.invest.api.contract.v1.CandleIntervalB\x04\xe2A\x01\x02R\binterval\x12(\n" +
-	"\rinstrument_id\x18\x05 \x01(\tH\x01R\finstrumentId\x88\x01\x01\x12x\n" +
-	"\x12candle_source_type\x18\a \x01(\x0e2E.tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSourceH\x02R\x10candleSourceType\x88\x01\x01\x12\x19\n" +
+	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x02to\x129\n" +
+	"\binterval\x18\x04 \x01(\x0e2\x17.tinvest.CandleIntervalB\x04\xe2A\x01\x02R\binterval\x12(\n" +
+	"\rinstrument_id\x18\x05 \x01(\tH\x01R\finstrumentId\x88\x01\x01\x12Z\n" +
+	"\x12candle_source_type\x18\a \x01(\x0e2'.tinvest.GetCandlesRequest.CandleSourceH\x02R\x10candleSourceType\x88\x01\x01\x12\x19\n" +
 	"\x05limit\x18\n" +
 	" \x01(\x05H\x03R\x05limit\x88\x01\x01\"l\n" +
 	"\fCandleSource\x12\x1d\n" +
@@ -4861,52 +4861,52 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\x05_figiB\x10\n" +
 	"\x0e_instrument_idB\x15\n" +
 	"\x13_candle_source_typeB\b\n" +
-	"\x06_limit\"e\n" +
-	"\x12GetCandlesResponse\x12O\n" +
-	"\acandles\x18\x01 \x03(\v25.tinkoff.public.invest.api.contract.v1.HistoricCandleR\acandles\"\xeb\x03\n" +
-	"\x0eHistoricCandle\x12D\n" +
-	"\x04open\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x04open\x12D\n" +
-	"\x04high\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x04high\x12B\n" +
-	"\x03low\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x03low\x12F\n" +
-	"\x05close\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05close\x12\x16\n" +
+	"\x06_limit\"G\n" +
+	"\x12GetCandlesResponse\x121\n" +
+	"\acandles\x18\x01 \x03(\v2\x17.tinvest.HistoricCandleR\acandles\"\xd5\x02\n" +
+	"\x0eHistoricCandle\x12&\n" +
+	"\x04open\x18\x01 \x01(\v2\x12.tinvest.QuotationR\x04open\x12&\n" +
+	"\x04high\x18\x02 \x01(\v2\x12.tinvest.QuotationR\x04high\x12$\n" +
+	"\x03low\x18\x03 \x01(\v2\x12.tinvest.QuotationR\x03low\x12(\n" +
+	"\x05close\x18\x04 \x01(\v2\x12.tinvest.QuotationR\x05close\x12\x16\n" +
 	"\x06volume\x18\x05 \x01(\x03R\x06volume\x12.\n" +
 	"\x04time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x1f\n" +
 	"\vis_complete\x18\a \x01(\bR\n" +
-	"isComplete\x12X\n" +
-	"\rcandle_source\x18\t \x01(\x0e23.tinkoff.public.invest.api.contract.v1.CandleSourceR\fcandleSource\"\xb2\x02\n" +
+	"isComplete\x12:\n" +
+	"\rcandle_source\x18\t \x01(\x0e2\x15.tinvest.CandleSourceR\fcandleSource\"\xf6\x01\n" +
 	"\x14GetLastPricesRequest\x12\x16\n" +
 	"\x04figi\x18\x01 \x03(\tB\x02\x18\x01R\x04figi\x12#\n" +
-	"\rinstrument_id\x18\x02 \x03(\tR\finstrumentId\x12\\\n" +
-	"\x0flast_price_type\x18\x03 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.LastPriceTypeR\rlastPriceType\x12i\n" +
-	"\x11instrument_status\x18\t \x01(\x0e27.tinkoff.public.invest.api.contract.v1.InstrumentStatusH\x00R\x10instrumentStatus\x88\x01\x01B\x14\n" +
-	"\x12_instrument_status\"j\n" +
-	"\x15GetLastPricesResponse\x12Q\n" +
-	"\vlast_prices\x18\x01 \x03(\v20.tinkoff.public.invest.api.contract.v1.LastPriceR\n" +
-	"lastPrices\"\x9c\x02\n" +
+	"\rinstrument_id\x18\x02 \x03(\tR\finstrumentId\x12>\n" +
+	"\x0flast_price_type\x18\x03 \x01(\x0e2\x16.tinvest.LastPriceTypeR\rlastPriceType\x12K\n" +
+	"\x11instrument_status\x18\t \x01(\x0e2\x19.tinvest.InstrumentStatusH\x00R\x10instrumentStatus\x88\x01\x01B\x14\n" +
+	"\x12_instrument_status\"L\n" +
+	"\x15GetLastPricesResponse\x123\n" +
+	"\vlast_prices\x18\x01 \x03(\v2\x12.tinvest.LastPriceR\n" +
+	"lastPrices\"\xe0\x01\n" +
 	"\tLastPrice\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12F\n" +
-	"\x05price\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12.\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12(\n" +
+	"\x05price\x18\x02 \x01(\v2\x12.tinvest.QuotationR\x05price\x12.\n" +
 	"\x04time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12%\n" +
-	"\x0einstrument_uid\x18\v \x01(\tR\rinstrumentUid\x12\\\n" +
-	"\x0flast_price_type\x18\f \x01(\x0e24.tinkoff.public.invest.api.contract.v1.LastPriceTypeR\rlastPriceType\"\x93\x01\n" +
+	"\x0einstrument_uid\x18\v \x01(\tR\rinstrumentUid\x12>\n" +
+	"\x0flast_price_type\x18\f \x01(\x0e2\x16.tinvest.LastPriceTypeR\rlastPriceType\"\x93\x01\n" +
 	"\x13GetOrderBookRequest\x12\x1b\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01H\x00R\x04figi\x88\x01\x01\x12\x1a\n" +
 	"\x05depth\x18\x02 \x01(\x05B\x04\xe2A\x01\x02R\x05depth\x12(\n" +
 	"\rinstrument_id\x18\x03 \x01(\tH\x01R\finstrumentId\x88\x01\x01B\a\n" +
 	"\x05_figiB\x10\n" +
-	"\x0e_instrument_id\"\xee\x05\n" +
+	"\x0e_instrument_id\"\xba\x04\n" +
 	"\x14GetOrderBookResponse\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x14\n" +
-	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12@\n" +
-	"\x04bids\x18\x03 \x03(\v2,.tinkoff.public.invest.api.contract.v1.OrderR\x04bids\x12@\n" +
-	"\x04asks\x18\x04 \x03(\v2,.tinkoff.public.invest.api.contract.v1.OrderR\x04asks\x12O\n" +
+	"\x05depth\x18\x02 \x01(\x05R\x05depth\x12\"\n" +
+	"\x04bids\x18\x03 \x03(\v2\x0e.tinvest.OrderR\x04bids\x12\"\n" +
+	"\x04asks\x18\x04 \x03(\v2\x0e.tinvest.OrderR\x04asks\x121\n" +
 	"\n" +
-	"last_price\x18\x05 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\tlastPrice\x12Q\n" +
-	"\vclose_price\x18\x06 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\n" +
-	"closePrice\x12K\n" +
-	"\blimit_up\x18\a \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\alimitUp\x12O\n" +
+	"last_price\x18\x05 \x01(\v2\x12.tinvest.QuotationR\tlastPrice\x123\n" +
+	"\vclose_price\x18\x06 \x01(\v2\x12.tinvest.QuotationR\n" +
+	"closePrice\x12-\n" +
+	"\blimit_up\x18\a \x01(\v2\x12.tinvest.QuotationR\alimitUp\x121\n" +
 	"\n" +
-	"limit_down\x18\b \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\tlimitDown\x12>\n" +
+	"limit_down\x18\b \x01(\v2\x12.tinvest.QuotationR\tlimitDown\x12>\n" +
 	"\rlast_price_ts\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\vlastPriceTs\x12@\n" +
 	"\x0eclose_price_ts\x18\x16 \x01(\v2\x1a.google.protobuf.TimestampR\fclosePriceTs\x12=\n" +
 	"\forderbook_ts\x18\x17 \x01(\v2\x1a.google.protobuf.TimestampR\vorderbookTs\x12%\n" +
@@ -4917,61 +4917,61 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\x05_figiB\x10\n" +
 	"\x0e_instrument_id\"@\n" +
 	"\x19GetTradingStatusesRequest\x12#\n" +
-	"\rinstrument_id\x18\x01 \x03(\tR\finstrumentId\"\x88\x01\n" +
-	"\x1aGetTradingStatusesResponse\x12j\n" +
-	"\x10trading_statuses\x18\x01 \x03(\v2?.tinkoff.public.invest.api.contract.v1.GetTradingStatusResponseR\x0ftradingStatuses\"\xdc\x03\n" +
+	"\rinstrument_id\x18\x01 \x03(\tR\finstrumentId\"j\n" +
+	"\x1aGetTradingStatusesResponse\x12L\n" +
+	"\x10trading_statuses\x18\x01 \x03(\v2!.tinvest.GetTradingStatusResponseR\x0ftradingStatuses\"\xbe\x03\n" +
 	"\x18GetTradingStatusResponse\x12\x12\n" +
-	"\x04figi\x18\x01 \x01(\tR\x04figi\x12c\n" +
-	"\x0etrading_status\x18\x02 \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.SecurityTradingStatusR\rtradingStatus\x12;\n" +
+	"\x04figi\x18\x01 \x01(\tR\x04figi\x12E\n" +
+	"\x0etrading_status\x18\x02 \x01(\x0e2\x1e.tinvest.SecurityTradingStatusR\rtradingStatus\x12;\n" +
 	"\x1alimit_order_available_flag\x18\x03 \x01(\bR\x17limitOrderAvailableFlag\x12=\n" +
 	"\x1bmarket_order_available_flag\x18\x04 \x01(\bR\x18marketOrderAvailableFlag\x127\n" +
 	"\x18api_trade_available_flag\x18\x05 \x01(\bR\x15apiTradeAvailableFlag\x12%\n" +
 	"\x0einstrument_uid\x18\x06 \x01(\tR\rinstrumentUid\x12C\n" +
 	"\x1ebestprice_order_available_flag\x18\b \x01(\bR\x1bbestpriceOrderAvailableFlag\x12&\n" +
-	"\x0fonly_best_price\x18\t \x01(\bR\ronlyBestPrice\"\xbb\x02\n" +
+	"\x0fonly_best_price\x18\t \x01(\bR\ronlyBestPrice\"\x9d\x02\n" +
 	"\x14GetLastTradesRequest\x12\x1b\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01H\x00R\x04figi\x88\x01\x01\x124\n" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x04from\x120\n" +
 	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x02to\x12(\n" +
-	"\rinstrument_id\x18\x04 \x01(\tH\x01R\finstrumentId\x88\x01\x01\x12Y\n" +
-	"\ftrade_source\x18\x05 \x01(\x0e26.tinkoff.public.invest.api.contract.v1.TradeSourceTypeR\vtradeSourceB\a\n" +
+	"\rinstrument_id\x18\x04 \x01(\tH\x01R\finstrumentId\x88\x01\x01\x12;\n" +
+	"\ftrade_source\x18\x05 \x01(\x0e2\x18.tinvest.TradeSourceTypeR\vtradeSourceB\a\n" +
 	"\x05_figiB\x10\n" +
-	"\x0e_instrument_id\"]\n" +
-	"\x15GetLastTradesResponse\x12D\n" +
-	"\x06trades\x18\x01 \x03(\v2,.tinkoff.public.invest.api.contract.v1.TradeR\x06trades\"\x14\n" +
-	"\x12GetMySubscriptions\"\x84\x02\n" +
-	"\x15GetClosePricesRequest\x12j\n" +
-	"\vinstruments\x18\x01 \x03(\v2B.tinkoff.public.invest.api.contract.v1.InstrumentClosePriceRequestB\x04\xe2A\x01\x02R\vinstruments\x12i\n" +
-	"\x11instrument_status\x18\t \x01(\x0e27.tinkoff.public.invest.api.contract.v1.InstrumentStatusH\x00R\x10instrumentStatus\x88\x01\x01B\x14\n" +
+	"\x0e_instrument_id\"?\n" +
+	"\x15GetLastTradesResponse\x12&\n" +
+	"\x06trades\x18\x01 \x03(\v2\x0e.tinvest.TradeR\x06trades\"\x14\n" +
+	"\x12GetMySubscriptions\"\xc8\x01\n" +
+	"\x15GetClosePricesRequest\x12L\n" +
+	"\vinstruments\x18\x01 \x03(\v2$.tinvest.InstrumentClosePriceRequestB\x04\xe2A\x01\x02R\vinstruments\x12K\n" +
+	"\x11instrument_status\x18\t \x01(\x0e2\x19.tinvest.InstrumentStatusH\x00R\x10instrumentStatus\x88\x01\x01B\x14\n" +
 	"\x12_instrument_status\"B\n" +
 	"\x1bInstrumentClosePriceRequest\x12#\n" +
-	"\rinstrument_id\x18\x01 \x01(\tR\finstrumentId\"\x80\x01\n" +
-	"\x16GetClosePricesResponse\x12f\n" +
-	"\fclose_prices\x18\x01 \x03(\v2C.tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponseR\vclosePrices\"\xb7\x02\n" +
+	"\rinstrument_id\x18\x01 \x01(\tR\finstrumentId\"b\n" +
+	"\x16GetClosePricesResponse\x12H\n" +
+	"\fclose_prices\x18\x01 \x03(\v2%.tinvest.InstrumentClosePriceResponseR\vclosePrices\"\xfb\x01\n" +
 	"\x1cInstrumentClosePriceResponse\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12%\n" +
-	"\x0einstrument_uid\x18\x02 \x01(\tR\rinstrumentUid\x12F\n" +
-	"\x05price\x18\v \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12d\n" +
-	"\x15evening_session_price\x18\f \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x13eveningSessionPrice\x12.\n" +
-	"\x04time\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\x8f\x0e\n" +
-	"\x16GetTechAnalysisRequest\x12x\n" +
-	"\x0eindicator_type\x18\x01 \x01(\x0e2K.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorTypeB\x04\xe2A\x01\x02R\rindicatorType\x12+\n" +
+	"\x0einstrument_uid\x18\x02 \x01(\tR\rinstrumentUid\x12(\n" +
+	"\x05price\x18\v \x01(\v2\x12.tinvest.QuotationR\x05price\x12F\n" +
+	"\x15evening_session_price\x18\f \x01(\v2\x12.tinvest.QuotationR\x13eveningSessionPrice\x12.\n" +
+	"\x04time\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\xdb\f\n" +
+	"\x16GetTechAnalysisRequest\x12Z\n" +
+	"\x0eindicator_type\x18\x01 \x01(\x0e2-.tinvest.GetTechAnalysisRequest.IndicatorTypeB\x04\xe2A\x01\x02R\rindicatorType\x12+\n" +
 	"\x0einstrument_uid\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\rinstrumentUid\x124\n" +
 	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x04from\x120\n" +
-	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x02to\x12q\n" +
-	"\binterval\x18\x05 \x01(\x0e2O.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorIntervalB\x04\xe2A\x01\x02R\binterval\x12s\n" +
-	"\rtype_of_price\x18\x06 \x01(\x0e2I.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.TypeOfPriceB\x04\xe2A\x01\x02R\vtypeOfPrice\x12\x16\n" +
-	"\x06length\x18\a \x01(\x05R\x06length\x12e\n" +
-	"\tdeviation\x18\b \x01(\v2G.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.DeviationR\tdeviation\x12e\n" +
-	"\tsmoothing\x18\t \x01(\v2G.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.SmoothingR\tsmoothing\x1ax\n" +
+	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x02to\x12S\n" +
+	"\binterval\x18\x05 \x01(\x0e21.tinvest.GetTechAnalysisRequest.IndicatorIntervalB\x04\xe2A\x01\x02R\binterval\x12U\n" +
+	"\rtype_of_price\x18\x06 \x01(\x0e2+.tinvest.GetTechAnalysisRequest.TypeOfPriceB\x04\xe2A\x01\x02R\vtypeOfPrice\x12\x16\n" +
+	"\x06length\x18\a \x01(\x05R\x06length\x12G\n" +
+	"\tdeviation\x18\b \x01(\v2).tinvest.GetTechAnalysisRequest.DeviationR\tdeviation\x12G\n" +
+	"\tsmoothing\x18\t \x01(\v2).tinvest.GetTechAnalysisRequest.SmoothingR\tsmoothing\x1ax\n" +
 	"\tSmoothing\x12\x1f\n" +
 	"\vfast_length\x18\x01 \x01(\x05R\n" +
 	"fastLength\x12\x1f\n" +
 	"\vslow_length\x18\x02 \x01(\x05R\n" +
 	"slowLength\x12)\n" +
-	"\x10signal_smoothing\x18\x03 \x01(\x05R\x0fsignalSmoothing\x1ap\n" +
-	"\tDeviation\x12c\n" +
-	"\x14deviation_multiplier\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x13deviationMultiplier\"\xdb\x03\n" +
+	"\x10signal_smoothing\x18\x03 \x01(\x05R\x0fsignalSmoothing\x1aR\n" +
+	"\tDeviation\x12E\n" +
+	"\x14deviation_multiplier\x18\x01 \x01(\v2\x12.tinvest.QuotationR\x13deviationMultiplier\"\xdb\x03\n" +
 	"\x11IndicatorInterval\x12\"\n" +
 	"\x1eINDICATOR_INTERVAL_UNSPECIFIED\x10\x00\x12!\n" +
 	"\x1dINDICATOR_INTERVAL_ONE_MINUTE\x10\x01\x12#\n" +
@@ -5001,19 +5001,19 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\x12INDICATOR_TYPE_EMA\x10\x02\x12\x16\n" +
 	"\x12INDICATOR_TYPE_RSI\x10\x03\x12\x17\n" +
 	"\x13INDICATOR_TYPE_MACD\x10\x04\x12\x16\n" +
-	"\x12INDICATOR_TYPE_SMA\x10\x05\"\xcd\x05\n" +
-	"\x17GetTechAnalysisResponse\x12\x82\x01\n" +
-	"\x14technical_indicators\x18\x01 \x03(\v2O.tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItemR\x13technicalIndicators\x1a\xac\x04\n" +
+	"\x12INDICATOR_TYPE_SMA\x10\x05\"\x98\x04\n" +
+	"\x17GetTechAnalysisResponse\x12d\n" +
+	"\x14technical_indicators\x18\x01 \x03(\v21.tinvest.GetTechAnalysisResponse.TechAnalysisItemR\x13technicalIndicators\x1a\x96\x03\n" +
 	"\x10TechAnalysisItem\x128\n" +
-	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12V\n" +
-	"\vmiddle_band\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x00R\n" +
-	"middleBand\x88\x01\x01\x12T\n" +
+	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x128\n" +
+	"\vmiddle_band\x18\x02 \x01(\v2\x12.tinvest.QuotationH\x00R\n" +
+	"middleBand\x88\x01\x01\x126\n" +
 	"\n" +
-	"upper_band\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x01R\tupperBand\x88\x01\x01\x12T\n" +
+	"upper_band\x18\x03 \x01(\v2\x12.tinvest.QuotationH\x01R\tupperBand\x88\x01\x01\x126\n" +
 	"\n" +
-	"lower_band\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x02R\tlowerBand\x88\x01\x01\x12M\n" +
-	"\x06signal\x18\x05 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x03R\x06signal\x88\x01\x01\x12I\n" +
-	"\x04macd\x18\x06 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x04R\x04macd\x88\x01\x01B\x0e\n" +
+	"lower_band\x18\x04 \x01(\v2\x12.tinvest.QuotationH\x02R\tlowerBand\x88\x01\x01\x12/\n" +
+	"\x06signal\x18\x05 \x01(\v2\x12.tinvest.QuotationH\x03R\x06signal\x88\x01\x01\x12+\n" +
+	"\x04macd\x18\x06 \x01(\v2\x12.tinvest.QuotationH\x04R\x04macd\x88\x01\x01B\x0e\n" +
 	"\f_middle_bandB\r\n" +
 	"\v_upper_bandB\r\n" +
 	"\v_lower_bandB\t\n" +
@@ -5092,20 +5092,20 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\rLastPriceType\x12\x1a\n" +
 	"\x16LAST_PRICE_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13LAST_PRICE_EXCHANGE\x10\x01\x12\x15\n" +
-	"\x11LAST_PRICE_DEALER\x10\x022\x90\t\n" +
-	"\x11MarketDataService\x12\x81\x01\n" +
+	"\x11LAST_PRICE_DEALER\x10\x022\xa8\x05\n" +
+	"\x11MarketDataService\x12E\n" +
 	"\n" +
-	"GetCandles\x128.tinkoff.public.invest.api.contract.v1.GetCandlesRequest\x1a9.tinkoff.public.invest.api.contract.v1.GetCandlesResponse\x12\x8a\x01\n" +
-	"\rGetLastPrices\x12;.tinkoff.public.invest.api.contract.v1.GetLastPricesRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetLastPricesResponse\x12\x87\x01\n" +
-	"\fGetOrderBook\x12:.tinkoff.public.invest.api.contract.v1.GetOrderBookRequest\x1a;.tinkoff.public.invest.api.contract.v1.GetOrderBookResponse\x12\x93\x01\n" +
-	"\x10GetTradingStatus\x12>.tinkoff.public.invest.api.contract.v1.GetTradingStatusRequest\x1a?.tinkoff.public.invest.api.contract.v1.GetTradingStatusResponse\x12\x99\x01\n" +
-	"\x12GetTradingStatuses\x12@.tinkoff.public.invest.api.contract.v1.GetTradingStatusesRequest\x1aA.tinkoff.public.invest.api.contract.v1.GetTradingStatusesResponse\x12\x8a\x01\n" +
-	"\rGetLastTrades\x12;.tinkoff.public.invest.api.contract.v1.GetLastTradesRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetLastTradesResponse\x12\x8d\x01\n" +
-	"\x0eGetClosePrices\x12<.tinkoff.public.invest.api.contract.v1.GetClosePricesRequest\x1a=.tinkoff.public.invest.api.contract.v1.GetClosePricesResponse\x12\x90\x01\n" +
-	"\x0fGetTechAnalysis\x12=.tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse2\xcd\x02\n" +
-	"\x17MarketDataStreamService\x12\x8b\x01\n" +
-	"\x10MarketDataStream\x128.tinkoff.public.invest.api.contract.v1.MarketDataRequest\x1a9.tinkoff.public.invest.api.contract.v1.MarketDataResponse(\x010\x01\x12\xa3\x01\n" +
-	"\x1aMarketDataServerSideStream\x12H.tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest\x1a9.tinkoff.public.invest.api.contract.v1.MarketDataResponse0\x01Bz\n" +
+	"GetCandles\x12\x1a.tinvest.GetCandlesRequest\x1a\x1b.tinvest.GetCandlesResponse\x12N\n" +
+	"\rGetLastPrices\x12\x1d.tinvest.GetLastPricesRequest\x1a\x1e.tinvest.GetLastPricesResponse\x12K\n" +
+	"\fGetOrderBook\x12\x1c.tinvest.GetOrderBookRequest\x1a\x1d.tinvest.GetOrderBookResponse\x12W\n" +
+	"\x10GetTradingStatus\x12 .tinvest.GetTradingStatusRequest\x1a!.tinvest.GetTradingStatusResponse\x12]\n" +
+	"\x12GetTradingStatuses\x12\".tinvest.GetTradingStatusesRequest\x1a#.tinvest.GetTradingStatusesResponse\x12N\n" +
+	"\rGetLastTrades\x12\x1d.tinvest.GetLastTradesRequest\x1a\x1e.tinvest.GetLastTradesResponse\x12Q\n" +
+	"\x0eGetClosePrices\x12\x1e.tinvest.GetClosePricesRequest\x1a\x1f.tinvest.GetClosePricesResponse\x12T\n" +
+	"\x0fGetTechAnalysis\x12\x1f.tinvest.GetTechAnalysisRequest\x1a .tinvest.GetTechAnalysisResponse2\xd3\x01\n" +
+	"\x17MarketDataStreamService\x12O\n" +
+	"\x10MarketDataStream\x12\x1a.tinvest.MarketDataRequest\x1a\x1b.tinvest.MarketDataResponse(\x010\x01\x12g\n" +
+	"\x1aMarketDataServerSideStream\x12*.tinvest.MarketDataServerSideStreamRequest\x1a\x1b.tinvest.MarketDataResponse0\x01Bz\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -5123,227 +5123,227 @@ func file_tinvest_marketdata_proto_rawDescGZIP() []byte {
 var file_tinvest_marketdata_proto_enumTypes = make([]protoimpl.EnumInfo, 13)
 var file_tinvest_marketdata_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
 var file_tinvest_marketdata_proto_goTypes = []any{
-	(SubscriptionAction)(0),                          // 0: tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	(SubscriptionInterval)(0),                        // 1: tinkoff.public.invest.api.contract.v1.SubscriptionInterval
-	(SubscriptionStatus)(0),                          // 2: tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	(TradeSourceType)(0),                             // 3: tinkoff.public.invest.api.contract.v1.TradeSourceType
-	(TradeDirection)(0),                              // 4: tinkoff.public.invest.api.contract.v1.TradeDirection
-	(CandleInterval)(0),                              // 5: tinkoff.public.invest.api.contract.v1.CandleInterval
-	(CandleSource)(0),                                // 6: tinkoff.public.invest.api.contract.v1.CandleSource
-	(OrderBookType)(0),                               // 7: tinkoff.public.invest.api.contract.v1.OrderBookType
-	(LastPriceType)(0),                               // 8: tinkoff.public.invest.api.contract.v1.LastPriceType
-	(GetCandlesRequest_CandleSource)(0),              // 9: tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSource
-	(GetTechAnalysisRequest_IndicatorInterval)(0),    // 10: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorInterval
-	(GetTechAnalysisRequest_TypeOfPrice)(0),          // 11: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.TypeOfPrice
-	(GetTechAnalysisRequest_IndicatorType)(0),        // 12: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorType
-	(*MarketDataRequest)(nil),                        // 13: tinkoff.public.invest.api.contract.v1.MarketDataRequest
-	(*MarketDataServerSideStreamRequest)(nil),        // 14: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest
-	(*MarketDataResponse)(nil),                       // 15: tinkoff.public.invest.api.contract.v1.MarketDataResponse
-	(*SubscribeCandlesRequest)(nil),                  // 16: tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest
-	(*CandleInstrument)(nil),                         // 17: tinkoff.public.invest.api.contract.v1.CandleInstrument
-	(*SubscribeCandlesResponse)(nil),                 // 18: tinkoff.public.invest.api.contract.v1.SubscribeCandlesResponse
-	(*CandleSubscription)(nil),                       // 19: tinkoff.public.invest.api.contract.v1.CandleSubscription
-	(*SubscribeOrderBookRequest)(nil),                // 20: tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequest
-	(*OrderBookInstrument)(nil),                      // 21: tinkoff.public.invest.api.contract.v1.OrderBookInstrument
-	(*SubscribeOrderBookResponse)(nil),               // 22: tinkoff.public.invest.api.contract.v1.SubscribeOrderBookResponse
-	(*OrderBookSubscription)(nil),                    // 23: tinkoff.public.invest.api.contract.v1.OrderBookSubscription
-	(*SubscribeTradesRequest)(nil),                   // 24: tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest
-	(*TradeInstrument)(nil),                          // 25: tinkoff.public.invest.api.contract.v1.TradeInstrument
-	(*SubscribeTradesResponse)(nil),                  // 26: tinkoff.public.invest.api.contract.v1.SubscribeTradesResponse
-	(*TradeSubscription)(nil),                        // 27: tinkoff.public.invest.api.contract.v1.TradeSubscription
-	(*SubscribeInfoRequest)(nil),                     // 28: tinkoff.public.invest.api.contract.v1.SubscribeInfoRequest
-	(*InfoInstrument)(nil),                           // 29: tinkoff.public.invest.api.contract.v1.InfoInstrument
-	(*SubscribeInfoResponse)(nil),                    // 30: tinkoff.public.invest.api.contract.v1.SubscribeInfoResponse
-	(*InfoSubscription)(nil),                         // 31: tinkoff.public.invest.api.contract.v1.InfoSubscription
-	(*SubscribeLastPriceRequest)(nil),                // 32: tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequest
-	(*LastPriceInstrument)(nil),                      // 33: tinkoff.public.invest.api.contract.v1.LastPriceInstrument
-	(*SubscribeLastPriceResponse)(nil),               // 34: tinkoff.public.invest.api.contract.v1.SubscribeLastPriceResponse
-	(*LastPriceSubscription)(nil),                    // 35: tinkoff.public.invest.api.contract.v1.LastPriceSubscription
-	(*Candle)(nil),                                   // 36: tinkoff.public.invest.api.contract.v1.Candle
-	(*OrderBook)(nil),                                // 37: tinkoff.public.invest.api.contract.v1.OrderBook
-	(*Order)(nil),                                    // 38: tinkoff.public.invest.api.contract.v1.Order
-	(*Trade)(nil),                                    // 39: tinkoff.public.invest.api.contract.v1.Trade
-	(*TradingStatus)(nil),                            // 40: tinkoff.public.invest.api.contract.v1.TradingStatus
-	(*GetCandlesRequest)(nil),                        // 41: tinkoff.public.invest.api.contract.v1.GetCandlesRequest
-	(*GetCandlesResponse)(nil),                       // 42: tinkoff.public.invest.api.contract.v1.GetCandlesResponse
-	(*HistoricCandle)(nil),                           // 43: tinkoff.public.invest.api.contract.v1.HistoricCandle
-	(*GetLastPricesRequest)(nil),                     // 44: tinkoff.public.invest.api.contract.v1.GetLastPricesRequest
-	(*GetLastPricesResponse)(nil),                    // 45: tinkoff.public.invest.api.contract.v1.GetLastPricesResponse
-	(*LastPrice)(nil),                                // 46: tinkoff.public.invest.api.contract.v1.LastPrice
-	(*GetOrderBookRequest)(nil),                      // 47: tinkoff.public.invest.api.contract.v1.GetOrderBookRequest
-	(*GetOrderBookResponse)(nil),                     // 48: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse
-	(*GetTradingStatusRequest)(nil),                  // 49: tinkoff.public.invest.api.contract.v1.GetTradingStatusRequest
-	(*GetTradingStatusesRequest)(nil),                // 50: tinkoff.public.invest.api.contract.v1.GetTradingStatusesRequest
-	(*GetTradingStatusesResponse)(nil),               // 51: tinkoff.public.invest.api.contract.v1.GetTradingStatusesResponse
-	(*GetTradingStatusResponse)(nil),                 // 52: tinkoff.public.invest.api.contract.v1.GetTradingStatusResponse
-	(*GetLastTradesRequest)(nil),                     // 53: tinkoff.public.invest.api.contract.v1.GetLastTradesRequest
-	(*GetLastTradesResponse)(nil),                    // 54: tinkoff.public.invest.api.contract.v1.GetLastTradesResponse
-	(*GetMySubscriptions)(nil),                       // 55: tinkoff.public.invest.api.contract.v1.GetMySubscriptions
-	(*GetClosePricesRequest)(nil),                    // 56: tinkoff.public.invest.api.contract.v1.GetClosePricesRequest
-	(*InstrumentClosePriceRequest)(nil),              // 57: tinkoff.public.invest.api.contract.v1.InstrumentClosePriceRequest
-	(*GetClosePricesResponse)(nil),                   // 58: tinkoff.public.invest.api.contract.v1.GetClosePricesResponse
-	(*InstrumentClosePriceResponse)(nil),             // 59: tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponse
-	(*GetTechAnalysisRequest)(nil),                   // 60: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest
-	(*GetTechAnalysisResponse)(nil),                  // 61: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse
-	(*GetTechAnalysisRequest_Smoothing)(nil),         // 62: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.Smoothing
-	(*GetTechAnalysisRequest_Deviation)(nil),         // 63: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.Deviation
-	(*GetTechAnalysisResponse_TechAnalysisItem)(nil), // 64: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem
-	(*PingRequest)(nil),                              // 65: tinkoff.public.invest.api.contract.v1.PingRequest
-	(*PingDelaySettings)(nil),                        // 66: tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	(*Ping)(nil),                                     // 67: tinkoff.public.invest.api.contract.v1.Ping
-	(*Quotation)(nil),                                // 68: tinkoff.public.invest.api.contract.v1.Quotation
+	(SubscriptionAction)(0),                          // 0: tinvest.SubscriptionAction
+	(SubscriptionInterval)(0),                        // 1: tinvest.SubscriptionInterval
+	(SubscriptionStatus)(0),                          // 2: tinvest.SubscriptionStatus
+	(TradeSourceType)(0),                             // 3: tinvest.TradeSourceType
+	(TradeDirection)(0),                              // 4: tinvest.TradeDirection
+	(CandleInterval)(0),                              // 5: tinvest.CandleInterval
+	(CandleSource)(0),                                // 6: tinvest.CandleSource
+	(OrderBookType)(0),                               // 7: tinvest.OrderBookType
+	(LastPriceType)(0),                               // 8: tinvest.LastPriceType
+	(GetCandlesRequest_CandleSource)(0),              // 9: tinvest.GetCandlesRequest.CandleSource
+	(GetTechAnalysisRequest_IndicatorInterval)(0),    // 10: tinvest.GetTechAnalysisRequest.IndicatorInterval
+	(GetTechAnalysisRequest_TypeOfPrice)(0),          // 11: tinvest.GetTechAnalysisRequest.TypeOfPrice
+	(GetTechAnalysisRequest_IndicatorType)(0),        // 12: tinvest.GetTechAnalysisRequest.IndicatorType
+	(*MarketDataRequest)(nil),                        // 13: tinvest.MarketDataRequest
+	(*MarketDataServerSideStreamRequest)(nil),        // 14: tinvest.MarketDataServerSideStreamRequest
+	(*MarketDataResponse)(nil),                       // 15: tinvest.MarketDataResponse
+	(*SubscribeCandlesRequest)(nil),                  // 16: tinvest.SubscribeCandlesRequest
+	(*CandleInstrument)(nil),                         // 17: tinvest.CandleInstrument
+	(*SubscribeCandlesResponse)(nil),                 // 18: tinvest.SubscribeCandlesResponse
+	(*CandleSubscription)(nil),                       // 19: tinvest.CandleSubscription
+	(*SubscribeOrderBookRequest)(nil),                // 20: tinvest.SubscribeOrderBookRequest
+	(*OrderBookInstrument)(nil),                      // 21: tinvest.OrderBookInstrument
+	(*SubscribeOrderBookResponse)(nil),               // 22: tinvest.SubscribeOrderBookResponse
+	(*OrderBookSubscription)(nil),                    // 23: tinvest.OrderBookSubscription
+	(*SubscribeTradesRequest)(nil),                   // 24: tinvest.SubscribeTradesRequest
+	(*TradeInstrument)(nil),                          // 25: tinvest.TradeInstrument
+	(*SubscribeTradesResponse)(nil),                  // 26: tinvest.SubscribeTradesResponse
+	(*TradeSubscription)(nil),                        // 27: tinvest.TradeSubscription
+	(*SubscribeInfoRequest)(nil),                     // 28: tinvest.SubscribeInfoRequest
+	(*InfoInstrument)(nil),                           // 29: tinvest.InfoInstrument
+	(*SubscribeInfoResponse)(nil),                    // 30: tinvest.SubscribeInfoResponse
+	(*InfoSubscription)(nil),                         // 31: tinvest.InfoSubscription
+	(*SubscribeLastPriceRequest)(nil),                // 32: tinvest.SubscribeLastPriceRequest
+	(*LastPriceInstrument)(nil),                      // 33: tinvest.LastPriceInstrument
+	(*SubscribeLastPriceResponse)(nil),               // 34: tinvest.SubscribeLastPriceResponse
+	(*LastPriceSubscription)(nil),                    // 35: tinvest.LastPriceSubscription
+	(*Candle)(nil),                                   // 36: tinvest.Candle
+	(*OrderBook)(nil),                                // 37: tinvest.OrderBook
+	(*Order)(nil),                                    // 38: tinvest.Order
+	(*Trade)(nil),                                    // 39: tinvest.Trade
+	(*TradingStatus)(nil),                            // 40: tinvest.TradingStatus
+	(*GetCandlesRequest)(nil),                        // 41: tinvest.GetCandlesRequest
+	(*GetCandlesResponse)(nil),                       // 42: tinvest.GetCandlesResponse
+	(*HistoricCandle)(nil),                           // 43: tinvest.HistoricCandle
+	(*GetLastPricesRequest)(nil),                     // 44: tinvest.GetLastPricesRequest
+	(*GetLastPricesResponse)(nil),                    // 45: tinvest.GetLastPricesResponse
+	(*LastPrice)(nil),                                // 46: tinvest.LastPrice
+	(*GetOrderBookRequest)(nil),                      // 47: tinvest.GetOrderBookRequest
+	(*GetOrderBookResponse)(nil),                     // 48: tinvest.GetOrderBookResponse
+	(*GetTradingStatusRequest)(nil),                  // 49: tinvest.GetTradingStatusRequest
+	(*GetTradingStatusesRequest)(nil),                // 50: tinvest.GetTradingStatusesRequest
+	(*GetTradingStatusesResponse)(nil),               // 51: tinvest.GetTradingStatusesResponse
+	(*GetTradingStatusResponse)(nil),                 // 52: tinvest.GetTradingStatusResponse
+	(*GetLastTradesRequest)(nil),                     // 53: tinvest.GetLastTradesRequest
+	(*GetLastTradesResponse)(nil),                    // 54: tinvest.GetLastTradesResponse
+	(*GetMySubscriptions)(nil),                       // 55: tinvest.GetMySubscriptions
+	(*GetClosePricesRequest)(nil),                    // 56: tinvest.GetClosePricesRequest
+	(*InstrumentClosePriceRequest)(nil),              // 57: tinvest.InstrumentClosePriceRequest
+	(*GetClosePricesResponse)(nil),                   // 58: tinvest.GetClosePricesResponse
+	(*InstrumentClosePriceResponse)(nil),             // 59: tinvest.InstrumentClosePriceResponse
+	(*GetTechAnalysisRequest)(nil),                   // 60: tinvest.GetTechAnalysisRequest
+	(*GetTechAnalysisResponse)(nil),                  // 61: tinvest.GetTechAnalysisResponse
+	(*GetTechAnalysisRequest_Smoothing)(nil),         // 62: tinvest.GetTechAnalysisRequest.Smoothing
+	(*GetTechAnalysisRequest_Deviation)(nil),         // 63: tinvest.GetTechAnalysisRequest.Deviation
+	(*GetTechAnalysisResponse_TechAnalysisItem)(nil), // 64: tinvest.GetTechAnalysisResponse.TechAnalysisItem
+	(*PingRequest)(nil),                              // 65: tinvest.PingRequest
+	(*PingDelaySettings)(nil),                        // 66: tinvest.PingDelaySettings
+	(*Ping)(nil),                                     // 67: tinvest.Ping
+	(*Quotation)(nil),                                // 68: tinvest.Quotation
 	(*timestamppb.Timestamp)(nil),                    // 69: google.protobuf.Timestamp
-	(SecurityTradingStatus)(0),                       // 70: tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	(InstrumentStatus)(0),                            // 71: tinkoff.public.invest.api.contract.v1.InstrumentStatus
+	(SecurityTradingStatus)(0),                       // 70: tinvest.SecurityTradingStatus
+	(InstrumentStatus)(0),                            // 71: tinvest.InstrumentStatus
 }
 var file_tinvest_marketdata_proto_depIdxs = []int32{
-	16,  // 0: tinkoff.public.invest.api.contract.v1.MarketDataRequest.subscribe_candles_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest
-	20,  // 1: tinkoff.public.invest.api.contract.v1.MarketDataRequest.subscribe_order_book_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequest
-	24,  // 2: tinkoff.public.invest.api.contract.v1.MarketDataRequest.subscribe_trades_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest
-	28,  // 3: tinkoff.public.invest.api.contract.v1.MarketDataRequest.subscribe_info_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeInfoRequest
-	32,  // 4: tinkoff.public.invest.api.contract.v1.MarketDataRequest.subscribe_last_price_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequest
-	55,  // 5: tinkoff.public.invest.api.contract.v1.MarketDataRequest.get_my_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.GetMySubscriptions
-	65,  // 6: tinkoff.public.invest.api.contract.v1.MarketDataRequest.ping:type_name -> tinkoff.public.invest.api.contract.v1.PingRequest
-	66,  // 7: tinkoff.public.invest.api.contract.v1.MarketDataRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	16,  // 8: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.subscribe_candles_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest
-	20,  // 9: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.subscribe_order_book_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequest
-	24,  // 10: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.subscribe_trades_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest
-	28,  // 11: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.subscribe_info_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeInfoRequest
-	32,  // 12: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.subscribe_last_price_request:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequest
-	66,  // 13: tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	18,  // 14: tinkoff.public.invest.api.contract.v1.MarketDataResponse.subscribe_candles_response:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeCandlesResponse
-	22,  // 15: tinkoff.public.invest.api.contract.v1.MarketDataResponse.subscribe_order_book_response:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeOrderBookResponse
-	26,  // 16: tinkoff.public.invest.api.contract.v1.MarketDataResponse.subscribe_trades_response:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeTradesResponse
-	30,  // 17: tinkoff.public.invest.api.contract.v1.MarketDataResponse.subscribe_info_response:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeInfoResponse
-	36,  // 18: tinkoff.public.invest.api.contract.v1.MarketDataResponse.candle:type_name -> tinkoff.public.invest.api.contract.v1.Candle
-	39,  // 19: tinkoff.public.invest.api.contract.v1.MarketDataResponse.trade:type_name -> tinkoff.public.invest.api.contract.v1.Trade
-	37,  // 20: tinkoff.public.invest.api.contract.v1.MarketDataResponse.orderbook:type_name -> tinkoff.public.invest.api.contract.v1.OrderBook
-	40,  // 21: tinkoff.public.invest.api.contract.v1.MarketDataResponse.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.TradingStatus
-	67,  // 22: tinkoff.public.invest.api.contract.v1.MarketDataResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
-	34,  // 23: tinkoff.public.invest.api.contract.v1.MarketDataResponse.subscribe_last_price_response:type_name -> tinkoff.public.invest.api.contract.v1.SubscribeLastPriceResponse
-	46,  // 24: tinkoff.public.invest.api.contract.v1.MarketDataResponse.last_price:type_name -> tinkoff.public.invest.api.contract.v1.LastPrice
-	0,   // 25: tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest.subscription_action:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	17,  // 26: tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.CandleInstrument
-	9,   // 27: tinkoff.public.invest.api.contract.v1.SubscribeCandlesRequest.candle_source_type:type_name -> tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSource
-	1,   // 28: tinkoff.public.invest.api.contract.v1.CandleInstrument.interval:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionInterval
-	19,  // 29: tinkoff.public.invest.api.contract.v1.SubscribeCandlesResponse.candles_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.CandleSubscription
-	1,   // 30: tinkoff.public.invest.api.contract.v1.CandleSubscription.interval:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionInterval
-	2,   // 31: tinkoff.public.invest.api.contract.v1.CandleSubscription.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	9,   // 32: tinkoff.public.invest.api.contract.v1.CandleSubscription.candle_source_type:type_name -> tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSource
-	0,   // 33: tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequest.subscription_action:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	21,  // 34: tinkoff.public.invest.api.contract.v1.SubscribeOrderBookRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.OrderBookInstrument
-	7,   // 35: tinkoff.public.invest.api.contract.v1.OrderBookInstrument.order_book_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderBookType
-	23,  // 36: tinkoff.public.invest.api.contract.v1.SubscribeOrderBookResponse.order_book_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.OrderBookSubscription
-	2,   // 37: tinkoff.public.invest.api.contract.v1.OrderBookSubscription.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	7,   // 38: tinkoff.public.invest.api.contract.v1.OrderBookSubscription.order_book_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderBookType
-	0,   // 39: tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest.subscription_action:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	25,  // 40: tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.TradeInstrument
-	3,   // 41: tinkoff.public.invest.api.contract.v1.SubscribeTradesRequest.trade_source:type_name -> tinkoff.public.invest.api.contract.v1.TradeSourceType
-	27,  // 42: tinkoff.public.invest.api.contract.v1.SubscribeTradesResponse.trade_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.TradeSubscription
-	3,   // 43: tinkoff.public.invest.api.contract.v1.SubscribeTradesResponse.trade_source:type_name -> tinkoff.public.invest.api.contract.v1.TradeSourceType
-	2,   // 44: tinkoff.public.invest.api.contract.v1.TradeSubscription.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	0,   // 45: tinkoff.public.invest.api.contract.v1.SubscribeInfoRequest.subscription_action:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	29,  // 46: tinkoff.public.invest.api.contract.v1.SubscribeInfoRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.InfoInstrument
-	31,  // 47: tinkoff.public.invest.api.contract.v1.SubscribeInfoResponse.info_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.InfoSubscription
-	2,   // 48: tinkoff.public.invest.api.contract.v1.InfoSubscription.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	0,   // 49: tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequest.subscription_action:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionAction
-	33,  // 50: tinkoff.public.invest.api.contract.v1.SubscribeLastPriceRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.LastPriceInstrument
-	35,  // 51: tinkoff.public.invest.api.contract.v1.SubscribeLastPriceResponse.last_price_subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.LastPriceSubscription
-	2,   // 52: tinkoff.public.invest.api.contract.v1.LastPriceSubscription.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionStatus
-	1,   // 53: tinkoff.public.invest.api.contract.v1.Candle.interval:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionInterval
-	68,  // 54: tinkoff.public.invest.api.contract.v1.Candle.open:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 55: tinkoff.public.invest.api.contract.v1.Candle.high:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 56: tinkoff.public.invest.api.contract.v1.Candle.low:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 57: tinkoff.public.invest.api.contract.v1.Candle.close:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 58: tinkoff.public.invest.api.contract.v1.Candle.time:type_name -> google.protobuf.Timestamp
-	69,  // 59: tinkoff.public.invest.api.contract.v1.Candle.last_trade_ts:type_name -> google.protobuf.Timestamp
-	6,   // 60: tinkoff.public.invest.api.contract.v1.Candle.candle_source_type:type_name -> tinkoff.public.invest.api.contract.v1.CandleSource
-	38,  // 61: tinkoff.public.invest.api.contract.v1.OrderBook.bids:type_name -> tinkoff.public.invest.api.contract.v1.Order
-	38,  // 62: tinkoff.public.invest.api.contract.v1.OrderBook.asks:type_name -> tinkoff.public.invest.api.contract.v1.Order
-	69,  // 63: tinkoff.public.invest.api.contract.v1.OrderBook.time:type_name -> google.protobuf.Timestamp
-	68,  // 64: tinkoff.public.invest.api.contract.v1.OrderBook.limit_up:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 65: tinkoff.public.invest.api.contract.v1.OrderBook.limit_down:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	7,   // 66: tinkoff.public.invest.api.contract.v1.OrderBook.order_book_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderBookType
-	68,  // 67: tinkoff.public.invest.api.contract.v1.Order.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	4,   // 68: tinkoff.public.invest.api.contract.v1.Trade.direction:type_name -> tinkoff.public.invest.api.contract.v1.TradeDirection
-	68,  // 69: tinkoff.public.invest.api.contract.v1.Trade.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 70: tinkoff.public.invest.api.contract.v1.Trade.time:type_name -> google.protobuf.Timestamp
-	3,   // 71: tinkoff.public.invest.api.contract.v1.Trade.trade_source:type_name -> tinkoff.public.invest.api.contract.v1.TradeSourceType
-	70,  // 72: tinkoff.public.invest.api.contract.v1.TradingStatus.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	69,  // 73: tinkoff.public.invest.api.contract.v1.TradingStatus.time:type_name -> google.protobuf.Timestamp
-	69,  // 74: tinkoff.public.invest.api.contract.v1.GetCandlesRequest.from:type_name -> google.protobuf.Timestamp
-	69,  // 75: tinkoff.public.invest.api.contract.v1.GetCandlesRequest.to:type_name -> google.protobuf.Timestamp
-	5,   // 76: tinkoff.public.invest.api.contract.v1.GetCandlesRequest.interval:type_name -> tinkoff.public.invest.api.contract.v1.CandleInterval
-	9,   // 77: tinkoff.public.invest.api.contract.v1.GetCandlesRequest.candle_source_type:type_name -> tinkoff.public.invest.api.contract.v1.GetCandlesRequest.CandleSource
-	43,  // 78: tinkoff.public.invest.api.contract.v1.GetCandlesResponse.candles:type_name -> tinkoff.public.invest.api.contract.v1.HistoricCandle
-	68,  // 79: tinkoff.public.invest.api.contract.v1.HistoricCandle.open:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 80: tinkoff.public.invest.api.contract.v1.HistoricCandle.high:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 81: tinkoff.public.invest.api.contract.v1.HistoricCandle.low:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 82: tinkoff.public.invest.api.contract.v1.HistoricCandle.close:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 83: tinkoff.public.invest.api.contract.v1.HistoricCandle.time:type_name -> google.protobuf.Timestamp
-	6,   // 84: tinkoff.public.invest.api.contract.v1.HistoricCandle.candle_source:type_name -> tinkoff.public.invest.api.contract.v1.CandleSource
-	8,   // 85: tinkoff.public.invest.api.contract.v1.GetLastPricesRequest.last_price_type:type_name -> tinkoff.public.invest.api.contract.v1.LastPriceType
-	71,  // 86: tinkoff.public.invest.api.contract.v1.GetLastPricesRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	46,  // 87: tinkoff.public.invest.api.contract.v1.GetLastPricesResponse.last_prices:type_name -> tinkoff.public.invest.api.contract.v1.LastPrice
-	68,  // 88: tinkoff.public.invest.api.contract.v1.LastPrice.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 89: tinkoff.public.invest.api.contract.v1.LastPrice.time:type_name -> google.protobuf.Timestamp
-	8,   // 90: tinkoff.public.invest.api.contract.v1.LastPrice.last_price_type:type_name -> tinkoff.public.invest.api.contract.v1.LastPriceType
-	38,  // 91: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.bids:type_name -> tinkoff.public.invest.api.contract.v1.Order
-	38,  // 92: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.asks:type_name -> tinkoff.public.invest.api.contract.v1.Order
-	68,  // 93: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.last_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 94: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.close_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 95: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.limit_up:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 96: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.limit_down:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 97: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.last_price_ts:type_name -> google.protobuf.Timestamp
-	69,  // 98: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.close_price_ts:type_name -> google.protobuf.Timestamp
-	69,  // 99: tinkoff.public.invest.api.contract.v1.GetOrderBookResponse.orderbook_ts:type_name -> google.protobuf.Timestamp
-	52,  // 100: tinkoff.public.invest.api.contract.v1.GetTradingStatusesResponse.trading_statuses:type_name -> tinkoff.public.invest.api.contract.v1.GetTradingStatusResponse
-	70,  // 101: tinkoff.public.invest.api.contract.v1.GetTradingStatusResponse.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	69,  // 102: tinkoff.public.invest.api.contract.v1.GetLastTradesRequest.from:type_name -> google.protobuf.Timestamp
-	69,  // 103: tinkoff.public.invest.api.contract.v1.GetLastTradesRequest.to:type_name -> google.protobuf.Timestamp
-	3,   // 104: tinkoff.public.invest.api.contract.v1.GetLastTradesRequest.trade_source:type_name -> tinkoff.public.invest.api.contract.v1.TradeSourceType
-	39,  // 105: tinkoff.public.invest.api.contract.v1.GetLastTradesResponse.trades:type_name -> tinkoff.public.invest.api.contract.v1.Trade
-	57,  // 106: tinkoff.public.invest.api.contract.v1.GetClosePricesRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentClosePriceRequest
-	71,  // 107: tinkoff.public.invest.api.contract.v1.GetClosePricesRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	59,  // 108: tinkoff.public.invest.api.contract.v1.GetClosePricesResponse.close_prices:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponse
-	68,  // 109: tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponse.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 110: tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponse.evening_session_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 111: tinkoff.public.invest.api.contract.v1.InstrumentClosePriceResponse.time:type_name -> google.protobuf.Timestamp
-	12,  // 112: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.indicator_type:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorType
-	69,  // 113: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.from:type_name -> google.protobuf.Timestamp
-	69,  // 114: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.to:type_name -> google.protobuf.Timestamp
-	10,  // 115: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.interval:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.IndicatorInterval
-	11,  // 116: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.type_of_price:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.TypeOfPrice
-	63,  // 117: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.deviation:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.Deviation
-	62,  // 118: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.smoothing:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.Smoothing
-	64,  // 119: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.technical_indicators:type_name -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem
-	68,  // 120: tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest.Deviation.deviation_multiplier:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	69,  // 121: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.timestamp:type_name -> google.protobuf.Timestamp
-	68,  // 122: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.middle_band:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 123: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.upper_band:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 124: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.lower_band:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 125: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.signal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	68,  // 126: tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse.TechAnalysisItem.macd:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	41,  // 127: tinkoff.public.invest.api.contract.v1.MarketDataService.GetCandles:input_type -> tinkoff.public.invest.api.contract.v1.GetCandlesRequest
-	44,  // 128: tinkoff.public.invest.api.contract.v1.MarketDataService.GetLastPrices:input_type -> tinkoff.public.invest.api.contract.v1.GetLastPricesRequest
-	47,  // 129: tinkoff.public.invest.api.contract.v1.MarketDataService.GetOrderBook:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderBookRequest
-	49,  // 130: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTradingStatus:input_type -> tinkoff.public.invest.api.contract.v1.GetTradingStatusRequest
-	50,  // 131: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTradingStatuses:input_type -> tinkoff.public.invest.api.contract.v1.GetTradingStatusesRequest
-	53,  // 132: tinkoff.public.invest.api.contract.v1.MarketDataService.GetLastTrades:input_type -> tinkoff.public.invest.api.contract.v1.GetLastTradesRequest
-	56,  // 133: tinkoff.public.invest.api.contract.v1.MarketDataService.GetClosePrices:input_type -> tinkoff.public.invest.api.contract.v1.GetClosePricesRequest
-	60,  // 134: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTechAnalysis:input_type -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisRequest
-	13,  // 135: tinkoff.public.invest.api.contract.v1.MarketDataStreamService.MarketDataStream:input_type -> tinkoff.public.invest.api.contract.v1.MarketDataRequest
-	14,  // 136: tinkoff.public.invest.api.contract.v1.MarketDataStreamService.MarketDataServerSideStream:input_type -> tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest
-	42,  // 137: tinkoff.public.invest.api.contract.v1.MarketDataService.GetCandles:output_type -> tinkoff.public.invest.api.contract.v1.GetCandlesResponse
-	45,  // 138: tinkoff.public.invest.api.contract.v1.MarketDataService.GetLastPrices:output_type -> tinkoff.public.invest.api.contract.v1.GetLastPricesResponse
-	48,  // 139: tinkoff.public.invest.api.contract.v1.MarketDataService.GetOrderBook:output_type -> tinkoff.public.invest.api.contract.v1.GetOrderBookResponse
-	52,  // 140: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTradingStatus:output_type -> tinkoff.public.invest.api.contract.v1.GetTradingStatusResponse
-	51,  // 141: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTradingStatuses:output_type -> tinkoff.public.invest.api.contract.v1.GetTradingStatusesResponse
-	54,  // 142: tinkoff.public.invest.api.contract.v1.MarketDataService.GetLastTrades:output_type -> tinkoff.public.invest.api.contract.v1.GetLastTradesResponse
-	58,  // 143: tinkoff.public.invest.api.contract.v1.MarketDataService.GetClosePrices:output_type -> tinkoff.public.invest.api.contract.v1.GetClosePricesResponse
-	61,  // 144: tinkoff.public.invest.api.contract.v1.MarketDataService.GetTechAnalysis:output_type -> tinkoff.public.invest.api.contract.v1.GetTechAnalysisResponse
-	15,  // 145: tinkoff.public.invest.api.contract.v1.MarketDataStreamService.MarketDataStream:output_type -> tinkoff.public.invest.api.contract.v1.MarketDataResponse
-	15,  // 146: tinkoff.public.invest.api.contract.v1.MarketDataStreamService.MarketDataServerSideStream:output_type -> tinkoff.public.invest.api.contract.v1.MarketDataResponse
+	16,  // 0: tinvest.MarketDataRequest.subscribe_candles_request:type_name -> tinvest.SubscribeCandlesRequest
+	20,  // 1: tinvest.MarketDataRequest.subscribe_order_book_request:type_name -> tinvest.SubscribeOrderBookRequest
+	24,  // 2: tinvest.MarketDataRequest.subscribe_trades_request:type_name -> tinvest.SubscribeTradesRequest
+	28,  // 3: tinvest.MarketDataRequest.subscribe_info_request:type_name -> tinvest.SubscribeInfoRequest
+	32,  // 4: tinvest.MarketDataRequest.subscribe_last_price_request:type_name -> tinvest.SubscribeLastPriceRequest
+	55,  // 5: tinvest.MarketDataRequest.get_my_subscriptions:type_name -> tinvest.GetMySubscriptions
+	65,  // 6: tinvest.MarketDataRequest.ping:type_name -> tinvest.PingRequest
+	66,  // 7: tinvest.MarketDataRequest.ping_settings:type_name -> tinvest.PingDelaySettings
+	16,  // 8: tinvest.MarketDataServerSideStreamRequest.subscribe_candles_request:type_name -> tinvest.SubscribeCandlesRequest
+	20,  // 9: tinvest.MarketDataServerSideStreamRequest.subscribe_order_book_request:type_name -> tinvest.SubscribeOrderBookRequest
+	24,  // 10: tinvest.MarketDataServerSideStreamRequest.subscribe_trades_request:type_name -> tinvest.SubscribeTradesRequest
+	28,  // 11: tinvest.MarketDataServerSideStreamRequest.subscribe_info_request:type_name -> tinvest.SubscribeInfoRequest
+	32,  // 12: tinvest.MarketDataServerSideStreamRequest.subscribe_last_price_request:type_name -> tinvest.SubscribeLastPriceRequest
+	66,  // 13: tinvest.MarketDataServerSideStreamRequest.ping_settings:type_name -> tinvest.PingDelaySettings
+	18,  // 14: tinvest.MarketDataResponse.subscribe_candles_response:type_name -> tinvest.SubscribeCandlesResponse
+	22,  // 15: tinvest.MarketDataResponse.subscribe_order_book_response:type_name -> tinvest.SubscribeOrderBookResponse
+	26,  // 16: tinvest.MarketDataResponse.subscribe_trades_response:type_name -> tinvest.SubscribeTradesResponse
+	30,  // 17: tinvest.MarketDataResponse.subscribe_info_response:type_name -> tinvest.SubscribeInfoResponse
+	36,  // 18: tinvest.MarketDataResponse.candle:type_name -> tinvest.Candle
+	39,  // 19: tinvest.MarketDataResponse.trade:type_name -> tinvest.Trade
+	37,  // 20: tinvest.MarketDataResponse.orderbook:type_name -> tinvest.OrderBook
+	40,  // 21: tinvest.MarketDataResponse.trading_status:type_name -> tinvest.TradingStatus
+	67,  // 22: tinvest.MarketDataResponse.ping:type_name -> tinvest.Ping
+	34,  // 23: tinvest.MarketDataResponse.subscribe_last_price_response:type_name -> tinvest.SubscribeLastPriceResponse
+	46,  // 24: tinvest.MarketDataResponse.last_price:type_name -> tinvest.LastPrice
+	0,   // 25: tinvest.SubscribeCandlesRequest.subscription_action:type_name -> tinvest.SubscriptionAction
+	17,  // 26: tinvest.SubscribeCandlesRequest.instruments:type_name -> tinvest.CandleInstrument
+	9,   // 27: tinvest.SubscribeCandlesRequest.candle_source_type:type_name -> tinvest.GetCandlesRequest.CandleSource
+	1,   // 28: tinvest.CandleInstrument.interval:type_name -> tinvest.SubscriptionInterval
+	19,  // 29: tinvest.SubscribeCandlesResponse.candles_subscriptions:type_name -> tinvest.CandleSubscription
+	1,   // 30: tinvest.CandleSubscription.interval:type_name -> tinvest.SubscriptionInterval
+	2,   // 31: tinvest.CandleSubscription.subscription_status:type_name -> tinvest.SubscriptionStatus
+	9,   // 32: tinvest.CandleSubscription.candle_source_type:type_name -> tinvest.GetCandlesRequest.CandleSource
+	0,   // 33: tinvest.SubscribeOrderBookRequest.subscription_action:type_name -> tinvest.SubscriptionAction
+	21,  // 34: tinvest.SubscribeOrderBookRequest.instruments:type_name -> tinvest.OrderBookInstrument
+	7,   // 35: tinvest.OrderBookInstrument.order_book_type:type_name -> tinvest.OrderBookType
+	23,  // 36: tinvest.SubscribeOrderBookResponse.order_book_subscriptions:type_name -> tinvest.OrderBookSubscription
+	2,   // 37: tinvest.OrderBookSubscription.subscription_status:type_name -> tinvest.SubscriptionStatus
+	7,   // 38: tinvest.OrderBookSubscription.order_book_type:type_name -> tinvest.OrderBookType
+	0,   // 39: tinvest.SubscribeTradesRequest.subscription_action:type_name -> tinvest.SubscriptionAction
+	25,  // 40: tinvest.SubscribeTradesRequest.instruments:type_name -> tinvest.TradeInstrument
+	3,   // 41: tinvest.SubscribeTradesRequest.trade_source:type_name -> tinvest.TradeSourceType
+	27,  // 42: tinvest.SubscribeTradesResponse.trade_subscriptions:type_name -> tinvest.TradeSubscription
+	3,   // 43: tinvest.SubscribeTradesResponse.trade_source:type_name -> tinvest.TradeSourceType
+	2,   // 44: tinvest.TradeSubscription.subscription_status:type_name -> tinvest.SubscriptionStatus
+	0,   // 45: tinvest.SubscribeInfoRequest.subscription_action:type_name -> tinvest.SubscriptionAction
+	29,  // 46: tinvest.SubscribeInfoRequest.instruments:type_name -> tinvest.InfoInstrument
+	31,  // 47: tinvest.SubscribeInfoResponse.info_subscriptions:type_name -> tinvest.InfoSubscription
+	2,   // 48: tinvest.InfoSubscription.subscription_status:type_name -> tinvest.SubscriptionStatus
+	0,   // 49: tinvest.SubscribeLastPriceRequest.subscription_action:type_name -> tinvest.SubscriptionAction
+	33,  // 50: tinvest.SubscribeLastPriceRequest.instruments:type_name -> tinvest.LastPriceInstrument
+	35,  // 51: tinvest.SubscribeLastPriceResponse.last_price_subscriptions:type_name -> tinvest.LastPriceSubscription
+	2,   // 52: tinvest.LastPriceSubscription.subscription_status:type_name -> tinvest.SubscriptionStatus
+	1,   // 53: tinvest.Candle.interval:type_name -> tinvest.SubscriptionInterval
+	68,  // 54: tinvest.Candle.open:type_name -> tinvest.Quotation
+	68,  // 55: tinvest.Candle.high:type_name -> tinvest.Quotation
+	68,  // 56: tinvest.Candle.low:type_name -> tinvest.Quotation
+	68,  // 57: tinvest.Candle.close:type_name -> tinvest.Quotation
+	69,  // 58: tinvest.Candle.time:type_name -> google.protobuf.Timestamp
+	69,  // 59: tinvest.Candle.last_trade_ts:type_name -> google.protobuf.Timestamp
+	6,   // 60: tinvest.Candle.candle_source_type:type_name -> tinvest.CandleSource
+	38,  // 61: tinvest.OrderBook.bids:type_name -> tinvest.Order
+	38,  // 62: tinvest.OrderBook.asks:type_name -> tinvest.Order
+	69,  // 63: tinvest.OrderBook.time:type_name -> google.protobuf.Timestamp
+	68,  // 64: tinvest.OrderBook.limit_up:type_name -> tinvest.Quotation
+	68,  // 65: tinvest.OrderBook.limit_down:type_name -> tinvest.Quotation
+	7,   // 66: tinvest.OrderBook.order_book_type:type_name -> tinvest.OrderBookType
+	68,  // 67: tinvest.Order.price:type_name -> tinvest.Quotation
+	4,   // 68: tinvest.Trade.direction:type_name -> tinvest.TradeDirection
+	68,  // 69: tinvest.Trade.price:type_name -> tinvest.Quotation
+	69,  // 70: tinvest.Trade.time:type_name -> google.protobuf.Timestamp
+	3,   // 71: tinvest.Trade.trade_source:type_name -> tinvest.TradeSourceType
+	70,  // 72: tinvest.TradingStatus.trading_status:type_name -> tinvest.SecurityTradingStatus
+	69,  // 73: tinvest.TradingStatus.time:type_name -> google.protobuf.Timestamp
+	69,  // 74: tinvest.GetCandlesRequest.from:type_name -> google.protobuf.Timestamp
+	69,  // 75: tinvest.GetCandlesRequest.to:type_name -> google.protobuf.Timestamp
+	5,   // 76: tinvest.GetCandlesRequest.interval:type_name -> tinvest.CandleInterval
+	9,   // 77: tinvest.GetCandlesRequest.candle_source_type:type_name -> tinvest.GetCandlesRequest.CandleSource
+	43,  // 78: tinvest.GetCandlesResponse.candles:type_name -> tinvest.HistoricCandle
+	68,  // 79: tinvest.HistoricCandle.open:type_name -> tinvest.Quotation
+	68,  // 80: tinvest.HistoricCandle.high:type_name -> tinvest.Quotation
+	68,  // 81: tinvest.HistoricCandle.low:type_name -> tinvest.Quotation
+	68,  // 82: tinvest.HistoricCandle.close:type_name -> tinvest.Quotation
+	69,  // 83: tinvest.HistoricCandle.time:type_name -> google.protobuf.Timestamp
+	6,   // 84: tinvest.HistoricCandle.candle_source:type_name -> tinvest.CandleSource
+	8,   // 85: tinvest.GetLastPricesRequest.last_price_type:type_name -> tinvest.LastPriceType
+	71,  // 86: tinvest.GetLastPricesRequest.instrument_status:type_name -> tinvest.InstrumentStatus
+	46,  // 87: tinvest.GetLastPricesResponse.last_prices:type_name -> tinvest.LastPrice
+	68,  // 88: tinvest.LastPrice.price:type_name -> tinvest.Quotation
+	69,  // 89: tinvest.LastPrice.time:type_name -> google.protobuf.Timestamp
+	8,   // 90: tinvest.LastPrice.last_price_type:type_name -> tinvest.LastPriceType
+	38,  // 91: tinvest.GetOrderBookResponse.bids:type_name -> tinvest.Order
+	38,  // 92: tinvest.GetOrderBookResponse.asks:type_name -> tinvest.Order
+	68,  // 93: tinvest.GetOrderBookResponse.last_price:type_name -> tinvest.Quotation
+	68,  // 94: tinvest.GetOrderBookResponse.close_price:type_name -> tinvest.Quotation
+	68,  // 95: tinvest.GetOrderBookResponse.limit_up:type_name -> tinvest.Quotation
+	68,  // 96: tinvest.GetOrderBookResponse.limit_down:type_name -> tinvest.Quotation
+	69,  // 97: tinvest.GetOrderBookResponse.last_price_ts:type_name -> google.protobuf.Timestamp
+	69,  // 98: tinvest.GetOrderBookResponse.close_price_ts:type_name -> google.protobuf.Timestamp
+	69,  // 99: tinvest.GetOrderBookResponse.orderbook_ts:type_name -> google.protobuf.Timestamp
+	52,  // 100: tinvest.GetTradingStatusesResponse.trading_statuses:type_name -> tinvest.GetTradingStatusResponse
+	70,  // 101: tinvest.GetTradingStatusResponse.trading_status:type_name -> tinvest.SecurityTradingStatus
+	69,  // 102: tinvest.GetLastTradesRequest.from:type_name -> google.protobuf.Timestamp
+	69,  // 103: tinvest.GetLastTradesRequest.to:type_name -> google.protobuf.Timestamp
+	3,   // 104: tinvest.GetLastTradesRequest.trade_source:type_name -> tinvest.TradeSourceType
+	39,  // 105: tinvest.GetLastTradesResponse.trades:type_name -> tinvest.Trade
+	57,  // 106: tinvest.GetClosePricesRequest.instruments:type_name -> tinvest.InstrumentClosePriceRequest
+	71,  // 107: tinvest.GetClosePricesRequest.instrument_status:type_name -> tinvest.InstrumentStatus
+	59,  // 108: tinvest.GetClosePricesResponse.close_prices:type_name -> tinvest.InstrumentClosePriceResponse
+	68,  // 109: tinvest.InstrumentClosePriceResponse.price:type_name -> tinvest.Quotation
+	68,  // 110: tinvest.InstrumentClosePriceResponse.evening_session_price:type_name -> tinvest.Quotation
+	69,  // 111: tinvest.InstrumentClosePriceResponse.time:type_name -> google.protobuf.Timestamp
+	12,  // 112: tinvest.GetTechAnalysisRequest.indicator_type:type_name -> tinvest.GetTechAnalysisRequest.IndicatorType
+	69,  // 113: tinvest.GetTechAnalysisRequest.from:type_name -> google.protobuf.Timestamp
+	69,  // 114: tinvest.GetTechAnalysisRequest.to:type_name -> google.protobuf.Timestamp
+	10,  // 115: tinvest.GetTechAnalysisRequest.interval:type_name -> tinvest.GetTechAnalysisRequest.IndicatorInterval
+	11,  // 116: tinvest.GetTechAnalysisRequest.type_of_price:type_name -> tinvest.GetTechAnalysisRequest.TypeOfPrice
+	63,  // 117: tinvest.GetTechAnalysisRequest.deviation:type_name -> tinvest.GetTechAnalysisRequest.Deviation
+	62,  // 118: tinvest.GetTechAnalysisRequest.smoothing:type_name -> tinvest.GetTechAnalysisRequest.Smoothing
+	64,  // 119: tinvest.GetTechAnalysisResponse.technical_indicators:type_name -> tinvest.GetTechAnalysisResponse.TechAnalysisItem
+	68,  // 120: tinvest.GetTechAnalysisRequest.Deviation.deviation_multiplier:type_name -> tinvest.Quotation
+	69,  // 121: tinvest.GetTechAnalysisResponse.TechAnalysisItem.timestamp:type_name -> google.protobuf.Timestamp
+	68,  // 122: tinvest.GetTechAnalysisResponse.TechAnalysisItem.middle_band:type_name -> tinvest.Quotation
+	68,  // 123: tinvest.GetTechAnalysisResponse.TechAnalysisItem.upper_band:type_name -> tinvest.Quotation
+	68,  // 124: tinvest.GetTechAnalysisResponse.TechAnalysisItem.lower_band:type_name -> tinvest.Quotation
+	68,  // 125: tinvest.GetTechAnalysisResponse.TechAnalysisItem.signal:type_name -> tinvest.Quotation
+	68,  // 126: tinvest.GetTechAnalysisResponse.TechAnalysisItem.macd:type_name -> tinvest.Quotation
+	41,  // 127: tinvest.MarketDataService.GetCandles:input_type -> tinvest.GetCandlesRequest
+	44,  // 128: tinvest.MarketDataService.GetLastPrices:input_type -> tinvest.GetLastPricesRequest
+	47,  // 129: tinvest.MarketDataService.GetOrderBook:input_type -> tinvest.GetOrderBookRequest
+	49,  // 130: tinvest.MarketDataService.GetTradingStatus:input_type -> tinvest.GetTradingStatusRequest
+	50,  // 131: tinvest.MarketDataService.GetTradingStatuses:input_type -> tinvest.GetTradingStatusesRequest
+	53,  // 132: tinvest.MarketDataService.GetLastTrades:input_type -> tinvest.GetLastTradesRequest
+	56,  // 133: tinvest.MarketDataService.GetClosePrices:input_type -> tinvest.GetClosePricesRequest
+	60,  // 134: tinvest.MarketDataService.GetTechAnalysis:input_type -> tinvest.GetTechAnalysisRequest
+	13,  // 135: tinvest.MarketDataStreamService.MarketDataStream:input_type -> tinvest.MarketDataRequest
+	14,  // 136: tinvest.MarketDataStreamService.MarketDataServerSideStream:input_type -> tinvest.MarketDataServerSideStreamRequest
+	42,  // 137: tinvest.MarketDataService.GetCandles:output_type -> tinvest.GetCandlesResponse
+	45,  // 138: tinvest.MarketDataService.GetLastPrices:output_type -> tinvest.GetLastPricesResponse
+	48,  // 139: tinvest.MarketDataService.GetOrderBook:output_type -> tinvest.GetOrderBookResponse
+	52,  // 140: tinvest.MarketDataService.GetTradingStatus:output_type -> tinvest.GetTradingStatusResponse
+	51,  // 141: tinvest.MarketDataService.GetTradingStatuses:output_type -> tinvest.GetTradingStatusesResponse
+	54,  // 142: tinvest.MarketDataService.GetLastTrades:output_type -> tinvest.GetLastTradesResponse
+	58,  // 143: tinvest.MarketDataService.GetClosePrices:output_type -> tinvest.GetClosePricesResponse
+	61,  // 144: tinvest.MarketDataService.GetTechAnalysis:output_type -> tinvest.GetTechAnalysisResponse
+	15,  // 145: tinvest.MarketDataStreamService.MarketDataStream:output_type -> tinvest.MarketDataResponse
+	15,  // 146: tinvest.MarketDataStreamService.MarketDataServerSideStream:output_type -> tinvest.MarketDataResponse
 	137, // [137:147] is the sub-list for method output_type
 	127, // [127:137] is the sub-list for method input_type
 	127, // [127:127] is the sub-list for extension type_name

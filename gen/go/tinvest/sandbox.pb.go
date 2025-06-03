@@ -296,7 +296,7 @@ var File_tinvest_sandbox_proto protoreflect.FileDescriptor
 
 const file_tinvest_sandbox_proto_rawDesc = "" +
 	"\n" +
-	"\x15tinvest/sandbox.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x14tinvest/common.proto\x1a\x14tinvest/orders.proto\x1a\x18tinvest/operations.proto\x1a\x13tinvest/users.proto\x1a\x1fgoogle/api/field_behavior.proto\"=\n" +
+	"\x15tinvest/sandbox.proto\x12\atinvest\x1a\x14tinvest/common.proto\x1a\x14tinvest/orders.proto\x1a\x18tinvest/operations.proto\x1a\x13tinvest/users.proto\x1a\x1fgoogle/api/field_behavior.proto\"=\n" +
 	"\x19OpenSandboxAccountRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tH\x00R\x04name\x88\x01\x01B\a\n" +
 	"\x05_name\";\n" +
@@ -306,30 +306,31 @@ const file_tinvest_sandbox_proto_rawDesc = "" +
 	"\x1aCloseSandboxAccountRequest\x12#\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\x1d\n" +
-	"\x1bCloseSandboxAccountResponse\"\x8b\x01\n" +
+	"\x1bCloseSandboxAccountResponse\"m\n" +
 	"\x13SandboxPayInRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12O\n" +
-	"\x06amount\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueB\x04\xe2A\x01\x02R\x06amount\"c\n" +
-	"\x14SandboxPayInResponse\x12K\n" +
-	"\abalance\x18\x01 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\abalance2\xa4\x12\n" +
-	"\x0eSandboxService\x12\x99\x01\n" +
-	"\x12OpenSandboxAccount\x12@.tinkoff.public.invest.api.contract.v1.OpenSandboxAccountRequest\x1aA.tinkoff.public.invest.api.contract.v1.OpenSandboxAccountResponse\x12\x8b\x01\n" +
-	"\x12GetSandboxAccounts\x129.tinkoff.public.invest.api.contract.v1.GetAccountsRequest\x1a:.tinkoff.public.invest.api.contract.v1.GetAccountsResponse\x12\x9c\x01\n" +
-	"\x13CloseSandboxAccount\x12A.tinkoff.public.invest.api.contract.v1.CloseSandboxAccountRequest\x1aB.tinkoff.public.invest.api.contract.v1.CloseSandboxAccountResponse\x12\x85\x01\n" +
-	"\x10PostSandboxOrder\x127.tinkoff.public.invest.api.contract.v1.PostOrderRequest\x1a8.tinkoff.public.invest.api.contract.v1.PostOrderResponse\x12\x94\x01\n" +
-	"\x15PostSandboxOrderAsync\x12<.tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest\x1a=.tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse\x12\x8b\x01\n" +
-	"\x13ReplaceSandboxOrder\x12:.tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest\x1a8.tinkoff.public.invest.api.contract.v1.PostOrderResponse\x12\x85\x01\n" +
-	"\x10GetSandboxOrders\x127.tinkoff.public.invest.api.contract.v1.GetOrdersRequest\x1a8.tinkoff.public.invest.api.contract.v1.GetOrdersResponse\x12\x8b\x01\n" +
-	"\x12CancelSandboxOrder\x129.tinkoff.public.invest.api.contract.v1.CancelOrderRequest\x1a:.tinkoff.public.invest.api.contract.v1.CancelOrderResponse\x12\x86\x01\n" +
-	"\x14GetSandboxOrderState\x12;.tinkoff.public.invest.api.contract.v1.GetOrderStateRequest\x1a1.tinkoff.public.invest.api.contract.v1.OrderState\x12\x88\x01\n" +
-	"\x13GetSandboxPositions\x127.tinkoff.public.invest.api.contract.v1.PositionsRequest\x1a8.tinkoff.public.invest.api.contract.v1.PositionsResponse\x12\x8b\x01\n" +
-	"\x14GetSandboxOperations\x128.tinkoff.public.invest.api.contract.v1.OperationsRequest\x1a9.tinkoff.public.invest.api.contract.v1.OperationsResponse\x12\xa9\x01\n" +
-	"\x1cGetSandboxOperationsByCursor\x12C.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest\x1aD.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse\x12\x88\x01\n" +
-	"\x13GetSandboxPortfolio\x127.tinkoff.public.invest.api.contract.v1.PortfolioRequest\x1a8.tinkoff.public.invest.api.contract.v1.PortfolioResponse\x12\x87\x01\n" +
-	"\fSandboxPayIn\x12:.tinkoff.public.invest.api.contract.v1.SandboxPayInRequest\x1a;.tinkoff.public.invest.api.contract.v1.SandboxPayInResponse\x12\x97\x01\n" +
-	"\x18GetSandboxWithdrawLimits\x12<.tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest\x1a=.tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse\x12\x88\x01\n" +
-	"\x11GetSandboxMaxLots\x128.tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest\x1a9.tinkoff.public.invest.api.contract.v1.GetMaxLotsResponseBz\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x121\n" +
+	"\x06amount\x18\x02 \x01(\v2\x13.tinvest.MoneyValueB\x04\xe2A\x01\x02R\x06amount\"E\n" +
+	"\x14SandboxPayInResponse\x12-\n" +
+	"\abalance\x18\x01 \x01(\v2\x13.tinvest.MoneyValueR\abalance2\xd4\n" +
+	"\n" +
+	"\x0eSandboxService\x12]\n" +
+	"\x12OpenSandboxAccount\x12\".tinvest.OpenSandboxAccountRequest\x1a#.tinvest.OpenSandboxAccountResponse\x12O\n" +
+	"\x12GetSandboxAccounts\x12\x1b.tinvest.GetAccountsRequest\x1a\x1c.tinvest.GetAccountsResponse\x12`\n" +
+	"\x13CloseSandboxAccount\x12#.tinvest.CloseSandboxAccountRequest\x1a$.tinvest.CloseSandboxAccountResponse\x12I\n" +
+	"\x10PostSandboxOrder\x12\x19.tinvest.PostOrderRequest\x1a\x1a.tinvest.PostOrderResponse\x12X\n" +
+	"\x15PostSandboxOrderAsync\x12\x1e.tinvest.PostOrderAsyncRequest\x1a\x1f.tinvest.PostOrderAsyncResponse\x12O\n" +
+	"\x13ReplaceSandboxOrder\x12\x1c.tinvest.ReplaceOrderRequest\x1a\x1a.tinvest.PostOrderResponse\x12I\n" +
+	"\x10GetSandboxOrders\x12\x19.tinvest.GetOrdersRequest\x1a\x1a.tinvest.GetOrdersResponse\x12O\n" +
+	"\x12CancelSandboxOrder\x12\x1b.tinvest.CancelOrderRequest\x1a\x1c.tinvest.CancelOrderResponse\x12J\n" +
+	"\x14GetSandboxOrderState\x12\x1d.tinvest.GetOrderStateRequest\x1a\x13.tinvest.OrderState\x12L\n" +
+	"\x13GetSandboxPositions\x12\x19.tinvest.PositionsRequest\x1a\x1a.tinvest.PositionsResponse\x12O\n" +
+	"\x14GetSandboxOperations\x12\x1a.tinvest.OperationsRequest\x1a\x1b.tinvest.OperationsResponse\x12m\n" +
+	"\x1cGetSandboxOperationsByCursor\x12%.tinvest.GetOperationsByCursorRequest\x1a&.tinvest.GetOperationsByCursorResponse\x12L\n" +
+	"\x13GetSandboxPortfolio\x12\x19.tinvest.PortfolioRequest\x1a\x1a.tinvest.PortfolioResponse\x12K\n" +
+	"\fSandboxPayIn\x12\x1c.tinvest.SandboxPayInRequest\x1a\x1d.tinvest.SandboxPayInResponse\x12[\n" +
+	"\x18GetSandboxWithdrawLimits\x12\x1e.tinvest.WithdrawLimitsRequest\x1a\x1f.tinvest.WithdrawLimitsResponse\x12L\n" +
+	"\x11GetSandboxMaxLots\x12\x1a.tinvest.GetMaxLotsRequest\x1a\x1b.tinvest.GetMaxLotsResponseBz\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z%github.com/Mar1eena/trb_proto/tinvest\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -346,74 +347,74 @@ func file_tinvest_sandbox_proto_rawDescGZIP() []byte {
 
 var file_tinvest_sandbox_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_tinvest_sandbox_proto_goTypes = []any{
-	(*OpenSandboxAccountRequest)(nil),     // 0: tinkoff.public.invest.api.contract.v1.OpenSandboxAccountRequest
-	(*OpenSandboxAccountResponse)(nil),    // 1: tinkoff.public.invest.api.contract.v1.OpenSandboxAccountResponse
-	(*CloseSandboxAccountRequest)(nil),    // 2: tinkoff.public.invest.api.contract.v1.CloseSandboxAccountRequest
-	(*CloseSandboxAccountResponse)(nil),   // 3: tinkoff.public.invest.api.contract.v1.CloseSandboxAccountResponse
-	(*SandboxPayInRequest)(nil),           // 4: tinkoff.public.invest.api.contract.v1.SandboxPayInRequest
-	(*SandboxPayInResponse)(nil),          // 5: tinkoff.public.invest.api.contract.v1.SandboxPayInResponse
-	(*MoneyValue)(nil),                    // 6: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*GetAccountsRequest)(nil),            // 7: tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	(*PostOrderRequest)(nil),              // 8: tinkoff.public.invest.api.contract.v1.PostOrderRequest
-	(*PostOrderAsyncRequest)(nil),         // 9: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
-	(*ReplaceOrderRequest)(nil),           // 10: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
-	(*GetOrdersRequest)(nil),              // 11: tinkoff.public.invest.api.contract.v1.GetOrdersRequest
-	(*CancelOrderRequest)(nil),            // 12: tinkoff.public.invest.api.contract.v1.CancelOrderRequest
-	(*GetOrderStateRequest)(nil),          // 13: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
-	(*PositionsRequest)(nil),              // 14: tinkoff.public.invest.api.contract.v1.PositionsRequest
-	(*OperationsRequest)(nil),             // 15: tinkoff.public.invest.api.contract.v1.OperationsRequest
-	(*GetOperationsByCursorRequest)(nil),  // 16: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
-	(*PortfolioRequest)(nil),              // 17: tinkoff.public.invest.api.contract.v1.PortfolioRequest
-	(*WithdrawLimitsRequest)(nil),         // 18: tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
-	(*GetMaxLotsRequest)(nil),             // 19: tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
-	(*GetAccountsResponse)(nil),           // 20: tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	(*PostOrderResponse)(nil),             // 21: tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	(*PostOrderAsyncResponse)(nil),        // 22: tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
-	(*GetOrdersResponse)(nil),             // 23: tinkoff.public.invest.api.contract.v1.GetOrdersResponse
-	(*CancelOrderResponse)(nil),           // 24: tinkoff.public.invest.api.contract.v1.CancelOrderResponse
-	(*OrderState)(nil),                    // 25: tinkoff.public.invest.api.contract.v1.OrderState
-	(*PositionsResponse)(nil),             // 26: tinkoff.public.invest.api.contract.v1.PositionsResponse
-	(*OperationsResponse)(nil),            // 27: tinkoff.public.invest.api.contract.v1.OperationsResponse
-	(*GetOperationsByCursorResponse)(nil), // 28: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
-	(*PortfolioResponse)(nil),             // 29: tinkoff.public.invest.api.contract.v1.PortfolioResponse
-	(*WithdrawLimitsResponse)(nil),        // 30: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
-	(*GetMaxLotsResponse)(nil),            // 31: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
+	(*OpenSandboxAccountRequest)(nil),     // 0: tinvest.OpenSandboxAccountRequest
+	(*OpenSandboxAccountResponse)(nil),    // 1: tinvest.OpenSandboxAccountResponse
+	(*CloseSandboxAccountRequest)(nil),    // 2: tinvest.CloseSandboxAccountRequest
+	(*CloseSandboxAccountResponse)(nil),   // 3: tinvest.CloseSandboxAccountResponse
+	(*SandboxPayInRequest)(nil),           // 4: tinvest.SandboxPayInRequest
+	(*SandboxPayInResponse)(nil),          // 5: tinvest.SandboxPayInResponse
+	(*MoneyValue)(nil),                    // 6: tinvest.MoneyValue
+	(*GetAccountsRequest)(nil),            // 7: tinvest.GetAccountsRequest
+	(*PostOrderRequest)(nil),              // 8: tinvest.PostOrderRequest
+	(*PostOrderAsyncRequest)(nil),         // 9: tinvest.PostOrderAsyncRequest
+	(*ReplaceOrderRequest)(nil),           // 10: tinvest.ReplaceOrderRequest
+	(*GetOrdersRequest)(nil),              // 11: tinvest.GetOrdersRequest
+	(*CancelOrderRequest)(nil),            // 12: tinvest.CancelOrderRequest
+	(*GetOrderStateRequest)(nil),          // 13: tinvest.GetOrderStateRequest
+	(*PositionsRequest)(nil),              // 14: tinvest.PositionsRequest
+	(*OperationsRequest)(nil),             // 15: tinvest.OperationsRequest
+	(*GetOperationsByCursorRequest)(nil),  // 16: tinvest.GetOperationsByCursorRequest
+	(*PortfolioRequest)(nil),              // 17: tinvest.PortfolioRequest
+	(*WithdrawLimitsRequest)(nil),         // 18: tinvest.WithdrawLimitsRequest
+	(*GetMaxLotsRequest)(nil),             // 19: tinvest.GetMaxLotsRequest
+	(*GetAccountsResponse)(nil),           // 20: tinvest.GetAccountsResponse
+	(*PostOrderResponse)(nil),             // 21: tinvest.PostOrderResponse
+	(*PostOrderAsyncResponse)(nil),        // 22: tinvest.PostOrderAsyncResponse
+	(*GetOrdersResponse)(nil),             // 23: tinvest.GetOrdersResponse
+	(*CancelOrderResponse)(nil),           // 24: tinvest.CancelOrderResponse
+	(*OrderState)(nil),                    // 25: tinvest.OrderState
+	(*PositionsResponse)(nil),             // 26: tinvest.PositionsResponse
+	(*OperationsResponse)(nil),            // 27: tinvest.OperationsResponse
+	(*GetOperationsByCursorResponse)(nil), // 28: tinvest.GetOperationsByCursorResponse
+	(*PortfolioResponse)(nil),             // 29: tinvest.PortfolioResponse
+	(*WithdrawLimitsResponse)(nil),        // 30: tinvest.WithdrawLimitsResponse
+	(*GetMaxLotsResponse)(nil),            // 31: tinvest.GetMaxLotsResponse
 }
 var file_tinvest_sandbox_proto_depIdxs = []int32{
-	6,  // 0: tinkoff.public.invest.api.contract.v1.SandboxPayInRequest.amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	6,  // 1: tinkoff.public.invest.api.contract.v1.SandboxPayInResponse.balance:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	0,  // 2: tinkoff.public.invest.api.contract.v1.SandboxService.OpenSandboxAccount:input_type -> tinkoff.public.invest.api.contract.v1.OpenSandboxAccountRequest
-	7,  // 3: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxAccounts:input_type -> tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	2,  // 4: tinkoff.public.invest.api.contract.v1.SandboxService.CloseSandboxAccount:input_type -> tinkoff.public.invest.api.contract.v1.CloseSandboxAccountRequest
-	8,  // 5: tinkoff.public.invest.api.contract.v1.SandboxService.PostSandboxOrder:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderRequest
-	9,  // 6: tinkoff.public.invest.api.contract.v1.SandboxService.PostSandboxOrderAsync:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
-	10, // 7: tinkoff.public.invest.api.contract.v1.SandboxService.ReplaceSandboxOrder:input_type -> tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
-	11, // 8: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOrders:input_type -> tinkoff.public.invest.api.contract.v1.GetOrdersRequest
-	12, // 9: tinkoff.public.invest.api.contract.v1.SandboxService.CancelSandboxOrder:input_type -> tinkoff.public.invest.api.contract.v1.CancelOrderRequest
-	13, // 10: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOrderState:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
-	14, // 11: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxPositions:input_type -> tinkoff.public.invest.api.contract.v1.PositionsRequest
-	15, // 12: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOperations:input_type -> tinkoff.public.invest.api.contract.v1.OperationsRequest
-	16, // 13: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOperationsByCursor:input_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
-	17, // 14: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxPortfolio:input_type -> tinkoff.public.invest.api.contract.v1.PortfolioRequest
-	4,  // 15: tinkoff.public.invest.api.contract.v1.SandboxService.SandboxPayIn:input_type -> tinkoff.public.invest.api.contract.v1.SandboxPayInRequest
-	18, // 16: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxWithdrawLimits:input_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
-	19, // 17: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxMaxLots:input_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
-	1,  // 18: tinkoff.public.invest.api.contract.v1.SandboxService.OpenSandboxAccount:output_type -> tinkoff.public.invest.api.contract.v1.OpenSandboxAccountResponse
-	20, // 19: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxAccounts:output_type -> tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	3,  // 20: tinkoff.public.invest.api.contract.v1.SandboxService.CloseSandboxAccount:output_type -> tinkoff.public.invest.api.contract.v1.CloseSandboxAccountResponse
-	21, // 21: tinkoff.public.invest.api.contract.v1.SandboxService.PostSandboxOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	22, // 22: tinkoff.public.invest.api.contract.v1.SandboxService.PostSandboxOrderAsync:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
-	21, // 23: tinkoff.public.invest.api.contract.v1.SandboxService.ReplaceSandboxOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	23, // 24: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOrders:output_type -> tinkoff.public.invest.api.contract.v1.GetOrdersResponse
-	24, // 25: tinkoff.public.invest.api.contract.v1.SandboxService.CancelSandboxOrder:output_type -> tinkoff.public.invest.api.contract.v1.CancelOrderResponse
-	25, // 26: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOrderState:output_type -> tinkoff.public.invest.api.contract.v1.OrderState
-	26, // 27: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxPositions:output_type -> tinkoff.public.invest.api.contract.v1.PositionsResponse
-	27, // 28: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOperations:output_type -> tinkoff.public.invest.api.contract.v1.OperationsResponse
-	28, // 29: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxOperationsByCursor:output_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
-	29, // 30: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxPortfolio:output_type -> tinkoff.public.invest.api.contract.v1.PortfolioResponse
-	5,  // 31: tinkoff.public.invest.api.contract.v1.SandboxService.SandboxPayIn:output_type -> tinkoff.public.invest.api.contract.v1.SandboxPayInResponse
-	30, // 32: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxWithdrawLimits:output_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
-	31, // 33: tinkoff.public.invest.api.contract.v1.SandboxService.GetSandboxMaxLots:output_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
+	6,  // 0: tinvest.SandboxPayInRequest.amount:type_name -> tinvest.MoneyValue
+	6,  // 1: tinvest.SandboxPayInResponse.balance:type_name -> tinvest.MoneyValue
+	0,  // 2: tinvest.SandboxService.OpenSandboxAccount:input_type -> tinvest.OpenSandboxAccountRequest
+	7,  // 3: tinvest.SandboxService.GetSandboxAccounts:input_type -> tinvest.GetAccountsRequest
+	2,  // 4: tinvest.SandboxService.CloseSandboxAccount:input_type -> tinvest.CloseSandboxAccountRequest
+	8,  // 5: tinvest.SandboxService.PostSandboxOrder:input_type -> tinvest.PostOrderRequest
+	9,  // 6: tinvest.SandboxService.PostSandboxOrderAsync:input_type -> tinvest.PostOrderAsyncRequest
+	10, // 7: tinvest.SandboxService.ReplaceSandboxOrder:input_type -> tinvest.ReplaceOrderRequest
+	11, // 8: tinvest.SandboxService.GetSandboxOrders:input_type -> tinvest.GetOrdersRequest
+	12, // 9: tinvest.SandboxService.CancelSandboxOrder:input_type -> tinvest.CancelOrderRequest
+	13, // 10: tinvest.SandboxService.GetSandboxOrderState:input_type -> tinvest.GetOrderStateRequest
+	14, // 11: tinvest.SandboxService.GetSandboxPositions:input_type -> tinvest.PositionsRequest
+	15, // 12: tinvest.SandboxService.GetSandboxOperations:input_type -> tinvest.OperationsRequest
+	16, // 13: tinvest.SandboxService.GetSandboxOperationsByCursor:input_type -> tinvest.GetOperationsByCursorRequest
+	17, // 14: tinvest.SandboxService.GetSandboxPortfolio:input_type -> tinvest.PortfolioRequest
+	4,  // 15: tinvest.SandboxService.SandboxPayIn:input_type -> tinvest.SandboxPayInRequest
+	18, // 16: tinvest.SandboxService.GetSandboxWithdrawLimits:input_type -> tinvest.WithdrawLimitsRequest
+	19, // 17: tinvest.SandboxService.GetSandboxMaxLots:input_type -> tinvest.GetMaxLotsRequest
+	1,  // 18: tinvest.SandboxService.OpenSandboxAccount:output_type -> tinvest.OpenSandboxAccountResponse
+	20, // 19: tinvest.SandboxService.GetSandboxAccounts:output_type -> tinvest.GetAccountsResponse
+	3,  // 20: tinvest.SandboxService.CloseSandboxAccount:output_type -> tinvest.CloseSandboxAccountResponse
+	21, // 21: tinvest.SandboxService.PostSandboxOrder:output_type -> tinvest.PostOrderResponse
+	22, // 22: tinvest.SandboxService.PostSandboxOrderAsync:output_type -> tinvest.PostOrderAsyncResponse
+	21, // 23: tinvest.SandboxService.ReplaceSandboxOrder:output_type -> tinvest.PostOrderResponse
+	23, // 24: tinvest.SandboxService.GetSandboxOrders:output_type -> tinvest.GetOrdersResponse
+	24, // 25: tinvest.SandboxService.CancelSandboxOrder:output_type -> tinvest.CancelOrderResponse
+	25, // 26: tinvest.SandboxService.GetSandboxOrderState:output_type -> tinvest.OrderState
+	26, // 27: tinvest.SandboxService.GetSandboxPositions:output_type -> tinvest.PositionsResponse
+	27, // 28: tinvest.SandboxService.GetSandboxOperations:output_type -> tinvest.OperationsResponse
+	28, // 29: tinvest.SandboxService.GetSandboxOperationsByCursor:output_type -> tinvest.GetOperationsByCursorResponse
+	29, // 30: tinvest.SandboxService.GetSandboxPortfolio:output_type -> tinvest.PortfolioResponse
+	5,  // 31: tinvest.SandboxService.SandboxPayIn:output_type -> tinvest.SandboxPayInResponse
+	30, // 32: tinvest.SandboxService.GetSandboxWithdrawLimits:output_type -> tinvest.WithdrawLimitsResponse
+	31, // 33: tinvest.SandboxService.GetSandboxMaxLots:output_type -> tinvest.GetMaxLotsResponse
 	18, // [18:34] is the sub-list for method output_type
 	2,  // [2:18] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
