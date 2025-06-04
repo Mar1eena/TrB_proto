@@ -3,8 +3,9 @@
 # make gen service='Название сервиса'
 gene:
 	protoc -I./services \
-	./services/trb/*.proto \
-	./services/tinvest/*.proto \
+	./services/servicexamle/*.proto \
+	./services/tinvest/tinkoff/*.proto \
+	./services/tinvest/trb/*.proto \
 	--go_out=./gen/go  \
 	--go_opt=paths=source_relative \
 	--go-grpc_out=./gen/go/ \
