@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package trb.nats.public.contract.v1;
+option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1";
+
+import "google/api/annotations.proto";
+
+service NatsService {
+  // Unary RPC (один запрос - один ответ)
+  rpc CreateNatsStream (MessageRequest) returns (MessageResponse){
+    option (google.api.http) = {
+      post: "/CreateNatsStream"
+      body: "*"
+    };
+  };
+
+}
+
+message MessageRequest {
+  string text = 1;
+}
+
+message MessageResponse {
+  string reply = 1;
+}
+

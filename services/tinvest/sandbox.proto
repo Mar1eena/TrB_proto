@@ -25,10 +25,12 @@ service SandboxService { // Методы для работы с песочниц
   // rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
   rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse){
+    // TrB.Start
     option (google.api.http) = {
       post: "/test"
       body: "*"
     };
+    // TrB.End
   };
 
   //CloseSandboxAccount — закрыть счет
