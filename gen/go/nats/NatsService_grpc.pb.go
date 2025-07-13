@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.30.2
-// source: nats/nats_setting.proto
+// source: nats/NatsService.proto
 
 package trb_nats_public_contract_v1
 
@@ -27,7 +27,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NatsServiceClient interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
+	CreateNatsStream(ctx context.Context, in *MRequest, opts ...grpc.CallOption) (*MResponse, error)
 }
 
 type natsServiceClient struct {
@@ -38,9 +38,9 @@ func NewNatsServiceClient(cc grpc.ClientConnInterface) NatsServiceClient {
 	return &natsServiceClient{cc}
 }
 
-func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
+func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *MRequest, opts ...grpc.CallOption) (*MResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MessageResponse)
+	out := new(MResponse)
 	err := c.cc.Invoke(ctx, NatsService_CreateNatsStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *MessageReq
 // for forward compatibility.
 type NatsServiceServer interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(context.Context, *MessageRequest) (*MessageResponse, error)
+	CreateNatsStream(context.Context, *MRequest) (*MResponse, error)
 	mustEmbedUnimplementedNatsServiceServer()
 }
 
@@ -64,7 +64,7 @@ type NatsServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNatsServiceServer struct{}
 
-func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *MessageRequest) (*MessageResponse, error) {
+func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *MRequest) (*MResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNatsStream not implemented")
 }
 func (UnimplementedNatsServiceServer) mustEmbedUnimplementedNatsServiceServer() {}
@@ -89,7 +89,7 @@ func RegisterNatsServiceServer(s grpc.ServiceRegistrar, srv NatsServiceServer) {
 }
 
 func _NatsService_CreateNatsStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MessageRequest)
+	in := new(MRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func _NatsService_CreateNatsStream_Handler(srv interface{}, ctx context.Context,
 		FullMethod: NatsService_CreateNatsStream_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsServiceServer).CreateNatsStream(ctx, req.(*MessageRequest))
+		return srv.(NatsServiceServer).CreateNatsStream(ctx, req.(*MRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -119,5 +119,5 @@ var NatsService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "nats/nats_setting.proto",
+	Metadata: "nats/NatsService.proto",
 }
