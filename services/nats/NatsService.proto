@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 
 service NatsService {
   // Unary RPC (один запрос - один ответ)
-  rpc CreateNatsStream (MessageRequest) returns (MessageResponse){
+  rpc CreateNatsStream (MRequest) returns (MResponse){
     option (google.api.http) = {
       post: "/CreateNatsStream"
       body: "*"
@@ -16,11 +16,11 @@ service NatsService {
 
 }
 
-message MessageRequest {
+message MRequest {
   string text = 1;
 }
 
-message MessageResponse {
+message MResponse {
   string reply = 1;
 }
 
