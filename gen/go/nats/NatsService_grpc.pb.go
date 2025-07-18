@@ -27,7 +27,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NatsServiceClient interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(ctx context.Context, in *MRequest, opts ...grpc.CallOption) (*MResponse, error)
+	CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*MResponse, error)
 }
 
 type natsServiceClient struct {
@@ -38,7 +38,7 @@ func NewNatsServiceClient(cc grpc.ClientConnInterface) NatsServiceClient {
 	return &natsServiceClient{cc}
 }
 
-func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *MRequest, opts ...grpc.CallOption) (*MResponse, error) {
+func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*MResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MResponse)
 	err := c.cc.Invoke(ctx, NatsService_CreateNatsStream_FullMethodName, in, out, cOpts...)
@@ -53,7 +53,7 @@ func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *MRequest, 
 // for forward compatibility.
 type NatsServiceServer interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(context.Context, *MRequest) (*MResponse, error)
+	CreateNatsStream(context.Context, *StreamConfig) (*MResponse, error)
 	mustEmbedUnimplementedNatsServiceServer()
 }
 
@@ -64,7 +64,7 @@ type NatsServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNatsServiceServer struct{}
 
-func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *MRequest) (*MResponse, error) {
+func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *StreamConfig) (*MResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNatsStream not implemented")
 }
 func (UnimplementedNatsServiceServer) mustEmbedUnimplementedNatsServiceServer() {}
@@ -89,7 +89,7 @@ func RegisterNatsServiceServer(s grpc.ServiceRegistrar, srv NatsServiceServer) {
 }
 
 func _NatsService_CreateNatsStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MRequest)
+	in := new(StreamConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func _NatsService_CreateNatsStream_Handler(srv interface{}, ctx context.Context,
 		FullMethod: NatsService_CreateNatsStream_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsServiceServer).CreateNatsStream(ctx, req.(*MRequest))
+		return srv.(NatsServiceServer).CreateNatsStream(ctx, req.(*StreamConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }
