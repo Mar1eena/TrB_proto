@@ -672,14 +672,14 @@ func (x *Placement) GetTags() []string {
 }
 
 type StreamSource struct {
-	state             protoimpl.MessageState    `protogen:"open.v1"`
-	Name              string                    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	OptStartSeq       uint64                    `protobuf:"varint,2,opt,name=opt_start_seq,json=optStartSeq,proto3" json:"opt_start_seq,omitempty"`                // соответствует OptStartSeq
-	OptStartTime      *timestamppb.Timestamp    `protobuf:"bytes,3,opt,name=opt_start_time,json=optStartTime,proto3" json:"opt_start_time,omitempty"`              // изменено с Duration на Timestamp
-	SubjectTransforms []*SubjectTransformConfig `protobuf:"bytes,4,rep,name=subject_transforms,json=subjectTransforms,proto3" json:"subject_transforms,omitempty"` // сделано repeated для соответствия слайсу
-	FilterSubject     string                    `protobuf:"bytes,5,opt,name=filter_subject,json=filterSubject,proto3" json:"filter_subject,omitempty"`             // изменено с repeated на string
-	External          *ExternalStream           `protobuf:"bytes,6,opt,name=external,proto3" json:"external,omitempty"`                                            // Placement удален, так как нет в Go-структуре
-	Domain            string                    `protobuf:"bytes,7,opt,name=domain,proto3" json:"domain,omitempty"`                                                // добавлено, но учтите json:"-"
+	state             protoimpl.MessageState  `protogen:"open.v1"`
+	Name              string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	OptStartSeq       uint64                  `protobuf:"varint,2,opt,name=opt_start_seq,json=optStartSeq,proto3" json:"opt_start_seq,omitempty"`                // соответствует OptStartSeq
+	OptStartTime      *timestamppb.Timestamp  `protobuf:"bytes,3,opt,name=opt_start_time,json=optStartTime,proto3" json:"opt_start_time,omitempty"`              // изменено с Duration на Timestamp
+	SubjectTransforms *SubjectTransformConfig `protobuf:"bytes,4,opt,name=subject_transforms,json=subjectTransforms,proto3" json:"subject_transforms,omitempty"` // сделано repeated для соответствия слайсу
+	FilterSubject     string                  `protobuf:"bytes,5,opt,name=filter_subject,json=filterSubject,proto3" json:"filter_subject,omitempty"`             // изменено с repeated на string
+	External          *ExternalStream         `protobuf:"bytes,6,opt,name=external,proto3" json:"external,omitempty"`                                            // Placement удален, так как нет в Go-структуре
+	Domain            string                  `protobuf:"bytes,7,opt,name=domain,proto3" json:"domain,omitempty"`                                                // добавлено, но учтите json:"-"
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -735,7 +735,7 @@ func (x *StreamSource) GetOptStartTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *StreamSource) GetSubjectTransforms() []*SubjectTransformConfig {
+func (x *StreamSource) GetSubjectTransforms() *SubjectTransformConfig {
 	if x != nil {
 		return x.SubjectTransforms
 	}
@@ -1037,7 +1037,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\"\n" +
 	"\ropt_start_seq\x18\x02 \x01(\x04R\voptStartSeq\x12@\n" +
 	"\x0eopt_start_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\foptStartTime\x12b\n" +
-	"\x12subject_transforms\x18\x04 \x03(\v23.trb.nats.public.contract.v1.SubjectTransformConfigR\x11subjectTransforms\x12%\n" +
+	"\x12subject_transforms\x18\x04 \x01(\v23.trb.nats.public.contract.v1.SubjectTransformConfigR\x11subjectTransforms\x12%\n" +
 	"\x0efilter_subject\x18\x05 \x01(\tR\rfilterSubject\x12G\n" +
 	"\bexternal\x18\x06 \x01(\v2+.trb.nats.public.contract.v1.ExternalStreamR\bexternal\x12\x16\n" +
 	"\x06domain\x18\a \x01(\tR\x06domain\"<\n" +

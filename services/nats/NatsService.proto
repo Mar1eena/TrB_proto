@@ -97,7 +97,7 @@ message StreamSource {
   string name = 1;
   uint64 opt_start_seq = 2;                     // соответствует OptStartSeq
   google.protobuf.Timestamp opt_start_time = 3; // изменено с Duration на Timestamp
-  repeated SubjectTransformConfig subject_transforms = 4; // сделано repeated для соответствия слайсу
+  SubjectTransformConfig subject_transforms = 4; // сделано repeated для соответствия слайсу
   string filter_subject = 5;                    // изменено с repeated на string
   ExternalStream external = 6;                  // Placement удален, так как нет в Go-структуре
   string domain = 7;                           // добавлено, но учтите json:"-"
