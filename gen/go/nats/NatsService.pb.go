@@ -10,7 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/durationpb"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -322,13 +322,13 @@ type StreamConfig struct {
 	MaxBytes               int64                   `protobuf:"varint,7,opt,name=max_bytes,json=maxBytes,proto3" json:"max_bytes,omitempty"`
 	Discard                DiscardPolicy           `protobuf:"varint,8,opt,name=discard,proto3,enum=trb.nats.public.contract.v1.DiscardPolicy" json:"discard,omitempty"`
 	DiscardNewPerSubject   bool                    `protobuf:"varint,9,opt,name=discard_new_per_subject,json=discardNewPerSubject,proto3" json:"discard_new_per_subject,omitempty"`
-	MaxAge                 *timestamppb.Timestamp  `protobuf:"bytes,10,opt,name=max_age,json=maxAge,proto3" json:"max_age,omitempty"`
+	MaxAge                 *durationpb.Duration    `protobuf:"bytes,10,opt,name=max_age,json=maxAge,proto3" json:"max_age,omitempty"`
 	MaxMsgsPerSubject      int64                   `protobuf:"varint,11,opt,name=max_msgs_per_subject,json=maxMsgsPerSubject,proto3" json:"max_msgs_per_subject,omitempty"`
 	MaxMsgSize             int32                   `protobuf:"varint,12,opt,name=max_msg_size,json=maxMsgSize,proto3" json:"max_msg_size,omitempty"`
 	Storage                StorageType             `protobuf:"varint,13,opt,name=storage,proto3,enum=trb.nats.public.contract.v1.StorageType" json:"storage,omitempty"`
 	Replicas               int32                   `protobuf:"varint,14,opt,name=replicas,proto3" json:"replicas,omitempty"`
 	NoAck                  bool                    `protobuf:"varint,15,opt,name=no_ack,json=noAck,proto3" json:"no_ack,omitempty"`
-	DuplicateWindow        *timestamppb.Timestamp  `protobuf:"bytes,16,opt,name=duplicate_window,json=duplicateWindow,proto3" json:"duplicate_window,omitempty"`
+	DuplicateWindow        *durationpb.Duration    `protobuf:"bytes,16,opt,name=duplicate_window,json=duplicateWindow,proto3" json:"duplicate_window,omitempty"`
 	Placement              *Placement              `protobuf:"bytes,17,opt,name=placement,proto3" json:"placement,omitempty"`
 	Mirror                 *StreamSource           `protobuf:"bytes,18,opt,name=mirror,proto3" json:"mirror,omitempty"`
 	Sources                []*StreamSource         `protobuf:"bytes,19,rep,name=sources,proto3" json:"sources,omitempty"`
@@ -346,7 +346,7 @@ type StreamConfig struct {
 	Metadata               map[string]string       `protobuf:"bytes,31,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	TemplateOwner          string                  `protobuf:"bytes,32,opt,name=template_owner,json=templateOwner,proto3" json:"template_owner,omitempty"`
 	AllowMsgTtl            bool                    `protobuf:"varint,33,opt,name=allow_msg_ttl,json=allowMsgTtl,proto3" json:"allow_msg_ttl,omitempty"`
-	SubjectDeleteMarkerTtl *timestamppb.Timestamp  `protobuf:"bytes,34,opt,name=subject_delete_marker_ttl,json=subjectDeleteMarkerTtl,proto3" json:"subject_delete_marker_ttl,omitempty"`
+	SubjectDeleteMarkerTtl *durationpb.Duration    `protobuf:"bytes,34,opt,name=subject_delete_marker_ttl,json=subjectDeleteMarkerTtl,proto3" json:"subject_delete_marker_ttl,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -444,7 +444,7 @@ func (x *StreamConfig) GetDiscardNewPerSubject() bool {
 	return false
 }
 
-func (x *StreamConfig) GetMaxAge() *timestamppb.Timestamp {
+func (x *StreamConfig) GetMaxAge() *durationpb.Duration {
 	if x != nil {
 		return x.MaxAge
 	}
@@ -486,7 +486,7 @@ func (x *StreamConfig) GetNoAck() bool {
 	return false
 }
 
-func (x *StreamConfig) GetDuplicateWindow() *timestamppb.Timestamp {
+func (x *StreamConfig) GetDuplicateWindow() *durationpb.Duration {
 	if x != nil {
 		return x.DuplicateWindow
 	}
@@ -612,7 +612,7 @@ func (x *StreamConfig) GetAllowMsgTtl() bool {
 	return false
 }
 
-func (x *StreamConfig) GetSubjectDeleteMarkerTtl() *timestamppb.Timestamp {
+func (x *StreamConfig) GetSubjectDeleteMarkerTtl() *durationpb.Duration {
 	if x != nil {
 		return x.SubjectDeleteMarkerTtl
 	}
@@ -817,8 +817,8 @@ func (x *ExternalStream) GetDeliver() string {
 
 type SubjectTransformConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Src           string                 `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty"`
-	Dest          string                 `protobuf:"bytes,2,opt,name=dest,proto3" json:"dest,omitempty"`
+	Source        string                 `protobuf:"bytes,1,opt,name=Source,proto3" json:"Source,omitempty"`
+	Destination   string                 `protobuf:"bytes,2,opt,name=Destination,proto3" json:"Destination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -853,16 +853,16 @@ func (*SubjectTransformConfig) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *SubjectTransformConfig) GetSrc() string {
+func (x *SubjectTransformConfig) GetSource() string {
 	if x != nil {
-		return x.Src
+		return x.Source
 	}
 	return ""
 }
 
-func (x *SubjectTransformConfig) GetDest() string {
+func (x *SubjectTransformConfig) GetDestination() string {
 	if x != nil {
-		return x.Dest
+		return x.Destination
 	}
 	return ""
 }
@@ -930,7 +930,7 @@ func (x *RePublish) GetHeadersOnly() bool {
 type StreamConsumerLimits struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	MaxAckPending     int64                  `protobuf:"varint,1,opt,name=max_ack_pending,json=maxAckPending,proto3" json:"max_ack_pending,omitempty"`
-	InactiveThreshold *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=inactive_threshold,json=inactiveThreshold,proto3" json:"inactive_threshold,omitempty"`
+	InactiveThreshold *durationpb.Duration   `protobuf:"bytes,2,opt,name=inactive_threshold,json=inactiveThreshold,proto3" json:"inactive_threshold,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -972,7 +972,7 @@ func (x *StreamConsumerLimits) GetMaxAckPending() int64 {
 	return 0
 }
 
-func (x *StreamConsumerLimits) GetInactiveThreshold() *timestamppb.Timestamp {
+func (x *StreamConsumerLimits) GetInactiveThreshold() *durationpb.Duration {
 	if x != nil {
 		return x.InactiveThreshold
 	}
@@ -987,7 +987,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\bMRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"!\n" +
 	"\tMResponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply\"\x83\x0e\n" +
+	"\x05reply\x18\x01 \x01(\tR\x05reply\"\x80\x0e\n" +
 	"\fStreamConfig\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1a\n" +
@@ -997,16 +997,16 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\bmax_msgs\x18\x06 \x01(\x03R\amaxMsgs\x12\x1b\n" +
 	"\tmax_bytes\x18\a \x01(\x03R\bmaxBytes\x12D\n" +
 	"\adiscard\x18\b \x01(\x0e2*.trb.nats.public.contract.v1.DiscardPolicyR\adiscard\x125\n" +
-	"\x17discard_new_per_subject\x18\t \x01(\bR\x14discardNewPerSubject\x123\n" +
+	"\x17discard_new_per_subject\x18\t \x01(\bR\x14discardNewPerSubject\x122\n" +
 	"\amax_age\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\x06maxAge\x12/\n" +
+	" \x01(\v2\x19.google.protobuf.DurationR\x06maxAge\x12/\n" +
 	"\x14max_msgs_per_subject\x18\v \x01(\x03R\x11maxMsgsPerSubject\x12 \n" +
 	"\fmax_msg_size\x18\f \x01(\x05R\n" +
 	"maxMsgSize\x12B\n" +
 	"\astorage\x18\r \x01(\x0e2(.trb.nats.public.contract.v1.StorageTypeR\astorage\x12\x1a\n" +
 	"\breplicas\x18\x0e \x01(\x05R\breplicas\x12\x15\n" +
-	"\x06no_ack\x18\x0f \x01(\bR\x05noAck\x12E\n" +
-	"\x10duplicate_window\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\x0fduplicateWindow\x12D\n" +
+	"\x06no_ack\x18\x0f \x01(\bR\x05noAck\x12D\n" +
+	"\x10duplicate_window\x18\x10 \x01(\v2\x19.google.protobuf.DurationR\x0fduplicateWindow\x12D\n" +
 	"\tplacement\x18\x11 \x01(\v2&.trb.nats.public.contract.v1.PlacementR\tplacement\x12A\n" +
 	"\x06mirror\x18\x12 \x01(\v2).trb.nats.public.contract.v1.StreamSourceR\x06mirror\x12C\n" +
 	"\asources\x18\x13 \x03(\v2).trb.nats.public.contract.v1.StreamSourceR\asources\x12\x16\n" +
@@ -1025,8 +1025,8 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x0fconsumer_limits\x18\x1e \x01(\v21.trb.nats.public.contract.v1.StreamConsumerLimitsR\x0econsumerLimits\x12S\n" +
 	"\bmetadata\x18\x1f \x03(\v27.trb.nats.public.contract.v1.StreamConfig.MetadataEntryR\bmetadata\x12%\n" +
 	"\x0etemplate_owner\x18  \x01(\tR\rtemplateOwner\x12\"\n" +
-	"\rallow_msg_ttl\x18! \x01(\bR\vallowMsgTtl\x12U\n" +
-	"\x19subject_delete_marker_ttl\x18\" \x01(\v2\x1a.google.protobuf.TimestampR\x16subjectDeleteMarkerTtl\x1a;\n" +
+	"\rallow_msg_ttl\x18! \x01(\bR\vallowMsgTtl\x12T\n" +
+	"\x19subject_delete_marker_ttl\x18\" \x01(\v2\x19.google.protobuf.DurationR\x16subjectDeleteMarkerTtl\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"9\n" +
@@ -1043,17 +1043,17 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x06domain\x18\a \x01(\tR\x06domain\"<\n" +
 	"\x0eExternalStream\x12\x10\n" +
 	"\x03api\x18\x01 \x01(\tR\x03api\x12\x18\n" +
-	"\adeliver\x18\x02 \x01(\tR\adeliver\">\n" +
-	"\x16SubjectTransformConfig\x12\x10\n" +
-	"\x03src\x18\x01 \x01(\tR\x03src\x12\x12\n" +
-	"\x04dest\x18\x02 \x01(\tR\x04dest\"T\n" +
+	"\adeliver\x18\x02 \x01(\tR\adeliver\"R\n" +
+	"\x16SubjectTransformConfig\x12\x16\n" +
+	"\x06Source\x18\x01 \x01(\tR\x06Source\x12 \n" +
+	"\vDestination\x18\x02 \x01(\tR\vDestination\"T\n" +
 	"\tRePublish\x12\x10\n" +
 	"\x03src\x18\x01 \x01(\tR\x03src\x12\x12\n" +
 	"\x04dest\x18\x02 \x01(\tR\x04dest\x12!\n" +
-	"\fheaders_only\x18\x03 \x01(\bR\vheadersOnly\"\x89\x01\n" +
+	"\fheaders_only\x18\x03 \x01(\bR\vheadersOnly\"\x88\x01\n" +
 	"\x14StreamConsumerLimits\x12&\n" +
-	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\x12I\n" +
-	"\x12inactive_threshold\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x11inactiveThreshold*r\n" +
+	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\x12H\n" +
+	"\x12inactive_threshold\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\x11inactiveThreshold*r\n" +
 	"\x0fRetentionPolicy\x12 \n" +
 	"\x1cRETENTION_POLICY_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rLIMITS_POLICY\x10\x01\x12\x13\n" +
@@ -1104,14 +1104,15 @@ var file_nats_NatsService_proto_goTypes = []any{
 	(*RePublish)(nil),              // 11: trb.nats.public.contract.v1.RePublish
 	(*StreamConsumerLimits)(nil),   // 12: trb.nats.public.contract.v1.StreamConsumerLimits
 	nil,                            // 13: trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	(*timestamppb.Timestamp)(nil),  // 14: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),    // 14: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),  // 15: google.protobuf.Timestamp
 }
 var file_nats_NatsService_proto_depIdxs = []int32{
 	0,  // 0: trb.nats.public.contract.v1.StreamConfig.retention:type_name -> trb.nats.public.contract.v1.RetentionPolicy
 	1,  // 1: trb.nats.public.contract.v1.StreamConfig.discard:type_name -> trb.nats.public.contract.v1.DiscardPolicy
-	14, // 2: trb.nats.public.contract.v1.StreamConfig.max_age:type_name -> google.protobuf.Timestamp
+	14, // 2: trb.nats.public.contract.v1.StreamConfig.max_age:type_name -> google.protobuf.Duration
 	2,  // 3: trb.nats.public.contract.v1.StreamConfig.storage:type_name -> trb.nats.public.contract.v1.StorageType
-	14, // 4: trb.nats.public.contract.v1.StreamConfig.duplicate_window:type_name -> google.protobuf.Timestamp
+	14, // 4: trb.nats.public.contract.v1.StreamConfig.duplicate_window:type_name -> google.protobuf.Duration
 	7,  // 5: trb.nats.public.contract.v1.StreamConfig.placement:type_name -> trb.nats.public.contract.v1.Placement
 	8,  // 6: trb.nats.public.contract.v1.StreamConfig.mirror:type_name -> trb.nats.public.contract.v1.StreamSource
 	8,  // 7: trb.nats.public.contract.v1.StreamConfig.sources:type_name -> trb.nats.public.contract.v1.StreamSource
@@ -1120,11 +1121,11 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	11, // 10: trb.nats.public.contract.v1.StreamConfig.republish:type_name -> trb.nats.public.contract.v1.RePublish
 	12, // 11: trb.nats.public.contract.v1.StreamConfig.consumer_limits:type_name -> trb.nats.public.contract.v1.StreamConsumerLimits
 	13, // 12: trb.nats.public.contract.v1.StreamConfig.metadata:type_name -> trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	14, // 13: trb.nats.public.contract.v1.StreamConfig.subject_delete_marker_ttl:type_name -> google.protobuf.Timestamp
-	14, // 14: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
+	14, // 13: trb.nats.public.contract.v1.StreamConfig.subject_delete_marker_ttl:type_name -> google.protobuf.Duration
+	15, // 14: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
 	10, // 15: trb.nats.public.contract.v1.StreamSource.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	9,  // 16: trb.nats.public.contract.v1.StreamSource.external:type_name -> trb.nats.public.contract.v1.ExternalStream
-	14, // 17: trb.nats.public.contract.v1.StreamConsumerLimits.inactive_threshold:type_name -> google.protobuf.Timestamp
+	14, // 17: trb.nats.public.contract.v1.StreamConsumerLimits.inactive_threshold:type_name -> google.protobuf.Duration
 	6,  // 18: trb.nats.public.contract.v1.NatsService.CreateNatsStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	5,  // 19: trb.nats.public.contract.v1.NatsService.CreateNatsStream:output_type -> trb.nats.public.contract.v1.MResponse
 	19, // [19:20] is the sub-list for method output_type

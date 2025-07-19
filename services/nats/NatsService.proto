@@ -36,13 +36,13 @@ message StreamConfig {
   int64 max_bytes = 7;
   DiscardPolicy discard = 8;
   bool discard_new_per_subject = 9;
-  google.protobuf.Timestamp max_age = 10;
+  google.protobuf.Duration max_age = 10;
   int64 max_msgs_per_subject = 11;
   int32 max_msg_size = 12;
   StorageType storage = 13;
   int32 replicas = 14;
   bool no_ack = 15;
-  google.protobuf.Timestamp duplicate_window = 16;
+  google.protobuf.Duration duplicate_window = 16;
   Placement placement = 17;
   StreamSource mirror = 18;
   repeated StreamSource sources = 19;
@@ -60,7 +60,7 @@ message StreamConfig {
   map<string, string> metadata = 31;
   string template_owner = 32;
   bool allow_msg_ttl = 33;
-  google.protobuf.Timestamp subject_delete_marker_ttl = 34;
+  google.protobuf.Duration subject_delete_marker_ttl = 34;
 }
 
 enum RetentionPolicy {
@@ -109,8 +109,8 @@ message ExternalStream {
 }
 
 message SubjectTransformConfig {
-  string src = 1;
-  string dest = 2;
+  string Source = 1;
+  string Destination = 2;
 }
 
 message RePublish {
@@ -121,6 +121,6 @@ message RePublish {
 
 message StreamConsumerLimits {
   int64 max_ack_pending = 1;
-  google.protobuf.Timestamp inactive_threshold = 2;
+  google.protobuf.Duration inactive_threshold = 2;
 }
 
