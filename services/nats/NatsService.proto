@@ -4,6 +4,7 @@ package trb.nats.public.contract.v1;
 option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
 service NatsService {
@@ -35,13 +36,13 @@ message StreamConfig {
   int64 max_bytes = 7;
   DiscardPolicy discard = 8;
   bool discard_new_per_subject = 9;
-  google.protobuf.Duration max_age = 10;
+  google.protobuf.Timestamp max_age = 10;
   int64 max_msgs_per_subject = 11;
   int32 max_msg_size = 12;
   StorageType storage = 13;
   int32 replicas = 14;
   bool no_ack = 15;
-  google.protobuf.Duration duplicate_window = 16;
+  google.protobuf.Timestamp duplicate_window = 16;
   Placement placement = 17;
   StreamSource mirror = 18;
   repeated StreamSource sources = 19;
@@ -59,7 +60,7 @@ message StreamConfig {
   map<string, string> metadata = 31;
   string template_owner = 32;
   bool allow_msg_ttl = 33;
-  google.protobuf.Duration subject_delete_marker_ttl = 34;
+  google.protobuf.Timestamp subject_delete_marker_ttl = 34;
 }
 
 enum RetentionPolicy {
@@ -94,12 +95,12 @@ message Placement {
 
 message StreamSource {
   string name = 1;
-  uint64 opt_start_seq = 2;
-  google.protobuf.Duration opt_start_time = 3;
-  SubjectTransformConfig subject_transforms = 4;
-  repeated string filter_subject = 5;
-  Placement placement = 6;
-  ExternalStream external = 7;
+  uint64 opt_start_seq = 2;                     // соответствует OptStartSeq
+  google.protobuf.Timestamp opt_start_time = 3; // изменено с Duration на Timestamp
+  repeated SubjectTransformConfig subject_transforms = 4; // сделано repeated для соответствия слайсу
+  string filter_subject = 5;                    // изменено с repeated на string
+  ExternalStream external = 6;                  // Placement удален, так как нет в Go-структуре
+  string domain = 7;                           // добавлено, но учтите json:"-"
 }
 
 message ExternalStream {
@@ -115,11 +116,11 @@ message SubjectTransformConfig {
 message RePublish {
   string src = 1;
   string dest = 2;
-  repeated string headers_only = 3;
+  bool headers_only = 3;
 }
 
 message StreamConsumerLimits {
   int64 max_ack_pending = 1;
-  google.protobuf.Duration inactive_threshold = 2;
+  google.protobuf.Timestamp inactive_threshold = 2;
 }
 
