@@ -76,8 +76,8 @@ message ExternalStream {
 }
 
 message SubjectTransformConfig {
-  string Source = 1;
-  string Destination = 2;
+  string src = 1;
+  string dest = 2;
 }
 
 message RePublish {
@@ -97,7 +97,7 @@ message StreamInfo {
   StreamConfig config = 1;
   google.protobuf.Timestamp created = 2;
 	StreamState      state = 3;         
-  ClusterInfo    ClusterInfo = 4;        
+  ClusterInfo    cluster = 4;        
 	StreamSourceInfo     mirror = 5; 
 	repeated StreamSourceInfo sources = 6;
 	repeated StreamAlternate alternates = 7; 

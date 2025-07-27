@@ -530,8 +530,8 @@ func (x *ExternalStream) GetDeliver() string {
 
 type SubjectTransformConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Source        string                 `protobuf:"bytes,1,opt,name=Source,proto3" json:"Source,omitempty"`
-	Destination   string                 `protobuf:"bytes,2,opt,name=Destination,proto3" json:"Destination,omitempty"`
+	Src           string                 `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty"`
+	Dest          string                 `protobuf:"bytes,2,opt,name=dest,proto3" json:"dest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -566,16 +566,16 @@ func (*SubjectTransformConfig) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *SubjectTransformConfig) GetSource() string {
+func (x *SubjectTransformConfig) GetSrc() string {
 	if x != nil {
-		return x.Source
+		return x.Src
 	}
 	return ""
 }
 
-func (x *SubjectTransformConfig) GetDestination() string {
+func (x *SubjectTransformConfig) GetDest() string {
 	if x != nil {
-		return x.Destination
+		return x.Dest
 	}
 	return ""
 }
@@ -698,7 +698,7 @@ type StreamInfo struct {
 	Config        *StreamConfig          `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
 	State         *StreamState           `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
-	ClusterInfo   *ClusterInfo           `protobuf:"bytes,4,opt,name=ClusterInfo,proto3" json:"ClusterInfo,omitempty"`
+	Cluster       *ClusterInfo           `protobuf:"bytes,4,opt,name=cluster,proto3" json:"cluster,omitempty"`
 	Mirror        *StreamSourceInfo      `protobuf:"bytes,5,opt,name=mirror,proto3" json:"mirror,omitempty"`
 	Sources       []*StreamSourceInfo    `protobuf:"bytes,6,rep,name=sources,proto3" json:"sources,omitempty"`
 	Alternates    []*StreamAlternate     `protobuf:"bytes,7,rep,name=alternates,proto3" json:"alternates,omitempty"`
@@ -757,9 +757,9 @@ func (x *StreamInfo) GetState() *StreamState {
 	return nil
 }
 
-func (x *StreamInfo) GetClusterInfo() *ClusterInfo {
+func (x *StreamInfo) GetCluster() *ClusterInfo {
 	if x != nil {
-		return x.ClusterInfo
+		return x.Cluster
 	}
 	return nil
 }
@@ -1317,23 +1317,23 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x06domain\x18\a \x01(\tR\x06domain\"<\n" +
 	"\x0eExternalStream\x12\x10\n" +
 	"\x03api\x18\x01 \x01(\tR\x03api\x12\x18\n" +
-	"\adeliver\x18\x02 \x01(\tR\adeliver\"R\n" +
-	"\x16SubjectTransformConfig\x12\x16\n" +
-	"\x06Source\x18\x01 \x01(\tR\x06Source\x12 \n" +
-	"\vDestination\x18\x02 \x01(\tR\vDestination\"T\n" +
+	"\adeliver\x18\x02 \x01(\tR\adeliver\">\n" +
+	"\x16SubjectTransformConfig\x12\x10\n" +
+	"\x03src\x18\x01 \x01(\tR\x03src\x12\x12\n" +
+	"\x04dest\x18\x02 \x01(\tR\x04dest\"T\n" +
 	"\tRePublish\x12\x10\n" +
 	"\x03src\x18\x01 \x01(\tR\x03src\x12\x12\n" +
 	"\x04dest\x18\x02 \x01(\tR\x04dest\x12!\n" +
 	"\fheaders_only\x18\x03 \x01(\bR\vheadersOnly\"m\n" +
 	"\x14StreamConsumerLimits\x12-\n" +
 	"\x12inactive_threshold\x18\x02 \x01(\x03R\x11inactiveThreshold\x12&\n" +
-	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xef\x03\n" +
+	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xe7\x03\n" +
 	"\n" +
 	"StreamInfo\x12A\n" +
 	"\x06config\x18\x01 \x01(\v2).trb.nats.public.contract.v1.StreamConfigR\x06config\x124\n" +
 	"\acreated\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x12>\n" +
-	"\x05state\x18\x03 \x01(\v2(.trb.nats.public.contract.v1.StreamStateR\x05state\x12J\n" +
-	"\vClusterInfo\x18\x04 \x01(\v2(.trb.nats.public.contract.v1.ClusterInfoR\vClusterInfo\x12E\n" +
+	"\x05state\x18\x03 \x01(\v2(.trb.nats.public.contract.v1.StreamStateR\x05state\x12B\n" +
+	"\acluster\x18\x04 \x01(\v2(.trb.nats.public.contract.v1.ClusterInfoR\acluster\x12E\n" +
 	"\x06mirror\x18\x05 \x01(\v2-.trb.nats.public.contract.v1.StreamSourceInfoR\x06mirror\x12G\n" +
 	"\asources\x18\x06 \x03(\v2-.trb.nats.public.contract.v1.StreamSourceInfoR\asources\x12L\n" +
 	"\n" +
@@ -1431,7 +1431,7 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	0,  // 10: trb.nats.public.contract.v1.StreamInfo.config:type_name -> trb.nats.public.contract.v1.StreamConfig
 	16, // 11: trb.nats.public.contract.v1.StreamInfo.created:type_name -> google.protobuf.Timestamp
 	13, // 12: trb.nats.public.contract.v1.StreamInfo.state:type_name -> trb.nats.public.contract.v1.StreamState
-	11, // 13: trb.nats.public.contract.v1.StreamInfo.ClusterInfo:type_name -> trb.nats.public.contract.v1.ClusterInfo
+	11, // 13: trb.nats.public.contract.v1.StreamInfo.cluster:type_name -> trb.nats.public.contract.v1.ClusterInfo
 	8,  // 14: trb.nats.public.contract.v1.StreamInfo.mirror:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
 	8,  // 15: trb.nats.public.contract.v1.StreamInfo.sources:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
 	9,  // 16: trb.nats.public.contract.v1.StreamInfo.alternates:type_name -> trb.nats.public.contract.v1.StreamAlternate
