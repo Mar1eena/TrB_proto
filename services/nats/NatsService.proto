@@ -110,7 +110,7 @@ message StreamSourceInfo {
   ExternalStream external = 4;
   APIError error = 5;
   string filter_subject = 6;
-  SubjectTransformConfig subject_transforms = 7;
+  repeated SubjectTransformConfig subject_transforms = 7;
 }
 
 message StreamAlternate {

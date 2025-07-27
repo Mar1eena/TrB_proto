@@ -786,14 +786,14 @@ func (x *StreamInfo) GetAlternates() []*StreamAlternate {
 }
 
 type StreamSourceInfo struct {
-	state             protoimpl.MessageState  `protogen:"open.v1"`
-	Name              string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Lag               int64                   `protobuf:"varint,2,opt,name=lag,proto3" json:"lag,omitempty"`
-	Active            int64                   `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
-	External          *ExternalStream         `protobuf:"bytes,4,opt,name=external,proto3" json:"external,omitempty"`
-	Error             *APIError               `protobuf:"bytes,5,opt,name=error,proto3" json:"error,omitempty"`
-	FilterSubject     string                  `protobuf:"bytes,6,opt,name=filter_subject,json=filterSubject,proto3" json:"filter_subject,omitempty"`
-	SubjectTransforms *SubjectTransformConfig `protobuf:"bytes,7,opt,name=subject_transforms,json=subjectTransforms,proto3" json:"subject_transforms,omitempty"`
+	state             protoimpl.MessageState    `protogen:"open.v1"`
+	Name              string                    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Lag               int64                     `protobuf:"varint,2,opt,name=lag,proto3" json:"lag,omitempty"`
+	Active            int64                     `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
+	External          *ExternalStream           `protobuf:"bytes,4,opt,name=external,proto3" json:"external,omitempty"`
+	Error             *APIError                 `protobuf:"bytes,5,opt,name=error,proto3" json:"error,omitempty"`
+	FilterSubject     string                    `protobuf:"bytes,6,opt,name=filter_subject,json=filterSubject,proto3" json:"filter_subject,omitempty"`
+	SubjectTransforms []*SubjectTransformConfig `protobuf:"bytes,7,rep,name=subject_transforms,json=subjectTransforms,proto3" json:"subject_transforms,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -870,7 +870,7 @@ func (x *StreamSourceInfo) GetFilterSubject() string {
 	return ""
 }
 
-func (x *StreamSourceInfo) GetSubjectTransforms() *SubjectTransformConfig {
+func (x *StreamSourceInfo) GetSubjectTransforms() []*SubjectTransformConfig {
 	if x != nil {
 		return x.SubjectTransforms
 	}
@@ -1346,7 +1346,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\bexternal\x18\x04 \x01(\v2+.trb.nats.public.contract.v1.ExternalStreamR\bexternal\x12;\n" +
 	"\x05error\x18\x05 \x01(\v2%.trb.nats.public.contract.v1.APIErrorR\x05error\x12%\n" +
 	"\x0efilter_subject\x18\x06 \x01(\tR\rfilterSubject\x12b\n" +
-	"\x12subject_transforms\x18\a \x01(\v23.trb.nats.public.contract.v1.SubjectTransformConfigR\x11subjectTransforms\"W\n" +
+	"\x12subject_transforms\x18\a \x03(\v23.trb.nats.public.contract.v1.SubjectTransformConfigR\x11subjectTransforms\"W\n" +
 	"\x0fStreamAlternate\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
 	"\x06domain\x18\x02 \x01(\tR\x06domain\x12\x18\n" +
