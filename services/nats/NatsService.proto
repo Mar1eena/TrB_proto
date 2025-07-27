@@ -4,6 +4,7 @@ package trb.nats.public.contract.v1;
 option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 service NatsService {
   // Unary RPC (один запрос - один ответ)
@@ -62,7 +63,7 @@ message Placement {
 message StreamSource {
   string name = 1;
   uint64 opt_start_seq = 2;                  
-  Time opt_start_time = 3;
+  google.protobuf.Timestamp opt_start_time = 3;
   string filter_subject = 5; 
   repeated SubjectTransformConfig subject_transforms = 4;  
   ExternalStream external = 6;                  
@@ -94,7 +95,7 @@ message StreamConsumerLimits {
 // StreamInfo
 message StreamInfo {
   StreamConfig config = 1;
-  Time created = 2;
+  google.protobuf.Timestamp created = 2;
 	StreamState      state = 3;         
   ClusterInfo    ClusterInfo = 4;        
 	StreamSourceInfo     mirror = 5; 
@@ -142,19 +143,14 @@ message StreamState {
   uint64 msgs = 1;
   uint64 bytes = 2;
   uint64 first_seq = 3;
-  Time first_ts = 4;
+  google.protobuf.Timestamp first_ts = 4;
   uint64 last_seq = 5;
-  Time last_ts = 6;
+  google.protobuf.Timestamp last_ts = 6;
   int32 consumer_count = 7;
   repeated uint64 deleted = 8;
   int32 num_deleted = 9;
   uint64 num_subjects = 10;
   map<string, uint64> subjects = 11;
-}
-
-message Time {
-  uint64 wall = 1; 
-  int64 ext = 2;  
 }
 
 

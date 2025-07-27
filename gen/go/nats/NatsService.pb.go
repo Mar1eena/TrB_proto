@@ -10,6 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -387,7 +388,7 @@ type StreamSource struct {
 	state             protoimpl.MessageState    `protogen:"open.v1"`
 	Name              string                    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	OptStartSeq       uint64                    `protobuf:"varint,2,opt,name=opt_start_seq,json=optStartSeq,proto3" json:"opt_start_seq,omitempty"`
-	OptStartTime      *Time                     `protobuf:"bytes,3,opt,name=opt_start_time,json=optStartTime,proto3" json:"opt_start_time,omitempty"`
+	OptStartTime      *timestamppb.Timestamp    `protobuf:"bytes,3,opt,name=opt_start_time,json=optStartTime,proto3" json:"opt_start_time,omitempty"`
 	FilterSubject     string                    `protobuf:"bytes,5,opt,name=filter_subject,json=filterSubject,proto3" json:"filter_subject,omitempty"`
 	SubjectTransforms []*SubjectTransformConfig `protobuf:"bytes,4,rep,name=subject_transforms,json=subjectTransforms,proto3" json:"subject_transforms,omitempty"`
 	External          *ExternalStream           `protobuf:"bytes,6,opt,name=external,proto3" json:"external,omitempty"`
@@ -440,7 +441,7 @@ func (x *StreamSource) GetOptStartSeq() uint64 {
 	return 0
 }
 
-func (x *StreamSource) GetOptStartTime() *Time {
+func (x *StreamSource) GetOptStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.OptStartTime
 	}
@@ -695,7 +696,7 @@ func (x *StreamConsumerLimits) GetMaxAckPending() int64 {
 type StreamInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Config        *StreamConfig          `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
-	Created       *Time                  `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
 	State         *StreamState           `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
 	ClusterInfo   *ClusterInfo           `protobuf:"bytes,4,opt,name=ClusterInfo,proto3" json:"ClusterInfo,omitempty"`
 	Mirror        *StreamSourceInfo      `protobuf:"bytes,5,opt,name=mirror,proto3" json:"mirror,omitempty"`
@@ -742,7 +743,7 @@ func (x *StreamInfo) GetConfig() *StreamConfig {
 	return nil
 }
 
-func (x *StreamInfo) GetCreated() *Time {
+func (x *StreamInfo) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
 	}
@@ -1137,9 +1138,9 @@ type StreamState struct {
 	Msgs          uint64                 `protobuf:"varint,1,opt,name=msgs,proto3" json:"msgs,omitempty"`
 	Bytes         uint64                 `protobuf:"varint,2,opt,name=bytes,proto3" json:"bytes,omitempty"`
 	FirstSeq      uint64                 `protobuf:"varint,3,opt,name=first_seq,json=firstSeq,proto3" json:"first_seq,omitempty"`
-	FirstTs       *Time                  `protobuf:"bytes,4,opt,name=first_ts,json=firstTs,proto3" json:"first_ts,omitempty"`
+	FirstTs       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=first_ts,json=firstTs,proto3" json:"first_ts,omitempty"`
 	LastSeq       uint64                 `protobuf:"varint,5,opt,name=last_seq,json=lastSeq,proto3" json:"last_seq,omitempty"`
-	LastTs        *Time                  `protobuf:"bytes,6,opt,name=last_ts,json=lastTs,proto3" json:"last_ts,omitempty"`
+	LastTs        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_ts,json=lastTs,proto3" json:"last_ts,omitempty"`
 	ConsumerCount int32                  `protobuf:"varint,7,opt,name=consumer_count,json=consumerCount,proto3" json:"consumer_count,omitempty"`
 	Deleted       []uint64               `protobuf:"varint,8,rep,packed,name=deleted,proto3" json:"deleted,omitempty"`
 	NumDeleted    int32                  `protobuf:"varint,9,opt,name=num_deleted,json=numDeleted,proto3" json:"num_deleted,omitempty"`
@@ -1200,7 +1201,7 @@ func (x *StreamState) GetFirstSeq() uint64 {
 	return 0
 }
 
-func (x *StreamState) GetFirstTs() *Time {
+func (x *StreamState) GetFirstTs() *timestamppb.Timestamp {
 	if x != nil {
 		return x.FirstTs
 	}
@@ -1214,7 +1215,7 @@ func (x *StreamState) GetLastSeq() uint64 {
 	return 0
 }
 
-func (x *StreamState) GetLastTs() *Time {
+func (x *StreamState) GetLastTs() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastTs
 	}
@@ -1256,63 +1257,11 @@ func (x *StreamState) GetSubjects() map[string]uint64 {
 	return nil
 }
 
-type Time struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Wall          uint64                 `protobuf:"varint,1,opt,name=wall,proto3" json:"wall,omitempty"`
-	Ext           int64                  `protobuf:"varint,2,opt,name=ext,proto3" json:"ext,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Time) Reset() {
-	*x = Time{}
-	mi := &file_nats_NatsService_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Time) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Time) ProtoMessage() {}
-
-func (x *Time) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Time.ProtoReflect.Descriptor instead.
-func (*Time) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *Time) GetWall() uint64 {
-	if x != nil {
-		return x.Wall
-	}
-	return 0
-}
-
-func (x *Time) GetExt() int64 {
-	if x != nil {
-		return x.Ext
-	}
-	return 0
-}
-
 var File_nats_NatsService_proto protoreflect.FileDescriptor
 
 const file_nats_NatsService_proto_rawDesc = "" +
 	"\n" +
-	"\x16nats/NatsService.proto\x12\x1btrb.nats.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\"\xfc\v\n" +
+	"\x16nats/NatsService.proto\x12\x1btrb.nats.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xfc\v\n" +
 	"\fStreamConfig\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1a\n" +
@@ -1357,11 +1306,11 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"9\n" +
 	"\tPlacement\x12\x18\n" +
 	"\acluster\x18\x01 \x01(\tR\acluster\x12\x12\n" +
-	"\x04tags\x18\x02 \x03(\tR\x04tags\"\xfb\x02\n" +
+	"\x04tags\x18\x02 \x03(\tR\x04tags\"\xf4\x02\n" +
 	"\fStreamSource\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\"\n" +
-	"\ropt_start_seq\x18\x02 \x01(\x04R\voptStartSeq\x12G\n" +
-	"\x0eopt_start_time\x18\x03 \x01(\v2!.trb.nats.public.contract.v1.TimeR\foptStartTime\x12%\n" +
+	"\ropt_start_seq\x18\x02 \x01(\x04R\voptStartSeq\x12@\n" +
+	"\x0eopt_start_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\foptStartTime\x12%\n" +
 	"\x0efilter_subject\x18\x05 \x01(\tR\rfilterSubject\x12b\n" +
 	"\x12subject_transforms\x18\x04 \x03(\v23.trb.nats.public.contract.v1.SubjectTransformConfigR\x11subjectTransforms\x12G\n" +
 	"\bexternal\x18\x06 \x01(\v2+.trb.nats.public.contract.v1.ExternalStreamR\bexternal\x12\x16\n" +
@@ -1378,11 +1327,11 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\fheaders_only\x18\x03 \x01(\bR\vheadersOnly\"m\n" +
 	"\x14StreamConsumerLimits\x12-\n" +
 	"\x12inactive_threshold\x18\x02 \x01(\x03R\x11inactiveThreshold\x12&\n" +
-	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xf6\x03\n" +
+	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xef\x03\n" +
 	"\n" +
 	"StreamInfo\x12A\n" +
-	"\x06config\x18\x01 \x01(\v2).trb.nats.public.contract.v1.StreamConfigR\x06config\x12;\n" +
-	"\acreated\x18\x02 \x01(\v2!.trb.nats.public.contract.v1.TimeR\acreated\x12>\n" +
+	"\x06config\x18\x01 \x01(\v2).trb.nats.public.contract.v1.StreamConfigR\x06config\x124\n" +
+	"\acreated\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x12>\n" +
 	"\x05state\x18\x03 \x01(\v2(.trb.nats.public.contract.v1.StreamStateR\x05state\x12J\n" +
 	"\vClusterInfo\x18\x04 \x01(\v2(.trb.nats.public.contract.v1.ClusterInfoR\vClusterInfo\x12E\n" +
 	"\x06mirror\x18\x05 \x01(\v2-.trb.nats.public.contract.v1.StreamSourceInfoR\x06mirror\x12G\n" +
@@ -1415,14 +1364,14 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\acurrent\x18\x02 \x01(\bR\acurrent\x12\x18\n" +
 	"\aoffline\x18\x03 \x01(\bR\aoffline\x12\x16\n" +
 	"\x06active\x18\x04 \x01(\x03R\x06active\x12\x10\n" +
-	"\x03lag\x18\x05 \x01(\x04R\x03lag\"\xff\x03\n" +
+	"\x03lag\x18\x05 \x01(\x04R\x03lag\"\xf1\x03\n" +
 	"\vStreamState\x12\x12\n" +
 	"\x04msgs\x18\x01 \x01(\x04R\x04msgs\x12\x14\n" +
 	"\x05bytes\x18\x02 \x01(\x04R\x05bytes\x12\x1b\n" +
-	"\tfirst_seq\x18\x03 \x01(\x04R\bfirstSeq\x12<\n" +
-	"\bfirst_ts\x18\x04 \x01(\v2!.trb.nats.public.contract.v1.TimeR\afirstTs\x12\x19\n" +
-	"\blast_seq\x18\x05 \x01(\x04R\alastSeq\x12:\n" +
-	"\alast_ts\x18\x06 \x01(\v2!.trb.nats.public.contract.v1.TimeR\x06lastTs\x12%\n" +
+	"\tfirst_seq\x18\x03 \x01(\x04R\bfirstSeq\x125\n" +
+	"\bfirst_ts\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\afirstTs\x12\x19\n" +
+	"\blast_seq\x18\x05 \x01(\x04R\alastSeq\x123\n" +
+	"\alast_ts\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x06lastTs\x12%\n" +
 	"\x0econsumer_count\x18\a \x01(\x05R\rconsumerCount\x12\x18\n" +
 	"\adeleted\x18\b \x03(\x04R\adeleted\x12\x1f\n" +
 	"\vnum_deleted\x18\t \x01(\x05R\n" +
@@ -1432,10 +1381,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\bsubjects\x18\v \x03(\v26.trb.nats.public.contract.v1.StreamState.SubjectsEntryR\bsubjects\x1a;\n" +
 	"\rSubjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\",\n" +
-	"\x04Time\x12\x12\n" +
-	"\x04wall\x18\x01 \x01(\x04R\x04wall\x12\x10\n" +
-	"\x03ext\x18\x02 \x01(\x03R\x03ext2\x94\x01\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x012\x94\x01\n" +
 	"\vNatsService\x12\x84\x01\n" +
 	"\x10CreateNatsStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/CreateNatsStreamBDZBgithub.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1b\x06proto3"
 
@@ -1451,7 +1397,7 @@ func file_nats_NatsService_proto_rawDescGZIP() []byte {
 	return file_nats_NatsService_proto_rawDescData
 }
 
-var file_nats_NatsService_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_nats_NatsService_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_nats_NatsService_proto_goTypes = []any{
 	(*StreamConfig)(nil),           // 0: trb.nats.public.contract.v1.StreamConfig
 	(*Placement)(nil),              // 1: trb.nats.public.contract.v1.Placement
@@ -1467,9 +1413,9 @@ var file_nats_NatsService_proto_goTypes = []any{
 	(*ClusterInfo)(nil),            // 11: trb.nats.public.contract.v1.ClusterInfo
 	(*PeerInfo)(nil),               // 12: trb.nats.public.contract.v1.PeerInfo
 	(*StreamState)(nil),            // 13: trb.nats.public.contract.v1.StreamState
-	(*Time)(nil),                   // 14: trb.nats.public.contract.v1.Time
-	nil,                            // 15: trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	nil,                            // 16: trb.nats.public.contract.v1.StreamState.SubjectsEntry
+	nil,                            // 14: trb.nats.public.contract.v1.StreamConfig.MetadataEntry
+	nil,                            // 15: trb.nats.public.contract.v1.StreamState.SubjectsEntry
+	(*timestamppb.Timestamp)(nil),  // 16: google.protobuf.Timestamp
 }
 var file_nats_NatsService_proto_depIdxs = []int32{
 	1,  // 0: trb.nats.public.contract.v1.StreamConfig.placement:type_name -> trb.nats.public.contract.v1.Placement
@@ -1478,12 +1424,12 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	4,  // 3: trb.nats.public.contract.v1.StreamConfig.subject_transform:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	5,  // 4: trb.nats.public.contract.v1.StreamConfig.republish:type_name -> trb.nats.public.contract.v1.RePublish
 	6,  // 5: trb.nats.public.contract.v1.StreamConfig.consumer_limits:type_name -> trb.nats.public.contract.v1.StreamConsumerLimits
-	15, // 6: trb.nats.public.contract.v1.StreamConfig.metadata:type_name -> trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	14, // 7: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> trb.nats.public.contract.v1.Time
+	14, // 6: trb.nats.public.contract.v1.StreamConfig.metadata:type_name -> trb.nats.public.contract.v1.StreamConfig.MetadataEntry
+	16, // 7: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
 	4,  // 8: trb.nats.public.contract.v1.StreamSource.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	3,  // 9: trb.nats.public.contract.v1.StreamSource.external:type_name -> trb.nats.public.contract.v1.ExternalStream
 	0,  // 10: trb.nats.public.contract.v1.StreamInfo.config:type_name -> trb.nats.public.contract.v1.StreamConfig
-	14, // 11: trb.nats.public.contract.v1.StreamInfo.created:type_name -> trb.nats.public.contract.v1.Time
+	16, // 11: trb.nats.public.contract.v1.StreamInfo.created:type_name -> google.protobuf.Timestamp
 	13, // 12: trb.nats.public.contract.v1.StreamInfo.state:type_name -> trb.nats.public.contract.v1.StreamState
 	11, // 13: trb.nats.public.contract.v1.StreamInfo.ClusterInfo:type_name -> trb.nats.public.contract.v1.ClusterInfo
 	8,  // 14: trb.nats.public.contract.v1.StreamInfo.mirror:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
@@ -1493,9 +1439,9 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	10, // 18: trb.nats.public.contract.v1.StreamSourceInfo.error:type_name -> trb.nats.public.contract.v1.APIError
 	4,  // 19: trb.nats.public.contract.v1.StreamSourceInfo.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	12, // 20: trb.nats.public.contract.v1.ClusterInfo.replicas:type_name -> trb.nats.public.contract.v1.PeerInfo
-	14, // 21: trb.nats.public.contract.v1.StreamState.first_ts:type_name -> trb.nats.public.contract.v1.Time
-	14, // 22: trb.nats.public.contract.v1.StreamState.last_ts:type_name -> trb.nats.public.contract.v1.Time
-	16, // 23: trb.nats.public.contract.v1.StreamState.subjects:type_name -> trb.nats.public.contract.v1.StreamState.SubjectsEntry
+	16, // 21: trb.nats.public.contract.v1.StreamState.first_ts:type_name -> google.protobuf.Timestamp
+	16, // 22: trb.nats.public.contract.v1.StreamState.last_ts:type_name -> google.protobuf.Timestamp
+	15, // 23: trb.nats.public.contract.v1.StreamState.subjects:type_name -> trb.nats.public.contract.v1.StreamState.SubjectsEntry
 	0,  // 24: trb.nats.public.contract.v1.NatsService.CreateNatsStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	7,  // 25: trb.nats.public.contract.v1.NatsService.CreateNatsStream:output_type -> trb.nats.public.contract.v1.StreamInfo
 	25, // [25:26] is the sub-list for method output_type
@@ -1516,7 +1462,7 @@ func file_nats_NatsService_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_nats_NatsService_proto_rawDesc), len(file_nats_NatsService_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
