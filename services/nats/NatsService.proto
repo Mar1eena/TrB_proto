@@ -23,7 +23,62 @@ message MRequest {
 }
 
 message MResponse {
-  string reply = 1;
+  StreamConfig config = 1;
+  google.protobuf.Duration created = 2;
+	StreamState      state = 3;         
+  ClusterInfo    ClusterInfo = 4;        
+	StreamSourceInfo     mirror = 5; 
+	repeated StreamSourceInfo sources = 6;
+	repeated StreamAlternate alternates = 7; 
+}
+
+message StreamAlternate {
+  string name = 1;
+  string domain = 2;
+  string cluster = 3;
+}
+message StreamSourceInfo {
+  string name = 1;
+  int64 lag = 2;
+  google.protobuf.Duration active = 3;
+  ExternalStream external = 4;
+  APIError error = 5;
+  string filter_subject = 6;
+  SubjectTransformConfig subject_transforms = 7;
+}
+
+message APIError{
+  int64 code = 1;
+  int32 err_code = 2;
+  string description = 3;
+}
+
+message ClusterInfo {
+  string name = 1;
+  string leader = 2;
+  repeated PeerInfo replicas = 3;
+}
+
+message PeerInfo {
+  string name = 1;
+  bool current = 2;
+  bool offline = 3;
+  google.protobuf.Duration active = 4;
+  uint64 lag = 5;
+}
+
+message StreamState {
+  uint64 msgs = 1;
+  uint64 bytes = 2;
+  uint64 first_seq = 3;
+  google.protobuf.Timestamp first_ts = 4;
+  uint64 last_seq = 5;
+  google.protobuf.Timestamp last_ts = 6;
+  int32 consumer_count = 7;
+  repeated uint64 deleted = 8;
+  int32 num_deleted = 9;
+  uint64 num_subjects = 10;
+  map<string, uint64> subjects = 11;
 }
 
 message StreamConfig {
