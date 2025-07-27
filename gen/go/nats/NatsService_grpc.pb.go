@@ -27,7 +27,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NatsServiceClient interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*MResponse, error)
+	CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
 }
 
 type natsServiceClient struct {
@@ -38,9 +38,9 @@ func NewNatsServiceClient(cc grpc.ClientConnInterface) NatsServiceClient {
 	return &natsServiceClient{cc}
 }
 
-func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*MResponse, error) {
+func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MResponse)
+	out := new(StreamInfo)
 	err := c.cc.Invoke(ctx, NatsService_CreateNatsStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (c *natsServiceClient) CreateNatsStream(ctx context.Context, in *StreamConf
 // for forward compatibility.
 type NatsServiceServer interface {
 	// Unary RPC (один запрос - один ответ)
-	CreateNatsStream(context.Context, *StreamConfig) (*MResponse, error)
+	CreateNatsStream(context.Context, *StreamConfig) (*StreamInfo, error)
 	mustEmbedUnimplementedNatsServiceServer()
 }
 
@@ -64,7 +64,7 @@ type NatsServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNatsServiceServer struct{}
 
-func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *StreamConfig) (*MResponse, error) {
+func (UnimplementedNatsServiceServer) CreateNatsStream(context.Context, *StreamConfig) (*StreamInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNatsStream not implemented")
 }
 func (UnimplementedNatsServiceServer) mustEmbedUnimplementedNatsServiceServer() {}

@@ -4,12 +4,10 @@ package trb.nats.public.contract.v1;
 option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 
 service NatsService {
   // Unary RPC (один запрос - один ответ)
-  rpc CreateNatsStream (StreamConfig) returns (MResponse){
+  rpc CreateNatsStream (StreamConfig) returns (StreamInfo){
     option (google.api.http) = {
       post: "/CreateNatsStream"
       body: "*"
@@ -18,86 +16,24 @@ service NatsService {
 
 }
 
-message MRequest {
-  string text = 1;
-}
-
-message MResponse {
-  StreamConfig config = 1;
-  google.protobuf.Duration created = 2;
-	StreamState      state = 3;         
-  ClusterInfo    ClusterInfo = 4;        
-	StreamSourceInfo     mirror = 5; 
-	repeated StreamSourceInfo sources = 6;
-	repeated StreamAlternate alternates = 7; 
-}
-
-message StreamAlternate {
-  string name = 1;
-  string domain = 2;
-  string cluster = 3;
-}
-message StreamSourceInfo {
-  string name = 1;
-  int64 lag = 2;
-  google.protobuf.Duration active = 3;
-  ExternalStream external = 4;
-  APIError error = 5;
-  string filter_subject = 6;
-  SubjectTransformConfig subject_transforms = 7;
-}
-
-message APIError{
-  int64 code = 1;
-  int32 err_code = 2;
-  string description = 3;
-}
-
-message ClusterInfo {
-  string name = 1;
-  string leader = 2;
-  repeated PeerInfo replicas = 3;
-}
-
-message PeerInfo {
-  string name = 1;
-  bool current = 2;
-  bool offline = 3;
-  google.protobuf.Duration active = 4;
-  uint64 lag = 5;
-}
-
-message StreamState {
-  uint64 msgs = 1;
-  uint64 bytes = 2;
-  uint64 first_seq = 3;
-  google.protobuf.Timestamp first_ts = 4;
-  uint64 last_seq = 5;
-  google.protobuf.Timestamp last_ts = 6;
-  int32 consumer_count = 7;
-  repeated uint64 deleted = 8;
-  int32 num_deleted = 9;
-  uint64 num_subjects = 10;
-  map<string, uint64> subjects = 11;
-}
-
+// StreamConfig
 message StreamConfig {
   string name = 1;
   string description = 2;
   repeated string subjects = 3;
-  RetentionPolicy retention = 4;
+  int32 retention = 4;
   int32 max_consumers = 5;
   int64 max_msgs = 6;
   int64 max_bytes = 7;
-  DiscardPolicy discard = 8;
+  int32 discard = 8;
   bool discard_new_per_subject = 9;
-  google.protobuf.Duration max_age = 10;
+  int64 max_age = 10;
   int64 max_msgs_per_subject = 11;
   int32 max_msg_size = 12;
-  StorageType storage = 13;
+  int32 storage = 13;
   int32 replicas = 14;
   bool no_ack = 15;
-  google.protobuf.Duration duplicate_window = 16;
+  int64 duplicate_window = 16;
   Placement placement = 17;
   StreamSource mirror = 18;
   repeated StreamSource sources = 19;
@@ -105,7 +41,7 @@ message StreamConfig {
   bool deny_delete = 21;
   bool deny_purge = 22;
   bool allow_rollup = 23;
-  StoreCompression compression = 24;
+  int32 compression = 24;
   uint64 first_seq = 25;
   SubjectTransformConfig subject_transform = 26;
   RePublish republish = 27;
@@ -115,32 +51,7 @@ message StreamConfig {
   map<string, string> metadata = 31;
   string template_owner = 32;
   bool allow_msg_ttl = 33;
-  google.protobuf.Duration subject_delete_marker_ttl = 34;
-}
-
-enum RetentionPolicy {
-  RETENTION_POLICY_UNSPECIFIED = 0;
-  LIMITS_POLICY = 1;
-  INTEREST_POLICY = 2;
-  WORK_QUEUE_POLICY = 3;
-}
-
-enum DiscardPolicy {
-  DISCARD_POLICY_UNSPECIFIED = 0;
-  DISCARD_OLD = 1;
-  DISCARD_NEW = 2;
-}
-
-enum StorageType {
-  STORAGE_TYPE_UNSPECIFIED = 0;
-  FILE = 1;
-  MEMORY = 2;
-}
-
-enum StoreCompression {
-  STORE_COMPRESSION_UNSPECIFIED = 0;
-  NONE = 1;
-  S2 = 2;
+  int64 subject_delete_marker_ttl = 34;
 }
 
 message Placement {
@@ -150,12 +61,12 @@ message Placement {
 
 message StreamSource {
   string name = 1;
-  uint64 opt_start_seq = 2;                     // соответствует OptStartSeq
-  google.protobuf.Timestamp opt_start_time = 3; // изменено с Duration на Timestamp
-  SubjectTransformConfig subject_transforms = 4; // сделано repeated для соответствия слайсу
-  string filter_subject = 5;                    // изменено с repeated на string
-  ExternalStream external = 6;                  // Placement удален, так как нет в Go-структуре
-  string domain = 7;                           // добавлено, но учтите json:"-"
+  uint64 opt_start_seq = 2;                  
+  Time opt_start_time = 3;
+  string filter_subject = 5; 
+  repeated SubjectTransformConfig subject_transforms = 4;  
+  ExternalStream external = 6;                  
+  string domain = 7;                           
 }
 
 message ExternalStream {
@@ -175,7 +86,100 @@ message RePublish {
 }
 
 message StreamConsumerLimits {
+  int64 inactive_threshold = 2;
   int64 max_ack_pending = 1;
-  google.protobuf.Duration inactive_threshold = 2;
 }
+
+
+// StreamInfo
+message StreamInfo {
+  StreamConfig config = 1;
+  Time created = 2;
+	StreamState      state = 3;         
+  ClusterInfo    ClusterInfo = 4;        
+	StreamSourceInfo     mirror = 5; 
+	repeated StreamSourceInfo sources = 6;
+	repeated StreamAlternate alternates = 7; 
+}
+
+message StreamSourceInfo {
+  string name = 1;
+  int64 lag = 2;
+  int64 active = 3;
+  ExternalStream external = 4;
+  APIError error = 5;
+  string filter_subject = 6;
+  SubjectTransformConfig subject_transforms = 7;
+}
+
+message StreamAlternate {
+  string name = 1;
+  string domain = 2;
+  string cluster = 3;
+}
+
+message APIError{
+  int64 code = 1;
+  int32 err_code = 2;
+  string description = 3;
+}
+
+message ClusterInfo {
+  string name = 1;
+  string leader = 2;
+  repeated PeerInfo replicas = 3;
+}
+
+message PeerInfo {
+  string name = 1;
+  bool current = 2;
+  bool offline = 3;
+  int64 active = 4;
+  uint64 lag = 5;
+}
+
+message StreamState {
+  uint64 msgs = 1;
+  uint64 bytes = 2;
+  uint64 first_seq = 3;
+  Time first_ts = 4;
+  uint64 last_seq = 5;
+  Time last_ts = 6;
+  int32 consumer_count = 7;
+  repeated uint64 deleted = 8;
+  int32 num_deleted = 9;
+  uint64 num_subjects = 10;
+  map<string, uint64> subjects = 11;
+}
+
+message Time {
+  uint64 wall = 1; 
+  int64 ext = 2;  
+}
+
+
+// enum RetentionPolicy {
+//   RETENTION_POLICY_UNSPECIFIED = 0;
+//   LIMITS_POLICY = 1;
+//   INTEREST_POLICY = 2;
+//   WORK_QUEUE_POLICY = 3;
+// }
+
+// enum DiscardPolicy {
+//   DISCARD_POLICY_UNSPECIFIED = 0;
+//   DISCARD_OLD = 1;
+//   DISCARD_NEW = 2;
+// }
+
+// enum StorageType {
+//   STORAGE_TYPE_UNSPECIFIED = 0;
+//   FILE = 1;
+//   MEMORY = 2;
+// }
+
+// enum StoreCompression {
+//   STORE_COMPRESSION_UNSPECIFIED = 0;
+//   NONE = 1;
+//   S2 = 2;
+// }
 
