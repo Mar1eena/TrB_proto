@@ -8,9 +8,9 @@ import "google/protobuf/timestamp.proto";
 
 service NatsJetStreamManager {
   // AddStream creates a stream.
-  rpc CreateStream (StreamConfig) returns (StreamInfo){
+  rpc AddStream (StreamConfig) returns (StreamInfo){
     option (google.api.http) = {
-      post: "/CreateStream"
+      post: "/AddStream"
       body: "*"
     };
   };

@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NatsJetStreamManager_CreateStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/CreateStream"
+	NatsJetStreamManager_AddStream_FullMethodName           = "/trb.nats.public.contract.v1.NatsJetStreamManager/AddStream"
 	NatsJetStreamManager_UpdateStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/UpdateStream"
 	NatsJetStreamManager_DeleteStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/DeleteStream"
 	NatsJetStreamManager_InfoStream_FullMethodName          = "/trb.nats.public.contract.v1.NatsJetStreamManager/InfoStream"
@@ -46,7 +46,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NatsJetStreamManagerClient interface {
 	// AddStream creates a stream.
-	CreateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
+	AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
 	// UpdateStream updates a stream.
 	UpdateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
 	// DeleteStream deletes a stream.
@@ -107,10 +107,10 @@ func NewNatsJetStreamManagerClient(cc grpc.ClientConnInterface) NatsJetStreamMan
 	return &natsJetStreamManagerClient{cc}
 }
 
-func (c *natsJetStreamManagerClient) CreateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error) {
+func (c *natsJetStreamManagerClient) AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StreamInfo)
-	err := c.cc.Invoke(ctx, NatsJetStreamManager_CreateStream_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_AddStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,7 +357,7 @@ func (c *natsJetStreamManagerClient) StreamNameBySubject(ctx context.Context, in
 // for forward compatibility.
 type NatsJetStreamManagerServer interface {
 	// AddStream creates a stream.
-	CreateStream(context.Context, *StreamConfig) (*StreamInfo, error)
+	AddStream(context.Context, *StreamConfig) (*StreamInfo, error)
 	// UpdateStream updates a stream.
 	UpdateStream(context.Context, *StreamConfig) (*StreamInfo, error)
 	// DeleteStream deletes a stream.
@@ -418,8 +418,8 @@ type NatsJetStreamManagerServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNatsJetStreamManagerServer struct{}
 
-func (UnimplementedNatsJetStreamManagerServer) CreateStream(context.Context, *StreamConfig) (*StreamInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStream not implemented")
+func (UnimplementedNatsJetStreamManagerServer) AddStream(context.Context, *StreamConfig) (*StreamInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddStream not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) UpdateStream(context.Context, *StreamConfig) (*StreamInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateStream not implemented")
@@ -499,20 +499,20 @@ func RegisterNatsJetStreamManagerServer(s grpc.ServiceRegistrar, srv NatsJetStre
 	s.RegisterService(&NatsJetStreamManager_ServiceDesc, srv)
 }
 
-func _NatsJetStreamManager_CreateStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NatsJetStreamManager_AddStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StreamConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NatsJetStreamManagerServer).CreateStream(ctx, in)
+		return srv.(NatsJetStreamManagerServer).AddStream(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NatsJetStreamManager_CreateStream_FullMethodName,
+		FullMethod: NatsJetStreamManager_AddStream_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).CreateStream(ctx, req.(*StreamConfig))
+		return srv.(NatsJetStreamManagerServer).AddStream(ctx, req.(*StreamConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -832,8 +832,8 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NatsJetStreamManagerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateStream",
-			Handler:    _NatsJetStreamManager_CreateStream_Handler,
+			MethodName: "AddStream",
+			Handler:    _NatsJetStreamManager_AddStream_Handler,
 		},
 		{
 			MethodName: "UpdateStream",
