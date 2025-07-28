@@ -1,0 +1,101 @@
+{
+    "allow_direct": false,
+    "allow_msg_ttl": false,
+    "allow_rollup_hdrs": false,
+    "compression": 0,
+    "deny_delete": false,
+    "deny_purge": false,
+    "discard": 1,
+    "discard_new_per_subject": false,
+    "first_seq": 0,
+    "max_bytes": 0,
+    "max_consumers": 2313,
+    "max_msg_size": 0,
+    "max_msgs": 0,
+    "max_msgs_per_subject": 0,
+    "mirror_direct": false,
+    "name": "MARKET_DATA_RESPONSE",
+    "description": "MARKET_DATA_RESPONSE",
+    "no_ack": false,
+    "num_replicas": 1,
+    "retention": 0,
+    "sealed": false,
+    "storage": 0,
+    "template_owner": "",
+    "placement": {
+        "cluster": "asd",
+        "tags": [
+            "312",
+            "123",
+            "asd",
+            "asd"
+        ]
+    },
+    "max_age": 1,
+    "duplicate_window": 1,
+    "subject_delete_marker_ttl": 1,
+    "sources": [
+        {
+            "external": {
+                "api": "asd",
+                "deliver": "asd"
+            },
+            "subject_transforms": [
+                {
+                    "Source": "ads",
+                    "Destination": "asd"
+                }
+            ],
+            "name": "132",
+            "filter_subject": "132",
+            "opt_start_seq": 123,
+            "opt_start_time": {
+                "seconds": 1712345678, 
+                "nanos": 0 
+            }
+        }
+    ],
+    "mirror": {
+        "domain": null,
+        "external": {
+            "api": "asd",
+            "deliver": "asd"
+        },
+        "filter_subject": "123",
+        "name": "132",
+        "opt_start_seq": 123,
+        "opt_start_time": {
+            "seconds": 1712345678, 
+            "nanos": 0 
+        },
+        "subject_transforms": [
+            {
+                "Source": "ads",
+                "Destination": "asd"
+            }, 
+            {
+                "Source": "asd",
+                "Destination": "ads"
+            }
+        ]
+    },
+    "consumer_limits": {
+        "inactive_threshold": 1,
+        "max_ack_pending": 231
+    },
+    "republish": {
+        "dest": "asd",
+        "headers_only": true,
+        "src": "asd"
+    },
+    "subjects": [
+        "tinkoff.MarketDataResponse.SubscribeCandlesResponse",
+        "tinkoff.MarketDataResponse.SubscribeCandlesResponseфыв",
+        "tinkoff.MarketDataResponse.SubscribeCandlesResponseфывфыв"
+    ],
+    "metadata": {},
+    "subject_transform": {
+        "Source": "asd",
+        "Destination": "asd"
+    }
+}

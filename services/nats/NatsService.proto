@@ -105,7 +105,7 @@ message StreamInfo {
 
 message StreamSourceInfo {
   string name = 1;
-  int64 lag = 2;
+  uint64 lag = 2;
   int64 active = 3;
   ExternalStream external = 4;
   APIError error = 5;
@@ -120,7 +120,7 @@ message StreamAlternate {
 }
 
 message APIError{
-  int64 code = 1;
+  int32 code = 1;
   int32 err_code = 2;
   string description = 3;
 }

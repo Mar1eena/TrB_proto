@@ -788,7 +788,7 @@ func (x *StreamInfo) GetAlternates() []*StreamAlternate {
 type StreamSourceInfo struct {
 	state             protoimpl.MessageState    `protogen:"open.v1"`
 	Name              string                    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Lag               int64                     `protobuf:"varint,2,opt,name=lag,proto3" json:"lag,omitempty"`
+	Lag               uint64                    `protobuf:"varint,2,opt,name=lag,proto3" json:"lag,omitempty"`
 	Active            int64                     `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
 	External          *ExternalStream           `protobuf:"bytes,4,opt,name=external,proto3" json:"external,omitempty"`
 	Error             *APIError                 `protobuf:"bytes,5,opt,name=error,proto3" json:"error,omitempty"`
@@ -835,7 +835,7 @@ func (x *StreamSourceInfo) GetName() string {
 	return ""
 }
 
-func (x *StreamSourceInfo) GetLag() int64 {
+func (x *StreamSourceInfo) GetLag() uint64 {
 	if x != nil {
 		return x.Lag
 	}
@@ -939,7 +939,7 @@ func (x *StreamAlternate) GetCluster() string {
 
 type APIError struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          int64                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Code          int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
 	ErrCode       int32                  `protobuf:"varint,2,opt,name=err_code,json=errCode,proto3" json:"err_code,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -976,7 +976,7 @@ func (*APIError) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *APIError) GetCode() int64 {
+func (x *APIError) GetCode() int32 {
 	if x != nil {
 		return x.Code
 	}
@@ -1341,7 +1341,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"alternates\"\xe1\x02\n" +
 	"\x10StreamSourceInfo\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
-	"\x03lag\x18\x02 \x01(\x03R\x03lag\x12\x16\n" +
+	"\x03lag\x18\x02 \x01(\x04R\x03lag\x12\x16\n" +
 	"\x06active\x18\x03 \x01(\x03R\x06active\x12G\n" +
 	"\bexternal\x18\x04 \x01(\v2+.trb.nats.public.contract.v1.ExternalStreamR\bexternal\x12;\n" +
 	"\x05error\x18\x05 \x01(\v2%.trb.nats.public.contract.v1.APIErrorR\x05error\x12%\n" +
@@ -1352,7 +1352,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x06domain\x18\x02 \x01(\tR\x06domain\x12\x18\n" +
 	"\acluster\x18\x03 \x01(\tR\acluster\"[\n" +
 	"\bAPIError\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\x03R\x04code\x12\x19\n" +
+	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x19\n" +
 	"\berr_code\x18\x02 \x01(\x05R\aerrCode\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\"|\n" +
 	"\vClusterInfo\x12\x12\n" +
