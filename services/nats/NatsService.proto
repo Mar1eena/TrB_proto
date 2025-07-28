@@ -6,15 +6,192 @@ option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.cont
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
-service NatsService {
-  // Unary RPC (один запрос - один ответ)
-  rpc CreateNatsStream (StreamConfig) returns (StreamInfo){
+service NatsJetStreamManager {
+  // AddStream creates a stream.
+  rpc CreateStream (StreamConfig) returns (StreamInfo){
     option (google.api.http) = {
-      post: "/CreateNatsStream"
+      post: "/CreateStream"
       body: "*"
     };
   };
 
+  // UpdateStream updates a stream.
+  rpc UpdateStream (StreamConfig) returns (StreamInfo){
+    option (google.api.http) = {
+      post: "/UpdateStream"
+      body: "*"
+    };
+  };
+
+  // DeleteStream deletes a stream.
+  rpc DeleteStream (StreamName) returns (Response){
+    option (google.api.http) = {
+      post: "/DeleteStream"
+      body: "*"
+    };
+  };
+  
+  // StreamInfo retrieves information from a stream.
+  rpc InfoStream (StreamName) returns (StreamInfo){
+    option (google.api.http) = {
+      post: "/InfoStream"
+      body: "*"
+    };
+  };
+
+  // PurgeStream purges a stream messages.
+  rpc PurgeStream (StreamName) returns (Response){
+    option (google.api.http) = {
+      post: "/PurgeStream"
+      body: "*"
+    };
+  };
+
+  // Streams can be used to retrieve a list of StreamInfo objects.
+  rpc Streams (JsOpts) returns (stream StreamInfo){
+    option (google.api.http) = {
+      post: "/Streams"
+      body: "*"
+    };
+  };
+
+  // StreamNames is used to retrieve a list of Stream names.
+  rpc StreamNames (JsOpts) returns (stream StreamName){
+    option (google.api.http) = {
+      post: "/StreamNames"
+      body: "*"
+    };
+  };
+
+  // GetMsg retrieves a raw stream message stored in JetStream by sequence number.
+	// Use options nats.DirectGet() or nats.DirectGetNext() to trigger retrieval
+	// directly from a distributed group of servers (leader and replicas).
+	// The stream must have been created/updated with the AllowDirect boolean.
+  rpc GetMsg (Msg) returns (RawStreamMsg){
+    option (google.api.http) = {
+      post: "/GetMsg"
+      body: "*"
+    };
+  };
+
+  // GetLastMsg retrieves the last raw stream message stored in JetStream by subject.
+	// Use option nats.DirectGet() to trigger retrieval
+	// directly from a distributed group of servers (leader and replicas).
+	// The stream must have been created/updated with the AllowDirect boolean.
+  rpc GetLastMsg (LastMsg) returns (RawStreamMsg){
+    option (google.api.http) = {
+      post: "/GetLastMsg"
+      body: "*"
+    };
+  };
+
+  // DeleteMsg deletes a message from a stream. The message is marked as erased, but its value is not overwritten.
+  rpc DeleteMsg (Msg) returns (Response){
+    option (google.api.http) = {
+      post: "/DeleteMsg"
+      body: "*"
+    };
+  };
+
+  // SecureDeleteMsg deletes a message from a stream. The deleted message is overwritten with random data
+	// As a result, this operation is slower than DeleteMsg()
+  rpc SecureDeleteMsg (Msg) returns (Response){
+    option (google.api.http) = {
+      post: "/SecureDeleteMsg"
+      body: "*"
+    };
+  };
+
+  // AddConsumer adds a consumer to a stream.
+	// If the consumer already exists, and the configuration is the same, it
+	// will return the existing consumer.
+	// If the consumer already exists, and the configuration is different, it
+	// will return ErrConsumerNameAlreadyInUse.
+  rpc AddConsumer (Consumer) returns (ConsumerInfo){
+    option (google.api.http) = {
+      post: "/AddConsumer"
+      body: "*"
+    };
+  };
+
+  // UpdateConsumer updates an existing consumer.
+  rpc UpdateConsumer (Consumer) returns (ConsumerInfo){
+    option (google.api.http) = {
+      post: "/UpdateConsumer"
+      body: "*"
+    };
+  };
+
+  // DeleteConsumer deletes a consumer.
+  rpc DeleteConsumer (Consumer) returns (Response){
+    option (google.api.http) = {
+      post: "/DeleteConsumer"
+      body: "*"
+    };
+  };
+
+  // ConsumerInfo retrieves information of a consumer from a stream.
+  rpc ConsumerInfos (Consumer) returns (ConsumerInfo){
+    option (google.api.http) = {
+      post: "/ConsumerInfo"
+      body: "*"
+    };
+  };
+
+  // ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
+	// Deprecated: Use Consumers() instead.
+  rpc ConsumersInfo (StreamName) returns (stream ConsumerInfo){
+    option (google.api.http) = {
+      post: "/ConsumersInfo"
+      body: "*"
+    };
+  };
+
+  // Consumers is used to retrieve a list of ConsumerInfo objects.
+  rpc Consumers(StreamName) returns (stream ConsumerInfo){
+    option (google.api.http) = {
+      post: "/Consumers"
+      body: "*"
+    };
+  };
+
+  // ConsumerNames is used to retrieve a list of Consumer names.
+  rpc ConsumerNames(StreamName) returns (stream ConsNames){
+    option (google.api.http) = {
+      post: "/ConsumerNames"
+      body: "*"
+    };
+  };
+
+  // AccountInfo retrieves info about the JetStream usage from an account.
+  rpc AccountInfos(JsOpts) returns (AccountInfo){
+    option (google.api.http) = {
+      post: "/AccountInfo"
+      body: "*"
+    };
+  };
+
+  // StreamNameBySubject returns a stream matching given subject.
+  rpc StreamNameBySubject(ResponseStreamNameBySubject) returns (ResponseStreamNameBySubject){
+    option (google.api.http) = {
+      post: "/StreamNameBySubject"
+      body: "*"
+    };
+  };
+
+
+}
+
+message ResponseStreamNameBySubject {
+  string response = 1;
+}
+
+message Response {
+  string error = 1;
+}
+
+message StreamName {
+  string name = 1;
 }
 
 // StreamConfig
@@ -153,29 +330,137 @@ message StreamState {
   map<string, uint64> subjects = 11;
 }
 
+// jsOpts
+message JsOpts {}
 
-// enum RetentionPolicy {
-//   RETENTION_POLICY_UNSPECIFIED = 0;
-//   LIMITS_POLICY = 1;
-//   INTEREST_POLICY = 2;
-//   WORK_QUEUE_POLICY = 3;
-// }
+// Msg
+message Msg {
+  string  name = 1;
+  uint64 seq = 2; 
+}
 
-// enum DiscardPolicy {
-//   DISCARD_POLICY_UNSPECIFIED = 0;
-//   DISCARD_OLD = 1;
-//   DISCARD_NEW = 2;
-// }
+message LastMsg {
+  string  name = 1;
+  string subject = 2; 
+}
 
-// enum StorageType {
-//   STORAGE_TYPE_UNSPECIFIED = 0;
-//   FILE = 1;
-//   MEMORY = 2;
-// }
+message RawStreamMsg {
+  string subject = 1;
+  uint64 seq = 2;
+  map<string, string> hdrs = 3;
+  bytes data = 4;
+  google.protobuf.Timestamp time  = 5;
+}
 
-// enum StoreCompression {
-//   STORE_COMPRESSION_UNSPECIFIED = 0;
-//   NONE = 1;
-//   S2 = 2;
-// }
+// Consumer
+
+message Consumer {
+  string name = 1;
+  ConsumerConfig config = 2;
+}
+
+message ConsumerConfig {
+  string durable = 1;  // json:"durable_name,omitempty"
+  string name = 2;
+  string description = 3;
+  
+  int32 deliver_policy = 4;
+  uint64 opt_start_seq = 5;
+  google.protobuf.Timestamp opt_start_time = 6;
+  int32 ack_policy = 7;
+  int64 ack_wait = 8;
+  int32 max_deliver = 9;
+  repeated int64 backoff = 10;
+  
+  string filter_subject = 11;
+  repeated string filter_subjects = 12;
+  int32 replay_policy = 13;
+  uint64 rate_limit_bps = 14;  // Bits per sec
+  string sample_freq = 15;
+  int32 max_waiting = 16;
+  int32 max_ack_pending = 17;
+  bool flow_control = 18;
+  int64 idle_heartbeat = 19;
+  bool headers_only = 20;
+
+  // Pull based options
+  int32 max_request_batch = 21;    // json:"max_batch,omitempty"
+  int64 max_request_expires = 22;
+  int32 max_request_max_bytes = 23;  // json:"max_bytes,omitempty"
+
+  // Push based consumers
+  string deliver_subject = 24;
+  string deliver_group = 25;
+
+  // Inactivity threshold
+  int64 inactive_threshold = 26;
+
+  // Replication
+  int32 replicas = 27;  // json:"num_replicas"
+  bool memory_storage = 28;  // json:"mem_storage,omitempty"
+
+  // Metadata
+  map<string, string> metadata = 29;  // Keys starting with `_nats` are reserved
+}
+
+message ConsumerInfo {
+  string stream_name = 1;
+  string name = 2;
+  google.protobuf.Timestamp created = 3;
+  SequenceInfo delivered = 4; 
+  SequenceInfo ack_floor = 5;
+  int32 num_ack_pendin = 6;
+  int32 num_redelivered = 7;
+  int32 num_waiting   = 8;
+  uint64 num_pending  = 9;
+  ClusterInfo cluster  = 10;
+  bool push_bound     = 11;
+}
+
+message SequenceInfo {
+  uint64 Consumer_seq = 1;
+  uint64 stream_seq = 2; 
+  google.protobuf.Timestamp last_active = 3;  
+  
+}
+
+message ConsNames {
+  string Response = 1;
+}
+
+// Account
+
+message AccountInfo {
+  Tier tier = 1;
+  string domain = 2;
+  APIStats api = 3;
+  map<string, Tier> tiers = 4; 
+
+}
+
+message Tier{
+  uint64 memory = 1;
+  uint64 storage = 2;
+  uint64 reserved_memory = 3;
+  uint64 reserved_storage = 4;
+  int32 stream = 5;
+  int32 consumers = 6;
+  AccountLimits limits = 7;
+}
+
+message AccountLimits{
+  uint64 max_memory = 1;
+  uint64 max_storage = 2;
+  int32 max_streams = 3;
+  int32 max_consumers = 4;
+  int32 max_ack_pending = 5;
+  int64 memory_max_stream_bytes = 6;
+  int64 storage_max_stream_bytes = 7;
+  bool max_bytes_required = 8;
+}
+
+message APIStats {
+  uint64 total = 1;
+  uint64 errors = 2;
+}
 
