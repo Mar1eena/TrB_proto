@@ -2717,14 +2717,13 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x12max_bytes_required\x18\b \x01(\bR\x10maxBytesRequired\"8\n" +
 	"\bAPIStats\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x04R\x05total\x12\x16\n" +
-	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xba\x13\n" +
+	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xbb\x13\n" +
 	"\x14NatsJetStreamManager\x12v\n" +
 	"\tAddStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/AddStream\x12|\n" +
 	"\fUpdateStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/UpdateStream\x12x\n" +
-	"\fDeleteStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/DeleteStream\x12v\n" +
-	"\n" +
-	"InfoStream\x12'.trb.nats.public.contract.v1.StreamName\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/InfoStream\x12v\n" +
+	"\fDeleteStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/DeleteStream\x12w\n" +
+	"\vStreamInfos\x12'.trb.nats.public.contract.v1.StreamName\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/StreamInfo\x12v\n" +
 	"\vPurgeStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/PurgeStream\x12n\n" +
 	"\aStreams\x12#.trb.nats.public.contract.v1.JsOpts\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Streams0\x01\x12v\n" +
 	"\vStreamNames\x12#.trb.nats.public.contract.v1.JsOpts\x1a'.trb.nats.public.contract.v1.StreamName\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/StreamNames0\x01\x12i\n" +
@@ -2839,7 +2838,7 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	3,  // 39: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	3,  // 40: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	2,  // 41: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteStream:input_type -> trb.nats.public.contract.v1.StreamName
-	2,  // 42: trb.nats.public.contract.v1.NatsJetStreamManager.InfoStream:input_type -> trb.nats.public.contract.v1.StreamName
+	2,  // 42: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfos:input_type -> trb.nats.public.contract.v1.StreamName
 	2,  // 43: trb.nats.public.contract.v1.NatsJetStreamManager.PurgeStream:input_type -> trb.nats.public.contract.v1.StreamName
 	17, // 44: trb.nats.public.contract.v1.NatsJetStreamManager.Streams:input_type -> trb.nats.public.contract.v1.JsOpts
 	17, // 45: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNames:input_type -> trb.nats.public.contract.v1.JsOpts
@@ -2859,7 +2858,7 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	10, // 59: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:output_type -> trb.nats.public.contract.v1.StreamInfo
 	10, // 60: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:output_type -> trb.nats.public.contract.v1.StreamInfo
 	1,  // 61: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteStream:output_type -> trb.nats.public.contract.v1.Response
-	10, // 62: trb.nats.public.contract.v1.NatsJetStreamManager.InfoStream:output_type -> trb.nats.public.contract.v1.StreamInfo
+	10, // 62: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfos:output_type -> trb.nats.public.contract.v1.StreamInfo
 	1,  // 63: trb.nats.public.contract.v1.NatsJetStreamManager.PurgeStream:output_type -> trb.nats.public.contract.v1.Response
 	10, // 64: trb.nats.public.contract.v1.NatsJetStreamManager.Streams:output_type -> trb.nats.public.contract.v1.StreamInfo
 	2,  // 65: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNames:output_type -> trb.nats.public.contract.v1.StreamName

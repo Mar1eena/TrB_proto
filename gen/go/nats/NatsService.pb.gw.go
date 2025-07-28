@@ -107,7 +107,7 @@ func local_request_NatsJetStreamManager_DeleteStream_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_InfoStream_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_StreamInfos_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -115,11 +115,11 @@ func request_NatsJetStreamManager_InfoStream_0(ctx context.Context, marshaler ru
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.InfoStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.StreamInfos(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_NatsJetStreamManager_InfoStream_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_NatsJetStreamManager_StreamInfos_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -127,7 +127,7 @@ func local_request_NatsJetStreamManager_InfoStream_0(ctx context.Context, marsha
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.InfoStream(ctx, &protoReq)
+	msg, err := server.StreamInfos(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -561,25 +561,25 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_InfoStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfos_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.public.contract.v1.NatsJetStreamManager/InfoStream", runtime.WithHTTPPathPattern("/InfoStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamInfos", runtime.WithHTTPPathPattern("/StreamInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_NatsJetStreamManager_InfoStream_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_NatsJetStreamManager_StreamInfos_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_InfoStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_StreamInfos_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -927,22 +927,22 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_InfoStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfos_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.public.contract.v1.NatsJetStreamManager/InfoStream", runtime.WithHTTPPathPattern("/InfoStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamInfos", runtime.WithHTTPPathPattern("/StreamInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_NatsJetStreamManager_InfoStream_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_NatsJetStreamManager_StreamInfos_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_InfoStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_StreamInfos_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1223,7 +1223,7 @@ var (
 	pattern_NatsJetStreamManager_AddStream_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddStream"}, ""))
 	pattern_NatsJetStreamManager_UpdateStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpdateStream"}, ""))
 	pattern_NatsJetStreamManager_DeleteStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteStream"}, ""))
-	pattern_NatsJetStreamManager_InfoStream_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"InfoStream"}, ""))
+	pattern_NatsJetStreamManager_StreamInfos_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamInfo"}, ""))
 	pattern_NatsJetStreamManager_PurgeStream_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"PurgeStream"}, ""))
 	pattern_NatsJetStreamManager_Streams_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Streams"}, ""))
 	pattern_NatsJetStreamManager_StreamNames_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamNames"}, ""))
@@ -1246,7 +1246,7 @@ var (
 	forward_NatsJetStreamManager_AddStream_0           = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_UpdateStream_0        = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_DeleteStream_0        = runtime.ForwardResponseMessage
-	forward_NatsJetStreamManager_InfoStream_0          = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamInfos_0         = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_PurgeStream_0         = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_Streams_0             = runtime.ForwardResponseStream
 	forward_NatsJetStreamManager_StreamNames_0         = runtime.ForwardResponseStream

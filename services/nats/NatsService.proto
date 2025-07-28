@@ -32,9 +32,9 @@ service NatsJetStreamManager {
   };
   
   // StreamInfo retrieves information from a stream.
-  rpc InfoStream (StreamName) returns (StreamInfo){
+  rpc StreamInfos (StreamName) returns (StreamInfo){
     option (google.api.http) = {
-      post: "/InfoStream"
+      post: "/StreamInfo"
       body: "*"
     };
   };
