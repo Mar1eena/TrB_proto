@@ -69,7 +69,7 @@ func (x *ResponseStreamNameBySubject) GetResponse() string {
 
 type Response struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Error         string                 `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	Response      string                 `protobuf:"bytes,1,opt,name=Response,proto3" json:"Response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -104,9 +104,9 @@ func (*Response) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Response) GetError() string {
+func (x *Response) GetResponse() string {
 	if x != nil {
-		return x.Error
+		return x.Response
 	}
 	return ""
 }
@@ -2478,9 +2478,9 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\n" +
 	"\x16nats/NatsService.proto\x12\x1btrb.nats.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"9\n" +
 	"\x1bResponseStreamNameBySubject\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\tR\bresponse\" \n" +
-	"\bResponse\x12\x14\n" +
-	"\x05error\x18\x01 \x01(\tR\x05error\" \n" +
+	"\bresponse\x18\x01 \x01(\tR\bresponse\"&\n" +
+	"\bResponse\x12\x1a\n" +
+	"\bResponse\x18\x01 \x01(\tR\bResponse\" \n" +
 	"\n" +
 	"StreamName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"\xfc\v\n" +

@@ -187,7 +187,7 @@ message ResponseStreamNameBySubject {
 }
 
 message Response {
-  string error = 1;
+  string Response = 1;
 }
 
 message StreamName {
