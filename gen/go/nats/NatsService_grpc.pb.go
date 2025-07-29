@@ -24,6 +24,7 @@ const (
 	NatsJetStreamManager_DeleteStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/DeleteStream"
 	NatsJetStreamManager_StreamInfo_FullMethodName          = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamInfo"
 	NatsJetStreamManager_PurgeStream_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/PurgeStream"
+	NatsJetStreamManager_StreamsInfo_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamsInfo"
 	NatsJetStreamManager_Streams_FullMethodName             = "/trb.nats.public.contract.v1.NatsJetStreamManager/Streams"
 	NatsJetStreamManager_StreamNames_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamNames"
 	NatsJetStreamManager_GetMsg_FullMethodName              = "/trb.nats.public.contract.v1.NatsJetStreamManager/GetMsg"
@@ -33,11 +34,11 @@ const (
 	NatsJetStreamManager_AddConsumer_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/AddConsumer"
 	NatsJetStreamManager_UpdateConsumer_FullMethodName      = "/trb.nats.public.contract.v1.NatsJetStreamManager/UpdateConsumer"
 	NatsJetStreamManager_DeleteConsumer_FullMethodName      = "/trb.nats.public.contract.v1.NatsJetStreamManager/DeleteConsumer"
-	NatsJetStreamManager_ConsumerInfos_FullMethodName       = "/trb.nats.public.contract.v1.NatsJetStreamManager/ConsumerInfos"
+	NatsJetStreamManager_ConsumerInfo_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/ConsumerInfo"
 	NatsJetStreamManager_ConsumersInfo_FullMethodName       = "/trb.nats.public.contract.v1.NatsJetStreamManager/ConsumersInfo"
 	NatsJetStreamManager_Consumers_FullMethodName           = "/trb.nats.public.contract.v1.NatsJetStreamManager/Consumers"
 	NatsJetStreamManager_ConsumerNames_FullMethodName       = "/trb.nats.public.contract.v1.NatsJetStreamManager/ConsumerNames"
-	NatsJetStreamManager_AccountInfos_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/AccountInfos"
+	NatsJetStreamManager_AccountInfo_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/AccountInfo"
 	NatsJetStreamManager_StreamNameBySubject_FullMethodName = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamNameBySubject"
 )
 
@@ -55,6 +56,9 @@ type NatsJetStreamManagerClient interface {
 	StreamInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*StreamInfos, error)
 	// PurgeStream purges a stream messages.
 	PurgeStream(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*Response, error)
+	// StreamsInfo can be used to retrieve a list of StreamInfo objects.
+	// Deprecated: Use Streams() instead.
+	StreamsInfo(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error)
 	// Streams can be used to retrieve a list of StreamInfo objects.
 	Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error)
 	// StreamNames is used to retrieve a list of Stream names.
@@ -79,22 +83,22 @@ type NatsJetStreamManagerClient interface {
 	// will return the existing consumer.
 	// If the consumer already exists, and the configuration is different, it
 	// will return ErrConsumerNameAlreadyInUse.
-	AddConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error)
+	AddConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error)
 	// UpdateConsumer updates an existing consumer.
-	UpdateConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error)
+	UpdateConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error)
 	// DeleteConsumer deletes a consumer.
 	DeleteConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*Response, error)
 	// ConsumerInfo retrieves information of a consumer from a stream.
-	ConsumerInfos(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error)
+	ConsumerInfo(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error)
 	// ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
 	// Deprecated: Use Consumers() instead.
-	ConsumersInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfo], error)
+	ConsumersInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfos], error)
 	// Consumers is used to retrieve a list of ConsumerInfo objects.
-	Consumers(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfo], error)
+	Consumers(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfos], error)
 	// ConsumerNames is used to retrieve a list of Consumer names.
 	ConsumerNames(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsNames], error)
 	// AccountInfo retrieves info about the JetStream usage from an account.
-	AccountInfos(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*AccountInfo, error)
+	AccountInfo(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*AccountInfos, error)
 	// StreamNameBySubject returns a stream matching given subject.
 	StreamNameBySubject(ctx context.Context, in *ResponseStreamNameBySubject, opts ...grpc.CallOption) (*ResponseStreamNameBySubject, error)
 }
@@ -157,9 +161,28 @@ func (c *natsJetStreamManagerClient) PurgeStream(ctx context.Context, in *Stream
 	return out, nil
 }
 
+func (c *natsJetStreamManagerClient) StreamsInfo(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[0], NatsJetStreamManager_StreamsInfo_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[JsOpts, StreamInfos]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type NatsJetStreamManager_StreamsInfoClient = grpc.ServerStreamingClient[StreamInfos]
+
 func (c *natsJetStreamManagerClient) Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[0], NatsJetStreamManager_Streams_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[1], NatsJetStreamManager_Streams_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -178,7 +201,7 @@ type NatsJetStreamManager_StreamsClient = grpc.ServerStreamingClient[StreamInfos
 
 func (c *natsJetStreamManagerClient) StreamNames(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamName], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[1], NatsJetStreamManager_StreamNames_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[2], NatsJetStreamManager_StreamNames_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -235,9 +258,9 @@ func (c *natsJetStreamManagerClient) SecureDeleteMsg(ctx context.Context, in *Ms
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) AddConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error) {
+func (c *natsJetStreamManagerClient) AddConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ConsumerInfo)
+	out := new(ConsumerInfos)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_AddConsumer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -245,9 +268,9 @@ func (c *natsJetStreamManagerClient) AddConsumer(ctx context.Context, in *Consum
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) UpdateConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error) {
+func (c *natsJetStreamManagerClient) UpdateConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ConsumerInfo)
+	out := new(ConsumerInfos)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_UpdateConsumer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -265,23 +288,23 @@ func (c *natsJetStreamManagerClient) DeleteConsumer(ctx context.Context, in *Con
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) ConsumerInfos(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfo, error) {
+func (c *natsJetStreamManagerClient) ConsumerInfo(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ConsumerInfo)
-	err := c.cc.Invoke(ctx, NatsJetStreamManager_ConsumerInfos_FullMethodName, in, out, cOpts...)
+	out := new(ConsumerInfos)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_ConsumerInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) ConsumersInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfo], error) {
+func (c *natsJetStreamManagerClient) ConsumersInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfos], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[2], NatsJetStreamManager_ConsumersInfo_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[3], NatsJetStreamManager_ConsumersInfo_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[StreamName, ConsumerInfo]{ClientStream: stream}
+	x := &grpc.GenericClientStream[StreamName, ConsumerInfos]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -292,15 +315,15 @@ func (c *natsJetStreamManagerClient) ConsumersInfo(ctx context.Context, in *Stre
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_ConsumersInfoClient = grpc.ServerStreamingClient[ConsumerInfo]
+type NatsJetStreamManager_ConsumersInfoClient = grpc.ServerStreamingClient[ConsumerInfos]
 
-func (c *natsJetStreamManagerClient) Consumers(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfo], error) {
+func (c *natsJetStreamManagerClient) Consumers(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfos], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[3], NatsJetStreamManager_Consumers_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[4], NatsJetStreamManager_Consumers_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[StreamName, ConsumerInfo]{ClientStream: stream}
+	x := &grpc.GenericClientStream[StreamName, ConsumerInfos]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -311,11 +334,11 @@ func (c *natsJetStreamManagerClient) Consumers(ctx context.Context, in *StreamNa
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_ConsumersClient = grpc.ServerStreamingClient[ConsumerInfo]
+type NatsJetStreamManager_ConsumersClient = grpc.ServerStreamingClient[ConsumerInfos]
 
 func (c *natsJetStreamManagerClient) ConsumerNames(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsNames], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[4], NatsJetStreamManager_ConsumerNames_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[5], NatsJetStreamManager_ConsumerNames_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -332,10 +355,10 @@ func (c *natsJetStreamManagerClient) ConsumerNames(ctx context.Context, in *Stre
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type NatsJetStreamManager_ConsumerNamesClient = grpc.ServerStreamingClient[ConsNames]
 
-func (c *natsJetStreamManagerClient) AccountInfos(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*AccountInfo, error) {
+func (c *natsJetStreamManagerClient) AccountInfo(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*AccountInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AccountInfo)
-	err := c.cc.Invoke(ctx, NatsJetStreamManager_AccountInfos_FullMethodName, in, out, cOpts...)
+	out := new(AccountInfos)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_AccountInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -366,6 +389,9 @@ type NatsJetStreamManagerServer interface {
 	StreamInfo(context.Context, *StreamName) (*StreamInfos, error)
 	// PurgeStream purges a stream messages.
 	PurgeStream(context.Context, *StreamName) (*Response, error)
+	// StreamsInfo can be used to retrieve a list of StreamInfo objects.
+	// Deprecated: Use Streams() instead.
+	StreamsInfo(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error
 	// Streams can be used to retrieve a list of StreamInfo objects.
 	Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error
 	// StreamNames is used to retrieve a list of Stream names.
@@ -390,22 +416,22 @@ type NatsJetStreamManagerServer interface {
 	// will return the existing consumer.
 	// If the consumer already exists, and the configuration is different, it
 	// will return ErrConsumerNameAlreadyInUse.
-	AddConsumer(context.Context, *Consumer) (*ConsumerInfo, error)
+	AddConsumer(context.Context, *Consumer) (*ConsumerInfos, error)
 	// UpdateConsumer updates an existing consumer.
-	UpdateConsumer(context.Context, *Consumer) (*ConsumerInfo, error)
+	UpdateConsumer(context.Context, *Consumer) (*ConsumerInfos, error)
 	// DeleteConsumer deletes a consumer.
 	DeleteConsumer(context.Context, *Consumer) (*Response, error)
 	// ConsumerInfo retrieves information of a consumer from a stream.
-	ConsumerInfos(context.Context, *Consumer) (*ConsumerInfo, error)
+	ConsumerInfo(context.Context, *Consumer) (*ConsumerInfos, error)
 	// ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
 	// Deprecated: Use Consumers() instead.
-	ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfo]) error
+	ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error
 	// Consumers is used to retrieve a list of ConsumerInfo objects.
-	Consumers(*StreamName, grpc.ServerStreamingServer[ConsumerInfo]) error
+	Consumers(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error
 	// ConsumerNames is used to retrieve a list of Consumer names.
 	ConsumerNames(*StreamName, grpc.ServerStreamingServer[ConsNames]) error
 	// AccountInfo retrieves info about the JetStream usage from an account.
-	AccountInfos(context.Context, *JsOpts) (*AccountInfo, error)
+	AccountInfo(context.Context, *JsOpts) (*AccountInfos, error)
 	// StreamNameBySubject returns a stream matching given subject.
 	StreamNameBySubject(context.Context, *ResponseStreamNameBySubject) (*ResponseStreamNameBySubject, error)
 	mustEmbedUnimplementedNatsJetStreamManagerServer()
@@ -433,6 +459,9 @@ func (UnimplementedNatsJetStreamManagerServer) StreamInfo(context.Context, *Stre
 func (UnimplementedNatsJetStreamManagerServer) PurgeStream(context.Context, *StreamName) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeStream not implemented")
 }
+func (UnimplementedNatsJetStreamManagerServer) StreamsInfo(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamsInfo not implemented")
+}
 func (UnimplementedNatsJetStreamManagerServer) Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error {
 	return status.Errorf(codes.Unimplemented, "method Streams not implemented")
 }
@@ -451,29 +480,29 @@ func (UnimplementedNatsJetStreamManagerServer) DeleteMsg(context.Context, *Msg) 
 func (UnimplementedNatsJetStreamManagerServer) SecureDeleteMsg(context.Context, *Msg) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SecureDeleteMsg not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) AddConsumer(context.Context, *Consumer) (*ConsumerInfo, error) {
+func (UnimplementedNatsJetStreamManagerServer) AddConsumer(context.Context, *Consumer) (*ConsumerInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddConsumer not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) UpdateConsumer(context.Context, *Consumer) (*ConsumerInfo, error) {
+func (UnimplementedNatsJetStreamManagerServer) UpdateConsumer(context.Context, *Consumer) (*ConsumerInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateConsumer not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) DeleteConsumer(context.Context, *Consumer) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteConsumer not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) ConsumerInfos(context.Context, *Consumer) (*ConsumerInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConsumerInfos not implemented")
+func (UnimplementedNatsJetStreamManagerServer) ConsumerInfo(context.Context, *Consumer) (*ConsumerInfos, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConsumerInfo not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfo]) error {
+func (UnimplementedNatsJetStreamManagerServer) ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error {
 	return status.Errorf(codes.Unimplemented, "method ConsumersInfo not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) Consumers(*StreamName, grpc.ServerStreamingServer[ConsumerInfo]) error {
+func (UnimplementedNatsJetStreamManagerServer) Consumers(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error {
 	return status.Errorf(codes.Unimplemented, "method Consumers not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) ConsumerNames(*StreamName, grpc.ServerStreamingServer[ConsNames]) error {
 	return status.Errorf(codes.Unimplemented, "method ConsumerNames not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) AccountInfos(context.Context, *JsOpts) (*AccountInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AccountInfos not implemented")
+func (UnimplementedNatsJetStreamManagerServer) AccountInfo(context.Context, *JsOpts) (*AccountInfos, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccountInfo not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) StreamNameBySubject(context.Context, *ResponseStreamNameBySubject) (*ResponseStreamNameBySubject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StreamNameBySubject not implemented")
@@ -588,6 +617,17 @@ func _NatsJetStreamManager_PurgeStream_Handler(srv interface{}, ctx context.Cont
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _NatsJetStreamManager_StreamsInfo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(JsOpts)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NatsJetStreamManagerServer).StreamsInfo(m, &grpc.GenericServerStream[JsOpts, StreamInfos]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type NatsJetStreamManager_StreamsInfoServer = grpc.ServerStreamingServer[StreamInfos]
 
 func _NatsJetStreamManager_Streams_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(JsOpts)
@@ -737,20 +777,20 @@ func _NatsJetStreamManager_DeleteConsumer_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NatsJetStreamManager_ConsumerInfos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NatsJetStreamManager_ConsumerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Consumer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NatsJetStreamManagerServer).ConsumerInfos(ctx, in)
+		return srv.(NatsJetStreamManagerServer).ConsumerInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NatsJetStreamManager_ConsumerInfos_FullMethodName,
+		FullMethod: NatsJetStreamManager_ConsumerInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).ConsumerInfos(ctx, req.(*Consumer))
+		return srv.(NatsJetStreamManagerServer).ConsumerInfo(ctx, req.(*Consumer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -760,22 +800,22 @@ func _NatsJetStreamManager_ConsumersInfo_Handler(srv interface{}, stream grpc.Se
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(NatsJetStreamManagerServer).ConsumersInfo(m, &grpc.GenericServerStream[StreamName, ConsumerInfo]{ServerStream: stream})
+	return srv.(NatsJetStreamManagerServer).ConsumersInfo(m, &grpc.GenericServerStream[StreamName, ConsumerInfos]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_ConsumersInfoServer = grpc.ServerStreamingServer[ConsumerInfo]
+type NatsJetStreamManager_ConsumersInfoServer = grpc.ServerStreamingServer[ConsumerInfos]
 
 func _NatsJetStreamManager_Consumers_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StreamName)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(NatsJetStreamManagerServer).Consumers(m, &grpc.GenericServerStream[StreamName, ConsumerInfo]{ServerStream: stream})
+	return srv.(NatsJetStreamManagerServer).Consumers(m, &grpc.GenericServerStream[StreamName, ConsumerInfos]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_ConsumersServer = grpc.ServerStreamingServer[ConsumerInfo]
+type NatsJetStreamManager_ConsumersServer = grpc.ServerStreamingServer[ConsumerInfos]
 
 func _NatsJetStreamManager_ConsumerNames_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StreamName)
@@ -788,20 +828,20 @@ func _NatsJetStreamManager_ConsumerNames_Handler(srv interface{}, stream grpc.Se
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type NatsJetStreamManager_ConsumerNamesServer = grpc.ServerStreamingServer[ConsNames]
 
-func _NatsJetStreamManager_AccountInfos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NatsJetStreamManager_AccountInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(JsOpts)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NatsJetStreamManagerServer).AccountInfos(ctx, in)
+		return srv.(NatsJetStreamManagerServer).AccountInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NatsJetStreamManager_AccountInfos_FullMethodName,
+		FullMethod: NatsJetStreamManager_AccountInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).AccountInfos(ctx, req.(*JsOpts))
+		return srv.(NatsJetStreamManagerServer).AccountInfo(ctx, req.(*JsOpts))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -880,12 +920,12 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NatsJetStreamManager_DeleteConsumer_Handler,
 		},
 		{
-			MethodName: "ConsumerInfos",
-			Handler:    _NatsJetStreamManager_ConsumerInfos_Handler,
+			MethodName: "ConsumerInfo",
+			Handler:    _NatsJetStreamManager_ConsumerInfo_Handler,
 		},
 		{
-			MethodName: "AccountInfos",
-			Handler:    _NatsJetStreamManager_AccountInfos_Handler,
+			MethodName: "AccountInfo",
+			Handler:    _NatsJetStreamManager_AccountInfo_Handler,
 		},
 		{
 			MethodName: "StreamNameBySubject",
@@ -893,6 +933,11 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamsInfo",
+			Handler:       _NatsJetStreamManager_StreamsInfo_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "Streams",
 			Handler:       _NatsJetStreamManager_Streams_Handler,

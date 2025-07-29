@@ -47,6 +47,15 @@ service NatsJetStreamManager {
     };
   };
 
+  // StreamsInfo can be used to retrieve a list of StreamInfo objects.
+	// Deprecated: Use Streams() instead.
+  rpc StreamsInfo (JsOpts) returns (stream StreamInfos){
+    option (google.api.http) = {
+      post: "/StreamsInfo"
+      body: "*"
+    };
+  };
+
   // Streams can be used to retrieve a list of StreamInfo objects.
   rpc Streams (JsOpts) returns (stream StreamInfos){
     option (google.api.http) = {
@@ -107,7 +116,7 @@ service NatsJetStreamManager {
 	// will return the existing consumer.
 	// If the consumer already exists, and the configuration is different, it
 	// will return ErrConsumerNameAlreadyInUse.
-  rpc AddConsumer (Consumer) returns (ConsumerInfo){
+  rpc AddConsumer (Consumer) returns (ConsumerInfos){
     option (google.api.http) = {
       post: "/AddConsumer"
       body: "*"
@@ -115,7 +124,7 @@ service NatsJetStreamManager {
   };
 
   // UpdateConsumer updates an existing consumer.
-  rpc UpdateConsumer (Consumer) returns (ConsumerInfo){
+  rpc UpdateConsumer (Consumer) returns (ConsumerInfos){
     option (google.api.http) = {
       post: "/UpdateConsumer"
       body: "*"
@@ -131,7 +140,7 @@ service NatsJetStreamManager {
   };
 
   // ConsumerInfo retrieves information of a consumer from a stream.
-  rpc ConsumerInfos (Consumer) returns (ConsumerInfo){
+  rpc ConsumerInfo (Consumer) returns (ConsumerInfos){
     option (google.api.http) = {
       post: "/ConsumerInfo"
       body: "*"
@@ -140,7 +149,7 @@ service NatsJetStreamManager {
 
   // ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
 	// Deprecated: Use Consumers() instead.
-  rpc ConsumersInfo (StreamName) returns (stream ConsumerInfo){
+  rpc ConsumersInfo (StreamName) returns (stream ConsumerInfos){
     option (google.api.http) = {
       post: "/ConsumersInfo"
       body: "*"
@@ -148,7 +157,7 @@ service NatsJetStreamManager {
   };
 
   // Consumers is used to retrieve a list of ConsumerInfo objects.
-  rpc Consumers(StreamName) returns (stream ConsumerInfo){
+  rpc Consumers(StreamName) returns (stream ConsumerInfos){
     option (google.api.http) = {
       post: "/Consumers"
       body: "*"
@@ -164,7 +173,7 @@ service NatsJetStreamManager {
   };
 
   // AccountInfo retrieves info about the JetStream usage from an account.
-  rpc AccountInfos(JsOpts) returns (AccountInfo){
+  rpc AccountInfo(JsOpts) returns (AccountInfos){
     option (google.api.http) = {
       post: "/AccountInfo"
       body: "*"
@@ -403,7 +412,7 @@ message ConsumerConfig {
   map<string, string> metadata = 29;  // Keys starting with `_nats` are reserved
 }
 
-message ConsumerInfo {
+message ConsumerInfos {
   string stream_name = 1;
   string name = 2;
   google.protobuf.Timestamp created = 3;
@@ -430,7 +439,7 @@ message ConsNames {
 
 // Account
 
-message AccountInfo {
+message AccountInfos {
   Tier tier = 1;
   string domain = 2;
   APIStats api = 3;
