@@ -278,7 +278,7 @@ message StreamConsumerLimits {
 }
 
 
-// StreamInfo
+// StreamInfos
 message StreamInfos {
   StreamConfig config = 1;
   google.protobuf.Timestamp created = 2;

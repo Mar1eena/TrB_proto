@@ -824,7 +824,7 @@ func (x *StreamConsumerLimits) GetMaxAckPending() int64 {
 	return 0
 }
 
-// StreamInfo
+// StreamInfos
 type StreamInfos struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Config        *StreamConfig          `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
