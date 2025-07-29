@@ -13,7 +13,7 @@ plugins:
 inputs:
   - directory: services
     paths:
-      - services/trb
+      - services/nats
       - services/tinvest
     exclude_paths:
       - services/google/api/annotations.proto
