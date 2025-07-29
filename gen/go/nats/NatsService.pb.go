@@ -825,7 +825,7 @@ func (x *StreamConsumerLimits) GetMaxAckPending() int64 {
 }
 
 // StreamInfo
-type StreamInfo struct {
+type StreamInfos struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Config        *StreamConfig          `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
@@ -838,20 +838,20 @@ type StreamInfo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *StreamInfo) Reset() {
-	*x = StreamInfo{}
+func (x *StreamInfos) Reset() {
+	*x = StreamInfos{}
 	mi := &file_nats_NatsService_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StreamInfo) String() string {
+func (x *StreamInfos) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StreamInfo) ProtoMessage() {}
+func (*StreamInfos) ProtoMessage() {}
 
-func (x *StreamInfo) ProtoReflect() protoreflect.Message {
+func (x *StreamInfos) ProtoReflect() protoreflect.Message {
 	mi := &file_nats_NatsService_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -863,54 +863,54 @@ func (x *StreamInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StreamInfo.ProtoReflect.Descriptor instead.
-func (*StreamInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use StreamInfos.ProtoReflect.Descriptor instead.
+func (*StreamInfos) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *StreamInfo) GetConfig() *StreamConfig {
+func (x *StreamInfos) GetConfig() *StreamConfig {
 	if x != nil {
 		return x.Config
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetCreated() *timestamppb.Timestamp {
+func (x *StreamInfos) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetState() *StreamState {
+func (x *StreamInfos) GetState() *StreamState {
 	if x != nil {
 		return x.State
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetCluster() *ClusterInfo {
+func (x *StreamInfos) GetCluster() *ClusterInfo {
 	if x != nil {
 		return x.Cluster
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetMirror() *StreamSourceInfo {
+func (x *StreamInfos) GetMirror() *StreamSourceInfo {
 	if x != nil {
 		return x.Mirror
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetSources() []*StreamSourceInfo {
+func (x *StreamInfos) GetSources() []*StreamSourceInfo {
 	if x != nil {
 		return x.Sources
 	}
 	return nil
 }
 
-func (x *StreamInfo) GetAlternates() []*StreamAlternate {
+func (x *StreamInfos) GetAlternates() []*StreamAlternate {
 	if x != nil {
 		return x.Alternates
 	}
@@ -2549,9 +2549,8 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\fheaders_only\x18\x03 \x01(\bR\vheadersOnly\"m\n" +
 	"\x14StreamConsumerLimits\x12-\n" +
 	"\x12inactive_threshold\x18\x02 \x01(\x03R\x11inactiveThreshold\x12&\n" +
-	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xe7\x03\n" +
-	"\n" +
-	"StreamInfo\x12A\n" +
+	"\x0fmax_ack_pending\x18\x01 \x01(\x03R\rmaxAckPending\"\xe8\x03\n" +
+	"\vStreamInfos\x12A\n" +
 	"\x06config\x18\x01 \x01(\v2).trb.nats.public.contract.v1.StreamConfigR\x06config\x124\n" +
 	"\acreated\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x12>\n" +
 	"\x05state\x18\x03 \x01(\v2(.trb.nats.public.contract.v1.StreamStateR\x05state\x12B\n" +
@@ -2717,15 +2716,16 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x12max_bytes_required\x18\b \x01(\bR\x10maxBytesRequired\"8\n" +
 	"\bAPIStats\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x04R\x05total\x12\x16\n" +
-	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xbb\x13\n" +
-	"\x14NatsJetStreamManager\x12v\n" +
-	"\tAddStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
-	"/AddStream\x12|\n" +
-	"\fUpdateStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/UpdateStream\x12x\n" +
+	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xbe\x13\n" +
+	"\x14NatsJetStreamManager\x12w\n" +
+	"\tAddStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a(.trb.nats.public.contract.v1.StreamInfos\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/AddStream\x12}\n" +
+	"\fUpdateStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a(.trb.nats.public.contract.v1.StreamInfos\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/UpdateStream\x12x\n" +
 	"\fDeleteStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/DeleteStream\x12w\n" +
-	"\vStreamInfos\x12'.trb.nats.public.contract.v1.StreamName\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/StreamInfo\x12v\n" +
-	"\vPurgeStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/PurgeStream\x12n\n" +
-	"\aStreams\x12#.trb.nats.public.contract.v1.JsOpts\x1a'.trb.nats.public.contract.v1.StreamInfo\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Streams0\x01\x12v\n" +
+	"\n" +
+	"StreamInfo\x12'.trb.nats.public.contract.v1.StreamName\x1a(.trb.nats.public.contract.v1.StreamInfos\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/StreamInfo\x12v\n" +
+	"\vPurgeStream\x12'.trb.nats.public.contract.v1.StreamName\x1a%.trb.nats.public.contract.v1.Response\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/PurgeStream\x12o\n" +
+	"\aStreams\x12#.trb.nats.public.contract.v1.JsOpts\x1a(.trb.nats.public.contract.v1.StreamInfos\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Streams0\x01\x12v\n" +
 	"\vStreamNames\x12#.trb.nats.public.contract.v1.JsOpts\x1a'.trb.nats.public.contract.v1.StreamName\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/StreamNames0\x01\x12i\n" +
 	"\x06GetMsg\x12 .trb.nats.public.contract.v1.Msg\x1a).trb.nats.public.contract.v1.RawStreamMsg\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/GetMsg\x12u\n" +
 	"\n" +
@@ -2768,7 +2768,7 @@ var file_nats_NatsService_proto_goTypes = []any{
 	(*SubjectTransformConfig)(nil),      // 7: trb.nats.public.contract.v1.SubjectTransformConfig
 	(*RePublish)(nil),                   // 8: trb.nats.public.contract.v1.RePublish
 	(*StreamConsumerLimits)(nil),        // 9: trb.nats.public.contract.v1.StreamConsumerLimits
-	(*StreamInfo)(nil),                  // 10: trb.nats.public.contract.v1.StreamInfo
+	(*StreamInfos)(nil),                 // 10: trb.nats.public.contract.v1.StreamInfos
 	(*StreamSourceInfo)(nil),            // 11: trb.nats.public.contract.v1.StreamSourceInfo
 	(*StreamAlternate)(nil),             // 12: trb.nats.public.contract.v1.StreamAlternate
 	(*APIError)(nil),                    // 13: trb.nats.public.contract.v1.APIError
@@ -2806,13 +2806,13 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	35, // 7: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
 	7,  // 8: trb.nats.public.contract.v1.StreamSource.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	6,  // 9: trb.nats.public.contract.v1.StreamSource.external:type_name -> trb.nats.public.contract.v1.ExternalStream
-	3,  // 10: trb.nats.public.contract.v1.StreamInfo.config:type_name -> trb.nats.public.contract.v1.StreamConfig
-	35, // 11: trb.nats.public.contract.v1.StreamInfo.created:type_name -> google.protobuf.Timestamp
-	16, // 12: trb.nats.public.contract.v1.StreamInfo.state:type_name -> trb.nats.public.contract.v1.StreamState
-	14, // 13: trb.nats.public.contract.v1.StreamInfo.cluster:type_name -> trb.nats.public.contract.v1.ClusterInfo
-	11, // 14: trb.nats.public.contract.v1.StreamInfo.mirror:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
-	11, // 15: trb.nats.public.contract.v1.StreamInfo.sources:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
-	12, // 16: trb.nats.public.contract.v1.StreamInfo.alternates:type_name -> trb.nats.public.contract.v1.StreamAlternate
+	3,  // 10: trb.nats.public.contract.v1.StreamInfos.config:type_name -> trb.nats.public.contract.v1.StreamConfig
+	35, // 11: trb.nats.public.contract.v1.StreamInfos.created:type_name -> google.protobuf.Timestamp
+	16, // 12: trb.nats.public.contract.v1.StreamInfos.state:type_name -> trb.nats.public.contract.v1.StreamState
+	14, // 13: trb.nats.public.contract.v1.StreamInfos.cluster:type_name -> trb.nats.public.contract.v1.ClusterInfo
+	11, // 14: trb.nats.public.contract.v1.StreamInfos.mirror:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
+	11, // 15: trb.nats.public.contract.v1.StreamInfos.sources:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
+	12, // 16: trb.nats.public.contract.v1.StreamInfos.alternates:type_name -> trb.nats.public.contract.v1.StreamAlternate
 	6,  // 17: trb.nats.public.contract.v1.StreamSourceInfo.external:type_name -> trb.nats.public.contract.v1.ExternalStream
 	13, // 18: trb.nats.public.contract.v1.StreamSourceInfo.error:type_name -> trb.nats.public.contract.v1.APIError
 	7,  // 19: trb.nats.public.contract.v1.StreamSourceInfo.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
@@ -2838,7 +2838,7 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	3,  // 39: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	3,  // 40: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	2,  // 41: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteStream:input_type -> trb.nats.public.contract.v1.StreamName
-	2,  // 42: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfos:input_type -> trb.nats.public.contract.v1.StreamName
+	2,  // 42: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfo:input_type -> trb.nats.public.contract.v1.StreamName
 	2,  // 43: trb.nats.public.contract.v1.NatsJetStreamManager.PurgeStream:input_type -> trb.nats.public.contract.v1.StreamName
 	17, // 44: trb.nats.public.contract.v1.NatsJetStreamManager.Streams:input_type -> trb.nats.public.contract.v1.JsOpts
 	17, // 45: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNames:input_type -> trb.nats.public.contract.v1.JsOpts
@@ -2855,12 +2855,12 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	2,  // 56: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerNames:input_type -> trb.nats.public.contract.v1.StreamName
 	17, // 57: trb.nats.public.contract.v1.NatsJetStreamManager.AccountInfos:input_type -> trb.nats.public.contract.v1.JsOpts
 	0,  // 58: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNameBySubject:input_type -> trb.nats.public.contract.v1.ResponseStreamNameBySubject
-	10, // 59: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:output_type -> trb.nats.public.contract.v1.StreamInfo
-	10, // 60: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:output_type -> trb.nats.public.contract.v1.StreamInfo
+	10, // 59: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:output_type -> trb.nats.public.contract.v1.StreamInfos
+	10, // 60: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:output_type -> trb.nats.public.contract.v1.StreamInfos
 	1,  // 61: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteStream:output_type -> trb.nats.public.contract.v1.Response
-	10, // 62: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfos:output_type -> trb.nats.public.contract.v1.StreamInfo
+	10, // 62: trb.nats.public.contract.v1.NatsJetStreamManager.StreamInfo:output_type -> trb.nats.public.contract.v1.StreamInfos
 	1,  // 63: trb.nats.public.contract.v1.NatsJetStreamManager.PurgeStream:output_type -> trb.nats.public.contract.v1.Response
-	10, // 64: trb.nats.public.contract.v1.NatsJetStreamManager.Streams:output_type -> trb.nats.public.contract.v1.StreamInfo
+	10, // 64: trb.nats.public.contract.v1.NatsJetStreamManager.Streams:output_type -> trb.nats.public.contract.v1.StreamInfos
 	2,  // 65: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNames:output_type -> trb.nats.public.contract.v1.StreamName
 	20, // 66: trb.nats.public.contract.v1.NatsJetStreamManager.GetMsg:output_type -> trb.nats.public.contract.v1.RawStreamMsg
 	20, // 67: trb.nats.public.contract.v1.NatsJetStreamManager.GetLastMsg:output_type -> trb.nats.public.contract.v1.RawStreamMsg

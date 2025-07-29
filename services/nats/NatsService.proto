@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 service NatsJetStreamManager {
   // AddStream creates a stream.
-  rpc AddStream (StreamConfig) returns (StreamInfo){
+  rpc AddStream (StreamConfig) returns (StreamInfos){
     option (google.api.http) = {
       post: "/AddStream"
       body: "*"
@@ -16,7 +16,7 @@ service NatsJetStreamManager {
   };
 
   // UpdateStream updates a stream.
-  rpc UpdateStream (StreamConfig) returns (StreamInfo){
+  rpc UpdateStream (StreamConfig) returns (StreamInfos){
     option (google.api.http) = {
       post: "/UpdateStream"
       body: "*"
@@ -32,7 +32,7 @@ service NatsJetStreamManager {
   };
   
   // StreamInfo retrieves information from a stream.
-  rpc StreamInfos (StreamName) returns (StreamInfo){
+  rpc StreamInfo (StreamName) returns (StreamInfos){
     option (google.api.http) = {
       post: "/StreamInfo"
       body: "*"
@@ -48,7 +48,7 @@ service NatsJetStreamManager {
   };
 
   // Streams can be used to retrieve a list of StreamInfo objects.
-  rpc Streams (JsOpts) returns (stream StreamInfo){
+  rpc Streams (JsOpts) returns (stream StreamInfos){
     option (google.api.http) = {
       post: "/Streams"
       body: "*"
@@ -270,7 +270,7 @@ message StreamConsumerLimits {
 
 
 // StreamInfo
-message StreamInfo {
+message StreamInfos {
   StreamConfig config = 1;
   google.protobuf.Timestamp created = 2;
 	StreamState      state = 3;         

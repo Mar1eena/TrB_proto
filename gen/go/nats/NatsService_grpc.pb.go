@@ -22,7 +22,7 @@ const (
 	NatsJetStreamManager_AddStream_FullMethodName           = "/trb.nats.public.contract.v1.NatsJetStreamManager/AddStream"
 	NatsJetStreamManager_UpdateStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/UpdateStream"
 	NatsJetStreamManager_DeleteStream_FullMethodName        = "/trb.nats.public.contract.v1.NatsJetStreamManager/DeleteStream"
-	NatsJetStreamManager_StreamInfos_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamInfos"
+	NatsJetStreamManager_StreamInfo_FullMethodName          = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamInfo"
 	NatsJetStreamManager_PurgeStream_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/PurgeStream"
 	NatsJetStreamManager_Streams_FullMethodName             = "/trb.nats.public.contract.v1.NatsJetStreamManager/Streams"
 	NatsJetStreamManager_StreamNames_FullMethodName         = "/trb.nats.public.contract.v1.NatsJetStreamManager/StreamNames"
@@ -46,17 +46,17 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NatsJetStreamManagerClient interface {
 	// AddStream creates a stream.
-	AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
+	AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfos, error)
 	// UpdateStream updates a stream.
-	UpdateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error)
+	UpdateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfos, error)
 	// DeleteStream deletes a stream.
 	DeleteStream(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*Response, error)
 	// StreamInfo retrieves information from a stream.
-	StreamInfos(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*StreamInfo, error)
+	StreamInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*StreamInfos, error)
 	// PurgeStream purges a stream messages.
 	PurgeStream(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*Response, error)
 	// Streams can be used to retrieve a list of StreamInfo objects.
-	Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfo], error)
+	Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error)
 	// StreamNames is used to retrieve a list of Stream names.
 	StreamNames(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamName], error)
 	// GetMsg retrieves a raw stream message stored in JetStream by sequence number.
@@ -107,9 +107,9 @@ func NewNatsJetStreamManagerClient(cc grpc.ClientConnInterface) NatsJetStreamMan
 	return &natsJetStreamManagerClient{cc}
 }
 
-func (c *natsJetStreamManagerClient) AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error) {
+func (c *natsJetStreamManagerClient) AddStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StreamInfo)
+	out := new(StreamInfos)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_AddStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -117,9 +117,9 @@ func (c *natsJetStreamManagerClient) AddStream(ctx context.Context, in *StreamCo
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) UpdateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfo, error) {
+func (c *natsJetStreamManagerClient) UpdateStream(ctx context.Context, in *StreamConfig, opts ...grpc.CallOption) (*StreamInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StreamInfo)
+	out := new(StreamInfos)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_UpdateStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -137,10 +137,10 @@ func (c *natsJetStreamManagerClient) DeleteStream(ctx context.Context, in *Strea
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) StreamInfos(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*StreamInfo, error) {
+func (c *natsJetStreamManagerClient) StreamInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (*StreamInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StreamInfo)
-	err := c.cc.Invoke(ctx, NatsJetStreamManager_StreamInfos_FullMethodName, in, out, cOpts...)
+	out := new(StreamInfos)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_StreamInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,13 +157,13 @@ func (c *natsJetStreamManagerClient) PurgeStream(ctx context.Context, in *Stream
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfo], error) {
+func (c *natsJetStreamManagerClient) Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamInfos], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &NatsJetStreamManager_ServiceDesc.Streams[0], NatsJetStreamManager_Streams_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[JsOpts, StreamInfo]{ClientStream: stream}
+	x := &grpc.GenericClientStream[JsOpts, StreamInfos]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func (c *natsJetStreamManagerClient) Streams(ctx context.Context, in *JsOpts, op
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_StreamsClient = grpc.ServerStreamingClient[StreamInfo]
+type NatsJetStreamManager_StreamsClient = grpc.ServerStreamingClient[StreamInfos]
 
 func (c *natsJetStreamManagerClient) StreamNames(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamName], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -357,17 +357,17 @@ func (c *natsJetStreamManagerClient) StreamNameBySubject(ctx context.Context, in
 // for forward compatibility.
 type NatsJetStreamManagerServer interface {
 	// AddStream creates a stream.
-	AddStream(context.Context, *StreamConfig) (*StreamInfo, error)
+	AddStream(context.Context, *StreamConfig) (*StreamInfos, error)
 	// UpdateStream updates a stream.
-	UpdateStream(context.Context, *StreamConfig) (*StreamInfo, error)
+	UpdateStream(context.Context, *StreamConfig) (*StreamInfos, error)
 	// DeleteStream deletes a stream.
 	DeleteStream(context.Context, *StreamName) (*Response, error)
 	// StreamInfo retrieves information from a stream.
-	StreamInfos(context.Context, *StreamName) (*StreamInfo, error)
+	StreamInfo(context.Context, *StreamName) (*StreamInfos, error)
 	// PurgeStream purges a stream messages.
 	PurgeStream(context.Context, *StreamName) (*Response, error)
 	// Streams can be used to retrieve a list of StreamInfo objects.
-	Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfo]) error
+	Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error
 	// StreamNames is used to retrieve a list of Stream names.
 	StreamNames(*JsOpts, grpc.ServerStreamingServer[StreamName]) error
 	// GetMsg retrieves a raw stream message stored in JetStream by sequence number.
@@ -418,22 +418,22 @@ type NatsJetStreamManagerServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNatsJetStreamManagerServer struct{}
 
-func (UnimplementedNatsJetStreamManagerServer) AddStream(context.Context, *StreamConfig) (*StreamInfo, error) {
+func (UnimplementedNatsJetStreamManagerServer) AddStream(context.Context, *StreamConfig) (*StreamInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddStream not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) UpdateStream(context.Context, *StreamConfig) (*StreamInfo, error) {
+func (UnimplementedNatsJetStreamManagerServer) UpdateStream(context.Context, *StreamConfig) (*StreamInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateStream not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) DeleteStream(context.Context, *StreamName) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteStream not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) StreamInfos(context.Context, *StreamName) (*StreamInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StreamInfos not implemented")
+func (UnimplementedNatsJetStreamManagerServer) StreamInfo(context.Context, *StreamName) (*StreamInfos, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StreamInfo not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) PurgeStream(context.Context, *StreamName) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeStream not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfo]) error {
+func (UnimplementedNatsJetStreamManagerServer) Streams(*JsOpts, grpc.ServerStreamingServer[StreamInfos]) error {
 	return status.Errorf(codes.Unimplemented, "method Streams not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) StreamNames(*JsOpts, grpc.ServerStreamingServer[StreamName]) error {
@@ -553,20 +553,20 @@ func _NatsJetStreamManager_DeleteStream_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NatsJetStreamManager_StreamInfos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NatsJetStreamManager_StreamInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StreamName)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NatsJetStreamManagerServer).StreamInfos(ctx, in)
+		return srv.(NatsJetStreamManagerServer).StreamInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NatsJetStreamManager_StreamInfos_FullMethodName,
+		FullMethod: NatsJetStreamManager_StreamInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).StreamInfos(ctx, req.(*StreamName))
+		return srv.(NatsJetStreamManagerServer).StreamInfo(ctx, req.(*StreamName))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -594,11 +594,11 @@ func _NatsJetStreamManager_Streams_Handler(srv interface{}, stream grpc.ServerSt
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(NatsJetStreamManagerServer).Streams(m, &grpc.GenericServerStream[JsOpts, StreamInfo]{ServerStream: stream})
+	return srv.(NatsJetStreamManagerServer).Streams(m, &grpc.GenericServerStream[JsOpts, StreamInfos]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type NatsJetStreamManager_StreamsServer = grpc.ServerStreamingServer[StreamInfo]
+type NatsJetStreamManager_StreamsServer = grpc.ServerStreamingServer[StreamInfos]
 
 func _NatsJetStreamManager_StreamNames_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(JsOpts)
@@ -844,8 +844,8 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NatsJetStreamManager_DeleteStream_Handler,
 		},
 		{
-			MethodName: "StreamInfos",
-			Handler:    _NatsJetStreamManager_StreamInfos_Handler,
+			MethodName: "StreamInfo",
+			Handler:    _NatsJetStreamManager_StreamInfo_Handler,
 		},
 		{
 			MethodName: "PurgeStream",
