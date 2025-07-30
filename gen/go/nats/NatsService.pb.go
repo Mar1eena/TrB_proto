@@ -2419,8 +2419,8 @@ func (x *Tier) GetLimits() *AccountLimits {
 
 type AccountLimits struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	MaxMemory             uint64                 `protobuf:"varint,1,opt,name=max_memory,json=maxMemory,proto3" json:"max_memory,omitempty"`
-	MaxStorage            uint64                 `protobuf:"varint,2,opt,name=max_storage,json=maxStorage,proto3" json:"max_storage,omitempty"`
+	MaxMemory             int64                  `protobuf:"varint,1,opt,name=max_memory,json=maxMemory,proto3" json:"max_memory,omitempty"`
+	MaxStorage            int64                  `protobuf:"varint,2,opt,name=max_storage,json=maxStorage,proto3" json:"max_storage,omitempty"`
 	MaxStreams            int32                  `protobuf:"varint,3,opt,name=max_streams,json=maxStreams,proto3" json:"max_streams,omitempty"`
 	MaxConsumers          int32                  `protobuf:"varint,4,opt,name=max_consumers,json=maxConsumers,proto3" json:"max_consumers,omitempty"`
 	MaxAckPending         int32                  `protobuf:"varint,5,opt,name=max_ack_pending,json=maxAckPending,proto3" json:"max_ack_pending,omitempty"`
@@ -2461,14 +2461,14 @@ func (*AccountLimits) Descriptor() ([]byte, []int) {
 	return file_nats_NatsService_proto_rawDescGZIP(), []int{30}
 }
 
-func (x *AccountLimits) GetMaxMemory() uint64 {
+func (x *AccountLimits) GetMaxMemory() int64 {
 	if x != nil {
 		return x.MaxMemory
 	}
 	return 0
 }
 
-func (x *AccountLimits) GetMaxStorage() uint64 {
+func (x *AccountLimits) GetMaxStorage() int64 {
 	if x != nil {
 		return x.MaxStorage
 	}
@@ -2806,8 +2806,8 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x06limits\x18\a \x01(\v2*.trb.nats.public.contract.v1.AccountLimitsR\x06limits\"\xdb\x02\n" +
 	"\rAccountLimits\x12\x1d\n" +
 	"\n" +
-	"max_memory\x18\x01 \x01(\x04R\tmaxMemory\x12\x1f\n" +
-	"\vmax_storage\x18\x02 \x01(\x04R\n" +
+	"max_memory\x18\x01 \x01(\x03R\tmaxMemory\x12\x1f\n" +
+	"\vmax_storage\x18\x02 \x01(\x03R\n" +
 	"maxStorage\x12\x1f\n" +
 	"\vmax_streams\x18\x03 \x01(\x05R\n" +
 	"maxStreams\x12#\n" +

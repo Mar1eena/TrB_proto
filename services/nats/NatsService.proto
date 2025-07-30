@@ -465,8 +465,8 @@ message Tier{
 }
 
 message AccountLimits{
-  uint64 max_memory = 1;
-  uint64 max_storage = 2;
+  int64 max_memory = 1;
+  int64 max_storage = 2;
   int32 max_streams = 3;
   int32 max_consumers = 4;
   int32 max_ack_pending = 5;
