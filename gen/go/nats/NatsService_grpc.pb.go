@@ -87,9 +87,9 @@ type NatsJetStreamManagerClient interface {
 	// UpdateConsumer updates an existing consumer.
 	UpdateConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error)
 	// DeleteConsumer deletes a consumer.
-	DeleteConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*Response, error)
+	DeleteConsumer(ctx context.Context, in *ConsumerName, opts ...grpc.CallOption) (*Response, error)
 	// ConsumerInfo retrieves information of a consumer from a stream.
-	ConsumerInfo(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error)
+	ConsumerInfo(ctx context.Context, in *ConsumerName, opts ...grpc.CallOption) (*ConsumerInfos, error)
 	// ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
 	// Deprecated: Use Consumers() instead.
 	ConsumersInfo(ctx context.Context, in *StreamName, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ConsumerInfos], error)
@@ -278,7 +278,7 @@ func (c *natsJetStreamManagerClient) UpdateConsumer(ctx context.Context, in *Con
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) DeleteConsumer(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*Response, error) {
+func (c *natsJetStreamManagerClient) DeleteConsumer(ctx context.Context, in *ConsumerName, opts ...grpc.CallOption) (*Response, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Response)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_DeleteConsumer_FullMethodName, in, out, cOpts...)
@@ -288,7 +288,7 @@ func (c *natsJetStreamManagerClient) DeleteConsumer(ctx context.Context, in *Con
 	return out, nil
 }
 
-func (c *natsJetStreamManagerClient) ConsumerInfo(ctx context.Context, in *Consumer, opts ...grpc.CallOption) (*ConsumerInfos, error) {
+func (c *natsJetStreamManagerClient) ConsumerInfo(ctx context.Context, in *ConsumerName, opts ...grpc.CallOption) (*ConsumerInfos, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ConsumerInfos)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_ConsumerInfo_FullMethodName, in, out, cOpts...)
@@ -420,9 +420,9 @@ type NatsJetStreamManagerServer interface {
 	// UpdateConsumer updates an existing consumer.
 	UpdateConsumer(context.Context, *Consumer) (*ConsumerInfos, error)
 	// DeleteConsumer deletes a consumer.
-	DeleteConsumer(context.Context, *Consumer) (*Response, error)
+	DeleteConsumer(context.Context, *ConsumerName) (*Response, error)
 	// ConsumerInfo retrieves information of a consumer from a stream.
-	ConsumerInfo(context.Context, *Consumer) (*ConsumerInfos, error)
+	ConsumerInfo(context.Context, *ConsumerName) (*ConsumerInfos, error)
 	// ConsumersInfo is used to retrieve a list of ConsumerInfo objects.
 	// Deprecated: Use Consumers() instead.
 	ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error
@@ -486,10 +486,10 @@ func (UnimplementedNatsJetStreamManagerServer) AddConsumer(context.Context, *Con
 func (UnimplementedNatsJetStreamManagerServer) UpdateConsumer(context.Context, *Consumer) (*ConsumerInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateConsumer not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) DeleteConsumer(context.Context, *Consumer) (*Response, error) {
+func (UnimplementedNatsJetStreamManagerServer) DeleteConsumer(context.Context, *ConsumerName) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteConsumer not implemented")
 }
-func (UnimplementedNatsJetStreamManagerServer) ConsumerInfo(context.Context, *Consumer) (*ConsumerInfos, error) {
+func (UnimplementedNatsJetStreamManagerServer) ConsumerInfo(context.Context, *ConsumerName) (*ConsumerInfos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConsumerInfo not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) ConsumersInfo(*StreamName, grpc.ServerStreamingServer[ConsumerInfos]) error {
@@ -760,7 +760,7 @@ func _NatsJetStreamManager_UpdateConsumer_Handler(srv interface{}, ctx context.C
 }
 
 func _NatsJetStreamManager_DeleteConsumer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Consumer)
+	in := new(ConsumerName)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -772,13 +772,13 @@ func _NatsJetStreamManager_DeleteConsumer_Handler(srv interface{}, ctx context.C
 		FullMethod: NatsJetStreamManager_DeleteConsumer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).DeleteConsumer(ctx, req.(*Consumer))
+		return srv.(NatsJetStreamManagerServer).DeleteConsumer(ctx, req.(*ConsumerName))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _NatsJetStreamManager_ConsumerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Consumer)
+	in := new(ConsumerName)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -790,7 +790,7 @@ func _NatsJetStreamManager_ConsumerInfo_Handler(srv interface{}, ctx context.Con
 		FullMethod: NatsJetStreamManager_ConsumerInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NatsJetStreamManagerServer).ConsumerInfo(ctx, req.(*Consumer))
+		return srv.(NatsJetStreamManagerServer).ConsumerInfo(ctx, req.(*ConsumerName))
 	}
 	return interceptor(ctx, in, info, handler)
 }

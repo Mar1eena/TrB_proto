@@ -1651,6 +1651,59 @@ func (x *Strings) GetValues() []string {
 	return nil
 }
 
+// Consumer
+type ConsumerName struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Stream        string                 `protobuf:"bytes,1,opt,name=stream,proto3" json:"stream,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConsumerName) Reset() {
+	*x = ConsumerName{}
+	mi := &file_nats_NatsService_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConsumerName) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConsumerName) ProtoMessage() {}
+
+func (x *ConsumerName) ProtoReflect() protoreflect.Message {
+	mi := &file_nats_NatsService_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConsumerName.ProtoReflect.Descriptor instead.
+func (*ConsumerName) Descriptor() ([]byte, []int) {
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ConsumerName) GetStream() string {
+	if x != nil {
+		return x.Stream
+	}
+	return ""
+}
+
+func (x *ConsumerName) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 type Consumer struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -1661,7 +1714,7 @@ type Consumer struct {
 
 func (x *Consumer) Reset() {
 	*x = Consumer{}
-	mi := &file_nats_NatsService_proto_msgTypes[22]
+	mi := &file_nats_NatsService_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1673,7 +1726,7 @@ func (x *Consumer) String() string {
 func (*Consumer) ProtoMessage() {}
 
 func (x *Consumer) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[22]
+	mi := &file_nats_NatsService_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1686,7 +1739,7 @@ func (x *Consumer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Consumer.ProtoReflect.Descriptor instead.
 func (*Consumer) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{22}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *Consumer) GetName() string {
@@ -1745,7 +1798,7 @@ type ConsumerConfig struct {
 
 func (x *ConsumerConfig) Reset() {
 	*x = ConsumerConfig{}
-	mi := &file_nats_NatsService_proto_msgTypes[23]
+	mi := &file_nats_NatsService_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1757,7 +1810,7 @@ func (x *ConsumerConfig) String() string {
 func (*ConsumerConfig) ProtoMessage() {}
 
 func (x *ConsumerConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[23]
+	mi := &file_nats_NatsService_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1770,7 +1823,7 @@ func (x *ConsumerConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerConfig.ProtoReflect.Descriptor instead.
 func (*ConsumerConfig) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{23}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ConsumerConfig) GetDurable() string {
@@ -1995,7 +2048,7 @@ type ConsumerInfos struct {
 
 func (x *ConsumerInfos) Reset() {
 	*x = ConsumerInfos{}
-	mi := &file_nats_NatsService_proto_msgTypes[24]
+	mi := &file_nats_NatsService_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2007,7 +2060,7 @@ func (x *ConsumerInfos) String() string {
 func (*ConsumerInfos) ProtoMessage() {}
 
 func (x *ConsumerInfos) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[24]
+	mi := &file_nats_NatsService_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2020,7 +2073,7 @@ func (x *ConsumerInfos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerInfos.ProtoReflect.Descriptor instead.
 func (*ConsumerInfos) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{24}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ConsumerInfos) GetStreamName() string {
@@ -2111,7 +2164,7 @@ type SequenceInfo struct {
 
 func (x *SequenceInfo) Reset() {
 	*x = SequenceInfo{}
-	mi := &file_nats_NatsService_proto_msgTypes[25]
+	mi := &file_nats_NatsService_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2123,7 +2176,7 @@ func (x *SequenceInfo) String() string {
 func (*SequenceInfo) ProtoMessage() {}
 
 func (x *SequenceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[25]
+	mi := &file_nats_NatsService_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2136,7 +2189,7 @@ func (x *SequenceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SequenceInfo.ProtoReflect.Descriptor instead.
 func (*SequenceInfo) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{25}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SequenceInfo) GetConsumerSeq() uint64 {
@@ -2169,7 +2222,7 @@ type ConsNames struct {
 
 func (x *ConsNames) Reset() {
 	*x = ConsNames{}
-	mi := &file_nats_NatsService_proto_msgTypes[26]
+	mi := &file_nats_NatsService_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2181,7 +2234,7 @@ func (x *ConsNames) String() string {
 func (*ConsNames) ProtoMessage() {}
 
 func (x *ConsNames) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[26]
+	mi := &file_nats_NatsService_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2194,7 +2247,7 @@ func (x *ConsNames) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsNames.ProtoReflect.Descriptor instead.
 func (*ConsNames) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{26}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ConsNames) GetResponse() string {
@@ -2216,7 +2269,7 @@ type AccountInfos struct {
 
 func (x *AccountInfos) Reset() {
 	*x = AccountInfos{}
-	mi := &file_nats_NatsService_proto_msgTypes[27]
+	mi := &file_nats_NatsService_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2228,7 +2281,7 @@ func (x *AccountInfos) String() string {
 func (*AccountInfos) ProtoMessage() {}
 
 func (x *AccountInfos) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[27]
+	mi := &file_nats_NatsService_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2241,7 +2294,7 @@ func (x *AccountInfos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccountInfos.ProtoReflect.Descriptor instead.
 func (*AccountInfos) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{27}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *AccountInfos) GetTier() *Tier {
@@ -2287,7 +2340,7 @@ type Tier struct {
 
 func (x *Tier) Reset() {
 	*x = Tier{}
-	mi := &file_nats_NatsService_proto_msgTypes[28]
+	mi := &file_nats_NatsService_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2299,7 +2352,7 @@ func (x *Tier) String() string {
 func (*Tier) ProtoMessage() {}
 
 func (x *Tier) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[28]
+	mi := &file_nats_NatsService_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2312,7 +2365,7 @@ func (x *Tier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tier.ProtoReflect.Descriptor instead.
 func (*Tier) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{28}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *Tier) GetMemory() uint64 {
@@ -2380,7 +2433,7 @@ type AccountLimits struct {
 
 func (x *AccountLimits) Reset() {
 	*x = AccountLimits{}
-	mi := &file_nats_NatsService_proto_msgTypes[29]
+	mi := &file_nats_NatsService_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2392,7 +2445,7 @@ func (x *AccountLimits) String() string {
 func (*AccountLimits) ProtoMessage() {}
 
 func (x *AccountLimits) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[29]
+	mi := &file_nats_NatsService_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2405,7 +2458,7 @@ func (x *AccountLimits) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccountLimits.ProtoReflect.Descriptor instead.
 func (*AccountLimits) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{29}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *AccountLimits) GetMaxMemory() uint64 {
@@ -2474,7 +2527,7 @@ type APIStats struct {
 
 func (x *APIStats) Reset() {
 	*x = APIStats{}
-	mi := &file_nats_NatsService_proto_msgTypes[30]
+	mi := &file_nats_NatsService_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2486,7 +2539,7 @@ func (x *APIStats) String() string {
 func (*APIStats) ProtoMessage() {}
 
 func (x *APIStats) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_NatsService_proto_msgTypes[30]
+	mi := &file_nats_NatsService_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2499,7 +2552,7 @@ func (x *APIStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIStats.ProtoReflect.Descriptor instead.
 func (*APIStats) Descriptor() ([]byte, []int) {
-	return file_nats_NatsService_proto_rawDescGZIP(), []int{30}
+	return file_nats_NatsService_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *APIStats) GetTotal() uint64 {
@@ -2664,7 +2717,10 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12:\n" +
 	"\x05value\x18\x02 \x01(\v2$.trb.nats.public.contract.v1.StringsR\x05value:\x028\x01\"!\n" +
 	"\aStrings\x12\x16\n" +
-	"\x06values\x18\x01 \x03(\tR\x06values\"c\n" +
+	"\x06values\x18\x01 \x03(\tR\x06values\":\n" +
+	"\fConsumerName\x12\x16\n" +
+	"\x06stream\x18\x01 \x01(\tR\x06stream\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"c\n" +
 	"\bConsumer\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12C\n" +
 	"\x06config\x18\x02 \x01(\v2+.trb.nats.public.contract.v1.ConsumerConfigR\x06config\"\xb7\t\n" +
@@ -2762,7 +2818,7 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"\x12max_bytes_required\x18\b \x01(\bR\x10maxBytesRequired\"8\n" +
 	"\bAPIStats\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x04R\x05total\x12\x16\n" +
-	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xbb\x14\n" +
+	"\x06errors\x18\x02 \x01(\x04R\x06errors2\xc3\x14\n" +
 	"\x14NatsJetStreamManager\x12w\n" +
 	"\tAddStream\x12).trb.nats.public.contract.v1.StreamConfig\x1a(.trb.nats.public.contract.v1.StreamInfos\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/AddStream\x12}\n" +
@@ -2781,9 +2837,9 @@ const file_nats_NatsService_proto_rawDesc = "" +
 	"/DeleteMsg\x12w\n" +
 	"\x0fSecureDeleteMsg\x12 .trb.nats.public.contract.v1.Msg\x1a%.trb.nats.public.contract.v1.Response\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/SecureDeleteMsg\x12y\n" +
 	"\vAddConsumer\x12%.trb.nats.public.contract.v1.Consumer\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/AddConsumer\x12\x7f\n" +
-	"\x0eUpdateConsumer\x12%.trb.nats.public.contract.v1.Consumer\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/UpdateConsumer\x12z\n" +
-	"\x0eDeleteConsumer\x12%.trb.nats.public.contract.v1.Consumer\x1a%.trb.nats.public.contract.v1.Response\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/DeleteConsumer\x12{\n" +
-	"\fConsumerInfo\x12%.trb.nats.public.contract.v1.Consumer\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/ConsumerInfo\x12\x81\x01\n" +
+	"\x0eUpdateConsumer\x12%.trb.nats.public.contract.v1.Consumer\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/UpdateConsumer\x12~\n" +
+	"\x0eDeleteConsumer\x12).trb.nats.public.contract.v1.ConsumerName\x1a%.trb.nats.public.contract.v1.Response\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/DeleteConsumer\x12\x7f\n" +
+	"\fConsumerInfo\x12).trb.nats.public.contract.v1.ConsumerName\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/ConsumerInfo\x12\x81\x01\n" +
 	"\rConsumersInfo\x12'.trb.nats.public.contract.v1.StreamName\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/ConsumersInfo0\x01\x12y\n" +
 	"\tConsumers\x12'.trb.nats.public.contract.v1.StreamName\x1a*.trb.nats.public.contract.v1.ConsumerInfos\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/Consumers0\x01\x12}\n" +
@@ -2803,7 +2859,7 @@ func file_nats_NatsService_proto_rawDescGZIP() []byte {
 	return file_nats_NatsService_proto_rawDescData
 }
 
-var file_nats_NatsService_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_nats_NatsService_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_nats_NatsService_proto_goTypes = []any{
 	(*ResponseStreamNameBySubject)(nil), // 0: trb.nats.public.contract.v1.ResponseStreamNameBySubject
 	(*Response)(nil),                    // 1: trb.nats.public.contract.v1.Response
@@ -2827,21 +2883,22 @@ var file_nats_NatsService_proto_goTypes = []any{
 	(*LastMsg)(nil),                     // 19: trb.nats.public.contract.v1.LastMsg
 	(*RawStreamMsg)(nil),                // 20: trb.nats.public.contract.v1.RawStreamMsg
 	(*Strings)(nil),                     // 21: trb.nats.public.contract.v1.Strings
-	(*Consumer)(nil),                    // 22: trb.nats.public.contract.v1.Consumer
-	(*ConsumerConfig)(nil),              // 23: trb.nats.public.contract.v1.ConsumerConfig
-	(*ConsumerInfos)(nil),               // 24: trb.nats.public.contract.v1.ConsumerInfos
-	(*SequenceInfo)(nil),                // 25: trb.nats.public.contract.v1.SequenceInfo
-	(*ConsNames)(nil),                   // 26: trb.nats.public.contract.v1.ConsNames
-	(*AccountInfos)(nil),                // 27: trb.nats.public.contract.v1.AccountInfos
-	(*Tier)(nil),                        // 28: trb.nats.public.contract.v1.Tier
-	(*AccountLimits)(nil),               // 29: trb.nats.public.contract.v1.AccountLimits
-	(*APIStats)(nil),                    // 30: trb.nats.public.contract.v1.APIStats
-	nil,                                 // 31: trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	nil,                                 // 32: trb.nats.public.contract.v1.StreamState.SubjectsEntry
-	nil,                                 // 33: trb.nats.public.contract.v1.RawStreamMsg.HdrsEntry
-	nil,                                 // 34: trb.nats.public.contract.v1.ConsumerConfig.MetadataEntry
-	nil,                                 // 35: trb.nats.public.contract.v1.AccountInfos.TiersEntry
-	(*timestamppb.Timestamp)(nil),       // 36: google.protobuf.Timestamp
+	(*ConsumerName)(nil),                // 22: trb.nats.public.contract.v1.ConsumerName
+	(*Consumer)(nil),                    // 23: trb.nats.public.contract.v1.Consumer
+	(*ConsumerConfig)(nil),              // 24: trb.nats.public.contract.v1.ConsumerConfig
+	(*ConsumerInfos)(nil),               // 25: trb.nats.public.contract.v1.ConsumerInfos
+	(*SequenceInfo)(nil),                // 26: trb.nats.public.contract.v1.SequenceInfo
+	(*ConsNames)(nil),                   // 27: trb.nats.public.contract.v1.ConsNames
+	(*AccountInfos)(nil),                // 28: trb.nats.public.contract.v1.AccountInfos
+	(*Tier)(nil),                        // 29: trb.nats.public.contract.v1.Tier
+	(*AccountLimits)(nil),               // 30: trb.nats.public.contract.v1.AccountLimits
+	(*APIStats)(nil),                    // 31: trb.nats.public.contract.v1.APIStats
+	nil,                                 // 32: trb.nats.public.contract.v1.StreamConfig.MetadataEntry
+	nil,                                 // 33: trb.nats.public.contract.v1.StreamState.SubjectsEntry
+	nil,                                 // 34: trb.nats.public.contract.v1.RawStreamMsg.HdrsEntry
+	nil,                                 // 35: trb.nats.public.contract.v1.ConsumerConfig.MetadataEntry
+	nil,                                 // 36: trb.nats.public.contract.v1.AccountInfos.TiersEntry
+	(*timestamppb.Timestamp)(nil),       // 37: google.protobuf.Timestamp
 }
 var file_nats_NatsService_proto_depIdxs = []int32{
 	4,  // 0: trb.nats.public.contract.v1.StreamConfig.placement:type_name -> trb.nats.public.contract.v1.Placement
@@ -2850,12 +2907,12 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	7,  // 3: trb.nats.public.contract.v1.StreamConfig.subject_transform:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	8,  // 4: trb.nats.public.contract.v1.StreamConfig.republish:type_name -> trb.nats.public.contract.v1.RePublish
 	9,  // 5: trb.nats.public.contract.v1.StreamConfig.consumer_limits:type_name -> trb.nats.public.contract.v1.StreamConsumerLimits
-	31, // 6: trb.nats.public.contract.v1.StreamConfig.metadata:type_name -> trb.nats.public.contract.v1.StreamConfig.MetadataEntry
-	36, // 7: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
+	32, // 6: trb.nats.public.contract.v1.StreamConfig.metadata:type_name -> trb.nats.public.contract.v1.StreamConfig.MetadataEntry
+	37, // 7: trb.nats.public.contract.v1.StreamSource.opt_start_time:type_name -> google.protobuf.Timestamp
 	7,  // 8: trb.nats.public.contract.v1.StreamSource.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	6,  // 9: trb.nats.public.contract.v1.StreamSource.external:type_name -> trb.nats.public.contract.v1.ExternalStream
 	3,  // 10: trb.nats.public.contract.v1.StreamInfos.config:type_name -> trb.nats.public.contract.v1.StreamConfig
-	36, // 11: trb.nats.public.contract.v1.StreamInfos.created:type_name -> google.protobuf.Timestamp
+	37, // 11: trb.nats.public.contract.v1.StreamInfos.created:type_name -> google.protobuf.Timestamp
 	16, // 12: trb.nats.public.contract.v1.StreamInfos.state:type_name -> trb.nats.public.contract.v1.StreamState
 	14, // 13: trb.nats.public.contract.v1.StreamInfos.cluster:type_name -> trb.nats.public.contract.v1.ClusterInfo
 	11, // 14: trb.nats.public.contract.v1.StreamInfos.mirror:type_name -> trb.nats.public.contract.v1.StreamSourceInfo
@@ -2865,25 +2922,25 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	13, // 18: trb.nats.public.contract.v1.StreamSourceInfo.error:type_name -> trb.nats.public.contract.v1.APIError
 	7,  // 19: trb.nats.public.contract.v1.StreamSourceInfo.subject_transforms:type_name -> trb.nats.public.contract.v1.SubjectTransformConfig
 	15, // 20: trb.nats.public.contract.v1.ClusterInfo.replicas:type_name -> trb.nats.public.contract.v1.PeerInfo
-	36, // 21: trb.nats.public.contract.v1.StreamState.first_ts:type_name -> google.protobuf.Timestamp
-	36, // 22: trb.nats.public.contract.v1.StreamState.last_ts:type_name -> google.protobuf.Timestamp
-	32, // 23: trb.nats.public.contract.v1.StreamState.subjects:type_name -> trb.nats.public.contract.v1.StreamState.SubjectsEntry
-	33, // 24: trb.nats.public.contract.v1.RawStreamMsg.hdrs:type_name -> trb.nats.public.contract.v1.RawStreamMsg.HdrsEntry
-	36, // 25: trb.nats.public.contract.v1.RawStreamMsg.time:type_name -> google.protobuf.Timestamp
-	23, // 26: trb.nats.public.contract.v1.Consumer.config:type_name -> trb.nats.public.contract.v1.ConsumerConfig
-	36, // 27: trb.nats.public.contract.v1.ConsumerConfig.opt_start_time:type_name -> google.protobuf.Timestamp
-	34, // 28: trb.nats.public.contract.v1.ConsumerConfig.metadata:type_name -> trb.nats.public.contract.v1.ConsumerConfig.MetadataEntry
-	36, // 29: trb.nats.public.contract.v1.ConsumerInfos.created:type_name -> google.protobuf.Timestamp
-	25, // 30: trb.nats.public.contract.v1.ConsumerInfos.delivered:type_name -> trb.nats.public.contract.v1.SequenceInfo
-	25, // 31: trb.nats.public.contract.v1.ConsumerInfos.ack_floor:type_name -> trb.nats.public.contract.v1.SequenceInfo
+	37, // 21: trb.nats.public.contract.v1.StreamState.first_ts:type_name -> google.protobuf.Timestamp
+	37, // 22: trb.nats.public.contract.v1.StreamState.last_ts:type_name -> google.protobuf.Timestamp
+	33, // 23: trb.nats.public.contract.v1.StreamState.subjects:type_name -> trb.nats.public.contract.v1.StreamState.SubjectsEntry
+	34, // 24: trb.nats.public.contract.v1.RawStreamMsg.hdrs:type_name -> trb.nats.public.contract.v1.RawStreamMsg.HdrsEntry
+	37, // 25: trb.nats.public.contract.v1.RawStreamMsg.time:type_name -> google.protobuf.Timestamp
+	24, // 26: trb.nats.public.contract.v1.Consumer.config:type_name -> trb.nats.public.contract.v1.ConsumerConfig
+	37, // 27: trb.nats.public.contract.v1.ConsumerConfig.opt_start_time:type_name -> google.protobuf.Timestamp
+	35, // 28: trb.nats.public.contract.v1.ConsumerConfig.metadata:type_name -> trb.nats.public.contract.v1.ConsumerConfig.MetadataEntry
+	37, // 29: trb.nats.public.contract.v1.ConsumerInfos.created:type_name -> google.protobuf.Timestamp
+	26, // 30: trb.nats.public.contract.v1.ConsumerInfos.delivered:type_name -> trb.nats.public.contract.v1.SequenceInfo
+	26, // 31: trb.nats.public.contract.v1.ConsumerInfos.ack_floor:type_name -> trb.nats.public.contract.v1.SequenceInfo
 	14, // 32: trb.nats.public.contract.v1.ConsumerInfos.cluster:type_name -> trb.nats.public.contract.v1.ClusterInfo
-	36, // 33: trb.nats.public.contract.v1.SequenceInfo.last_active:type_name -> google.protobuf.Timestamp
-	28, // 34: trb.nats.public.contract.v1.AccountInfos.tier:type_name -> trb.nats.public.contract.v1.Tier
-	30, // 35: trb.nats.public.contract.v1.AccountInfos.api:type_name -> trb.nats.public.contract.v1.APIStats
-	35, // 36: trb.nats.public.contract.v1.AccountInfos.tiers:type_name -> trb.nats.public.contract.v1.AccountInfos.TiersEntry
-	29, // 37: trb.nats.public.contract.v1.Tier.limits:type_name -> trb.nats.public.contract.v1.AccountLimits
+	37, // 33: trb.nats.public.contract.v1.SequenceInfo.last_active:type_name -> google.protobuf.Timestamp
+	29, // 34: trb.nats.public.contract.v1.AccountInfos.tier:type_name -> trb.nats.public.contract.v1.Tier
+	31, // 35: trb.nats.public.contract.v1.AccountInfos.api:type_name -> trb.nats.public.contract.v1.APIStats
+	36, // 36: trb.nats.public.contract.v1.AccountInfos.tiers:type_name -> trb.nats.public.contract.v1.AccountInfos.TiersEntry
+	30, // 37: trb.nats.public.contract.v1.Tier.limits:type_name -> trb.nats.public.contract.v1.AccountLimits
 	21, // 38: trb.nats.public.contract.v1.RawStreamMsg.HdrsEntry.value:type_name -> trb.nats.public.contract.v1.Strings
-	28, // 39: trb.nats.public.contract.v1.AccountInfos.TiersEntry.value:type_name -> trb.nats.public.contract.v1.Tier
+	29, // 39: trb.nats.public.contract.v1.AccountInfos.TiersEntry.value:type_name -> trb.nats.public.contract.v1.Tier
 	3,  // 40: trb.nats.public.contract.v1.NatsJetStreamManager.AddStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	3,  // 41: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateStream:input_type -> trb.nats.public.contract.v1.StreamConfig
 	2,  // 42: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteStream:input_type -> trb.nats.public.contract.v1.StreamName
@@ -2896,10 +2953,10 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	19, // 49: trb.nats.public.contract.v1.NatsJetStreamManager.GetLastMsg:input_type -> trb.nats.public.contract.v1.LastMsg
 	18, // 50: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteMsg:input_type -> trb.nats.public.contract.v1.Msg
 	18, // 51: trb.nats.public.contract.v1.NatsJetStreamManager.SecureDeleteMsg:input_type -> trb.nats.public.contract.v1.Msg
-	22, // 52: trb.nats.public.contract.v1.NatsJetStreamManager.AddConsumer:input_type -> trb.nats.public.contract.v1.Consumer
-	22, // 53: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateConsumer:input_type -> trb.nats.public.contract.v1.Consumer
-	22, // 54: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteConsumer:input_type -> trb.nats.public.contract.v1.Consumer
-	22, // 55: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerInfo:input_type -> trb.nats.public.contract.v1.Consumer
+	23, // 52: trb.nats.public.contract.v1.NatsJetStreamManager.AddConsumer:input_type -> trb.nats.public.contract.v1.Consumer
+	23, // 53: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateConsumer:input_type -> trb.nats.public.contract.v1.Consumer
+	22, // 54: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteConsumer:input_type -> trb.nats.public.contract.v1.ConsumerName
+	22, // 55: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerInfo:input_type -> trb.nats.public.contract.v1.ConsumerName
 	2,  // 56: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumersInfo:input_type -> trb.nats.public.contract.v1.StreamName
 	2,  // 57: trb.nats.public.contract.v1.NatsJetStreamManager.Consumers:input_type -> trb.nats.public.contract.v1.StreamName
 	2,  // 58: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerNames:input_type -> trb.nats.public.contract.v1.StreamName
@@ -2917,14 +2974,14 @@ var file_nats_NatsService_proto_depIdxs = []int32{
 	20, // 70: trb.nats.public.contract.v1.NatsJetStreamManager.GetLastMsg:output_type -> trb.nats.public.contract.v1.RawStreamMsg
 	1,  // 71: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteMsg:output_type -> trb.nats.public.contract.v1.Response
 	1,  // 72: trb.nats.public.contract.v1.NatsJetStreamManager.SecureDeleteMsg:output_type -> trb.nats.public.contract.v1.Response
-	24, // 73: trb.nats.public.contract.v1.NatsJetStreamManager.AddConsumer:output_type -> trb.nats.public.contract.v1.ConsumerInfos
-	24, // 74: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateConsumer:output_type -> trb.nats.public.contract.v1.ConsumerInfos
+	25, // 73: trb.nats.public.contract.v1.NatsJetStreamManager.AddConsumer:output_type -> trb.nats.public.contract.v1.ConsumerInfos
+	25, // 74: trb.nats.public.contract.v1.NatsJetStreamManager.UpdateConsumer:output_type -> trb.nats.public.contract.v1.ConsumerInfos
 	1,  // 75: trb.nats.public.contract.v1.NatsJetStreamManager.DeleteConsumer:output_type -> trb.nats.public.contract.v1.Response
-	24, // 76: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerInfo:output_type -> trb.nats.public.contract.v1.ConsumerInfos
-	24, // 77: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumersInfo:output_type -> trb.nats.public.contract.v1.ConsumerInfos
-	24, // 78: trb.nats.public.contract.v1.NatsJetStreamManager.Consumers:output_type -> trb.nats.public.contract.v1.ConsumerInfos
-	26, // 79: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerNames:output_type -> trb.nats.public.contract.v1.ConsNames
-	27, // 80: trb.nats.public.contract.v1.NatsJetStreamManager.AccountInfo:output_type -> trb.nats.public.contract.v1.AccountInfos
+	25, // 76: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerInfo:output_type -> trb.nats.public.contract.v1.ConsumerInfos
+	25, // 77: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumersInfo:output_type -> trb.nats.public.contract.v1.ConsumerInfos
+	25, // 78: trb.nats.public.contract.v1.NatsJetStreamManager.Consumers:output_type -> trb.nats.public.contract.v1.ConsumerInfos
+	27, // 79: trb.nats.public.contract.v1.NatsJetStreamManager.ConsumerNames:output_type -> trb.nats.public.contract.v1.ConsNames
+	28, // 80: trb.nats.public.contract.v1.NatsJetStreamManager.AccountInfo:output_type -> trb.nats.public.contract.v1.AccountInfos
 	0,  // 81: trb.nats.public.contract.v1.NatsJetStreamManager.StreamNameBySubject:output_type -> trb.nats.public.contract.v1.ResponseStreamNameBySubject
 	61, // [61:82] is the sub-list for method output_type
 	40, // [40:61] is the sub-list for method input_type
@@ -2944,7 +3001,7 @@ func file_nats_NatsService_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_nats_NatsService_proto_rawDesc), len(file_nats_NatsService_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   36,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

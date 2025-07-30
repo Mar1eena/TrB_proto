@@ -132,7 +132,7 @@ service NatsJetStreamManager {
   };
 
   // DeleteConsumer deletes a consumer.
-  rpc DeleteConsumer (Consumer) returns (Response){
+  rpc DeleteConsumer (ConsumerName) returns (Response){
     option (google.api.http) = {
       post: "/DeleteConsumer"
       body: "*"
@@ -140,7 +140,7 @@ service NatsJetStreamManager {
   };
 
   // ConsumerInfo retrieves information of a consumer from a stream.
-  rpc ConsumerInfo (Consumer) returns (ConsumerInfos){
+  rpc ConsumerInfo (ConsumerName) returns (ConsumerInfos){
     option (google.api.http) = {
       post: "/ConsumerInfo"
       body: "*"
@@ -366,7 +366,10 @@ message Strings {
 }
 
 // Consumer
-
+message ConsumerName {
+  string stream = 1;
+  string name = 2;
+}
 message Consumer {
   string name = 1;
   ConsumerConfig config = 2;

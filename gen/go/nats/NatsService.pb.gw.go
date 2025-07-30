@@ -361,7 +361,7 @@ func local_request_NatsJetStreamManager_UpdateConsumer_0(ctx context.Context, ma
 
 func request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Consumer
+		protoReq ConsumerName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -373,7 +373,7 @@ func request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, marshale
 
 func local_request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Consumer
+		protoReq ConsumerName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -385,7 +385,7 @@ func local_request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, ma
 
 func request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Consumer
+		protoReq ConsumerName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -397,7 +397,7 @@ func request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, marshaler 
 
 func local_request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Consumer
+		protoReq ConsumerName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
