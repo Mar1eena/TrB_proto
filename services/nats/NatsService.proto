@@ -356,9 +356,13 @@ message LastMsg {
 message RawStreamMsg {
   string subject = 1;
   uint64 seq = 2;
-  map<string, string> hdrs = 3;
+  map<string, Strings> hdrs = 3;
   bytes data = 4;
   google.protobuf.Timestamp time  = 5;
+}
+
+message Strings {
+  repeated string values = 1;
 }
 
 // Consumer
