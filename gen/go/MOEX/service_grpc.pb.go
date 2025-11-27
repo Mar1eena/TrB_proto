@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Moex_Hello_FullMethodName = "/moex.contract.v1.moex/Hello"
+	Moex_Hello_Moex_FullMethodName = "/moex.contract.v1.moex/Hello_Moex"
 )
 
 // MoexClient is the client API for Moex service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MoexClient interface {
-	Hello(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error)
+	Hello_Moex(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error)
 }
 
 type moexClient struct {
@@ -37,10 +37,10 @@ func NewMoexClient(cc grpc.ClientConnInterface) MoexClient {
 	return &moexClient{cc}
 }
 
-func (c *moexClient) Hello(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error) {
+func (c *moexClient) Hello_Moex(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Moexresponse)
-	err := c.cc.Invoke(ctx, Moex_Hello_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Moex_Hello_Moex_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *moexClient) Hello(ctx context.Context, in *Moexrequest, opts ...grpc.Ca
 // All implementations must embed UnimplementedMoexServer
 // for forward compatibility.
 type MoexServer interface {
-	Hello(context.Context, *Moexrequest) (*Moexresponse, error)
+	Hello_Moex(context.Context, *Moexrequest) (*Moexresponse, error)
 	mustEmbedUnimplementedMoexServer()
 }
 
@@ -62,8 +62,8 @@ type MoexServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMoexServer struct{}
 
-func (UnimplementedMoexServer) Hello(context.Context, *Moexrequest) (*Moexresponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Hello not implemented")
+func (UnimplementedMoexServer) Hello_Moex(context.Context, *Moexrequest) (*Moexresponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Hello_Moex not implemented")
 }
 func (UnimplementedMoexServer) mustEmbedUnimplementedMoexServer() {}
 func (UnimplementedMoexServer) testEmbeddedByValue()              {}
@@ -86,20 +86,20 @@ func RegisterMoexServer(s grpc.ServiceRegistrar, srv MoexServer) {
 	s.RegisterService(&Moex_ServiceDesc, srv)
 }
 
-func _Moex_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Moex_Hello_Moex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Moexrequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MoexServer).Hello(ctx, in)
+		return srv.(MoexServer).Hello_Moex(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Moex_Hello_FullMethodName,
+		FullMethod: Moex_Hello_Moex_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MoexServer).Hello(ctx, req.(*Moexrequest))
+		return srv.(MoexServer).Hello_Moex(ctx, req.(*Moexrequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var Moex_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MoexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Hello",
-			Handler:    _Moex_Hello_Handler,
+			MethodName: "Hello_Moex",
+			Handler:    _Moex_Hello_Moex_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

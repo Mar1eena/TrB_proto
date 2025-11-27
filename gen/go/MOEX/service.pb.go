@@ -119,9 +119,10 @@ const file_moex_service_proto_rawDesc = "" +
 	"\vMoexrequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"$\n" +
 	"\fMoexresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2_\n" +
-	"\x04moex\x12W\n" +
-	"\x05Hello\x12\x1d.moex.contract.v1.Moexrequest\x1a\x1e.moex.contract.v1.Moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
+	"\x05reply\x18\x01 \x01(\tR\x05reply2d\n" +
+	"\x04moex\x12\\\n" +
+	"\n" +
+	"Hello_Moex\x12\x1d.moex.contract.v1.Moexrequest\x1a\x1e.moex.contract.v1.Moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
 	file_moex_service_proto_rawDescOnce sync.Once
@@ -141,8 +142,8 @@ var file_moex_service_proto_goTypes = []any{
 	(*Moexresponse)(nil), // 1: moex.contract.v1.Moexresponse
 }
 var file_moex_service_proto_depIdxs = []int32{
-	0, // 0: moex.contract.v1.moex.Hello:input_type -> moex.contract.v1.Moexrequest
-	1, // 1: moex.contract.v1.moex.Hello:output_type -> moex.contract.v1.Moexresponse
+	0, // 0: moex.contract.v1.moex.Hello_Moex:input_type -> moex.contract.v1.Moexrequest
+	1, // 1: moex.contract.v1.moex.Hello_Moex:output_type -> moex.contract.v1.Moexresponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

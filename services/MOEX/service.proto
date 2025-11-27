@@ -6,7 +6,7 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service moex {
-    rpc Hello (Moexrequest) returns (Moexresponse){
+    rpc Hello_Moex (Moexrequest) returns (Moexresponse){
       option (google.api.http) = {
         post: "/say"
         body: "*"
