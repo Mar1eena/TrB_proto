@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 service moex {
     rpc Hello_Moex (Moexrequest) returns (Moexresponse){
       option (google.api.http) = {
-        post: "/say"
+        post: "/test"
         body: "*"
     };  
   };
@@ -16,7 +16,15 @@ service moex {
   
   // Сообщения для unary-методов
   message Moexrequest {
-    string text = 1;
+    string BeginString = 1;
+    string MsgType = 2;
+    string SenderCompID = 3;
+    string TargetCompID = 4;
+    string MsgSeqNum = 5;
+    string SendingTime = 6;
+    string EncryptMethod = 7;
+    string HeartBtInt = 8;
+    string Password = 9;
   }
   
   message Moexresponse {

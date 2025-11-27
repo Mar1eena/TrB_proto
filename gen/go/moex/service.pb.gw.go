@@ -74,7 +74,7 @@ func RegisterMoexHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/say"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -132,7 +132,7 @@ func RegisterMoexHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/say"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -149,7 +149,7 @@ func RegisterMoexHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 }
 
 var (
-	pattern_Moex_Hello_Moex_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"say"}, ""))
+	pattern_Moex_Hello_Moex_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"test"}, ""))
 )
 
 var (

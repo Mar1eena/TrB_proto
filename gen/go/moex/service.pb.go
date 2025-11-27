@@ -25,7 +25,15 @@ const (
 // Сообщения для unary-методов
 type Moexrequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Text          string                 `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
+	BeginString   string                 `protobuf:"bytes,1,opt,name=BeginString,proto3" json:"BeginString,omitempty"`
+	MsgType       string                 `protobuf:"bytes,2,opt,name=MsgType,proto3" json:"MsgType,omitempty"`
+	SenderCompID  string                 `protobuf:"bytes,3,opt,name=SenderCompID,proto3" json:"SenderCompID,omitempty"`
+	TargetCompID  string                 `protobuf:"bytes,4,opt,name=TargetCompID,proto3" json:"TargetCompID,omitempty"`
+	MsgSeqNum     string                 `protobuf:"bytes,5,opt,name=MsgSeqNum,proto3" json:"MsgSeqNum,omitempty"`
+	SendingTime   string                 `protobuf:"bytes,6,opt,name=SendingTime,proto3" json:"SendingTime,omitempty"`
+	EncryptMethod string                 `protobuf:"bytes,7,opt,name=EncryptMethod,proto3" json:"EncryptMethod,omitempty"`
+	HeartBtInt    string                 `protobuf:"bytes,8,opt,name=HeartBtInt,proto3" json:"HeartBtInt,omitempty"`
+	Password      string                 `protobuf:"bytes,9,opt,name=Password,proto3" json:"Password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60,9 +68,65 @@ func (*Moexrequest) Descriptor() ([]byte, []int) {
 	return file_moex_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Moexrequest) GetText() string {
+func (x *Moexrequest) GetBeginString() string {
 	if x != nil {
-		return x.Text
+		return x.BeginString
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetMsgType() string {
+	if x != nil {
+		return x.MsgType
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetSenderCompID() string {
+	if x != nil {
+		return x.SenderCompID
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetTargetCompID() string {
+	if x != nil {
+		return x.TargetCompID
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetMsgSeqNum() string {
+	if x != nil {
+		return x.MsgSeqNum
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetSendingTime() string {
+	if x != nil {
+		return x.SendingTime
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetEncryptMethod() string {
+	if x != nil {
+		return x.EncryptMethod
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetHeartBtInt() string {
+	if x != nil {
+		return x.HeartBtInt
+	}
+	return ""
+}
+
+func (x *Moexrequest) GetPassword() string {
+	if x != nil {
+		return x.Password
 	}
 	return ""
 }
@@ -115,14 +179,25 @@ var File_moex_service_proto protoreflect.FileDescriptor
 
 const file_moex_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"!\n" +
-	"\vMoexrequest\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text\"$\n" +
-	"\fMoexresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2d\n" +
-	"\x04moex\x12\\\n" +
+	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"\xb3\x02\n" +
+	"\vMoexrequest\x12 \n" +
+	"\vBeginString\x18\x01 \x01(\tR\vBeginString\x12\x18\n" +
+	"\aMsgType\x18\x02 \x01(\tR\aMsgType\x12\"\n" +
+	"\fSenderCompID\x18\x03 \x01(\tR\fSenderCompID\x12\"\n" +
+	"\fTargetCompID\x18\x04 \x01(\tR\fTargetCompID\x12\x1c\n" +
+	"\tMsgSeqNum\x18\x05 \x01(\tR\tMsgSeqNum\x12 \n" +
+	"\vSendingTime\x18\x06 \x01(\tR\vSendingTime\x12$\n" +
+	"\rEncryptMethod\x18\a \x01(\tR\rEncryptMethod\x12\x1e\n" +
 	"\n" +
-	"Hello_Moex\x12\x1d.moex.contract.v1.Moexrequest\x1a\x1e.moex.contract.v1.Moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
+	"HeartBtInt\x18\b \x01(\tR\n" +
+	"HeartBtInt\x12\x1a\n" +
+	"\bPassword\x18\t \x01(\tR\bPassword\"$\n" +
+	"\fMoexresponse\x12\x14\n" +
+	"\x05reply\x18\x01 \x01(\tR\x05reply2e\n" +
+	"\x04moex\x12]\n" +
+	"\n" +
+	"Hello_Moex\x12\x1d.moex.contract.v1.Moexrequest\x1a\x1e.moex.contract.v1.Moexresponse\"\x10\x82\xd3\xe4\x93\x02\n" +
+	":\x01*\"\x05/testB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
 	file_moex_service_proto_rawDescOnce sync.Once
