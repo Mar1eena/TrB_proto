@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: MOEX/service.proto
 
-package MOEX
+package moex
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -115,13 +115,13 @@ var File_MOEX_service_proto protoreflect.FileDescriptor
 
 const file_MOEX_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12MOEX/service.proto\x12\x04MOEX\x1a\x1cgoogle/api/annotations.proto\"!\n" +
+	"\x12MOEX/service.proto\x12\x04moex\x1a\x1cgoogle/api/annotations.proto\"!\n" +
 	"\vmoexrequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"$\n" +
 	"\fmoexresponse\x12\x14\n" +
 	"\x05reply\x18\x01 \x01(\tR\x05reply2G\n" +
-	"\x04MOEX\x12?\n" +
-	"\x05hello\x12\x11.MOEX.moexrequest\x1a\x12.MOEX.moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/MOEXb\x06proto3"
+	"\x04moex\x12?\n" +
+	"\x05hello\x12\x11.moex.moexrequest\x1a\x12.moex.moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/moexb\x06proto3"
 
 var (
 	file_MOEX_service_proto_rawDescOnce sync.Once
@@ -137,12 +137,12 @@ func file_MOEX_service_proto_rawDescGZIP() []byte {
 
 var file_MOEX_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_MOEX_service_proto_goTypes = []any{
-	(*Moexrequest)(nil),  // 0: MOEX.moexrequest
-	(*Moexresponse)(nil), // 1: MOEX.moexresponse
+	(*Moexrequest)(nil),  // 0: moex.moexrequest
+	(*Moexresponse)(nil), // 1: moex.moexresponse
 }
 var file_MOEX_service_proto_depIdxs = []int32{
-	0, // 0: MOEX.MOEX.hello:input_type -> MOEX.moexrequest
-	1, // 1: MOEX.MOEX.hello:output_type -> MOEX.moexresponse
+	0, // 0: moex.moex.hello:input_type -> moex.moexrequest
+	1, // 1: moex.moex.hello:output_type -> moex.moexresponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package MOEX;
-option go_package = "github.com/Mar1eena/trb_proto/services/MOEX";
+package moex;
+option go_package = "github.com/Mar1eena/trb_proto/services/moex";
 
 import "google/api/annotations.proto";
 
-service MOEX {
+service moex {
     rpc hello (moexrequest) returns (moexresponse){
       option (google.api.http) = {
         post: "/say"
