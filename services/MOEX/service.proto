@@ -6,7 +6,7 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service moex {
-    rpc hello (moexrequest) returns (moexresponse){
+    rpc Hello (Moexrequest) returns (Moexresponse){
       option (google.api.http) = {
         post: "/say"
         body: "*"
@@ -15,10 +15,10 @@ service moex {
 }
   
   // Сообщения для unary-методов
-  message moexrequest {
+  message Moexrequest {
     string text = 1;
   }
   
-  message moexresponse {
+  message Moexresponse {
     string reply = 1;
   }

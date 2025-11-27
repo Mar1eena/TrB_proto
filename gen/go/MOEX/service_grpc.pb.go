@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Moex_Hello_FullMethodName = "/moex.contract.v1.moex/hello"
+	Moex_Hello_FullMethodName = "/moex.contract.v1.moex/Hello"
 )
 
 // MoexClient is the client API for Moex service.
@@ -112,7 +112,7 @@ var Moex_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MoexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "hello",
+			MethodName: "Hello",
 			Handler:    _Moex_Hello_Handler,
 		},
 	},
