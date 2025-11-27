@@ -35,9 +35,9 @@ var (
 	_ = metadata.Join
 )
 
-func request_Moex_Hello_Moex_0(ctx context.Context, marshaler runtime.Marshaler, client MoexClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Moex_Logon_0(ctx context.Context, marshaler runtime.Marshaler, client MoexClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Moexrequest
+		protoReq Logonrequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -46,19 +46,46 @@ func request_Moex_Hello_Moex_0(ctx context.Context, marshaler runtime.Marshaler,
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.Hello_Moex(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Logon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_Moex_Hello_Moex_0(ctx context.Context, marshaler runtime.Marshaler, server MoexServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Moex_Logon_0(ctx context.Context, marshaler runtime.Marshaler, server MoexServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Moexrequest
+		protoReq Logonrequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.Hello_Moex(ctx, &protoReq)
+	msg, err := server.Logon(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Moex_Tradecapturereport_0(ctx context.Context, marshaler runtime.Marshaler, client MoexClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Tradecapturereportrequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.Tradecapturereport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Moex_Tradecapturereport_0(ctx context.Context, marshaler runtime.Marshaler, server MoexServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Tradecapturereportrequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.Tradecapturereport(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -68,25 +95,45 @@ func local_request_Moex_Hello_Moex_0(ctx context.Context, marshaler runtime.Mars
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMoexHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterMoexHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MoexServer) error {
-	mux.Handle(http.MethodPost, pattern_Moex_Hello_Moex_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Moex_Logon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/test"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Logon", runtime.WithHTTPPathPattern("/logon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Moex_Hello_Moex_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Moex_Logon_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Moex_Hello_Moex_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Moex_Logon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Moex_Tradecapturereport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Tradecapturereport", runtime.WithHTTPPathPattern("/tradecapturereport"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Moex_Tradecapturereport_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Moex_Tradecapturereport_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -128,30 +175,49 @@ func RegisterMoexHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "MoexClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterMoexHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MoexClient) error {
-	mux.Handle(http.MethodPost, pattern_Moex_Hello_Moex_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Moex_Logon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Hello_Moex", runtime.WithHTTPPathPattern("/test"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Logon", runtime.WithHTTPPathPattern("/logon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Moex_Hello_Moex_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Moex_Logon_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Moex_Hello_Moex_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Moex_Logon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Moex_Tradecapturereport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Tradecapturereport", runtime.WithHTTPPathPattern("/tradecapturereport"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Moex_Tradecapturereport_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Moex_Tradecapturereport_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Moex_Hello_Moex_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"test"}, ""))
+	pattern_Moex_Logon_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"logon"}, ""))
+	pattern_Moex_Tradecapturereport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"tradecapturereport"}, ""))
 )
 
 var (
-	forward_Moex_Hello_Moex_0 = runtime.ForwardResponseMessage
+	forward_Moex_Logon_0              = runtime.ForwardResponseMessage
+	forward_Moex_Tradecapturereport_0 = runtime.ForwardResponseMessage
 )

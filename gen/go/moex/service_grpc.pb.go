@@ -19,14 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Moex_Hello_Moex_FullMethodName = "/moex.contract.v1.moex/Hello_Moex"
+	Moex_Logon_FullMethodName              = "/moex.contract.v1.moex/logon"
+	Moex_Tradecapturereport_FullMethodName = "/moex.contract.v1.moex/tradecapturereport"
 )
 
 // MoexClient is the client API for Moex service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MoexClient interface {
-	Hello_Moex(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error)
+	Logon(ctx context.Context, in *Logonrequest, opts ...grpc.CallOption) (*Logonresponse, error)
+	Tradecapturereport(ctx context.Context, in *Tradecapturereportrequest, opts ...grpc.CallOption) (*Tradecapturereportresponse, error)
 }
 
 type moexClient struct {
@@ -37,10 +39,20 @@ func NewMoexClient(cc grpc.ClientConnInterface) MoexClient {
 	return &moexClient{cc}
 }
 
-func (c *moexClient) Hello_Moex(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error) {
+func (c *moexClient) Logon(ctx context.Context, in *Logonrequest, opts ...grpc.CallOption) (*Logonresponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Moexresponse)
-	err := c.cc.Invoke(ctx, Moex_Hello_Moex_FullMethodName, in, out, cOpts...)
+	out := new(Logonresponse)
+	err := c.cc.Invoke(ctx, Moex_Logon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *moexClient) Tradecapturereport(ctx context.Context, in *Tradecapturereportrequest, opts ...grpc.CallOption) (*Tradecapturereportresponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Tradecapturereportresponse)
+	err := c.cc.Invoke(ctx, Moex_Tradecapturereport_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +63,8 @@ func (c *moexClient) Hello_Moex(ctx context.Context, in *Moexrequest, opts ...gr
 // All implementations must embed UnimplementedMoexServer
 // for forward compatibility.
 type MoexServer interface {
-	Hello_Moex(context.Context, *Moexrequest) (*Moexresponse, error)
+	Logon(context.Context, *Logonrequest) (*Logonresponse, error)
+	Tradecapturereport(context.Context, *Tradecapturereportrequest) (*Tradecapturereportresponse, error)
 	mustEmbedUnimplementedMoexServer()
 }
 
@@ -62,8 +75,11 @@ type MoexServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMoexServer struct{}
 
-func (UnimplementedMoexServer) Hello_Moex(context.Context, *Moexrequest) (*Moexresponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Hello_Moex not implemented")
+func (UnimplementedMoexServer) Logon(context.Context, *Logonrequest) (*Logonresponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Logon not implemented")
+}
+func (UnimplementedMoexServer) Tradecapturereport(context.Context, *Tradecapturereportrequest) (*Tradecapturereportresponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Tradecapturereport not implemented")
 }
 func (UnimplementedMoexServer) mustEmbedUnimplementedMoexServer() {}
 func (UnimplementedMoexServer) testEmbeddedByValue()              {}
@@ -86,20 +102,38 @@ func RegisterMoexServer(s grpc.ServiceRegistrar, srv MoexServer) {
 	s.RegisterService(&Moex_ServiceDesc, srv)
 }
 
-func _Moex_Hello_Moex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Moexrequest)
+func _Moex_Logon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Logonrequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MoexServer).Hello_Moex(ctx, in)
+		return srv.(MoexServer).Logon(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Moex_Hello_Moex_FullMethodName,
+		FullMethod: Moex_Logon_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MoexServer).Hello_Moex(ctx, req.(*Moexrequest))
+		return srv.(MoexServer).Logon(ctx, req.(*Logonrequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Moex_Tradecapturereport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Tradecapturereportrequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MoexServer).Tradecapturereport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Moex_Tradecapturereport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MoexServer).Tradecapturereport(ctx, req.(*Tradecapturereportrequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +146,12 @@ var Moex_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MoexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Hello_Moex",
-			Handler:    _Moex_Hello_Moex_Handler,
+			MethodName: "logon",
+			Handler:    _Moex_Logon_Handler,
+		},
+		{
+			MethodName: "tradecapturereport",
+			Handler:    _Moex_Tradecapturereport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

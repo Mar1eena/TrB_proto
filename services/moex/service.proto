@@ -6,16 +6,22 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service moex {
-    rpc Hello_Moex (Moexrequest) returns (Moexresponse){
+    rpc logon (Logonrequest) returns (Logonresponse){
       option (google.api.http) = {
-        post: "/test"
+        post: "/logon"
         body: "*"
-    };  
+    };
   };
+    rpc tradecapturereport (Tradecapturereportrequest) returns (Tradecapturereportresponse){
+      option (google.api.http) = {
+        post: "/tradecapturereport"
+        body: "*"
+    }; 
+  };  
 }
   
   // Сообщения для unary-методов
-  message Moexrequest {
+  message Logonrequest {
     string beginstring = 1;
     string msgtype = 2;
     string sendercompid = 3;
@@ -27,6 +33,26 @@ service moex {
     string password = 9;
   }
   
-  message Moexresponse {
+  message Logonresponse {
+    string reply = 1;
+  }
+
+  message Tradecapturereportrequest {
+    string tradereportid = 1;
+    string unsolicitedindicator = 2;
+    string exectype = 3;
+    string execid = 4;
+    string previouslyreported = 5;
+    string nosides  = 6;
+    string side  = 7;
+    string orderid  = 8;
+    string complianceid = 9;
+    string lastpx = 10;  
+    string lastqty = 11;
+    string tradedate = 12;
+    string transacttime = 13;
+  }
+
+  message Tradecapturereportresponse {
     string reply = 1;
   }
