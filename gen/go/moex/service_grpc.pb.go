@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Moex_Logon_FullMethodName              = "/moex.contract.v1.moex/logon"
-	Moex_Tradecapturereport_FullMethodName = "/moex.contract.v1.moex/tradecapturereport"
+	Moex_Logon_FullMethodName              = "/moex.contract.v1.moex/Logon"
+	Moex_Tradecapturereport_FullMethodName = "/moex.contract.v1.moex/Tradecapturereport"
 )
 
 // MoexClient is the client API for Moex service.
@@ -146,11 +146,11 @@ var Moex_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MoexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "logon",
+			MethodName: "Logon",
 			Handler:    _Moex_Logon_Handler,
 		},
 		{
-			MethodName: "tradecapturereport",
+			MethodName: "Tradecapturereport",
 			Handler:    _Moex_Tradecapturereport_Handler,
 		},
 	},

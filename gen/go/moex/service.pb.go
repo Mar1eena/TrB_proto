@@ -497,8 +497,8 @@ const file_moex_service_proto_rawDesc = "" +
 	"heartbtint\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword2\xf5\x01\n" +
 	"\x04moex\x12[\n" +
-	"\x05logon\x12\x1e.moex.contract.v1.Logonrequest\x1a\x1f.moex.contract.v1.Logonresponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/logon\x12\x8f\x01\n" +
-	"\x12tradecapturereport\x12+.moex.contract.v1.Tradecapturereportrequest\x1a,.moex.contract.v1.Tradecapturereportresponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/tradecapturereportB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
+	"\x05Logon\x12\x1e.moex.contract.v1.Logonrequest\x1a\x1f.moex.contract.v1.Logonresponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/logon\x12\x8f\x01\n" +
+	"\x12Tradecapturereport\x12+.moex.contract.v1.Tradecapturereportrequest\x1a,.moex.contract.v1.Tradecapturereportresponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/tradecapturereportB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
 	file_moex_service_proto_rawDescOnce sync.Once
@@ -525,10 +525,10 @@ var file_moex_service_proto_depIdxs = []int32{
 	4, // 0: moex.contract.v1.Logonrequest.header:type_name -> moex.contract.v1.header
 	5, // 1: moex.contract.v1.Logonrequest.logon:type_name -> moex.contract.v1.logon
 	4, // 2: moex.contract.v1.Tradecapturereportrequest.header:type_name -> moex.contract.v1.header
-	0, // 3: moex.contract.v1.moex.logon:input_type -> moex.contract.v1.Logonrequest
-	2, // 4: moex.contract.v1.moex.tradecapturereport:input_type -> moex.contract.v1.Tradecapturereportrequest
-	1, // 5: moex.contract.v1.moex.logon:output_type -> moex.contract.v1.Logonresponse
-	3, // 6: moex.contract.v1.moex.tradecapturereport:output_type -> moex.contract.v1.Tradecapturereportresponse
+	0, // 3: moex.contract.v1.moex.Logon:input_type -> moex.contract.v1.Logonrequest
+	2, // 4: moex.contract.v1.moex.Tradecapturereport:input_type -> moex.contract.v1.Tradecapturereportrequest
+	1, // 5: moex.contract.v1.moex.Logon:output_type -> moex.contract.v1.Logonresponse
+	3, // 6: moex.contract.v1.moex.Tradecapturereport:output_type -> moex.contract.v1.Tradecapturereportresponse
 	5, // [5:7] is the sub-list for method output_type
 	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

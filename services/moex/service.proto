@@ -6,13 +6,13 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service moex {
-    rpc logon (Logonrequest) returns (Logonresponse){
+    rpc Logon (Logonrequest) returns (Logonresponse){
       option (google.api.http) = {
         post: "/logon"
         body: "*"
     };
   };
-    rpc tradecapturereport (Tradecapturereportrequest) returns (Tradecapturereportresponse){
+    rpc Tradecapturereport (Tradecapturereportrequest) returns (Tradecapturereportresponse){
       option (google.api.http) = {
         post: "/tradecapturereport"
         body: "*"
