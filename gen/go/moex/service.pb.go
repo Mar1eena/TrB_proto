@@ -25,15 +25,15 @@ const (
 // Сообщения для unary-методов
 type Moexrequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BeginString   string                 `protobuf:"bytes,1,opt,name=BeginString,proto3" json:"BeginString,omitempty"`
-	MsgType       string                 `protobuf:"bytes,2,opt,name=MsgType,proto3" json:"MsgType,omitempty"`
-	SenderCompID  string                 `protobuf:"bytes,3,opt,name=SenderCompID,proto3" json:"SenderCompID,omitempty"`
-	TargetCompID  string                 `protobuf:"bytes,4,opt,name=TargetCompID,proto3" json:"TargetCompID,omitempty"`
-	MsgSeqNum     string                 `protobuf:"bytes,5,opt,name=MsgSeqNum,proto3" json:"MsgSeqNum,omitempty"`
-	SendingTime   string                 `protobuf:"bytes,6,opt,name=SendingTime,proto3" json:"SendingTime,omitempty"`
-	EncryptMethod string                 `protobuf:"bytes,7,opt,name=EncryptMethod,proto3" json:"EncryptMethod,omitempty"`
-	HeartBtInt    string                 `protobuf:"bytes,8,opt,name=HeartBtInt,proto3" json:"HeartBtInt,omitempty"`
-	Password      string                 `protobuf:"bytes,9,opt,name=Password,proto3" json:"Password,omitempty"`
+	Beginstring   string                 `protobuf:"bytes,1,opt,name=beginstring,proto3" json:"beginstring,omitempty"`
+	Msgtype       string                 `protobuf:"bytes,2,opt,name=msgtype,proto3" json:"msgtype,omitempty"`
+	Sendercompid  string                 `protobuf:"bytes,3,opt,name=sendercompid,proto3" json:"sendercompid,omitempty"`
+	Targetcompid  string                 `protobuf:"bytes,4,opt,name=targetcompid,proto3" json:"targetcompid,omitempty"`
+	Msgseqnum     string                 `protobuf:"bytes,5,opt,name=msgseqnum,proto3" json:"msgseqnum,omitempty"`
+	Sendingtime   string                 `protobuf:"bytes,6,opt,name=sendingtime,proto3" json:"sendingtime,omitempty"`
+	Encryptmethod string                 `protobuf:"bytes,7,opt,name=encryptmethod,proto3" json:"encryptmethod,omitempty"`
+	Heartbtint    string                 `protobuf:"bytes,8,opt,name=heartbtint,proto3" json:"heartbtint,omitempty"`
+	Password      string                 `protobuf:"bytes,9,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -68,58 +68,58 @@ func (*Moexrequest) Descriptor() ([]byte, []int) {
 	return file_moex_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Moexrequest) GetBeginString() string {
+func (x *Moexrequest) GetBeginstring() string {
 	if x != nil {
-		return x.BeginString
+		return x.Beginstring
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetMsgType() string {
+func (x *Moexrequest) GetMsgtype() string {
 	if x != nil {
-		return x.MsgType
+		return x.Msgtype
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetSenderCompID() string {
+func (x *Moexrequest) GetSendercompid() string {
 	if x != nil {
-		return x.SenderCompID
+		return x.Sendercompid
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetTargetCompID() string {
+func (x *Moexrequest) GetTargetcompid() string {
 	if x != nil {
-		return x.TargetCompID
+		return x.Targetcompid
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetMsgSeqNum() string {
+func (x *Moexrequest) GetMsgseqnum() string {
 	if x != nil {
-		return x.MsgSeqNum
+		return x.Msgseqnum
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetSendingTime() string {
+func (x *Moexrequest) GetSendingtime() string {
 	if x != nil {
-		return x.SendingTime
+		return x.Sendingtime
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetEncryptMethod() string {
+func (x *Moexrequest) GetEncryptmethod() string {
 	if x != nil {
-		return x.EncryptMethod
+		return x.Encryptmethod
 	}
 	return ""
 }
 
-func (x *Moexrequest) GetHeartBtInt() string {
+func (x *Moexrequest) GetHeartbtint() string {
 	if x != nil {
-		return x.HeartBtInt
+		return x.Heartbtint
 	}
 	return ""
 }
@@ -181,17 +181,17 @@ const file_moex_service_proto_rawDesc = "" +
 	"\n" +
 	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"\xb3\x02\n" +
 	"\vMoexrequest\x12 \n" +
-	"\vBeginString\x18\x01 \x01(\tR\vBeginString\x12\x18\n" +
-	"\aMsgType\x18\x02 \x01(\tR\aMsgType\x12\"\n" +
-	"\fSenderCompID\x18\x03 \x01(\tR\fSenderCompID\x12\"\n" +
-	"\fTargetCompID\x18\x04 \x01(\tR\fTargetCompID\x12\x1c\n" +
-	"\tMsgSeqNum\x18\x05 \x01(\tR\tMsgSeqNum\x12 \n" +
-	"\vSendingTime\x18\x06 \x01(\tR\vSendingTime\x12$\n" +
-	"\rEncryptMethod\x18\a \x01(\tR\rEncryptMethod\x12\x1e\n" +
+	"\vbeginstring\x18\x01 \x01(\tR\vbeginstring\x12\x18\n" +
+	"\amsgtype\x18\x02 \x01(\tR\amsgtype\x12\"\n" +
+	"\fsendercompid\x18\x03 \x01(\tR\fsendercompid\x12\"\n" +
+	"\ftargetcompid\x18\x04 \x01(\tR\ftargetcompid\x12\x1c\n" +
+	"\tmsgseqnum\x18\x05 \x01(\tR\tmsgseqnum\x12 \n" +
+	"\vsendingtime\x18\x06 \x01(\tR\vsendingtime\x12$\n" +
+	"\rencryptmethod\x18\a \x01(\tR\rencryptmethod\x12\x1e\n" +
 	"\n" +
-	"HeartBtInt\x18\b \x01(\tR\n" +
-	"HeartBtInt\x12\x1a\n" +
-	"\bPassword\x18\t \x01(\tR\bPassword\"$\n" +
+	"heartbtint\x18\b \x01(\tR\n" +
+	"heartbtint\x12\x1a\n" +
+	"\bpassword\x18\t \x01(\tR\bpassword\"$\n" +
 	"\fMoexresponse\x12\x14\n" +
 	"\x05reply\x18\x01 \x01(\tR\x05reply2e\n" +
 	"\x04moex\x12]\n" +

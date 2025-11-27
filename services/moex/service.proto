@@ -16,15 +16,15 @@ service moex {
   
   // Сообщения для unary-методов
   message Moexrequest {
-    string BeginString = 1;
-    string MsgType = 2;
-    string SenderCompID = 3;
-    string TargetCompID = 4;
-    string MsgSeqNum = 5;
-    string SendingTime = 6;
-    string EncryptMethod = 7;
-    string HeartBtInt = 8;
-    string Password = 9;
+    string beginstring = 1;
+    string msgtype = 2;
+    string sendercompid = 3;
+    string targetcompid = 4;
+    string msgseqnum = 5;
+    string sendingtime = 6;
+    string encryptmethod = 7;
+    string heartbtint = 8;
+    string password = 9;
   }
   
   message Moexresponse {
