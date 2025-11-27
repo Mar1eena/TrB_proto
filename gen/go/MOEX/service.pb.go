@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v6.33.1
-// source: MOEX/service.proto
+// source: moex/service.proto
 
-package moex
+package moex_contract_v1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -32,7 +32,7 @@ type Moexrequest struct {
 
 func (x *Moexrequest) Reset() {
 	*x = Moexrequest{}
-	mi := &file_MOEX_service_proto_msgTypes[0]
+	mi := &file_moex_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *Moexrequest) String() string {
 func (*Moexrequest) ProtoMessage() {}
 
 func (x *Moexrequest) ProtoReflect() protoreflect.Message {
-	mi := &file_MOEX_service_proto_msgTypes[0]
+	mi := &file_moex_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *Moexrequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Moexrequest.ProtoReflect.Descriptor instead.
 func (*Moexrequest) Descriptor() ([]byte, []int) {
-	return file_MOEX_service_proto_rawDescGZIP(), []int{0}
+	return file_moex_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Moexrequest) GetText() string {
@@ -76,7 +76,7 @@ type Moexresponse struct {
 
 func (x *Moexresponse) Reset() {
 	*x = Moexresponse{}
-	mi := &file_MOEX_service_proto_msgTypes[1]
+	mi := &file_moex_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +88,7 @@ func (x *Moexresponse) String() string {
 func (*Moexresponse) ProtoMessage() {}
 
 func (x *Moexresponse) ProtoReflect() protoreflect.Message {
-	mi := &file_MOEX_service_proto_msgTypes[1]
+	mi := &file_moex_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +101,7 @@ func (x *Moexresponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Moexresponse.ProtoReflect.Descriptor instead.
 func (*Moexresponse) Descriptor() ([]byte, []int) {
-	return file_MOEX_service_proto_rawDescGZIP(), []int{1}
+	return file_moex_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Moexresponse) GetReply() string {
@@ -111,38 +111,38 @@ func (x *Moexresponse) GetReply() string {
 	return ""
 }
 
-var File_MOEX_service_proto protoreflect.FileDescriptor
+var File_moex_service_proto protoreflect.FileDescriptor
 
-const file_MOEX_service_proto_rawDesc = "" +
+const file_moex_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12MOEX/service.proto\x12\x04moex\x1a\x1cgoogle/api/annotations.proto\"!\n" +
+	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"!\n" +
 	"\vmoexrequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"$\n" +
 	"\fmoexresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2G\n" +
-	"\x04moex\x12?\n" +
-	"\x05hello\x12\x11.moex.moexrequest\x1a\x12.moex.moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/moexb\x06proto3"
+	"\x05reply\x18\x01 \x01(\tR\x05reply2_\n" +
+	"\x04moex\x12W\n" +
+	"\x05hello\x12\x1d.moex.contract.v1.moexrequest\x1a\x1e.moex.contract.v1.moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
-	file_MOEX_service_proto_rawDescOnce sync.Once
-	file_MOEX_service_proto_rawDescData []byte
+	file_moex_service_proto_rawDescOnce sync.Once
+	file_moex_service_proto_rawDescData []byte
 )
 
-func file_MOEX_service_proto_rawDescGZIP() []byte {
-	file_MOEX_service_proto_rawDescOnce.Do(func() {
-		file_MOEX_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_MOEX_service_proto_rawDesc), len(file_MOEX_service_proto_rawDesc)))
+func file_moex_service_proto_rawDescGZIP() []byte {
+	file_moex_service_proto_rawDescOnce.Do(func() {
+		file_moex_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_moex_service_proto_rawDesc), len(file_moex_service_proto_rawDesc)))
 	})
-	return file_MOEX_service_proto_rawDescData
+	return file_moex_service_proto_rawDescData
 }
 
-var file_MOEX_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_MOEX_service_proto_goTypes = []any{
-	(*Moexrequest)(nil),  // 0: moex.moexrequest
-	(*Moexresponse)(nil), // 1: moex.moexresponse
+var file_moex_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_moex_service_proto_goTypes = []any{
+	(*Moexrequest)(nil),  // 0: moex.contract.v1.moexrequest
+	(*Moexresponse)(nil), // 1: moex.contract.v1.moexresponse
 }
-var file_MOEX_service_proto_depIdxs = []int32{
-	0, // 0: moex.moex.hello:input_type -> moex.moexrequest
-	1, // 1: moex.moex.hello:output_type -> moex.moexresponse
+var file_moex_service_proto_depIdxs = []int32{
+	0, // 0: moex.contract.v1.moex.hello:input_type -> moex.contract.v1.moexrequest
+	1, // 1: moex.contract.v1.moex.hello:output_type -> moex.contract.v1.moexresponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -150,26 +150,26 @@ var file_MOEX_service_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_MOEX_service_proto_init() }
-func file_MOEX_service_proto_init() {
-	if File_MOEX_service_proto != nil {
+func init() { file_moex_service_proto_init() }
+func file_moex_service_proto_init() {
+	if File_moex_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_MOEX_service_proto_rawDesc), len(file_MOEX_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_moex_service_proto_rawDesc), len(file_moex_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_MOEX_service_proto_goTypes,
-		DependencyIndexes: file_MOEX_service_proto_depIdxs,
-		MessageInfos:      file_MOEX_service_proto_msgTypes,
+		GoTypes:           file_moex_service_proto_goTypes,
+		DependencyIndexes: file_moex_service_proto_depIdxs,
+		MessageInfos:      file_moex_service_proto_msgTypes,
 	}.Build()
-	File_MOEX_service_proto = out.File
-	file_MOEX_service_proto_goTypes = nil
-	file_MOEX_service_proto_depIdxs = nil
+	File_moex_service_proto = out.File
+	file_moex_service_proto_goTypes = nil
+	file_moex_service_proto_depIdxs = nil
 }

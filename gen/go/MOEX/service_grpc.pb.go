@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.0
 // - protoc             v6.33.1
-// source: MOEX/service.proto
+// source: moex/service.proto
 
-package moex
+package moex_contract_v1
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Moex_Hello_FullMethodName = "/moex.moex/hello"
+	Moex_Hello_FullMethodName = "/moex.contract.v1.moex/hello"
 )
 
 // MoexClient is the client API for Moex service.
@@ -108,7 +108,7 @@ func _Moex_Hello_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Moex_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "moex.moex",
+	ServiceName: "moex.contract.v1.moex",
 	HandlerType: (*MoexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -117,5 +117,5 @@ var Moex_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "MOEX/service.proto",
+	Metadata: "moex/service.proto",
 }
