@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package MOEX;
+option go_package = "github.com/Mar1eena/trb_proto/services/MOEX";
+
+import "google/api/annotations.proto";
+
+service MOEX {
+    rpc hello (hellorequest) returns (helloresponse){
+      option (google.api.http) = {
+        post: "/say"
+        body: "*"
+    };  
+  };
+}
+  
+  // Сообщения для unary-методов
+  message hellorequest {
+    string text = 1;
+  }
+  
+  message helloresponse {
+    string reply = 1;
+  }

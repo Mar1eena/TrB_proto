@@ -2,11 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v6.33.1
-// source: servicexamle/service.proto
+// source: MOEX/service.proto
 
-package trb_servicexamle_public_contract_v1
+package MOEX
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -31,7 +32,7 @@ type Hellorequest struct {
 
 func (x *Hellorequest) Reset() {
 	*x = Hellorequest{}
-	mi := &file_servicexamle_service_proto_msgTypes[0]
+	mi := &file_MOEX_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +44,7 @@ func (x *Hellorequest) String() string {
 func (*Hellorequest) ProtoMessage() {}
 
 func (x *Hellorequest) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_service_proto_msgTypes[0]
+	mi := &file_MOEX_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +57,7 @@ func (x *Hellorequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Hellorequest.ProtoReflect.Descriptor instead.
 func (*Hellorequest) Descriptor() ([]byte, []int) {
-	return file_servicexamle_service_proto_rawDescGZIP(), []int{0}
+	return file_MOEX_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Hellorequest) GetText() string {
@@ -75,7 +76,7 @@ type Helloresponse struct {
 
 func (x *Helloresponse) Reset() {
 	*x = Helloresponse{}
-	mi := &file_servicexamle_service_proto_msgTypes[1]
+	mi := &file_MOEX_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +88,7 @@ func (x *Helloresponse) String() string {
 func (*Helloresponse) ProtoMessage() {}
 
 func (x *Helloresponse) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_service_proto_msgTypes[1]
+	mi := &file_MOEX_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,7 +101,7 @@ func (x *Helloresponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Helloresponse.ProtoReflect.Descriptor instead.
 func (*Helloresponse) Descriptor() ([]byte, []int) {
-	return file_servicexamle_service_proto_rawDescGZIP(), []int{1}
+	return file_MOEX_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Helloresponse) GetReply() string {
@@ -110,38 +111,38 @@ func (x *Helloresponse) GetReply() string {
 	return ""
 }
 
-var File_servicexamle_service_proto protoreflect.FileDescriptor
+var File_MOEX_service_proto protoreflect.FileDescriptor
 
-const file_servicexamle_service_proto_rawDesc = "" +
+const file_MOEX_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1aservicexamle/service.proto\x12#trb.servicexamle.public.contract.v1\"\"\n" +
+	"\x12MOEX/service.proto\x12\x04MOEX\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
 	"\fhellorequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"%\n" +
 	"\rhelloresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2y\n" +
-	"\aservice\x12n\n" +
-	"\x05hello\x121.trb.servicexamle.public.contract.v1.hellorequest\x1a2.trb.servicexamle.public.contract.v1.helloresponseBLZJgithub.com/Mar1eena/trb_proto/services/trb.servicexamle.public.contract.v1b\x06proto3"
+	"\x05reply\x18\x01 \x01(\tR\x05reply2I\n" +
+	"\x04MOEX\x12A\n" +
+	"\x05hello\x12\x12.MOEX.hellorequest\x1a\x13.MOEX.helloresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/MOEXb\x06proto3"
 
 var (
-	file_servicexamle_service_proto_rawDescOnce sync.Once
-	file_servicexamle_service_proto_rawDescData []byte
+	file_MOEX_service_proto_rawDescOnce sync.Once
+	file_MOEX_service_proto_rawDescData []byte
 )
 
-func file_servicexamle_service_proto_rawDescGZIP() []byte {
-	file_servicexamle_service_proto_rawDescOnce.Do(func() {
-		file_servicexamle_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_servicexamle_service_proto_rawDesc), len(file_servicexamle_service_proto_rawDesc)))
+func file_MOEX_service_proto_rawDescGZIP() []byte {
+	file_MOEX_service_proto_rawDescOnce.Do(func() {
+		file_MOEX_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_MOEX_service_proto_rawDesc), len(file_MOEX_service_proto_rawDesc)))
 	})
-	return file_servicexamle_service_proto_rawDescData
+	return file_MOEX_service_proto_rawDescData
 }
 
-var file_servicexamle_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_servicexamle_service_proto_goTypes = []any{
-	(*Hellorequest)(nil),  // 0: trb.servicexamle.public.contract.v1.hellorequest
-	(*Helloresponse)(nil), // 1: trb.servicexamle.public.contract.v1.helloresponse
+var file_MOEX_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_MOEX_service_proto_goTypes = []any{
+	(*Hellorequest)(nil),  // 0: MOEX.hellorequest
+	(*Helloresponse)(nil), // 1: MOEX.helloresponse
 }
-var file_servicexamle_service_proto_depIdxs = []int32{
-	0, // 0: trb.servicexamle.public.contract.v1.service.hello:input_type -> trb.servicexamle.public.contract.v1.hellorequest
-	1, // 1: trb.servicexamle.public.contract.v1.service.hello:output_type -> trb.servicexamle.public.contract.v1.helloresponse
+var file_MOEX_service_proto_depIdxs = []int32{
+	0, // 0: MOEX.MOEX.hello:input_type -> MOEX.hellorequest
+	1, // 1: MOEX.MOEX.hello:output_type -> MOEX.helloresponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -149,26 +150,26 @@ var file_servicexamle_service_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_servicexamle_service_proto_init() }
-func file_servicexamle_service_proto_init() {
-	if File_servicexamle_service_proto != nil {
+func init() { file_MOEX_service_proto_init() }
+func file_MOEX_service_proto_init() {
+	if File_MOEX_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_servicexamle_service_proto_rawDesc), len(file_servicexamle_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_MOEX_service_proto_rawDesc), len(file_MOEX_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_servicexamle_service_proto_goTypes,
-		DependencyIndexes: file_servicexamle_service_proto_depIdxs,
-		MessageInfos:      file_servicexamle_service_proto_msgTypes,
+		GoTypes:           file_MOEX_service_proto_goTypes,
+		DependencyIndexes: file_MOEX_service_proto_depIdxs,
+		MessageInfos:      file_MOEX_service_proto_msgTypes,
 	}.Build()
-	File_servicexamle_service_proto = out.File
-	file_servicexamle_service_proto_goTypes = nil
-	file_servicexamle_service_proto_depIdxs = nil
+	File_MOEX_service_proto = out.File
+	file_MOEX_service_proto_goTypes = nil
+	file_MOEX_service_proto_depIdxs = nil
 }
