@@ -26,7 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MOEXClient interface {
-	Hello(ctx context.Context, in *Hellorequest, opts ...grpc.CallOption) (*Helloresponse, error)
+	Hello(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error)
 }
 
 type mOEXClient struct {
@@ -37,9 +37,9 @@ func NewMOEXClient(cc grpc.ClientConnInterface) MOEXClient {
 	return &mOEXClient{cc}
 }
 
-func (c *mOEXClient) Hello(ctx context.Context, in *Hellorequest, opts ...grpc.CallOption) (*Helloresponse, error) {
+func (c *mOEXClient) Hello(ctx context.Context, in *Moexrequest, opts ...grpc.CallOption) (*Moexresponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Helloresponse)
+	out := new(Moexresponse)
 	err := c.cc.Invoke(ctx, MOEX_Hello_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *mOEXClient) Hello(ctx context.Context, in *Hellorequest, opts ...grpc.C
 // All implementations must embed UnimplementedMOEXServer
 // for forward compatibility.
 type MOEXServer interface {
-	Hello(context.Context, *Hellorequest) (*Helloresponse, error)
+	Hello(context.Context, *Moexrequest) (*Moexresponse, error)
 	mustEmbedUnimplementedMOEXServer()
 }
 
@@ -62,7 +62,7 @@ type MOEXServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMOEXServer struct{}
 
-func (UnimplementedMOEXServer) Hello(context.Context, *Hellorequest) (*Helloresponse, error) {
+func (UnimplementedMOEXServer) Hello(context.Context, *Moexrequest) (*Moexresponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Hello not implemented")
 }
 func (UnimplementedMOEXServer) mustEmbedUnimplementedMOEXServer() {}
@@ -87,7 +87,7 @@ func RegisterMOEXServer(s grpc.ServiceRegistrar, srv MOEXServer) {
 }
 
 func _MOEX_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Hellorequest)
+	in := new(Moexrequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func _MOEX_Hello_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: MOEX_Hello_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MOEXServer).Hello(ctx, req.(*Hellorequest))
+		return srv.(MOEXServer).Hello(ctx, req.(*Moexrequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -37,7 +37,7 @@ var (
 
 func request_MOEX_Hello_0(ctx context.Context, marshaler runtime.Marshaler, client MOEXClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Hellorequest
+		protoReq Moexrequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -52,7 +52,7 @@ func request_MOEX_Hello_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 func local_request_MOEX_Hello_0(ctx context.Context, marshaler runtime.Marshaler, server MOEXServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Hellorequest
+		protoReq Moexrequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

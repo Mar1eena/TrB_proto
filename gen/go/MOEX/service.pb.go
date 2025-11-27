@@ -23,27 +23,27 @@ const (
 )
 
 // Сообщения для unary-методов
-type Hellorequest struct {
+type Moexrequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Text          string                 `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Hellorequest) Reset() {
-	*x = Hellorequest{}
+func (x *Moexrequest) Reset() {
+	*x = Moexrequest{}
 	mi := &file_MOEX_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Hellorequest) String() string {
+func (x *Moexrequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Hellorequest) ProtoMessage() {}
+func (*Moexrequest) ProtoMessage() {}
 
-func (x *Hellorequest) ProtoReflect() protoreflect.Message {
+func (x *Moexrequest) ProtoReflect() protoreflect.Message {
 	mi := &file_MOEX_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,39 +55,39 @@ func (x *Hellorequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Hellorequest.ProtoReflect.Descriptor instead.
-func (*Hellorequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Moexrequest.ProtoReflect.Descriptor instead.
+func (*Moexrequest) Descriptor() ([]byte, []int) {
 	return file_MOEX_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Hellorequest) GetText() string {
+func (x *Moexrequest) GetText() string {
 	if x != nil {
 		return x.Text
 	}
 	return ""
 }
 
-type Helloresponse struct {
+type Moexresponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Reply         string                 `protobuf:"bytes,1,opt,name=reply,proto3" json:"reply,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Helloresponse) Reset() {
-	*x = Helloresponse{}
+func (x *Moexresponse) Reset() {
+	*x = Moexresponse{}
 	mi := &file_MOEX_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Helloresponse) String() string {
+func (x *Moexresponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Helloresponse) ProtoMessage() {}
+func (*Moexresponse) ProtoMessage() {}
 
-func (x *Helloresponse) ProtoReflect() protoreflect.Message {
+func (x *Moexresponse) ProtoReflect() protoreflect.Message {
 	mi := &file_MOEX_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -99,12 +99,12 @@ func (x *Helloresponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Helloresponse.ProtoReflect.Descriptor instead.
-func (*Helloresponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use Moexresponse.ProtoReflect.Descriptor instead.
+func (*Moexresponse) Descriptor() ([]byte, []int) {
 	return file_MOEX_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Helloresponse) GetReply() string {
+func (x *Moexresponse) GetReply() string {
 	if x != nil {
 		return x.Reply
 	}
@@ -115,13 +115,13 @@ var File_MOEX_service_proto protoreflect.FileDescriptor
 
 const file_MOEX_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12MOEX/service.proto\x12\x04MOEX\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
-	"\fhellorequest\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text\"%\n" +
-	"\rhelloresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2I\n" +
-	"\x04MOEX\x12A\n" +
-	"\x05hello\x12\x12.MOEX.hellorequest\x1a\x13.MOEX.helloresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/MOEXb\x06proto3"
+	"\x12MOEX/service.proto\x12\x04MOEX\x1a\x1cgoogle/api/annotations.proto\"!\n" +
+	"\vmoexrequest\x12\x12\n" +
+	"\x04text\x18\x01 \x01(\tR\x04text\"$\n" +
+	"\fmoexresponse\x12\x14\n" +
+	"\x05reply\x18\x01 \x01(\tR\x05reply2G\n" +
+	"\x04MOEX\x12?\n" +
+	"\x05hello\x12\x11.MOEX.moexrequest\x1a\x12.MOEX.moexresponse\"\x0f\x82\xd3\xe4\x93\x02\t:\x01*\"\x04/sayB-Z+github.com/Mar1eena/trb_proto/services/MOEXb\x06proto3"
 
 var (
 	file_MOEX_service_proto_rawDescOnce sync.Once
@@ -137,12 +137,12 @@ func file_MOEX_service_proto_rawDescGZIP() []byte {
 
 var file_MOEX_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_MOEX_service_proto_goTypes = []any{
-	(*Hellorequest)(nil),  // 0: MOEX.hellorequest
-	(*Helloresponse)(nil), // 1: MOEX.helloresponse
+	(*Moexrequest)(nil),  // 0: MOEX.moexrequest
+	(*Moexresponse)(nil), // 1: MOEX.moexresponse
 }
 var file_MOEX_service_proto_depIdxs = []int32{
-	0, // 0: MOEX.MOEX.hello:input_type -> MOEX.hellorequest
-	1, // 1: MOEX.MOEX.hello:output_type -> MOEX.helloresponse
+	0, // 0: MOEX.MOEX.hello:input_type -> MOEX.moexrequest
+	1, // 1: MOEX.MOEX.hello:output_type -> MOEX.moexresponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
