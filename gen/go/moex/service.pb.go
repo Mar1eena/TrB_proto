@@ -25,15 +25,8 @@ const (
 // Сообщения для unary-методов
 type Logonrequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Beginstring   string                 `protobuf:"bytes,1,opt,name=beginstring,proto3" json:"beginstring,omitempty"`
-	Msgtype       string                 `protobuf:"bytes,2,opt,name=msgtype,proto3" json:"msgtype,omitempty"`
-	Sendercompid  string                 `protobuf:"bytes,3,opt,name=sendercompid,proto3" json:"sendercompid,omitempty"`
-	Targetcompid  string                 `protobuf:"bytes,4,opt,name=targetcompid,proto3" json:"targetcompid,omitempty"`
-	Msgseqnum     string                 `protobuf:"bytes,5,opt,name=msgseqnum,proto3" json:"msgseqnum,omitempty"`
-	Sendingtime   string                 `protobuf:"bytes,6,opt,name=sendingtime,proto3" json:"sendingtime,omitempty"`
-	Encryptmethod string                 `protobuf:"bytes,7,opt,name=encryptmethod,proto3" json:"encryptmethod,omitempty"`
-	Heartbtint    string                 `protobuf:"bytes,8,opt,name=heartbtint,proto3" json:"heartbtint,omitempty"`
-	Password      string                 `protobuf:"bytes,9,opt,name=password,proto3" json:"password,omitempty"`
+	Header        *Header                `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
+	Logon         *Logon                 `protobuf:"bytes,2,opt,name=logon,proto3" json:"logon,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -68,67 +61,18 @@ func (*Logonrequest) Descriptor() ([]byte, []int) {
 	return file_moex_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Logonrequest) GetBeginstring() string {
+func (x *Logonrequest) GetHeader() *Header {
 	if x != nil {
-		return x.Beginstring
+		return x.Header
 	}
-	return ""
+	return nil
 }
 
-func (x *Logonrequest) GetMsgtype() string {
+func (x *Logonrequest) GetLogon() *Logon {
 	if x != nil {
-		return x.Msgtype
+		return x.Logon
 	}
-	return ""
-}
-
-func (x *Logonrequest) GetSendercompid() string {
-	if x != nil {
-		return x.Sendercompid
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetTargetcompid() string {
-	if x != nil {
-		return x.Targetcompid
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetMsgseqnum() string {
-	if x != nil {
-		return x.Msgseqnum
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetSendingtime() string {
-	if x != nil {
-		return x.Sendingtime
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetEncryptmethod() string {
-	if x != nil {
-		return x.Encryptmethod
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetHeartbtint() string {
-	if x != nil {
-		return x.Heartbtint
-	}
-	return ""
-}
-
-func (x *Logonrequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
+	return nil
 }
 
 type Logonresponse struct {
@@ -177,19 +121,20 @@ func (x *Logonresponse) GetReply() string {
 
 type Tradecapturereportrequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Tradereportid        string                 `protobuf:"bytes,1,opt,name=tradereportid,proto3" json:"tradereportid,omitempty"`
-	Unsolicitedindicator string                 `protobuf:"bytes,2,opt,name=unsolicitedindicator,proto3" json:"unsolicitedindicator,omitempty"`
-	Exectype             string                 `protobuf:"bytes,3,opt,name=exectype,proto3" json:"exectype,omitempty"`
-	Execid               string                 `protobuf:"bytes,4,opt,name=execid,proto3" json:"execid,omitempty"`
-	Previouslyreported   string                 `protobuf:"bytes,5,opt,name=previouslyreported,proto3" json:"previouslyreported,omitempty"`
-	Nosides              string                 `protobuf:"bytes,6,opt,name=nosides,proto3" json:"nosides,omitempty"`
-	Side                 string                 `protobuf:"bytes,7,opt,name=side,proto3" json:"side,omitempty"`
-	Orderid              string                 `protobuf:"bytes,8,opt,name=orderid,proto3" json:"orderid,omitempty"`
-	Complianceid         string                 `protobuf:"bytes,9,opt,name=complianceid,proto3" json:"complianceid,omitempty"`
-	Lastpx               string                 `protobuf:"bytes,10,opt,name=lastpx,proto3" json:"lastpx,omitempty"`
-	Lastqty              string                 `protobuf:"bytes,11,opt,name=lastqty,proto3" json:"lastqty,omitempty"`
-	Tradedate            string                 `protobuf:"bytes,12,opt,name=tradedate,proto3" json:"tradedate,omitempty"`
-	Transacttime         string                 `protobuf:"bytes,13,opt,name=transacttime,proto3" json:"transacttime,omitempty"`
+	Header               *Header                `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
+	Tradereportid        string                 `protobuf:"bytes,2,opt,name=tradereportid,proto3" json:"tradereportid,omitempty"`
+	Unsolicitedindicator string                 `protobuf:"bytes,3,opt,name=unsolicitedindicator,proto3" json:"unsolicitedindicator,omitempty"`
+	Exectype             string                 `protobuf:"bytes,4,opt,name=exectype,proto3" json:"exectype,omitempty"`
+	Execid               string                 `protobuf:"bytes,5,opt,name=execid,proto3" json:"execid,omitempty"`
+	Previouslyreported   string                 `protobuf:"bytes,6,opt,name=previouslyreported,proto3" json:"previouslyreported,omitempty"`
+	Nosides              string                 `protobuf:"bytes,7,opt,name=nosides,proto3" json:"nosides,omitempty"`
+	Side                 string                 `protobuf:"bytes,8,opt,name=side,proto3" json:"side,omitempty"`
+	Orderid              string                 `protobuf:"bytes,9,opt,name=orderid,proto3" json:"orderid,omitempty"`
+	Complianceid         string                 `protobuf:"bytes,10,opt,name=complianceid,proto3" json:"complianceid,omitempty"`
+	Lastpx               string                 `protobuf:"bytes,11,opt,name=lastpx,proto3" json:"lastpx,omitempty"`
+	Lastqty              string                 `protobuf:"bytes,12,opt,name=lastqty,proto3" json:"lastqty,omitempty"`
+	Tradedate            string                 `protobuf:"bytes,13,opt,name=tradedate,proto3" json:"tradedate,omitempty"`
+	Transacttime         string                 `protobuf:"bytes,14,opt,name=transacttime,proto3" json:"transacttime,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -222,6 +167,13 @@ func (x *Tradecapturereportrequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Tradecapturereportrequest.ProtoReflect.Descriptor instead.
 func (*Tradecapturereportrequest) Descriptor() ([]byte, []int) {
 	return file_moex_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Tradecapturereportrequest) GetHeader() *Header {
+	if x != nil {
+		return x.Header
+	}
+	return nil
 }
 
 func (x *Tradecapturereportrequest) GetTradereportid() string {
@@ -359,42 +311,191 @@ func (x *Tradecapturereportresponse) GetReply() string {
 	return ""
 }
 
+type Header struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Beginstring   string                 `protobuf:"bytes,1,opt,name=beginstring,proto3" json:"beginstring,omitempty"`
+	Msgtype       string                 `protobuf:"bytes,2,opt,name=msgtype,proto3" json:"msgtype,omitempty"`
+	Sendercompid  string                 `protobuf:"bytes,3,opt,name=sendercompid,proto3" json:"sendercompid,omitempty"`
+	Targetcompid  string                 `protobuf:"bytes,4,opt,name=targetcompid,proto3" json:"targetcompid,omitempty"`
+	Msgseqnum     string                 `protobuf:"bytes,5,opt,name=msgseqnum,proto3" json:"msgseqnum,omitempty"`
+	Sendingtime   string                 `protobuf:"bytes,6,opt,name=sendingtime,proto3" json:"sendingtime,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Header) Reset() {
+	*x = Header{}
+	mi := &file_moex_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Header) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Header) ProtoMessage() {}
+
+func (x *Header) ProtoReflect() protoreflect.Message {
+	mi := &file_moex_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Header.ProtoReflect.Descriptor instead.
+func (*Header) Descriptor() ([]byte, []int) {
+	return file_moex_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Header) GetBeginstring() string {
+	if x != nil {
+		return x.Beginstring
+	}
+	return ""
+}
+
+func (x *Header) GetMsgtype() string {
+	if x != nil {
+		return x.Msgtype
+	}
+	return ""
+}
+
+func (x *Header) GetSendercompid() string {
+	if x != nil {
+		return x.Sendercompid
+	}
+	return ""
+}
+
+func (x *Header) GetTargetcompid() string {
+	if x != nil {
+		return x.Targetcompid
+	}
+	return ""
+}
+
+func (x *Header) GetMsgseqnum() string {
+	if x != nil {
+		return x.Msgseqnum
+	}
+	return ""
+}
+
+func (x *Header) GetSendingtime() string {
+	if x != nil {
+		return x.Sendingtime
+	}
+	return ""
+}
+
+type Logon struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Encryptmethod string                 `protobuf:"bytes,1,opt,name=encryptmethod,proto3" json:"encryptmethod,omitempty"`
+	Heartbtint    string                 `protobuf:"bytes,2,opt,name=heartbtint,proto3" json:"heartbtint,omitempty"`
+	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Logon) Reset() {
+	*x = Logon{}
+	mi := &file_moex_service_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Logon) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Logon) ProtoMessage() {}
+
+func (x *Logon) ProtoReflect() protoreflect.Message {
+	mi := &file_moex_service_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Logon.ProtoReflect.Descriptor instead.
+func (*Logon) Descriptor() ([]byte, []int) {
+	return file_moex_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Logon) GetEncryptmethod() string {
+	if x != nil {
+		return x.Encryptmethod
+	}
+	return ""
+}
+
+func (x *Logon) GetHeartbtint() string {
+	if x != nil {
+		return x.Heartbtint
+	}
+	return ""
+}
+
+func (x *Logon) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 var File_moex_service_proto protoreflect.FileDescriptor
 
 const file_moex_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"\xb4\x02\n" +
-	"\fLogonrequest\x12 \n" +
+	"\x12moex/service.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"o\n" +
+	"\fLogonrequest\x120\n" +
+	"\x06header\x18\x01 \x01(\v2\x18.moex.contract.v1.headerR\x06header\x12-\n" +
+	"\x05logon\x18\x02 \x01(\v2\x17.moex.contract.v1.logonR\x05logon\"%\n" +
+	"\rLogonresponse\x12\x14\n" +
+	"\x05reply\x18\x01 \x01(\tR\x05reply\"\xeb\x03\n" +
+	"\x19Tradecapturereportrequest\x120\n" +
+	"\x06header\x18\x01 \x01(\v2\x18.moex.contract.v1.headerR\x06header\x12$\n" +
+	"\rtradereportid\x18\x02 \x01(\tR\rtradereportid\x122\n" +
+	"\x14unsolicitedindicator\x18\x03 \x01(\tR\x14unsolicitedindicator\x12\x1a\n" +
+	"\bexectype\x18\x04 \x01(\tR\bexectype\x12\x16\n" +
+	"\x06execid\x18\x05 \x01(\tR\x06execid\x12.\n" +
+	"\x12previouslyreported\x18\x06 \x01(\tR\x12previouslyreported\x12\x18\n" +
+	"\anosides\x18\a \x01(\tR\anosides\x12\x12\n" +
+	"\x04side\x18\b \x01(\tR\x04side\x12\x18\n" +
+	"\aorderid\x18\t \x01(\tR\aorderid\x12\"\n" +
+	"\fcomplianceid\x18\n" +
+	" \x01(\tR\fcomplianceid\x12\x16\n" +
+	"\x06lastpx\x18\v \x01(\tR\x06lastpx\x12\x18\n" +
+	"\alastqty\x18\f \x01(\tR\alastqty\x12\x1c\n" +
+	"\ttradedate\x18\r \x01(\tR\ttradedate\x12\"\n" +
+	"\ftransacttime\x18\x0e \x01(\tR\ftransacttime\"2\n" +
+	"\x1aTradecapturereportresponse\x12\x14\n" +
+	"\x05reply\x18\x01 \x01(\tR\x05reply\"\xcc\x01\n" +
+	"\x06header\x12 \n" +
 	"\vbeginstring\x18\x01 \x01(\tR\vbeginstring\x12\x18\n" +
 	"\amsgtype\x18\x02 \x01(\tR\amsgtype\x12\"\n" +
 	"\fsendercompid\x18\x03 \x01(\tR\fsendercompid\x12\"\n" +
 	"\ftargetcompid\x18\x04 \x01(\tR\ftargetcompid\x12\x1c\n" +
 	"\tmsgseqnum\x18\x05 \x01(\tR\tmsgseqnum\x12 \n" +
-	"\vsendingtime\x18\x06 \x01(\tR\vsendingtime\x12$\n" +
-	"\rencryptmethod\x18\a \x01(\tR\rencryptmethod\x12\x1e\n" +
+	"\vsendingtime\x18\x06 \x01(\tR\vsendingtime\"i\n" +
+	"\x05logon\x12$\n" +
+	"\rencryptmethod\x18\x01 \x01(\tR\rencryptmethod\x12\x1e\n" +
 	"\n" +
-	"heartbtint\x18\b \x01(\tR\n" +
+	"heartbtint\x18\x02 \x01(\tR\n" +
 	"heartbtint\x12\x1a\n" +
-	"\bpassword\x18\t \x01(\tR\bpassword\"%\n" +
-	"\rLogonresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply\"\xb9\x03\n" +
-	"\x19Tradecapturereportrequest\x12$\n" +
-	"\rtradereportid\x18\x01 \x01(\tR\rtradereportid\x122\n" +
-	"\x14unsolicitedindicator\x18\x02 \x01(\tR\x14unsolicitedindicator\x12\x1a\n" +
-	"\bexectype\x18\x03 \x01(\tR\bexectype\x12\x16\n" +
-	"\x06execid\x18\x04 \x01(\tR\x06execid\x12.\n" +
-	"\x12previouslyreported\x18\x05 \x01(\tR\x12previouslyreported\x12\x18\n" +
-	"\anosides\x18\x06 \x01(\tR\anosides\x12\x12\n" +
-	"\x04side\x18\a \x01(\tR\x04side\x12\x18\n" +
-	"\aorderid\x18\b \x01(\tR\aorderid\x12\"\n" +
-	"\fcomplianceid\x18\t \x01(\tR\fcomplianceid\x12\x16\n" +
-	"\x06lastpx\x18\n" +
-	" \x01(\tR\x06lastpx\x12\x18\n" +
-	"\alastqty\x18\v \x01(\tR\alastqty\x12\x1c\n" +
-	"\ttradedate\x18\f \x01(\tR\ttradedate\x12\"\n" +
-	"\ftransacttime\x18\r \x01(\tR\ftransacttime\"2\n" +
-	"\x1aTradecapturereportresponse\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply2\xf5\x01\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword2\xf5\x01\n" +
 	"\x04moex\x12[\n" +
 	"\x05logon\x12\x1e.moex.contract.v1.Logonrequest\x1a\x1f.moex.contract.v1.Logonresponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/logon\x12\x8f\x01\n" +
 	"\x12tradecapturereport\x12+.moex.contract.v1.Tradecapturereportrequest\x1a,.moex.contract.v1.Tradecapturereportresponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/tradecapturereportB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
@@ -411,23 +512,28 @@ func file_moex_service_proto_rawDescGZIP() []byte {
 	return file_moex_service_proto_rawDescData
 }
 
-var file_moex_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_moex_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_moex_service_proto_goTypes = []any{
 	(*Logonrequest)(nil),               // 0: moex.contract.v1.Logonrequest
 	(*Logonresponse)(nil),              // 1: moex.contract.v1.Logonresponse
 	(*Tradecapturereportrequest)(nil),  // 2: moex.contract.v1.Tradecapturereportrequest
 	(*Tradecapturereportresponse)(nil), // 3: moex.contract.v1.Tradecapturereportresponse
+	(*Header)(nil),                     // 4: moex.contract.v1.header
+	(*Logon)(nil),                      // 5: moex.contract.v1.logon
 }
 var file_moex_service_proto_depIdxs = []int32{
-	0, // 0: moex.contract.v1.moex.logon:input_type -> moex.contract.v1.Logonrequest
-	2, // 1: moex.contract.v1.moex.tradecapturereport:input_type -> moex.contract.v1.Tradecapturereportrequest
-	1, // 2: moex.contract.v1.moex.logon:output_type -> moex.contract.v1.Logonresponse
-	3, // 3: moex.contract.v1.moex.tradecapturereport:output_type -> moex.contract.v1.Tradecapturereportresponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: moex.contract.v1.Logonrequest.header:type_name -> moex.contract.v1.header
+	5, // 1: moex.contract.v1.Logonrequest.logon:type_name -> moex.contract.v1.logon
+	4, // 2: moex.contract.v1.Tradecapturereportrequest.header:type_name -> moex.contract.v1.header
+	0, // 3: moex.contract.v1.moex.logon:input_type -> moex.contract.v1.Logonrequest
+	2, // 4: moex.contract.v1.moex.tradecapturereport:input_type -> moex.contract.v1.Tradecapturereportrequest
+	1, // 5: moex.contract.v1.moex.logon:output_type -> moex.contract.v1.Logonresponse
+	3, // 6: moex.contract.v1.moex.tradecapturereport:output_type -> moex.contract.v1.Tradecapturereportresponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_moex_service_proto_init() }
@@ -441,7 +547,7 @@ func file_moex_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_moex_service_proto_rawDesc), len(file_moex_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

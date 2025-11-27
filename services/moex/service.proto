@@ -22,15 +22,8 @@ service moex {
   
   // Сообщения для unary-методов
   message Logonrequest {
-    string beginstring = 1;
-    string msgtype = 2;
-    string sendercompid = 3;
-    string targetcompid = 4;
-    string msgseqnum = 5;
-    string sendingtime = 6;
-    string encryptmethod = 7;
-    string heartbtint = 8;
-    string password = 9;
+    header header = 1;
+    logon logon = 2;
   }
   
   message Logonresponse {
@@ -38,21 +31,37 @@ service moex {
   }
 
   message Tradecapturereportrequest {
-    string tradereportid = 1;
-    string unsolicitedindicator = 2;
-    string exectype = 3;
-    string execid = 4;
-    string previouslyreported = 5;
-    string nosides  = 6;
-    string side  = 7;
-    string orderid  = 8;
-    string complianceid = 9;
-    string lastpx = 10;  
-    string lastqty = 11;
-    string tradedate = 12;
-    string transacttime = 13;
+    header header = 1;
+    string tradereportid = 2;
+    string unsolicitedindicator = 3;
+    string exectype = 4;
+    string execid = 5;
+    string previouslyreported = 6;
+    string nosides  = 7;
+    string side  = 8;
+    string orderid  = 9;
+    string complianceid = 10;
+    string lastpx = 11;  
+    string lastqty = 12;
+    string tradedate = 13;
+    string transacttime = 14;
   }
 
   message Tradecapturereportresponse {
     string reply = 1;
+  }
+
+  message header {
+    string beginstring = 1;
+    string msgtype = 2;
+    string sendercompid = 3;
+    string targetcompid = 4;
+    string msgseqnum = 5;
+    string sendingtime = 6;
+  }
+
+  message logon {
+    string encryptmethod = 1;
+    string heartbtint = 2;
+    string password = 3;
   }
