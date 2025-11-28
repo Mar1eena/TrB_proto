@@ -1,6 +1,4 @@
 
-
-# make gen service='Название сервиса'
 gene:
 	protoc -I./services \
 	./services/servicexamle/*.proto \
