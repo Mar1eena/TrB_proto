@@ -13,7 +13,7 @@ gene:
 	--go-grpc_opt=paths=source_relative \
 	--grpc-gateway_out=./gen/go \
 	--grpc-gateway_opt=paths=source_relative \
-	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_protos_V1.pb 
+	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_protos_V2.pb 
 
 desc: 
 	protoc -I./services \

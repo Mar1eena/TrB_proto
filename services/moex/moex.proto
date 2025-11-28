@@ -6,48 +6,20 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service moex {
-    rpc Logon (Logonrequest) returns (Logonresponse){
+    rpc Request (Req) returns (Resp){
       option (google.api.http) = {
-        post: "/logon"
+        post: "/Request"
         body: "*"
     };
-  };
-    rpc Tradecapturereport (Tradecapturereportrequest) returns (Tradecapturereportresponse){
-      option (google.api.http) = {
-        post: "/tradecapturereport"
-        body: "*"
-    }; 
-  };  
+  };   
 }
   
-  // Сообщения для unary-методов
-  message Logonrequest {
+  message Req {
     header header = 1;
-    logon logon = 2;
-  }
-  
-  message Logonresponse {
-    string reply = 1;
+    body body = 2;
   }
 
-  message Tradecapturereportrequest {
-    header header = 1;
-    string tradereportid = 2;
-    string unsolicitedindicator = 3;
-    string exectype = 4;
-    string execid = 5;
-    string previouslyreported = 6;
-    string nosides  = 7;
-    string side  = 8;
-    string orderid  = 9;
-    string complianceid = 10;
-    string lastpx = 11;  
-    string lastqty = 12;
-    string tradedate = 13;
-    string transacttime = 14;
-  }
-
-  message Tradecapturereportresponse {
+  message Resp {
     string reply = 1;
   }
 
@@ -58,6 +30,34 @@ service moex {
     string targetcompid = 4;
     string msgseqnum = 5;
     string sendingtime = 6;
+  }
+  
+  message body {
+    logon logon = 1;
+    TradeCaptureReportRequest TradeCaptureReportRequest = 2;
+  }
+
+  message TradeCaptureReportRequest {
+    string TradeReportID = 1;
+    string UnsolicitedIndicator = 2;
+    string ExecType  = 3;
+    string ExecID = 4;
+    string PreviouslyReported = 5;
+    repeated Instrument Instrument = 6;
+    string NoSides  = 7;
+    string Side  = 8;
+    string OrderID  = 9;
+    string ComplianceID = 10;
+    string LastPx = 11;  
+    string LastQty = 12;
+    string TradeDate = 13;
+    string TransactTime = 14;
+  }
+
+  message Instrument {
+    string Symbol = 1;
+    string Product = 2;
+    string SecurityType = 3;
   }
 
   message logon {
