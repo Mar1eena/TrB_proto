@@ -5,7 +5,7 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 
 import "google/api/annotations.proto";
 
-service moex {
+service dealing {
     rpc Request (Req) returns (Resp){
       option (google.api.http) = {
         post: "/Request"

@@ -35,7 +35,7 @@ var (
 	_ = metadata.Join
 )
 
-func request_Moex_Request_0(ctx context.Context, marshaler runtime.Marshaler, client MoexClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Dealing_Request_0(ctx context.Context, marshaler runtime.Marshaler, client DealingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Req
 		metadata runtime.ServerMetadata
@@ -43,14 +43,11 @@ func request_Moex_Request_0(ctx context.Context, marshaler runtime.Marshaler, cl
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
 	msg, err := client.Request(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_Moex_Request_0(ctx context.Context, marshaler runtime.Marshaler, server MoexServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Dealing_Request_0(ctx context.Context, marshaler runtime.Marshaler, server DealingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Req
 		metadata runtime.ServerMetadata
@@ -62,39 +59,39 @@ func local_request_Moex_Request_0(ctx context.Context, marshaler runtime.Marshal
 	return msg, metadata, err
 }
 
-// RegisterMoexHandlerServer registers the http handlers for service Moex to "mux".
-// UnaryRPC     :call MoexServer directly.
+// RegisterDealingHandlerServer registers the http handlers for service Dealing to "mux".
+// UnaryRPC     :call DealingServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMoexHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDealingHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterMoexHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MoexServer) error {
-	mux.Handle(http.MethodPost, pattern_Moex_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterDealingHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DealingServer) error {
+	mux.Handle(http.MethodPost, pattern_Dealing_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Moex/Request", runtime.WithHTTPPathPattern("/Request"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Dealing/Request", runtime.WithHTTPPathPattern("/Request"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Moex_Request_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Dealing_Request_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Moex_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Dealing_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterMoexHandlerFromEndpoint is same as RegisterMoexHandler but
+// RegisterDealingHandlerFromEndpoint is same as RegisterDealingHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterMoexHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterDealingHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -113,45 +110,45 @@ func RegisterMoexHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 			}
 		}()
 	}()
-	return RegisterMoexHandler(ctx, mux, conn)
+	return RegisterDealingHandler(ctx, mux, conn)
 }
 
-// RegisterMoexHandler registers the http handlers for service Moex to "mux".
+// RegisterDealingHandler registers the http handlers for service Dealing to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterMoexHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterMoexHandlerClient(ctx, mux, NewMoexClient(conn))
+func RegisterDealingHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterDealingHandlerClient(ctx, mux, NewDealingClient(conn))
 }
 
-// RegisterMoexHandlerClient registers the http handlers for service Moex
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "MoexClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "MoexClient"
+// RegisterDealingHandlerClient registers the http handlers for service Dealing
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "DealingClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "DealingClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "MoexClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterMoexHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MoexClient) error {
-	mux.Handle(http.MethodPost, pattern_Moex_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "DealingClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterDealingHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DealingClient) error {
+	mux.Handle(http.MethodPost, pattern_Dealing_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Moex/Request", runtime.WithHTTPPathPattern("/Request"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Dealing/Request", runtime.WithHTTPPathPattern("/Request"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Moex_Request_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Dealing_Request_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Moex_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Dealing_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Moex_Request_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Request"}, ""))
+	pattern_Dealing_Request_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Request"}, ""))
 )
 
 var (
-	forward_Moex_Request_0 = runtime.ForwardResponseMessage
+	forward_Dealing_Request_0 = runtime.ForwardResponseMessage
 )
