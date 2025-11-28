@@ -15,43 +15,26 @@ service moex {
 }
   
   message Req {
-    header header = 1;
-    body body = 2;
+    Header header = 1;
+    Body body = 2;
   }
 
   message Resp {
     string reply = 1;
   }
 
-  message header {
-    string beginstring = 1;
-    string msgtype = 2;
-    string sendercompid = 3;
-    string targetcompid = 4;
-    string msgseqnum = 5;
-    string sendingtime = 6;
+  message Header {
+    string BeginString = 1;
+    string MsgType = 2;
+    string SendercompID = 3;
+    string TargetcompID = 4;
+    string MsgSeqNum = 5;
+    string SendingTime = 6;
   }
   
-  message body {
-    logon logon = 1;
-    TradeCaptureReportRequest TradeCaptureReportRequest = 2;
-  }
-
-  message TradeCaptureReportRequest {
-    string TradeReportID = 1;
-    string UnsolicitedIndicator = 2;
-    string ExecType  = 3;
-    string ExecID = 4;
-    string PreviouslyReported = 5;
-    repeated Instrument Instrument = 6;
-    string NoSides  = 7;
-    string Side  = 8;
-    string OrderID  = 9;
-    string ComplianceID = 10;
-    string LastPx = 11;  
-    string LastQty = 12;
-    string TradeDate = 13;
-    string TransactTime = 14;
+  message Body {
+    Logon Logon = 1;
+    repeated Instrument Instrument = 2;
   }
 
   message Instrument {
@@ -60,8 +43,10 @@ service moex {
     string SecurityType = 3;
   }
 
-  message logon {
-    string encryptmethod = 1;
+  message Logon {
+    string encryptMethod = 1;
     string heartbtint = 2;
     string password = 3;
+    string ResetSeqNumFlag = 4;
+    string TestReqID = 5;
   }
