@@ -393,7 +393,9 @@ func (x *Logon) GetTestReqID() string {
 type DealingRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Header        string                 `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	Logon         string                 `protobuf:"bytes,3,opt,name=logon,proto3" json:"logon,omitempty"`
+	Instrument    string                 `protobuf:"bytes,4,opt,name=Instrument,proto3" json:"Instrument,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -435,9 +437,23 @@ func (x *DealingRequest) GetAddress() string {
 	return ""
 }
 
-func (x *DealingRequest) GetBody() string {
+func (x *DealingRequest) GetHeader() string {
 	if x != nil {
-		return x.Body
+		return x.Header
+	}
+	return ""
+}
+
+func (x *DealingRequest) GetLogon() string {
+	if x != nil {
+		return x.Logon
+	}
+	return ""
+}
+
+func (x *DealingRequest) GetInstrument() string {
+	if x != nil {
+		return x.Instrument
 	}
 	return ""
 }
@@ -520,10 +536,14 @@ const file_moex_moex_proto_rawDesc = "" +
 	"heartbtint\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12(\n" +
 	"\x0fResetSeqNumFlag\x18\x04 \x01(\tR\x0fResetSeqNumFlag\x12\x1c\n" +
-	"\tTestReqID\x18\x05 \x01(\tR\tTestReqID\">\n" +
+	"\tTestReqID\x18\x05 \x01(\tR\tTestReqID\"x\n" +
 	"\x0eDealingRequest\x12\x18\n" +
-	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x12\n" +
-	"\x04body\x18\x02 \x01(\tR\x04body\"'\n" +
+	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x16\n" +
+	"\x06header\x18\x02 \x01(\tR\x06header\x12\x14\n" +
+	"\x05logon\x18\x03 \x01(\tR\x05logon\x12\x1e\n" +
+	"\n" +
+	"Instrument\x18\x04 \x01(\tR\n" +
+	"Instrument\"'\n" +
 	"\x0fDealingResponse\x12\x14\n" +
 	"\x05Reply\x18\x01 \x01(\tR\x05Reply2\xbd\x01\n" +
 	"\adealing\x12M\n" +
