@@ -61,7 +61,7 @@ service dealing {
     string address = 1;
     string header = 2;
     string logon = 3;
-    string Instrument = 4;
+    string instrument = 4;
   }
 
   message DealingResponse {
