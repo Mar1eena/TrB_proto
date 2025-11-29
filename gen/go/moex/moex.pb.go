@@ -390,6 +390,102 @@ func (x *Logon) GetTestReqID() string {
 	return ""
 }
 
+type DealingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DealingRequest) Reset() {
+	*x = DealingRequest{}
+	mi := &file_moex_moex_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DealingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DealingRequest) ProtoMessage() {}
+
+func (x *DealingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_moex_moex_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DealingRequest.ProtoReflect.Descriptor instead.
+func (*DealingRequest) Descriptor() ([]byte, []int) {
+	return file_moex_moex_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DealingRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *DealingRequest) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
+type DealingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Reply         string                 `protobuf:"bytes,1,opt,name=Reply,proto3" json:"Reply,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DealingResponse) Reset() {
+	*x = DealingResponse{}
+	mi := &file_moex_moex_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DealingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DealingResponse) ProtoMessage() {}
+
+func (x *DealingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_moex_moex_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DealingResponse.ProtoReflect.Descriptor instead.
+func (*DealingResponse) Descriptor() ([]byte, []int) {
+	return file_moex_moex_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *DealingResponse) GetReply() string {
+	if x != nil {
+		return x.Reply
+	}
+	return ""
+}
+
 var File_moex_moex_proto protoreflect.FileDescriptor
 
 const file_moex_moex_proto_rawDesc = "" +
@@ -424,9 +520,15 @@ const file_moex_moex_proto_rawDesc = "" +
 	"heartbtint\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12(\n" +
 	"\x0fResetSeqNumFlag\x18\x04 \x01(\tR\x0fResetSeqNumFlag\x12\x1c\n" +
-	"\tTestReqID\x18\x05 \x01(\tR\tTestReqID2X\n" +
+	"\tTestReqID\x18\x05 \x01(\tR\tTestReqID\">\n" +
+	"\x0eDealingRequest\x12\x18\n" +
+	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x12\n" +
+	"\x04body\x18\x02 \x01(\tR\x04body\"'\n" +
+	"\x0fDealingResponse\x12\x14\n" +
+	"\x05Reply\x18\x01 \x01(\tR\x05Reply2\xbd\x01\n" +
 	"\adealing\x12M\n" +
-	"\aRequest\x12\x15.moex.contract.v1.Req\x1a\x16.moex.contract.v1.Resp\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/RequestB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
+	"\aRequest\x12\x15.moex.contract.v1.Req\x1a\x16.moex.contract.v1.Resp\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Request\x12c\n" +
+	"\aDealing\x12 .moex.contract.v1.DealingRequest\x1a!.moex.contract.v1.DealingResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/DealingB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
 	file_moex_moex_proto_rawDescOnce sync.Once
@@ -440,14 +542,16 @@ func file_moex_moex_proto_rawDescGZIP() []byte {
 	return file_moex_moex_proto_rawDescData
 }
 
-var file_moex_moex_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_moex_moex_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_moex_moex_proto_goTypes = []any{
-	(*Req)(nil),        // 0: moex.contract.v1.Req
-	(*Resp)(nil),       // 1: moex.contract.v1.Resp
-	(*Header)(nil),     // 2: moex.contract.v1.Header
-	(*Body)(nil),       // 3: moex.contract.v1.Body
-	(*Instrument)(nil), // 4: moex.contract.v1.Instrument
-	(*Logon)(nil),      // 5: moex.contract.v1.Logon
+	(*Req)(nil),             // 0: moex.contract.v1.Req
+	(*Resp)(nil),            // 1: moex.contract.v1.Resp
+	(*Header)(nil),          // 2: moex.contract.v1.Header
+	(*Body)(nil),            // 3: moex.contract.v1.Body
+	(*Instrument)(nil),      // 4: moex.contract.v1.Instrument
+	(*Logon)(nil),           // 5: moex.contract.v1.Logon
+	(*DealingRequest)(nil),  // 6: moex.contract.v1.DealingRequest
+	(*DealingResponse)(nil), // 7: moex.contract.v1.DealingResponse
 }
 var file_moex_moex_proto_depIdxs = []int32{
 	2, // 0: moex.contract.v1.Req.header:type_name -> moex.contract.v1.Header
@@ -455,9 +559,11 @@ var file_moex_moex_proto_depIdxs = []int32{
 	5, // 2: moex.contract.v1.Body.Logon:type_name -> moex.contract.v1.Logon
 	4, // 3: moex.contract.v1.Body.Instrument:type_name -> moex.contract.v1.Instrument
 	0, // 4: moex.contract.v1.dealing.Request:input_type -> moex.contract.v1.Req
-	1, // 5: moex.contract.v1.dealing.Request:output_type -> moex.contract.v1.Resp
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
+	6, // 5: moex.contract.v1.dealing.Dealing:input_type -> moex.contract.v1.DealingRequest
+	1, // 6: moex.contract.v1.dealing.Request:output_type -> moex.contract.v1.Resp
+	7, // 7: moex.contract.v1.dealing.Dealing:output_type -> moex.contract.v1.DealingResponse
+	6, // [6:8] is the sub-list for method output_type
+	4, // [4:6] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
 	4, // [4:4] is the sub-list for extension extendee
 	0, // [0:4] is the sub-list for field type_name
@@ -474,7 +580,7 @@ func file_moex_moex_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_moex_moex_proto_rawDesc), len(file_moex_moex_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

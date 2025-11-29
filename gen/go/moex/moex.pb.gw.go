@@ -59,6 +59,30 @@ func local_request_Dealing_Request_0(ctx context.Context, marshaler runtime.Mars
 	return msg, metadata, err
 }
 
+func request_Dealing_Dealing_0(ctx context.Context, marshaler runtime.Marshaler, client DealingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DealingRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.Dealing(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Dealing_Dealing_0(ctx context.Context, marshaler runtime.Marshaler, server DealingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DealingRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.Dealing(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterDealingHandlerServer registers the http handlers for service Dealing to "mux".
 // UnaryRPC     :call DealingServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -84,6 +108,26 @@ func RegisterDealingHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			return
 		}
 		forward_Dealing_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Dealing_Dealing_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/moex.contract.v1.Dealing/Dealing", runtime.WithHTTPPathPattern("/Dealing"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Dealing_Dealing_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Dealing_Dealing_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -142,13 +186,32 @@ func RegisterDealingHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		}
 		forward_Dealing_Request_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_Dealing_Dealing_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/moex.contract.v1.Dealing/Dealing", runtime.WithHTTPPathPattern("/Dealing"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Dealing_Dealing_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Dealing_Dealing_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
 	pattern_Dealing_Request_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Request"}, ""))
+	pattern_Dealing_Dealing_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Dealing"}, ""))
 )
 
 var (
 	forward_Dealing_Request_0 = runtime.ForwardResponseMessage
+	forward_Dealing_Dealing_0 = runtime.ForwardResponseMessage
 )

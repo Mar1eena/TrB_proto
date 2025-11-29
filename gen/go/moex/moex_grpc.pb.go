@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Dealing_Request_FullMethodName = "/moex.contract.v1.dealing/Request"
+	Dealing_Dealing_FullMethodName = "/moex.contract.v1.dealing/Dealing"
 )
 
 // DealingClient is the client API for Dealing service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DealingClient interface {
 	Request(ctx context.Context, in *Req, opts ...grpc.CallOption) (*Resp, error)
+	Dealing(ctx context.Context, in *DealingRequest, opts ...grpc.CallOption) (*DealingResponse, error)
 }
 
 type dealingClient struct {
@@ -47,11 +49,22 @@ func (c *dealingClient) Request(ctx context.Context, in *Req, opts ...grpc.CallO
 	return out, nil
 }
 
+func (c *dealingClient) Dealing(ctx context.Context, in *DealingRequest, opts ...grpc.CallOption) (*DealingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DealingResponse)
+	err := c.cc.Invoke(ctx, Dealing_Dealing_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DealingServer is the server API for Dealing service.
 // All implementations must embed UnimplementedDealingServer
 // for forward compatibility.
 type DealingServer interface {
 	Request(context.Context, *Req) (*Resp, error)
+	Dealing(context.Context, *DealingRequest) (*DealingResponse, error)
 	mustEmbedUnimplementedDealingServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedDealingServer struct{}
 
 func (UnimplementedDealingServer) Request(context.Context, *Req) (*Resp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Request not implemented")
+}
+func (UnimplementedDealingServer) Dealing(context.Context, *DealingRequest) (*DealingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Dealing not implemented")
 }
 func (UnimplementedDealingServer) mustEmbedUnimplementedDealingServer() {}
 func (UnimplementedDealingServer) testEmbeddedByValue()                 {}
@@ -104,6 +120,24 @@ func _Dealing_Request_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Dealing_Dealing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DealingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DealingServer).Dealing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Dealing_Dealing_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DealingServer).Dealing(ctx, req.(*DealingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Dealing_ServiceDesc is the grpc.ServiceDesc for Dealing service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Dealing_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Request",
 			Handler:    _Dealing_Request_Handler,
+		},
+		{
+			MethodName: "Dealing",
+			Handler:    _Dealing_Dealing_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

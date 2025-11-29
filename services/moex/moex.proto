@@ -6,10 +6,16 @@ option go_package = "github.com/Mar1eena/trb_proto/services/moex.contract.v1";
 import "google/api/annotations.proto";
 
 service dealing {
-    rpc Request (Req) returns (Resp){
-      option (google.api.http) = {
-        post: "/Request"
-        body: "*"
+  rpc Request (Req) returns (Resp){
+    option (google.api.http) = {
+      post: "/Request"
+      body: "*"
+    };
+  };
+  rpc Dealing(DealingRequest) returns (DealingResponse) {
+    option (google.api.http) = {
+      post: "/Dealing"
+      body: "*"
     };
   };   
 }
@@ -49,4 +55,13 @@ service dealing {
     string password = 3;
     string ResetSeqNumFlag = 4;
     string TestReqID = 5;
+  }
+
+  message DealingRequest {
+    string address = 1;
+    string body = 2;
+  }
+
+  message DealingResponse {
+    string Reply = 1;
   }
