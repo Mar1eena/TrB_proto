@@ -65,5 +65,7 @@ service dealing {
   }
 
   message DealingResponse {
-    string Reply = 1;
+    string Logon = 1;
+    string Instrument = 2;
+    string Logout = 3;
   }

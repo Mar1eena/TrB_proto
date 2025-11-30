@@ -460,7 +460,9 @@ func (x *DealingRequest) GetInstrument() string {
 
 type DealingResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Reply         string                 `protobuf:"bytes,1,opt,name=Reply,proto3" json:"Reply,omitempty"`
+	Logon         string                 `protobuf:"bytes,1,opt,name=Logon,proto3" json:"Logon,omitempty"`
+	Instrument    string                 `protobuf:"bytes,2,opt,name=Instrument,proto3" json:"Instrument,omitempty"`
+	Logout        string                 `protobuf:"bytes,3,opt,name=Logout,proto3" json:"Logout,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -495,9 +497,23 @@ func (*DealingResponse) Descriptor() ([]byte, []int) {
 	return file_moex_moex_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *DealingResponse) GetReply() string {
+func (x *DealingResponse) GetLogon() string {
 	if x != nil {
-		return x.Reply
+		return x.Logon
+	}
+	return ""
+}
+
+func (x *DealingResponse) GetInstrument() string {
+	if x != nil {
+		return x.Instrument
+	}
+	return ""
+}
+
+func (x *DealingResponse) GetLogout() string {
+	if x != nil {
+		return x.Logout
 	}
 	return ""
 }
@@ -543,9 +559,13 @@ const file_moex_moex_proto_rawDesc = "" +
 	"\x05logon\x18\x03 \x01(\tR\x05logon\x12\x1e\n" +
 	"\n" +
 	"instrument\x18\x04 \x01(\tR\n" +
-	"instrument\"'\n" +
+	"instrument\"_\n" +
 	"\x0fDealingResponse\x12\x14\n" +
-	"\x05Reply\x18\x01 \x01(\tR\x05Reply2\xbd\x01\n" +
+	"\x05Logon\x18\x01 \x01(\tR\x05Logon\x12\x1e\n" +
+	"\n" +
+	"Instrument\x18\x02 \x01(\tR\n" +
+	"Instrument\x12\x16\n" +
+	"\x06Logout\x18\x03 \x01(\tR\x06Logout2\xbd\x01\n" +
 	"\adealing\x12M\n" +
 	"\aRequest\x12\x15.moex.contract.v1.Req\x1a\x16.moex.contract.v1.Resp\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Request\x12c\n" +
 	"\aDealing\x12 .moex.contract.v1.DealingRequest\x1a!.moex.contract.v1.DealingResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/DealingB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
