@@ -22,387 +22,18 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Req struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Header        *Header                `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Body          *Body                  `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Req) Reset() {
-	*x = Req{}
-	mi := &file_moex_moex_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Req) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Req) ProtoMessage() {}
-
-func (x *Req) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Req.ProtoReflect.Descriptor instead.
-func (*Req) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Req) GetHeader() *Header {
-	if x != nil {
-		return x.Header
-	}
-	return nil
-}
-
-func (x *Req) GetBody() *Body {
-	if x != nil {
-		return x.Body
-	}
-	return nil
-}
-
-type Resp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Reply         string                 `protobuf:"bytes,1,opt,name=reply,proto3" json:"reply,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Resp) Reset() {
-	*x = Resp{}
-	mi := &file_moex_moex_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Resp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Resp) ProtoMessage() {}
-
-func (x *Resp) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Resp.ProtoReflect.Descriptor instead.
-func (*Resp) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Resp) GetReply() string {
-	if x != nil {
-		return x.Reply
-	}
-	return ""
-}
-
-type Header struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BeginString   string                 `protobuf:"bytes,1,opt,name=BeginString,proto3" json:"BeginString,omitempty"`
-	MsgType       string                 `protobuf:"bytes,2,opt,name=MsgType,proto3" json:"MsgType,omitempty"`
-	SendercompID  string                 `protobuf:"bytes,3,opt,name=SendercompID,proto3" json:"SendercompID,omitempty"`
-	TargetcompID  string                 `protobuf:"bytes,4,opt,name=TargetcompID,proto3" json:"TargetcompID,omitempty"`
-	MsgSeqNum     string                 `protobuf:"bytes,5,opt,name=MsgSeqNum,proto3" json:"MsgSeqNum,omitempty"`
-	SendingTime   string                 `protobuf:"bytes,6,opt,name=SendingTime,proto3" json:"SendingTime,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Header) Reset() {
-	*x = Header{}
-	mi := &file_moex_moex_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Header) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Header) ProtoMessage() {}
-
-func (x *Header) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Header.ProtoReflect.Descriptor instead.
-func (*Header) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Header) GetBeginString() string {
-	if x != nil {
-		return x.BeginString
-	}
-	return ""
-}
-
-func (x *Header) GetMsgType() string {
-	if x != nil {
-		return x.MsgType
-	}
-	return ""
-}
-
-func (x *Header) GetSendercompID() string {
-	if x != nil {
-		return x.SendercompID
-	}
-	return ""
-}
-
-func (x *Header) GetTargetcompID() string {
-	if x != nil {
-		return x.TargetcompID
-	}
-	return ""
-}
-
-func (x *Header) GetMsgSeqNum() string {
-	if x != nil {
-		return x.MsgSeqNum
-	}
-	return ""
-}
-
-func (x *Header) GetSendingTime() string {
-	if x != nil {
-		return x.SendingTime
-	}
-	return ""
-}
-
-type Body struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Logon         *Logon                 `protobuf:"bytes,1,opt,name=Logon,proto3" json:"Logon,omitempty"`
-	Instrument    []*Instrument          `protobuf:"bytes,2,rep,name=Instrument,proto3" json:"Instrument,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Body) Reset() {
-	*x = Body{}
-	mi := &file_moex_moex_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Body) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Body) ProtoMessage() {}
-
-func (x *Body) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Body.ProtoReflect.Descriptor instead.
-func (*Body) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *Body) GetLogon() *Logon {
-	if x != nil {
-		return x.Logon
-	}
-	return nil
-}
-
-func (x *Body) GetInstrument() []*Instrument {
-	if x != nil {
-		return x.Instrument
-	}
-	return nil
-}
-
-type Instrument struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Symbol        string                 `protobuf:"bytes,1,opt,name=Symbol,proto3" json:"Symbol,omitempty"`
-	Product       string                 `protobuf:"bytes,2,opt,name=Product,proto3" json:"Product,omitempty"`
-	SecurityType  string                 `protobuf:"bytes,3,opt,name=SecurityType,proto3" json:"SecurityType,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Instrument) Reset() {
-	*x = Instrument{}
-	mi := &file_moex_moex_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Instrument) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Instrument) ProtoMessage() {}
-
-func (x *Instrument) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Instrument.ProtoReflect.Descriptor instead.
-func (*Instrument) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *Instrument) GetSymbol() string {
-	if x != nil {
-		return x.Symbol
-	}
-	return ""
-}
-
-func (x *Instrument) GetProduct() string {
-	if x != nil {
-		return x.Product
-	}
-	return ""
-}
-
-func (x *Instrument) GetSecurityType() string {
-	if x != nil {
-		return x.SecurityType
-	}
-	return ""
-}
-
-type Logon struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EncryptMethod   string                 `protobuf:"bytes,1,opt,name=encryptMethod,proto3" json:"encryptMethod,omitempty"`
-	Heartbtint      string                 `protobuf:"bytes,2,opt,name=heartbtint,proto3" json:"heartbtint,omitempty"`
-	Password        string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	ResetSeqNumFlag string                 `protobuf:"bytes,4,opt,name=ResetSeqNumFlag,proto3" json:"ResetSeqNumFlag,omitempty"`
-	TestReqID       string                 `protobuf:"bytes,5,opt,name=TestReqID,proto3" json:"TestReqID,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *Logon) Reset() {
-	*x = Logon{}
-	mi := &file_moex_moex_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Logon) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Logon) ProtoMessage() {}
-
-func (x *Logon) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Logon.ProtoReflect.Descriptor instead.
-func (*Logon) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *Logon) GetEncryptMethod() string {
-	if x != nil {
-		return x.EncryptMethod
-	}
-	return ""
-}
-
-func (x *Logon) GetHeartbtint() string {
-	if x != nil {
-		return x.Heartbtint
-	}
-	return ""
-}
-
-func (x *Logon) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *Logon) GetResetSeqNumFlag() string {
-	if x != nil {
-		return x.ResetSeqNumFlag
-	}
-	return ""
-}
-
-func (x *Logon) GetTestReqID() string {
-	if x != nil {
-		return x.TestReqID
-	}
-	return ""
-}
-
 type DealingRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Header        string                 `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
 	Logon         string                 `protobuf:"bytes,3,opt,name=logon,proto3" json:"logon,omitempty"`
-	Instrument    string                 `protobuf:"bytes,4,opt,name=instrument,proto3" json:"instrument,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DealingRequest) Reset() {
 	*x = DealingRequest{}
-	mi := &file_moex_moex_proto_msgTypes[6]
+	mi := &file_moex_moex_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -414,7 +45,7 @@ func (x *DealingRequest) String() string {
 func (*DealingRequest) ProtoMessage() {}
 
 func (x *DealingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[6]
+	mi := &file_moex_moex_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -427,7 +58,7 @@ func (x *DealingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DealingRequest.ProtoReflect.Descriptor instead.
 func (*DealingRequest) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{6}
+	return file_moex_moex_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *DealingRequest) GetAddress() string {
@@ -451,25 +82,16 @@ func (x *DealingRequest) GetLogon() string {
 	return ""
 }
 
-func (x *DealingRequest) GetInstrument() string {
-	if x != nil {
-		return x.Instrument
-	}
-	return ""
-}
-
 type DealingResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Logon         string                 `protobuf:"bytes,1,opt,name=Logon,proto3" json:"Logon,omitempty"`
-	Instrument    string                 `protobuf:"bytes,2,opt,name=Instrument,proto3" json:"Instrument,omitempty"`
-	Logout        string                 `protobuf:"bytes,3,opt,name=Logout,proto3" json:"Logout,omitempty"`
+	Response      string                 `protobuf:"bytes,1,opt,name=Response,proto3" json:"Response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DealingResponse) Reset() {
 	*x = DealingResponse{}
-	mi := &file_moex_moex_proto_msgTypes[7]
+	mi := &file_moex_moex_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -481,7 +103,7 @@ func (x *DealingResponse) String() string {
 func (*DealingResponse) ProtoMessage() {}
 
 func (x *DealingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_moex_moex_proto_msgTypes[7]
+	mi := &file_moex_moex_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,26 +116,12 @@ func (x *DealingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DealingResponse.ProtoReflect.Descriptor instead.
 func (*DealingResponse) Descriptor() ([]byte, []int) {
-	return file_moex_moex_proto_rawDescGZIP(), []int{7}
+	return file_moex_moex_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *DealingResponse) GetLogon() string {
+func (x *DealingResponse) GetResponse() string {
 	if x != nil {
-		return x.Logon
-	}
-	return ""
-}
-
-func (x *DealingResponse) GetInstrument() string {
-	if x != nil {
-		return x.Instrument
-	}
-	return ""
-}
-
-func (x *DealingResponse) GetLogout() string {
-	if x != nil {
-		return x.Logout
+		return x.Response
 	}
 	return ""
 }
@@ -522,52 +130,14 @@ var File_moex_moex_proto protoreflect.FileDescriptor
 
 const file_moex_moex_proto_rawDesc = "" +
 	"\n" +
-	"\x0fmoex/moex.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"c\n" +
-	"\x03Req\x120\n" +
-	"\x06header\x18\x01 \x01(\v2\x18.moex.contract.v1.HeaderR\x06header\x12*\n" +
-	"\x04body\x18\x02 \x01(\v2\x16.moex.contract.v1.BodyR\x04body\"\x1c\n" +
-	"\x04Resp\x12\x14\n" +
-	"\x05reply\x18\x01 \x01(\tR\x05reply\"\xcc\x01\n" +
-	"\x06Header\x12 \n" +
-	"\vBeginString\x18\x01 \x01(\tR\vBeginString\x12\x18\n" +
-	"\aMsgType\x18\x02 \x01(\tR\aMsgType\x12\"\n" +
-	"\fSendercompID\x18\x03 \x01(\tR\fSendercompID\x12\"\n" +
-	"\fTargetcompID\x18\x04 \x01(\tR\fTargetcompID\x12\x1c\n" +
-	"\tMsgSeqNum\x18\x05 \x01(\tR\tMsgSeqNum\x12 \n" +
-	"\vSendingTime\x18\x06 \x01(\tR\vSendingTime\"s\n" +
-	"\x04Body\x12-\n" +
-	"\x05Logon\x18\x01 \x01(\v2\x17.moex.contract.v1.LogonR\x05Logon\x12<\n" +
-	"\n" +
-	"Instrument\x18\x02 \x03(\v2\x1c.moex.contract.v1.InstrumentR\n" +
-	"Instrument\"b\n" +
-	"\n" +
-	"Instrument\x12\x16\n" +
-	"\x06Symbol\x18\x01 \x01(\tR\x06Symbol\x12\x18\n" +
-	"\aProduct\x18\x02 \x01(\tR\aProduct\x12\"\n" +
-	"\fSecurityType\x18\x03 \x01(\tR\fSecurityType\"\xb1\x01\n" +
-	"\x05Logon\x12$\n" +
-	"\rencryptMethod\x18\x01 \x01(\tR\rencryptMethod\x12\x1e\n" +
-	"\n" +
-	"heartbtint\x18\x02 \x01(\tR\n" +
-	"heartbtint\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12(\n" +
-	"\x0fResetSeqNumFlag\x18\x04 \x01(\tR\x0fResetSeqNumFlag\x12\x1c\n" +
-	"\tTestReqID\x18\x05 \x01(\tR\tTestReqID\"x\n" +
+	"\x0fmoex/moex.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"X\n" +
 	"\x0eDealingRequest\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x16\n" +
 	"\x06header\x18\x02 \x01(\tR\x06header\x12\x14\n" +
-	"\x05logon\x18\x03 \x01(\tR\x05logon\x12\x1e\n" +
-	"\n" +
-	"instrument\x18\x04 \x01(\tR\n" +
-	"instrument\"_\n" +
-	"\x0fDealingResponse\x12\x14\n" +
-	"\x05Logon\x18\x01 \x01(\tR\x05Logon\x12\x1e\n" +
-	"\n" +
-	"Instrument\x18\x02 \x01(\tR\n" +
-	"Instrument\x12\x16\n" +
-	"\x06Logout\x18\x03 \x01(\tR\x06Logout2\xbd\x01\n" +
-	"\adealing\x12M\n" +
-	"\aRequest\x12\x15.moex.contract.v1.Req\x1a\x16.moex.contract.v1.Resp\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/Request\x12c\n" +
+	"\x05logon\x18\x03 \x01(\tR\x05logon\"-\n" +
+	"\x0fDealingResponse\x12\x1a\n" +
+	"\bResponse\x18\x01 \x01(\tR\bResponse2n\n" +
+	"\adealing\x12c\n" +
 	"\aDealing\x12 .moex.contract.v1.DealingRequest\x1a!.moex.contract.v1.DealingResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/DealingB9Z7github.com/Mar1eena/trb_proto/services/moex.contract.v1b\x06proto3"
 
 var (
@@ -582,31 +152,19 @@ func file_moex_moex_proto_rawDescGZIP() []byte {
 	return file_moex_moex_proto_rawDescData
 }
 
-var file_moex_moex_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_moex_moex_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_moex_moex_proto_goTypes = []any{
-	(*Req)(nil),             // 0: moex.contract.v1.Req
-	(*Resp)(nil),            // 1: moex.contract.v1.Resp
-	(*Header)(nil),          // 2: moex.contract.v1.Header
-	(*Body)(nil),            // 3: moex.contract.v1.Body
-	(*Instrument)(nil),      // 4: moex.contract.v1.Instrument
-	(*Logon)(nil),           // 5: moex.contract.v1.Logon
-	(*DealingRequest)(nil),  // 6: moex.contract.v1.DealingRequest
-	(*DealingResponse)(nil), // 7: moex.contract.v1.DealingResponse
+	(*DealingRequest)(nil),  // 0: moex.contract.v1.DealingRequest
+	(*DealingResponse)(nil), // 1: moex.contract.v1.DealingResponse
 }
 var file_moex_moex_proto_depIdxs = []int32{
-	2, // 0: moex.contract.v1.Req.header:type_name -> moex.contract.v1.Header
-	3, // 1: moex.contract.v1.Req.body:type_name -> moex.contract.v1.Body
-	5, // 2: moex.contract.v1.Body.Logon:type_name -> moex.contract.v1.Logon
-	4, // 3: moex.contract.v1.Body.Instrument:type_name -> moex.contract.v1.Instrument
-	0, // 4: moex.contract.v1.dealing.Request:input_type -> moex.contract.v1.Req
-	6, // 5: moex.contract.v1.dealing.Dealing:input_type -> moex.contract.v1.DealingRequest
-	1, // 6: moex.contract.v1.dealing.Request:output_type -> moex.contract.v1.Resp
-	7, // 7: moex.contract.v1.dealing.Dealing:output_type -> moex.contract.v1.DealingResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0, // 0: moex.contract.v1.dealing.Dealing:input_type -> moex.contract.v1.DealingRequest
+	1, // 1: moex.contract.v1.dealing.Dealing:output_type -> moex.contract.v1.DealingResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_moex_moex_proto_init() }
@@ -620,7 +178,7 @@ func file_moex_moex_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_moex_moex_proto_rawDesc), len(file_moex_moex_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
