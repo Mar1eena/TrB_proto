@@ -27,6 +27,7 @@ type DealingRequest struct {
 	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Header        string                 `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
 	Logon         string                 `protobuf:"bytes,3,opt,name=logon,proto3" json:"logon,omitempty"`
+	Instrument    string                 `protobuf:"bytes,4,opt,name=instrument,proto3" json:"instrument,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -82,6 +83,13 @@ func (x *DealingRequest) GetLogon() string {
 	return ""
 }
 
+func (x *DealingRequest) GetInstrument() string {
+	if x != nil {
+		return x.Instrument
+	}
+	return ""
+}
+
 type DealingResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Response      string                 `protobuf:"bytes,1,opt,name=Response,proto3" json:"Response,omitempty"`
@@ -130,11 +138,14 @@ var File_moex_moex_proto protoreflect.FileDescriptor
 
 const file_moex_moex_proto_rawDesc = "" +
 	"\n" +
-	"\x0fmoex/moex.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"X\n" +
+	"\x0fmoex/moex.proto\x12\x10moex.contract.v1\x1a\x1cgoogle/api/annotations.proto\"x\n" +
 	"\x0eDealingRequest\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x16\n" +
 	"\x06header\x18\x02 \x01(\tR\x06header\x12\x14\n" +
-	"\x05logon\x18\x03 \x01(\tR\x05logon\"-\n" +
+	"\x05logon\x18\x03 \x01(\tR\x05logon\x12\x1e\n" +
+	"\n" +
+	"instrument\x18\x04 \x01(\tR\n" +
+	"instrument\"-\n" +
 	"\x0fDealingResponse\x12\x1a\n" +
 	"\bResponse\x18\x01 \x01(\tR\bResponse2n\n" +
 	"\adealing\x12c\n" +

@@ -18,6 +18,7 @@ message DealingRequest {
   string address = 1;
   string header = 2;
   string logon = 3;
+  string instrument = 4;
 }
 
 message DealingResponse {
