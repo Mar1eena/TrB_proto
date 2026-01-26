@@ -4,7 +4,7 @@
 // - protoc             v6.30.2
 // source: example/Example.proto
 
-package Example
+package example
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Example_UnaryRPCMessage_FullMethodName     = "/Example.Example/UnaryRPCMessage"
-	Example_ServerSideStream_FullMethodName    = "/Example.Example/ServerSideStream"
-	Example_ClientSideStream_FullMethodName    = "/Example.Example/ClientSideStream"
-	Example_BidirectionalStream_FullMethodName = "/Example.Example/BidirectionalStream"
+	Example_UnaryRPCMessage_FullMethodName     = "/example.Example/UnaryRPCMessage"
+	Example_ServerSideStream_FullMethodName    = "/example.Example/ServerSideStream"
+	Example_ClientSideStream_FullMethodName    = "/example.Example/ClientSideStream"
+	Example_BidirectionalStream_FullMethodName = "/example.Example/BidirectionalStream"
 )
 
 // ExampleClient is the client API for Example service.
@@ -204,7 +204,7 @@ type Example_BidirectionalStreamServer = grpc.BidiStreamingServer[MessageStreamR
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Example_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Example.Example",
+	ServiceName: "example.Example",
 	HandlerType: (*ExampleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
