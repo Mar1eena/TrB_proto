@@ -2,11 +2,11 @@
 // source: example/Example.proto
 
 /*
-Package example is a reverse proxy.
+Package trb_example_public_contract_v1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package example
+package trb_example_public_contract_v1
 
 import (
 	"context"
@@ -91,7 +91,7 @@ func RegisterExampleHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/example.Example/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.example.public.contract.v1.Example/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -156,7 +156,7 @@ func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/example.Example/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.example.public.contract.v1.Example/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -173,7 +173,7 @@ func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/example.Example/ServerSideStream", runtime.WithHTTPPathPattern("/stream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.example.public.contract.v1.Example/ServerSideStream", runtime.WithHTTPPathPattern("/stream"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

@@ -4,7 +4,7 @@
 // 	protoc        v6.30.2
 // source: example/Example.proto
 
-package example
+package trb_example_public_contract_v1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -202,7 +202,7 @@ var File_example_Example_proto protoreflect.FileDescriptor
 
 const file_example_Example_proto_rawDesc = "" +
 	"\n" +
-	"\x15example/Example.proto\x12\aexample\x1a\x1cgoogle/api/annotations.proto\"$\n" +
+	"\x15example/Example.proto\x12\x1etrb.example.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\"$\n" +
 	"\x0eMessageRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"%\n" +
 	"\x0fMessageResponse\x12\x12\n" +
@@ -210,12 +210,12 @@ const file_example_Example_proto_rawDesc = "" +
 	"\x14MessageStreamRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"+\n" +
 	"\x15MessageStreamResponse\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text2\xee\x02\n" +
-	"\aExample\x12W\n" +
-	"\x0fUnaryRPCMessage\x12\x17.example.MessageRequest\x1a\x18.example.MessageResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/unary\x12a\n" +
-	"\x10ServerSideStream\x12\x17.example.MessageRequest\x1a\x1e.example.MessageStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12M\n" +
-	"\x10ClientSideStream\x12\x1d.example.MessageStreamRequest\x1a\x18.example.MessageResponse(\x01\x12X\n" +
-	"\x13BidirectionalStream\x12\x1d.example.MessageStreamRequest\x1a\x1e.example.MessageStreamResponse(\x010\x01B0Z.github.com/Mar1eena/trb_proto/services/exampleb\x06proto3"
+	"\x04text\x18\x01 \x01(\tR\x04text2\xa9\x04\n" +
+	"\aExample\x12\x85\x01\n" +
+	"\x0fUnaryRPCMessage\x12..trb.example.public.contract.v1.MessageRequest\x1a/.trb.example.public.contract.v1.MessageResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/unary\x12\x8f\x01\n" +
+	"\x10ServerSideStream\x12..trb.example.public.contract.v1.MessageRequest\x1a5.trb.example.public.contract.v1.MessageStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12{\n" +
+	"\x10ClientSideStream\x124.trb.example.public.contract.v1.MessageStreamRequest\x1a/.trb.example.public.contract.v1.MessageResponse(\x01\x12\x86\x01\n" +
+	"\x13BidirectionalStream\x124.trb.example.public.contract.v1.MessageStreamRequest\x1a5.trb.example.public.contract.v1.MessageStreamResponse(\x010\x01BGZEgithub.com/Mar1eena/trb_proto/services/trb.example.public.contract.v1b\x06proto3"
 
 var (
 	file_example_Example_proto_rawDescOnce sync.Once
@@ -231,20 +231,20 @@ func file_example_Example_proto_rawDescGZIP() []byte {
 
 var file_example_Example_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_example_Example_proto_goTypes = []any{
-	(*MessageRequest)(nil),        // 0: example.MessageRequest
-	(*MessageResponse)(nil),       // 1: example.MessageResponse
-	(*MessageStreamRequest)(nil),  // 2: example.MessageStreamRequest
-	(*MessageStreamResponse)(nil), // 3: example.MessageStreamResponse
+	(*MessageRequest)(nil),        // 0: trb.example.public.contract.v1.MessageRequest
+	(*MessageResponse)(nil),       // 1: trb.example.public.contract.v1.MessageResponse
+	(*MessageStreamRequest)(nil),  // 2: trb.example.public.contract.v1.MessageStreamRequest
+	(*MessageStreamResponse)(nil), // 3: trb.example.public.contract.v1.MessageStreamResponse
 }
 var file_example_Example_proto_depIdxs = []int32{
-	0, // 0: example.Example.UnaryRPCMessage:input_type -> example.MessageRequest
-	0, // 1: example.Example.ServerSideStream:input_type -> example.MessageRequest
-	2, // 2: example.Example.ClientSideStream:input_type -> example.MessageStreamRequest
-	2, // 3: example.Example.BidirectionalStream:input_type -> example.MessageStreamRequest
-	1, // 4: example.Example.UnaryRPCMessage:output_type -> example.MessageResponse
-	3, // 5: example.Example.ServerSideStream:output_type -> example.MessageStreamResponse
-	1, // 6: example.Example.ClientSideStream:output_type -> example.MessageResponse
-	3, // 7: example.Example.BidirectionalStream:output_type -> example.MessageStreamResponse
+	0, // 0: trb.example.public.contract.v1.Example.UnaryRPCMessage:input_type -> trb.example.public.contract.v1.MessageRequest
+	0, // 1: trb.example.public.contract.v1.Example.ServerSideStream:input_type -> trb.example.public.contract.v1.MessageRequest
+	2, // 2: trb.example.public.contract.v1.Example.ClientSideStream:input_type -> trb.example.public.contract.v1.MessageStreamRequest
+	2, // 3: trb.example.public.contract.v1.Example.BidirectionalStream:input_type -> trb.example.public.contract.v1.MessageStreamRequest
+	1, // 4: trb.example.public.contract.v1.Example.UnaryRPCMessage:output_type -> trb.example.public.contract.v1.MessageResponse
+	3, // 5: trb.example.public.contract.v1.Example.ServerSideStream:output_type -> trb.example.public.contract.v1.MessageStreamResponse
+	1, // 6: trb.example.public.contract.v1.Example.ClientSideStream:output_type -> trb.example.public.contract.v1.MessageResponse
+	3, // 7: trb.example.public.contract.v1.Example.BidirectionalStream:output_type -> trb.example.public.contract.v1.MessageStreamResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
