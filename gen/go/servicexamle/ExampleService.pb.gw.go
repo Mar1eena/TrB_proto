@@ -61,7 +61,7 @@ func local_request_ExampleService_UnaryRPCMessage_0(ctx context.Context, marshal
 
 func request_ExampleService_ServerSideStream_0(ctx context.Context, marshaler runtime.Marshaler, client ExampleServiceClient, req *http.Request, pathParams map[string]string) (ExampleService_ServerSideStreamClient, runtime.ServerMetadata, error) {
 	var (
-		protoReq PoliceRequest
+		protoReq MessageRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -91,7 +91,7 @@ func RegisterExampleServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.servicexamle.public.contract.v1.ExampleService/UnaryRPCMessage", runtime.WithHTTPPathPattern("/say"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.servicexamle.public.contract.v1.ExampleService/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -156,7 +156,7 @@ func RegisterExampleServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.servicexamle.public.contract.v1.ExampleService/UnaryRPCMessage", runtime.WithHTTPPathPattern("/say"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.servicexamle.public.contract.v1.ExampleService/UnaryRPCMessage", runtime.WithHTTPPathPattern("/unary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -190,7 +190,7 @@ func RegisterExampleServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_ExampleService_UnaryRPCMessage_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"say"}, ""))
+	pattern_ExampleService_UnaryRPCMessage_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"unary"}, ""))
 	pattern_ExampleService_ServerSideStream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"stream"}, ""))
 )
 
