@@ -9,13 +9,13 @@ service ExampleService {
   // Unary RPC (один запрос - один ответ)
   rpc UnaryRPCMessage (MessageRequest) returns (MessageResponse){
     option (google.api.http) = {
-      post: "/say"
+      post: "/unary"
       body: "*"
     };
   };
   
   // Server-side streaming (один запрос - поток ответов)
-  rpc ServerSideStream (PoliceRequest) returns (stream PoliceStreamResponse){
+  rpc ServerSideStream (MessageRequest) returns (stream MessageStreamResponse){
     option (google.api.http) = {
       post: "/stream"
       body: "*"
@@ -23,10 +23,10 @@ service ExampleService {
   };
   
   // Client-side streaming (поток запросов - один ответ)
-  rpc ClientSideStream (stream ClientStreamRequest) returns (StreamSummary);
+  rpc ClientSideStream (stream MessageStreamRequest) returns (MessageResponse);
   
   // Bidirectional streaming (двусторонний поток)
-  rpc BidirectionalStream (stream BidirectionalMessage) returns (stream BidirectionalMessage);
+  rpc BidirectionalStream (stream MessageStreamRequest) returns (stream MessageStreamResponse);
 }
 
 message MessageRequest {
@@ -34,37 +34,14 @@ message MessageRequest {
 }
 
 message MessageResponse {
-  string reply = 1;
+  string text = 1;
 }
 
-message PoliceRequest {
-  string token = 1;
+message MessageStreamRequest {
+  string text = 1;
 }
 
-message PoliceResponse {
-  string token = 1;
-  string message = 2;
-}
-
-message PoliceStreamResponse {
-  string update = 1;
-  int32 severity = 2;
-  string timestamp = 3;
-}
-
-message ClientStreamRequest {
-  string client_id = 1;
-  bytes payload = 2;
-}
-
-message StreamSummary {
-  int32 total_requests = 1;
-  int64 total_bytes = 2;
-}
-
-message BidirectionalMessage {
-  string sender = 1;
-  string content = 2;
-  int64 sequence = 3;
+message MessageStreamResponse {
+  string text = 1;
 }
 
