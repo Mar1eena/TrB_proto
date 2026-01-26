@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package trb.servicexamle.public.contract.v1;
-option go_package = "github.com/Mar1eena/trb_proto/services/trb.servicexamle.public.contract.v1";
+package Example;
+option go_package = "github.com/Mar1eena/trb_proto/services/Example";
 
 import "google/api/annotations.proto";
 
-service ExampleService {
+service Example {
   // Unary RPC (один запрос - один ответ)
   rpc UnaryRPCMessage (MessageRequest) returns (MessageResponse){
     option (google.api.http) = {

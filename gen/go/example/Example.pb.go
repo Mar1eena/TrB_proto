@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: servicexamle/ExampleService.proto
+// source: example/Example.proto
 
-package trb_servicexamle_public_contract_v1
+package Example
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -31,7 +31,7 @@ type MessageRequest struct {
 
 func (x *MessageRequest) Reset() {
 	*x = MessageRequest{}
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[0]
+	mi := &file_example_Example_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *MessageRequest) String() string {
 func (*MessageRequest) ProtoMessage() {}
 
 func (x *MessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[0]
+	mi := &file_example_Example_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *MessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageRequest.ProtoReflect.Descriptor instead.
 func (*MessageRequest) Descriptor() ([]byte, []int) {
-	return file_servicexamle_ExampleService_proto_rawDescGZIP(), []int{0}
+	return file_example_Example_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *MessageRequest) GetText() string {
@@ -75,7 +75,7 @@ type MessageResponse struct {
 
 func (x *MessageResponse) Reset() {
 	*x = MessageResponse{}
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[1]
+	mi := &file_example_Example_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +87,7 @@ func (x *MessageResponse) String() string {
 func (*MessageResponse) ProtoMessage() {}
 
 func (x *MessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[1]
+	mi := &file_example_Example_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,7 +100,7 @@ func (x *MessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageResponse.ProtoReflect.Descriptor instead.
 func (*MessageResponse) Descriptor() ([]byte, []int) {
-	return file_servicexamle_ExampleService_proto_rawDescGZIP(), []int{1}
+	return file_example_Example_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *MessageResponse) GetText() string {
@@ -119,7 +119,7 @@ type MessageStreamRequest struct {
 
 func (x *MessageStreamRequest) Reset() {
 	*x = MessageStreamRequest{}
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[2]
+	mi := &file_example_Example_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -131,7 +131,7 @@ func (x *MessageStreamRequest) String() string {
 func (*MessageStreamRequest) ProtoMessage() {}
 
 func (x *MessageStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[2]
+	mi := &file_example_Example_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -144,7 +144,7 @@ func (x *MessageStreamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageStreamRequest.ProtoReflect.Descriptor instead.
 func (*MessageStreamRequest) Descriptor() ([]byte, []int) {
-	return file_servicexamle_ExampleService_proto_rawDescGZIP(), []int{2}
+	return file_example_Example_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *MessageStreamRequest) GetText() string {
@@ -163,7 +163,7 @@ type MessageStreamResponse struct {
 
 func (x *MessageStreamResponse) Reset() {
 	*x = MessageStreamResponse{}
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[3]
+	mi := &file_example_Example_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -175,7 +175,7 @@ func (x *MessageStreamResponse) String() string {
 func (*MessageStreamResponse) ProtoMessage() {}
 
 func (x *MessageStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_servicexamle_ExampleService_proto_msgTypes[3]
+	mi := &file_example_Example_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -188,7 +188,7 @@ func (x *MessageStreamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageStreamResponse.ProtoReflect.Descriptor instead.
 func (*MessageStreamResponse) Descriptor() ([]byte, []int) {
-	return file_servicexamle_ExampleService_proto_rawDescGZIP(), []int{3}
+	return file_example_Example_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *MessageStreamResponse) GetText() string {
@@ -198,11 +198,11 @@ func (x *MessageStreamResponse) GetText() string {
 	return ""
 }
 
-var File_servicexamle_ExampleService_proto protoreflect.FileDescriptor
+var File_example_Example_proto protoreflect.FileDescriptor
 
-const file_servicexamle_ExampleService_proto_rawDesc = "" +
+const file_example_Example_proto_rawDesc = "" +
 	"\n" +
-	"!servicexamle/ExampleService.proto\x12#trb.servicexamle.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\"$\n" +
+	"\x15example/Example.proto\x12\aExample\x1a\x1cgoogle/api/annotations.proto\"$\n" +
 	"\x0eMessageRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"%\n" +
 	"\x0fMessageResponse\x12\x12\n" +
@@ -210,41 +210,41 @@ const file_servicexamle_ExampleService_proto_rawDesc = "" +
 	"\x14MessageStreamRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"+\n" +
 	"\x15MessageStreamResponse\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text2\xd9\x04\n" +
-	"\x0eExampleService\x12\x8f\x01\n" +
-	"\x0fUnaryRPCMessage\x123.trb.servicexamle.public.contract.v1.MessageRequest\x1a4.trb.servicexamle.public.contract.v1.MessageResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/unary\x12\x99\x01\n" +
-	"\x10ServerSideStream\x123.trb.servicexamle.public.contract.v1.MessageRequest\x1a:.trb.servicexamle.public.contract.v1.MessageStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12\x85\x01\n" +
-	"\x10ClientSideStream\x129.trb.servicexamle.public.contract.v1.MessageStreamRequest\x1a4.trb.servicexamle.public.contract.v1.MessageResponse(\x01\x12\x90\x01\n" +
-	"\x13BidirectionalStream\x129.trb.servicexamle.public.contract.v1.MessageStreamRequest\x1a:.trb.servicexamle.public.contract.v1.MessageStreamResponse(\x010\x01BLZJgithub.com/Mar1eena/trb_proto/services/trb.servicexamle.public.contract.v1b\x06proto3"
+	"\x04text\x18\x01 \x01(\tR\x04text2\xee\x02\n" +
+	"\aExample\x12W\n" +
+	"\x0fUnaryRPCMessage\x12\x17.Example.MessageRequest\x1a\x18.Example.MessageResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/unary\x12a\n" +
+	"\x10ServerSideStream\x12\x17.Example.MessageRequest\x1a\x1e.Example.MessageStreamResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stream0\x01\x12M\n" +
+	"\x10ClientSideStream\x12\x1d.Example.MessageStreamRequest\x1a\x18.Example.MessageResponse(\x01\x12X\n" +
+	"\x13BidirectionalStream\x12\x1d.Example.MessageStreamRequest\x1a\x1e.Example.MessageStreamResponse(\x010\x01B0Z.github.com/Mar1eena/trb_proto/services/Exampleb\x06proto3"
 
 var (
-	file_servicexamle_ExampleService_proto_rawDescOnce sync.Once
-	file_servicexamle_ExampleService_proto_rawDescData []byte
+	file_example_Example_proto_rawDescOnce sync.Once
+	file_example_Example_proto_rawDescData []byte
 )
 
-func file_servicexamle_ExampleService_proto_rawDescGZIP() []byte {
-	file_servicexamle_ExampleService_proto_rawDescOnce.Do(func() {
-		file_servicexamle_ExampleService_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_servicexamle_ExampleService_proto_rawDesc), len(file_servicexamle_ExampleService_proto_rawDesc)))
+func file_example_Example_proto_rawDescGZIP() []byte {
+	file_example_Example_proto_rawDescOnce.Do(func() {
+		file_example_Example_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_example_Example_proto_rawDesc), len(file_example_Example_proto_rawDesc)))
 	})
-	return file_servicexamle_ExampleService_proto_rawDescData
+	return file_example_Example_proto_rawDescData
 }
 
-var file_servicexamle_ExampleService_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_servicexamle_ExampleService_proto_goTypes = []any{
-	(*MessageRequest)(nil),        // 0: trb.servicexamle.public.contract.v1.MessageRequest
-	(*MessageResponse)(nil),       // 1: trb.servicexamle.public.contract.v1.MessageResponse
-	(*MessageStreamRequest)(nil),  // 2: trb.servicexamle.public.contract.v1.MessageStreamRequest
-	(*MessageStreamResponse)(nil), // 3: trb.servicexamle.public.contract.v1.MessageStreamResponse
+var file_example_Example_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_example_Example_proto_goTypes = []any{
+	(*MessageRequest)(nil),        // 0: Example.MessageRequest
+	(*MessageResponse)(nil),       // 1: Example.MessageResponse
+	(*MessageStreamRequest)(nil),  // 2: Example.MessageStreamRequest
+	(*MessageStreamResponse)(nil), // 3: Example.MessageStreamResponse
 }
-var file_servicexamle_ExampleService_proto_depIdxs = []int32{
-	0, // 0: trb.servicexamle.public.contract.v1.ExampleService.UnaryRPCMessage:input_type -> trb.servicexamle.public.contract.v1.MessageRequest
-	0, // 1: trb.servicexamle.public.contract.v1.ExampleService.ServerSideStream:input_type -> trb.servicexamle.public.contract.v1.MessageRequest
-	2, // 2: trb.servicexamle.public.contract.v1.ExampleService.ClientSideStream:input_type -> trb.servicexamle.public.contract.v1.MessageStreamRequest
-	2, // 3: trb.servicexamle.public.contract.v1.ExampleService.BidirectionalStream:input_type -> trb.servicexamle.public.contract.v1.MessageStreamRequest
-	1, // 4: trb.servicexamle.public.contract.v1.ExampleService.UnaryRPCMessage:output_type -> trb.servicexamle.public.contract.v1.MessageResponse
-	3, // 5: trb.servicexamle.public.contract.v1.ExampleService.ServerSideStream:output_type -> trb.servicexamle.public.contract.v1.MessageStreamResponse
-	1, // 6: trb.servicexamle.public.contract.v1.ExampleService.ClientSideStream:output_type -> trb.servicexamle.public.contract.v1.MessageResponse
-	3, // 7: trb.servicexamle.public.contract.v1.ExampleService.BidirectionalStream:output_type -> trb.servicexamle.public.contract.v1.MessageStreamResponse
+var file_example_Example_proto_depIdxs = []int32{
+	0, // 0: Example.Example.UnaryRPCMessage:input_type -> Example.MessageRequest
+	0, // 1: Example.Example.ServerSideStream:input_type -> Example.MessageRequest
+	2, // 2: Example.Example.ClientSideStream:input_type -> Example.MessageStreamRequest
+	2, // 3: Example.Example.BidirectionalStream:input_type -> Example.MessageStreamRequest
+	1, // 4: Example.Example.UnaryRPCMessage:output_type -> Example.MessageResponse
+	3, // 5: Example.Example.ServerSideStream:output_type -> Example.MessageStreamResponse
+	1, // 6: Example.Example.ClientSideStream:output_type -> Example.MessageResponse
+	3, // 7: Example.Example.BidirectionalStream:output_type -> Example.MessageStreamResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -252,26 +252,26 @@ var file_servicexamle_ExampleService_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_servicexamle_ExampleService_proto_init() }
-func file_servicexamle_ExampleService_proto_init() {
-	if File_servicexamle_ExampleService_proto != nil {
+func init() { file_example_Example_proto_init() }
+func file_example_Example_proto_init() {
+	if File_example_Example_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_servicexamle_ExampleService_proto_rawDesc), len(file_servicexamle_ExampleService_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_example_Example_proto_rawDesc), len(file_example_Example_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_servicexamle_ExampleService_proto_goTypes,
-		DependencyIndexes: file_servicexamle_ExampleService_proto_depIdxs,
-		MessageInfos:      file_servicexamle_ExampleService_proto_msgTypes,
+		GoTypes:           file_example_Example_proto_goTypes,
+		DependencyIndexes: file_example_Example_proto_depIdxs,
+		MessageInfos:      file_example_Example_proto_msgTypes,
 	}.Build()
-	File_servicexamle_ExampleService_proto = out.File
-	file_servicexamle_ExampleService_proto_goTypes = nil
-	file_servicexamle_ExampleService_proto_depIdxs = nil
+	File_example_Example_proto = out.File
+	file_example_Example_proto_goTypes = nil
+	file_example_Example_proto_depIdxs = nil
 }

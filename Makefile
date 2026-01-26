@@ -3,7 +3,7 @@
 # make gen service='Название сервиса'
 gene:
 	protoc -I./services \
-	./services/servicexamle/*.proto \
+	./services/example/*.proto \
 	./services/tinvest/*.proto \
 	./services/nats/*.proto \
 	./services/moex/*.proto \
@@ -17,7 +17,7 @@ gene:
 
 desc: 
 	protoc -I./services \
-	./services/servicexamle/*.proto \
+	./services/example/*.proto \
 	./services/tinvest/*.proto \
 	./services/nats/*.proto \
 	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_proto.pb
