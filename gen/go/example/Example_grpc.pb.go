@@ -4,7 +4,7 @@
 // - protoc             v6.30.2
 // source: example/Example.proto
 
-package trb_example_public_contract_v1
+package example_contract_v1
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Example_UnaryRPCMessage_FullMethodName     = "/trb.example.public.contract.v1.Example/UnaryRPCMessage"
-	Example_ServerSideStream_FullMethodName    = "/trb.example.public.contract.v1.Example/ServerSideStream"
-	Example_ClientSideStream_FullMethodName    = "/trb.example.public.contract.v1.Example/ClientSideStream"
-	Example_BidirectionalStream_FullMethodName = "/trb.example.public.contract.v1.Example/BidirectionalStream"
+	Example_UnaryRPCMessage_FullMethodName     = "/example.contract.v1.example/UnaryRPCMessage"
+	Example_ServerSideStream_FullMethodName    = "/example.contract.v1.example/ServerSideStream"
+	Example_ClientSideStream_FullMethodName    = "/example.contract.v1.example/ClientSideStream"
+	Example_BidirectionalStream_FullMethodName = "/example.contract.v1.example/BidirectionalStream"
 )
 
 // ExampleClient is the client API for Example service.
@@ -204,7 +204,7 @@ type Example_BidirectionalStreamServer = grpc.BidiStreamingServer[MessageStreamR
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Example_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trb.example.public.contract.v1.Example",
+	ServiceName: "example.contract.v1.example",
 	HandlerType: (*ExampleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
