@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package trb.nats.public.contract.v1;
-option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.public.contract.v1";
+package trb.nats.manager.public.contract.v1;
+option go_package = "github.com/Mar1eena/trb_proto/services/trb.nats.manager.public.contract.v1";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -187,7 +187,6 @@ service NatsJetStreamManager {
       body: "*"
     };
   };
-
 
 }
 
