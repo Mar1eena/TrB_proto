@@ -26,6 +26,7 @@ const (
 type PublishRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Subject       string                 `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -63,6 +64,13 @@ func (*PublishRequest) Descriptor() ([]byte, []int) {
 func (x *PublishRequest) GetSubject() string {
 	if x != nil {
 		return x.Subject
+	}
+	return ""
+}
+
+func (x *PublishRequest) GetData() string {
+	if x != nil {
+		return x.Data
 	}
 	return ""
 }
@@ -2661,9 +2669,10 @@ var File_nats_manager_proto protoreflect.FileDescriptor
 
 const file_nats_manager_proto_rawDesc = "" +
 	"\n" +
-	"\x12nats/manager.proto\x12#trb.nats.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"*\n" +
+	"\x12nats/manager.proto\x12#trb.nats.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
 	"\x0ePublishRequest\x12\x18\n" +
-	"\asubject\x18\x01 \x01(\tR\asubject\"-\n" +
+	"\asubject\x18\x01 \x01(\tR\asubject\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\tR\x04data\"-\n" +
 	"\x0fPublishResponse\x12\x1a\n" +
 	"\bresponse\x18\x01 \x01(\tR\bresponse\"9\n" +
 	"\x1bResponseStreamNameBySubject\x12\x1a\n" +

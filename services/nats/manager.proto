@@ -198,6 +198,7 @@ service NatsJetStreamManager {
 
 message PublishRequest {
   string subject = 1;
+  string data = 2;
 }
 
 message PublishResponse {
