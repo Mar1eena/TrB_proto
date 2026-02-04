@@ -40,6 +40,7 @@ const (
 	NatsJetStreamManager_ConsumerNames_FullMethodName       = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames"
 	NatsJetStreamManager_AccountInfo_FullMethodName         = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo"
 	NatsJetStreamManager_StreamNameBySubject_FullMethodName = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject"
+	NatsJetStreamManager_Publish_FullMethodName             = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish"
 )
 
 // NatsJetStreamManagerClient is the client API for NatsJetStreamManager service.
@@ -101,6 +102,7 @@ type NatsJetStreamManagerClient interface {
 	AccountInfo(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*AccountInfos, error)
 	// StreamNameBySubject returns a stream matching given subject.
 	StreamNameBySubject(ctx context.Context, in *ResponseStreamNameBySubject, opts ...grpc.CallOption) (*ResponseStreamNameBySubject, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 }
 
 type natsJetStreamManagerClient struct {
@@ -375,6 +377,16 @@ func (c *natsJetStreamManagerClient) StreamNameBySubject(ctx context.Context, in
 	return out, nil
 }
 
+func (c *natsJetStreamManagerClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublishResponse)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_Publish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NatsJetStreamManagerServer is the server API for NatsJetStreamManager service.
 // All implementations must embed UnimplementedNatsJetStreamManagerServer
 // for forward compatibility.
@@ -434,6 +446,7 @@ type NatsJetStreamManagerServer interface {
 	AccountInfo(context.Context, *JsOpts) (*AccountInfos, error)
 	// StreamNameBySubject returns a stream matching given subject.
 	StreamNameBySubject(context.Context, *ResponseStreamNameBySubject) (*ResponseStreamNameBySubject, error)
+	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	mustEmbedUnimplementedNatsJetStreamManagerServer()
 }
 
@@ -506,6 +519,9 @@ func (UnimplementedNatsJetStreamManagerServer) AccountInfo(context.Context, *JsO
 }
 func (UnimplementedNatsJetStreamManagerServer) StreamNameBySubject(context.Context, *ResponseStreamNameBySubject) (*ResponseStreamNameBySubject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StreamNameBySubject not implemented")
+}
+func (UnimplementedNatsJetStreamManagerServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) mustEmbedUnimplementedNatsJetStreamManagerServer() {}
 func (UnimplementedNatsJetStreamManagerServer) testEmbeddedByValue()                              {}
@@ -864,6 +880,24 @@ func _NatsJetStreamManager_StreamNameBySubject_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NatsJetStreamManager_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NatsJetStreamManagerServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NatsJetStreamManager_Publish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NatsJetStreamManagerServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NatsJetStreamManager_ServiceDesc is the grpc.ServiceDesc for NatsJetStreamManager service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -930,6 +964,10 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StreamNameBySubject",
 			Handler:    _NatsJetStreamManager_StreamNameBySubject_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _NatsJetStreamManager_Publish_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

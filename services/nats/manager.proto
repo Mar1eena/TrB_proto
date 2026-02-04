@@ -188,6 +188,20 @@ service NatsJetStreamManager {
     };
   };
 
+  rpc Publish(PublishRequest) returns (PublishResponse){
+    option (google.api.http) = {
+      post: "/Publish"
+      body: "*"
+    };
+  };
+}
+
+message PublishRequest {
+  string subject = 1;
+}
+
+message PublishResponse {
+  string response = 1;
 }
 
 message ResponseStreamNameBySubject {
@@ -369,6 +383,7 @@ message ConsumerName {
   string stream = 1;
   string name = 2;
 }
+
 message Consumer {
   string name = 1;
   ConsumerConfig config = 2;
