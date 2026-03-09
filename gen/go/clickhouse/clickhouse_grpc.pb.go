@@ -1262,10 +1262,11 @@ const file_clickhouse_clickhouse_grpc_proto_rawDesc = "" +
 	"LOG_NOTICE\x10\x05\x12\x13\n" +
 	"\x0fLOG_INFORMATION\x10\x06\x12\r\n" +
 	"\tLOG_DEBUG\x10\a\x12\r\n" +
-	"\tLOG_TRACE\x10\b2\xdb\x02\n" +
+	"\tLOG_TRACE\x10\b2\xf0\x02\n" +
 	"\n" +
-	"ClickHouse\x12E\n" +
-	"\fExecuteQuery\x12\x1a.clickhouse.grpc.QueryInfo\x1a\x17.clickhouse.grpc.Result\"\x00\x12V\n" +
+	"ClickHouse\x12Z\n" +
+	"\fExecuteQuery\x12\x1a.clickhouse.grpc.QueryInfo\x1a\x17.clickhouse.grpc.Result\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/AddStream\x12V\n" +
 	"\x1bExecuteQueryWithStreamInput\x12\x1a.clickhouse.grpc.QueryInfo\x1a\x17.clickhouse.grpc.Result\"\x00(\x01\x12W\n" +
 	"\x1cExecuteQueryWithStreamOutput\x12\x1a.clickhouse.grpc.QueryInfo\x1a\x17.clickhouse.grpc.Result\"\x000\x01\x12U\n" +
 	"\x18ExecuteQueryWithStreamIO\x12\x1a.clickhouse.grpc.QueryInfo\x1a\x17.clickhouse.grpc.Result\"\x00(\x010\x01B8Z6github.com/Mar1eena/trb_proto/services/clickhouse.grpcb\x06proto3"

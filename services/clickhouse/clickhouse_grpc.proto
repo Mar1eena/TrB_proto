@@ -224,7 +224,12 @@ message Result {
 }
 
 service ClickHouse {
-   rpc ExecuteQuery(QueryInfo) returns (Result) {}
+   rpc ExecuteQuery(QueryInfo) returns (Result) {
+      option (google.api.http) = {
+         post: "/AddStream"
+         body: "*"
+       };
+   }
    rpc ExecuteQueryWithStreamInput(stream QueryInfo) returns (Result) {}
    rpc ExecuteQueryWithStreamOutput(QueryInfo) returns (stream Result) {}
    rpc ExecuteQueryWithStreamIO(stream QueryInfo) returns (stream Result) {}
