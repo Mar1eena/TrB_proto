@@ -71,7 +71,7 @@ func RegisterClickHouseHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/clickhouse.grpc.ClickHouse/ExecuteQuery", runtime.WithHTTPPathPattern("/AddStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/clickhouse.grpc.ClickHouse/ExecuteQuery", runtime.WithHTTPPathPattern("/ExecuteQuery"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -129,7 +129,7 @@ func RegisterClickHouseHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/clickhouse.grpc.ClickHouse/ExecuteQuery", runtime.WithHTTPPathPattern("/AddStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/clickhouse.grpc.ClickHouse/ExecuteQuery", runtime.WithHTTPPathPattern("/ExecuteQuery"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -146,7 +146,7 @@ func RegisterClickHouseHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_ClickHouse_ExecuteQuery_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddStream"}, ""))
+	pattern_ClickHouse_ExecuteQuery_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ExecuteQuery"}, ""))
 )
 
 var (

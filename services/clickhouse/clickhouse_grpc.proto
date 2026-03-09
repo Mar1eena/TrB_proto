@@ -226,7 +226,7 @@ message Result {
 service ClickHouse {
    rpc ExecuteQuery(QueryInfo) returns (Result) {
       option (google.api.http) = {
-         post: "/AddStream"
+         post: "/ExecuteQuery"
          body: "*"
        };
    }
