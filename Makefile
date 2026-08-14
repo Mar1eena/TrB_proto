@@ -8,6 +8,7 @@ gene:
 	./services/nats/*.proto \
 	./services/moex/*.proto \
 	./services/clickhouse/*.proto \
+	./services/manager_indicators/*.proto \
 	--go_out=./gen/go  \
 	--go_opt=paths=source_relative \
 	--go-grpc_out=./gen/go/ \

@@ -2,11 +2,11 @@
 // source: nats/manager.proto
 
 /*
-Package trb_nats_manager_public_contract_v1 is a reverse proxy.
+Package nats is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package trb_nats_manager_public_contract_v1
+package nats
 
 import (
 	"context"
@@ -43,6 +43,9 @@ func request_NatsJetStreamManager_AddStream_0(ctx context.Context, marshaler run
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.AddStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -59,7 +62,7 @@ func local_request_NatsJetStreamManager_AddStream_0(ctx context.Context, marshal
 	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_UpdateStream_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_AddStream_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamConfig
 		metadata runtime.ServerMetadata
@@ -67,11 +70,86 @@ func request_NatsJetStreamManager_UpdateStream_0(ctx context.Context, marshaler 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.AddStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_AddStream_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamConfig
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.AddStream(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_UpdateStream_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamConfig
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
 	msg, err := client.UpdateStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_UpdateStream_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamConfig
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.UpdateStream(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_UpdateStream_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamConfig
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_UpdateStream_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamConfig
 		metadata runtime.ServerMetadata
@@ -87,15 +165,57 @@ func request_NatsJetStreamManager_DeleteStream_0(ctx context.Context, marshaler 
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.DeleteStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_DeleteStream_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.DeleteStream(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_DeleteStream_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeleteStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_DeleteStream_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -111,15 +231,57 @@ func request_NatsJetStreamManager_StreamInfo_0(ctx context.Context, marshaler ru
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.StreamInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_StreamInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.StreamInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_StreamInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.StreamInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_StreamInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -135,15 +297,57 @@ func request_NatsJetStreamManager_PurgeStream_0(ctx context.Context, marshaler r
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.PurgeStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_PurgeStream_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.PurgeStream(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_PurgeStream_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.PurgeStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_PurgeStream_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -155,47 +359,28 @@ func local_request_NatsJetStreamManager_PurgeStream_0(ctx context.Context, marsh
 	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_StreamsInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_StreamsInfoClient, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_StreamsInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq JsOpts
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	stream, err := client.StreamsInfo(ctx, &protoReq)
-	if err != nil {
-		return nil, metadata, err
-	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
-	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := client.StreamsInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_Streams_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_StreamsClient, runtime.ServerMetadata, error) {
+func local_request_NatsJetStreamManager_StreamsInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq JsOpts
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	stream, err := client.Streams(ctx, &protoReq)
-	if err != nil {
-		return nil, metadata, err
-	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
-	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := server.StreamsInfo(ctx, &protoReq)
+	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_StreamNames_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_StreamNamesClient, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_StreamsInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq JsOpts
 		metadata runtime.ServerMetadata
@@ -203,19 +388,177 @@ func request_NatsJetStreamManager_StreamNames_0(ctx context.Context, marshaler r
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	stream, err := client.StreamNames(ctx, &protoReq)
-	if err != nil {
-		return nil, metadata, err
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
+	msg, err := client.StreamsInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_StreamsInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := server.StreamsInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_Streams_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.Streams(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_Streams_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.Streams(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_Streams_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.Streams(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_Streams_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.Streams(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_StreamNames_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.StreamNames(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_StreamNames_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.StreamNames(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_StreamNames_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.StreamNames(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_StreamNames_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.StreamNames(ctx, &protoReq)
+	return msg, metadata, err
 }
 
 func request_NatsJetStreamManager_GetMsg_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
+	}
+	msg, err := client.GetMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_GetMsg_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
+	}
+	msg, err := server.GetMsg(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_GetMsg_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
@@ -223,11 +566,14 @@ func request_NatsJetStreamManager_GetMsg_0(ctx context.Context, marshaler runtim
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_NatsJetStreamManager_GetMsg_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_NatsJetStreamManager_GetMsg_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
@@ -239,12 +585,29 @@ func local_request_NatsJetStreamManager_GetMsg_0(ctx context.Context, marshaler 
 	return msg, metadata, err
 }
 
+var filter_NatsJetStreamManager_GetLastMsg_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
 func request_NatsJetStreamManager_GetLastMsg_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq LastMsg
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_NatsJetStreamManager_GetLastMsg_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.GetLastMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -252,6 +615,45 @@ func request_NatsJetStreamManager_GetLastMsg_0(ctx context.Context, marshaler ru
 }
 
 func local_request_NatsJetStreamManager_GetLastMsg_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq LastMsg
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_NatsJetStreamManager_GetLastMsg_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetLastMsg(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_GetLastMsg_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq LastMsg
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetLastMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_GetLastMsg_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq LastMsg
 		metadata runtime.ServerMetadata
@@ -267,15 +669,73 @@ func request_NatsJetStreamManager_DeleteMsg_0(ctx context.Context, marshaler run
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
 	}
 	msg, err := client.DeleteMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_DeleteMsg_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
+	}
+	msg, err := server.DeleteMsg(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_DeleteMsg_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeleteMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_DeleteMsg_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
@@ -291,15 +751,73 @@ func request_NatsJetStreamManager_SecureDeleteMsg_0(ctx context.Context, marshal
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
 	}
 	msg, err := client.SecureDeleteMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_SecureDeleteMsg_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["seq"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "seq")
+	}
+	protoReq.Seq, err = runtime.Uint64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "seq", err)
+	}
+	msg, err := server.SecureDeleteMsg(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_SecureDeleteMsg_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Msg
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.SecureDeleteMsg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_SecureDeleteMsg_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Msg
 		metadata runtime.ServerMetadata
@@ -315,15 +833,63 @@ func request_NatsJetStreamManager_AddConsumer_0(ctx context.Context, marshaler r
 	var (
 		protoReq Consumer
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.AddConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_AddConsumer_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Consumer
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.AddConsumer(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_AddConsumer_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Consumer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.AddConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_AddConsumer_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Consumer
 		metadata runtime.ServerMetadata
@@ -339,15 +905,63 @@ func request_NatsJetStreamManager_UpdateConsumer_0(ctx context.Context, marshale
 	var (
 		protoReq Consumer
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.UpdateConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_UpdateConsumer_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Consumer
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.UpdateConsumer(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_UpdateConsumer_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq Consumer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_UpdateConsumer_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq Consumer
 		metadata runtime.ServerMetadata
@@ -363,15 +977,73 @@ func request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, marshale
 	var (
 		protoReq ConsumerName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["stream"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "stream")
+	}
+	protoReq.Stream, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "stream", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.DeleteConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_DeleteConsumer_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ConsumerName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["stream"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "stream")
+	}
+	protoReq.Stream, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "stream", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.DeleteConsumer(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_DeleteConsumer_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ConsumerName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeleteConsumer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_DeleteConsumer_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ConsumerName
 		metadata runtime.ServerMetadata
@@ -387,15 +1059,73 @@ func request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, marshaler 
 	var (
 		protoReq ConsumerName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["stream"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "stream")
+	}
+	protoReq.Stream, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "stream", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.ConsumerInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ConsumerName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["stream"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "stream")
+	}
+	protoReq.Stream, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "stream", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.ConsumerInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_ConsumerInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ConsumerName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ConsumerInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_ConsumerInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ConsumerName
 		metadata runtime.ServerMetadata
@@ -407,47 +1137,46 @@ func local_request_NatsJetStreamManager_ConsumerInfo_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_ConsumersInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_ConsumersInfoClient, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_ConsumersInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	stream, err := client.ConsumersInfo(ctx, &protoReq)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, err
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
-	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := client.ConsumersInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_Consumers_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_ConsumersClient, runtime.ServerMetadata, error) {
+func local_request_NatsJetStreamManager_ConsumersInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
+		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	stream, err := client.Consumers(ctx, &protoReq)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, err
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
-	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := server.ConsumersInfo(ctx, &protoReq)
+	return msg, metadata, err
 }
 
-func request_NatsJetStreamManager_ConsumerNames_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (NatsJetStreamManager_ConsumerNamesClient, runtime.ServerMetadata, error) {
+func request_NatsJetStreamManager_ConsumersInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq StreamName
 		metadata runtime.ServerMetadata
@@ -455,16 +1184,155 @@ func request_NatsJetStreamManager_ConsumerNames_0(ctx context.Context, marshaler
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	stream, err := client.ConsumerNames(ctx, &protoReq)
-	if err != nil {
-		return nil, metadata, err
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
+	msg, err := client.ConsumersInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_ConsumersInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+	msg, err := server.ConsumersInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_Consumers_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.Consumers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_Consumers_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.Consumers(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_Consumers_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.Consumers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_Consumers_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.Consumers(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_ConsumerNames_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.ConsumerNames(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_ConsumerNames_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.ConsumerNames(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_ConsumerNames_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ConsumerNames(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_ConsumerNames_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq StreamName
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ConsumerNames(ctx, &protoReq)
+	return msg, metadata, err
 }
 
 func request_NatsJetStreamManager_AccountInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -472,14 +1340,38 @@ func request_NatsJetStreamManager_AccountInfo_0(ctx context.Context, marshaler r
 		protoReq JsOpts
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
 	msg, err := client.AccountInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_AccountInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.AccountInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_AccountInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq JsOpts
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.AccountInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_AccountInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq JsOpts
 		metadata runtime.ServerMetadata
@@ -491,12 +1383,20 @@ func local_request_NatsJetStreamManager_AccountInfo_0(ctx context.Context, marsh
 	return msg, metadata, err
 }
 
+var filter_NatsJetStreamManager_StreamNameBySubject_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
 func request_NatsJetStreamManager_StreamNameBySubject_0(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ResponseStreamNameBySubject
+		protoReq SubjectQuery
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_NatsJetStreamManager_StreamNameBySubject_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.StreamNameBySubject(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -505,7 +1405,37 @@ func request_NatsJetStreamManager_StreamNameBySubject_0(ctx context.Context, mar
 
 func local_request_NatsJetStreamManager_StreamNameBySubject_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ResponseStreamNameBySubject
+		protoReq SubjectQuery
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_NatsJetStreamManager_StreamNameBySubject_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.StreamNameBySubject(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_StreamNameBySubject_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SubjectQuery
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.StreamNameBySubject(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_StreamNameBySubject_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SubjectQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -523,11 +1453,41 @@ func request_NatsJetStreamManager_Publish_0(ctx context.Context, marshaler runti
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.Publish(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
 func local_request_NatsJetStreamManager_Publish_0(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PublishRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.Publish(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_NatsJetStreamManager_Publish_1(ctx context.Context, marshaler runtime.Marshaler, client NatsJetStreamManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PublishRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.Publish(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_NatsJetStreamManager_Publish_1(ctx context.Context, marshaler runtime.Marshaler, server NatsJetStreamManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq PublishRequest
 		metadata runtime.ServerMetadata
@@ -551,7 +1511,7 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/AddStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/v1/nats/streams"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -565,13 +1525,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AddStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/UpdateStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/AddStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_AddStream_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AddStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_NatsJetStreamManager_UpdateStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -585,13 +1565,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_UpdateStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/DeleteStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/UpdateStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_UpdateStream_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_UpdateStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -605,13 +1605,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/StreamInfo"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/DeleteStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_DeleteStream_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -625,13 +1645,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_StreamInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/StreamInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamInfo_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/PurgeStream"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}:purge"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -645,34 +1685,153 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_PurgeStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamsInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Streams_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/GetMsg"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/PurgeStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_PurgeStream_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_PurgeStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamsInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo", runtime.WithHTTPPathPattern("/v1/nats/streams:info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamsInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamsInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamsInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo", runtime.WithHTTPPathPattern("/StreamsInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamsInfo_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamsInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_Streams_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams", runtime.WithHTTPPathPattern("/v1/nats/streams"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_Streams_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Streams_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Streams_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams", runtime.WithHTTPPathPattern("/Streams"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_Streams_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Streams_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames", runtime.WithHTTPPathPattern("/v1/nats/stream-names"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamNames_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamNames_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNames_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames", runtime.WithHTTPPathPattern("/StreamNames"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamNames_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamNames_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_GetMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -686,13 +1845,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_GetMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetLastMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/GetLastMsg"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/GetMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_GetMsg_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_GetMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_GetLastMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages:last"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -706,13 +1885,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_GetLastMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetLastMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/DeleteMsg"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/GetLastMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_GetLastMsg_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_GetLastMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -726,13 +1925,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/DeleteMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_DeleteMsg_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_SecureDeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/SecureDeleteMsg"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}:secureDelete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -746,13 +1965,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_SecureDeleteMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_SecureDeleteMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/SecureDeleteMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_SecureDeleteMsg_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_SecureDeleteMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/AddConsumer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -766,13 +2005,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AddConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/UpdateConsumer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/AddConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_AddConsumer_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AddConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_NatsJetStreamManager_UpdateConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -786,13 +2045,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_UpdateConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/DeleteConsumer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/UpdateConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_UpdateConsumer_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_UpdateConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{stream}/consumers/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -806,13 +2085,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/ConsumerInfo"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/DeleteConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_DeleteConsumer_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumerInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{stream}/consumers/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -826,34 +2125,153 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_ConsumerInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumersInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Consumers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
-	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AccountInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/AccountInfo"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/ConsumerInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_ConsumerInfo_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumerInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumersInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers:info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_ConsumersInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumersInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumersInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo", runtime.WithHTTPPathPattern("/ConsumersInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_ConsumersInfo_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumersInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_Consumers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_Consumers_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Consumers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Consumers_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers", runtime.WithHTTPPathPattern("/Consumers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_Consumers_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Consumers_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumerNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumer-names"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_ConsumerNames_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumerNames_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerNames_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames", runtime.WithHTTPPathPattern("/ConsumerNames"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_ConsumerNames_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumerNames_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_AccountInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/v1/nats/account"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -867,13 +2285,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AccountInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNameBySubject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AccountInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/StreamNameBySubject"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/AccountInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_AccountInfo_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AccountInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamNameBySubject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/v1/nats/stream-by-subject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -887,13 +2325,33 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_StreamNameBySubject_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNameBySubject_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/StreamNameBySubject"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_StreamNameBySubject_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamNameBySubject_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Publish_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/Publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/v1/nats/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -906,6 +2364,26 @@ func RegisterNatsJetStreamManagerHandlerServer(ctx context.Context, mux *runtime
 			return
 		}
 		forward_NatsJetStreamManager_Publish_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Publish_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/Publish"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_NatsJetStreamManager_Publish_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Publish_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -951,7 +2429,7 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/AddStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/v1/nats/streams"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -964,11 +2442,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AddStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/UpdateStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream", runtime.WithHTTPPathPattern("/AddStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_AddStream_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AddStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_NatsJetStreamManager_UpdateStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -981,11 +2476,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_UpdateStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/DeleteStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream", runtime.WithHTTPPathPattern("/UpdateStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_UpdateStream_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_UpdateStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -998,11 +2510,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/StreamInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream", runtime.WithHTTPPathPattern("/DeleteStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_DeleteStream_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1015,11 +2544,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_StreamInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo", runtime.WithHTTPPathPattern("/StreamInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_StreamInfo_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/PurgeStream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}:purge"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1032,11 +2578,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_PurgeStream_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamsInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_PurgeStream_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo", runtime.WithHTTPPathPattern("/StreamsInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream", runtime.WithHTTPPathPattern("/PurgeStream"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_PurgeStream_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_PurgeStream_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamsInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo", runtime.WithHTTPPathPattern("/v1/nats/streams:info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1047,13 +2610,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_StreamsInfo_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_StreamsInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Streams_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamsInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams", runtime.WithHTTPPathPattern("/Streams"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo", runtime.WithHTTPPathPattern("/StreamsInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_StreamsInfo_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamsInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_Streams_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams", runtime.WithHTTPPathPattern("/v1/nats/streams"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1064,13 +2644,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_Streams_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_Streams_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Streams_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames", runtime.WithHTTPPathPattern("/StreamNames"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams", runtime.WithHTTPPathPattern("/Streams"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_Streams_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Streams_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames", runtime.WithHTTPPathPattern("/v1/nats/stream-names"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1081,13 +2678,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_StreamNames_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_StreamNames_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNames_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/GetMsg"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames", runtime.WithHTTPPathPattern("/StreamNames"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_StreamNames_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamNames_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_GetMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1100,11 +2714,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_GetMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetLastMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/GetLastMsg"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg", runtime.WithHTTPPathPattern("/GetMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_GetMsg_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_GetMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_GetLastMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages:last"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1117,11 +2748,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_GetLastMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_GetLastMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/DeleteMsg"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg", runtime.WithHTTPPathPattern("/GetLastMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_GetLastMsg_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_GetLastMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1134,11 +2782,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg", runtime.WithHTTPPathPattern("/DeleteMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_DeleteMsg_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_SecureDeleteMsg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/SecureDeleteMsg"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/messages/{seq}:secureDelete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1151,11 +2816,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_SecureDeleteMsg_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_SecureDeleteMsg_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg", runtime.WithHTTPPathPattern("/SecureDeleteMsg"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_SecureDeleteMsg_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_SecureDeleteMsg_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/AddConsumer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1168,11 +2850,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AddConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AddConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/UpdateConsumer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer", runtime.WithHTTPPathPattern("/AddConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_AddConsumer_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AddConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_NatsJetStreamManager_UpdateConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1185,11 +2884,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_UpdateConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_UpdateConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/DeleteConsumer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer", runtime.WithHTTPPathPattern("/UpdateConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_UpdateConsumer_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_UpdateConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_NatsJetStreamManager_DeleteConsumer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/v1/nats/streams/{stream}/consumers/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1202,11 +2918,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_DeleteConsumer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_DeleteConsumer_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/ConsumerInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer", runtime.WithHTTPPathPattern("/DeleteConsumer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_DeleteConsumer_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_DeleteConsumer_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumerInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{stream}/consumers/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1219,11 +2952,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_ConsumerInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumersInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo", runtime.WithHTTPPathPattern("/ConsumersInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo", runtime.WithHTTPPathPattern("/ConsumerInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_ConsumerInfo_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumerInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumersInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers:info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1234,13 +2984,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_ConsumersInfo_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_ConsumersInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Consumers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumersInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers", runtime.WithHTTPPathPattern("/Consumers"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo", runtime.WithHTTPPathPattern("/ConsumersInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_ConsumersInfo_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumersInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_Consumers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1251,13 +3018,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_Consumers_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_Consumers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Consumers_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames", runtime.WithHTTPPathPattern("/ConsumerNames"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers", runtime.WithHTTPPathPattern("/Consumers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_Consumers_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Consumers_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_ConsumerNames_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames", runtime.WithHTTPPathPattern("/v1/nats/streams/{name}/consumer-names"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1268,13 +3052,30 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_NatsJetStreamManager_ConsumerNames_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_NatsJetStreamManager_ConsumerNames_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AccountInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_ConsumerNames_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/AccountInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames", runtime.WithHTTPPathPattern("/ConsumerNames"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_ConsumerNames_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_ConsumerNames_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_AccountInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/v1/nats/account"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1287,11 +3088,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_AccountInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNameBySubject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_AccountInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/StreamNameBySubject"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo", runtime.WithHTTPPathPattern("/AccountInfo"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_AccountInfo_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_AccountInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_NatsJetStreamManager_StreamNameBySubject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/v1/nats/stream-by-subject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1304,11 +3122,28 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_StreamNameBySubject_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_StreamNameBySubject_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject", runtime.WithHTTPPathPattern("/StreamNameBySubject"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_StreamNameBySubject_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_StreamNameBySubject_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Publish_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/Publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/v1/nats/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1321,55 +3156,116 @@ func RegisterNatsJetStreamManagerHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_NatsJetStreamManager_Publish_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_NatsJetStreamManager_Publish_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish", runtime.WithHTTPPathPattern("/Publish"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_NatsJetStreamManager_Publish_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_NatsJetStreamManager_Publish_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_NatsJetStreamManager_AddStream_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddStream"}, ""))
-	pattern_NatsJetStreamManager_UpdateStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpdateStream"}, ""))
-	pattern_NatsJetStreamManager_DeleteStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteStream"}, ""))
-	pattern_NatsJetStreamManager_StreamInfo_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamInfo"}, ""))
-	pattern_NatsJetStreamManager_PurgeStream_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"PurgeStream"}, ""))
-	pattern_NatsJetStreamManager_StreamsInfo_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamsInfo"}, ""))
-	pattern_NatsJetStreamManager_Streams_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Streams"}, ""))
-	pattern_NatsJetStreamManager_StreamNames_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamNames"}, ""))
-	pattern_NatsJetStreamManager_GetMsg_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetMsg"}, ""))
-	pattern_NatsJetStreamManager_GetLastMsg_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetLastMsg"}, ""))
-	pattern_NatsJetStreamManager_DeleteMsg_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteMsg"}, ""))
-	pattern_NatsJetStreamManager_SecureDeleteMsg_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SecureDeleteMsg"}, ""))
-	pattern_NatsJetStreamManager_AddConsumer_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddConsumer"}, ""))
-	pattern_NatsJetStreamManager_UpdateConsumer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpdateConsumer"}, ""))
-	pattern_NatsJetStreamManager_DeleteConsumer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteConsumer"}, ""))
-	pattern_NatsJetStreamManager_ConsumerInfo_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumerInfo"}, ""))
-	pattern_NatsJetStreamManager_ConsumersInfo_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumersInfo"}, ""))
-	pattern_NatsJetStreamManager_Consumers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Consumers"}, ""))
-	pattern_NatsJetStreamManager_ConsumerNames_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumerNames"}, ""))
-	pattern_NatsJetStreamManager_AccountInfo_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AccountInfo"}, ""))
-	pattern_NatsJetStreamManager_StreamNameBySubject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamNameBySubject"}, ""))
-	pattern_NatsJetStreamManager_Publish_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Publish"}, ""))
+	pattern_NatsJetStreamManager_AddStream_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "streams"}, ""))
+	pattern_NatsJetStreamManager_AddStream_1           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddStream"}, ""))
+	pattern_NatsJetStreamManager_UpdateStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "nats", "streams", "name"}, ""))
+	pattern_NatsJetStreamManager_UpdateStream_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpdateStream"}, ""))
+	pattern_NatsJetStreamManager_DeleteStream_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "nats", "streams", "name"}, ""))
+	pattern_NatsJetStreamManager_DeleteStream_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteStream"}, ""))
+	pattern_NatsJetStreamManager_StreamInfo_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "nats", "streams", "name"}, ""))
+	pattern_NatsJetStreamManager_StreamInfo_1          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamInfo"}, ""))
+	pattern_NatsJetStreamManager_PurgeStream_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "nats", "streams", "name"}, "purge"))
+	pattern_NatsJetStreamManager_PurgeStream_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"PurgeStream"}, ""))
+	pattern_NatsJetStreamManager_StreamsInfo_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "streams"}, "info"))
+	pattern_NatsJetStreamManager_StreamsInfo_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamsInfo"}, ""))
+	pattern_NatsJetStreamManager_Streams_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "streams"}, ""))
+	pattern_NatsJetStreamManager_Streams_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Streams"}, ""))
+	pattern_NatsJetStreamManager_StreamNames_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "stream-names"}, ""))
+	pattern_NatsJetStreamManager_StreamNames_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamNames"}, ""))
+	pattern_NatsJetStreamManager_GetMsg_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "nats", "streams", "name", "messages", "seq"}, ""))
+	pattern_NatsJetStreamManager_GetMsg_1              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetMsg"}, ""))
+	pattern_NatsJetStreamManager_GetLastMsg_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "messages"}, "last"))
+	pattern_NatsJetStreamManager_GetLastMsg_1          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetLastMsg"}, ""))
+	pattern_NatsJetStreamManager_DeleteMsg_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "nats", "streams", "name", "messages", "seq"}, ""))
+	pattern_NatsJetStreamManager_DeleteMsg_1           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteMsg"}, ""))
+	pattern_NatsJetStreamManager_SecureDeleteMsg_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "nats", "streams", "name", "messages", "seq"}, "secureDelete"))
+	pattern_NatsJetStreamManager_SecureDeleteMsg_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SecureDeleteMsg"}, ""))
+	pattern_NatsJetStreamManager_AddConsumer_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "consumers"}, ""))
+	pattern_NatsJetStreamManager_AddConsumer_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddConsumer"}, ""))
+	pattern_NatsJetStreamManager_UpdateConsumer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "consumers"}, ""))
+	pattern_NatsJetStreamManager_UpdateConsumer_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpdateConsumer"}, ""))
+	pattern_NatsJetStreamManager_DeleteConsumer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "nats", "streams", "stream", "consumers", "name"}, ""))
+	pattern_NatsJetStreamManager_DeleteConsumer_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteConsumer"}, ""))
+	pattern_NatsJetStreamManager_ConsumerInfo_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "nats", "streams", "stream", "consumers", "name"}, ""))
+	pattern_NatsJetStreamManager_ConsumerInfo_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumerInfo"}, ""))
+	pattern_NatsJetStreamManager_ConsumersInfo_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "consumers"}, "info"))
+	pattern_NatsJetStreamManager_ConsumersInfo_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumersInfo"}, ""))
+	pattern_NatsJetStreamManager_Consumers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "consumers"}, ""))
+	pattern_NatsJetStreamManager_Consumers_1           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Consumers"}, ""))
+	pattern_NatsJetStreamManager_ConsumerNames_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "nats", "streams", "name", "consumer-names"}, ""))
+	pattern_NatsJetStreamManager_ConsumerNames_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ConsumerNames"}, ""))
+	pattern_NatsJetStreamManager_AccountInfo_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "account"}, ""))
+	pattern_NatsJetStreamManager_AccountInfo_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AccountInfo"}, ""))
+	pattern_NatsJetStreamManager_StreamNameBySubject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "stream-by-subject"}, ""))
+	pattern_NatsJetStreamManager_StreamNameBySubject_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"StreamNameBySubject"}, ""))
+	pattern_NatsJetStreamManager_Publish_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "nats", "publish"}, ""))
+	pattern_NatsJetStreamManager_Publish_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Publish"}, ""))
 )
 
 var (
 	forward_NatsJetStreamManager_AddStream_0           = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_AddStream_1           = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_UpdateStream_0        = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_UpdateStream_1        = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_DeleteStream_0        = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_DeleteStream_1        = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_StreamInfo_0          = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamInfo_1          = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_PurgeStream_0         = runtime.ForwardResponseMessage
-	forward_NatsJetStreamManager_StreamsInfo_0         = runtime.ForwardResponseStream
-	forward_NatsJetStreamManager_Streams_0             = runtime.ForwardResponseStream
-	forward_NatsJetStreamManager_StreamNames_0         = runtime.ForwardResponseStream
+	forward_NatsJetStreamManager_PurgeStream_1         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamsInfo_0         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamsInfo_1         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_Streams_0             = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_Streams_1             = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamNames_0         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamNames_1         = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_GetMsg_0              = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_GetMsg_1              = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_GetLastMsg_0          = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_GetLastMsg_1          = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_DeleteMsg_0           = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_DeleteMsg_1           = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_SecureDeleteMsg_0     = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_SecureDeleteMsg_1     = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_AddConsumer_0         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_AddConsumer_1         = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_UpdateConsumer_0      = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_UpdateConsumer_1      = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_DeleteConsumer_0      = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_DeleteConsumer_1      = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_ConsumerInfo_0        = runtime.ForwardResponseMessage
-	forward_NatsJetStreamManager_ConsumersInfo_0       = runtime.ForwardResponseStream
-	forward_NatsJetStreamManager_Consumers_0           = runtime.ForwardResponseStream
-	forward_NatsJetStreamManager_ConsumerNames_0       = runtime.ForwardResponseStream
+	forward_NatsJetStreamManager_ConsumerInfo_1        = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_ConsumersInfo_0       = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_ConsumersInfo_1       = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_Consumers_0           = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_Consumers_1           = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_ConsumerNames_0       = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_ConsumerNames_1       = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_AccountInfo_0         = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_AccountInfo_1         = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_StreamNameBySubject_0 = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_StreamNameBySubject_1 = runtime.ForwardResponseMessage
 	forward_NatsJetStreamManager_Publish_0             = runtime.ForwardResponseMessage
+	forward_NatsJetStreamManager_Publish_1             = runtime.ForwardResponseMessage
 )
