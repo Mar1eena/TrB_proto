@@ -746,7 +746,7 @@ type PostOrderRequest struct {
 	AccountId          string          `protobuf:"bytes,5,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                                     //Номер счета.
 	OrderType          OrderType       `protobuf:"varint,6,opt,name=order_type,json=orderType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderType" json:"order_type,omitempty"`               //Тип заявки.
 	OrderId            string          `protobuf:"bytes,7,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                           //Идентификатор запроса выставления поручения для целей идемпотентности в формате UID. Максимальная длина 36 символов.
-	InstrumentId       string          `protobuf:"bytes,8,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                            //Идентификатор инструмента, принимает значения Figi или Instrument_uid.
+	InstrumentId       string          `protobuf:"bytes,8,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                            //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	TimeInForce        TimeInForceType `protobuf:"varint,9,opt,name=time_in_force,json=timeInForce,proto3,enum=tinkoff.public.invest.api.contract.v1.TimeInForceType" json:"time_in_force,omitempty"` //Алгоритм исполнения поручения, применяется только к лимитной заявке.
 	PriceType          PriceType       `protobuf:"varint,10,opt,name=price_type,json=priceType,proto3,enum=tinkoff.public.invest.api.contract.v1.PriceType" json:"price_type,omitempty"`              //Тип цены.
 	ConfirmMarginTrade bool            `protobuf:"varint,11,opt,name=confirm_margin_trade,json=confirmMarginTrade,proto3" json:"confirm_margin_trade,omitempty"`                                      // Согласие на выставление заявки, которая может привести к непокрытой позиции, по умолчанию false.
@@ -882,6 +882,8 @@ type PostOrderResponse struct {
 	Message               string                     `protobuf:"bytes,15,opt,name=message,proto3" json:"message,omitempty"`                                                                                                                                  //Дополнительные данные об исполнении заявки.
 	InitialOrderPricePt   *Quotation                 `protobuf:"bytes,16,opt,name=initial_order_price_pt,json=initialOrderPricePt,proto3" json:"initial_order_price_pt,omitempty"`                                                                           //Начальная цена заявки в пунктах (для фьючерсов).
 	InstrumentUid         string                     `protobuf:"bytes,17,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                                                 //UID идентификатор инструмента.
+	Ticker                string                     `protobuf:"bytes,18,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                                                    //Тикер инструмента.
+	ClassCode             string                     `protobuf:"bytes,19,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                                                             //Класс-код (секция торгов).
 	OrderRequestId        string                     `protobuf:"bytes,20,opt,name=order_request_id,json=orderRequestId,proto3" json:"order_request_id,omitempty"`                                                                                            //Идентификатор ключа идемпотентности, переданный клиентом, в формате UID. Максимальная длина 36 символов.
 	ResponseMetadata      *ResponseMetadata          `protobuf:"bytes,254,opt,name=response_metadata,json=responseMetadata,proto3" json:"response_metadata,omitempty"`                                                                                       //Метадата
 	unknownFields         protoimpl.UnknownFields
@@ -1037,6 +1039,20 @@ func (x *PostOrderResponse) GetInstrumentUid() string {
 	return ""
 }
 
+func (x *PostOrderResponse) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *PostOrderResponse) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
 func (x *PostOrderResponse) GetOrderRequestId() string {
 	if x != nil {
 		return x.OrderRequestId
@@ -1054,7 +1070,7 @@ func (x *PostOrderResponse) GetResponseMetadata() *ResponseMetadata {
 // Запрос выставления асинхронного торгового поручения.
 type PostOrderAsyncRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	InstrumentId       string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                  //Идентификатор инструмента, принимает значения Figi или Instrument_uid.
+	InstrumentId       string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                  //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	Quantity           int64                  `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                                             //Количество лотов.
 	Price              *Quotation             `protobuf:"bytes,3,opt,name=price,proto3,oneof" json:"price,omitempty"`                                                                                              //Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
 	Direction          OrderDirection         `protobuf:"varint,4,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderDirection" json:"direction,omitempty"`                                 //Направление операции.
@@ -1414,10 +1430,11 @@ func (x *GetOrderStateRequest) GetOrderIdType() OrderIdType {
 
 // Запрос получения списка активных торговых поручений.
 type GetOrdersRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"` //Номер счета.
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState                    `protogen:"open.v1"`
+	AccountId       string                                    `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                         //Номер счета.
+	AdvancedFilters *GetOrdersRequest_GetOrdersRequestFilters `protobuf:"bytes,2,opt,name=advanced_filters,json=advancedFilters,proto3,oneof" json:"advanced_filters,omitempty"` //Дополнительные фильтры.
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *GetOrdersRequest) Reset() {
@@ -1455,6 +1472,13 @@ func (x *GetOrdersRequest) GetAccountId() string {
 		return x.AccountId
 	}
 	return ""
+}
+
+func (x *GetOrdersRequest) GetAdvancedFilters() *GetOrdersRequest_GetOrdersRequestFilters {
+	if x != nil {
+		return x.AdvancedFilters
+	}
+	return nil
 }
 
 // Список активных торговых поручений.
@@ -1525,6 +1549,8 @@ type OrderState struct {
 	OrderDate             *timestamppb.Timestamp     `protobuf:"bytes,18,opt,name=order_date,json=orderDate,proto3" json:"order_date,omitempty"`                                                                                                             //Дата и время выставления заявки в часовом поясе UTC.
 	InstrumentUid         string                     `protobuf:"bytes,19,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                                                 //UID идентификатор инструмента.
 	OrderRequestId        string                     `protobuf:"bytes,20,opt,name=order_request_id,json=orderRequestId,proto3" json:"order_request_id,omitempty"`                                                                                            //Идентификатор ключа идемпотентности, переданный клиентом, в формате UID. Максимальная длина 36 символов.
+	Ticker                string                     `protobuf:"bytes,21,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                                                    //Тикер инструмента.
+	ClassCode             string                     `protobuf:"bytes,22,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                                                             //Класс-код (секция торгов).
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -1699,6 +1725,20 @@ func (x *OrderState) GetOrderRequestId() string {
 	return ""
 }
 
+func (x *OrderState) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *OrderState) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
 // Сделки в рамках торгового поручения.
 type OrderStage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1771,13 +1811,14 @@ func (x *OrderStage) GetExecutionTime() *timestamppb.Timestamp {
 // Запрос изменения выставленной заявки.
 type ReplaceOrderRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	AccountId          string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                              //Номер счета.
-	OrderId            string                 `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                    //Идентификатор заявки на бирже.
-	IdempotencyKey     string                 `protobuf:"bytes,7,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`                                               //Новый идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов. Перезатирает старый ключ.
-	Quantity           int64                  `protobuf:"varint,11,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                               //Количество лотов.
-	Price              *Quotation             `protobuf:"bytes,12,opt,name=price,proto3,oneof" json:"price,omitempty"`                                                                                //Цена за 1 инструмент.
-	PriceType          *PriceType             `protobuf:"varint,13,opt,name=price_type,json=priceType,proto3,enum=tinkoff.public.invest.api.contract.v1.PriceType,oneof" json:"price_type,omitempty"` //Тип цены.
-	ConfirmMarginTrade bool                   `protobuf:"varint,14,opt,name=confirm_margin_trade,json=confirmMarginTrade,proto3" json:"confirm_margin_trade,omitempty"`                               // Согласие на выставление заявки, которая может привести к непокрытой позиции, по умолчанию false.
+	AccountId          string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                                       //Номер счета.
+	OrderIdType        *OrderIdType           `protobuf:"varint,5,opt,name=order_id_type,json=orderIdType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderIdType,oneof" json:"order_id_type,omitempty"` //Тип идентификатора заявки.
+	OrderId            string                 `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                             //Идентификатор заявки на бирже.
+	IdempotencyKey     string                 `protobuf:"bytes,7,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`                                                        //Новый идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов. Перезатирает старый ключ.
+	Quantity           int64                  `protobuf:"varint,11,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                                        //Количество лотов.
+	Price              *Quotation             `protobuf:"bytes,12,opt,name=price,proto3,oneof" json:"price,omitempty"`                                                                                         //Цена за 1 инструмент.
+	PriceType          *PriceType             `protobuf:"varint,13,opt,name=price_type,json=priceType,proto3,enum=tinkoff.public.invest.api.contract.v1.PriceType,oneof" json:"price_type,omitempty"`          //Тип цены.
+	ConfirmMarginTrade bool                   `protobuf:"varint,14,opt,name=confirm_margin_trade,json=confirmMarginTrade,proto3" json:"confirm_margin_trade,omitempty"`                                        // Согласие на выставление заявки, которая может привести к непокрытой позиции, по умолчанию false.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1817,6 +1858,13 @@ func (x *ReplaceOrderRequest) GetAccountId() string {
 		return x.AccountId
 	}
 	return ""
+}
+
+func (x *ReplaceOrderRequest) GetOrderIdType() OrderIdType {
+	if x != nil && x.OrderIdType != nil {
+		return *x.OrderIdType
+	}
+	return OrderIdType_ORDER_ID_TYPE_UNSPECIFIED
 }
 
 func (x *ReplaceOrderRequest) GetOrderId() string {
@@ -1865,7 +1913,7 @@ func (x *ReplaceOrderRequest) GetConfirmMarginTrade() bool {
 type GetMaxLotsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`          //Номер счета
-	InstrumentId  string                 `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента, принимает значения Figi или instrument_uid
+	InstrumentId  string                 `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	Price         *Quotation             `protobuf:"bytes,3,opt,name=price,proto3,oneof" json:"price,omitempty"`                             //Цена инструмента
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2003,7 +2051,7 @@ func (x *GetMaxLotsResponse) GetSellMarginLimits() *GetMaxLotsResponse_SellLimit
 type GetOrderPriceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                            //Номер счета
-	InstrumentId  string                 `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                   //Идентификатор инструмента, принимает значения Figi или instrument_uid
+	InstrumentId  string                 `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                   //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	Price         *Quotation             `protobuf:"bytes,3,opt,name=price,proto3" json:"price,omitempty"`                                                                     //Цена инструмента
 	Direction     OrderDirection         `protobuf:"varint,12,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderDirection" json:"direction,omitempty"` //Направление заявки
 	Quantity      int64                  `protobuf:"varint,13,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                             //Количество лотов
@@ -2353,6 +2401,7 @@ type OrderStateStreamResponse struct {
 	//	*OrderStateStreamResponse_OrderState_
 	//	*OrderStateStreamResponse_Ping
 	//	*OrderStateStreamResponse_Subscription
+	//	*OrderStateStreamResponse_StopOrderState_
 	Payload       isOrderStateStreamResponse_Payload `protobuf_oneof:"payload"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2422,6 +2471,15 @@ func (x *OrderStateStreamResponse) GetSubscription() *SubscriptionResponse {
 	return nil
 }
 
+func (x *OrderStateStreamResponse) GetStopOrderState() *OrderStateStreamResponse_StopOrderState {
+	if x != nil {
+		if x, ok := x.Payload.(*OrderStateStreamResponse_StopOrderState_); ok {
+			return x.StopOrderState
+		}
+	}
+	return nil
+}
+
 type isOrderStateStreamResponse_Payload interface {
 	isOrderStateStreamResponse_Payload()
 }
@@ -2438,11 +2496,77 @@ type OrderStateStreamResponse_Subscription struct {
 	Subscription *SubscriptionResponse `protobuf:"bytes,3,opt,name=subscription,proto3,oneof"` //Ответ на запрос на подписку.
 }
 
+type OrderStateStreamResponse_StopOrderState_ struct {
+	StopOrderState *OrderStateStreamResponse_StopOrderState `protobuf:"bytes,4,opt,name=stop_order_state,json=stopOrderState,proto3,oneof"` //Стоп-ордер.
+}
+
 func (*OrderStateStreamResponse_OrderState_) isOrderStateStreamResponse_Payload() {}
 
 func (*OrderStateStreamResponse_Ping) isOrderStateStreamResponse_Payload() {}
 
 func (*OrderStateStreamResponse_Subscription) isOrderStateStreamResponse_Payload() {}
+
+func (*OrderStateStreamResponse_StopOrderState_) isOrderStateStreamResponse_Payload() {}
+
+type GetOrdersRequest_GetOrdersRequestFilters struct {
+	state           protoimpl.MessageState       `protogen:"open.v1"`
+	From            *timestamppb.Timestamp       `protobuf:"bytes,1,opt,name=from,proto3,oneof" json:"from,omitempty"`                                                                                                                      //Дата и время, начиная с которой нужно получить информацию в часовом поясе UTC. Параметр применим только к ордерам, созданным сегодня.
+	To              *timestamppb.Timestamp       `protobuf:"bytes,2,opt,name=to,proto3,oneof" json:"to,omitempty"`                                                                                                                          //Дата и время, до которой нужно получить информацию в часовом поясе UTC. Параметр применим только к ордерам, созданным сегодня.
+	ExecutionStatus []OrderExecutionReportStatus `protobuf:"varint,3,rep,packed,name=execution_status,json=executionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus" json:"execution_status,omitempty"` //Статусы заявок.
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) Reset() {
+	*x = GetOrdersRequest_GetOrdersRequestFilters{}
+	mi := &file_tinvest_orders_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrdersRequest_GetOrdersRequestFilters) ProtoMessage() {}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_orders_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrdersRequest_GetOrdersRequestFilters.ProtoReflect.Descriptor instead.
+func (*GetOrdersRequest_GetOrdersRequestFilters) Descriptor() ([]byte, []int) {
+	return file_tinvest_orders_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+func (x *GetOrdersRequest_GetOrdersRequestFilters) GetExecutionStatus() []OrderExecutionReportStatus {
+	if x != nil {
+		return x.ExecutionStatus
+	}
+	return nil
+}
 
 type GetMaxLotsResponse_BuyLimitsView struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
@@ -2455,7 +2579,7 @@ type GetMaxLotsResponse_BuyLimitsView struct {
 
 func (x *GetMaxLotsResponse_BuyLimitsView) Reset() {
 	*x = GetMaxLotsResponse_BuyLimitsView{}
-	mi := &file_tinvest_orders_proto_msgTypes[23]
+	mi := &file_tinvest_orders_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2467,7 +2591,7 @@ func (x *GetMaxLotsResponse_BuyLimitsView) String() string {
 func (*GetMaxLotsResponse_BuyLimitsView) ProtoMessage() {}
 
 func (x *GetMaxLotsResponse_BuyLimitsView) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_orders_proto_msgTypes[23]
+	mi := &file_tinvest_orders_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2513,7 +2637,7 @@ type GetMaxLotsResponse_SellLimitsView struct {
 
 func (x *GetMaxLotsResponse_SellLimitsView) Reset() {
 	*x = GetMaxLotsResponse_SellLimitsView{}
-	mi := &file_tinvest_orders_proto_msgTypes[24]
+	mi := &file_tinvest_orders_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2525,7 +2649,7 @@ func (x *GetMaxLotsResponse_SellLimitsView) String() string {
 func (*GetMaxLotsResponse_SellLimitsView) ProtoMessage() {}
 
 func (x *GetMaxLotsResponse_SellLimitsView) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_orders_proto_msgTypes[24]
+	mi := &file_tinvest_orders_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2558,7 +2682,7 @@ type GetOrderPriceResponse_ExtraBond struct {
 
 func (x *GetOrderPriceResponse_ExtraBond) Reset() {
 	*x = GetOrderPriceResponse_ExtraBond{}
-	mi := &file_tinvest_orders_proto_msgTypes[25]
+	mi := &file_tinvest_orders_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2570,7 +2694,7 @@ func (x *GetOrderPriceResponse_ExtraBond) String() string {
 func (*GetOrderPriceResponse_ExtraBond) ProtoMessage() {}
 
 func (x *GetOrderPriceResponse_ExtraBond) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_orders_proto_msgTypes[25]
+	mi := &file_tinvest_orders_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2609,7 +2733,7 @@ type GetOrderPriceResponse_ExtraFuture struct {
 
 func (x *GetOrderPriceResponse_ExtraFuture) Reset() {
 	*x = GetOrderPriceResponse_ExtraFuture{}
-	mi := &file_tinvest_orders_proto_msgTypes[26]
+	mi := &file_tinvest_orders_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2621,7 +2745,7 @@ func (x *GetOrderPriceResponse_ExtraFuture) String() string {
 func (*GetOrderPriceResponse_ExtraFuture) ProtoMessage() {}
 
 func (x *GetOrderPriceResponse_ExtraFuture) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_orders_proto_msgTypes[26]
+	mi := &file_tinvest_orders_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2660,6 +2784,7 @@ type OrderStateStreamResponse_OrderState struct {
 	TimeInForce           TimeInForceType                           `protobuf:"varint,11,opt,name=time_in_force,json=timeInForce,proto3,enum=tinkoff.public.invest.api.contract.v1.TimeInForceType" json:"time_in_force,omitempty"`                                         //Алгоритм исполнения поручения.
 	OrderType             OrderType                                 `protobuf:"varint,12,opt,name=order_type,json=orderType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderType" json:"order_type,omitempty"`                                                       //Тип заявки.
 	AccountId             string                                    `protobuf:"bytes,13,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                                                                             //Номер счета.
+	TradeOrderId          string                                    `protobuf:"bytes,14,opt,name=trade_order_id,json=tradeOrderId,proto3" json:"trade_order_id,omitempty"`                                                                                                  //Идентификатор торгового поручения.
 	InitialOrderPrice     *MoneyValue                               `protobuf:"bytes,22,opt,name=initial_order_price,json=initialOrderPrice,proto3" json:"initial_order_price,omitempty"`                                                                                   //Начальная цена заявки.
 	OrderPrice            *MoneyValue                               `protobuf:"bytes,23,opt,name=order_price,json=orderPrice,proto3" json:"order_price,omitempty"`                                                                                                          //Цена выставления заявки.
 	Amount                *MoneyValue                               `protobuf:"bytes,24,opt,name=amount,proto3,oneof" json:"amount,omitempty"`                                                                                                                              //Предрассчитанная стоимость полной заявки.
@@ -2680,7 +2805,7 @@ type OrderStateStreamResponse_OrderState struct {
 
 func (x *OrderStateStreamResponse_OrderState) Reset() {
 	*x = OrderStateStreamResponse_OrderState{}
-	mi := &file_tinvest_orders_proto_msgTypes[27]
+	mi := &file_tinvest_orders_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2692,7 +2817,7 @@ func (x *OrderStateStreamResponse_OrderState) String() string {
 func (*OrderStateStreamResponse_OrderState) ProtoMessage() {}
 
 func (x *OrderStateStreamResponse_OrderState) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_orders_proto_msgTypes[27]
+	mi := &file_tinvest_orders_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2799,6 +2924,13 @@ func (x *OrderStateStreamResponse_OrderState) GetAccountId() string {
 	return ""
 }
 
+func (x *OrderStateStreamResponse_OrderState) GetTradeOrderId() string {
+	if x != nil {
+		return x.TradeOrderId
+	}
+	return ""
+}
+
 func (x *OrderStateStreamResponse_OrderState) GetInitialOrderPrice() *MoneyValue {
 	if x != nil {
 		return x.InitialOrderPrice
@@ -2897,11 +3029,136 @@ func (x *OrderStateStreamResponse_OrderState) GetInstrumentUid() string {
 	return ""
 }
 
+// Стоп-ордер
+type OrderStateStreamResponse_StopOrderState struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StopOrderId   string                 `protobuf:"bytes,1,opt,name=stop_order_id,json=stopOrderId,proto3" json:"stop_order_id,omitempty"`                                               //Идентификатор стоп-заявки.
+	AccountId     string                 `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                       //Номер счёта.
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`                                                       //Дата создания заявки.
+	Direction     OrderDirection         `protobuf:"varint,4,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderDirection" json:"direction,omitempty"`             //Направление заявки.
+	Price         *MoneyValue            `protobuf:"bytes,5,opt,name=price,proto3" json:"price,omitempty"`                                                                                //Цена заявки.
+	StopPrice     *MoneyValue            `protobuf:"bytes,6,opt,name=stop_price,json=stopPrice,proto3" json:"stop_price,omitempty"`                                                       //Цена активации стоп-заявки.
+	OrderType     OrderType              `protobuf:"varint,7,opt,name=order_type,json=orderType,proto3,enum=tinkoff.public.invest.api.contract.v1.OrderType" json:"order_type,omitempty"` //Тип дочерней биржевой заявки.
+	InstrumentUid string                 `protobuf:"bytes,8,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                           //UID идентификатор инструмента.
+	Ticker        string                 `protobuf:"bytes,9,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                              //Тикер инструмента.
+	ClassCode     string                 `protobuf:"bytes,10,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                      //Класс-код.
+	Status        StopOrderStatusOption  `protobuf:"varint,11,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderStatusOption" json:"status,omitempty"`           //Состояние заявки.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) Reset() {
+	*x = OrderStateStreamResponse_StopOrderState{}
+	mi := &file_tinvest_orders_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrderStateStreamResponse_StopOrderState) ProtoMessage() {}
+
+func (x *OrderStateStreamResponse_StopOrderState) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_orders_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrderStateStreamResponse_StopOrderState.ProtoReflect.Descriptor instead.
+func (*OrderStateStreamResponse_StopOrderState) Descriptor() ([]byte, []int) {
+	return file_tinvest_orders_proto_rawDescGZIP(), []int{22, 1}
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetStopOrderId() string {
+	if x != nil {
+		return x.StopOrderId
+	}
+	return ""
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetDirection() OrderDirection {
+	if x != nil {
+		return x.Direction
+	}
+	return OrderDirection_ORDER_DIRECTION_UNSPECIFIED
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetPrice() *MoneyValue {
+	if x != nil {
+		return x.Price
+	}
+	return nil
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetStopPrice() *MoneyValue {
+	if x != nil {
+		return x.StopPrice
+	}
+	return nil
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetOrderType() OrderType {
+	if x != nil {
+		return x.OrderType
+	}
+	return OrderType_ORDER_TYPE_UNSPECIFIED
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetInstrumentUid() string {
+	if x != nil {
+		return x.InstrumentUid
+	}
+	return ""
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
+func (x *OrderStateStreamResponse_StopOrderState) GetStatus() StopOrderStatusOption {
+	if x != nil {
+		return x.Status
+	}
+	return StopOrderStatusOption_STOP_ORDER_STATUS_UNSPECIFIED
+}
+
 var File_tinvest_orders_proto protoreflect.FileDescriptor
 
 const file_tinvest_orders_proto_rawDesc = "" +
 	"\n" +
-	"\x14tinvest/orders.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x14tinvest/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\"l\n" +
+	"\x14tinvest/orders.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x14tinvest/common.proto\x1a\x18tinvest/stoporders.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\"l\n" +
 	"\x13TradesStreamRequest\x12\x1a\n" +
 	"\baccounts\x18\x01 \x03(\tR\baccounts\x12'\n" +
 	"\rping_delay_ms\x18\x0f \x01(\x05H\x00R\vpingDelayMs\x88\x01\x01B\x10\n" +
@@ -2944,7 +3201,7 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	" \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeR\tpriceType\x120\n" +
 	"\x14confirm_margin_trade\x18\v \x01(\bR\x12confirmMarginTradeB\a\n" +
 	"\x05_figiB\b\n" +
-	"\x06_price\"\x90\v\n" +
+	"\x06_price\"\xc7\v\n" +
 	"\x11PostOrderResponse\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12y\n" +
 	"\x17execution_report_status\x18\x02 \x01(\x0e2A.tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatusR\x15executionReportStatus\x12%\n" +
@@ -2964,7 +3221,10 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"order_type\x18\x0e \x01(\x0e20.tinkoff.public.invest.api.contract.v1.OrderTypeR\torderType\x12\x18\n" +
 	"\amessage\x18\x0f \x01(\tR\amessage\x12e\n" +
 	"\x16initial_order_price_pt\x18\x10 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x13initialOrderPricePt\x12%\n" +
-	"\x0einstrument_uid\x18\x11 \x01(\tR\rinstrumentUid\x12(\n" +
+	"\x0einstrument_uid\x18\x11 \x01(\tR\rinstrumentUid\x12\x16\n" +
+	"\x06ticker\x18\x12 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x13 \x01(\tR\tclassCode\x12(\n" +
 	"\x10order_request_id\x18\x14 \x01(\tR\x0eorderRequestId\x12e\n" +
 	"\x11response_metadata\x18\xfe\x01 \x01(\v27.tinkoff.public.invest.api.contract.v1.ResponseMetadataR\x10responseMetadata\"\xbd\x05\n" +
 	"\x15PostOrderAsyncRequest\x12)\n" +
@@ -3006,12 +3266,20 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\n" +
 	"price_type\x18\x03 \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeR\tpriceType\x12[\n" +
 	"\rorder_id_type\x18\x04 \x01(\x0e22.tinkoff.public.invest.api.contract.v1.OrderIdTypeH\x00R\vorderIdType\x88\x01\x01B\x10\n" +
-	"\x0e_order_id_type\"7\n" +
+	"\x0e_order_id_type\"\xcd\x03\n" +
 	"\x10GetOrdersRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"^\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12\x7f\n" +
+	"\x10advanced_filters\x18\x02 \x01(\v2O.tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFiltersH\x00R\x0fadvancedFilters\x88\x01\x01\x1a\xfd\x01\n" +
+	"\x17GetOrdersRequestFilters\x123\n" +
+	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x04from\x88\x01\x01\x12/\n" +
+	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\x02to\x88\x01\x01\x12l\n" +
+	"\x10execution_status\x18\x03 \x03(\x0e2A.tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatusR\x0fexecutionStatusB\a\n" +
+	"\x05_fromB\x05\n" +
+	"\x03_toB\x13\n" +
+	"\x11_advanced_filters\"^\n" +
 	"\x11GetOrdersResponse\x12I\n" +
-	"\x06orders\x18\x01 \x03(\v21.tinkoff.public.invest.api.contract.v1.OrderStateR\x06orders\"\xbe\v\n" +
+	"\x06orders\x18\x01 \x03(\v21.tinkoff.public.invest.api.contract.v1.OrderStateR\x06orders\"\xf5\v\n" +
 	"\n" +
 	"OrderState\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12y\n" +
@@ -3036,23 +3304,28 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\n" +
 	"order_date\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\torderDate\x12%\n" +
 	"\x0einstrument_uid\x18\x13 \x01(\tR\rinstrumentUid\x12(\n" +
-	"\x10order_request_id\x18\x14 \x01(\tR\x0eorderRequestId\"\xcf\x01\n" +
+	"\x10order_request_id\x18\x14 \x01(\tR\x0eorderRequestId\x12\x16\n" +
+	"\x06ticker\x18\x15 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x16 \x01(\tR\tclassCode\"\xcf\x01\n" +
 	"\n" +
 	"OrderStage\x12G\n" +
 	"\x05price\x18\x01 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05price\x12\x1a\n" +
 	"\bquantity\x18\x02 \x01(\x03R\bquantity\x12\x19\n" +
 	"\btrade_id\x18\x03 \x01(\tR\atradeId\x12A\n" +
-	"\x0eexecution_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\rexecutionTime\"\x9a\x03\n" +
+	"\x0eexecution_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\rexecutionTime\"\x89\x04\n" +
 	"\x13ReplaceOrderRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12\x1f\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12[\n" +
+	"\rorder_id_type\x18\x05 \x01(\x0e22.tinkoff.public.invest.api.contract.v1.OrderIdTypeH\x00R\vorderIdType\x88\x01\x01\x12\x1f\n" +
 	"\border_id\x18\x06 \x01(\tB\x04\xe2A\x01\x02R\aorderId\x12-\n" +
 	"\x0fidempotency_key\x18\a \x01(\tB\x04\xe2A\x01\x02R\x0eidempotencyKey\x12 \n" +
 	"\bquantity\x18\v \x01(\x03B\x04\xe2A\x01\x02R\bquantity\x12K\n" +
-	"\x05price\x18\f \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x00R\x05price\x88\x01\x01\x12T\n" +
+	"\x05price\x18\f \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationH\x01R\x05price\x88\x01\x01\x12T\n" +
 	"\n" +
-	"price_type\x18\r \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeH\x01R\tpriceType\x88\x01\x01\x120\n" +
-	"\x14confirm_margin_trade\x18\x0e \x01(\bR\x12confirmMarginTradeB\b\n" +
+	"price_type\x18\r \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeH\x02R\tpriceType\x88\x01\x01\x120\n" +
+	"\x14confirm_margin_trade\x18\x0e \x01(\bR\x12confirmMarginTradeB\x10\n" +
+	"\x0e_order_id_typeB\b\n" +
 	"\x06_priceB\r\n" +
 	"\v_price_type\"\xba\x01\n" +
 	"\x11GetMaxLotsRequest\x12#\n" +
@@ -3112,12 +3385,13 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\tstream_id\x18\x04 \x01(\tR\bstreamId\x12\x1a\n" +
 	"\baccounts\x18\x05 \x03(\tR\baccounts\x12M\n" +
 	"\x05error\x18\a \x01(\v22.tinkoff.public.invest.api.contract.v1.ErrorDetailH\x00R\x05error\x88\x01\x01B\b\n" +
-	"\x06_error\"\xab\x13\n" +
+	"\x06_error\"\xd9\x19\n" +
 	"\x18OrderStateStreamResponse\x12m\n" +
 	"\vorder_state\x18\x01 \x01(\v2J.tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderStateH\x00R\n" +
 	"orderState\x12A\n" +
 	"\x04ping\x18\x02 \x01(\v2+.tinkoff.public.invest.api.contract.v1.PingH\x00R\x04ping\x12a\n" +
-	"\fsubscription\x18\x03 \x01(\v2;.tinkoff.public.invest.api.contract.v1.SubscriptionResponseH\x00R\fsubscription\x1a\xa6\r\n" +
+	"\fsubscription\x18\x03 \x01(\v2;.tinkoff.public.invest.api.contract.v1.SubscriptionResponseH\x00R\fsubscription\x12z\n" +
+	"\x10stop_order_state\x18\x04 \x01(\v2N.tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderStateH\x00R\x0estopOrderState\x1a\xd2\r\n" +
 	"\n" +
 	"OrderState\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12-\n" +
@@ -3139,7 +3413,8 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\n" +
 	"order_type\x18\f \x01(\x0e20.tinkoff.public.invest.api.contract.v1.OrderTypeR\torderType\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\r \x01(\tR\taccountId\x12a\n" +
+	"account_id\x18\r \x01(\tR\taccountId\x12*\n" +
+	"\x0etrade_order_id\x18\x0e \x01(\tB\x04\xe2A\x01\x02R\ftradeOrderId\x12a\n" +
 	"\x13initial_order_price\x18\x16 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x11initialOrderPrice\x12R\n" +
 	"\vorder_price\x18\x17 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\n" +
 	"orderPrice\x12N\n" +
@@ -3158,7 +3433,25 @@ const file_tinvest_orders_proto_rawDesc = "" +
 	"\x11_order_request_idB\x0e\n" +
 	"\f_status_infoB\t\n" +
 	"\a_amountB\t\n" +
-	"\a_marker\"\xaf\x01\n" +
+	"\a_marker\x1a\x83\x05\n" +
+	"\x0eStopOrderState\x12\"\n" +
+	"\rstop_order_id\x18\x01 \x01(\tR\vstopOrderId\x12\x1d\n" +
+	"\n" +
+	"account_id\x18\x02 \x01(\tR\taccountId\x129\n" +
+	"\n" +
+	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12S\n" +
+	"\tdirection\x18\x04 \x01(\x0e25.tinkoff.public.invest.api.contract.v1.OrderDirectionR\tdirection\x12G\n" +
+	"\x05price\x18\x05 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05price\x12P\n" +
+	"\n" +
+	"stop_price\x18\x06 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\tstopPrice\x12O\n" +
+	"\n" +
+	"order_type\x18\a \x01(\x0e20.tinkoff.public.invest.api.contract.v1.OrderTypeR\torderType\x12%\n" +
+	"\x0einstrument_uid\x18\b \x01(\tR\rinstrumentUid\x12\x16\n" +
+	"\x06ticker\x18\t \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\n" +
+	" \x01(\tR\tclassCode\x12T\n" +
+	"\x06status\x18\v \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.StopOrderStatusOptionR\x06status\"\xaf\x01\n" +
 	"\n" +
 	"MarkerType\x12\x12\n" +
 	"\x0eMARKER_UNKNOWN\x10\x00\x12\x11\n" +
@@ -3233,169 +3526,184 @@ func file_tinvest_orders_proto_rawDescGZIP() []byte {
 }
 
 var file_tinvest_orders_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_tinvest_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_tinvest_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_tinvest_orders_proto_goTypes = []any{
-	(OrderDirection)(0),                           // 0: tinkoff.public.invest.api.contract.v1.OrderDirection
-	(OrderType)(0),                                // 1: tinkoff.public.invest.api.contract.v1.OrderType
-	(OrderExecutionReportStatus)(0),               // 2: tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
-	(TimeInForceType)(0),                          // 3: tinkoff.public.invest.api.contract.v1.TimeInForceType
-	(OrderIdType)(0),                              // 4: tinkoff.public.invest.api.contract.v1.OrderIdType
-	(OrderStateStreamResponse_MarkerType)(0),      // 5: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.MarkerType
-	(OrderStateStreamResponse_StatusCauseInfo)(0), // 6: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StatusCauseInfo
-	(*TradesStreamRequest)(nil),                   // 7: tinkoff.public.invest.api.contract.v1.TradesStreamRequest
-	(*TradesStreamResponse)(nil),                  // 8: tinkoff.public.invest.api.contract.v1.TradesStreamResponse
-	(*OrderTrades)(nil),                           // 9: tinkoff.public.invest.api.contract.v1.OrderTrades
-	(*OrderTrade)(nil),                            // 10: tinkoff.public.invest.api.contract.v1.OrderTrade
-	(*PostOrderRequest)(nil),                      // 11: tinkoff.public.invest.api.contract.v1.PostOrderRequest
-	(*PostOrderResponse)(nil),                     // 12: tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	(*PostOrderAsyncRequest)(nil),                 // 13: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
-	(*PostOrderAsyncResponse)(nil),                // 14: tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
-	(*CancelOrderRequest)(nil),                    // 15: tinkoff.public.invest.api.contract.v1.CancelOrderRequest
-	(*CancelOrderResponse)(nil),                   // 16: tinkoff.public.invest.api.contract.v1.CancelOrderResponse
-	(*GetOrderStateRequest)(nil),                  // 17: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
-	(*GetOrdersRequest)(nil),                      // 18: tinkoff.public.invest.api.contract.v1.GetOrdersRequest
-	(*GetOrdersResponse)(nil),                     // 19: tinkoff.public.invest.api.contract.v1.GetOrdersResponse
-	(*OrderState)(nil),                            // 20: tinkoff.public.invest.api.contract.v1.OrderState
-	(*OrderStage)(nil),                            // 21: tinkoff.public.invest.api.contract.v1.OrderStage
-	(*ReplaceOrderRequest)(nil),                   // 22: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
-	(*GetMaxLotsRequest)(nil),                     // 23: tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
-	(*GetMaxLotsResponse)(nil),                    // 24: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
-	(*GetOrderPriceRequest)(nil),                  // 25: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest
-	(*GetOrderPriceResponse)(nil),                 // 26: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse
-	(*OrderStateStreamRequest)(nil),               // 27: tinkoff.public.invest.api.contract.v1.OrderStateStreamRequest
-	(*SubscriptionResponse)(nil),                  // 28: tinkoff.public.invest.api.contract.v1.SubscriptionResponse
-	(*OrderStateStreamResponse)(nil),              // 29: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse
-	(*GetMaxLotsResponse_BuyLimitsView)(nil),      // 30: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
-	(*GetMaxLotsResponse_SellLimitsView)(nil),     // 31: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
-	(*GetOrderPriceResponse_ExtraBond)(nil),       // 32: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond
-	(*GetOrderPriceResponse_ExtraFuture)(nil),     // 33: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture
-	(*OrderStateStreamResponse_OrderState)(nil),   // 34: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState
-	(*Ping)(nil),                                  // 35: tinkoff.public.invest.api.contract.v1.Ping
-	(*timestamppb.Timestamp)(nil),                 // 36: google.protobuf.Timestamp
-	(*Quotation)(nil),                             // 37: tinkoff.public.invest.api.contract.v1.Quotation
-	(PriceType)(0),                                // 38: tinkoff.public.invest.api.contract.v1.PriceType
-	(*MoneyValue)(nil),                            // 39: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*ResponseMetadata)(nil),                      // 40: tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	(ResultSubscriptionStatus)(0),                 // 41: tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
-	(*ErrorDetail)(nil),                           // 42: tinkoff.public.invest.api.contract.v1.ErrorDetail
+	(OrderDirection)(0),                              // 0: tinkoff.public.invest.api.contract.v1.OrderDirection
+	(OrderType)(0),                                   // 1: tinkoff.public.invest.api.contract.v1.OrderType
+	(OrderExecutionReportStatus)(0),                  // 2: tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
+	(TimeInForceType)(0),                             // 3: tinkoff.public.invest.api.contract.v1.TimeInForceType
+	(OrderIdType)(0),                                 // 4: tinkoff.public.invest.api.contract.v1.OrderIdType
+	(OrderStateStreamResponse_MarkerType)(0),         // 5: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.MarkerType
+	(OrderStateStreamResponse_StatusCauseInfo)(0),    // 6: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StatusCauseInfo
+	(*TradesStreamRequest)(nil),                      // 7: tinkoff.public.invest.api.contract.v1.TradesStreamRequest
+	(*TradesStreamResponse)(nil),                     // 8: tinkoff.public.invest.api.contract.v1.TradesStreamResponse
+	(*OrderTrades)(nil),                              // 9: tinkoff.public.invest.api.contract.v1.OrderTrades
+	(*OrderTrade)(nil),                               // 10: tinkoff.public.invest.api.contract.v1.OrderTrade
+	(*PostOrderRequest)(nil),                         // 11: tinkoff.public.invest.api.contract.v1.PostOrderRequest
+	(*PostOrderResponse)(nil),                        // 12: tinkoff.public.invest.api.contract.v1.PostOrderResponse
+	(*PostOrderAsyncRequest)(nil),                    // 13: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
+	(*PostOrderAsyncResponse)(nil),                   // 14: tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
+	(*CancelOrderRequest)(nil),                       // 15: tinkoff.public.invest.api.contract.v1.CancelOrderRequest
+	(*CancelOrderResponse)(nil),                      // 16: tinkoff.public.invest.api.contract.v1.CancelOrderResponse
+	(*GetOrderStateRequest)(nil),                     // 17: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
+	(*GetOrdersRequest)(nil),                         // 18: tinkoff.public.invest.api.contract.v1.GetOrdersRequest
+	(*GetOrdersResponse)(nil),                        // 19: tinkoff.public.invest.api.contract.v1.GetOrdersResponse
+	(*OrderState)(nil),                               // 20: tinkoff.public.invest.api.contract.v1.OrderState
+	(*OrderStage)(nil),                               // 21: tinkoff.public.invest.api.contract.v1.OrderStage
+	(*ReplaceOrderRequest)(nil),                      // 22: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
+	(*GetMaxLotsRequest)(nil),                        // 23: tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
+	(*GetMaxLotsResponse)(nil),                       // 24: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
+	(*GetOrderPriceRequest)(nil),                     // 25: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest
+	(*GetOrderPriceResponse)(nil),                    // 26: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse
+	(*OrderStateStreamRequest)(nil),                  // 27: tinkoff.public.invest.api.contract.v1.OrderStateStreamRequest
+	(*SubscriptionResponse)(nil),                     // 28: tinkoff.public.invest.api.contract.v1.SubscriptionResponse
+	(*OrderStateStreamResponse)(nil),                 // 29: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse
+	(*GetOrdersRequest_GetOrdersRequestFilters)(nil), // 30: tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFilters
+	(*GetMaxLotsResponse_BuyLimitsView)(nil),         // 31: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
+	(*GetMaxLotsResponse_SellLimitsView)(nil),        // 32: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
+	(*GetOrderPriceResponse_ExtraBond)(nil),          // 33: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond
+	(*GetOrderPriceResponse_ExtraFuture)(nil),        // 34: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture
+	(*OrderStateStreamResponse_OrderState)(nil),      // 35: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState
+	(*OrderStateStreamResponse_StopOrderState)(nil),  // 36: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState
+	(*Ping)(nil),                                     // 37: tinkoff.public.invest.api.contract.v1.Ping
+	(*timestamppb.Timestamp)(nil),                    // 38: google.protobuf.Timestamp
+	(*Quotation)(nil),                                // 39: tinkoff.public.invest.api.contract.v1.Quotation
+	(PriceType)(0),                                   // 40: tinkoff.public.invest.api.contract.v1.PriceType
+	(*MoneyValue)(nil),                               // 41: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(*ResponseMetadata)(nil),                         // 42: tinkoff.public.invest.api.contract.v1.ResponseMetadata
+	(ResultSubscriptionStatus)(0),                    // 43: tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
+	(*ErrorDetail)(nil),                              // 44: tinkoff.public.invest.api.contract.v1.ErrorDetail
+	(StopOrderStatusOption)(0),                       // 45: tinkoff.public.invest.api.contract.v1.StopOrderStatusOption
 }
 var file_tinvest_orders_proto_depIdxs = []int32{
 	9,   // 0: tinkoff.public.invest.api.contract.v1.TradesStreamResponse.order_trades:type_name -> tinkoff.public.invest.api.contract.v1.OrderTrades
-	35,  // 1: tinkoff.public.invest.api.contract.v1.TradesStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
+	37,  // 1: tinkoff.public.invest.api.contract.v1.TradesStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
 	28,  // 2: tinkoff.public.invest.api.contract.v1.TradesStreamResponse.subscription:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionResponse
-	36,  // 3: tinkoff.public.invest.api.contract.v1.OrderTrades.created_at:type_name -> google.protobuf.Timestamp
+	38,  // 3: tinkoff.public.invest.api.contract.v1.OrderTrades.created_at:type_name -> google.protobuf.Timestamp
 	0,   // 4: tinkoff.public.invest.api.contract.v1.OrderTrades.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
 	10,  // 5: tinkoff.public.invest.api.contract.v1.OrderTrades.trades:type_name -> tinkoff.public.invest.api.contract.v1.OrderTrade
-	36,  // 6: tinkoff.public.invest.api.contract.v1.OrderTrade.date_time:type_name -> google.protobuf.Timestamp
-	37,  // 7: tinkoff.public.invest.api.contract.v1.OrderTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	37,  // 8: tinkoff.public.invest.api.contract.v1.PostOrderRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	38,  // 6: tinkoff.public.invest.api.contract.v1.OrderTrade.date_time:type_name -> google.protobuf.Timestamp
+	39,  // 7: tinkoff.public.invest.api.contract.v1.OrderTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	39,  // 8: tinkoff.public.invest.api.contract.v1.PostOrderRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
 	0,   // 9: tinkoff.public.invest.api.contract.v1.PostOrderRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
 	1,   // 10: tinkoff.public.invest.api.contract.v1.PostOrderRequest.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
 	3,   // 11: tinkoff.public.invest.api.contract.v1.PostOrderRequest.time_in_force:type_name -> tinkoff.public.invest.api.contract.v1.TimeInForceType
-	38,  // 12: tinkoff.public.invest.api.contract.v1.PostOrderRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
+	40,  // 12: tinkoff.public.invest.api.contract.v1.PostOrderRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
 	2,   // 13: tinkoff.public.invest.api.contract.v1.PostOrderResponse.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
-	39,  // 14: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 15: tinkoff.public.invest.api.contract.v1.PostOrderResponse.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 16: tinkoff.public.invest.api.contract.v1.PostOrderResponse.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 17: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 18: tinkoff.public.invest.api.contract.v1.PostOrderResponse.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 19: tinkoff.public.invest.api.contract.v1.PostOrderResponse.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 14: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 15: tinkoff.public.invest.api.contract.v1.PostOrderResponse.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 16: tinkoff.public.invest.api.contract.v1.PostOrderResponse.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 17: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 18: tinkoff.public.invest.api.contract.v1.PostOrderResponse.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 19: tinkoff.public.invest.api.contract.v1.PostOrderResponse.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
 	0,   // 20: tinkoff.public.invest.api.contract.v1.PostOrderResponse.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
-	39,  // 21: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_security_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 21: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_security_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
 	1,   // 22: tinkoff.public.invest.api.contract.v1.PostOrderResponse.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
-	37,  // 23: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_order_price_pt:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	40,  // 24: tinkoff.public.invest.api.contract.v1.PostOrderResponse.response_metadata:type_name -> tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	37,  // 25: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	39,  // 23: tinkoff.public.invest.api.contract.v1.PostOrderResponse.initial_order_price_pt:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	42,  // 24: tinkoff.public.invest.api.contract.v1.PostOrderResponse.response_metadata:type_name -> tinkoff.public.invest.api.contract.v1.ResponseMetadata
+	39,  // 25: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
 	0,   // 26: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
 	1,   // 27: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
 	3,   // 28: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.time_in_force:type_name -> tinkoff.public.invest.api.contract.v1.TimeInForceType
-	38,  // 29: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
+	40,  // 29: tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
 	2,   // 30: tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
 	4,   // 31: tinkoff.public.invest.api.contract.v1.CancelOrderRequest.order_id_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderIdType
-	36,  // 32: tinkoff.public.invest.api.contract.v1.CancelOrderResponse.time:type_name -> google.protobuf.Timestamp
-	40,  // 33: tinkoff.public.invest.api.contract.v1.CancelOrderResponse.response_metadata:type_name -> tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	38,  // 34: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
+	38,  // 32: tinkoff.public.invest.api.contract.v1.CancelOrderResponse.time:type_name -> google.protobuf.Timestamp
+	42,  // 33: tinkoff.public.invest.api.contract.v1.CancelOrderResponse.response_metadata:type_name -> tinkoff.public.invest.api.contract.v1.ResponseMetadata
+	40,  // 34: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
 	4,   // 35: tinkoff.public.invest.api.contract.v1.GetOrderStateRequest.order_id_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderIdType
-	20,  // 36: tinkoff.public.invest.api.contract.v1.GetOrdersResponse.orders:type_name -> tinkoff.public.invest.api.contract.v1.OrderState
-	2,   // 37: tinkoff.public.invest.api.contract.v1.OrderState.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
-	39,  // 38: tinkoff.public.invest.api.contract.v1.OrderState.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 39: tinkoff.public.invest.api.contract.v1.OrderState.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 40: tinkoff.public.invest.api.contract.v1.OrderState.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 41: tinkoff.public.invest.api.contract.v1.OrderState.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 42: tinkoff.public.invest.api.contract.v1.OrderState.initial_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 43: tinkoff.public.invest.api.contract.v1.OrderState.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	0,   // 44: tinkoff.public.invest.api.contract.v1.OrderState.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
-	39,  // 45: tinkoff.public.invest.api.contract.v1.OrderState.initial_security_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	21,  // 46: tinkoff.public.invest.api.contract.v1.OrderState.stages:type_name -> tinkoff.public.invest.api.contract.v1.OrderStage
-	39,  // 47: tinkoff.public.invest.api.contract.v1.OrderState.service_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	1,   // 48: tinkoff.public.invest.api.contract.v1.OrderState.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
-	36,  // 49: tinkoff.public.invest.api.contract.v1.OrderState.order_date:type_name -> google.protobuf.Timestamp
-	39,  // 50: tinkoff.public.invest.api.contract.v1.OrderStage.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	36,  // 51: tinkoff.public.invest.api.contract.v1.OrderStage.execution_time:type_name -> google.protobuf.Timestamp
-	37,  // 52: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	38,  // 53: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
-	37,  // 54: tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	30,  // 55: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.buy_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
-	30,  // 56: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.buy_margin_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
-	31,  // 57: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.sell_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
-	31,  // 58: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.sell_margin_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
-	37,  // 59: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	0,   // 60: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
-	39,  // 61: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 62: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.initial_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 63: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 64: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.executed_commission_rub:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 65: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.service_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 66: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.deal_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	32,  // 67: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.extra_bond:type_name -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond
-	33,  // 68: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.extra_future:type_name -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture
-	41,  // 69: tinkoff.public.invest.api.contract.v1.SubscriptionResponse.status:type_name -> tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
-	42,  // 70: tinkoff.public.invest.api.contract.v1.SubscriptionResponse.error:type_name -> tinkoff.public.invest.api.contract.v1.ErrorDetail
-	34,  // 71: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.order_state:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState
-	35,  // 72: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
-	28,  // 73: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.subscription:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionResponse
-	37,  // 74: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView.buy_money_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	39,  // 75: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	37,  // 76: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond.nominal_conversion_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	39,  // 77: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture.initial_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	36,  // 78: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.created_at:type_name -> google.protobuf.Timestamp
-	2,   // 79: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
-	6,   // 80: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.status_info:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StatusCauseInfo
-	0,   // 81: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
-	3,   // 82: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.time_in_force:type_name -> tinkoff.public.invest.api.contract.v1.TimeInForceType
-	1,   // 83: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
-	39,  // 84: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 85: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 86: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	39,  // 87: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	5,   // 88: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.marker:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.MarkerType
-	10,  // 89: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.trades:type_name -> tinkoff.public.invest.api.contract.v1.OrderTrade
-	36,  // 90: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.completion_time:type_name -> google.protobuf.Timestamp
-	7,   // 91: tinkoff.public.invest.api.contract.v1.OrdersStreamService.TradesStream:input_type -> tinkoff.public.invest.api.contract.v1.TradesStreamRequest
-	27,  // 92: tinkoff.public.invest.api.contract.v1.OrdersStreamService.OrderStateStream:input_type -> tinkoff.public.invest.api.contract.v1.OrderStateStreamRequest
-	11,  // 93: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrder:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderRequest
-	13,  // 94: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrderAsync:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
-	15,  // 95: tinkoff.public.invest.api.contract.v1.OrdersService.CancelOrder:input_type -> tinkoff.public.invest.api.contract.v1.CancelOrderRequest
-	17,  // 96: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderState:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
-	18,  // 97: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrders:input_type -> tinkoff.public.invest.api.contract.v1.GetOrdersRequest
-	22,  // 98: tinkoff.public.invest.api.contract.v1.OrdersService.ReplaceOrder:input_type -> tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
-	23,  // 99: tinkoff.public.invest.api.contract.v1.OrdersService.GetMaxLots:input_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
-	25,  // 100: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderPrice:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest
-	8,   // 101: tinkoff.public.invest.api.contract.v1.OrdersStreamService.TradesStream:output_type -> tinkoff.public.invest.api.contract.v1.TradesStreamResponse
-	29,  // 102: tinkoff.public.invest.api.contract.v1.OrdersStreamService.OrderStateStream:output_type -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse
-	12,  // 103: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	14,  // 104: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrderAsync:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
-	16,  // 105: tinkoff.public.invest.api.contract.v1.OrdersService.CancelOrder:output_type -> tinkoff.public.invest.api.contract.v1.CancelOrderResponse
-	20,  // 106: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderState:output_type -> tinkoff.public.invest.api.contract.v1.OrderState
-	19,  // 107: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrders:output_type -> tinkoff.public.invest.api.contract.v1.GetOrdersResponse
-	12,  // 108: tinkoff.public.invest.api.contract.v1.OrdersService.ReplaceOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
-	24,  // 109: tinkoff.public.invest.api.contract.v1.OrdersService.GetMaxLots:output_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
-	26,  // 110: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderPrice:output_type -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse
-	101, // [101:111] is the sub-list for method output_type
-	91,  // [91:101] is the sub-list for method input_type
-	91,  // [91:91] is the sub-list for extension type_name
-	91,  // [91:91] is the sub-list for extension extendee
-	0,   // [0:91] is the sub-list for field type_name
+	30,  // 36: tinkoff.public.invest.api.contract.v1.GetOrdersRequest.advanced_filters:type_name -> tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFilters
+	20,  // 37: tinkoff.public.invest.api.contract.v1.GetOrdersResponse.orders:type_name -> tinkoff.public.invest.api.contract.v1.OrderState
+	2,   // 38: tinkoff.public.invest.api.contract.v1.OrderState.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
+	41,  // 39: tinkoff.public.invest.api.contract.v1.OrderState.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 40: tinkoff.public.invest.api.contract.v1.OrderState.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 41: tinkoff.public.invest.api.contract.v1.OrderState.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 42: tinkoff.public.invest.api.contract.v1.OrderState.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 43: tinkoff.public.invest.api.contract.v1.OrderState.initial_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 44: tinkoff.public.invest.api.contract.v1.OrderState.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	0,   // 45: tinkoff.public.invest.api.contract.v1.OrderState.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
+	41,  // 46: tinkoff.public.invest.api.contract.v1.OrderState.initial_security_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	21,  // 47: tinkoff.public.invest.api.contract.v1.OrderState.stages:type_name -> tinkoff.public.invest.api.contract.v1.OrderStage
+	41,  // 48: tinkoff.public.invest.api.contract.v1.OrderState.service_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	1,   // 49: tinkoff.public.invest.api.contract.v1.OrderState.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
+	38,  // 50: tinkoff.public.invest.api.contract.v1.OrderState.order_date:type_name -> google.protobuf.Timestamp
+	41,  // 51: tinkoff.public.invest.api.contract.v1.OrderStage.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	38,  // 52: tinkoff.public.invest.api.contract.v1.OrderStage.execution_time:type_name -> google.protobuf.Timestamp
+	4,   // 53: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest.order_id_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderIdType
+	39,  // 54: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	40,  // 55: tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest.price_type:type_name -> tinkoff.public.invest.api.contract.v1.PriceType
+	39,  // 56: tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	31,  // 57: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.buy_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
+	31,  // 58: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.buy_margin_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView
+	32,  // 59: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.sell_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
+	32,  // 60: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.sell_margin_limits:type_name -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.SellLimitsView
+	39,  // 61: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	0,   // 62: tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
+	41,  // 63: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 64: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.initial_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 65: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.executed_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 66: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.executed_commission_rub:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 67: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.service_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 68: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.deal_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	33,  // 69: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.extra_bond:type_name -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond
+	34,  // 70: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.extra_future:type_name -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture
+	43,  // 71: tinkoff.public.invest.api.contract.v1.SubscriptionResponse.status:type_name -> tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
+	44,  // 72: tinkoff.public.invest.api.contract.v1.SubscriptionResponse.error:type_name -> tinkoff.public.invest.api.contract.v1.ErrorDetail
+	35,  // 73: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.order_state:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState
+	37,  // 74: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
+	28,  // 75: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.subscription:type_name -> tinkoff.public.invest.api.contract.v1.SubscriptionResponse
+	36,  // 76: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.stop_order_state:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState
+	38,  // 77: tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFilters.from:type_name -> google.protobuf.Timestamp
+	38,  // 78: tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFilters.to:type_name -> google.protobuf.Timestamp
+	2,   // 79: tinkoff.public.invest.api.contract.v1.GetOrdersRequest.GetOrdersRequestFilters.execution_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
+	39,  // 80: tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse.BuyLimitsView.buy_money_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	41,  // 81: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	39,  // 82: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraBond.nominal_conversion_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	41,  // 83: tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse.ExtraFuture.initial_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	38,  // 84: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.created_at:type_name -> google.protobuf.Timestamp
+	2,   // 85: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.execution_report_status:type_name -> tinkoff.public.invest.api.contract.v1.OrderExecutionReportStatus
+	6,   // 86: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.status_info:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StatusCauseInfo
+	0,   // 87: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
+	3,   // 88: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.time_in_force:type_name -> tinkoff.public.invest.api.contract.v1.TimeInForceType
+	1,   // 89: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
+	41,  // 90: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.initial_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 91: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 92: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 93: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.executed_order_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	5,   // 94: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.marker:type_name -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.MarkerType
+	10,  // 95: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.trades:type_name -> tinkoff.public.invest.api.contract.v1.OrderTrade
+	38,  // 96: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.OrderState.completion_time:type_name -> google.protobuf.Timestamp
+	38,  // 97: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.created_at:type_name -> google.protobuf.Timestamp
+	0,   // 98: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.direction:type_name -> tinkoff.public.invest.api.contract.v1.OrderDirection
+	41,  // 99: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	41,  // 100: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.stop_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	1,   // 101: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.order_type:type_name -> tinkoff.public.invest.api.contract.v1.OrderType
+	45,  // 102: tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse.StopOrderState.status:type_name -> tinkoff.public.invest.api.contract.v1.StopOrderStatusOption
+	7,   // 103: tinkoff.public.invest.api.contract.v1.OrdersStreamService.TradesStream:input_type -> tinkoff.public.invest.api.contract.v1.TradesStreamRequest
+	27,  // 104: tinkoff.public.invest.api.contract.v1.OrdersStreamService.OrderStateStream:input_type -> tinkoff.public.invest.api.contract.v1.OrderStateStreamRequest
+	11,  // 105: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrder:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderRequest
+	13,  // 106: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrderAsync:input_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncRequest
+	15,  // 107: tinkoff.public.invest.api.contract.v1.OrdersService.CancelOrder:input_type -> tinkoff.public.invest.api.contract.v1.CancelOrderRequest
+	17,  // 108: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderState:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderStateRequest
+	18,  // 109: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrders:input_type -> tinkoff.public.invest.api.contract.v1.GetOrdersRequest
+	22,  // 110: tinkoff.public.invest.api.contract.v1.OrdersService.ReplaceOrder:input_type -> tinkoff.public.invest.api.contract.v1.ReplaceOrderRequest
+	23,  // 111: tinkoff.public.invest.api.contract.v1.OrdersService.GetMaxLots:input_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsRequest
+	25,  // 112: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderPrice:input_type -> tinkoff.public.invest.api.contract.v1.GetOrderPriceRequest
+	8,   // 113: tinkoff.public.invest.api.contract.v1.OrdersStreamService.TradesStream:output_type -> tinkoff.public.invest.api.contract.v1.TradesStreamResponse
+	29,  // 114: tinkoff.public.invest.api.contract.v1.OrdersStreamService.OrderStateStream:output_type -> tinkoff.public.invest.api.contract.v1.OrderStateStreamResponse
+	12,  // 115: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
+	14,  // 116: tinkoff.public.invest.api.contract.v1.OrdersService.PostOrderAsync:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderAsyncResponse
+	16,  // 117: tinkoff.public.invest.api.contract.v1.OrdersService.CancelOrder:output_type -> tinkoff.public.invest.api.contract.v1.CancelOrderResponse
+	20,  // 118: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderState:output_type -> tinkoff.public.invest.api.contract.v1.OrderState
+	19,  // 119: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrders:output_type -> tinkoff.public.invest.api.contract.v1.GetOrdersResponse
+	12,  // 120: tinkoff.public.invest.api.contract.v1.OrdersService.ReplaceOrder:output_type -> tinkoff.public.invest.api.contract.v1.PostOrderResponse
+	24,  // 121: tinkoff.public.invest.api.contract.v1.OrdersService.GetMaxLots:output_type -> tinkoff.public.invest.api.contract.v1.GetMaxLotsResponse
+	26,  // 122: tinkoff.public.invest.api.contract.v1.OrdersService.GetOrderPrice:output_type -> tinkoff.public.invest.api.contract.v1.GetOrderPriceResponse
+	113, // [113:123] is the sub-list for method output_type
+	103, // [103:113] is the sub-list for method input_type
+	103, // [103:103] is the sub-list for extension type_name
+	103, // [103:103] is the sub-list for extension extendee
+	0,   // [0:103] is the sub-list for field type_name
 }
 
 func init() { file_tinvest_orders_proto_init() }
@@ -3404,6 +3712,7 @@ func file_tinvest_orders_proto_init() {
 		return
 	}
 	file_tinvest_common_proto_init()
+	file_tinvest_stoporders_proto_init()
 	file_tinvest_orders_proto_msgTypes[0].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[1].OneofWrappers = []any{
 		(*TradesStreamResponse_OrderTrades)(nil),
@@ -3415,6 +3724,7 @@ func file_tinvest_orders_proto_init() {
 	file_tinvest_orders_proto_msgTypes[7].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[8].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[10].OneofWrappers = []any{}
+	file_tinvest_orders_proto_msgTypes[11].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[15].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[16].OneofWrappers = []any{}
 	file_tinvest_orders_proto_msgTypes[19].OneofWrappers = []any{
@@ -3427,15 +3737,17 @@ func file_tinvest_orders_proto_init() {
 		(*OrderStateStreamResponse_OrderState_)(nil),
 		(*OrderStateStreamResponse_Ping)(nil),
 		(*OrderStateStreamResponse_Subscription)(nil),
+		(*OrderStateStreamResponse_StopOrderState_)(nil),
 	}
-	file_tinvest_orders_proto_msgTypes[27].OneofWrappers = []any{}
+	file_tinvest_orders_proto_msgTypes[23].OneofWrappers = []any{}
+	file_tinvest_orders_proto_msgTypes[28].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tinvest_orders_proto_rawDesc), len(file_tinvest_orders_proto_rawDesc)),
 			NumEnums:      7,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

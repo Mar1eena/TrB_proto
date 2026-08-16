@@ -37,6 +37,7 @@ const (
 	InstrumentType_INSTRUMENT_TYPE_CLEARING_CERTIFICATE InstrumentType = 8  //Clearing certificate.
 	InstrumentType_INSTRUMENT_TYPE_INDEX                InstrumentType = 9  //Индекс.
 	InstrumentType_INSTRUMENT_TYPE_COMMODITY            InstrumentType = 10 //Товар.
+	InstrumentType_INSTRUMENT_TYPE_DFA                  InstrumentType = 11 //Цифровой актив.
 )
 
 // Enum value maps for InstrumentType.
@@ -53,6 +54,7 @@ var (
 		8:  "INSTRUMENT_TYPE_CLEARING_CERTIFICATE",
 		9:  "INSTRUMENT_TYPE_INDEX",
 		10: "INSTRUMENT_TYPE_COMMODITY",
+		11: "INSTRUMENT_TYPE_DFA",
 	}
 	InstrumentType_value = map[string]int32{
 		"INSTRUMENT_TYPE_UNSPECIFIED":          0,
@@ -66,6 +68,7 @@ var (
 		"INSTRUMENT_TYPE_CLEARING_CERTIFICATE": 8,
 		"INSTRUMENT_TYPE_INDEX":                9,
 		"INSTRUMENT_TYPE_COMMODITY":            10,
+		"INSTRUMENT_TYPE_DFA":                  11,
 	}
 )
 
@@ -167,6 +170,7 @@ const (
 	SecurityTradingStatus_SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING            SecurityTradingStatus = 14 //Доступна торговля в режиме внутренней ликвидности брокера.
 	SecurityTradingStatus_SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING          SecurityTradingStatus = 15 //Перерыв торговли в режиме внутренней ликвидности брокера.
 	SecurityTradingStatus_SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING SecurityTradingStatus = 16 //Недоступна торговля в режиме внутренней ликвидности брокера.
+	SecurityTradingStatus_SECURITY_TRADING_STATUS_STABILIZATION_AUCTION            SecurityTradingStatus = 17 //Аукцион обновления цен.
 )
 
 // Enum value maps for SecurityTradingStatus.
@@ -189,6 +193,7 @@ var (
 		14: "SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING",
 		15: "SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING",
 		16: "SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING",
+		17: "SECURITY_TRADING_STATUS_STABILIZATION_AUCTION",
 	}
 	SecurityTradingStatus_value = map[string]int32{
 		"SECURITY_TRADING_STATUS_UNSPECIFIED":                      0,
@@ -208,6 +213,7 @@ var (
 		"SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING":            14,
 		"SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING":          15,
 		"SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING": 16,
+		"SECURITY_TRADING_STATUS_STABILIZATION_AUCTION":            17,
 	}
 )
 
@@ -335,6 +341,62 @@ func (x ResultSubscriptionStatus) Number() protoreflect.EnumNumber {
 // Deprecated: Use ResultSubscriptionStatus.Descriptor instead.
 func (ResultSubscriptionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_tinvest_common_proto_rawDescGZIP(), []int{4}
+}
+
+// Реальная площадка исполнения расчетов.
+type RealExchange int32
+
+const (
+	RealExchange_REAL_EXCHANGE_UNSPECIFIED RealExchange = 0 //Тип не определен.
+	RealExchange_REAL_EXCHANGE_MOEX        RealExchange = 1 //Московская биржа.
+	RealExchange_REAL_EXCHANGE_RTS         RealExchange = 2 //Санкт-Петербургская биржа.
+	RealExchange_REAL_EXCHANGE_OTC         RealExchange = 3 //Внебиржевой инструмент.
+	RealExchange_REAL_EXCHANGE_DEALER      RealExchange = 4 //Инструмент, торгуемый на площадке брокера.
+)
+
+// Enum value maps for RealExchange.
+var (
+	RealExchange_name = map[int32]string{
+		0: "REAL_EXCHANGE_UNSPECIFIED",
+		1: "REAL_EXCHANGE_MOEX",
+		2: "REAL_EXCHANGE_RTS",
+		3: "REAL_EXCHANGE_OTC",
+		4: "REAL_EXCHANGE_DEALER",
+	}
+	RealExchange_value = map[string]int32{
+		"REAL_EXCHANGE_UNSPECIFIED": 0,
+		"REAL_EXCHANGE_MOEX":        1,
+		"REAL_EXCHANGE_RTS":         2,
+		"REAL_EXCHANGE_OTC":         3,
+		"REAL_EXCHANGE_DEALER":      4,
+	}
+)
+
+func (x RealExchange) Enum() *RealExchange {
+	p := new(RealExchange)
+	*p = x
+	return p
+}
+
+func (x RealExchange) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (RealExchange) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_common_proto_enumTypes[5].Descriptor()
+}
+
+func (RealExchange) Type() protoreflect.EnumType {
+	return &file_tinvest_common_proto_enumTypes[5]
+}
+
+func (x RealExchange) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use RealExchange.Descriptor instead.
+func (RealExchange) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_common_proto_rawDescGZIP(), []int{5}
 }
 
 // Денежная сумма в определенной валюте.
@@ -927,7 +989,7 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"text_color\x18\x03 \x01(\tR\ttextColor\";\n" +
 	"\vErrorDetail\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage*\xd2\x02\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage*\xeb\x02\n" +
 	"\x0eInstrumentType\x12\x1f\n" +
 	"\x1bINSTRUMENT_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14INSTRUMENT_TYPE_BOND\x10\x01\x12\x19\n" +
@@ -940,11 +1002,12 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"$INSTRUMENT_TYPE_CLEARING_CERTIFICATE\x10\b\x12\x19\n" +
 	"\x15INSTRUMENT_TYPE_INDEX\x10\t\x12\x1d\n" +
 	"\x19INSTRUMENT_TYPE_COMMODITY\x10\n" +
-	"*l\n" +
+	"\x12\x17\n" +
+	"\x13INSTRUMENT_TYPE_DFA\x10\v*l\n" +
 	"\x10InstrumentStatus\x12!\n" +
 	"\x1dINSTRUMENT_STATUS_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16INSTRUMENT_STATUS_BASE\x10\x01\x12\x19\n" +
-	"\x15INSTRUMENT_STATUS_ALL\x10\x02*\xce\x06\n" +
+	"\x15INSTRUMENT_STATUS_ALL\x10\x02*\x81\a\n" +
 	"\x15SecurityTradingStatus\x12'\n" +
 	"#SECURITY_TRADING_STATUS_UNSPECIFIED\x10\x00\x125\n" +
 	"1SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING\x10\x01\x12*\n" +
@@ -963,7 +1026,8 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"$SECURITY_TRADING_STATUS_SESSION_OPEN\x10\r\x121\n" +
 	"-SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING\x10\x0e\x123\n" +
 	"/SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING\x10\x0f\x12<\n" +
-	"8SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING\x10\x10*V\n" +
+	"8SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING\x10\x10\x121\n" +
+	"-SECURITY_TRADING_STATUS_STABILIZATION_AUCTION\x10\x11*V\n" +
 	"\tPriceType\x12\x1a\n" +
 	"\x16PRICE_TYPE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10PRICE_TYPE_POINT\x10\x01\x12\x17\n" +
@@ -971,7 +1035,13 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"\x18ResultSubscriptionStatus\x12*\n" +
 	"&RESULT_SUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12!\n" +
 	"\x1dRESULT_SUBSCRIPTION_STATUS_OK\x10\x01\x12$\n" +
-	" RESULT_SUBSCRIPTION_STATUS_ERROR\x10\rBa\n" +
+	" RESULT_SUBSCRIPTION_STATUS_ERROR\x10\r*\x8d\x01\n" +
+	"\fRealExchange\x12\x1d\n" +
+	"\x19REAL_EXCHANGE_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12REAL_EXCHANGE_MOEX\x10\x01\x12\x15\n" +
+	"\x11REAL_EXCHANGE_RTS\x10\x02\x12\x15\n" +
+	"\x11REAL_EXCHANGE_OTC\x10\x03\x12\x18\n" +
+	"\x14REAL_EXCHANGE_DEALER\x10\x04Ba\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -986,7 +1056,7 @@ func file_tinvest_common_proto_rawDescGZIP() []byte {
 	return file_tinvest_common_proto_rawDescData
 }
 
-var file_tinvest_common_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_tinvest_common_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_tinvest_common_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_tinvest_common_proto_goTypes = []any{
 	(InstrumentType)(0),           // 0: tinkoff.public.invest.api.contract.v1.InstrumentType
@@ -994,23 +1064,24 @@ var file_tinvest_common_proto_goTypes = []any{
 	(SecurityTradingStatus)(0),    // 2: tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
 	(PriceType)(0),                // 3: tinkoff.public.invest.api.contract.v1.PriceType
 	(ResultSubscriptionStatus)(0), // 4: tinkoff.public.invest.api.contract.v1.ResultSubscriptionStatus
-	(*MoneyValue)(nil),            // 5: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*Quotation)(nil),             // 6: tinkoff.public.invest.api.contract.v1.Quotation
-	(*PingRequest)(nil),           // 7: tinkoff.public.invest.api.contract.v1.PingRequest
-	(*PingDelaySettings)(nil),     // 8: tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	(*Ping)(nil),                  // 9: tinkoff.public.invest.api.contract.v1.Ping
-	(*Page)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.Page
-	(*PageResponse)(nil),          // 11: tinkoff.public.invest.api.contract.v1.PageResponse
-	(*ResponseMetadata)(nil),      // 12: tinkoff.public.invest.api.contract.v1.ResponseMetadata
-	(*BrandData)(nil),             // 13: tinkoff.public.invest.api.contract.v1.BrandData
-	(*ErrorDetail)(nil),           // 14: tinkoff.public.invest.api.contract.v1.ErrorDetail
-	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
+	(RealExchange)(0),             // 5: tinkoff.public.invest.api.contract.v1.RealExchange
+	(*MoneyValue)(nil),            // 6: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(*Quotation)(nil),             // 7: tinkoff.public.invest.api.contract.v1.Quotation
+	(*PingRequest)(nil),           // 8: tinkoff.public.invest.api.contract.v1.PingRequest
+	(*PingDelaySettings)(nil),     // 9: tinkoff.public.invest.api.contract.v1.PingDelaySettings
+	(*Ping)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.Ping
+	(*Page)(nil),                  // 11: tinkoff.public.invest.api.contract.v1.Page
+	(*PageResponse)(nil),          // 12: tinkoff.public.invest.api.contract.v1.PageResponse
+	(*ResponseMetadata)(nil),      // 13: tinkoff.public.invest.api.contract.v1.ResponseMetadata
+	(*BrandData)(nil),             // 14: tinkoff.public.invest.api.contract.v1.BrandData
+	(*ErrorDetail)(nil),           // 15: tinkoff.public.invest.api.contract.v1.ErrorDetail
+	(*timestamppb.Timestamp)(nil), // 16: google.protobuf.Timestamp
 }
 var file_tinvest_common_proto_depIdxs = []int32{
-	15, // 0: tinkoff.public.invest.api.contract.v1.PingRequest.time:type_name -> google.protobuf.Timestamp
-	15, // 1: tinkoff.public.invest.api.contract.v1.Ping.time:type_name -> google.protobuf.Timestamp
-	15, // 2: tinkoff.public.invest.api.contract.v1.Ping.ping_request_time:type_name -> google.protobuf.Timestamp
-	15, // 3: tinkoff.public.invest.api.contract.v1.ResponseMetadata.server_time:type_name -> google.protobuf.Timestamp
+	16, // 0: tinkoff.public.invest.api.contract.v1.PingRequest.time:type_name -> google.protobuf.Timestamp
+	16, // 1: tinkoff.public.invest.api.contract.v1.Ping.time:type_name -> google.protobuf.Timestamp
+	16, // 2: tinkoff.public.invest.api.contract.v1.Ping.ping_request_time:type_name -> google.protobuf.Timestamp
+	16, // 3: tinkoff.public.invest.api.contract.v1.ResponseMetadata.server_time:type_name -> google.protobuf.Timestamp
 	4,  // [4:4] is the sub-list for method output_type
 	4,  // [4:4] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
@@ -1031,7 +1102,7 @@ func file_tinvest_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tinvest_common_proto_rawDesc), len(file_tinvest_common_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      6,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,

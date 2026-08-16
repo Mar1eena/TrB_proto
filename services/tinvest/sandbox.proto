@@ -12,9 +12,9 @@ option php_namespace = "Tinkoff\\Invest\\V1";
 import "tinvest/common.proto";
 import "tinvest/orders.proto";
 import "tinvest/operations.proto";
+import "tinvest/stoporders.proto";
 import "tinvest/users.proto";
 import "google/api/field_behavior.proto";
-import "google/api/annotations.proto";
 
 service SandboxService { // Методы для работы с песочницей T-Invest API
 
@@ -22,16 +22,7 @@ service SandboxService { // Методы для работы с песочниц
   rpc OpenSandboxAccount(OpenSandboxAccountRequest) returns (OpenSandboxAccountResponse);
 
   //GetSandboxAccounts — счета пользователя
-  // rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse);
-
-  rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse){
-    // TrB.Start
-    option (google.api.http) = {
-      post: "/test"
-      body: "*"
-    };
-    // TrB.End
-  };
+  rpc GetSandboxAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
   //CloseSandboxAccount — закрыть счет
   rpc CloseSandboxAccount(CloseSandboxAccountRequest) returns (CloseSandboxAccountResponse);
@@ -55,6 +46,9 @@ service SandboxService { // Методы для работы с песочниц
   //GetSandboxOrderState — получить статус торгового поручения
   rpc GetSandboxOrderState(GetOrderStateRequest) returns (OrderState);
 
+  //GetSandboxOrderPrice — получить предварительную стоимость для лимитной заявки
+  rpc GetSandboxOrderPrice(GetOrderPriceRequest) returns (GetOrderPriceResponse);
+
   //GetSandboxPositions — список позиций по счету
   rpc GetSandboxPositions(PositionsRequest) returns (PositionsResponse);
 
@@ -77,6 +71,15 @@ service SandboxService { // Методы для работы с песочниц
 
   //GetSandboxMaxLots — расчет количества доступных для покупки/продажи лотов
   rpc GetSandboxMaxLots(GetMaxLotsRequest) returns (GetMaxLotsResponse);
+
+  //PostSandboxStopOrder — выставить стоп-заявку
+  rpc PostSandboxStopOrder(PostStopOrderRequest) returns (PostStopOrderResponse);
+
+  //GetSandboxStopOrders — получить список активных стоп-заявок по счету
+  rpc GetSandboxStopOrders(GetStopOrdersRequest) returns (GetStopOrdersResponse);
+
+  //CancelSandboxStopOrder — отменить стоп-заявку
+  rpc CancelSandboxStopOrder(CancelStopOrderRequest) returns (CancelStopOrderResponse);
 }
 
 //Запрос открытия счета в песочнице.

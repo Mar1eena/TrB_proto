@@ -32,6 +32,9 @@ const (
 	AccountType_ACCOUNT_TYPE_TINKOFF_IIS AccountType = 2 //ИИС.
 	AccountType_ACCOUNT_TYPE_INVEST_BOX  AccountType = 3 //Инвесткопилка.
 	AccountType_ACCOUNT_TYPE_INVEST_FUND AccountType = 4 //Фонд денежного рынка.
+	AccountType_ACCOUNT_TYPE_DEBIT       AccountType = 5 //Дебетовый карточный счeт.
+	AccountType_ACCOUNT_TYPE_SAVING      AccountType = 6 //Накопительный счeт.
+	AccountType_ACCOUNT_TYPE_DFA         AccountType = 7 //Смарт-счет.
 )
 
 // Enum value maps for AccountType.
@@ -42,6 +45,9 @@ var (
 		2: "ACCOUNT_TYPE_TINKOFF_IIS",
 		3: "ACCOUNT_TYPE_INVEST_BOX",
 		4: "ACCOUNT_TYPE_INVEST_FUND",
+		5: "ACCOUNT_TYPE_DEBIT",
+		6: "ACCOUNT_TYPE_SAVING",
+		7: "ACCOUNT_TYPE_DFA",
 	}
 	AccountType_value = map[string]int32{
 		"ACCOUNT_TYPE_UNSPECIFIED": 0,
@@ -49,6 +55,9 @@ var (
 		"ACCOUNT_TYPE_TINKOFF_IIS": 2,
 		"ACCOUNT_TYPE_INVEST_BOX":  3,
 		"ACCOUNT_TYPE_INVEST_FUND": 4,
+		"ACCOUNT_TYPE_DEBIT":       5,
+		"ACCOUNT_TYPE_SAVING":      6,
+		"ACCOUNT_TYPE_DFA":         7,
 	}
 )
 
@@ -186,6 +195,55 @@ func (x AccessLevel) Number() protoreflect.EnumNumber {
 // Deprecated: Use AccessLevel.Descriptor instead.
 func (AccessLevel) EnumDescriptor() ([]byte, []int) {
 	return file_tinvest_users_proto_rawDescGZIP(), []int{2}
+}
+
+type AccountValue int32
+
+const (
+	AccountValue_ACCOUNT_VALUE_UNSPECIFIED              AccountValue = 0 // Не определён.
+	AccountValue_ACCOUNT_VALUE_MARGIN_FEE               AccountValue = 1 // Размер комиссии за маржинальное кредитование.
+	AccountValue_ACCOUNT_VALUE_AMOUNT_WITHOUT_EXTRA_FEE AccountValue = 2 // Остаток доступного лимита с текущей комиссией.
+)
+
+// Enum value maps for AccountValue.
+var (
+	AccountValue_name = map[int32]string{
+		0: "ACCOUNT_VALUE_UNSPECIFIED",
+		1: "ACCOUNT_VALUE_MARGIN_FEE",
+		2: "ACCOUNT_VALUE_AMOUNT_WITHOUT_EXTRA_FEE",
+	}
+	AccountValue_value = map[string]int32{
+		"ACCOUNT_VALUE_UNSPECIFIED":              0,
+		"ACCOUNT_VALUE_MARGIN_FEE":               1,
+		"ACCOUNT_VALUE_AMOUNT_WITHOUT_EXTRA_FEE": 2,
+	}
+)
+
+func (x AccountValue) Enum() *AccountValue {
+	p := new(AccountValue)
+	*p = x
+	return p
+}
+
+func (x AccountValue) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AccountValue) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_users_proto_enumTypes[3].Descriptor()
+}
+
+func (AccountValue) Type() protoreflect.EnumType {
+	return &file_tinvest_users_proto_enumTypes[3]
+}
+
+func (x AccountValue) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AccountValue.Descriptor instead.
+func (AccountValue) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{3}
 }
 
 // Запрос получения счетов пользователя.
@@ -440,8 +498,10 @@ type GetMarginAttributesResponse struct {
 	AmountOfMissingFunds *MoneyValue `protobuf:"bytes,5,opt,name=amount_of_missing_funds,json=amountOfMissingFunds,proto3" json:"amount_of_missing_funds,omitempty"`
 	// Скорректированная маржа. Начальная маржа, в которой плановые позиции рассчитываются с учeтом активных заявок на покупку позиций лонг или продажу позиций шорт.
 	CorrectedMargin *MoneyValue `protobuf:"bytes,6,opt,name=corrected_margin,json=correctedMargin,proto3" json:"corrected_margin,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Размер гарантийного обеспечения, заблокированного под фьючерсы.
+	GuaranteeForFutures *MoneyValue `protobuf:"bytes,7,opt,name=guarantee_for_futures,json=guaranteeForFutures,proto3" json:"guarantee_for_futures,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetMarginAttributesResponse) Reset() {
@@ -512,6 +572,13 @@ func (x *GetMarginAttributesResponse) GetAmountOfMissingFunds() *MoneyValue {
 func (x *GetMarginAttributesResponse) GetCorrectedMargin() *MoneyValue {
 	if x != nil {
 		return x.CorrectedMargin
+	}
+	return nil
+}
+
+func (x *GetMarginAttributesResponse) GetGuaranteeForFutures() *MoneyValue {
+	if x != nil {
+		return x.GuaranteeForFutures
 	}
 	return nil
 }
@@ -609,8 +676,9 @@ func (x *GetUserTariffResponse) GetStreamLimits() []*StreamLimit {
 // Лимит unary-методов.
 type UnaryLimit struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	LimitPerMinute int32                  `protobuf:"varint,1,opt,name=limit_per_minute,json=limitPerMinute,proto3" json:"limit_per_minute,omitempty"` //Количество unary-запросов в минуту.
-	Methods        []string               `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`                                        //Названия методов.
+	LimitPerMinute int32                  `protobuf:"varint,1,opt,name=limit_per_minute,json=limitPerMinute,proto3" json:"limit_per_minute,omitempty"`       //Количество unary-запросов в минуту.
+	Methods        []string               `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`                                              //Названия методов.
+	LimitPerSecond *int32                 `protobuf:"varint,3,opt,name=limit_per_second,json=limitPerSecond,proto3,oneof" json:"limit_per_second,omitempty"` //Количество unary-запросов в секунду.
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -657,6 +725,13 @@ func (x *UnaryLimit) GetMethods() []string {
 		return x.Methods
 	}
 	return nil
+}
+
+func (x *UnaryLimit) GetLimitPerSecond() int32 {
+	if x != nil && x.LimitPerSecond != nil {
+		return *x.LimitPerSecond
+	}
+	return 0
 }
 
 // Лимит stream-соединений.
@@ -842,6 +917,565 @@ func (x *GetInfoResponse) GetRiskLevelCode() string {
 	return ""
 }
 
+// Запрос списка банковских счетов пользователя.
+type GetBankAccountsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBankAccountsRequest) Reset() {
+	*x = GetBankAccountsRequest{}
+	mi := &file_tinvest_users_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBankAccountsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBankAccountsRequest) ProtoMessage() {}
+
+func (x *GetBankAccountsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBankAccountsRequest.ProtoReflect.Descriptor instead.
+func (*GetBankAccountsRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{11}
+}
+
+// Список банковских счетов пользователя.
+type GetBankAccountsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BankAccounts  []*BankAccount         `protobuf:"bytes,1,rep,name=bank_accounts,json=bankAccounts,proto3" json:"bank_accounts,omitempty"` //Массив банковских счетов.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBankAccountsResponse) Reset() {
+	*x = GetBankAccountsResponse{}
+	mi := &file_tinvest_users_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBankAccountsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBankAccountsResponse) ProtoMessage() {}
+
+func (x *GetBankAccountsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBankAccountsResponse.ProtoReflect.Descriptor instead.
+func (*GetBankAccountsResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetBankAccountsResponse) GetBankAccounts() []*BankAccount {
+	if x != nil {
+		return x.BankAccounts
+	}
+	return nil
+}
+
+// Банковский счeт.
+type BankAccount struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                                             //Идентификатор счeта.
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                                         //Название счeта.
+	Money         []*MoneyValue          `protobuf:"bytes,3,rep,name=money,proto3" json:"money,omitempty"`                                                       //Список валютных позиций на счeте.
+	OpenedDate    *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=opened_date,json=openedDate,proto3" json:"opened_date,omitempty"`                           //Дата открытия счeта в часовом поясе UTC.
+	Type          AccountType            `protobuf:"varint,5,opt,name=type,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountType" json:"type,omitempty"` //Тип счeта.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BankAccount) Reset() {
+	*x = BankAccount{}
+	mi := &file_tinvest_users_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BankAccount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BankAccount) ProtoMessage() {}
+
+func (x *BankAccount) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BankAccount.ProtoReflect.Descriptor instead.
+func (*BankAccount) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BankAccount) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *BankAccount) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BankAccount) GetMoney() []*MoneyValue {
+	if x != nil {
+		return x.Money
+	}
+	return nil
+}
+
+func (x *BankAccount) GetOpenedDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OpenedDate
+	}
+	return nil
+}
+
+func (x *BankAccount) GetType() AccountType {
+	if x != nil {
+		return x.Type
+	}
+	return AccountType_ACCOUNT_TYPE_UNSPECIFIED
+}
+
+type CurrencyTransferRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FromAccountId string                 `protobuf:"bytes,1,opt,name=from_account_id,json=fromAccountId,proto3" json:"from_account_id,omitempty"` // Номер счета списания.
+	ToAccountId   string                 `protobuf:"bytes,2,opt,name=to_account_id,json=toAccountId,proto3" json:"to_account_id,omitempty"`       // Номер счета зачисления.
+	Amount        *MoneyValue            `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`                                      // Сумма перевода с указанием валюты.
+	TransactionId string                 `protobuf:"bytes,4,opt,name=transaction_id,json=transactionId,proto3" json:"transaction_id,omitempty"`   // Идентификатор запроса выставления поручения для целей идемпотентности в формате UUID.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CurrencyTransferRequest) Reset() {
+	*x = CurrencyTransferRequest{}
+	mi := &file_tinvest_users_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CurrencyTransferRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CurrencyTransferRequest) ProtoMessage() {}
+
+func (x *CurrencyTransferRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CurrencyTransferRequest.ProtoReflect.Descriptor instead.
+func (*CurrencyTransferRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *CurrencyTransferRequest) GetFromAccountId() string {
+	if x != nil {
+		return x.FromAccountId
+	}
+	return ""
+}
+
+func (x *CurrencyTransferRequest) GetToAccountId() string {
+	if x != nil {
+		return x.ToAccountId
+	}
+	return ""
+}
+
+func (x *CurrencyTransferRequest) GetAmount() *MoneyValue {
+	if x != nil {
+		return x.Amount
+	}
+	return nil
+}
+
+func (x *CurrencyTransferRequest) GetTransactionId() string {
+	if x != nil {
+		return x.TransactionId
+	}
+	return ""
+}
+
+type CurrencyTransferResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CurrencyTransferResponse) Reset() {
+	*x = CurrencyTransferResponse{}
+	mi := &file_tinvest_users_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CurrencyTransferResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CurrencyTransferResponse) ProtoMessage() {}
+
+func (x *CurrencyTransferResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CurrencyTransferResponse.ProtoReflect.Descriptor instead.
+func (*CurrencyTransferResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{15}
+}
+
+type PayInRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FromAccountId string                 `protobuf:"bytes,1,opt,name=from_account_id,json=fromAccountId,proto3" json:"from_account_id,omitempty"` // Номер счета списания.
+	ToAccountId   string                 `protobuf:"bytes,2,opt,name=to_account_id,json=toAccountId,proto3" json:"to_account_id,omitempty"`       // Номер брокерского счета зачисления.
+	Amount        *MoneyValue            `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`                                      // Сумма перевода с указанием валюты.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PayInRequest) Reset() {
+	*x = PayInRequest{}
+	mi := &file_tinvest_users_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PayInRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayInRequest) ProtoMessage() {}
+
+func (x *PayInRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayInRequest.ProtoReflect.Descriptor instead.
+func (*PayInRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *PayInRequest) GetFromAccountId() string {
+	if x != nil {
+		return x.FromAccountId
+	}
+	return ""
+}
+
+func (x *PayInRequest) GetToAccountId() string {
+	if x != nil {
+		return x.ToAccountId
+	}
+	return ""
+}
+
+func (x *PayInRequest) GetAmount() *MoneyValue {
+	if x != nil {
+		return x.Amount
+	}
+	return nil
+}
+
+type PayInResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PayInResponse) Reset() {
+	*x = PayInResponse{}
+	mi := &file_tinvest_users_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PayInResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayInResponse) ProtoMessage() {}
+
+func (x *PayInResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayInResponse.ProtoReflect.Descriptor instead.
+func (*PayInResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{17}
+}
+
+type GetAccountValuesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Accounts      []string               `protobuf:"bytes,1,rep,name=accounts,proto3" json:"accounts,omitempty"`                                                             // Массив счетов пользователя.
+	Values        []AccountValue         `protobuf:"varint,2,rep,packed,name=values,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountValue" json:"values,omitempty"` // Массив запрашиваемых параметров.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAccountValuesRequest) Reset() {
+	*x = GetAccountValuesRequest{}
+	mi := &file_tinvest_users_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAccountValuesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAccountValuesRequest) ProtoMessage() {}
+
+func (x *GetAccountValuesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAccountValuesRequest.ProtoReflect.Descriptor instead.
+func (*GetAccountValuesRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetAccountValuesRequest) GetAccounts() []string {
+	if x != nil {
+		return x.Accounts
+	}
+	return nil
+}
+
+func (x *GetAccountValuesRequest) GetValues() []AccountValue {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+type GetAccountValuesResponse struct {
+	state         protoimpl.MessageState         `protogen:"open.v1"`
+	Accounts      []*AccountValuesWithParameters `protobuf:"bytes,1,rep,name=accounts,proto3" json:"accounts,omitempty"` // Массив счетов с параметрами.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAccountValuesResponse) Reset() {
+	*x = GetAccountValuesResponse{}
+	mi := &file_tinvest_users_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAccountValuesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAccountValuesResponse) ProtoMessage() {}
+
+func (x *GetAccountValuesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAccountValuesResponse.ProtoReflect.Descriptor instead.
+func (*GetAccountValuesResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetAccountValuesResponse) GetAccounts() []*AccountValuesWithParameters {
+	if x != nil {
+		return x.Accounts
+	}
+	return nil
+}
+
+type AccountValuesWithParameters struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"` // Номер счета.
+	Values        []*InstrumentParameter `protobuf:"bytes,2,rep,name=values,proto3" json:"values,omitempty"`                        // Массив параметров инструмента.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccountValuesWithParameters) Reset() {
+	*x = AccountValuesWithParameters{}
+	mi := &file_tinvest_users_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccountValuesWithParameters) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccountValuesWithParameters) ProtoMessage() {}
+
+func (x *AccountValuesWithParameters) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccountValuesWithParameters.ProtoReflect.Descriptor instead.
+func (*AccountValuesWithParameters) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *AccountValuesWithParameters) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *AccountValuesWithParameters) GetValues() []*InstrumentParameter {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+type InstrumentParameter struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          AccountValue           `protobuf:"varint,1,opt,name=name,proto3,enum=tinkoff.public.invest.api.contract.v1.AccountValue" json:"name,omitempty"` // Тип запрашиваемого параметра.
+	Value         *MoneyValue            `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`                                                        // Значение запрашиваемого параметра.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InstrumentParameter) Reset() {
+	*x = InstrumentParameter{}
+	mi := &file_tinvest_users_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InstrumentParameter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InstrumentParameter) ProtoMessage() {}
+
+func (x *InstrumentParameter) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_users_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InstrumentParameter.ProtoReflect.Descriptor instead.
+func (*InstrumentParameter) Descriptor() ([]byte, []int) {
+	return file_tinvest_users_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *InstrumentParameter) GetName() AccountValue {
+	if x != nil {
+		return x.Name
+	}
+	return AccountValue_ACCOUNT_VALUE_UNSPECIFIED
+}
+
+func (x *InstrumentParameter) GetValue() *MoneyValue {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
 var File_tinvest_users_proto protoreflect.FileDescriptor
 
 const file_tinvest_users_proto_rawDesc = "" +
@@ -864,22 +1498,25 @@ const file_tinvest_users_proto_rawDesc = "" +
 	"\faccess_level\x18\a \x01(\x0e22.tinkoff.public.invest.api.contract.v1.AccessLevelR\vaccessLevel\"A\n" +
 	"\x1aGetMarginAttributesRequest\x12#\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\xe3\x04\n" +
+	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\xca\x05\n" +
 	"\x1bGetMarginAttributesResponse\x12\\\n" +
 	"\x10liquid_portfolio\x18\x01 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0fliquidPortfolio\x12Z\n" +
 	"\x0fstarting_margin\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0estartingMargin\x12X\n" +
 	"\x0eminimal_margin\x18\x03 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\rminimalMargin\x12h\n" +
 	"\x17funds_sufficiency_level\x18\x04 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x15fundsSufficiencyLevel\x12h\n" +
 	"\x17amount_of_missing_funds\x18\x05 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x14amountOfMissingFunds\x12\\\n" +
-	"\x10corrected_margin\x18\x06 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0fcorrectedMargin\"\x16\n" +
+	"\x10corrected_margin\x18\x06 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0fcorrectedMargin\x12e\n" +
+	"\x15guarantee_for_futures\x18\a \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x13guaranteeForFutures\"\x16\n" +
 	"\x14GetUserTariffRequest\"\xc6\x01\n" +
 	"\x15GetUserTariffResponse\x12T\n" +
 	"\funary_limits\x18\x01 \x03(\v21.tinkoff.public.invest.api.contract.v1.UnaryLimitR\vunaryLimits\x12W\n" +
-	"\rstream_limits\x18\x02 \x03(\v22.tinkoff.public.invest.api.contract.v1.StreamLimitR\fstreamLimits\"P\n" +
+	"\rstream_limits\x18\x02 \x03(\v22.tinkoff.public.invest.api.contract.v1.StreamLimitR\fstreamLimits\"\x94\x01\n" +
 	"\n" +
 	"UnaryLimit\x12(\n" +
 	"\x10limit_per_minute\x18\x01 \x01(\x05R\x0elimitPerMinute\x12\x18\n" +
-	"\amethods\x18\x02 \x03(\tR\amethods\"Q\n" +
+	"\amethods\x18\x02 \x03(\tR\amethods\x12-\n" +
+	"\x10limit_per_second\x18\x03 \x01(\x05H\x00R\x0elimitPerSecond\x88\x01\x01B\x13\n" +
+	"\x11_limit_per_second\"Q\n" +
 	"\vStreamLimit\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x18\n" +
 	"\astreams\x18\x02 \x03(\tR\astreams\x12\x12\n" +
@@ -893,13 +1530,49 @@ const file_tinvest_users_proto_rawDesc = "" +
 	"\x17qualified_for_work_with\x18\x03 \x03(\tR\x14qualifiedForWorkWith\x12\x16\n" +
 	"\x06tariff\x18\x04 \x01(\tR\x06tariff\x12\x17\n" +
 	"\auser_id\x18\t \x01(\tR\x06userId\x12&\n" +
-	"\x0frisk_level_code\x18\f \x01(\tR\rriskLevelCode*\x9e\x01\n" +
+	"\x0frisk_level_code\x18\f \x01(\tR\rriskLevelCode\"\x18\n" +
+	"\x16GetBankAccountsRequest\"r\n" +
+	"\x17GetBankAccountsResponse\x12W\n" +
+	"\rbank_accounts\x18\x01 \x03(\v22.tinkoff.public.invest.api.contract.v1.BankAccountR\fbankAccounts\"\xff\x01\n" +
+	"\vBankAccount\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12G\n" +
+	"\x05money\x18\x03 \x03(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05money\x12;\n" +
+	"\vopened_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"openedDate\x12F\n" +
+	"\x04type\x18\x05 \x01(\x0e22.tinkoff.public.invest.api.contract.v1.AccountTypeR\x04type\"\xe9\x01\n" +
+	"\x17CurrencyTransferRequest\x12,\n" +
+	"\x0ffrom_account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\rfromAccountId\x12(\n" +
+	"\rto_account_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\vtoAccountId\x12O\n" +
+	"\x06amount\x18\x03 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueB\x04\xe2A\x01\x02R\x06amount\x12%\n" +
+	"\x0etransaction_id\x18\x04 \x01(\tR\rtransactionId\"\x1a\n" +
+	"\x18CurrencyTransferResponse\"\xb7\x01\n" +
+	"\fPayInRequest\x12,\n" +
+	"\x0ffrom_account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\rfromAccountId\x12(\n" +
+	"\rto_account_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\vtoAccountId\x12O\n" +
+	"\x06amount\x18\x03 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueB\x04\xe2A\x01\x02R\x06amount\"\x0f\n" +
+	"\rPayInResponse\"\x82\x01\n" +
+	"\x17GetAccountValuesRequest\x12\x1a\n" +
+	"\baccounts\x18\x01 \x03(\tR\baccounts\x12K\n" +
+	"\x06values\x18\x02 \x03(\x0e23.tinkoff.public.invest.api.contract.v1.AccountValueR\x06values\"z\n" +
+	"\x18GetAccountValuesResponse\x12^\n" +
+	"\baccounts\x18\x01 \x03(\v2B.tinkoff.public.invest.api.contract.v1.AccountValuesWithParametersR\baccounts\"\x90\x01\n" +
+	"\x1bAccountValuesWithParameters\x12\x1d\n" +
+	"\n" +
+	"account_id\x18\x01 \x01(\tR\taccountId\x12R\n" +
+	"\x06values\x18\x02 \x03(\v2:.tinkoff.public.invest.api.contract.v1.InstrumentParameterR\x06values\"\xa7\x01\n" +
+	"\x13InstrumentParameter\x12G\n" +
+	"\x04name\x18\x01 \x01(\x0e23.tinkoff.public.invest.api.contract.v1.AccountValueR\x04name\x12G\n" +
+	"\x05value\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05value*\xe5\x01\n" +
 	"\vAccountType\x12\x1c\n" +
 	"\x18ACCOUNT_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ACCOUNT_TYPE_TINKOFF\x10\x01\x12\x1c\n" +
 	"\x18ACCOUNT_TYPE_TINKOFF_IIS\x10\x02\x12\x1b\n" +
 	"\x17ACCOUNT_TYPE_INVEST_BOX\x10\x03\x12\x1c\n" +
-	"\x18ACCOUNT_TYPE_INVEST_FUND\x10\x04*\x93\x01\n" +
+	"\x18ACCOUNT_TYPE_INVEST_FUND\x10\x04\x12\x16\n" +
+	"\x12ACCOUNT_TYPE_DEBIT\x10\x05\x12\x17\n" +
+	"\x13ACCOUNT_TYPE_SAVING\x10\x06\x12\x14\n" +
+	"\x10ACCOUNT_TYPE_DFA\x10\a*\x93\x01\n" +
 	"\rAccountStatus\x12\x1e\n" +
 	"\x1aACCOUNT_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12ACCOUNT_STATUS_NEW\x10\x01\x12\x17\n" +
@@ -910,12 +1583,20 @@ const file_tinvest_users_proto_rawDesc = "" +
 	" ACCOUNT_ACCESS_LEVEL_UNSPECIFIED\x10\x00\x12$\n" +
 	" ACCOUNT_ACCESS_LEVEL_FULL_ACCESS\x10\x01\x12\"\n" +
 	"\x1eACCOUNT_ACCESS_LEVEL_READ_ONLY\x10\x02\x12\"\n" +
-	"\x1eACCOUNT_ACCESS_LEVEL_NO_ACCESS\x10\x032\xbb\x04\n" +
+	"\x1eACCOUNT_ACCESS_LEVEL_NO_ACCESS\x10\x03*w\n" +
+	"\fAccountValue\x12\x1d\n" +
+	"\x19ACCOUNT_VALUE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18ACCOUNT_VALUE_MARGIN_FEE\x10\x01\x12*\n" +
+	"&ACCOUNT_VALUE_AMOUNT_WITHOUT_EXTRA_FEE\x10\x022\xee\b\n" +
 	"\fUsersService\x12\x84\x01\n" +
 	"\vGetAccounts\x129.tinkoff.public.invest.api.contract.v1.GetAccountsRequest\x1a:.tinkoff.public.invest.api.contract.v1.GetAccountsResponse\x12\x9c\x01\n" +
 	"\x13GetMarginAttributes\x12A.tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest\x1aB.tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse\x12\x8a\x01\n" +
 	"\rGetUserTariff\x12;.tinkoff.public.invest.api.contract.v1.GetUserTariffRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetUserTariffResponse\x12x\n" +
-	"\aGetInfo\x125.tinkoff.public.invest.api.contract.v1.GetInfoRequest\x1a6.tinkoff.public.invest.api.contract.v1.GetInfoResponseBa\n" +
+	"\aGetInfo\x125.tinkoff.public.invest.api.contract.v1.GetInfoRequest\x1a6.tinkoff.public.invest.api.contract.v1.GetInfoResponse\x12\x90\x01\n" +
+	"\x0fGetBankAccounts\x12=.tinkoff.public.invest.api.contract.v1.GetBankAccountsRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetBankAccountsResponse\x12\x93\x01\n" +
+	"\x10CurrencyTransfer\x12>.tinkoff.public.invest.api.contract.v1.CurrencyTransferRequest\x1a?.tinkoff.public.invest.api.contract.v1.CurrencyTransferResponse\x12r\n" +
+	"\x05PayIn\x123.tinkoff.public.invest.api.contract.v1.PayInRequest\x1a4.tinkoff.public.invest.api.contract.v1.PayInResponse\x12\x93\x01\n" +
+	"\x10GetAccountValues\x12>.tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest\x1a?.tinkoff.public.invest.api.contract.v1.GetAccountValuesResponseBa\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -930,56 +1611,88 @@ func file_tinvest_users_proto_rawDescGZIP() []byte {
 	return file_tinvest_users_proto_rawDescData
 }
 
-var file_tinvest_users_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_tinvest_users_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_tinvest_users_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_tinvest_users_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_tinvest_users_proto_goTypes = []any{
 	(AccountType)(0),                    // 0: tinkoff.public.invest.api.contract.v1.AccountType
 	(AccountStatus)(0),                  // 1: tinkoff.public.invest.api.contract.v1.AccountStatus
 	(AccessLevel)(0),                    // 2: tinkoff.public.invest.api.contract.v1.AccessLevel
-	(*GetAccountsRequest)(nil),          // 3: tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	(*GetAccountsResponse)(nil),         // 4: tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	(*Account)(nil),                     // 5: tinkoff.public.invest.api.contract.v1.Account
-	(*GetMarginAttributesRequest)(nil),  // 6: tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
-	(*GetMarginAttributesResponse)(nil), // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
-	(*GetUserTariffRequest)(nil),        // 8: tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
-	(*GetUserTariffResponse)(nil),       // 9: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
-	(*UnaryLimit)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.UnaryLimit
-	(*StreamLimit)(nil),                 // 11: tinkoff.public.invest.api.contract.v1.StreamLimit
-	(*GetInfoRequest)(nil),              // 12: tinkoff.public.invest.api.contract.v1.GetInfoRequest
-	(*GetInfoResponse)(nil),             // 13: tinkoff.public.invest.api.contract.v1.GetInfoResponse
-	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
-	(*MoneyValue)(nil),                  // 15: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*Quotation)(nil),                   // 16: tinkoff.public.invest.api.contract.v1.Quotation
+	(AccountValue)(0),                   // 3: tinkoff.public.invest.api.contract.v1.AccountValue
+	(*GetAccountsRequest)(nil),          // 4: tinkoff.public.invest.api.contract.v1.GetAccountsRequest
+	(*GetAccountsResponse)(nil),         // 5: tinkoff.public.invest.api.contract.v1.GetAccountsResponse
+	(*Account)(nil),                     // 6: tinkoff.public.invest.api.contract.v1.Account
+	(*GetMarginAttributesRequest)(nil),  // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
+	(*GetMarginAttributesResponse)(nil), // 8: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
+	(*GetUserTariffRequest)(nil),        // 9: tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
+	(*GetUserTariffResponse)(nil),       // 10: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
+	(*UnaryLimit)(nil),                  // 11: tinkoff.public.invest.api.contract.v1.UnaryLimit
+	(*StreamLimit)(nil),                 // 12: tinkoff.public.invest.api.contract.v1.StreamLimit
+	(*GetInfoRequest)(nil),              // 13: tinkoff.public.invest.api.contract.v1.GetInfoRequest
+	(*GetInfoResponse)(nil),             // 14: tinkoff.public.invest.api.contract.v1.GetInfoResponse
+	(*GetBankAccountsRequest)(nil),      // 15: tinkoff.public.invest.api.contract.v1.GetBankAccountsRequest
+	(*GetBankAccountsResponse)(nil),     // 16: tinkoff.public.invest.api.contract.v1.GetBankAccountsResponse
+	(*BankAccount)(nil),                 // 17: tinkoff.public.invest.api.contract.v1.BankAccount
+	(*CurrencyTransferRequest)(nil),     // 18: tinkoff.public.invest.api.contract.v1.CurrencyTransferRequest
+	(*CurrencyTransferResponse)(nil),    // 19: tinkoff.public.invest.api.contract.v1.CurrencyTransferResponse
+	(*PayInRequest)(nil),                // 20: tinkoff.public.invest.api.contract.v1.PayInRequest
+	(*PayInResponse)(nil),               // 21: tinkoff.public.invest.api.contract.v1.PayInResponse
+	(*GetAccountValuesRequest)(nil),     // 22: tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest
+	(*GetAccountValuesResponse)(nil),    // 23: tinkoff.public.invest.api.contract.v1.GetAccountValuesResponse
+	(*AccountValuesWithParameters)(nil), // 24: tinkoff.public.invest.api.contract.v1.AccountValuesWithParameters
+	(*InstrumentParameter)(nil),         // 25: tinkoff.public.invest.api.contract.v1.InstrumentParameter
+	(*timestamppb.Timestamp)(nil),       // 26: google.protobuf.Timestamp
+	(*MoneyValue)(nil),                  // 27: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(*Quotation)(nil),                   // 28: tinkoff.public.invest.api.contract.v1.Quotation
 }
 var file_tinvest_users_proto_depIdxs = []int32{
 	1,  // 0: tinkoff.public.invest.api.contract.v1.GetAccountsRequest.status:type_name -> tinkoff.public.invest.api.contract.v1.AccountStatus
-	5,  // 1: tinkoff.public.invest.api.contract.v1.GetAccountsResponse.accounts:type_name -> tinkoff.public.invest.api.contract.v1.Account
+	6,  // 1: tinkoff.public.invest.api.contract.v1.GetAccountsResponse.accounts:type_name -> tinkoff.public.invest.api.contract.v1.Account
 	0,  // 2: tinkoff.public.invest.api.contract.v1.Account.type:type_name -> tinkoff.public.invest.api.contract.v1.AccountType
 	1,  // 3: tinkoff.public.invest.api.contract.v1.Account.status:type_name -> tinkoff.public.invest.api.contract.v1.AccountStatus
-	14, // 4: tinkoff.public.invest.api.contract.v1.Account.opened_date:type_name -> google.protobuf.Timestamp
-	14, // 5: tinkoff.public.invest.api.contract.v1.Account.closed_date:type_name -> google.protobuf.Timestamp
+	26, // 4: tinkoff.public.invest.api.contract.v1.Account.opened_date:type_name -> google.protobuf.Timestamp
+	26, // 5: tinkoff.public.invest.api.contract.v1.Account.closed_date:type_name -> google.protobuf.Timestamp
 	2,  // 6: tinkoff.public.invest.api.contract.v1.Account.access_level:type_name -> tinkoff.public.invest.api.contract.v1.AccessLevel
-	15, // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.liquid_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 8: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.starting_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 9: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.minimal_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	16, // 10: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.funds_sufficiency_level:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	15, // 11: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.amount_of_missing_funds:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	15, // 12: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.corrected_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	10, // 13: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.unary_limits:type_name -> tinkoff.public.invest.api.contract.v1.UnaryLimit
-	11, // 14: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.stream_limits:type_name -> tinkoff.public.invest.api.contract.v1.StreamLimit
-	3,  // 15: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:input_type -> tinkoff.public.invest.api.contract.v1.GetAccountsRequest
-	6,  // 16: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:input_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
-	8,  // 17: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:input_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
-	12, // 18: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:input_type -> tinkoff.public.invest.api.contract.v1.GetInfoRequest
-	4,  // 19: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:output_type -> tinkoff.public.invest.api.contract.v1.GetAccountsResponse
-	7,  // 20: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:output_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
-	9,  // 21: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:output_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
-	13, // 22: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:output_type -> tinkoff.public.invest.api.contract.v1.GetInfoResponse
-	19, // [19:23] is the sub-list for method output_type
-	15, // [15:19] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	27, // 7: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.liquid_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	27, // 8: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.starting_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	27, // 9: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.minimal_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	28, // 10: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.funds_sufficiency_level:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	27, // 11: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.amount_of_missing_funds:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	27, // 12: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.corrected_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	27, // 13: tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse.guarantee_for_futures:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	11, // 14: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.unary_limits:type_name -> tinkoff.public.invest.api.contract.v1.UnaryLimit
+	12, // 15: tinkoff.public.invest.api.contract.v1.GetUserTariffResponse.stream_limits:type_name -> tinkoff.public.invest.api.contract.v1.StreamLimit
+	17, // 16: tinkoff.public.invest.api.contract.v1.GetBankAccountsResponse.bank_accounts:type_name -> tinkoff.public.invest.api.contract.v1.BankAccount
+	27, // 17: tinkoff.public.invest.api.contract.v1.BankAccount.money:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	26, // 18: tinkoff.public.invest.api.contract.v1.BankAccount.opened_date:type_name -> google.protobuf.Timestamp
+	0,  // 19: tinkoff.public.invest.api.contract.v1.BankAccount.type:type_name -> tinkoff.public.invest.api.contract.v1.AccountType
+	27, // 20: tinkoff.public.invest.api.contract.v1.CurrencyTransferRequest.amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	27, // 21: tinkoff.public.invest.api.contract.v1.PayInRequest.amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	3,  // 22: tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest.values:type_name -> tinkoff.public.invest.api.contract.v1.AccountValue
+	24, // 23: tinkoff.public.invest.api.contract.v1.GetAccountValuesResponse.accounts:type_name -> tinkoff.public.invest.api.contract.v1.AccountValuesWithParameters
+	25, // 24: tinkoff.public.invest.api.contract.v1.AccountValuesWithParameters.values:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentParameter
+	3,  // 25: tinkoff.public.invest.api.contract.v1.InstrumentParameter.name:type_name -> tinkoff.public.invest.api.contract.v1.AccountValue
+	27, // 26: tinkoff.public.invest.api.contract.v1.InstrumentParameter.value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	4,  // 27: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:input_type -> tinkoff.public.invest.api.contract.v1.GetAccountsRequest
+	7,  // 28: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:input_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesRequest
+	9,  // 29: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:input_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffRequest
+	13, // 30: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:input_type -> tinkoff.public.invest.api.contract.v1.GetInfoRequest
+	15, // 31: tinkoff.public.invest.api.contract.v1.UsersService.GetBankAccounts:input_type -> tinkoff.public.invest.api.contract.v1.GetBankAccountsRequest
+	18, // 32: tinkoff.public.invest.api.contract.v1.UsersService.CurrencyTransfer:input_type -> tinkoff.public.invest.api.contract.v1.CurrencyTransferRequest
+	20, // 33: tinkoff.public.invest.api.contract.v1.UsersService.PayIn:input_type -> tinkoff.public.invest.api.contract.v1.PayInRequest
+	22, // 34: tinkoff.public.invest.api.contract.v1.UsersService.GetAccountValues:input_type -> tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest
+	5,  // 35: tinkoff.public.invest.api.contract.v1.UsersService.GetAccounts:output_type -> tinkoff.public.invest.api.contract.v1.GetAccountsResponse
+	8,  // 36: tinkoff.public.invest.api.contract.v1.UsersService.GetMarginAttributes:output_type -> tinkoff.public.invest.api.contract.v1.GetMarginAttributesResponse
+	10, // 37: tinkoff.public.invest.api.contract.v1.UsersService.GetUserTariff:output_type -> tinkoff.public.invest.api.contract.v1.GetUserTariffResponse
+	14, // 38: tinkoff.public.invest.api.contract.v1.UsersService.GetInfo:output_type -> tinkoff.public.invest.api.contract.v1.GetInfoResponse
+	16, // 39: tinkoff.public.invest.api.contract.v1.UsersService.GetBankAccounts:output_type -> tinkoff.public.invest.api.contract.v1.GetBankAccountsResponse
+	19, // 40: tinkoff.public.invest.api.contract.v1.UsersService.CurrencyTransfer:output_type -> tinkoff.public.invest.api.contract.v1.CurrencyTransferResponse
+	21, // 41: tinkoff.public.invest.api.contract.v1.UsersService.PayIn:output_type -> tinkoff.public.invest.api.contract.v1.PayInResponse
+	23, // 42: tinkoff.public.invest.api.contract.v1.UsersService.GetAccountValues:output_type -> tinkoff.public.invest.api.contract.v1.GetAccountValuesResponse
+	35, // [35:43] is the sub-list for method output_type
+	27, // [27:35] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_tinvest_users_proto_init() }
@@ -989,13 +1702,14 @@ func file_tinvest_users_proto_init() {
 	}
 	file_tinvest_common_proto_init()
 	file_tinvest_users_proto_msgTypes[0].OneofWrappers = []any{}
+	file_tinvest_users_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tinvest_users_proto_rawDesc), len(file_tinvest_users_proto_rawDesc)),
-			NumEnums:      3,
-			NumMessages:   11,
+			NumEnums:      4,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

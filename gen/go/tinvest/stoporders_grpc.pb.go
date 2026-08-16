@@ -30,7 +30,7 @@ const (
 type StopOrdersServiceClient interface {
 	// PostStopOrder — выставить стоп-заявку
 	PostStopOrder(ctx context.Context, in *PostStopOrderRequest, opts ...grpc.CallOption) (*PostStopOrderResponse, error)
-	// GetStopOrders — получить список активных стоп-заявок по счету
+	// GetStopOrders — получить список стоп-заявок по счету
 	GetStopOrders(ctx context.Context, in *GetStopOrdersRequest, opts ...grpc.CallOption) (*GetStopOrdersResponse, error)
 	// CancelStopOrder — отменить стоп-заявку
 	CancelStopOrder(ctx context.Context, in *CancelStopOrderRequest, opts ...grpc.CallOption) (*CancelStopOrderResponse, error)
@@ -80,7 +80,7 @@ func (c *stopOrdersServiceClient) CancelStopOrder(ctx context.Context, in *Cance
 type StopOrdersServiceServer interface {
 	// PostStopOrder — выставить стоп-заявку
 	PostStopOrder(context.Context, *PostStopOrderRequest) (*PostStopOrderResponse, error)
-	// GetStopOrders — получить список активных стоп-заявок по счету
+	// GetStopOrders — получить список стоп-заявок по счету
 	GetStopOrders(context.Context, *GetStopOrdersRequest) (*GetStopOrdersResponse, error)
 	// CancelStopOrder — отменить стоп-заявку
 	CancelStopOrder(context.Context, *CancelStopOrderRequest) (*CancelStopOrderResponse, error)

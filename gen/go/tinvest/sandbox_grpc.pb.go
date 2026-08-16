@@ -28,6 +28,7 @@ const (
 	SandboxService_GetSandboxOrders_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrders"
 	SandboxService_CancelSandboxOrder_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxOrder"
 	SandboxService_GetSandboxOrderState_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderState"
+	SandboxService_GetSandboxOrderPrice_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderPrice"
 	SandboxService_GetSandboxPositions_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPositions"
 	SandboxService_GetSandboxOperations_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperations"
 	SandboxService_GetSandboxOperationsByCursor_FullMethodName = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperationsByCursor"
@@ -35,6 +36,9 @@ const (
 	SandboxService_SandboxPayIn_FullMethodName                 = "/tinkoff.public.invest.api.contract.v1.SandboxService/SandboxPayIn"
 	SandboxService_GetSandboxWithdrawLimits_FullMethodName     = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxWithdrawLimits"
 	SandboxService_GetSandboxMaxLots_FullMethodName            = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxMaxLots"
+	SandboxService_PostSandboxStopOrder_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxStopOrder"
+	SandboxService_GetSandboxStopOrders_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxStopOrders"
+	SandboxService_CancelSandboxStopOrder_FullMethodName       = "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxStopOrder"
 )
 
 // SandboxServiceClient is the client API for SandboxService service.
@@ -43,6 +47,7 @@ const (
 type SandboxServiceClient interface {
 	// OpenSandboxAccount — зарегистрировать счет
 	OpenSandboxAccount(ctx context.Context, in *OpenSandboxAccountRequest, opts ...grpc.CallOption) (*OpenSandboxAccountResponse, error)
+	// GetSandboxAccounts — счета пользователя
 	GetSandboxAccounts(ctx context.Context, in *GetAccountsRequest, opts ...grpc.CallOption) (*GetAccountsResponse, error)
 	// CloseSandboxAccount — закрыть счет
 	CloseSandboxAccount(ctx context.Context, in *CloseSandboxAccountRequest, opts ...grpc.CallOption) (*CloseSandboxAccountResponse, error)
@@ -59,6 +64,8 @@ type SandboxServiceClient interface {
 	CancelSandboxOrder(ctx context.Context, in *CancelOrderRequest, opts ...grpc.CallOption) (*CancelOrderResponse, error)
 	// GetSandboxOrderState — получить статус торгового поручения
 	GetSandboxOrderState(ctx context.Context, in *GetOrderStateRequest, opts ...grpc.CallOption) (*OrderState, error)
+	// GetSandboxOrderPrice — получить предварительную стоимость для лимитной заявки
+	GetSandboxOrderPrice(ctx context.Context, in *GetOrderPriceRequest, opts ...grpc.CallOption) (*GetOrderPriceResponse, error)
 	// GetSandboxPositions — список позиций по счету
 	GetSandboxPositions(ctx context.Context, in *PositionsRequest, opts ...grpc.CallOption) (*PositionsResponse, error)
 	// GetSandboxOperations — список операций по счету
@@ -75,6 +82,12 @@ type SandboxServiceClient interface {
 	GetSandboxWithdrawLimits(ctx context.Context, in *WithdrawLimitsRequest, opts ...grpc.CallOption) (*WithdrawLimitsResponse, error)
 	// GetSandboxMaxLots — расчет количества доступных для покупки/продажи лотов
 	GetSandboxMaxLots(ctx context.Context, in *GetMaxLotsRequest, opts ...grpc.CallOption) (*GetMaxLotsResponse, error)
+	// PostSandboxStopOrder — выставить стоп-заявку
+	PostSandboxStopOrder(ctx context.Context, in *PostStopOrderRequest, opts ...grpc.CallOption) (*PostStopOrderResponse, error)
+	// GetSandboxStopOrders — получить список активных стоп-заявок по счету
+	GetSandboxStopOrders(ctx context.Context, in *GetStopOrdersRequest, opts ...grpc.CallOption) (*GetStopOrdersResponse, error)
+	// CancelSandboxStopOrder — отменить стоп-заявку
+	CancelSandboxStopOrder(ctx context.Context, in *CancelStopOrderRequest, opts ...grpc.CallOption) (*CancelStopOrderResponse, error)
 }
 
 type sandboxServiceClient struct {
@@ -175,6 +188,16 @@ func (c *sandboxServiceClient) GetSandboxOrderState(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *sandboxServiceClient) GetSandboxOrderPrice(ctx context.Context, in *GetOrderPriceRequest, opts ...grpc.CallOption) (*GetOrderPriceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderPriceResponse)
+	err := c.cc.Invoke(ctx, SandboxService_GetSandboxOrderPrice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sandboxServiceClient) GetSandboxPositions(ctx context.Context, in *PositionsRequest, opts ...grpc.CallOption) (*PositionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PositionsResponse)
@@ -245,12 +268,43 @@ func (c *sandboxServiceClient) GetSandboxMaxLots(ctx context.Context, in *GetMax
 	return out, nil
 }
 
+func (c *sandboxServiceClient) PostSandboxStopOrder(ctx context.Context, in *PostStopOrderRequest, opts ...grpc.CallOption) (*PostStopOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostStopOrderResponse)
+	err := c.cc.Invoke(ctx, SandboxService_PostSandboxStopOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sandboxServiceClient) GetSandboxStopOrders(ctx context.Context, in *GetStopOrdersRequest, opts ...grpc.CallOption) (*GetStopOrdersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStopOrdersResponse)
+	err := c.cc.Invoke(ctx, SandboxService_GetSandboxStopOrders_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sandboxServiceClient) CancelSandboxStopOrder(ctx context.Context, in *CancelStopOrderRequest, opts ...grpc.CallOption) (*CancelStopOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CancelStopOrderResponse)
+	err := c.cc.Invoke(ctx, SandboxService_CancelSandboxStopOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SandboxServiceServer is the server API for SandboxService service.
 // All implementations must embed UnimplementedSandboxServiceServer
 // for forward compatibility.
 type SandboxServiceServer interface {
 	// OpenSandboxAccount — зарегистрировать счет
 	OpenSandboxAccount(context.Context, *OpenSandboxAccountRequest) (*OpenSandboxAccountResponse, error)
+	// GetSandboxAccounts — счета пользователя
 	GetSandboxAccounts(context.Context, *GetAccountsRequest) (*GetAccountsResponse, error)
 	// CloseSandboxAccount — закрыть счет
 	CloseSandboxAccount(context.Context, *CloseSandboxAccountRequest) (*CloseSandboxAccountResponse, error)
@@ -267,6 +321,8 @@ type SandboxServiceServer interface {
 	CancelSandboxOrder(context.Context, *CancelOrderRequest) (*CancelOrderResponse, error)
 	// GetSandboxOrderState — получить статус торгового поручения
 	GetSandboxOrderState(context.Context, *GetOrderStateRequest) (*OrderState, error)
+	// GetSandboxOrderPrice — получить предварительную стоимость для лимитной заявки
+	GetSandboxOrderPrice(context.Context, *GetOrderPriceRequest) (*GetOrderPriceResponse, error)
 	// GetSandboxPositions — список позиций по счету
 	GetSandboxPositions(context.Context, *PositionsRequest) (*PositionsResponse, error)
 	// GetSandboxOperations — список операций по счету
@@ -283,6 +339,12 @@ type SandboxServiceServer interface {
 	GetSandboxWithdrawLimits(context.Context, *WithdrawLimitsRequest) (*WithdrawLimitsResponse, error)
 	// GetSandboxMaxLots — расчет количества доступных для покупки/продажи лотов
 	GetSandboxMaxLots(context.Context, *GetMaxLotsRequest) (*GetMaxLotsResponse, error)
+	// PostSandboxStopOrder — выставить стоп-заявку
+	PostSandboxStopOrder(context.Context, *PostStopOrderRequest) (*PostStopOrderResponse, error)
+	// GetSandboxStopOrders — получить список активных стоп-заявок по счету
+	GetSandboxStopOrders(context.Context, *GetStopOrdersRequest) (*GetStopOrdersResponse, error)
+	// CancelSandboxStopOrder — отменить стоп-заявку
+	CancelSandboxStopOrder(context.Context, *CancelStopOrderRequest) (*CancelStopOrderResponse, error)
 	mustEmbedUnimplementedSandboxServiceServer()
 }
 
@@ -320,6 +382,9 @@ func (UnimplementedSandboxServiceServer) CancelSandboxOrder(context.Context, *Ca
 func (UnimplementedSandboxServiceServer) GetSandboxOrderState(context.Context, *GetOrderStateRequest) (*OrderState, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSandboxOrderState not implemented")
 }
+func (UnimplementedSandboxServiceServer) GetSandboxOrderPrice(context.Context, *GetOrderPriceRequest) (*GetOrderPriceResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSandboxOrderPrice not implemented")
+}
 func (UnimplementedSandboxServiceServer) GetSandboxPositions(context.Context, *PositionsRequest) (*PositionsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSandboxPositions not implemented")
 }
@@ -340,6 +405,15 @@ func (UnimplementedSandboxServiceServer) GetSandboxWithdrawLimits(context.Contex
 }
 func (UnimplementedSandboxServiceServer) GetSandboxMaxLots(context.Context, *GetMaxLotsRequest) (*GetMaxLotsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSandboxMaxLots not implemented")
+}
+func (UnimplementedSandboxServiceServer) PostSandboxStopOrder(context.Context, *PostStopOrderRequest) (*PostStopOrderResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PostSandboxStopOrder not implemented")
+}
+func (UnimplementedSandboxServiceServer) GetSandboxStopOrders(context.Context, *GetStopOrdersRequest) (*GetStopOrdersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSandboxStopOrders not implemented")
+}
+func (UnimplementedSandboxServiceServer) CancelSandboxStopOrder(context.Context, *CancelStopOrderRequest) (*CancelStopOrderResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CancelSandboxStopOrder not implemented")
 }
 func (UnimplementedSandboxServiceServer) mustEmbedUnimplementedSandboxServiceServer() {}
 func (UnimplementedSandboxServiceServer) testEmbeddedByValue()                        {}
@@ -524,6 +598,24 @@ func _SandboxService_GetSandboxOrderState_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SandboxService_GetSandboxOrderPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderPriceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SandboxServiceServer).GetSandboxOrderPrice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SandboxService_GetSandboxOrderPrice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SandboxServiceServer).GetSandboxOrderPrice(ctx, req.(*GetOrderPriceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SandboxService_GetSandboxPositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PositionsRequest)
 	if err := dec(in); err != nil {
@@ -650,6 +742,60 @@ func _SandboxService_GetSandboxMaxLots_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SandboxService_PostSandboxStopOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostStopOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SandboxServiceServer).PostSandboxStopOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SandboxService_PostSandboxStopOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SandboxServiceServer).PostSandboxStopOrder(ctx, req.(*PostStopOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SandboxService_GetSandboxStopOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStopOrdersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SandboxServiceServer).GetSandboxStopOrders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SandboxService_GetSandboxStopOrders_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SandboxServiceServer).GetSandboxStopOrders(ctx, req.(*GetStopOrdersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SandboxService_CancelSandboxStopOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelStopOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SandboxServiceServer).CancelSandboxStopOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SandboxService_CancelSandboxStopOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SandboxServiceServer).CancelSandboxStopOrder(ctx, req.(*CancelStopOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SandboxService_ServiceDesc is the grpc.ServiceDesc for SandboxService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -694,6 +840,10 @@ var SandboxService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SandboxService_GetSandboxOrderState_Handler,
 		},
 		{
+			MethodName: "GetSandboxOrderPrice",
+			Handler:    _SandboxService_GetSandboxOrderPrice_Handler,
+		},
+		{
 			MethodName: "GetSandboxPositions",
 			Handler:    _SandboxService_GetSandboxPositions_Handler,
 		},
@@ -720,6 +870,18 @@ var SandboxService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSandboxMaxLots",
 			Handler:    _SandboxService_GetSandboxMaxLots_Handler,
+		},
+		{
+			MethodName: "PostSandboxStopOrder",
+			Handler:    _SandboxService_PostSandboxStopOrder_Handler,
+		},
+		{
+			MethodName: "GetSandboxStopOrders",
+			Handler:    _SandboxService_GetSandboxStopOrders_Handler,
+		},
+		{
+			MethodName: "CancelSandboxStopOrder",
+			Handler:    _SandboxService_CancelSandboxStopOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

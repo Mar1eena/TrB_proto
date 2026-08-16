@@ -35,6 +35,8 @@ const (
 	InstrumentsService_OptionsBy_FullMethodName             = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/OptionsBy"
 	InstrumentsService_ShareBy_FullMethodName               = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/ShareBy"
 	InstrumentsService_Shares_FullMethodName                = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/Shares"
+	InstrumentsService_DfaBy_FullMethodName                 = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/DfaBy"
+	InstrumentsService_Dfas_FullMethodName                  = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/Dfas"
 	InstrumentsService_Indicatives_FullMethodName           = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/Indicatives"
 	InstrumentsService_GetAccruedInterests_FullMethodName   = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetAccruedInterests"
 	InstrumentsService_GetFuturesMargin_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetFuturesMargin"
@@ -56,6 +58,10 @@ const (
 	InstrumentsService_GetConsensusForecasts_FullMethodName = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetConsensusForecasts"
 	InstrumentsService_GetForecastBy_FullMethodName         = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetForecastBy"
 	InstrumentsService_GetRiskRates_FullMethodName          = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetRiskRates"
+	InstrumentsService_GetInsiderDeals_FullMethodName       = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetInsiderDeals"
+	InstrumentsService_StructuredNoteBy_FullMethodName      = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/StructuredNoteBy"
+	InstrumentsService_StructuredNotes_FullMethodName       = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/StructuredNotes"
+	InstrumentsService_News_FullMethodName                  = "/tinkoff.public.invest.api.contract.v1.InstrumentsService/News"
 )
 
 // InstrumentsServiceClient is the client API for InstrumentsService service.
@@ -95,6 +101,10 @@ type InstrumentsServiceClient interface {
 	ShareBy(ctx context.Context, in *InstrumentRequest, opts ...grpc.CallOption) (*ShareResponse, error)
 	// Shares — список акций
 	Shares(ctx context.Context, in *InstrumentsRequest, opts ...grpc.CallOption) (*SharesResponse, error)
+	// DfaBy — получить цифровой актив по его идентификатору
+	DfaBy(ctx context.Context, in *InstrumentRequest, opts ...grpc.CallOption) (*DfaResponse, error)
+	// Dfas — список цифровых активов
+	Dfas(ctx context.Context, in *DfasRequest, opts ...grpc.CallOption) (*DfasResponse, error)
 	// Indicatives — индикативные инструменты — индексы, товары и другие
 	Indicatives(ctx context.Context, in *IndicativesRequest, opts ...grpc.CallOption) (*IndicativesResponse, error)
 	// GetAccruedInterests — накопленный купонный доход по облигации
@@ -138,6 +148,14 @@ type InstrumentsServiceClient interface {
 	GetForecastBy(ctx context.Context, in *GetForecastRequest, opts ...grpc.CallOption) (*GetForecastResponse, error)
 	// GetRiskRates — ставки риска по инструменту
 	GetRiskRates(ctx context.Context, in *RiskRatesRequest, opts ...grpc.CallOption) (*RiskRatesResponse, error)
+	// GetInsiderDeals —  сделки инсайдеров по инструментам
+	GetInsiderDeals(ctx context.Context, in *GetInsiderDealsRequest, opts ...grpc.CallOption) (*GetInsiderDealsResponse, error)
+	// StructuredNoteBy — получить структурную ноту по ее идентификатору
+	StructuredNoteBy(ctx context.Context, in *InstrumentRequest, opts ...grpc.CallOption) (*StructuredNoteResponse, error)
+	// StructuredNotes — список структурных нот
+	StructuredNotes(ctx context.Context, in *InstrumentsRequest, opts ...grpc.CallOption) (*StructuredNotesResponse, error)
+	// News — получение актуальных новостей
+	News(ctx context.Context, in *NewsRequest, opts ...grpc.CallOption) (*NewsResponse, error)
 }
 
 type instrumentsServiceClient struct {
@@ -303,6 +321,26 @@ func (c *instrumentsServiceClient) Shares(ctx context.Context, in *InstrumentsRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SharesResponse)
 	err := c.cc.Invoke(ctx, InstrumentsService_Shares_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *instrumentsServiceClient) DfaBy(ctx context.Context, in *InstrumentRequest, opts ...grpc.CallOption) (*DfaResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DfaResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_DfaBy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *instrumentsServiceClient) Dfas(ctx context.Context, in *DfasRequest, opts ...grpc.CallOption) (*DfasResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DfasResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_Dfas_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -519,6 +557,46 @@ func (c *instrumentsServiceClient) GetRiskRates(ctx context.Context, in *RiskRat
 	return out, nil
 }
 
+func (c *instrumentsServiceClient) GetInsiderDeals(ctx context.Context, in *GetInsiderDealsRequest, opts ...grpc.CallOption) (*GetInsiderDealsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetInsiderDealsResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_GetInsiderDeals_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *instrumentsServiceClient) StructuredNoteBy(ctx context.Context, in *InstrumentRequest, opts ...grpc.CallOption) (*StructuredNoteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StructuredNoteResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_StructuredNoteBy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *instrumentsServiceClient) StructuredNotes(ctx context.Context, in *InstrumentsRequest, opts ...grpc.CallOption) (*StructuredNotesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StructuredNotesResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_StructuredNotes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *instrumentsServiceClient) News(ctx context.Context, in *NewsRequest, opts ...grpc.CallOption) (*NewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NewsResponse)
+	err := c.cc.Invoke(ctx, InstrumentsService_News_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InstrumentsServiceServer is the server API for InstrumentsService service.
 // All implementations must embed UnimplementedInstrumentsServiceServer
 // for forward compatibility.
@@ -556,6 +634,10 @@ type InstrumentsServiceServer interface {
 	ShareBy(context.Context, *InstrumentRequest) (*ShareResponse, error)
 	// Shares — список акций
 	Shares(context.Context, *InstrumentsRequest) (*SharesResponse, error)
+	// DfaBy — получить цифровой актив по его идентификатору
+	DfaBy(context.Context, *InstrumentRequest) (*DfaResponse, error)
+	// Dfas — список цифровых активов
+	Dfas(context.Context, *DfasRequest) (*DfasResponse, error)
 	// Indicatives — индикативные инструменты — индексы, товары и другие
 	Indicatives(context.Context, *IndicativesRequest) (*IndicativesResponse, error)
 	// GetAccruedInterests — накопленный купонный доход по облигации
@@ -599,6 +681,14 @@ type InstrumentsServiceServer interface {
 	GetForecastBy(context.Context, *GetForecastRequest) (*GetForecastResponse, error)
 	// GetRiskRates — ставки риска по инструменту
 	GetRiskRates(context.Context, *RiskRatesRequest) (*RiskRatesResponse, error)
+	// GetInsiderDeals —  сделки инсайдеров по инструментам
+	GetInsiderDeals(context.Context, *GetInsiderDealsRequest) (*GetInsiderDealsResponse, error)
+	// StructuredNoteBy — получить структурную ноту по ее идентификатору
+	StructuredNoteBy(context.Context, *InstrumentRequest) (*StructuredNoteResponse, error)
+	// StructuredNotes — список структурных нот
+	StructuredNotes(context.Context, *InstrumentsRequest) (*StructuredNotesResponse, error)
+	// News — получение актуальных новостей
+	News(context.Context, *NewsRequest) (*NewsResponse, error)
 	mustEmbedUnimplementedInstrumentsServiceServer()
 }
 
@@ -656,6 +746,12 @@ func (UnimplementedInstrumentsServiceServer) ShareBy(context.Context, *Instrumen
 }
 func (UnimplementedInstrumentsServiceServer) Shares(context.Context, *InstrumentsRequest) (*SharesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Shares not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) DfaBy(context.Context, *InstrumentRequest) (*DfaResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DfaBy not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) Dfas(context.Context, *DfasRequest) (*DfasResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Dfas not implemented")
 }
 func (UnimplementedInstrumentsServiceServer) Indicatives(context.Context, *IndicativesRequest) (*IndicativesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Indicatives not implemented")
@@ -719,6 +815,18 @@ func (UnimplementedInstrumentsServiceServer) GetForecastBy(context.Context, *Get
 }
 func (UnimplementedInstrumentsServiceServer) GetRiskRates(context.Context, *RiskRatesRequest) (*RiskRatesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRiskRates not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) GetInsiderDeals(context.Context, *GetInsiderDealsRequest) (*GetInsiderDealsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetInsiderDeals not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) StructuredNoteBy(context.Context, *InstrumentRequest) (*StructuredNoteResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method StructuredNoteBy not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) StructuredNotes(context.Context, *InstrumentsRequest) (*StructuredNotesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method StructuredNotes not implemented")
+}
+func (UnimplementedInstrumentsServiceServer) News(context.Context, *NewsRequest) (*NewsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method News not implemented")
 }
 func (UnimplementedInstrumentsServiceServer) mustEmbedUnimplementedInstrumentsServiceServer() {}
 func (UnimplementedInstrumentsServiceServer) testEmbeddedByValue()                            {}
@@ -1025,6 +1133,42 @@ func _InstrumentsService_Shares_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(InstrumentsServiceServer).Shares(ctx, req.(*InstrumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstrumentsService_DfaBy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstrumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).DfaBy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_DfaBy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).DfaBy(ctx, req.(*InstrumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstrumentsService_Dfas_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfasRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).Dfas(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_Dfas_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).Dfas(ctx, req.(*DfasRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1407,6 +1551,78 @@ func _InstrumentsService_GetRiskRates_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InstrumentsService_GetInsiderDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInsiderDealsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).GetInsiderDeals(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_GetInsiderDeals_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).GetInsiderDeals(ctx, req.(*GetInsiderDealsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstrumentsService_StructuredNoteBy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstrumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).StructuredNoteBy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_StructuredNoteBy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).StructuredNoteBy(ctx, req.(*InstrumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstrumentsService_StructuredNotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstrumentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).StructuredNotes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_StructuredNotes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).StructuredNotes(ctx, req.(*InstrumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstrumentsService_News_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstrumentsServiceServer).News(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstrumentsService_News_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstrumentsServiceServer).News(ctx, req.(*NewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InstrumentsService_ServiceDesc is the grpc.ServiceDesc for InstrumentsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1477,6 +1693,14 @@ var InstrumentsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Shares",
 			Handler:    _InstrumentsService_Shares_Handler,
+		},
+		{
+			MethodName: "DfaBy",
+			Handler:    _InstrumentsService_DfaBy_Handler,
+		},
+		{
+			MethodName: "Dfas",
+			Handler:    _InstrumentsService_Dfas_Handler,
 		},
 		{
 			MethodName: "Indicatives",
@@ -1561,6 +1785,22 @@ var InstrumentsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRiskRates",
 			Handler:    _InstrumentsService_GetRiskRates_Handler,
+		},
+		{
+			MethodName: "GetInsiderDeals",
+			Handler:    _InstrumentsService_GetInsiderDeals_Handler,
+		},
+		{
+			MethodName: "StructuredNoteBy",
+			Handler:    _InstrumentsService_StructuredNoteBy_Handler,
+		},
+		{
+			MethodName: "StructuredNotes",
+			Handler:    _InstrumentsService_StructuredNotes_Handler,
+		},
+		{
+			MethodName: "News",
+			Handler:    _InstrumentsService_News_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

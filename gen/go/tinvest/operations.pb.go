@@ -143,6 +143,11 @@ const (
 	OperationType_OPERATION_TYPE_OVER_INCOME                 OperationType = 63 //  Доход от оверанайта.
 	OperationType_OPERATION_TYPE_OPTION_EXPIRATION           OperationType = 64 // Экспирация опциона.
 	OperationType_OPERATION_TYPE_FUTURE_EXPIRATION           OperationType = 65 // Экспирация фьючерса.
+	OperationType_OPERATION_TYPE_OTHER_FEE                   OperationType = 66 //  Прочие комиссии;
+	OperationType_OPERATION_TYPE_OTHER                       OperationType = 67 //  Операция по счету;
+	OperationType_OPERATION_TYPE_DFA_REDEMPTION              OperationType = 68 // погашение ЦФА-токена;
+	OperationType_OPERATION_TYPE_PRIMARY_ORDER               OperationType = 69 //  отмена заявки на первичное размещение по ЦФА;
+	OperationType_OPERATION_TYPE_FUNDING                     OperationType = 70 //Списание фандинга.
 )
 
 // Enum value maps for OperationType.
@@ -211,6 +216,11 @@ var (
 		63: "OPERATION_TYPE_OVER_INCOME",
 		64: "OPERATION_TYPE_OPTION_EXPIRATION",
 		65: "OPERATION_TYPE_FUTURE_EXPIRATION",
+		66: "OPERATION_TYPE_OTHER_FEE",
+		67: "OPERATION_TYPE_OTHER",
+		68: "OPERATION_TYPE_DFA_REDEMPTION",
+		69: "OPERATION_TYPE_PRIMARY_ORDER",
+		70: "OPERATION_TYPE_FUNDING",
 	}
 	OperationType_value = map[string]int32{
 		"OPERATION_TYPE_UNSPECIFIED":                 0,
@@ -276,6 +286,11 @@ var (
 		"OPERATION_TYPE_OVER_INCOME":                 63,
 		"OPERATION_TYPE_OPTION_EXPIRATION":           64,
 		"OPERATION_TYPE_FUTURE_EXPIRATION":           65,
+		"OPERATION_TYPE_OTHER_FEE":                   66,
+		"OPERATION_TYPE_OTHER":                       67,
+		"OPERATION_TYPE_DFA_REDEMPTION":              68,
+		"OPERATION_TYPE_PRIMARY_ORDER":               69,
+		"OPERATION_TYPE_FUNDING":                     70,
 	}
 )
 
@@ -412,6 +427,59 @@ func (PositionsAccountSubscriptionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_tinvest_operations_proto_rawDescGZIP(), []int{3}
 }
 
+// Результат подписки.
+type OperationsAccountSubscriptionStatus int32
+
+const (
+	OperationsAccountSubscriptionStatus_OPERATIONS_SUBSCRIPTION_STATUS_UNSPECIFIED       OperationsAccountSubscriptionStatus = 0 //Тип не определен.
+	OperationsAccountSubscriptionStatus_OPERATIONS_SUBSCRIPTION_STATUS_SUCCESS           OperationsAccountSubscriptionStatus = 1 //Успешно.
+	OperationsAccountSubscriptionStatus_OPERATIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND OperationsAccountSubscriptionStatus = 2 //Счет не найден или недостаточно прав.
+	OperationsAccountSubscriptionStatus_OPERATIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR    OperationsAccountSubscriptionStatus = 3 //Произошла ошибка.
+)
+
+// Enum value maps for OperationsAccountSubscriptionStatus.
+var (
+	OperationsAccountSubscriptionStatus_name = map[int32]string{
+		0: "OPERATIONS_SUBSCRIPTION_STATUS_UNSPECIFIED",
+		1: "OPERATIONS_SUBSCRIPTION_STATUS_SUCCESS",
+		2: "OPERATIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND",
+		3: "OPERATIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR",
+	}
+	OperationsAccountSubscriptionStatus_value = map[string]int32{
+		"OPERATIONS_SUBSCRIPTION_STATUS_UNSPECIFIED":       0,
+		"OPERATIONS_SUBSCRIPTION_STATUS_SUCCESS":           1,
+		"OPERATIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND": 2,
+		"OPERATIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR":    3,
+	}
+)
+
+func (x OperationsAccountSubscriptionStatus) Enum() *OperationsAccountSubscriptionStatus {
+	p := new(OperationsAccountSubscriptionStatus)
+	*p = x
+	return p
+}
+
+func (x OperationsAccountSubscriptionStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OperationsAccountSubscriptionStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_operations_proto_enumTypes[4].Descriptor()
+}
+
+func (OperationsAccountSubscriptionStatus) Type() protoreflect.EnumType {
+	return &file_tinvest_operations_proto_enumTypes[4]
+}
+
+func (x OperationsAccountSubscriptionStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OperationsAccountSubscriptionStatus.Descriptor instead.
+func (OperationsAccountSubscriptionStatus) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_operations_proto_rawDescGZIP(), []int{4}
+}
+
 type PortfolioRequest_CurrencyRequest int32
 
 const (
@@ -445,11 +513,11 @@ func (x PortfolioRequest_CurrencyRequest) String() string {
 }
 
 func (PortfolioRequest_CurrencyRequest) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_operations_proto_enumTypes[4].Descriptor()
+	return file_tinvest_operations_proto_enumTypes[5].Descriptor()
 }
 
 func (PortfolioRequest_CurrencyRequest) Type() protoreflect.EnumType {
-	return &file_tinvest_operations_proto_enumTypes[4]
+	return &file_tinvest_operations_proto_enumTypes[5]
 }
 
 func (x PortfolioRequest_CurrencyRequest) Number() protoreflect.EnumNumber {
@@ -903,6 +971,7 @@ type PortfolioResponse struct {
 	VirtualPositions      []*VirtualPortfolioPosition `protobuf:"bytes,12,rep,name=virtual_positions,json=virtualPositions,proto3" json:"virtual_positions,omitempty"`                 //Массив виртуальных позиций портфеля.
 	DailyYield            *MoneyValue                 `protobuf:"bytes,15,opt,name=daily_yield,json=dailyYield,proto3" json:"daily_yield,omitempty"`                                   // Рассчитанная доходность портфеля за день в рублях.
 	DailyYieldRelative    *Quotation                  `protobuf:"bytes,16,opt,name=daily_yield_relative,json=dailyYieldRelative,proto3" json:"daily_yield_relative,omitempty"`         //Относительная доходность в день в %.
+	TotalAmountDfa        *MoneyValue                 `protobuf:"bytes,17,opt,name=total_amount_dfa,json=totalAmountDfa,proto3" json:"total_amount_dfa,omitempty"`                     //Общая стоимость смарт-активов в портфеле в рублях.
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -1031,6 +1100,13 @@ func (x *PortfolioResponse) GetDailyYield() *MoneyValue {
 func (x *PortfolioResponse) GetDailyYieldRelative() *Quotation {
 	if x != nil {
 		return x.DailyYieldRelative
+	}
+	return nil
+}
+
+func (x *PortfolioResponse) GetTotalAmountDfa() *MoneyValue {
+	if x != nil {
+		return x.TotalAmountDfa
 	}
 	return nil
 }
@@ -1293,15 +1369,17 @@ type PortfolioPosition struct {
 	CurrentPrice             *MoneyValue `protobuf:"bytes,8,opt,name=current_price,json=currentPrice,proto3" json:"current_price,omitempty"`                                         //Текущая цена за 1 инструмент. Чтобы получить стоимость лота, нужно умножить на лотность инструмента.
 	AveragePositionPriceFifo *MoneyValue `protobuf:"bytes,9,opt,name=average_position_price_fifo,json=averagePositionPriceFifo,proto3" json:"average_position_price_fifo,omitempty"` //Средняя цена позиции по методу FIFO. Для пересчета возможна задержка до одной секунды.
 	// Deprecated: Marked as deprecated in tinvest/operations.proto.
-	QuantityLots      *Quotation  `protobuf:"bytes,10,opt,name=quantity_lots,json=quantityLots,proto3" json:"quantity_lots,omitempty"`                  //Deprecated Количество лотов в портфеле.
-	Blocked           bool        `protobuf:"varint,21,opt,name=blocked,proto3" json:"blocked,omitempty"`                                               //Заблокировано на бирже.
-	BlockedLots       *Quotation  `protobuf:"bytes,22,opt,name=blocked_lots,json=blockedLots,proto3" json:"blocked_lots,omitempty"`                     //Количество бумаг, заблокированных выставленными заявками.
-	PositionUid       string      `protobuf:"bytes,24,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                     //Уникальный идентификатор позиции.
-	InstrumentUid     string      `protobuf:"bytes,25,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`               //Уникальный идентификатор инструмента.
-	VarMargin         *MoneyValue `protobuf:"bytes,26,opt,name=var_margin,json=varMargin,proto3" json:"var_margin,omitempty"`                           //Вариационная маржа.
-	ExpectedYieldFifo *Quotation  `protobuf:"bytes,27,opt,name=expected_yield_fifo,json=expectedYieldFifo,proto3" json:"expected_yield_fifo,omitempty"` //Текущая рассчитанная доходность позиции.
-	DailyYield        *MoneyValue `protobuf:"bytes,31,opt,name=daily_yield,json=dailyYield,proto3" json:"daily_yield,omitempty"`                        // Рассчитанная доходность портфеля за день.
-	Ticker            string      `protobuf:"bytes,32,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                  //Тикер инструмента.
+	QuantityLots      *Quotation  `protobuf:"bytes,10,opt,name=quantity_lots,json=quantityLots,proto3" json:"quantity_lots,omitempty"`                     //Deprecated Количество лотов в портфеле.
+	Blocked           bool        `protobuf:"varint,21,opt,name=blocked,proto3" json:"blocked,omitempty"`                                                  //Заблокировано на бирже.
+	BlockedLots       *Quotation  `protobuf:"bytes,22,opt,name=blocked_lots,json=blockedLots,proto3" json:"blocked_lots,omitempty"`                        //Количество бумаг, заблокированных выставленными заявками.
+	PositionUid       string      `protobuf:"bytes,24,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                        //Уникальный идентификатор позиции.
+	InstrumentUid     string      `protobuf:"bytes,25,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                  //Уникальный идентификатор инструмента.
+	VarMargin         *MoneyValue `protobuf:"bytes,26,opt,name=var_margin,json=varMargin,proto3" json:"var_margin,omitempty"`                              //Вариационная маржа.
+	ExpectedYieldFifo *Quotation  `protobuf:"bytes,27,opt,name=expected_yield_fifo,json=expectedYieldFifo,proto3" json:"expected_yield_fifo,omitempty"`    //Текущая рассчитанная доходность позиции.
+	DailyYield        *MoneyValue `protobuf:"bytes,31,opt,name=daily_yield,json=dailyYield,proto3" json:"daily_yield,omitempty"`                           // Рассчитанная доходность портфеля за день.
+	Ticker            string      `protobuf:"bytes,32,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                     //Тикер инструмента.
+	ClassCode         string      `protobuf:"bytes,33,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                              //Класс-код (секция торгов).
+	VarMarginSettled  *MoneyValue `protobuf:"bytes,34,opt,name=var_margin_settled,json=varMarginSettled,proto3,oneof" json:"var_margin_settled,omitempty"` //Вариационная маржа (расчетная).
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1464,6 +1542,20 @@ func (x *PortfolioPosition) GetTicker() string {
 	return ""
 }
 
+func (x *PortfolioPosition) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
+func (x *PortfolioPosition) GetVarMarginSettled() *MoneyValue {
+	if x != nil {
+		return x.VarMarginSettled
+	}
+	return nil
+}
+
 type VirtualPortfolioPosition struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
 	PositionUid              string                 `protobuf:"bytes,1,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                             //Уникальный идентификатор позиции.
@@ -1479,6 +1571,7 @@ type VirtualPortfolioPosition struct {
 	AveragePositionPriceFifo *MoneyValue            `protobuf:"bytes,11,opt,name=average_position_price_fifo,json=averagePositionPriceFifo,proto3" json:"average_position_price_fifo,omitempty"` //Средняя цена позиции по методу FIFO. Для пересчета возможна задержка до одной секунды.
 	DailyYield               *MoneyValue            `protobuf:"bytes,31,opt,name=daily_yield,json=dailyYield,proto3" json:"daily_yield,omitempty"`                                               // Рассчитанная доходность портфеля за день.
 	Ticker                   string                 `protobuf:"bytes,32,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                         //Тикер инструмента.
+	ClassCode                string                 `protobuf:"bytes,33,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                  //Класс-код (секция торгов).
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -1604,6 +1697,13 @@ func (x *VirtualPortfolioPosition) GetTicker() string {
 	return ""
 }
 
+func (x *VirtualPortfolioPosition) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
 // Баланс позиции ценной бумаги.
 type PositionsSecurities struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
@@ -1613,6 +1713,7 @@ type PositionsSecurities struct {
 	PositionUid     string                 `protobuf:"bytes,4,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`               //Уникальный идентификатор позиции.
 	InstrumentUid   string                 `protobuf:"bytes,5,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`         //Уникальный идентификатор инструмента.
 	Ticker          string                 `protobuf:"bytes,6,opt,name=ticker,proto3" json:"ticker,omitempty"`                                            //Тикер инструмента.
+	ClassCode       string                 `protobuf:"bytes,7,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                     //Класс-код (секция торгов).
 	ExchangeBlocked bool                   `protobuf:"varint,11,opt,name=exchange_blocked,json=exchangeBlocked,proto3" json:"exchange_blocked,omitempty"` //Заблокировано на бирже.
 	InstrumentType  string                 `protobuf:"bytes,16,opt,name=instrument_type,json=instrumentType,proto3" json:"instrument_type,omitempty"`     //Тип инструмента.
 	unknownFields   protoimpl.UnknownFields
@@ -1691,6 +1792,13 @@ func (x *PositionsSecurities) GetTicker() string {
 	return ""
 }
 
+func (x *PositionsSecurities) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
 func (x *PositionsSecurities) GetExchangeBlocked() bool {
 	if x != nil {
 		return x.ExchangeBlocked
@@ -1714,6 +1822,7 @@ type PositionsFutures struct {
 	PositionUid   string                 `protobuf:"bytes,4,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`       //Уникальный идентификатор позиции.
 	InstrumentUid string                 `protobuf:"bytes,5,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"` //Уникальный идентификатор  инструмента.
 	Ticker        string                 `protobuf:"bytes,6,opt,name=ticker,proto3" json:"ticker,omitempty"`                                    //Тикер инструмента.
+	ClassCode     string                 `protobuf:"bytes,7,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`             //Класс-код (секция торгов).
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1790,12 +1899,20 @@ func (x *PositionsFutures) GetTicker() string {
 	return ""
 }
 
+func (x *PositionsFutures) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
 // Баланс опциона.
 type PositionsOptions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PositionUid   string                 `protobuf:"bytes,1,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`       //Уникальный идентификатор позиции опциона.
 	InstrumentUid string                 `protobuf:"bytes,2,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"` //Уникальный идентификатор  инструмента.
 	Ticker        string                 `protobuf:"bytes,3,opt,name=ticker,proto3" json:"ticker,omitempty"`                                    //Тикер инструмента.
+	ClassCode     string                 `protobuf:"bytes,4,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`             //Класс-код (секция торгов).
 	Blocked       int64                  `protobuf:"varint,11,opt,name=blocked,proto3" json:"blocked,omitempty"`                                //Количество бумаг, заблокированных выставленными заявками.
 	Balance       int64                  `protobuf:"varint,21,opt,name=balance,proto3" json:"balance,omitempty"`                                //Текущий незаблокированный баланс.
 	unknownFields protoimpl.UnknownFields
@@ -1849,6 +1966,13 @@ func (x *PositionsOptions) GetInstrumentUid() string {
 func (x *PositionsOptions) GetTicker() string {
 	if x != nil {
 		return x.Ticker
+	}
+	return ""
+}
+
+func (x *PositionsOptions) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
 	}
 	return ""
 }
@@ -2190,9 +2314,10 @@ func (x *GetBrokerReportRequest) GetPage() int32 {
 type GetBrokerReportResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	BrokerReport  []*BrokerReport        `protobuf:"bytes,1,rep,name=broker_report,json=brokerReport,proto3" json:"broker_report,omitempty"`
-	ItemsCount    int32                  `protobuf:"varint,2,opt,name=itemsCount,proto3" json:"itemsCount,omitempty"` //Количество записей в отчете.
-	PagesCount    int32                  `protobuf:"varint,3,opt,name=pagesCount,proto3" json:"pagesCount,omitempty"` //Количество страниц с данными отчета, начинается с 0.
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`             //Текущая страница, начинается с 0.
+	ItemsCount    int32                  `protobuf:"varint,2,opt,name=itemsCount,proto3" json:"itemsCount,omitempty"`      //Количество записей в отчете.
+	PagesCount    int32                  `protobuf:"varint,3,opt,name=pagesCount,proto3" json:"pagesCount,omitempty"`      //Количество страниц с данными отчета, начинается с 0.
+	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`                  //Текущая страница, начинается с 0.
+	TaskId        string                 `protobuf:"bytes,5,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"` //Идентификатор задачи формирования брокерского отчета.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2253,6 +2378,13 @@ func (x *GetBrokerReportResponse) GetPage() int32 {
 		return x.Page
 	}
 	return 0
+}
+
+func (x *GetBrokerReportResponse) GetTaskId() string {
+	if x != nil {
+		return x.TaskId
+	}
+	return ""
 }
 
 type BrokerReport struct {
@@ -3305,7 +3437,7 @@ func (x *AccountSubscriptionStatus) GetSubscriptionStatus() PortfolioSubscriptio
 type GetOperationsByCursorRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	AccountId          string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                                                                  //Идентификатор счета клиента, обязательный параметр. Остальные параметры опциональны.
-	InstrumentId       *string                `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                                                                   //Идентификатор инструмента — FIGI или UID инструмента.
+	InstrumentId       *string                `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3,oneof" json:"instrument_id,omitempty"`                                                                   //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	From               *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=from,proto3,oneof" json:"from,omitempty"`                                                                                                       //Начало периода по UTC.
 	To                 *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=to,proto3,oneof" json:"to,omitempty"`                                                                                                           //Окончание периода по UTC.
 	Cursor             *string                `protobuf:"bytes,11,opt,name=cursor,proto3,oneof" json:"cursor,omitempty"`                                                                                                  //Идентификатор элемента, с которого начать формировать ответ.
@@ -3504,6 +3636,8 @@ type OperationItem struct {
 	InstrumentType    string                 `protobuf:"bytes,33,opt,name=instrument_type,json=instrumentType,proto3" json:"instrument_type,omitempty"`                                                            //Тип инструмента.
 	InstrumentKind    InstrumentType         `protobuf:"varint,34,opt,name=instrument_kind,json=instrumentKind,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentType" json:"instrument_kind,omitempty"` //Тип инструмента.
 	PositionUid       string                 `protobuf:"bytes,35,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                                                     //Уникальный идентификатор позиции.
+	Ticker            string                 `protobuf:"bytes,36,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                  //Тикер инструмента.
+	ClassCode         string                 `protobuf:"bytes,37,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                           //Класс-код (секция торгов).
 	Payment           *MoneyValue            `protobuf:"bytes,41,opt,name=payment,proto3" json:"payment,omitempty"`                                                                                                //Сумма операции.
 	Price             *MoneyValue            `protobuf:"bytes,42,opt,name=price,proto3" json:"price,omitempty"`                                                                                                    //Цена операции за 1 инструмент.
 	Commission        *MoneyValue            `protobuf:"bytes,43,opt,name=commission,proto3" json:"commission,omitempty"`                                                                                          //Комиссия.
@@ -3646,6 +3780,20 @@ func (x *OperationItem) GetInstrumentKind() InstrumentType {
 func (x *OperationItem) GetPositionUid() string {
 	if x != nil {
 		return x.PositionUid
+	}
+	return ""
+}
+
+func (x *OperationItem) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *OperationItem) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
 	}
 	return ""
 }
@@ -4358,6 +4506,384 @@ func (x *ChildOperationItem) GetPayment() *MoneyValue {
 	return nil
 }
 
+// Запрос установки stream-соединения операций.
+type OperationsStreamRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Accounts      []string               `protobuf:"bytes,1,rep,name=accounts,proto3" json:"accounts,omitempty"`                              //Массив идентификаторов счетов пользователя.
+	PingSettings  *PingDelaySettings     `protobuf:"bytes,15,opt,name=ping_settings,json=pingSettings,proto3" json:"ping_settings,omitempty"` //Запрос настройки пинга.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OperationsStreamRequest) Reset() {
+	*x = OperationsStreamRequest{}
+	mi := &file_tinvest_operations_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OperationsStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OperationsStreamRequest) ProtoMessage() {}
+
+func (x *OperationsStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_operations_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OperationsStreamRequest.ProtoReflect.Descriptor instead.
+func (*OperationsStreamRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_operations_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *OperationsStreamRequest) GetAccounts() []string {
+	if x != nil {
+		return x.Accounts
+	}
+	return nil
+}
+
+func (x *OperationsStreamRequest) GetPingSettings() *PingDelaySettings {
+	if x != nil {
+		return x.PingSettings
+	}
+	return nil
+}
+
+// Информация по операциям.
+type OperationsStreamResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Payload:
+	//
+	//	*OperationsStreamResponse_Subscriptions
+	//	*OperationsStreamResponse_Operation
+	//	*OperationsStreamResponse_Ping
+	Payload       isOperationsStreamResponse_Payload `protobuf_oneof:"payload"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OperationsStreamResponse) Reset() {
+	*x = OperationsStreamResponse{}
+	mi := &file_tinvest_operations_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OperationsStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OperationsStreamResponse) ProtoMessage() {}
+
+func (x *OperationsStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_operations_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OperationsStreamResponse.ProtoReflect.Descriptor instead.
+func (*OperationsStreamResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_operations_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *OperationsStreamResponse) GetPayload() isOperationsStreamResponse_Payload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+func (x *OperationsStreamResponse) GetSubscriptions() *OperationsSubscriptionResult {
+	if x != nil {
+		if x, ok := x.Payload.(*OperationsStreamResponse_Subscriptions); ok {
+			return x.Subscriptions
+		}
+	}
+	return nil
+}
+
+func (x *OperationsStreamResponse) GetOperation() *OperationData {
+	if x != nil {
+		if x, ok := x.Payload.(*OperationsStreamResponse_Operation); ok {
+			return x.Operation
+		}
+	}
+	return nil
+}
+
+func (x *OperationsStreamResponse) GetPing() *Ping {
+	if x != nil {
+		if x, ok := x.Payload.(*OperationsStreamResponse_Ping); ok {
+			return x.Ping
+		}
+	}
+	return nil
+}
+
+type isOperationsStreamResponse_Payload interface {
+	isOperationsStreamResponse_Payload()
+}
+
+type OperationsStreamResponse_Subscriptions struct {
+	Subscriptions *OperationsSubscriptionResult `protobuf:"bytes,1,opt,name=subscriptions,proto3,oneof"` //Объект результата подписки.
+}
+
+type OperationsStreamResponse_Operation struct {
+	Operation *OperationData `protobuf:"bytes,2,opt,name=operation,proto3,oneof"` //Объект стриминга операций.
+}
+
+type OperationsStreamResponse_Ping struct {
+	Ping *Ping `protobuf:"bytes,3,opt,name=ping,proto3,oneof"` //Проверка активности стрима.
+}
+
+func (*OperationsStreamResponse_Subscriptions) isOperationsStreamResponse_Payload() {}
+
+func (*OperationsStreamResponse_Operation) isOperationsStreamResponse_Payload() {}
+
+func (*OperationsStreamResponse_Ping) isOperationsStreamResponse_Payload() {}
+
+// Объект результата подписки.
+type OperationsSubscriptionResult struct {
+	state              protoimpl.MessageState              `protogen:"open.v1"`
+	Accounts           []string                            `protobuf:"bytes,1,rep,name=accounts,proto3" json:"accounts,omitempty"`                                                                                                                               //Массив счетов клиента.
+	SubscriptionStatus OperationsAccountSubscriptionStatus `protobuf:"varint,2,opt,name=subscription_status,json=subscriptionStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.OperationsAccountSubscriptionStatus" json:"subscription_status,omitempty"` //Результат подписки.
+	TrackingId         string                              `protobuf:"bytes,7,opt,name=tracking_id,json=trackingId,proto3" json:"tracking_id,omitempty"`                                                                                                         //Уникальный идентификатор запроса, подробнее: [tracking_id](/invest/intro/developer/protocols/grpc#tracking-id).
+	StreamId           string                              `protobuf:"bytes,8,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`                                                                                                               //Идентификатор открытого соединения
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *OperationsSubscriptionResult) Reset() {
+	*x = OperationsSubscriptionResult{}
+	mi := &file_tinvest_operations_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OperationsSubscriptionResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OperationsSubscriptionResult) ProtoMessage() {}
+
+func (x *OperationsSubscriptionResult) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_operations_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OperationsSubscriptionResult.ProtoReflect.Descriptor instead.
+func (*OperationsSubscriptionResult) Descriptor() ([]byte, []int) {
+	return file_tinvest_operations_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *OperationsSubscriptionResult) GetAccounts() []string {
+	if x != nil {
+		return x.Accounts
+	}
+	return nil
+}
+
+func (x *OperationsSubscriptionResult) GetSubscriptionStatus() OperationsAccountSubscriptionStatus {
+	if x != nil {
+		return x.SubscriptionStatus
+	}
+	return OperationsAccountSubscriptionStatus_OPERATIONS_SUBSCRIPTION_STATUS_UNSPECIFIED
+}
+
+func (x *OperationsSubscriptionResult) GetTrackingId() string {
+	if x != nil {
+		return x.TrackingId
+	}
+	return ""
+}
+
+func (x *OperationsSubscriptionResult) GetStreamId() string {
+	if x != nil {
+		return x.StreamId
+	}
+	return ""
+}
+
+// Данные об операции.
+type OperationData struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	BrokerAccountId   string                 `protobuf:"bytes,1,opt,name=broker_account_id,json=brokerAccountId,proto3" json:"broker_account_id,omitempty"`                                                        //Идентификатор счета.
+	Id                string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`                                                                                                           //Номер поручения.
+	ParentOperationId string                 `protobuf:"bytes,3,opt,name=parent_operation_id,json=parentOperationId,proto3" json:"parent_operation_id,omitempty"`                                                  //Номер родительского поручения.
+	Name              string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`                                                                                                       //Название инструмента.
+	Date              *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`                                                                                                       //Дата.
+	Type              OperationType          `protobuf:"varint,6,opt,name=type,proto3,enum=tinkoff.public.invest.api.contract.v1.OperationType" json:"type,omitempty"`                                             //Тип операции.
+	State             OperationState         `protobuf:"varint,7,opt,name=state,proto3,enum=tinkoff.public.invest.api.contract.v1.OperationState" json:"state,omitempty"`                                          //Статус поручения.
+	InstrumentUid     string                 `protobuf:"bytes,8,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                                //Уникальный идентификатор инструмента.
+	Figi              string                 `protobuf:"bytes,9,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                       //FIGI-идентификатор инструмента.
+	InstrumentType    string                 `protobuf:"bytes,10,opt,name=instrument_type,json=instrumentType,proto3" json:"instrument_type,omitempty"`                                                            //Тип инструмента.
+	InstrumentKind    InstrumentType         `protobuf:"varint,11,opt,name=instrument_kind,json=instrumentKind,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentType" json:"instrument_kind,omitempty"` //Тип инструмента.
+	PositionUid       string                 `protobuf:"bytes,12,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                                                     //Идентификатор позиции.
+	Ticker            string                 `protobuf:"bytes,13,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                  //Тикер инструмента.
+	ClassCode         string                 `protobuf:"bytes,14,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                           //Класс-код (секция торгов).
+	Payment           *MoneyValue            `protobuf:"bytes,15,opt,name=payment,proto3" json:"payment,omitempty"`                                                                                                //Сумма операции.
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *OperationData) Reset() {
+	*x = OperationData{}
+	mi := &file_tinvest_operations_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OperationData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OperationData) ProtoMessage() {}
+
+func (x *OperationData) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_operations_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OperationData.ProtoReflect.Descriptor instead.
+func (*OperationData) Descriptor() ([]byte, []int) {
+	return file_tinvest_operations_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *OperationData) GetBrokerAccountId() string {
+	if x != nil {
+		return x.BrokerAccountId
+	}
+	return ""
+}
+
+func (x *OperationData) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *OperationData) GetParentOperationId() string {
+	if x != nil {
+		return x.ParentOperationId
+	}
+	return ""
+}
+
+func (x *OperationData) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *OperationData) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *OperationData) GetType() OperationType {
+	if x != nil {
+		return x.Type
+	}
+	return OperationType_OPERATION_TYPE_UNSPECIFIED
+}
+
+func (x *OperationData) GetState() OperationState {
+	if x != nil {
+		return x.State
+	}
+	return OperationState_OPERATION_STATE_UNSPECIFIED
+}
+
+func (x *OperationData) GetInstrumentUid() string {
+	if x != nil {
+		return x.InstrumentUid
+	}
+	return ""
+}
+
+func (x *OperationData) GetFigi() string {
+	if x != nil {
+		return x.Figi
+	}
+	return ""
+}
+
+func (x *OperationData) GetInstrumentType() string {
+	if x != nil {
+		return x.InstrumentType
+	}
+	return ""
+}
+
+func (x *OperationData) GetInstrumentKind() InstrumentType {
+	if x != nil {
+		return x.InstrumentKind
+	}
+	return InstrumentType_INSTRUMENT_TYPE_UNSPECIFIED
+}
+
+func (x *OperationData) GetPositionUid() string {
+	if x != nil {
+		return x.PositionUid
+	}
+	return ""
+}
+
+func (x *OperationData) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *OperationData) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
+func (x *OperationData) GetPayment() *MoneyValue {
+	if x != nil {
+		return x.Payment
+	}
+	return nil
+}
+
 var File_tinvest_operations_proto protoreflect.FileDescriptor
 
 const file_tinvest_operations_proto_rawDesc = "" +
@@ -4411,8 +4937,7 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x03RUB\x10\x00\x12\a\n" +
 	"\x03USD\x10\x01\x12\a\n" +
 	"\x03EUR\x10\x02B\v\n" +
-	"\t_currency\"\xa3\n" +
-	"\n" +
+	"\t_currency\"\x80\v\n" +
 	"\x11PortfolioResponse\x12a\n" +
 	"\x13total_amount_shares\x18\x01 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x11totalAmountShares\x12_\n" +
 	"\x12total_amount_bonds\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x10totalAmountBonds\x12[\n" +
@@ -4430,7 +4955,8 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x11virtual_positions\x18\f \x03(\v2?.tinkoff.public.invest.api.contract.v1.VirtualPortfolioPositionR\x10virtualPositions\x12R\n" +
 	"\vdaily_yield\x18\x0f \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\n" +
 	"dailyYield\x12b\n" +
-	"\x14daily_yield_relative\x18\x10 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x12dailyYieldRelative\"7\n" +
+	"\x14daily_yield_relative\x18\x10 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x12dailyYieldRelative\x12[\n" +
+	"\x10total_amount_dfa\x18\x11 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x0etotalAmountDfa\"7\n" +
 	"\x10PositionsRequest\x12#\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\"\x87\x04\n" +
@@ -4451,8 +4977,7 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x16WithdrawLimitsResponse\x12G\n" +
 	"\x05money\x18\x01 \x03(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05money\x12K\n" +
 	"\ablocked\x18\x02 \x03(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\ablocked\x12^\n" +
-	"\x11blocked_guarantee\x18\x03 \x03(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x10blockedGuarantee\"\xa3\n" +
-	"\n" +
+	"\x11blocked_guarantee\x18\x03 \x03(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x10blockedGuarantee\"\xbf\v\n" +
 	"\x11PortfolioPosition\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12'\n" +
 	"\x0finstrument_type\x18\x02 \x01(\tR\x0einstrumentType\x12L\n" +
@@ -4475,7 +5000,11 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x13expected_yield_fifo\x18\x1b \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x11expectedYieldFifo\x12R\n" +
 	"\vdaily_yield\x18\x1f \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\n" +
 	"dailyYield\x12\x16\n" +
-	"\x06ticker\x18  \x01(\tR\x06ticker\"\x86\a\n" +
+	"\x06ticker\x18  \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18! \x01(\tR\tclassCode\x12d\n" +
+	"\x12var_margin_settled\x18\" \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueH\x00R\x10varMarginSettled\x88\x01\x01B\x15\n" +
+	"\x13_var_margin_settled\"\xa5\a\n" +
 	"\x18VirtualPortfolioPosition\x12!\n" +
 	"\fposition_uid\x18\x01 \x01(\tR\vpositionUid\x12%\n" +
 	"\x0einstrument_uid\x18\x02 \x01(\tR\rinstrumentUid\x12\x12\n" +
@@ -4492,27 +5021,35 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x1baverage_position_price_fifo\x18\v \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x18averagePositionPriceFifo\x12R\n" +
 	"\vdaily_yield\x18\x1f \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\n" +
 	"dailyYield\x12\x16\n" +
-	"\x06ticker\x18  \x01(\tR\x06ticker\"\x93\x02\n" +
+	"\x06ticker\x18  \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18! \x01(\tR\tclassCode\"\xb2\x02\n" +
 	"\x13PositionsSecurities\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x18\n" +
 	"\ablocked\x18\x02 \x01(\x03R\ablocked\x12\x18\n" +
 	"\abalance\x18\x03 \x01(\x03R\abalance\x12!\n" +
 	"\fposition_uid\x18\x04 \x01(\tR\vpositionUid\x12%\n" +
 	"\x0einstrument_uid\x18\x05 \x01(\tR\rinstrumentUid\x12\x16\n" +
-	"\x06ticker\x18\x06 \x01(\tR\x06ticker\x12)\n" +
+	"\x06ticker\x18\x06 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\a \x01(\tR\tclassCode\x12)\n" +
 	"\x10exchange_blocked\x18\v \x01(\bR\x0fexchangeBlocked\x12'\n" +
-	"\x0finstrument_type\x18\x10 \x01(\tR\x0einstrumentType\"\xbc\x01\n" +
+	"\x0finstrument_type\x18\x10 \x01(\tR\x0einstrumentType\"\xdb\x01\n" +
 	"\x10PositionsFutures\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x18\n" +
 	"\ablocked\x18\x02 \x01(\x03R\ablocked\x12\x18\n" +
 	"\abalance\x18\x03 \x01(\x03R\abalance\x12!\n" +
 	"\fposition_uid\x18\x04 \x01(\tR\vpositionUid\x12%\n" +
 	"\x0einstrument_uid\x18\x05 \x01(\tR\rinstrumentUid\x12\x16\n" +
-	"\x06ticker\x18\x06 \x01(\tR\x06ticker\"\xa8\x01\n" +
+	"\x06ticker\x18\x06 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\a \x01(\tR\tclassCode\"\xc7\x01\n" +
 	"\x10PositionsOptions\x12!\n" +
 	"\fposition_uid\x18\x01 \x01(\tR\vpositionUid\x12%\n" +
 	"\x0einstrument_uid\x18\x02 \x01(\tR\rinstrumentUid\x12\x16\n" +
-	"\x06ticker\x18\x03 \x01(\tR\x06ticker\x12\x18\n" +
+	"\x06ticker\x18\x03 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x04 \x01(\tR\tclassCode\x12\x18\n" +
 	"\ablocked\x18\v \x01(\x03R\ablocked\x12\x18\n" +
 	"\abalance\x18\x15 \x01(\x03R\abalance\"\xa8\x02\n" +
 	"\x13BrokerReportRequest\x12\x89\x01\n" +
@@ -4533,7 +5070,7 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x16GetBrokerReportRequest\x12\x1d\n" +
 	"\atask_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\x06taskId\x12\x17\n" +
 	"\x04page\x18\x02 \x01(\x05H\x00R\x04page\x88\x01\x01B\a\n" +
-	"\x05_page\"\xc7\x01\n" +
+	"\x05_page\"\xe0\x01\n" +
 	"\x17GetBrokerReportResponse\x12X\n" +
 	"\rbroker_report\x18\x01 \x03(\v23.tinkoff.public.invest.api.contract.v1.BrokerReportR\fbrokerReport\x12\x1e\n" +
 	"\n" +
@@ -4542,7 +5079,8 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\n" +
 	"pagesCount\x18\x03 \x01(\x05R\n" +
 	"pagesCount\x12\x12\n" +
-	"\x04page\x18\x04 \x01(\x05R\x04page\"\xca\v\n" +
+	"\x04page\x18\x04 \x01(\x05R\x04page\x12\x17\n" +
+	"\atask_id\x18\x05 \x01(\tR\x06taskId\"\xca\v\n" +
 	"\fBrokerReport\x12\x19\n" +
 	"\btrade_id\x18\x01 \x01(\tR\atradeId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x12\n" +
@@ -4659,7 +5197,7 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\bhas_next\x18\x01 \x01(\bR\ahasNext\x12\x1f\n" +
 	"\vnext_cursor\x18\x02 \x01(\tR\n" +
 	"nextCursor\x12J\n" +
-	"\x05items\x18\x06 \x03(\v24.tinkoff.public.invest.api.contract.v1.OperationItemR\x05items\"\x87\f\n" +
+	"\x05items\x18\x06 \x03(\v24.tinkoff.public.invest.api.contract.v1.OperationItemR\x05items\"\xbe\f\n" +
 	"\rOperationItem\x12\x16\n" +
 	"\x06cursor\x18\x01 \x01(\tR\x06cursor\x12*\n" +
 	"\x11broker_account_id\x18\x06 \x01(\tR\x0fbrokerAccountId\x12\x0e\n" +
@@ -4674,7 +5212,10 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x04figi\x18  \x01(\tR\x04figi\x12'\n" +
 	"\x0finstrument_type\x18! \x01(\tR\x0einstrumentType\x12^\n" +
 	"\x0finstrument_kind\x18\" \x01(\x0e25.tinkoff.public.invest.api.contract.v1.InstrumentTypeR\x0einstrumentKind\x12!\n" +
-	"\fposition_uid\x18# \x01(\tR\vpositionUid\x12K\n" +
+	"\fposition_uid\x18# \x01(\tR\vpositionUid\x12\x16\n" +
+	"\x06ticker\x18$ \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18% \x01(\tR\tclassCode\x12K\n" +
 	"\apayment\x18) \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\apayment\x12G\n" +
 	"\x05price\x18* \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\x05price\x12Q\n" +
 	"\n" +
@@ -4736,12 +5277,44 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\rblocked_value\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\fblockedValue\"\x88\x01\n" +
 	"\x12ChildOperationItem\x12%\n" +
 	"\x0einstrument_uid\x18\x01 \x01(\tR\rinstrumentUid\x12K\n" +
-	"\apayment\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\apayment*\x8b\x01\n" +
+	"\apayment\x18\x02 \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\apayment\"\x94\x01\n" +
+	"\x17OperationsStreamRequest\x12\x1a\n" +
+	"\baccounts\x18\x01 \x03(\tR\baccounts\x12]\n" +
+	"\rping_settings\x18\x0f \x01(\v28.tinkoff.public.invest.api.contract.v1.PingDelaySettingsR\fpingSettings\"\xab\x02\n" +
+	"\x18OperationsStreamResponse\x12k\n" +
+	"\rsubscriptions\x18\x01 \x01(\v2C.tinkoff.public.invest.api.contract.v1.OperationsSubscriptionResultH\x00R\rsubscriptions\x12T\n" +
+	"\toperation\x18\x02 \x01(\v24.tinkoff.public.invest.api.contract.v1.OperationDataH\x00R\toperation\x12A\n" +
+	"\x04ping\x18\x03 \x01(\v2+.tinkoff.public.invest.api.contract.v1.PingH\x00R\x04pingB\t\n" +
+	"\apayload\"\xf5\x01\n" +
+	"\x1cOperationsSubscriptionResult\x12\x1a\n" +
+	"\baccounts\x18\x01 \x03(\tR\baccounts\x12{\n" +
+	"\x13subscription_status\x18\x02 \x01(\x0e2J.tinkoff.public.invest.api.contract.v1.OperationsAccountSubscriptionStatusR\x12subscriptionStatus\x12\x1f\n" +
+	"\vtracking_id\x18\a \x01(\tR\n" +
+	"trackingId\x12\x1b\n" +
+	"\tstream_id\x18\b \x01(\tR\bstreamId\"\xc1\x05\n" +
+	"\rOperationData\x12*\n" +
+	"\x11broker_account_id\x18\x01 \x01(\tR\x0fbrokerAccountId\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12.\n" +
+	"\x13parent_operation_id\x18\x03 \x01(\tR\x11parentOperationId\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12.\n" +
+	"\x04date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12H\n" +
+	"\x04type\x18\x06 \x01(\x0e24.tinkoff.public.invest.api.contract.v1.OperationTypeR\x04type\x12K\n" +
+	"\x05state\x18\a \x01(\x0e25.tinkoff.public.invest.api.contract.v1.OperationStateR\x05state\x12%\n" +
+	"\x0einstrument_uid\x18\b \x01(\tR\rinstrumentUid\x12\x12\n" +
+	"\x04figi\x18\t \x01(\tR\x04figi\x12'\n" +
+	"\x0finstrument_type\x18\n" +
+	" \x01(\tR\x0einstrumentType\x12^\n" +
+	"\x0finstrument_kind\x18\v \x01(\x0e25.tinkoff.public.invest.api.contract.v1.InstrumentTypeR\x0einstrumentKind\x12!\n" +
+	"\fposition_uid\x18\f \x01(\tR\vpositionUid\x12\x16\n" +
+	"\x06ticker\x18\r \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x0e \x01(\tR\tclassCode\x12K\n" +
+	"\apayment\x18\x0f \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\apayment*\x8b\x01\n" +
 	"\x0eOperationState\x12\x1f\n" +
 	"\x1bOPERATION_STATE_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18OPERATION_STATE_EXECUTED\x10\x01\x12\x1c\n" +
 	"\x18OPERATION_STATE_CANCELED\x10\x02\x12\x1c\n" +
-	"\x18OPERATION_STATE_PROGRESS\x10\x03*\xe0\x10\n" +
+	"\x18OPERATION_STATE_PROGRESS\x10\x03*\xf9\x11\n" +
 	"\rOperationType\x12\x1e\n" +
 	"\x1aOPERATION_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14OPERATION_TYPE_INPUT\x10\x01\x12\x1b\n" +
@@ -4806,7 +5379,12 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x17OPERATION_TYPE_OVER_COM\x10>\x12\x1e\n" +
 	"\x1aOPERATION_TYPE_OVER_INCOME\x10?\x12$\n" +
 	" OPERATION_TYPE_OPTION_EXPIRATION\x10@\x12$\n" +
-	" OPERATION_TYPE_FUTURE_EXPIRATION\x10A*\xde\x01\n" +
+	" OPERATION_TYPE_FUTURE_EXPIRATION\x10A\x12\x1c\n" +
+	"\x18OPERATION_TYPE_OTHER_FEE\x10B\x12\x18\n" +
+	"\x14OPERATION_TYPE_OTHER\x10C\x12!\n" +
+	"\x1dOPERATION_TYPE_DFA_REDEMPTION\x10D\x12 \n" +
+	"\x1cOPERATION_TYPE_PRIMARY_ORDER\x10E\x12\x1a\n" +
+	"\x16OPERATION_TYPE_FUNDING\x10F*\xde\x01\n" +
 	"\x1bPortfolioSubscriptionStatus\x12-\n" +
 	")PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12)\n" +
 	"%PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS\x10\x01\x123\n" +
@@ -4816,7 +5394,12 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	")POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12)\n" +
 	"%POSITIONS_SUBSCRIPTION_STATUS_SUCCESS\x10\x01\x123\n" +
 	"/POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND\x10\x02\x120\n" +
-	",POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR\x10\x032\x98\b\n" +
+	",POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR\x10\x03*\xea\x01\n" +
+	"#OperationsAccountSubscriptionStatus\x12.\n" +
+	"*OPERATIONS_SUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12*\n" +
+	"&OPERATIONS_SUBSCRIPTION_STATUS_SUCCESS\x10\x01\x124\n" +
+	"0OPERATIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND\x10\x02\x121\n" +
+	"-OPERATIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR\x10\x032\x98\b\n" +
 	"\x11OperationsService\x12\x84\x01\n" +
 	"\rGetOperations\x128.tinkoff.public.invest.api.contract.v1.OperationsRequest\x1a9.tinkoff.public.invest.api.contract.v1.OperationsResponse\x12\x81\x01\n" +
 	"\fGetPortfolio\x127.tinkoff.public.invest.api.contract.v1.PortfolioRequest\x1a8.tinkoff.public.invest.api.contract.v1.PortfolioResponse\x12\x81\x01\n" +
@@ -4824,10 +5407,11 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x11GetWithdrawLimits\x12<.tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest\x1a=.tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse\x12\x8a\x01\n" +
 	"\x0fGetBrokerReport\x12:.tinkoff.public.invest.api.contract.v1.BrokerReportRequest\x1a;.tinkoff.public.invest.api.contract.v1.BrokerReportResponse\x12\xae\x01\n" +
 	"\x19GetDividendsForeignIssuer\x12G.tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest\x1aH.tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse\x12\xa2\x01\n" +
-	"\x15GetOperationsByCursor\x12C.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest\x1aD.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse2\xc3\x02\n" +
+	"\x15GetOperationsByCursor\x12C.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest\x1aD.tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse2\xdb\x03\n" +
 	"\x17OperationsStreamService\x12\x92\x01\n" +
 	"\x0fPortfolioStream\x12=.tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest\x1a>.tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse0\x01\x12\x92\x01\n" +
-	"\x0fPositionsStream\x12=.tinkoff.public.invest.api.contract.v1.PositionsStreamRequest\x1a>.tinkoff.public.invest.api.contract.v1.PositionsStreamResponse0\x01Ba\n" +
+	"\x0fPositionsStream\x12=.tinkoff.public.invest.api.contract.v1.PositionsStreamRequest\x1a>.tinkoff.public.invest.api.contract.v1.PositionsStreamResponse0\x01\x12\x95\x01\n" +
+	"\x10OperationsStream\x12>.tinkoff.public.invest.api.contract.v1.OperationsStreamRequest\x1a?.tinkoff.public.invest.api.contract.v1.OperationsStreamResponse0\x01Ba\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -4842,221 +5426,240 @@ func file_tinvest_operations_proto_rawDescGZIP() []byte {
 	return file_tinvest_operations_proto_rawDescData
 }
 
-var file_tinvest_operations_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_tinvest_operations_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
+var file_tinvest_operations_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
+var file_tinvest_operations_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
 var file_tinvest_operations_proto_goTypes = []any{
 	(OperationState)(0),                                  // 0: tinkoff.public.invest.api.contract.v1.OperationState
 	(OperationType)(0),                                   // 1: tinkoff.public.invest.api.contract.v1.OperationType
 	(PortfolioSubscriptionStatus)(0),                     // 2: tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionStatus
 	(PositionsAccountSubscriptionStatus)(0),              // 3: tinkoff.public.invest.api.contract.v1.PositionsAccountSubscriptionStatus
-	(PortfolioRequest_CurrencyRequest)(0),                // 4: tinkoff.public.invest.api.contract.v1.PortfolioRequest.CurrencyRequest
-	(*OperationsRequest)(nil),                            // 5: tinkoff.public.invest.api.contract.v1.OperationsRequest
-	(*OperationsResponse)(nil),                           // 6: tinkoff.public.invest.api.contract.v1.OperationsResponse
-	(*Operation)(nil),                                    // 7: tinkoff.public.invest.api.contract.v1.Operation
-	(*OperationTrade)(nil),                               // 8: tinkoff.public.invest.api.contract.v1.OperationTrade
-	(*PortfolioRequest)(nil),                             // 9: tinkoff.public.invest.api.contract.v1.PortfolioRequest
-	(*PortfolioResponse)(nil),                            // 10: tinkoff.public.invest.api.contract.v1.PortfolioResponse
-	(*PositionsRequest)(nil),                             // 11: tinkoff.public.invest.api.contract.v1.PositionsRequest
-	(*PositionsResponse)(nil),                            // 12: tinkoff.public.invest.api.contract.v1.PositionsResponse
-	(*WithdrawLimitsRequest)(nil),                        // 13: tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
-	(*WithdrawLimitsResponse)(nil),                       // 14: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
-	(*PortfolioPosition)(nil),                            // 15: tinkoff.public.invest.api.contract.v1.PortfolioPosition
-	(*VirtualPortfolioPosition)(nil),                     // 16: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition
-	(*PositionsSecurities)(nil),                          // 17: tinkoff.public.invest.api.contract.v1.PositionsSecurities
-	(*PositionsFutures)(nil),                             // 18: tinkoff.public.invest.api.contract.v1.PositionsFutures
-	(*PositionsOptions)(nil),                             // 19: tinkoff.public.invest.api.contract.v1.PositionsOptions
-	(*BrokerReportRequest)(nil),                          // 20: tinkoff.public.invest.api.contract.v1.BrokerReportRequest
-	(*BrokerReportResponse)(nil),                         // 21: tinkoff.public.invest.api.contract.v1.BrokerReportResponse
-	(*GenerateBrokerReportRequest)(nil),                  // 22: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest
-	(*GenerateBrokerReportResponse)(nil),                 // 23: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportResponse
-	(*GetBrokerReportRequest)(nil),                       // 24: tinkoff.public.invest.api.contract.v1.GetBrokerReportRequest
-	(*GetBrokerReportResponse)(nil),                      // 25: tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse
-	(*BrokerReport)(nil),                                 // 26: tinkoff.public.invest.api.contract.v1.BrokerReport
-	(*GetDividendsForeignIssuerRequest)(nil),             // 27: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest
-	(*GetDividendsForeignIssuerResponse)(nil),            // 28: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse
-	(*GenerateDividendsForeignIssuerReportRequest)(nil),  // 29: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest
-	(*GetDividendsForeignIssuerReportRequest)(nil),       // 30: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportRequest
-	(*GenerateDividendsForeignIssuerReportResponse)(nil), // 31: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportResponse
-	(*GetDividendsForeignIssuerReportResponse)(nil),      // 32: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse
-	(*DividendsForeignIssuerReport)(nil),                 // 33: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport
-	(*PortfolioStreamRequest)(nil),                       // 34: tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest
-	(*PortfolioStreamResponse)(nil),                      // 35: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse
-	(*PortfolioSubscriptionResult)(nil),                  // 36: tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult
-	(*AccountSubscriptionStatus)(nil),                    // 37: tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus
-	(*GetOperationsByCursorRequest)(nil),                 // 38: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
-	(*GetOperationsByCursorResponse)(nil),                // 39: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
-	(*OperationItem)(nil),                                // 40: tinkoff.public.invest.api.contract.v1.OperationItem
-	(*OperationItemTrades)(nil),                          // 41: tinkoff.public.invest.api.contract.v1.OperationItemTrades
-	(*OperationItemTrade)(nil),                           // 42: tinkoff.public.invest.api.contract.v1.OperationItemTrade
-	(*PositionsStreamRequest)(nil),                       // 43: tinkoff.public.invest.api.contract.v1.PositionsStreamRequest
-	(*PositionsStreamResponse)(nil),                      // 44: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse
-	(*PositionsSubscriptionResult)(nil),                  // 45: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult
-	(*PositionsSubscriptionStatus)(nil),                  // 46: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus
-	(*PositionData)(nil),                                 // 47: tinkoff.public.invest.api.contract.v1.PositionData
-	(*PositionsMoney)(nil),                               // 48: tinkoff.public.invest.api.contract.v1.PositionsMoney
-	(*ChildOperationItem)(nil),                           // 49: tinkoff.public.invest.api.contract.v1.ChildOperationItem
-	(*timestamppb.Timestamp)(nil),                        // 50: google.protobuf.Timestamp
-	(*MoneyValue)(nil),                                   // 51: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(*Quotation)(nil),                                    // 52: tinkoff.public.invest.api.contract.v1.Quotation
-	(*PingDelaySettings)(nil),                            // 53: tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	(*Ping)(nil),                                         // 54: tinkoff.public.invest.api.contract.v1.Ping
-	(InstrumentType)(0),                                  // 55: tinkoff.public.invest.api.contract.v1.InstrumentType
+	(OperationsAccountSubscriptionStatus)(0),             // 4: tinkoff.public.invest.api.contract.v1.OperationsAccountSubscriptionStatus
+	(PortfolioRequest_CurrencyRequest)(0),                // 5: tinkoff.public.invest.api.contract.v1.PortfolioRequest.CurrencyRequest
+	(*OperationsRequest)(nil),                            // 6: tinkoff.public.invest.api.contract.v1.OperationsRequest
+	(*OperationsResponse)(nil),                           // 7: tinkoff.public.invest.api.contract.v1.OperationsResponse
+	(*Operation)(nil),                                    // 8: tinkoff.public.invest.api.contract.v1.Operation
+	(*OperationTrade)(nil),                               // 9: tinkoff.public.invest.api.contract.v1.OperationTrade
+	(*PortfolioRequest)(nil),                             // 10: tinkoff.public.invest.api.contract.v1.PortfolioRequest
+	(*PortfolioResponse)(nil),                            // 11: tinkoff.public.invest.api.contract.v1.PortfolioResponse
+	(*PositionsRequest)(nil),                             // 12: tinkoff.public.invest.api.contract.v1.PositionsRequest
+	(*PositionsResponse)(nil),                            // 13: tinkoff.public.invest.api.contract.v1.PositionsResponse
+	(*WithdrawLimitsRequest)(nil),                        // 14: tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
+	(*WithdrawLimitsResponse)(nil),                       // 15: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
+	(*PortfolioPosition)(nil),                            // 16: tinkoff.public.invest.api.contract.v1.PortfolioPosition
+	(*VirtualPortfolioPosition)(nil),                     // 17: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition
+	(*PositionsSecurities)(nil),                          // 18: tinkoff.public.invest.api.contract.v1.PositionsSecurities
+	(*PositionsFutures)(nil),                             // 19: tinkoff.public.invest.api.contract.v1.PositionsFutures
+	(*PositionsOptions)(nil),                             // 20: tinkoff.public.invest.api.contract.v1.PositionsOptions
+	(*BrokerReportRequest)(nil),                          // 21: tinkoff.public.invest.api.contract.v1.BrokerReportRequest
+	(*BrokerReportResponse)(nil),                         // 22: tinkoff.public.invest.api.contract.v1.BrokerReportResponse
+	(*GenerateBrokerReportRequest)(nil),                  // 23: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest
+	(*GenerateBrokerReportResponse)(nil),                 // 24: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportResponse
+	(*GetBrokerReportRequest)(nil),                       // 25: tinkoff.public.invest.api.contract.v1.GetBrokerReportRequest
+	(*GetBrokerReportResponse)(nil),                      // 26: tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse
+	(*BrokerReport)(nil),                                 // 27: tinkoff.public.invest.api.contract.v1.BrokerReport
+	(*GetDividendsForeignIssuerRequest)(nil),             // 28: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest
+	(*GetDividendsForeignIssuerResponse)(nil),            // 29: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse
+	(*GenerateDividendsForeignIssuerReportRequest)(nil),  // 30: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest
+	(*GetDividendsForeignIssuerReportRequest)(nil),       // 31: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportRequest
+	(*GenerateDividendsForeignIssuerReportResponse)(nil), // 32: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportResponse
+	(*GetDividendsForeignIssuerReportResponse)(nil),      // 33: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse
+	(*DividendsForeignIssuerReport)(nil),                 // 34: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport
+	(*PortfolioStreamRequest)(nil),                       // 35: tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest
+	(*PortfolioStreamResponse)(nil),                      // 36: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse
+	(*PortfolioSubscriptionResult)(nil),                  // 37: tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult
+	(*AccountSubscriptionStatus)(nil),                    // 38: tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus
+	(*GetOperationsByCursorRequest)(nil),                 // 39: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
+	(*GetOperationsByCursorResponse)(nil),                // 40: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
+	(*OperationItem)(nil),                                // 41: tinkoff.public.invest.api.contract.v1.OperationItem
+	(*OperationItemTrades)(nil),                          // 42: tinkoff.public.invest.api.contract.v1.OperationItemTrades
+	(*OperationItemTrade)(nil),                           // 43: tinkoff.public.invest.api.contract.v1.OperationItemTrade
+	(*PositionsStreamRequest)(nil),                       // 44: tinkoff.public.invest.api.contract.v1.PositionsStreamRequest
+	(*PositionsStreamResponse)(nil),                      // 45: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse
+	(*PositionsSubscriptionResult)(nil),                  // 46: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult
+	(*PositionsSubscriptionStatus)(nil),                  // 47: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus
+	(*PositionData)(nil),                                 // 48: tinkoff.public.invest.api.contract.v1.PositionData
+	(*PositionsMoney)(nil),                               // 49: tinkoff.public.invest.api.contract.v1.PositionsMoney
+	(*ChildOperationItem)(nil),                           // 50: tinkoff.public.invest.api.contract.v1.ChildOperationItem
+	(*OperationsStreamRequest)(nil),                      // 51: tinkoff.public.invest.api.contract.v1.OperationsStreamRequest
+	(*OperationsStreamResponse)(nil),                     // 52: tinkoff.public.invest.api.contract.v1.OperationsStreamResponse
+	(*OperationsSubscriptionResult)(nil),                 // 53: tinkoff.public.invest.api.contract.v1.OperationsSubscriptionResult
+	(*OperationData)(nil),                                // 54: tinkoff.public.invest.api.contract.v1.OperationData
+	(*timestamppb.Timestamp)(nil),                        // 55: google.protobuf.Timestamp
+	(*MoneyValue)(nil),                                   // 56: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(*Quotation)(nil),                                    // 57: tinkoff.public.invest.api.contract.v1.Quotation
+	(*PingDelaySettings)(nil),                            // 58: tinkoff.public.invest.api.contract.v1.PingDelaySettings
+	(*Ping)(nil),                                         // 59: tinkoff.public.invest.api.contract.v1.Ping
+	(InstrumentType)(0),                                  // 60: tinkoff.public.invest.api.contract.v1.InstrumentType
 }
 var file_tinvest_operations_proto_depIdxs = []int32{
-	50,  // 0: tinkoff.public.invest.api.contract.v1.OperationsRequest.from:type_name -> google.protobuf.Timestamp
-	50,  // 1: tinkoff.public.invest.api.contract.v1.OperationsRequest.to:type_name -> google.protobuf.Timestamp
+	55,  // 0: tinkoff.public.invest.api.contract.v1.OperationsRequest.from:type_name -> google.protobuf.Timestamp
+	55,  // 1: tinkoff.public.invest.api.contract.v1.OperationsRequest.to:type_name -> google.protobuf.Timestamp
 	0,   // 2: tinkoff.public.invest.api.contract.v1.OperationsRequest.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
-	7,   // 3: tinkoff.public.invest.api.contract.v1.OperationsResponse.operations:type_name -> tinkoff.public.invest.api.contract.v1.Operation
-	51,  // 4: tinkoff.public.invest.api.contract.v1.Operation.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 5: tinkoff.public.invest.api.contract.v1.Operation.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	8,   // 3: tinkoff.public.invest.api.contract.v1.OperationsResponse.operations:type_name -> tinkoff.public.invest.api.contract.v1.Operation
+	56,  // 4: tinkoff.public.invest.api.contract.v1.Operation.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 5: tinkoff.public.invest.api.contract.v1.Operation.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
 	0,   // 6: tinkoff.public.invest.api.contract.v1.Operation.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
-	50,  // 7: tinkoff.public.invest.api.contract.v1.Operation.date:type_name -> google.protobuf.Timestamp
+	55,  // 7: tinkoff.public.invest.api.contract.v1.Operation.date:type_name -> google.protobuf.Timestamp
 	1,   // 8: tinkoff.public.invest.api.contract.v1.Operation.operation_type:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
-	8,   // 9: tinkoff.public.invest.api.contract.v1.Operation.trades:type_name -> tinkoff.public.invest.api.contract.v1.OperationTrade
-	49,  // 10: tinkoff.public.invest.api.contract.v1.Operation.child_operations:type_name -> tinkoff.public.invest.api.contract.v1.ChildOperationItem
-	50,  // 11: tinkoff.public.invest.api.contract.v1.OperationTrade.date_time:type_name -> google.protobuf.Timestamp
-	51,  // 12: tinkoff.public.invest.api.contract.v1.OperationTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	4,   // 13: tinkoff.public.invest.api.contract.v1.PortfolioRequest.currency:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioRequest.CurrencyRequest
-	51,  // 14: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_shares:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 15: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_bonds:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 16: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_etf:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 17: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_currencies:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 18: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_futures:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 19: tinkoff.public.invest.api.contract.v1.PortfolioResponse.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	15,  // 20: tinkoff.public.invest.api.contract.v1.PortfolioResponse.positions:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioPosition
-	51,  // 21: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_options:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 22: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_sp:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 23: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	16,  // 24: tinkoff.public.invest.api.contract.v1.PortfolioResponse.virtual_positions:type_name -> tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition
-	51,  // 25: tinkoff.public.invest.api.contract.v1.PortfolioResponse.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 26: tinkoff.public.invest.api.contract.v1.PortfolioResponse.daily_yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 27: tinkoff.public.invest.api.contract.v1.PositionsResponse.money:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 28: tinkoff.public.invest.api.contract.v1.PositionsResponse.blocked:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	17,  // 29: tinkoff.public.invest.api.contract.v1.PositionsResponse.securities:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSecurities
-	18,  // 30: tinkoff.public.invest.api.contract.v1.PositionsResponse.futures:type_name -> tinkoff.public.invest.api.contract.v1.PositionsFutures
-	19,  // 31: tinkoff.public.invest.api.contract.v1.PositionsResponse.options:type_name -> tinkoff.public.invest.api.contract.v1.PositionsOptions
-	51,  // 32: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.money:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 33: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.blocked:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 34: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.blocked_guarantee:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 35: tinkoff.public.invest.api.contract.v1.PortfolioPosition.quantity:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 36: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 37: tinkoff.public.invest.api.contract.v1.PortfolioPosition.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 38: tinkoff.public.invest.api.contract.v1.PortfolioPosition.current_nkd:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 39: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price_pt:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 40: tinkoff.public.invest.api.contract.v1.PortfolioPosition.current_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 41: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price_fifo:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 42: tinkoff.public.invest.api.contract.v1.PortfolioPosition.quantity_lots:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 43: tinkoff.public.invest.api.contract.v1.PortfolioPosition.blocked_lots:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 44: tinkoff.public.invest.api.contract.v1.PortfolioPosition.var_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 45: tinkoff.public.invest.api.contract.v1.PortfolioPosition.expected_yield_fifo:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 46: tinkoff.public.invest.api.contract.v1.PortfolioPosition.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 47: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.quantity:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 48: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 49: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 50: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expected_yield_fifo:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	50,  // 51: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expire_date:type_name -> google.protobuf.Timestamp
-	51,  // 52: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.current_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 53: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.average_position_price_fifo:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 54: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	22,  // 55: tinkoff.public.invest.api.contract.v1.BrokerReportRequest.generate_broker_report_request:type_name -> tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest
-	24,  // 56: tinkoff.public.invest.api.contract.v1.BrokerReportRequest.get_broker_report_request:type_name -> tinkoff.public.invest.api.contract.v1.GetBrokerReportRequest
-	23,  // 57: tinkoff.public.invest.api.contract.v1.BrokerReportResponse.generate_broker_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GenerateBrokerReportResponse
-	25,  // 58: tinkoff.public.invest.api.contract.v1.BrokerReportResponse.get_broker_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse
-	50,  // 59: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest.from:type_name -> google.protobuf.Timestamp
-	50,  // 60: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest.to:type_name -> google.protobuf.Timestamp
-	26,  // 61: tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse.broker_report:type_name -> tinkoff.public.invest.api.contract.v1.BrokerReport
-	50,  // 62: tinkoff.public.invest.api.contract.v1.BrokerReport.trade_datetime:type_name -> google.protobuf.Timestamp
-	51,  // 63: tinkoff.public.invest.api.contract.v1.BrokerReport.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 64: tinkoff.public.invest.api.contract.v1.BrokerReport.order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 65: tinkoff.public.invest.api.contract.v1.BrokerReport.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 66: tinkoff.public.invest.api.contract.v1.BrokerReport.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 67: tinkoff.public.invest.api.contract.v1.BrokerReport.broker_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 68: tinkoff.public.invest.api.contract.v1.BrokerReport.exchange_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 69: tinkoff.public.invest.api.contract.v1.BrokerReport.exchange_clearing_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 70: tinkoff.public.invest.api.contract.v1.BrokerReport.repo_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	50,  // 71: tinkoff.public.invest.api.contract.v1.BrokerReport.clear_value_date:type_name -> google.protobuf.Timestamp
-	50,  // 72: tinkoff.public.invest.api.contract.v1.BrokerReport.sec_value_date:type_name -> google.protobuf.Timestamp
-	29,  // 73: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest.generate_div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest
-	30,  // 74: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest.get_div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportRequest
-	31,  // 75: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse.generate_div_foreign_issuer_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportResponse
-	32,  // 76: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse.div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse
-	50,  // 77: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest.from:type_name -> google.protobuf.Timestamp
-	50,  // 78: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest.to:type_name -> google.protobuf.Timestamp
-	33,  // 79: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse.dividends_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport
-	50,  // 80: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.record_date:type_name -> google.protobuf.Timestamp
-	50,  // 81: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.payment_date:type_name -> google.protobuf.Timestamp
-	52,  // 82: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 83: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.external_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 84: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend_gross:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 85: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.tax:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	52,  // 86: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	53,  // 87: tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	36,  // 88: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult
-	10,  // 89: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.portfolio:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioResponse
-	54,  // 90: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
-	37,  // 91: tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult.accounts:type_name -> tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus
-	2,   // 92: tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionStatus
-	50,  // 93: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.from:type_name -> google.protobuf.Timestamp
-	50,  // 94: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.to:type_name -> google.protobuf.Timestamp
-	1,   // 95: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.operation_types:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
-	0,   // 96: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
-	40,  // 97: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse.items:type_name -> tinkoff.public.invest.api.contract.v1.OperationItem
-	50,  // 98: tinkoff.public.invest.api.contract.v1.OperationItem.date:type_name -> google.protobuf.Timestamp
-	1,   // 99: tinkoff.public.invest.api.contract.v1.OperationItem.type:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
-	0,   // 100: tinkoff.public.invest.api.contract.v1.OperationItem.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
-	55,  // 101: tinkoff.public.invest.api.contract.v1.OperationItem.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	51,  // 102: tinkoff.public.invest.api.contract.v1.OperationItem.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 103: tinkoff.public.invest.api.contract.v1.OperationItem.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 104: tinkoff.public.invest.api.contract.v1.OperationItem.commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 105: tinkoff.public.invest.api.contract.v1.OperationItem.yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 106: tinkoff.public.invest.api.contract.v1.OperationItem.yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	51,  // 107: tinkoff.public.invest.api.contract.v1.OperationItem.accrued_int:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	50,  // 108: tinkoff.public.invest.api.contract.v1.OperationItem.cancel_date_time:type_name -> google.protobuf.Timestamp
-	41,  // 109: tinkoff.public.invest.api.contract.v1.OperationItem.trades_info:type_name -> tinkoff.public.invest.api.contract.v1.OperationItemTrades
-	49,  // 110: tinkoff.public.invest.api.contract.v1.OperationItem.child_operations:type_name -> tinkoff.public.invest.api.contract.v1.ChildOperationItem
-	42,  // 111: tinkoff.public.invest.api.contract.v1.OperationItemTrades.trades:type_name -> tinkoff.public.invest.api.contract.v1.OperationItemTrade
-	50,  // 112: tinkoff.public.invest.api.contract.v1.OperationItemTrade.date:type_name -> google.protobuf.Timestamp
-	51,  // 113: tinkoff.public.invest.api.contract.v1.OperationItemTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 114: tinkoff.public.invest.api.contract.v1.OperationItemTrade.yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	52,  // 115: tinkoff.public.invest.api.contract.v1.OperationItemTrade.yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	53,  // 116: tinkoff.public.invest.api.contract.v1.PositionsStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
-	45,  // 117: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult
-	47,  // 118: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.position:type_name -> tinkoff.public.invest.api.contract.v1.PositionData
-	54,  // 119: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
-	12,  // 120: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.initial_positions:type_name -> tinkoff.public.invest.api.contract.v1.PositionsResponse
-	46,  // 121: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult.accounts:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus
-	3,   // 122: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.PositionsAccountSubscriptionStatus
-	48,  // 123: tinkoff.public.invest.api.contract.v1.PositionData.money:type_name -> tinkoff.public.invest.api.contract.v1.PositionsMoney
-	17,  // 124: tinkoff.public.invest.api.contract.v1.PositionData.securities:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSecurities
-	18,  // 125: tinkoff.public.invest.api.contract.v1.PositionData.futures:type_name -> tinkoff.public.invest.api.contract.v1.PositionsFutures
-	19,  // 126: tinkoff.public.invest.api.contract.v1.PositionData.options:type_name -> tinkoff.public.invest.api.contract.v1.PositionsOptions
-	50,  // 127: tinkoff.public.invest.api.contract.v1.PositionData.date:type_name -> google.protobuf.Timestamp
-	51,  // 128: tinkoff.public.invest.api.contract.v1.PositionsMoney.available_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 129: tinkoff.public.invest.api.contract.v1.PositionsMoney.blocked_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	51,  // 130: tinkoff.public.invest.api.contract.v1.ChildOperationItem.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	5,   // 131: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperations:input_type -> tinkoff.public.invest.api.contract.v1.OperationsRequest
-	9,   // 132: tinkoff.public.invest.api.contract.v1.OperationsService.GetPortfolio:input_type -> tinkoff.public.invest.api.contract.v1.PortfolioRequest
-	11,  // 133: tinkoff.public.invest.api.contract.v1.OperationsService.GetPositions:input_type -> tinkoff.public.invest.api.contract.v1.PositionsRequest
-	13,  // 134: tinkoff.public.invest.api.contract.v1.OperationsService.GetWithdrawLimits:input_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
-	20,  // 135: tinkoff.public.invest.api.contract.v1.OperationsService.GetBrokerReport:input_type -> tinkoff.public.invest.api.contract.v1.BrokerReportRequest
-	27,  // 136: tinkoff.public.invest.api.contract.v1.OperationsService.GetDividendsForeignIssuer:input_type -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest
-	38,  // 137: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperationsByCursor:input_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
-	34,  // 138: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PortfolioStream:input_type -> tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest
-	43,  // 139: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PositionsStream:input_type -> tinkoff.public.invest.api.contract.v1.PositionsStreamRequest
-	6,   // 140: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperations:output_type -> tinkoff.public.invest.api.contract.v1.OperationsResponse
-	10,  // 141: tinkoff.public.invest.api.contract.v1.OperationsService.GetPortfolio:output_type -> tinkoff.public.invest.api.contract.v1.PortfolioResponse
-	12,  // 142: tinkoff.public.invest.api.contract.v1.OperationsService.GetPositions:output_type -> tinkoff.public.invest.api.contract.v1.PositionsResponse
-	14,  // 143: tinkoff.public.invest.api.contract.v1.OperationsService.GetWithdrawLimits:output_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
-	21,  // 144: tinkoff.public.invest.api.contract.v1.OperationsService.GetBrokerReport:output_type -> tinkoff.public.invest.api.contract.v1.BrokerReportResponse
-	28,  // 145: tinkoff.public.invest.api.contract.v1.OperationsService.GetDividendsForeignIssuer:output_type -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse
-	39,  // 146: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperationsByCursor:output_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
-	35,  // 147: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PortfolioStream:output_type -> tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse
-	44,  // 148: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PositionsStream:output_type -> tinkoff.public.invest.api.contract.v1.PositionsStreamResponse
-	140, // [140:149] is the sub-list for method output_type
-	131, // [131:140] is the sub-list for method input_type
-	131, // [131:131] is the sub-list for extension type_name
-	131, // [131:131] is the sub-list for extension extendee
-	0,   // [0:131] is the sub-list for field type_name
+	9,   // 9: tinkoff.public.invest.api.contract.v1.Operation.trades:type_name -> tinkoff.public.invest.api.contract.v1.OperationTrade
+	50,  // 10: tinkoff.public.invest.api.contract.v1.Operation.child_operations:type_name -> tinkoff.public.invest.api.contract.v1.ChildOperationItem
+	55,  // 11: tinkoff.public.invest.api.contract.v1.OperationTrade.date_time:type_name -> google.protobuf.Timestamp
+	56,  // 12: tinkoff.public.invest.api.contract.v1.OperationTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	5,   // 13: tinkoff.public.invest.api.contract.v1.PortfolioRequest.currency:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioRequest.CurrencyRequest
+	56,  // 14: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_shares:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 15: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_bonds:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 16: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_etf:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 17: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_currencies:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 18: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_futures:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 19: tinkoff.public.invest.api.contract.v1.PortfolioResponse.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	16,  // 20: tinkoff.public.invest.api.contract.v1.PortfolioResponse.positions:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioPosition
+	56,  // 21: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_options:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 22: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_sp:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 23: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	17,  // 24: tinkoff.public.invest.api.contract.v1.PortfolioResponse.virtual_positions:type_name -> tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition
+	56,  // 25: tinkoff.public.invest.api.contract.v1.PortfolioResponse.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 26: tinkoff.public.invest.api.contract.v1.PortfolioResponse.daily_yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 27: tinkoff.public.invest.api.contract.v1.PortfolioResponse.total_amount_dfa:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 28: tinkoff.public.invest.api.contract.v1.PositionsResponse.money:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 29: tinkoff.public.invest.api.contract.v1.PositionsResponse.blocked:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	18,  // 30: tinkoff.public.invest.api.contract.v1.PositionsResponse.securities:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSecurities
+	19,  // 31: tinkoff.public.invest.api.contract.v1.PositionsResponse.futures:type_name -> tinkoff.public.invest.api.contract.v1.PositionsFutures
+	20,  // 32: tinkoff.public.invest.api.contract.v1.PositionsResponse.options:type_name -> tinkoff.public.invest.api.contract.v1.PositionsOptions
+	56,  // 33: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.money:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 34: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.blocked:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 35: tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse.blocked_guarantee:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 36: tinkoff.public.invest.api.contract.v1.PortfolioPosition.quantity:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 37: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 38: tinkoff.public.invest.api.contract.v1.PortfolioPosition.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 39: tinkoff.public.invest.api.contract.v1.PortfolioPosition.current_nkd:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 40: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price_pt:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 41: tinkoff.public.invest.api.contract.v1.PortfolioPosition.current_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 42: tinkoff.public.invest.api.contract.v1.PortfolioPosition.average_position_price_fifo:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 43: tinkoff.public.invest.api.contract.v1.PortfolioPosition.quantity_lots:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 44: tinkoff.public.invest.api.contract.v1.PortfolioPosition.blocked_lots:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 45: tinkoff.public.invest.api.contract.v1.PortfolioPosition.var_margin:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 46: tinkoff.public.invest.api.contract.v1.PortfolioPosition.expected_yield_fifo:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 47: tinkoff.public.invest.api.contract.v1.PortfolioPosition.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 48: tinkoff.public.invest.api.contract.v1.PortfolioPosition.var_margin_settled:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 49: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.quantity:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 50: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.average_position_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 51: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expected_yield:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 52: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expected_yield_fifo:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	55,  // 53: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.expire_date:type_name -> google.protobuf.Timestamp
+	56,  // 54: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.current_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 55: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.average_position_price_fifo:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 56: tinkoff.public.invest.api.contract.v1.VirtualPortfolioPosition.daily_yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	23,  // 57: tinkoff.public.invest.api.contract.v1.BrokerReportRequest.generate_broker_report_request:type_name -> tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest
+	25,  // 58: tinkoff.public.invest.api.contract.v1.BrokerReportRequest.get_broker_report_request:type_name -> tinkoff.public.invest.api.contract.v1.GetBrokerReportRequest
+	24,  // 59: tinkoff.public.invest.api.contract.v1.BrokerReportResponse.generate_broker_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GenerateBrokerReportResponse
+	26,  // 60: tinkoff.public.invest.api.contract.v1.BrokerReportResponse.get_broker_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse
+	55,  // 61: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest.from:type_name -> google.protobuf.Timestamp
+	55,  // 62: tinkoff.public.invest.api.contract.v1.GenerateBrokerReportRequest.to:type_name -> google.protobuf.Timestamp
+	27,  // 63: tinkoff.public.invest.api.contract.v1.GetBrokerReportResponse.broker_report:type_name -> tinkoff.public.invest.api.contract.v1.BrokerReport
+	55,  // 64: tinkoff.public.invest.api.contract.v1.BrokerReport.trade_datetime:type_name -> google.protobuf.Timestamp
+	56,  // 65: tinkoff.public.invest.api.contract.v1.BrokerReport.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 66: tinkoff.public.invest.api.contract.v1.BrokerReport.order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 67: tinkoff.public.invest.api.contract.v1.BrokerReport.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 68: tinkoff.public.invest.api.contract.v1.BrokerReport.total_order_amount:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 69: tinkoff.public.invest.api.contract.v1.BrokerReport.broker_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 70: tinkoff.public.invest.api.contract.v1.BrokerReport.exchange_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 71: tinkoff.public.invest.api.contract.v1.BrokerReport.exchange_clearing_commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 72: tinkoff.public.invest.api.contract.v1.BrokerReport.repo_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	55,  // 73: tinkoff.public.invest.api.contract.v1.BrokerReport.clear_value_date:type_name -> google.protobuf.Timestamp
+	55,  // 74: tinkoff.public.invest.api.contract.v1.BrokerReport.sec_value_date:type_name -> google.protobuf.Timestamp
+	30,  // 75: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest.generate_div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest
+	31,  // 76: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest.get_div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportRequest
+	32,  // 77: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse.generate_div_foreign_issuer_report_response:type_name -> tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportResponse
+	33,  // 78: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse.div_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse
+	55,  // 79: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest.from:type_name -> google.protobuf.Timestamp
+	55,  // 80: tinkoff.public.invest.api.contract.v1.GenerateDividendsForeignIssuerReportRequest.to:type_name -> google.protobuf.Timestamp
+	34,  // 81: tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerReportResponse.dividends_foreign_issuer_report:type_name -> tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport
+	55,  // 82: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.record_date:type_name -> google.protobuf.Timestamp
+	55,  // 83: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.payment_date:type_name -> google.protobuf.Timestamp
+	57,  // 84: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 85: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.external_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 86: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend_gross:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 87: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.tax:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	57,  // 88: tinkoff.public.invest.api.contract.v1.DividendsForeignIssuerReport.dividend_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	58,  // 89: tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
+	37,  // 90: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult
+	11,  // 91: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.portfolio:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioResponse
+	59,  // 92: tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
+	38,  // 93: tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionResult.accounts:type_name -> tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus
+	2,   // 94: tinkoff.public.invest.api.contract.v1.AccountSubscriptionStatus.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.PortfolioSubscriptionStatus
+	55,  // 95: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.from:type_name -> google.protobuf.Timestamp
+	55,  // 96: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.to:type_name -> google.protobuf.Timestamp
+	1,   // 97: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.operation_types:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
+	0,   // 98: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
+	41,  // 99: tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse.items:type_name -> tinkoff.public.invest.api.contract.v1.OperationItem
+	55,  // 100: tinkoff.public.invest.api.contract.v1.OperationItem.date:type_name -> google.protobuf.Timestamp
+	1,   // 101: tinkoff.public.invest.api.contract.v1.OperationItem.type:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
+	0,   // 102: tinkoff.public.invest.api.contract.v1.OperationItem.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
+	60,  // 103: tinkoff.public.invest.api.contract.v1.OperationItem.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	56,  // 104: tinkoff.public.invest.api.contract.v1.OperationItem.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 105: tinkoff.public.invest.api.contract.v1.OperationItem.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 106: tinkoff.public.invest.api.contract.v1.OperationItem.commission:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 107: tinkoff.public.invest.api.contract.v1.OperationItem.yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 108: tinkoff.public.invest.api.contract.v1.OperationItem.yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	56,  // 109: tinkoff.public.invest.api.contract.v1.OperationItem.accrued_int:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	55,  // 110: tinkoff.public.invest.api.contract.v1.OperationItem.cancel_date_time:type_name -> google.protobuf.Timestamp
+	42,  // 111: tinkoff.public.invest.api.contract.v1.OperationItem.trades_info:type_name -> tinkoff.public.invest.api.contract.v1.OperationItemTrades
+	50,  // 112: tinkoff.public.invest.api.contract.v1.OperationItem.child_operations:type_name -> tinkoff.public.invest.api.contract.v1.ChildOperationItem
+	43,  // 113: tinkoff.public.invest.api.contract.v1.OperationItemTrades.trades:type_name -> tinkoff.public.invest.api.contract.v1.OperationItemTrade
+	55,  // 114: tinkoff.public.invest.api.contract.v1.OperationItemTrade.date:type_name -> google.protobuf.Timestamp
+	56,  // 115: tinkoff.public.invest.api.contract.v1.OperationItemTrade.price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 116: tinkoff.public.invest.api.contract.v1.OperationItemTrade.yield:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	57,  // 117: tinkoff.public.invest.api.contract.v1.OperationItemTrade.yield_relative:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	58,  // 118: tinkoff.public.invest.api.contract.v1.PositionsStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
+	46,  // 119: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult
+	48,  // 120: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.position:type_name -> tinkoff.public.invest.api.contract.v1.PositionData
+	59,  // 121: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
+	13,  // 122: tinkoff.public.invest.api.contract.v1.PositionsStreamResponse.initial_positions:type_name -> tinkoff.public.invest.api.contract.v1.PositionsResponse
+	47,  // 123: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionResult.accounts:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus
+	3,   // 124: tinkoff.public.invest.api.contract.v1.PositionsSubscriptionStatus.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.PositionsAccountSubscriptionStatus
+	49,  // 125: tinkoff.public.invest.api.contract.v1.PositionData.money:type_name -> tinkoff.public.invest.api.contract.v1.PositionsMoney
+	18,  // 126: tinkoff.public.invest.api.contract.v1.PositionData.securities:type_name -> tinkoff.public.invest.api.contract.v1.PositionsSecurities
+	19,  // 127: tinkoff.public.invest.api.contract.v1.PositionData.futures:type_name -> tinkoff.public.invest.api.contract.v1.PositionsFutures
+	20,  // 128: tinkoff.public.invest.api.contract.v1.PositionData.options:type_name -> tinkoff.public.invest.api.contract.v1.PositionsOptions
+	55,  // 129: tinkoff.public.invest.api.contract.v1.PositionData.date:type_name -> google.protobuf.Timestamp
+	56,  // 130: tinkoff.public.invest.api.contract.v1.PositionsMoney.available_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 131: tinkoff.public.invest.api.contract.v1.PositionsMoney.blocked_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	56,  // 132: tinkoff.public.invest.api.contract.v1.ChildOperationItem.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	58,  // 133: tinkoff.public.invest.api.contract.v1.OperationsStreamRequest.ping_settings:type_name -> tinkoff.public.invest.api.contract.v1.PingDelaySettings
+	53,  // 134: tinkoff.public.invest.api.contract.v1.OperationsStreamResponse.subscriptions:type_name -> tinkoff.public.invest.api.contract.v1.OperationsSubscriptionResult
+	54,  // 135: tinkoff.public.invest.api.contract.v1.OperationsStreamResponse.operation:type_name -> tinkoff.public.invest.api.contract.v1.OperationData
+	59,  // 136: tinkoff.public.invest.api.contract.v1.OperationsStreamResponse.ping:type_name -> tinkoff.public.invest.api.contract.v1.Ping
+	4,   // 137: tinkoff.public.invest.api.contract.v1.OperationsSubscriptionResult.subscription_status:type_name -> tinkoff.public.invest.api.contract.v1.OperationsAccountSubscriptionStatus
+	55,  // 138: tinkoff.public.invest.api.contract.v1.OperationData.date:type_name -> google.protobuf.Timestamp
+	1,   // 139: tinkoff.public.invest.api.contract.v1.OperationData.type:type_name -> tinkoff.public.invest.api.contract.v1.OperationType
+	0,   // 140: tinkoff.public.invest.api.contract.v1.OperationData.state:type_name -> tinkoff.public.invest.api.contract.v1.OperationState
+	60,  // 141: tinkoff.public.invest.api.contract.v1.OperationData.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	56,  // 142: tinkoff.public.invest.api.contract.v1.OperationData.payment:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	6,   // 143: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperations:input_type -> tinkoff.public.invest.api.contract.v1.OperationsRequest
+	10,  // 144: tinkoff.public.invest.api.contract.v1.OperationsService.GetPortfolio:input_type -> tinkoff.public.invest.api.contract.v1.PortfolioRequest
+	12,  // 145: tinkoff.public.invest.api.contract.v1.OperationsService.GetPositions:input_type -> tinkoff.public.invest.api.contract.v1.PositionsRequest
+	14,  // 146: tinkoff.public.invest.api.contract.v1.OperationsService.GetWithdrawLimits:input_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsRequest
+	21,  // 147: tinkoff.public.invest.api.contract.v1.OperationsService.GetBrokerReport:input_type -> tinkoff.public.invest.api.contract.v1.BrokerReportRequest
+	28,  // 148: tinkoff.public.invest.api.contract.v1.OperationsService.GetDividendsForeignIssuer:input_type -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerRequest
+	39,  // 149: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperationsByCursor:input_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorRequest
+	35,  // 150: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PortfolioStream:input_type -> tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest
+	44,  // 151: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PositionsStream:input_type -> tinkoff.public.invest.api.contract.v1.PositionsStreamRequest
+	51,  // 152: tinkoff.public.invest.api.contract.v1.OperationsStreamService.OperationsStream:input_type -> tinkoff.public.invest.api.contract.v1.OperationsStreamRequest
+	7,   // 153: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperations:output_type -> tinkoff.public.invest.api.contract.v1.OperationsResponse
+	11,  // 154: tinkoff.public.invest.api.contract.v1.OperationsService.GetPortfolio:output_type -> tinkoff.public.invest.api.contract.v1.PortfolioResponse
+	13,  // 155: tinkoff.public.invest.api.contract.v1.OperationsService.GetPositions:output_type -> tinkoff.public.invest.api.contract.v1.PositionsResponse
+	15,  // 156: tinkoff.public.invest.api.contract.v1.OperationsService.GetWithdrawLimits:output_type -> tinkoff.public.invest.api.contract.v1.WithdrawLimitsResponse
+	22,  // 157: tinkoff.public.invest.api.contract.v1.OperationsService.GetBrokerReport:output_type -> tinkoff.public.invest.api.contract.v1.BrokerReportResponse
+	29,  // 158: tinkoff.public.invest.api.contract.v1.OperationsService.GetDividendsForeignIssuer:output_type -> tinkoff.public.invest.api.contract.v1.GetDividendsForeignIssuerResponse
+	40,  // 159: tinkoff.public.invest.api.contract.v1.OperationsService.GetOperationsByCursor:output_type -> tinkoff.public.invest.api.contract.v1.GetOperationsByCursorResponse
+	36,  // 160: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PortfolioStream:output_type -> tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse
+	45,  // 161: tinkoff.public.invest.api.contract.v1.OperationsStreamService.PositionsStream:output_type -> tinkoff.public.invest.api.contract.v1.PositionsStreamResponse
+	52,  // 162: tinkoff.public.invest.api.contract.v1.OperationsStreamService.OperationsStream:output_type -> tinkoff.public.invest.api.contract.v1.OperationsStreamResponse
+	153, // [153:163] is the sub-list for method output_type
+	143, // [143:153] is the sub-list for method input_type
+	143, // [143:143] is the sub-list for extension type_name
+	143, // [143:143] is the sub-list for extension extendee
+	0,   // [0:143] is the sub-list for field type_name
 }
 
 func init() { file_tinvest_operations_proto_init() }
@@ -5067,6 +5670,7 @@ func file_tinvest_operations_proto_init() {
 	file_tinvest_common_proto_init()
 	file_tinvest_operations_proto_msgTypes[0].OneofWrappers = []any{}
 	file_tinvest_operations_proto_msgTypes[4].OneofWrappers = []any{}
+	file_tinvest_operations_proto_msgTypes[10].OneofWrappers = []any{}
 	file_tinvest_operations_proto_msgTypes[15].OneofWrappers = []any{
 		(*BrokerReportRequest_GenerateBrokerReportRequest)(nil),
 		(*BrokerReportRequest_GetBrokerReportRequest)(nil),
@@ -5097,13 +5701,18 @@ func file_tinvest_operations_proto_init() {
 		(*PositionsStreamResponse_Ping)(nil),
 		(*PositionsStreamResponse_InitialPositions)(nil),
 	}
+	file_tinvest_operations_proto_msgTypes[46].OneofWrappers = []any{
+		(*OperationsStreamResponse_Subscriptions)(nil),
+		(*OperationsStreamResponse_Operation)(nil),
+		(*OperationsStreamResponse_Ping)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tinvest_operations_proto_rawDesc), len(file_tinvest_operations_proto_rawDesc)),
-			NumEnums:      5,
-			NumMessages:   45,
+			NumEnums:      6,
+			NumMessages:   49,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

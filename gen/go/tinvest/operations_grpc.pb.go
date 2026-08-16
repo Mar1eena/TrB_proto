@@ -32,7 +32,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OperationsServiceClient interface {
-	// GetOperations — список операций по счету
+	// Deprecated GetOperations — список операций по счету
 	// При работе с методом учитывайте [особенности взаимодействия](/invest/services/operations/operations_problems).
 	GetOperations(ctx context.Context, in *OperationsRequest, opts ...grpc.CallOption) (*OperationsResponse, error)
 	// GetPortfolio — портфель по счету
@@ -132,7 +132,7 @@ func (c *operationsServiceClient) GetOperationsByCursor(ctx context.Context, in 
 // All implementations must embed UnimplementedOperationsServiceServer
 // for forward compatibility.
 type OperationsServiceServer interface {
-	// GetOperations — список операций по счету
+	// Deprecated GetOperations — список операций по счету
 	// При работе с методом учитывайте [особенности взаимодействия](/invest/services/operations/operations_problems).
 	GetOperations(context.Context, *OperationsRequest) (*OperationsResponse, error)
 	// GetPortfolio — портфель по счету
@@ -367,8 +367,9 @@ var OperationsService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	OperationsStreamService_PortfolioStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PortfolioStream"
-	OperationsStreamService_PositionsStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PositionsStream"
+	OperationsStreamService_PortfolioStream_FullMethodName  = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PortfolioStream"
+	OperationsStreamService_PositionsStream_FullMethodName  = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PositionsStream"
+	OperationsStreamService_OperationsStream_FullMethodName = "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/OperationsStream"
 )
 
 // OperationsStreamServiceClient is the client API for OperationsStreamService service.
@@ -379,6 +380,8 @@ type OperationsStreamServiceClient interface {
 	PortfolioStream(ctx context.Context, in *PortfolioStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PortfolioStreamResponse], error)
 	// PositionsStream — стрим обновлений информации по изменению позиций портфеля
 	PositionsStream(ctx context.Context, in *PositionsStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PositionsStreamResponse], error)
+	// OperationsStream — стрим обновлений операций
+	OperationsStream(ctx context.Context, in *OperationsStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OperationsStreamResponse], error)
 }
 
 type operationsStreamServiceClient struct {
@@ -427,6 +430,25 @@ func (c *operationsStreamServiceClient) PositionsStream(ctx context.Context, in 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type OperationsStreamService_PositionsStreamClient = grpc.ServerStreamingClient[PositionsStreamResponse]
 
+func (c *operationsStreamServiceClient) OperationsStream(ctx context.Context, in *OperationsStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OperationsStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &OperationsStreamService_ServiceDesc.Streams[2], OperationsStreamService_OperationsStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[OperationsStreamRequest, OperationsStreamResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type OperationsStreamService_OperationsStreamClient = grpc.ServerStreamingClient[OperationsStreamResponse]
+
 // OperationsStreamServiceServer is the server API for OperationsStreamService service.
 // All implementations must embed UnimplementedOperationsStreamServiceServer
 // for forward compatibility.
@@ -435,6 +457,8 @@ type OperationsStreamServiceServer interface {
 	PortfolioStream(*PortfolioStreamRequest, grpc.ServerStreamingServer[PortfolioStreamResponse]) error
 	// PositionsStream — стрим обновлений информации по изменению позиций портфеля
 	PositionsStream(*PositionsStreamRequest, grpc.ServerStreamingServer[PositionsStreamResponse]) error
+	// OperationsStream — стрим обновлений операций
+	OperationsStream(*OperationsStreamRequest, grpc.ServerStreamingServer[OperationsStreamResponse]) error
 	mustEmbedUnimplementedOperationsStreamServiceServer()
 }
 
@@ -450,6 +474,9 @@ func (UnimplementedOperationsStreamServiceServer) PortfolioStream(*PortfolioStre
 }
 func (UnimplementedOperationsStreamServiceServer) PositionsStream(*PositionsStreamRequest, grpc.ServerStreamingServer[PositionsStreamResponse]) error {
 	return status.Error(codes.Unimplemented, "method PositionsStream not implemented")
+}
+func (UnimplementedOperationsStreamServiceServer) OperationsStream(*OperationsStreamRequest, grpc.ServerStreamingServer[OperationsStreamResponse]) error {
+	return status.Error(codes.Unimplemented, "method OperationsStream not implemented")
 }
 func (UnimplementedOperationsStreamServiceServer) mustEmbedUnimplementedOperationsStreamServiceServer() {
 }
@@ -495,6 +522,17 @@ func _OperationsStreamService_PositionsStream_Handler(srv interface{}, stream gr
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type OperationsStreamService_PositionsStreamServer = grpc.ServerStreamingServer[PositionsStreamResponse]
 
+func _OperationsStreamService_OperationsStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(OperationsStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(OperationsStreamServiceServer).OperationsStream(m, &grpc.GenericServerStream[OperationsStreamRequest, OperationsStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type OperationsStreamService_OperationsStreamServer = grpc.ServerStreamingServer[OperationsStreamResponse]
+
 // OperationsStreamService_ServiceDesc is the grpc.ServiceDesc for OperationsStreamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -511,6 +549,11 @@ var OperationsStreamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "PositionsStream",
 			Handler:       _OperationsStreamService_PositionsStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "OperationsStream",
+			Handler:       _OperationsStreamService_OperationsStream_Handler,
 			ServerStreams: true,
 		},
 	},

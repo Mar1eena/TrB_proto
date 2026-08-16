@@ -448,13 +448,14 @@ type PostStopOrderRequest struct {
 	ExpirationType     StopOrderExpirationType            `protobuf:"varint,7,opt,name=expiration_type,json=expirationType,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderExpirationType" json:"expiration_type,omitempty"`       //Тип экспирации заявки.
 	StopOrderType      StopOrderType                      `protobuf:"varint,8,opt,name=stop_order_type,json=stopOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderType" json:"stop_order_type,omitempty"`                  //Тип заявки.
 	ExpireDate         *timestamppb.Timestamp             `protobuf:"bytes,9,opt,name=expire_date,json=expireDate,proto3,oneof" json:"expire_date,omitempty"`                                                                                 //Дата и время окончания действия стоп-заявки по UTC. Для `ExpirationType = GoodTillDate` заполнение обязательно, для `GoodTillCancel` игнорируется.
-	InstrumentId       string                             `protobuf:"bytes,10,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                                //Идентификатор инструмента. Принимает значение `figi` или `instrument_uid`.
+	InstrumentId       string                             `protobuf:"bytes,10,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                                //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	ExchangeOrderType  ExchangeOrderType                  `protobuf:"varint,11,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки.
 	TakeProfitType     TakeProfitType                     `protobuf:"varint,12,opt,name=take_profit_type,json=takeProfitType,proto3,enum=tinkoff.public.invest.api.contract.v1.TakeProfitType" json:"take_profit_type,omitempty"`             //Подтип стоп-заявки — `TakeProfit`.
 	TrailingData       *PostStopOrderRequest_TrailingData `protobuf:"bytes,13,opt,name=trailing_data,json=trailingData,proto3" json:"trailing_data,omitempty"`                                                                                //Массив с параметрами трейлинг-стопа.
 	PriceType          PriceType                          `protobuf:"varint,14,opt,name=price_type,json=priceType,proto3,enum=tinkoff.public.invest.api.contract.v1.PriceType" json:"price_type,omitempty"`                                   //Тип цены.
 	OrderId            string                             `protobuf:"bytes,15,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`                                                                                               //Идентификатор запроса выставления поручения для целей идемпотентности в формате `UID`. Максимальная длина — 36 символов.
 	ConfirmMarginTrade bool                               `protobuf:"varint,16,opt,name=confirm_margin_trade,json=confirmMarginTrade,proto3" json:"confirm_margin_trade,omitempty"`                                                           //Согласие на выставление заявки, которая может привести к непокрытой позиции, по умолчанию false.
+	InstantExecution   *bool                              `protobuf:"varint,17,opt,name=instant_execution,json=instantExecution,proto3,oneof" json:"instant_execution,omitempty"`                                                             //Признак необходимости моментальной активации, используется только для трейлинг-стопа.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -602,6 +603,13 @@ func (x *PostStopOrderRequest) GetConfirmMarginTrade() bool {
 	return false
 }
 
+func (x *PostStopOrderRequest) GetInstantExecution() bool {
+	if x != nil && x.InstantExecution != nil {
+		return *x.InstantExecution
+	}
+	return false
+}
+
 // Результат выставления стоп-заявки.
 type PostStopOrderResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
@@ -663,7 +671,7 @@ func (x *PostStopOrderResponse) GetResponseMetadata() *ResponseMetadata {
 	return nil
 }
 
-// Запрос получения списка активных стоп-заявок.
+// Запрос получения списка стоп-заявок.
 type GetStopOrdersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`                                            //Идентификатор счета клиента.
@@ -732,7 +740,7 @@ func (x *GetStopOrdersRequest) GetTo() *timestamppb.Timestamp {
 	return nil
 }
 
-// Список активных стоп-заявок.
+// Список стоп-заявок.
 type GetStopOrdersResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StopOrders    []*StopOrder           `protobuf:"bytes,1,rep,name=stop_orders,json=stopOrders,proto3" json:"stop_orders,omitempty"` //Массив стоп-заявок по счету.
@@ -895,6 +903,9 @@ type StopOrder struct {
 	Status             StopOrderStatusOption   `protobuf:"varint,15,opt,name=status,proto3,enum=tinkoff.public.invest.api.contract.v1.StopOrderStatusOption" json:"status,omitempty"`                                              //Статус заявки.
 	ExchangeOrderType  ExchangeOrderType       `protobuf:"varint,16,opt,name=exchange_order_type,json=exchangeOrderType,proto3,enum=tinkoff.public.invest.api.contract.v1.ExchangeOrderType" json:"exchange_order_type,omitempty"` //Тип дочерней биржевой заявки для тейкпрофита.
 	ExchangeOrderId    *string                 `protobuf:"bytes,17,opt,name=exchange_order_id,json=exchangeOrderId,proto3,oneof" json:"exchange_order_id,omitempty"`                                                               //Идентификатор биржевой заявки.
+	Ticker             string                  `protobuf:"bytes,18,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                                //Тикер инструмента.
+	ClassCode          string                  `protobuf:"bytes,19,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                                         //Класс-код (секция торгов).
+	InstantExecution   bool                    `protobuf:"varint,20,opt,name=instant_execution,json=instantExecution,proto3" json:"instant_execution,omitempty"`                                                                   //Признак необходимости моментальной активации, используется только для трейлинг-стопа.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1046,6 +1057,27 @@ func (x *StopOrder) GetExchangeOrderId() string {
 		return *x.ExchangeOrderId
 	}
 	return ""
+}
+
+func (x *StopOrder) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *StopOrder) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
+func (x *StopOrder) GetInstantExecution() bool {
+	if x != nil {
+		return x.InstantExecution
+	}
+	return false
 }
 
 type PostStopOrderRequest_TrailingData struct {
@@ -1212,7 +1244,7 @@ var File_tinvest_stoporders_proto protoreflect.FileDescriptor
 
 const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\n" +
-	"\x18tinvest/stoporders.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"\xa7\f\n" +
+	"\x18tinvest/stoporders.proto\x12%tinkoff.public.invest.api.contract.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x14tinvest/common.proto\"\xef\f\n" +
 	"\x14PostStopOrderRequest\x12\x1b\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01H\x00R\x04figi\x88\x01\x01\x12 \n" +
 	"\bquantity\x18\x02 \x01(\x03B\x04\xe2A\x01\x02R\bquantity\x12K\n" +
@@ -1234,7 +1266,8 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\n" +
 	"price_type\x18\x0e \x01(\x0e20.tinkoff.public.invest.api.contract.v1.PriceTypeR\tpriceType\x12\x1f\n" +
 	"\border_id\x18\x0f \x01(\tB\x04\xe2A\x01\x02R\aorderId\x120\n" +
-	"\x14confirm_margin_trade\x18\x10 \x01(\bR\x12confirmMarginTrade\x1a\xd8\x02\n" +
+	"\x14confirm_margin_trade\x18\x10 \x01(\bR\x12confirmMarginTrade\x120\n" +
+	"\x11instant_execution\x18\x11 \x01(\bH\x04R\x10instantExecution\x88\x01\x01\x1a\xd8\x02\n" +
 	"\fTrailingData\x12H\n" +
 	"\x06indent\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06indent\x12Y\n" +
 	"\vindent_type\x18\x02 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +
@@ -1245,7 +1278,8 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\x05_figiB\b\n" +
 	"\x06_priceB\r\n" +
 	"\v_stop_priceB\x0e\n" +
-	"\f_expire_date\"\xcc\x01\n" +
+	"\f_expire_dateB\x14\n" +
+	"\x12_instant_execution\"\xcc\x01\n" +
 	"\x15PostStopOrderResponse\x12\"\n" +
 	"\rstop_order_id\x18\x01 \x01(\tR\vstopOrderId\x12(\n" +
 	"\x10order_request_id\x18\x02 \x01(\tR\x0eorderRequestId\x12e\n" +
@@ -1264,7 +1298,7 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"account_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\taccountId\x12(\n" +
 	"\rstop_order_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\vstopOrderId\"I\n" +
 	"\x17CancelStopOrderResponse\x12.\n" +
-	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\xce\r\n" +
+	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"\xb2\x0e\n" +
 	"\tStopOrder\x12\"\n" +
 	"\rstop_order_id\x18\x01 \x01(\tR\vstopOrderId\x12%\n" +
 	"\x0elots_requested\x18\x02 \x01(\x03R\rlotsRequested\x12\x12\n" +
@@ -1286,7 +1320,11 @@ const file_tinvest_stoporders_proto_rawDesc = "" +
 	"\rtrailing_data\x18\x0e \x01(\v2=.tinkoff.public.invest.api.contract.v1.StopOrder.TrailingDataR\ftrailingData\x12T\n" +
 	"\x06status\x18\x0f \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.StopOrderStatusOptionR\x06status\x12h\n" +
 	"\x13exchange_order_type\x18\x10 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.ExchangeOrderTypeR\x11exchangeOrderType\x12/\n" +
-	"\x11exchange_order_id\x18\x11 \x01(\tH\x00R\x0fexchangeOrderId\x88\x01\x01\x1a\xb9\x04\n" +
+	"\x11exchange_order_id\x18\x11 \x01(\tH\x00R\x0fexchangeOrderId\x88\x01\x01\x12\x16\n" +
+	"\x06ticker\x18\x12 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x13 \x01(\tR\tclassCode\x12+\n" +
+	"\x11instant_execution\x18\x14 \x01(\bR\x10instantExecution\x1a\xb9\x04\n" +
 	"\fTrailingData\x12H\n" +
 	"\x06indent\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06indent\x12Y\n" +
 	"\vindent_type\x18\x02 \x01(\x0e28.tinkoff.public.invest.api.contract.v1.TrailingValueTypeR\n" +

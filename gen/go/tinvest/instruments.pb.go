@@ -288,7 +288,7 @@ func (OptionSettlementType) EnumDescriptor() ([]byte, []int) {
 	return file_tinvest_instruments_proto_rawDescGZIP(), []int{4}
 }
 
-// Тип идентификатора инструмента. [Подробнее об идентификации инструментов](./faq_identification/).
+// Тип идентификатора инструмента. [Подробнее об идентификации инструментов](/invest/intro/intro/faq_identification).
 type InstrumentIdType int32
 
 const (
@@ -297,6 +297,7 @@ const (
 	InstrumentIdType_INSTRUMENT_ID_TYPE_TICKER       InstrumentIdType = 2 //Ticker.
 	InstrumentIdType_INSTRUMENT_ID_TYPE_UID          InstrumentIdType = 3 //Уникальный идентификатор.
 	InstrumentIdType_INSTRUMENT_ID_TYPE_POSITION_UID InstrumentIdType = 4 //Идентификатор позиции.
+	InstrumentIdType_INSTRUMENT_ID_TYPE_ID           InstrumentIdType = 5 //Универсальный тип идентификатора инструмента.
 )
 
 // Enum value maps for InstrumentIdType.
@@ -307,6 +308,7 @@ var (
 		2: "INSTRUMENT_ID_TYPE_TICKER",
 		3: "INSTRUMENT_ID_TYPE_UID",
 		4: "INSTRUMENT_ID_TYPE_POSITION_UID",
+		5: "INSTRUMENT_ID_TYPE_ID",
 	}
 	InstrumentIdType_value = map[string]int32{
 		"INSTRUMENT_ID_UNSPECIFIED":       0,
@@ -314,6 +316,7 @@ var (
 		"INSTRUMENT_ID_TYPE_TICKER":       2,
 		"INSTRUMENT_ID_TYPE_UID":          3,
 		"INSTRUMENT_ID_TYPE_POSITION_UID": 4,
+		"INSTRUMENT_ID_TYPE_ID":           5,
 	}
 )
 
@@ -568,62 +571,6 @@ func (EditFavoritesActionType) EnumDescriptor() ([]byte, []int) {
 	return file_tinvest_instruments_proto_rawDescGZIP(), []int{9}
 }
 
-// Реальная площадка исполнения расчетов.
-type RealExchange int32
-
-const (
-	RealExchange_REAL_EXCHANGE_UNSPECIFIED RealExchange = 0 //Тип не определен.
-	RealExchange_REAL_EXCHANGE_MOEX        RealExchange = 1 //Московская биржа.
-	RealExchange_REAL_EXCHANGE_RTS         RealExchange = 2 //Санкт-Петербургская биржа.
-	RealExchange_REAL_EXCHANGE_OTC         RealExchange = 3 //Внебиржевой инструмент.
-	RealExchange_REAL_EXCHANGE_DEALER      RealExchange = 4 //Инструмент, торгуемый на площадке брокера.
-)
-
-// Enum value maps for RealExchange.
-var (
-	RealExchange_name = map[int32]string{
-		0: "REAL_EXCHANGE_UNSPECIFIED",
-		1: "REAL_EXCHANGE_MOEX",
-		2: "REAL_EXCHANGE_RTS",
-		3: "REAL_EXCHANGE_OTC",
-		4: "REAL_EXCHANGE_DEALER",
-	}
-	RealExchange_value = map[string]int32{
-		"REAL_EXCHANGE_UNSPECIFIED": 0,
-		"REAL_EXCHANGE_MOEX":        1,
-		"REAL_EXCHANGE_RTS":         2,
-		"REAL_EXCHANGE_OTC":         3,
-		"REAL_EXCHANGE_DEALER":      4,
-	}
-)
-
-func (x RealExchange) Enum() *RealExchange {
-	p := new(RealExchange)
-	*p = x
-	return p
-}
-
-func (x RealExchange) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (RealExchange) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[10].Descriptor()
-}
-
-func (RealExchange) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[10]
-}
-
-func (x RealExchange) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use RealExchange.Descriptor instead.
-func (RealExchange) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{10}
-}
-
 type Recommendation int32
 
 const (
@@ -660,11 +607,11 @@ func (x Recommendation) String() string {
 }
 
 func (Recommendation) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[11].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[10].Descriptor()
 }
 
 func (Recommendation) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[11]
+	return &file_tinvest_instruments_proto_enumTypes[10]
 }
 
 func (x Recommendation) Number() protoreflect.EnumNumber {
@@ -673,7 +620,7 @@ func (x Recommendation) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Recommendation.Descriptor instead.
 func (Recommendation) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{11}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{10}
 }
 
 // Уровень риска облигации.
@@ -713,11 +660,11 @@ func (x RiskLevel) String() string {
 }
 
 func (RiskLevel) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[12].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[11].Descriptor()
 }
 
 func (RiskLevel) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[12]
+	return &file_tinvest_instruments_proto_enumTypes[11]
 }
 
 func (x RiskLevel) Number() protoreflect.EnumNumber {
@@ -726,7 +673,7 @@ func (x RiskLevel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RiskLevel.Descriptor instead.
 func (RiskLevel) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{11}
 }
 
 type BondType int32
@@ -759,11 +706,11 @@ func (x BondType) String() string {
 }
 
 func (BondType) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[13].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[12].Descriptor()
 }
 
 func (BondType) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[13]
+	return &file_tinvest_instruments_proto_enumTypes[12]
 }
 
 func (x BondType) Number() protoreflect.EnumNumber {
@@ -772,7 +719,7 @@ func (x BondType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BondType.Descriptor instead.
 func (BondType) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{13}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12}
 }
 
 // Площадка торговли.
@@ -806,11 +753,11 @@ func (x InstrumentExchangeType) String() string {
 }
 
 func (InstrumentExchangeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[14].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[13].Descriptor()
 }
 
 func (InstrumentExchangeType) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[14]
+	return &file_tinvest_instruments_proto_enumTypes[13]
 }
 
 func (x InstrumentExchangeType) Number() protoreflect.EnumNumber {
@@ -819,7 +766,7 @@ func (x InstrumentExchangeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use InstrumentExchangeType.Descriptor instead.
 func (InstrumentExchangeType) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{14}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{13}
 }
 
 type GetBondEventsRequest_EventType int32
@@ -861,11 +808,11 @@ func (x GetBondEventsRequest_EventType) String() string {
 }
 
 func (GetBondEventsRequest_EventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[15].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[14].Descriptor()
 }
 
 func (GetBondEventsRequest_EventType) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[15]
+	return &file_tinvest_instruments_proto_enumTypes[14]
 }
 
 func (x GetBondEventsRequest_EventType) Number() protoreflect.EnumNumber {
@@ -874,7 +821,166 @@ func (x GetBondEventsRequest_EventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GetBondEventsRequest_EventType.Descriptor instead.
 func (GetBondEventsRequest_EventType) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{11, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12, 0}
+}
+
+// Стратегия портфеля.
+type StructuredNote_LogicPortfolio int32
+
+const (
+	StructuredNote_LOGIC_PORTFOLIO_UNSPECIFIED StructuredNote_LogicPortfolio = 0 //Стратегия портфеля не определена.
+	StructuredNote_LOGIC_PORTFOLIO_VOLATILITY  StructuredNote_LogicPortfolio = 1 //Волатильность.
+	StructuredNote_LOGIC_PORTFOLIO_CORRELATION StructuredNote_LogicPortfolio = 2 //Корреляция.
+)
+
+// Enum value maps for StructuredNote_LogicPortfolio.
+var (
+	StructuredNote_LogicPortfolio_name = map[int32]string{
+		0: "LOGIC_PORTFOLIO_UNSPECIFIED",
+		1: "LOGIC_PORTFOLIO_VOLATILITY",
+		2: "LOGIC_PORTFOLIO_CORRELATION",
+	}
+	StructuredNote_LogicPortfolio_value = map[string]int32{
+		"LOGIC_PORTFOLIO_UNSPECIFIED": 0,
+		"LOGIC_PORTFOLIO_VOLATILITY":  1,
+		"LOGIC_PORTFOLIO_CORRELATION": 2,
+	}
+)
+
+func (x StructuredNote_LogicPortfolio) Enum() *StructuredNote_LogicPortfolio {
+	p := new(StructuredNote_LogicPortfolio)
+	*p = x
+	return p
+}
+
+func (x StructuredNote_LogicPortfolio) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StructuredNote_LogicPortfolio) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_instruments_proto_enumTypes[15].Descriptor()
+}
+
+func (StructuredNote_LogicPortfolio) Type() protoreflect.EnumType {
+	return &file_tinvest_instruments_proto_enumTypes[15]
+}
+
+func (x StructuredNote_LogicPortfolio) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StructuredNote_LogicPortfolio.Descriptor instead.
+func (StructuredNote_LogicPortfolio) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38, 0}
+}
+
+// Принцип наблюдений.
+type StructuredNote_ObservationPrinciple int32
+
+const (
+	StructuredNote_OBSERVATION_PRINCIPLE_UNSPECIFIED                    StructuredNote_ObservationPrinciple = 0 //Принцип наблюдений не определен.
+	StructuredNote_OBSERVATION_PRINCIPLE_WORST_BASIC_ASSET              StructuredNote_ObservationPrinciple = 1 //По худшему базовому активу.
+	StructuredNote_OBSERVATION_PRINCIPLE_BEST_BASIC_ASSET               StructuredNote_ObservationPrinciple = 2 //По лучшему базовому активу.
+	StructuredNote_OBSERVATION_PRINCIPLE_AVERAGE_OF_BASIC_ASSETS        StructuredNote_ObservationPrinciple = 3 //Среднее значение по базовым активам.
+	StructuredNote_OBSERVATION_PRINCIPLE_SINGLE_BASIC_ASSET_PERFORMANCE StructuredNote_ObservationPrinciple = 4 //Динамика актива (только если у ноты один базовый актив).
+)
+
+// Enum value maps for StructuredNote_ObservationPrinciple.
+var (
+	StructuredNote_ObservationPrinciple_name = map[int32]string{
+		0: "OBSERVATION_PRINCIPLE_UNSPECIFIED",
+		1: "OBSERVATION_PRINCIPLE_WORST_BASIC_ASSET",
+		2: "OBSERVATION_PRINCIPLE_BEST_BASIC_ASSET",
+		3: "OBSERVATION_PRINCIPLE_AVERAGE_OF_BASIC_ASSETS",
+		4: "OBSERVATION_PRINCIPLE_SINGLE_BASIC_ASSET_PERFORMANCE",
+	}
+	StructuredNote_ObservationPrinciple_value = map[string]int32{
+		"OBSERVATION_PRINCIPLE_UNSPECIFIED":                    0,
+		"OBSERVATION_PRINCIPLE_WORST_BASIC_ASSET":              1,
+		"OBSERVATION_PRINCIPLE_BEST_BASIC_ASSET":               2,
+		"OBSERVATION_PRINCIPLE_AVERAGE_OF_BASIC_ASSETS":        3,
+		"OBSERVATION_PRINCIPLE_SINGLE_BASIC_ASSET_PERFORMANCE": 4,
+	}
+)
+
+func (x StructuredNote_ObservationPrinciple) Enum() *StructuredNote_ObservationPrinciple {
+	p := new(StructuredNote_ObservationPrinciple)
+	*p = x
+	return p
+}
+
+func (x StructuredNote_ObservationPrinciple) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StructuredNote_ObservationPrinciple) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_instruments_proto_enumTypes[16].Descriptor()
+}
+
+func (StructuredNote_ObservationPrinciple) Type() protoreflect.EnumType {
+	return &file_tinvest_instruments_proto_enumTypes[16]
+}
+
+func (x StructuredNote_ObservationPrinciple) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StructuredNote_ObservationPrinciple.Descriptor instead.
+func (StructuredNote_ObservationPrinciple) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38, 1}
+}
+
+// Тип доходности.
+type StructuredNote_YieldType int32
+
+const (
+	StructuredNote_YIELD_TYPE_UNSPECIFIED        StructuredNote_YieldType = 0 //Тип доходности не определен.
+	StructuredNote_YIELD_TYPE_GUARANTED_COUPON   StructuredNote_YieldType = 1 //Гарантированный купон.
+	StructuredNote_YIELD_TYPE_CONDITIONAL_COUPON StructuredNote_YieldType = 2 //Условный купон.
+	StructuredNote_YIELD_TYPE_PARTICIPATION      StructuredNote_YieldType = 3 //Участие в росте.
+)
+
+// Enum value maps for StructuredNote_YieldType.
+var (
+	StructuredNote_YieldType_name = map[int32]string{
+		0: "YIELD_TYPE_UNSPECIFIED",
+		1: "YIELD_TYPE_GUARANTED_COUPON",
+		2: "YIELD_TYPE_CONDITIONAL_COUPON",
+		3: "YIELD_TYPE_PARTICIPATION",
+	}
+	StructuredNote_YieldType_value = map[string]int32{
+		"YIELD_TYPE_UNSPECIFIED":        0,
+		"YIELD_TYPE_GUARANTED_COUPON":   1,
+		"YIELD_TYPE_CONDITIONAL_COUPON": 2,
+		"YIELD_TYPE_PARTICIPATION":      3,
+	}
+)
+
+func (x StructuredNote_YieldType) Enum() *StructuredNote_YieldType {
+	p := new(StructuredNote_YieldType)
+	*p = x
+	return p
+}
+
+func (x StructuredNote_YieldType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StructuredNote_YieldType) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_instruments_proto_enumTypes[17].Descriptor()
+}
+
+func (StructuredNote_YieldType) Type() protoreflect.EnumType {
+	return &file_tinvest_instruments_proto_enumTypes[17]
+}
+
+func (x StructuredNote_YieldType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StructuredNote_YieldType.Descriptor instead.
+func (StructuredNote_YieldType) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38, 2}
 }
 
 type GetAssetReportsResponse_AssetReportPeriodType int32
@@ -913,11 +1019,11 @@ func (x GetAssetReportsResponse_AssetReportPeriodType) String() string {
 }
 
 func (GetAssetReportsResponse_AssetReportPeriodType) Descriptor() protoreflect.EnumDescriptor {
-	return file_tinvest_instruments_proto_enumTypes[16].Descriptor()
+	return file_tinvest_instruments_proto_enumTypes[18].Descriptor()
 }
 
 func (GetAssetReportsResponse_AssetReportPeriodType) Type() protoreflect.EnumType {
-	return &file_tinvest_instruments_proto_enumTypes[16]
+	return &file_tinvest_instruments_proto_enumTypes[18]
 }
 
 func (x GetAssetReportsResponse_AssetReportPeriodType) Number() protoreflect.EnumNumber {
@@ -926,7 +1032,62 @@ func (x GetAssetReportsResponse_AssetReportPeriodType) Number() protoreflect.Enu
 
 // Deprecated: Use GetAssetReportsResponse_AssetReportPeriodType.Descriptor instead.
 func (GetAssetReportsResponse_AssetReportPeriodType) EnumDescriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{83, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{93, 0}
+}
+
+type GetInsiderDealsResponse_TradeDirection int32
+
+const (
+	GetInsiderDealsResponse_TRADE_DIRECTION_UNSPECIFIED GetInsiderDealsResponse_TradeDirection = 0 // Не определено.
+	GetInsiderDealsResponse_TRADE_DIRECTION_BUY         GetInsiderDealsResponse_TradeDirection = 1 // Покупка.
+	GetInsiderDealsResponse_TRADE_DIRECTION_SELL        GetInsiderDealsResponse_TradeDirection = 2 // Продажа.
+	GetInsiderDealsResponse_TRADE_DIRECTION_INCREASE    GetInsiderDealsResponse_TradeDirection = 3 // Увеличение доли.
+	GetInsiderDealsResponse_TRADE_DIRECTION_DECREASE    GetInsiderDealsResponse_TradeDirection = 4 // Уменьшение доли.
+)
+
+// Enum value maps for GetInsiderDealsResponse_TradeDirection.
+var (
+	GetInsiderDealsResponse_TradeDirection_name = map[int32]string{
+		0: "TRADE_DIRECTION_UNSPECIFIED",
+		1: "TRADE_DIRECTION_BUY",
+		2: "TRADE_DIRECTION_SELL",
+		3: "TRADE_DIRECTION_INCREASE",
+		4: "TRADE_DIRECTION_DECREASE",
+	}
+	GetInsiderDealsResponse_TradeDirection_value = map[string]int32{
+		"TRADE_DIRECTION_UNSPECIFIED": 0,
+		"TRADE_DIRECTION_BUY":         1,
+		"TRADE_DIRECTION_SELL":        2,
+		"TRADE_DIRECTION_INCREASE":    3,
+		"TRADE_DIRECTION_DECREASE":    4,
+	}
+)
+
+func (x GetInsiderDealsResponse_TradeDirection) Enum() *GetInsiderDealsResponse_TradeDirection {
+	p := new(GetInsiderDealsResponse_TradeDirection)
+	*p = x
+	return p
+}
+
+func (x GetInsiderDealsResponse_TradeDirection) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GetInsiderDealsResponse_TradeDirection) Descriptor() protoreflect.EnumDescriptor {
+	return file_tinvest_instruments_proto_enumTypes[19].Descriptor()
+}
+
+func (GetInsiderDealsResponse_TradeDirection) Type() protoreflect.EnumType {
+	return &file_tinvest_instruments_proto_enumTypes[19]
+}
+
+func (x GetInsiderDealsResponse_TradeDirection) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GetInsiderDealsResponse_TradeDirection.Descriptor instead.
+func (GetInsiderDealsResponse_TradeDirection) EnumDescriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{102, 0}
 }
 
 // Запрос расписания торгов.
@@ -1256,7 +1417,7 @@ func (x *TradingDay) GetIntervals() []*TradingInterval {
 // Запрос получения инструмента по идентификатору.
 type InstrumentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IdType        InstrumentIdType       `protobuf:"varint,1,opt,name=id_type,json=idType,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentIdType" json:"id_type,omitempty"` // Тип идентификатора инструмента. Возможные значения — `figi`, `ticker`. [Подробнее об идентификации инструментов](./faq_identification/).
+	IdType        InstrumentIdType       `protobuf:"varint,1,opt,name=id_type,json=idType,proto3,enum=tinkoff.public.invest.api.contract.v1.InstrumentIdType" json:"id_type,omitempty"` // Тип идентификатора инструмента. Возможные значения — `figi`, `ticker`. [Подробнее об идентификации инструментов](/invest/intro/intro/faq_identification).
 	ClassCode     *string                `protobuf:"bytes,2,opt,name=class_code,json=classCode,proto3,oneof" json:"class_code,omitempty"`                                               // Идентификатор `class_code`. Обязательный, если `id_type = ticker`.
 	Id            string                 `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`                                                                                    // Идентификатор запрашиваемого инструмента.
 	unknownFields protoimpl.UnknownFields
@@ -1372,6 +1533,7 @@ type FilterOptionsRequest struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	BasicAssetUid         *string                `protobuf:"bytes,1,opt,name=basic_asset_uid,json=basicAssetUid,proto3,oneof" json:"basic_asset_uid,omitempty"`                           //Идентификатор базового актива опциона.  Обязательный параметр.
 	BasicAssetPositionUid *string                `protobuf:"bytes,2,opt,name=basic_asset_position_uid,json=basicAssetPositionUid,proto3,oneof" json:"basic_asset_position_uid,omitempty"` //Идентификатор позиции базового актива опциона.
+	BasicInstrumentId     *string                `protobuf:"bytes,3,opt,name=basic_instrument_id,json=basicInstrumentId,proto3,oneof" json:"basic_instrument_id,omitempty"`               //Идентификатор базового инструмента, принимает значение принимает значения figi, instrument_uid или ticker+"_"+classCode.
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -1420,6 +1582,66 @@ func (x *FilterOptionsRequest) GetBasicAssetPositionUid() string {
 	return ""
 }
 
+func (x *FilterOptionsRequest) GetBasicInstrumentId() string {
+	if x != nil && x.BasicInstrumentId != nil {
+		return *x.BasicInstrumentId
+	}
+	return ""
+}
+
+// Запрос получения актуальных новостей
+type NewsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Cursor        *int64                 `protobuf:"varint,1,opt,name=cursor,proto3,oneof" json:"cursor,omitempty"` //Идентификатор элемента, с которого начать формировать ответ.
+	Limit         *int32                 `protobuf:"varint,2,opt,name=limit,proto3,oneof" json:"limit,omitempty"`   //Лимит количества новостей в ответе. По умолчанию 1000.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewsRequest) Reset() {
+	*x = NewsRequest{}
+	mi := &file_tinvest_instruments_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewsRequest) ProtoMessage() {}
+
+func (x *NewsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewsRequest.ProtoReflect.Descriptor instead.
+func (*NewsRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *NewsRequest) GetCursor() int64 {
+	if x != nil && x.Cursor != nil {
+		return *x.Cursor
+	}
+	return 0
+}
+
+func (x *NewsRequest) GetLimit() int32 {
+	if x != nil && x.Limit != nil {
+		return *x.Limit
+	}
+	return 0
+}
+
 // Информация об облигации.
 type BondResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1430,7 +1652,7 @@ type BondResponse struct {
 
 func (x *BondResponse) Reset() {
 	*x = BondResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[7]
+	mi := &file_tinvest_instruments_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1442,7 +1664,7 @@ func (x *BondResponse) String() string {
 func (*BondResponse) ProtoMessage() {}
 
 func (x *BondResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[7]
+	mi := &file_tinvest_instruments_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1455,7 +1677,7 @@ func (x *BondResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BondResponse.ProtoReflect.Descriptor instead.
 func (*BondResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{7}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *BondResponse) GetInstrument() *Bond {
@@ -1475,7 +1697,7 @@ type BondsResponse struct {
 
 func (x *BondsResponse) Reset() {
 	*x = BondsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[8]
+	mi := &file_tinvest_instruments_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1487,7 +1709,7 @@ func (x *BondsResponse) String() string {
 func (*BondsResponse) ProtoMessage() {}
 
 func (x *BondsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[8]
+	mi := &file_tinvest_instruments_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1500,7 +1722,7 @@ func (x *BondsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BondsResponse.ProtoReflect.Descriptor instead.
 func (*BondsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{8}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *BondsResponse) GetInstruments() []*Bond {
@@ -1517,14 +1739,14 @@ type GetBondCouponsRequest struct {
 	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                     //FIGI-идентификатор инструмента.
 	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3,oneof" json:"from,omitempty"`                               //Начало запрашиваемого периода по UTC. Фильтрация по `coupon_date` — дата выплаты купона.
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3,oneof" json:"to,omitempty"`                                   //Окончание запрашиваемого периода по UTC. Фильтрация по `coupon_date` — дата выплаты купона.
-	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента — `figi` или `instrument_uid`.
+	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetBondCouponsRequest) Reset() {
 	*x = GetBondCouponsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[9]
+	mi := &file_tinvest_instruments_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1536,7 +1758,7 @@ func (x *GetBondCouponsRequest) String() string {
 func (*GetBondCouponsRequest) ProtoMessage() {}
 
 func (x *GetBondCouponsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[9]
+	mi := &file_tinvest_instruments_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1549,7 +1771,7 @@ func (x *GetBondCouponsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBondCouponsRequest.ProtoReflect.Descriptor instead.
 func (*GetBondCouponsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{9}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{10}
 }
 
 // Deprecated: Marked as deprecated in tinvest/instruments.proto.
@@ -1591,7 +1813,7 @@ type GetBondCouponsResponse struct {
 
 func (x *GetBondCouponsResponse) Reset() {
 	*x = GetBondCouponsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[10]
+	mi := &file_tinvest_instruments_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1603,7 +1825,7 @@ func (x *GetBondCouponsResponse) String() string {
 func (*GetBondCouponsResponse) ProtoMessage() {}
 
 func (x *GetBondCouponsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[10]
+	mi := &file_tinvest_instruments_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1616,7 +1838,7 @@ func (x *GetBondCouponsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBondCouponsResponse.ProtoReflect.Descriptor instead.
 func (*GetBondCouponsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{10}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetBondCouponsResponse) GetEvents() []*Coupon {
@@ -1639,7 +1861,7 @@ type GetBondEventsRequest struct {
 
 func (x *GetBondEventsRequest) Reset() {
 	*x = GetBondEventsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[11]
+	mi := &file_tinvest_instruments_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1651,7 +1873,7 @@ func (x *GetBondEventsRequest) String() string {
 func (*GetBondEventsRequest) ProtoMessage() {}
 
 func (x *GetBondEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[11]
+	mi := &file_tinvest_instruments_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1664,7 +1886,7 @@ func (x *GetBondEventsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBondEventsRequest.ProtoReflect.Descriptor instead.
 func (*GetBondEventsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{11}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetBondEventsRequest) GetFrom() *timestamppb.Timestamp {
@@ -1705,7 +1927,7 @@ type GetBondEventsResponse struct {
 
 func (x *GetBondEventsResponse) Reset() {
 	*x = GetBondEventsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[12]
+	mi := &file_tinvest_instruments_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1717,7 +1939,7 @@ func (x *GetBondEventsResponse) String() string {
 func (*GetBondEventsResponse) ProtoMessage() {}
 
 func (x *GetBondEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[12]
+	mi := &file_tinvest_instruments_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1730,7 +1952,7 @@ func (x *GetBondEventsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBondEventsResponse.ProtoReflect.Descriptor instead.
 func (*GetBondEventsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetBondEventsResponse) GetEvents() []*GetBondEventsResponse_BondEvent {
@@ -1758,7 +1980,7 @@ type Coupon struct {
 
 func (x *Coupon) Reset() {
 	*x = Coupon{}
-	mi := &file_tinvest_instruments_proto_msgTypes[13]
+	mi := &file_tinvest_instruments_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1770,7 +1992,7 @@ func (x *Coupon) String() string {
 func (*Coupon) ProtoMessage() {}
 
 func (x *Coupon) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[13]
+	mi := &file_tinvest_instruments_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1783,7 +2005,7 @@ func (x *Coupon) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Coupon.ProtoReflect.Descriptor instead.
 func (*Coupon) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{13}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Coupon) GetFigi() string {
@@ -1859,7 +2081,7 @@ type CurrencyResponse struct {
 
 func (x *CurrencyResponse) Reset() {
 	*x = CurrencyResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[14]
+	mi := &file_tinvest_instruments_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1871,7 +2093,7 @@ func (x *CurrencyResponse) String() string {
 func (*CurrencyResponse) ProtoMessage() {}
 
 func (x *CurrencyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[14]
+	mi := &file_tinvest_instruments_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1884,7 +2106,7 @@ func (x *CurrencyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrencyResponse.ProtoReflect.Descriptor instead.
 func (*CurrencyResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{14}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CurrencyResponse) GetInstrument() *Currency {
@@ -1904,7 +2126,7 @@ type CurrenciesResponse struct {
 
 func (x *CurrenciesResponse) Reset() {
 	*x = CurrenciesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[15]
+	mi := &file_tinvest_instruments_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1916,7 +2138,7 @@ func (x *CurrenciesResponse) String() string {
 func (*CurrenciesResponse) ProtoMessage() {}
 
 func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[15]
+	mi := &file_tinvest_instruments_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1929,7 +2151,7 @@ func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrenciesResponse.ProtoReflect.Descriptor instead.
 func (*CurrenciesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{15}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CurrenciesResponse) GetInstruments() []*Currency {
@@ -1949,7 +2171,7 @@ type EtfResponse struct {
 
 func (x *EtfResponse) Reset() {
 	*x = EtfResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[16]
+	mi := &file_tinvest_instruments_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1961,7 +2183,7 @@ func (x *EtfResponse) String() string {
 func (*EtfResponse) ProtoMessage() {}
 
 func (x *EtfResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[16]
+	mi := &file_tinvest_instruments_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1974,7 +2196,7 @@ func (x *EtfResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EtfResponse.ProtoReflect.Descriptor instead.
 func (*EtfResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{16}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *EtfResponse) GetInstrument() *Etf {
@@ -1994,7 +2216,7 @@ type EtfsResponse struct {
 
 func (x *EtfsResponse) Reset() {
 	*x = EtfsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[17]
+	mi := &file_tinvest_instruments_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2006,7 +2228,7 @@ func (x *EtfsResponse) String() string {
 func (*EtfsResponse) ProtoMessage() {}
 
 func (x *EtfsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[17]
+	mi := &file_tinvest_instruments_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2019,7 +2241,7 @@ func (x *EtfsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EtfsResponse.ProtoReflect.Descriptor instead.
 func (*EtfsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{17}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *EtfsResponse) GetInstruments() []*Etf {
@@ -2039,7 +2261,7 @@ type FutureResponse struct {
 
 func (x *FutureResponse) Reset() {
 	*x = FutureResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[18]
+	mi := &file_tinvest_instruments_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2051,7 +2273,7 @@ func (x *FutureResponse) String() string {
 func (*FutureResponse) ProtoMessage() {}
 
 func (x *FutureResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[18]
+	mi := &file_tinvest_instruments_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2064,7 +2286,7 @@ func (x *FutureResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FutureResponse.ProtoReflect.Descriptor instead.
 func (*FutureResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{18}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *FutureResponse) GetInstrument() *Future {
@@ -2084,7 +2306,7 @@ type FuturesResponse struct {
 
 func (x *FuturesResponse) Reset() {
 	*x = FuturesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[19]
+	mi := &file_tinvest_instruments_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2096,7 +2318,7 @@ func (x *FuturesResponse) String() string {
 func (*FuturesResponse) ProtoMessage() {}
 
 func (x *FuturesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[19]
+	mi := &file_tinvest_instruments_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2109,7 +2331,7 @@ func (x *FuturesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuturesResponse.ProtoReflect.Descriptor instead.
 func (*FuturesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{19}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *FuturesResponse) GetInstruments() []*Future {
@@ -2129,7 +2351,7 @@ type OptionResponse struct {
 
 func (x *OptionResponse) Reset() {
 	*x = OptionResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[20]
+	mi := &file_tinvest_instruments_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2141,7 +2363,7 @@ func (x *OptionResponse) String() string {
 func (*OptionResponse) ProtoMessage() {}
 
 func (x *OptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[20]
+	mi := &file_tinvest_instruments_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2154,7 +2376,7 @@ func (x *OptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OptionResponse.ProtoReflect.Descriptor instead.
 func (*OptionResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{20}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *OptionResponse) GetInstrument() *Option {
@@ -2174,7 +2396,7 @@ type OptionsResponse struct {
 
 func (x *OptionsResponse) Reset() {
 	*x = OptionsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[21]
+	mi := &file_tinvest_instruments_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2186,7 +2408,7 @@ func (x *OptionsResponse) String() string {
 func (*OptionsResponse) ProtoMessage() {}
 
 func (x *OptionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[21]
+	mi := &file_tinvest_instruments_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2199,7 +2421,7 @@ func (x *OptionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OptionsResponse.ProtoReflect.Descriptor instead.
 func (*OptionsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{21}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *OptionsResponse) GetInstruments() []*Option {
@@ -2268,7 +2490,7 @@ type Option struct {
 
 func (x *Option) Reset() {
 	*x = Option{}
-	mi := &file_tinvest_instruments_proto_msgTypes[22]
+	mi := &file_tinvest_instruments_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2280,7 +2502,7 @@ func (x *Option) String() string {
 func (*Option) ProtoMessage() {}
 
 func (x *Option) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[22]
+	mi := &file_tinvest_instruments_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2293,7 +2515,7 @@ func (x *Option) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Option.ProtoReflect.Descriptor instead.
 func (*Option) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{22}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *Option) GetUid() string {
@@ -2644,7 +2866,7 @@ type ShareResponse struct {
 
 func (x *ShareResponse) Reset() {
 	*x = ShareResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[23]
+	mi := &file_tinvest_instruments_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2656,7 +2878,7 @@ func (x *ShareResponse) String() string {
 func (*ShareResponse) ProtoMessage() {}
 
 func (x *ShareResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[23]
+	mi := &file_tinvest_instruments_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2669,7 +2891,7 @@ func (x *ShareResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShareResponse.ProtoReflect.Descriptor instead.
 func (*ShareResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{23}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ShareResponse) GetInstrument() *Share {
@@ -2689,7 +2911,7 @@ type SharesResponse struct {
 
 func (x *SharesResponse) Reset() {
 	*x = SharesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[24]
+	mi := &file_tinvest_instruments_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2701,7 +2923,7 @@ func (x *SharesResponse) String() string {
 func (*SharesResponse) ProtoMessage() {}
 
 func (x *SharesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[24]
+	mi := &file_tinvest_instruments_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2714,7 +2936,7 @@ func (x *SharesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SharesResponse.ProtoReflect.Descriptor instead.
 func (*SharesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{24}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *SharesResponse) GetInstruments() []*Share {
@@ -2722,6 +2944,417 @@ func (x *SharesResponse) GetInstruments() []*Share {
 		return x.Instruments
 	}
 	return nil
+}
+
+// Данные по структурной ноте.
+type StructuredNoteResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Instrument    *StructuredNote        `protobuf:"bytes,1,opt,name=instrument,proto3" json:"instrument,omitempty"` // Информация о структурной ноте.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StructuredNoteResponse) Reset() {
+	*x = StructuredNoteResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StructuredNoteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StructuredNoteResponse) ProtoMessage() {}
+
+func (x *StructuredNoteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StructuredNoteResponse.ProtoReflect.Descriptor instead.
+func (*StructuredNoteResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *StructuredNoteResponse) GetInstrument() *StructuredNote {
+	if x != nil {
+		return x.Instrument
+	}
+	return nil
+}
+
+// Данные по структурным нотам.
+type StructuredNotesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Instruments   []*StructuredNote      `protobuf:"bytes,1,rep,name=instruments,proto3" json:"instruments,omitempty"` //Массив структурных нот.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StructuredNotesResponse) Reset() {
+	*x = StructuredNotesResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StructuredNotesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StructuredNotesResponse) ProtoMessage() {}
+
+func (x *StructuredNotesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StructuredNotesResponse.ProtoReflect.Descriptor instead.
+func (*StructuredNotesResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *StructuredNotesResponse) GetInstruments() []*StructuredNote {
+	if x != nil {
+		return x.Instruments
+	}
+	return nil
+}
+
+// Данные по актуальным новостям.
+type NewsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	HasNext       bool                   `protobuf:"varint,1,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`                //Признак, есть ли еще новости.
+	NextCursor    *int64                 `protobuf:"varint,2,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"` //Следующий курсор.
+	Items         []*NewsItem            `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`                                    //Массив новостей.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewsResponse) Reset() {
+	*x = NewsResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewsResponse) ProtoMessage() {}
+
+func (x *NewsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewsResponse.ProtoReflect.Descriptor instead.
+func (*NewsResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *NewsResponse) GetHasNext() bool {
+	if x != nil {
+		return x.HasNext
+	}
+	return false
+}
+
+func (x *NewsResponse) GetNextCursor() int64 {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return 0
+}
+
+func (x *NewsResponse) GetItems() []*NewsItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+// Объект новости.
+type NewsItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                        //Уникальный идентификатор новости.
+	Source        string                 `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`                                 //Источник новости.
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`                                   //Заголовок новости.
+	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`                               //Содержание новости.
+	Summary       *string                `protobuf:"bytes,5,opt,name=summary,proto3,oneof" json:"summary,omitempty"`                         //Обобщенная информация.
+	Tables        []*Table               `protobuf:"bytes,6,rep,name=tables,proto3" json:"tables,omitempty"`                                 //Табличные данные.
+	InstrumentId  []*NewsInstrument      `protobuf:"bytes,7,rep,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Инструменты из новости.
+	Priority      bool                   `protobuf:"varint,8,opt,name=priority,proto3" json:"priority,omitempty"`                            //Флаг, указывающий, важная ли новость.
+	Ts            *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=ts,proto3" json:"ts,omitempty"`                                         //Время новости.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewsItem) Reset() {
+	*x = NewsItem{}
+	mi := &file_tinvest_instruments_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewsItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewsItem) ProtoMessage() {}
+
+func (x *NewsItem) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewsItem.ProtoReflect.Descriptor instead.
+func (*NewsItem) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *NewsItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *NewsItem) GetSource() string {
+	if x != nil {
+		return x.Source
+	}
+	return ""
+}
+
+func (x *NewsItem) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *NewsItem) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *NewsItem) GetSummary() string {
+	if x != nil && x.Summary != nil {
+		return *x.Summary
+	}
+	return ""
+}
+
+func (x *NewsItem) GetTables() []*Table {
+	if x != nil {
+		return x.Tables
+	}
+	return nil
+}
+
+func (x *NewsItem) GetInstrumentId() []*NewsInstrument {
+	if x != nil {
+		return x.InstrumentId
+	}
+	return nil
+}
+
+func (x *NewsItem) GetPriority() bool {
+	if x != nil {
+		return x.Priority
+	}
+	return false
+}
+
+func (x *NewsItem) GetTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Ts
+	}
+	return nil
+}
+
+// Объект табличных данных.
+type Table struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Table         string                 `protobuf:"bytes,1,opt,name=table,proto3" json:"table,omitempty"` //Таблица.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Table) Reset() {
+	*x = Table{}
+	mi := &file_tinvest_instruments_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Table) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Table) ProtoMessage() {}
+
+func (x *Table) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Table.ProtoReflect.Descriptor instead.
+func (*Table) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *Table) GetTable() string {
+	if x != nil {
+		return x.Table
+	}
+	return ""
+}
+
+// Объект инструмента из новости.
+type NewsInstrument struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Instrument    *NewsInstrumentInfo    `protobuf:"bytes,1,opt,name=instrument,proto3" json:"instrument,omitempty"` //Информация по инструменту.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewsInstrument) Reset() {
+	*x = NewsInstrument{}
+	mi := &file_tinvest_instruments_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewsInstrument) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewsInstrument) ProtoMessage() {}
+
+func (x *NewsInstrument) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewsInstrument.ProtoReflect.Descriptor instead.
+func (*NewsInstrument) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *NewsInstrument) GetInstrument() *NewsInstrumentInfo {
+	if x != nil {
+		return x.Instrument
+	}
+	return nil
+}
+
+// Объект информации по инструменту из новости.
+type NewsInstrumentInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	InstrumentUid string                 `protobuf:"bytes,1,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"` //Уникальный идентификатор инструмента.
+	Ticker        string                 `protobuf:"bytes,2,opt,name=ticker,proto3" json:"ticker,omitempty"`                                    //Тикер инструмента.
+	ClassCode     string                 `protobuf:"bytes,3,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`             //Класс-код (секция торгов).
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewsInstrumentInfo) Reset() {
+	*x = NewsInstrumentInfo{}
+	mi := &file_tinvest_instruments_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewsInstrumentInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewsInstrumentInfo) ProtoMessage() {}
+
+func (x *NewsInstrumentInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewsInstrumentInfo.ProtoReflect.Descriptor instead.
+func (*NewsInstrumentInfo) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *NewsInstrumentInfo) GetInstrumentUid() string {
+	if x != nil {
+		return x.InstrumentUid
+	}
+	return ""
+}
+
+func (x *NewsInstrumentInfo) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *NewsInstrumentInfo) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
 }
 
 // Объект передачи информации об облигации.
@@ -2783,7 +3416,7 @@ type Bond struct {
 	RiskLevel             RiskLevel              `protobuf:"varint,63,opt,name=risk_level,json=riskLevel,proto3,enum=tinkoff.public.invest.api.contract.v1.RiskLevel" json:"risk_level,omitempty"`                         //Уровень риска.
 	Brand                 *BrandData             `protobuf:"bytes,64,opt,name=brand,proto3" json:"brand,omitempty"`                                                                                                        // Информация о бренде.
 	BondType              BondType               `protobuf:"varint,65,opt,name=bond_type,json=bondType,proto3,enum=tinkoff.public.invest.api.contract.v1.BondType" json:"bond_type,omitempty"`                             // Тип облигации.
-	CallDate              *timestamppb.Timestamp `protobuf:"bytes,69,opt,name=call_date,json=callDate,proto3" json:"call_date,omitempty"`                                                                                  // Дата погашения облигации.
+	CallDate              *timestamppb.Timestamp `protobuf:"bytes,69,opt,name=call_date,json=callDate,proto3" json:"call_date,omitempty"`                                                                                  // Дата оферты.
 	DlongClient           *Quotation             `protobuf:"bytes,90,opt,name=dlong_client,json=dlongClient,proto3" json:"dlong_client,omitempty"`                                                                         //Ставка риска в лонг с учетом текущего уровня риска портфеля клиента. [Подробнее про ставки риска](https://www.tbank.ru/invest/help/brokerage/account/margin/about/#q5).
 	DshortClient          *Quotation             `protobuf:"bytes,91,opt,name=dshort_client,json=dshortClient,proto3" json:"dshort_client,omitempty"`                                                                      //Ставка риска в шорт с учетом текущего уровня риска портфеля клиента. [Подробнее про ставки риска](https://www.tbank.ru/invest/help/brokerage/account/margin/about/#q5).
 	unknownFields         protoimpl.UnknownFields
@@ -2792,7 +3425,7 @@ type Bond struct {
 
 func (x *Bond) Reset() {
 	*x = Bond{}
-	mi := &file_tinvest_instruments_proto_msgTypes[25]
+	mi := &file_tinvest_instruments_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2804,7 +3437,7 @@ func (x *Bond) String() string {
 func (*Bond) ProtoMessage() {}
 
 func (x *Bond) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[25]
+	mi := &file_tinvest_instruments_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2817,7 +3450,7 @@ func (x *Bond) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Bond.ProtoReflect.Descriptor instead.
 func (*Bond) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{25}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *Bond) GetFigi() string {
@@ -3255,6 +3888,7 @@ type Currency struct {
 	RealExchange          RealExchange           `protobuf:"varint,28,opt,name=real_exchange,json=realExchange,proto3,enum=tinkoff.public.invest.api.contract.v1.RealExchange" json:"real_exchange,omitempty"`             //Реальная площадка исполнения расчетов (биржа).
 	PositionUid           string                 `protobuf:"bytes,29,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                                                         //Уникальный идентификатор позиции инструмента.
 	RequiredTests         []string               `protobuf:"bytes,30,rep,name=required_tests,json=requiredTests,proto3" json:"required_tests,omitempty"`                                                                   //Тесты, которые необходимо пройти клиенту, чтобы совершать сделки по инструменту.
+	AssetUid              string                 `protobuf:"bytes,31,opt,name=asset_uid,json=assetUid,proto3" json:"asset_uid,omitempty"`                                                                                  //Уникальный идентификатор актива.
 	ForIisFlag            bool                   `protobuf:"varint,41,opt,name=for_iis_flag,json=forIisFlag,proto3" json:"for_iis_flag,omitempty"`                                                                         //Признак доступности для ИИС.
 	ForQualInvestorFlag   bool                   `protobuf:"varint,52,opt,name=for_qual_investor_flag,json=forQualInvestorFlag,proto3" json:"for_qual_investor_flag,omitempty"`                                            //Флаг, отображающий доступность торговли инструментом только для квалифицированных инвесторов.
 	WeekendFlag           bool                   `protobuf:"varint,53,opt,name=weekend_flag,json=weekendFlag,proto3" json:"weekend_flag,omitempty"`                                                                        //Флаг, отображающий доступность торговли инструментом по выходным.
@@ -3270,7 +3904,7 @@ type Currency struct {
 
 func (x *Currency) Reset() {
 	*x = Currency{}
-	mi := &file_tinvest_instruments_proto_msgTypes[26]
+	mi := &file_tinvest_instruments_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3282,7 +3916,7 @@ func (x *Currency) String() string {
 func (*Currency) ProtoMessage() {}
 
 func (x *Currency) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[26]
+	mi := &file_tinvest_instruments_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3295,7 +3929,7 @@ func (x *Currency) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Currency.ProtoReflect.Descriptor instead.
 func (*Currency) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{26}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *Currency) GetFigi() string {
@@ -3503,6 +4137,13 @@ func (x *Currency) GetRequiredTests() []string {
 	return nil
 }
 
+func (x *Currency) GetAssetUid() string {
+	if x != nil {
+		return x.AssetUid
+	}
+	return ""
+}
+
 func (x *Currency) GetForIisFlag() bool {
 	if x != nil {
 		return x.ForIisFlag
@@ -3622,7 +4263,7 @@ type Etf struct {
 
 func (x *Etf) Reset() {
 	*x = Etf{}
-	mi := &file_tinvest_instruments_proto_msgTypes[27]
+	mi := &file_tinvest_instruments_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3634,7 +4275,7 @@ func (x *Etf) String() string {
 func (*Etf) ProtoMessage() {}
 
 func (x *Etf) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[27]
+	mi := &file_tinvest_instruments_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3647,7 +4288,7 @@ func (x *Etf) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Etf.ProtoReflect.Descriptor instead.
 func (*Etf) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{27}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *Etf) GetFigi() string {
@@ -4025,7 +4666,7 @@ type Future struct {
 
 func (x *Future) Reset() {
 	*x = Future{}
-	mi := &file_tinvest_instruments_proto_msgTypes[28]
+	mi := &file_tinvest_instruments_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4037,7 +4678,7 @@ func (x *Future) String() string {
 func (*Future) ProtoMessage() {}
 
 func (x *Future) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[28]
+	mi := &file_tinvest_instruments_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4050,7 +4691,7 @@ func (x *Future) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Future.ProtoReflect.Descriptor instead.
 func (*Future) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{28}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *Future) GetFigi() string {
@@ -4441,7 +5082,7 @@ type Share struct {
 
 func (x *Share) Reset() {
 	*x = Share{}
-	mi := &file_tinvest_instruments_proto_msgTypes[29]
+	mi := &file_tinvest_instruments_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4453,7 +5094,7 @@ func (x *Share) String() string {
 func (*Share) ProtoMessage() {}
 
 func (x *Share) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[29]
+	mi := &file_tinvest_instruments_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4466,7 +5107,7 @@ func (x *Share) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Share.ProtoReflect.Descriptor instead.
 func (*Share) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{29}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *Share) GetFigi() string {
@@ -4793,6 +5434,467 @@ func (x *Share) GetDshortClient() *Quotation {
 	return nil
 }
 
+// Объект передачи информации о структурной ноте.
+type StructuredNote struct {
+	state                       protoimpl.MessageState              `protogen:"open.v1"`
+	Uid                         string                              `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                                                                                                                                //Уникальный идентификатор инструмента.
+	Figi                        string                              `protobuf:"bytes,2,opt,name=figi,proto3" json:"figi,omitempty"`                                                                                                                                              //FIGI-идентификатор инструмента.
+	Ticker                      string                              `protobuf:"bytes,3,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                                                                          //Тикер инструмента.
+	ClassCode                   string                              `protobuf:"bytes,4,opt,name=class_code,json=classCode,proto3" json:"class_code,omitempty"`                                                                                                                   //Класс-код (секция торгов).
+	Isin                        string                              `protobuf:"bytes,5,opt,name=isin,proto3" json:"isin,omitempty"`                                                                                                                                              //ISIN-идентификатор инструмента.
+	Name                        string                              `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`                                                                                                                                              //Название инструмента.
+	AssetUid                    string                              `protobuf:"bytes,7,opt,name=asset_uid,json=assetUid,proto3" json:"asset_uid,omitempty"`                                                                                                                      //Уникальный идентификатор актива.
+	PositionUid                 string                              `protobuf:"bytes,8,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                                                                                             //Уникальный идентификатор позиции.
+	MinPriceIncrement           *Quotation                          `protobuf:"bytes,9,opt,name=min_price_increment,json=minPriceIncrement,proto3" json:"min_price_increment,omitempty"`                                                                                         //Шаг цены.
+	Lot                         int32                               `protobuf:"varint,10,opt,name=lot,proto3" json:"lot,omitempty"`                                                                                                                                              //Лотность инструмента.
+	Nominal                     *MoneyValue                         `protobuf:"bytes,11,opt,name=nominal,proto3" json:"nominal,omitempty"`                                                                                                                                       //Номинал.
+	Currency                    string                              `protobuf:"bytes,12,opt,name=currency,proto3" json:"currency,omitempty"`                                                                                                                                     //Валюта расчетов.
+	MaturityDate                *timestamppb.Timestamp              `protobuf:"bytes,13,opt,name=maturity_date,json=maturityDate,proto3" json:"maturity_date,omitempty"`                                                                                                         //Дата погашения облигации в формате UTC.
+	PlacementDate               *timestamppb.Timestamp              `protobuf:"bytes,14,opt,name=placement_date,json=placementDate,proto3" json:"placement_date,omitempty"`                                                                                                      //Дата размещения в формате UTC.
+	IssueKind                   string                              `protobuf:"bytes,15,opt,name=issue_kind,json=issueKind,proto3" json:"issue_kind,omitempty"`                                                                                                                  //Форма выпуска.
+	IssueSize                   int32                               `protobuf:"varint,16,opt,name=issue_size,json=issueSize,proto3" json:"issue_size,omitempty"`                                                                                                                 //Размер выпуска.
+	IssueSizePlan               int32                               `protobuf:"varint,17,opt,name=issue_size_plan,json=issueSizePlan,proto3" json:"issue_size_plan,omitempty"`                                                                                                   //Плановый размер выпуска.
+	DlongClient                 *Quotation                          `protobuf:"bytes,18,opt,name=dlong_client,json=dlongClient,proto3" json:"dlong_client,omitempty"`                                                                                                            //Ставка риска клиента по инструменту лонг.
+	DshortClient                *Quotation                          `protobuf:"bytes,19,opt,name=dshort_client,json=dshortClient,proto3" json:"dshort_client,omitempty"`                                                                                                         //Ставка риска клиента по инструменту шорт.
+	ShortEnabledFlag            bool                                `protobuf:"varint,20,opt,name=short_enabled_flag,json=shortEnabledFlag,proto3" json:"short_enabled_flag,omitempty"`                                                                                          //Признак доступности для операций в шорт.
+	Exchange                    string                              `protobuf:"bytes,21,opt,name=exchange,proto3" json:"exchange,omitempty"`                                                                                                                                     //Торговая площадка (секция биржи).
+	TradingStatus               SecurityTradingStatus               `protobuf:"varint,22,opt,name=trading_status,json=tradingStatus,proto3,enum=tinkoff.public.invest.api.contract.v1.SecurityTradingStatus" json:"trading_status,omitempty"`                                    //Текущий режим торгов инструмента.
+	ApiTradeAvailableFlag       bool                                `protobuf:"varint,23,opt,name=api_trade_available_flag,json=apiTradeAvailableFlag,proto3" json:"api_trade_available_flag,omitempty"`                                                                         //Признак доступности торгов по бумаге через API.
+	BuyAvailableFlag            bool                                `protobuf:"varint,24,opt,name=buy_available_flag,json=buyAvailableFlag,proto3" json:"buy_available_flag,omitempty"`                                                                                          //Признак доступности для покупки.
+	SellAvailableFlag           bool                                `protobuf:"varint,25,opt,name=sell_available_flag,json=sellAvailableFlag,proto3" json:"sell_available_flag,omitempty"`                                                                                       //Признак доступности для продажи.
+	LimitOrderAvailableFlag     bool                                `protobuf:"varint,26,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`                                                                   //Признак доступности выставления лимитной заявки по инструменту.
+	MarketOrderAvailableFlag    bool                                `protobuf:"varint,27,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"`                                                                //Признак доступности выставления рыночной заявки по инструменту.
+	BestpriceOrderAvailableFlag bool                                `protobuf:"varint,28,opt,name=bestprice_order_available_flag,json=bestpriceOrderAvailableFlag,proto3" json:"bestprice_order_available_flag,omitempty"`                                                       //Признак доступности выставления bestprice заявки по инструменту.
+	WeekendFlag                 bool                                `protobuf:"varint,29,opt,name=weekend_flag,json=weekendFlag,proto3" json:"weekend_flag,omitempty"`                                                                                                           //Флаг отображающий доступность торговли инструментом по выходным.
+	LiquidityFlag               bool                                `protobuf:"varint,30,opt,name=liquidity_flag,json=liquidityFlag,proto3" json:"liquidity_flag,omitempty"`                                                                                                     //Флаг достаточной ликвидности.
+	ForIisFlag                  bool                                `protobuf:"varint,31,opt,name=for_iis_flag,json=forIisFlag,proto3" json:"for_iis_flag,omitempty"`                                                                                                            //Возможность покупки/продажи на ИИС.
+	ForQualInvestorFlag         bool                                `protobuf:"varint,32,opt,name=for_qual_investor_flag,json=forQualInvestorFlag,proto3" json:"for_qual_investor_flag,omitempty"`                                                                               //Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+	PawnshopListFlag            bool                                `protobuf:"varint,33,opt,name=pawnshop_list_flag,json=pawnshopListFlag,proto3" json:"pawnshop_list_flag,omitempty"`                                                                                          //Признак ФИ, включенного в ломбардный список.
+	RealExchange                RealExchange                        `protobuf:"varint,34,opt,name=real_exchange,json=realExchange,proto3,enum=tinkoff.public.invest.api.contract.v1.RealExchange" json:"real_exchange,omitempty"`                                                //Реальная площадка исполнения расчётов.
+	First_1MinCandleDate        *timestamppb.Timestamp              `protobuf:"bytes,35,opt,name=first_1min_candle_date,json=first1minCandleDate,proto3" json:"first_1min_candle_date,omitempty"`                                                                                //Дата первой минутной свечи.
+	First_1DayCandleDate        *timestamppb.Timestamp              `protobuf:"bytes,36,opt,name=first_1day_candle_date,json=first1dayCandleDate,proto3" json:"first_1day_candle_date,omitempty"`                                                                                //Дата первой дневной свечи.
+	BorrowName                  string                              `protobuf:"bytes,37,opt,name=borrow_name,json=borrowName,proto3" json:"borrow_name,omitempty"`                                                                                                               //Название заемщика.
+	Type                        string                              `protobuf:"bytes,38,opt,name=type,proto3" json:"type,omitempty"`                                                                                                                                             //Тип структурной ноты.
+	LogicPortfolio              StructuredNote_LogicPortfolio       `protobuf:"varint,39,opt,name=logic_portfolio,json=logicPortfolio,proto3,enum=tinkoff.public.invest.api.contract.v1.StructuredNote_LogicPortfolio" json:"logic_portfolio,omitempty"`                         //Стратегия портфеля.
+	AssetType                   AssetType                           `protobuf:"varint,40,opt,name=asset_type,json=assetType,proto3,enum=tinkoff.public.invest.api.contract.v1.AssetType" json:"asset_type,omitempty"`                                                            //Тип базового актива.
+	BasicAssets                 []*StructuredNote_BasicAsset        `protobuf:"bytes,41,rep,name=basic_assets,json=basicAssets,proto3" json:"basic_assets,omitempty"`                                                                                                            //Базовые активы, входящие в ноту.
+	SafetyBarrier               *Quotation                          `protobuf:"bytes,42,opt,name=safety_barrier,json=safetyBarrier,proto3" json:"safety_barrier,omitempty"`                                                                                                      //Барьер сохранности (в процентах).
+	CouponPeriodBase            string                              `protobuf:"bytes,43,opt,name=coupon_period_base,json=couponPeriodBase,proto3" json:"coupon_period_base,omitempty"`                                                                                           //Базис расчета НКД.
+	ObservationPrinciple        StructuredNote_ObservationPrinciple `protobuf:"varint,44,opt,name=observation_principle,json=observationPrinciple,proto3,enum=tinkoff.public.invest.api.contract.v1.StructuredNote_ObservationPrinciple" json:"observation_principle,omitempty"` //Принцип наблюдений.
+	ObservationFrequency        string                              `protobuf:"bytes,45,opt,name=observation_frequency,json=observationFrequency,proto3" json:"observation_frequency,omitempty"`                                                                                 //Частота наблюдений.
+	InitialPriceFixingDate      *timestamppb.Timestamp              `protobuf:"bytes,46,opt,name=initial_price_fixing_date,json=initialPriceFixingDate,proto3" json:"initial_price_fixing_date,omitempty"`                                                                       //Дата фиксации цен базовых активов.
+	Yield                       []*StructuredNote_Yield             `protobuf:"bytes,47,rep,name=yield,proto3" json:"yield,omitempty"`                                                                                                                                           //Доходность по ноте в годовом выражении.
+	CouponSavingFlag            bool                                `protobuf:"varint,48,opt,name=coupon_saving_flag,json=couponSavingFlag,proto3" json:"coupon_saving_flag,omitempty"`                                                                                          //Признак сохранения купонов.
+	Sector                      string                              `protobuf:"bytes,49,opt,name=sector,proto3" json:"sector,omitempty"`                                                                                                                                         //Сектор экономики.
+	CountryOfRisk               string                              `protobuf:"bytes,50,opt,name=country_of_risk,json=countryOfRisk,proto3" json:"country_of_risk,omitempty"`                                                                                                    //Код страны рисков.
+	CountryOfRiskName           string                              `protobuf:"bytes,51,opt,name=country_of_risk_name,json=countryOfRiskName,proto3" json:"country_of_risk_name,omitempty"`                                                                                      //Наименование страны рисков.
+	LogoName                    string                              `protobuf:"bytes,52,opt,name=logo_name,json=logoName,proto3" json:"logo_name,omitempty"`                                                                                                                     //Имя файла логотипа эмитента.
+	RequiredTests               []string                            `protobuf:"bytes,53,rep,name=required_tests,json=requiredTests,proto3" json:"required_tests,omitempty"`                                                                                                      //Тесты, которые необходимо пройти клиенту, чтобы совершать покупки по бумаге.
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
+}
+
+func (x *StructuredNote) Reset() {
+	*x = StructuredNote{}
+	mi := &file_tinvest_instruments_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StructuredNote) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StructuredNote) ProtoMessage() {}
+
+func (x *StructuredNote) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StructuredNote.ProtoReflect.Descriptor instead.
+func (*StructuredNote) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *StructuredNote) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetFigi() string {
+	if x != nil {
+		return x.Figi
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetClassCode() string {
+	if x != nil {
+		return x.ClassCode
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetIsin() string {
+	if x != nil {
+		return x.Isin
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetAssetUid() string {
+	if x != nil {
+		return x.AssetUid
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetPositionUid() string {
+	if x != nil {
+		return x.PositionUid
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetMinPriceIncrement() *Quotation {
+	if x != nil {
+		return x.MinPriceIncrement
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetLot() int32 {
+	if x != nil {
+		return x.Lot
+	}
+	return 0
+}
+
+func (x *StructuredNote) GetNominal() *MoneyValue {
+	if x != nil {
+		return x.Nominal
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetMaturityDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.MaturityDate
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetPlacementDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.PlacementDate
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetIssueKind() string {
+	if x != nil {
+		return x.IssueKind
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetIssueSize() int32 {
+	if x != nil {
+		return x.IssueSize
+	}
+	return 0
+}
+
+func (x *StructuredNote) GetIssueSizePlan() int32 {
+	if x != nil {
+		return x.IssueSizePlan
+	}
+	return 0
+}
+
+func (x *StructuredNote) GetDlongClient() *Quotation {
+	if x != nil {
+		return x.DlongClient
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetDshortClient() *Quotation {
+	if x != nil {
+		return x.DshortClient
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetShortEnabledFlag() bool {
+	if x != nil {
+		return x.ShortEnabledFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetExchange() string {
+	if x != nil {
+		return x.Exchange
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetTradingStatus() SecurityTradingStatus {
+	if x != nil {
+		return x.TradingStatus
+	}
+	return SecurityTradingStatus_SECURITY_TRADING_STATUS_UNSPECIFIED
+}
+
+func (x *StructuredNote) GetApiTradeAvailableFlag() bool {
+	if x != nil {
+		return x.ApiTradeAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetBuyAvailableFlag() bool {
+	if x != nil {
+		return x.BuyAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetSellAvailableFlag() bool {
+	if x != nil {
+		return x.SellAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetLimitOrderAvailableFlag() bool {
+	if x != nil {
+		return x.LimitOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetMarketOrderAvailableFlag() bool {
+	if x != nil {
+		return x.MarketOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetBestpriceOrderAvailableFlag() bool {
+	if x != nil {
+		return x.BestpriceOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetWeekendFlag() bool {
+	if x != nil {
+		return x.WeekendFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetLiquidityFlag() bool {
+	if x != nil {
+		return x.LiquidityFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetForIisFlag() bool {
+	if x != nil {
+		return x.ForIisFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetForQualInvestorFlag() bool {
+	if x != nil {
+		return x.ForQualInvestorFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetPawnshopListFlag() bool {
+	if x != nil {
+		return x.PawnshopListFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetRealExchange() RealExchange {
+	if x != nil {
+		return x.RealExchange
+	}
+	return RealExchange_REAL_EXCHANGE_UNSPECIFIED
+}
+
+func (x *StructuredNote) GetFirst_1MinCandleDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.First_1MinCandleDate
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetFirst_1DayCandleDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.First_1DayCandleDate
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetBorrowName() string {
+	if x != nil {
+		return x.BorrowName
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetLogicPortfolio() StructuredNote_LogicPortfolio {
+	if x != nil {
+		return x.LogicPortfolio
+	}
+	return StructuredNote_LOGIC_PORTFOLIO_UNSPECIFIED
+}
+
+func (x *StructuredNote) GetAssetType() AssetType {
+	if x != nil {
+		return x.AssetType
+	}
+	return AssetType_ASSET_TYPE_UNSPECIFIED
+}
+
+func (x *StructuredNote) GetBasicAssets() []*StructuredNote_BasicAsset {
+	if x != nil {
+		return x.BasicAssets
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetSafetyBarrier() *Quotation {
+	if x != nil {
+		return x.SafetyBarrier
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetCouponPeriodBase() string {
+	if x != nil {
+		return x.CouponPeriodBase
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetObservationPrinciple() StructuredNote_ObservationPrinciple {
+	if x != nil {
+		return x.ObservationPrinciple
+	}
+	return StructuredNote_OBSERVATION_PRINCIPLE_UNSPECIFIED
+}
+
+func (x *StructuredNote) GetObservationFrequency() string {
+	if x != nil {
+		return x.ObservationFrequency
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetInitialPriceFixingDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.InitialPriceFixingDate
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetYield() []*StructuredNote_Yield {
+	if x != nil {
+		return x.Yield
+	}
+	return nil
+}
+
+func (x *StructuredNote) GetCouponSavingFlag() bool {
+	if x != nil {
+		return x.CouponSavingFlag
+	}
+	return false
+}
+
+func (x *StructuredNote) GetSector() string {
+	if x != nil {
+		return x.Sector
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetCountryOfRisk() string {
+	if x != nil {
+		return x.CountryOfRisk
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetCountryOfRiskName() string {
+	if x != nil {
+		return x.CountryOfRiskName
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetLogoName() string {
+	if x != nil {
+		return x.LogoName
+	}
+	return ""
+}
+
+func (x *StructuredNote) GetRequiredTests() []string {
+	if x != nil {
+		return x.RequiredTests
+	}
+	return nil
+}
+
 // Запрос НКД по облигации.
 type GetAccruedInterestsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -4800,14 +5902,14 @@ type GetAccruedInterestsRequest struct {
 	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                     //FIGI-идентификатор инструмента.
 	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`                                     //Начало запрашиваемого периода по UTC.
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`                                         //Окончание запрашиваемого периода по UTC.
-	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента — `figi` или `instrument_uid`.
+	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetAccruedInterestsRequest) Reset() {
 	*x = GetAccruedInterestsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[30]
+	mi := &file_tinvest_instruments_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4819,7 +5921,7 @@ func (x *GetAccruedInterestsRequest) String() string {
 func (*GetAccruedInterestsRequest) ProtoMessage() {}
 
 func (x *GetAccruedInterestsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[30]
+	mi := &file_tinvest_instruments_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4832,7 +5934,7 @@ func (x *GetAccruedInterestsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAccruedInterestsRequest.ProtoReflect.Descriptor instead.
 func (*GetAccruedInterestsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{30}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{39}
 }
 
 // Deprecated: Marked as deprecated in tinvest/instruments.proto.
@@ -4874,7 +5976,7 @@ type GetAccruedInterestsResponse struct {
 
 func (x *GetAccruedInterestsResponse) Reset() {
 	*x = GetAccruedInterestsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[31]
+	mi := &file_tinvest_instruments_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4886,7 +5988,7 @@ func (x *GetAccruedInterestsResponse) String() string {
 func (*GetAccruedInterestsResponse) ProtoMessage() {}
 
 func (x *GetAccruedInterestsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[31]
+	mi := &file_tinvest_instruments_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4899,7 +6001,7 @@ func (x *GetAccruedInterestsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAccruedInterestsResponse.ProtoReflect.Descriptor instead.
 func (*GetAccruedInterestsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{31}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *GetAccruedInterestsResponse) GetAccruedInterests() []*AccruedInterest {
@@ -4922,7 +6024,7 @@ type AccruedInterest struct {
 
 func (x *AccruedInterest) Reset() {
 	*x = AccruedInterest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[32]
+	mi := &file_tinvest_instruments_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4934,7 +6036,7 @@ func (x *AccruedInterest) String() string {
 func (*AccruedInterest) ProtoMessage() {}
 
 func (x *AccruedInterest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[32]
+	mi := &file_tinvest_instruments_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4947,7 +6049,7 @@ func (x *AccruedInterest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccruedInterest.ProtoReflect.Descriptor instead.
 func (*AccruedInterest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{32}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *AccruedInterest) GetDate() *timestamppb.Timestamp {
@@ -4983,14 +6085,14 @@ type GetFuturesMarginRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in tinvest/instruments.proto.
 	Figi          string `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                     // Идентификатор инструмента.
-	InstrumentId  string `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента — `figi` или `instrument_uid`.
+	InstrumentId  string `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetFuturesMarginRequest) Reset() {
 	*x = GetFuturesMarginRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[33]
+	mi := &file_tinvest_instruments_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5002,7 +6104,7 @@ func (x *GetFuturesMarginRequest) String() string {
 func (*GetFuturesMarginRequest) ProtoMessage() {}
 
 func (x *GetFuturesMarginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[33]
+	mi := &file_tinvest_instruments_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5015,7 +6117,7 @@ func (x *GetFuturesMarginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFuturesMarginRequest.ProtoReflect.Descriptor instead.
 func (*GetFuturesMarginRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{33}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{42}
 }
 
 // Deprecated: Marked as deprecated in tinvest/instruments.proto.
@@ -5046,7 +6148,7 @@ type GetFuturesMarginResponse struct {
 
 func (x *GetFuturesMarginResponse) Reset() {
 	*x = GetFuturesMarginResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[34]
+	mi := &file_tinvest_instruments_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5058,7 +6160,7 @@ func (x *GetFuturesMarginResponse) String() string {
 func (*GetFuturesMarginResponse) ProtoMessage() {}
 
 func (x *GetFuturesMarginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[34]
+	mi := &file_tinvest_instruments_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5071,7 +6173,7 @@ func (x *GetFuturesMarginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFuturesMarginResponse.ProtoReflect.Descriptor instead.
 func (*GetFuturesMarginResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{34}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *GetFuturesMarginResponse) GetInitialMarginOnBuy() *MoneyValue {
@@ -5112,7 +6214,7 @@ type InstrumentResponse struct {
 
 func (x *InstrumentResponse) Reset() {
 	*x = InstrumentResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[35]
+	mi := &file_tinvest_instruments_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5124,7 +6226,7 @@ func (x *InstrumentResponse) String() string {
 func (*InstrumentResponse) ProtoMessage() {}
 
 func (x *InstrumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[35]
+	mi := &file_tinvest_instruments_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5137,7 +6239,7 @@ func (x *InstrumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstrumentResponse.ProtoReflect.Descriptor instead.
 func (*InstrumentResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{35}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *InstrumentResponse) GetInstrument() *Instrument {
@@ -5197,7 +6299,7 @@ type Instrument struct {
 
 func (x *Instrument) Reset() {
 	*x = Instrument{}
-	mi := &file_tinvest_instruments_proto_msgTypes[36]
+	mi := &file_tinvest_instruments_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5209,7 +6311,7 @@ func (x *Instrument) String() string {
 func (*Instrument) ProtoMessage() {}
 
 func (x *Instrument) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[36]
+	mi := &file_tinvest_instruments_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5222,7 +6324,7 @@ func (x *Instrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Instrument.ProtoReflect.Descriptor instead.
 func (*Instrument) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{36}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *Instrument) GetFigi() string {
@@ -5507,14 +6609,14 @@ type GetDividendsRequest struct {
 	Figi          string                 `protobuf:"bytes,1,opt,name=figi,proto3" json:"figi,omitempty"`                                     //FIGI-идентификатор инструмента.
 	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3,oneof" json:"from,omitempty"`                               //Начало запрашиваемого периода по UTC. Фильтрация происходит по параметру `record_date` — дата фиксации реестра.
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3,oneof" json:"to,omitempty"`                                   //Окончание запрашиваемого периода по UTC. Фильтрация происходит по параметру `record_date` — дата фиксации реестра.
-	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента — `figi` или `instrument_uid`.
+	InstrumentId  string                 `protobuf:"bytes,4,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetDividendsRequest) Reset() {
 	*x = GetDividendsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[37]
+	mi := &file_tinvest_instruments_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5526,7 +6628,7 @@ func (x *GetDividendsRequest) String() string {
 func (*GetDividendsRequest) ProtoMessage() {}
 
 func (x *GetDividendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[37]
+	mi := &file_tinvest_instruments_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5539,7 +6641,7 @@ func (x *GetDividendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDividendsRequest.ProtoReflect.Descriptor instead.
 func (*GetDividendsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{37}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{46}
 }
 
 // Deprecated: Marked as deprecated in tinvest/instruments.proto.
@@ -5581,7 +6683,7 @@ type GetDividendsResponse struct {
 
 func (x *GetDividendsResponse) Reset() {
 	*x = GetDividendsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[38]
+	mi := &file_tinvest_instruments_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5593,7 +6695,7 @@ func (x *GetDividendsResponse) String() string {
 func (*GetDividendsResponse) ProtoMessage() {}
 
 func (x *GetDividendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[38]
+	mi := &file_tinvest_instruments_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5606,7 +6708,7 @@ func (x *GetDividendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDividendsResponse.ProtoReflect.Descriptor instead.
 func (*GetDividendsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GetDividendsResponse) GetDividends() []*Dividend {
@@ -5635,7 +6737,7 @@ type Dividend struct {
 
 func (x *Dividend) Reset() {
 	*x = Dividend{}
-	mi := &file_tinvest_instruments_proto_msgTypes[39]
+	mi := &file_tinvest_instruments_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5647,7 +6749,7 @@ func (x *Dividend) String() string {
 func (*Dividend) ProtoMessage() {}
 
 func (x *Dividend) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[39]
+	mi := &file_tinvest_instruments_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5660,7 +6762,7 @@ func (x *Dividend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Dividend.ProtoReflect.Descriptor instead.
 func (*Dividend) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{39}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *Dividend) GetDividendNet() *MoneyValue {
@@ -5743,7 +6845,7 @@ type AssetRequest struct {
 
 func (x *AssetRequest) Reset() {
 	*x = AssetRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[40]
+	mi := &file_tinvest_instruments_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5755,7 +6857,7 @@ func (x *AssetRequest) String() string {
 func (*AssetRequest) ProtoMessage() {}
 
 func (x *AssetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[40]
+	mi := &file_tinvest_instruments_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5768,7 +6870,7 @@ func (x *AssetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetRequest.ProtoReflect.Descriptor instead.
 func (*AssetRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{40}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *AssetRequest) GetId() string {
@@ -5788,7 +6890,7 @@ type AssetResponse struct {
 
 func (x *AssetResponse) Reset() {
 	*x = AssetResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[41]
+	mi := &file_tinvest_instruments_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5800,7 +6902,7 @@ func (x *AssetResponse) String() string {
 func (*AssetResponse) ProtoMessage() {}
 
 func (x *AssetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[41]
+	mi := &file_tinvest_instruments_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5813,7 +6915,7 @@ func (x *AssetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetResponse.ProtoReflect.Descriptor instead.
 func (*AssetResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{41}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *AssetResponse) GetAsset() *AssetFull {
@@ -5834,7 +6936,7 @@ type AssetsRequest struct {
 
 func (x *AssetsRequest) Reset() {
 	*x = AssetsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[42]
+	mi := &file_tinvest_instruments_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5846,7 +6948,7 @@ func (x *AssetsRequest) String() string {
 func (*AssetsRequest) ProtoMessage() {}
 
 func (x *AssetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[42]
+	mi := &file_tinvest_instruments_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5859,7 +6961,7 @@ func (x *AssetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetsRequest.ProtoReflect.Descriptor instead.
 func (*AssetsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{42}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *AssetsRequest) GetInstrumentType() InstrumentType {
@@ -5886,7 +6988,7 @@ type AssetsResponse struct {
 
 func (x *AssetsResponse) Reset() {
 	*x = AssetsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[43]
+	mi := &file_tinvest_instruments_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5898,7 +7000,7 @@ func (x *AssetsResponse) String() string {
 func (*AssetsResponse) ProtoMessage() {}
 
 func (x *AssetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[43]
+	mi := &file_tinvest_instruments_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5911,7 +7013,7 @@ func (x *AssetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetsResponse.ProtoReflect.Descriptor instead.
 func (*AssetsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{43}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *AssetsResponse) GetAssets() []*Asset {
@@ -5950,7 +7052,7 @@ type AssetFull struct {
 
 func (x *AssetFull) Reset() {
 	*x = AssetFull{}
-	mi := &file_tinvest_instruments_proto_msgTypes[44]
+	mi := &file_tinvest_instruments_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5962,7 +7064,7 @@ func (x *AssetFull) String() string {
 func (*AssetFull) ProtoMessage() {}
 
 func (x *AssetFull) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[44]
+	mi := &file_tinvest_instruments_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5975,7 +7077,7 @@ func (x *AssetFull) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetFull.ProtoReflect.Descriptor instead.
 func (*AssetFull) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{44}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *AssetFull) GetUid() string {
@@ -6144,7 +7246,7 @@ type Asset struct {
 
 func (x *Asset) Reset() {
 	*x = Asset{}
-	mi := &file_tinvest_instruments_proto_msgTypes[45]
+	mi := &file_tinvest_instruments_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6156,7 +7258,7 @@ func (x *Asset) String() string {
 func (*Asset) ProtoMessage() {}
 
 func (x *Asset) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[45]
+	mi := &file_tinvest_instruments_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6169,7 +7271,7 @@ func (x *Asset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Asset.ProtoReflect.Descriptor instead.
 func (*Asset) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{45}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *Asset) GetUid() string {
@@ -6210,7 +7312,7 @@ type AssetCurrency struct {
 
 func (x *AssetCurrency) Reset() {
 	*x = AssetCurrency{}
-	mi := &file_tinvest_instruments_proto_msgTypes[46]
+	mi := &file_tinvest_instruments_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6222,7 +7324,7 @@ func (x *AssetCurrency) String() string {
 func (*AssetCurrency) ProtoMessage() {}
 
 func (x *AssetCurrency) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[46]
+	mi := &file_tinvest_instruments_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6235,7 +7337,7 @@ func (x *AssetCurrency) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetCurrency.ProtoReflect.Descriptor instead.
 func (*AssetCurrency) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{46}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *AssetCurrency) GetBaseCurrency() string {
@@ -6265,7 +7367,7 @@ type AssetSecurity struct {
 
 func (x *AssetSecurity) Reset() {
 	*x = AssetSecurity{}
-	mi := &file_tinvest_instruments_proto_msgTypes[47]
+	mi := &file_tinvest_instruments_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6277,7 +7379,7 @@ func (x *AssetSecurity) String() string {
 func (*AssetSecurity) ProtoMessage() {}
 
 func (x *AssetSecurity) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[47]
+	mi := &file_tinvest_instruments_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6290,7 +7392,7 @@ func (x *AssetSecurity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetSecurity.ProtoReflect.Descriptor instead.
 func (*AssetSecurity) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{47}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *AssetSecurity) GetIsin() string {
@@ -6424,7 +7526,7 @@ type AssetShare struct {
 
 func (x *AssetShare) Reset() {
 	*x = AssetShare{}
-	mi := &file_tinvest_instruments_proto_msgTypes[48]
+	mi := &file_tinvest_instruments_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6436,7 +7538,7 @@ func (x *AssetShare) String() string {
 func (*AssetShare) ProtoMessage() {}
 
 func (x *AssetShare) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[48]
+	mi := &file_tinvest_instruments_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6449,7 +7551,7 @@ func (x *AssetShare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetShare.ProtoReflect.Descriptor instead.
 func (*AssetShare) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{48}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *AssetShare) GetType() ShareType {
@@ -6587,7 +7689,7 @@ type AssetBond struct {
 
 func (x *AssetBond) Reset() {
 	*x = AssetBond{}
-	mi := &file_tinvest_instruments_proto_msgTypes[49]
+	mi := &file_tinvest_instruments_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6599,7 +7701,7 @@ func (x *AssetBond) String() string {
 func (*AssetBond) ProtoMessage() {}
 
 func (x *AssetBond) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[49]
+	mi := &file_tinvest_instruments_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6612,7 +7714,7 @@ func (x *AssetBond) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetBond.ProtoReflect.Descriptor instead.
 func (*AssetBond) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{49}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *AssetBond) GetCurrentNominal() *Quotation {
@@ -6784,7 +7886,7 @@ type AssetStructuredProduct struct {
 
 func (x *AssetStructuredProduct) Reset() {
 	*x = AssetStructuredProduct{}
-	mi := &file_tinvest_instruments_proto_msgTypes[50]
+	mi := &file_tinvest_instruments_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6796,7 +7898,7 @@ func (x *AssetStructuredProduct) String() string {
 func (*AssetStructuredProduct) ProtoMessage() {}
 
 func (x *AssetStructuredProduct) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[50]
+	mi := &file_tinvest_instruments_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6809,7 +7911,7 @@ func (x *AssetStructuredProduct) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetStructuredProduct.ProtoReflect.Descriptor instead.
 func (*AssetStructuredProduct) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{50}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *AssetStructuredProduct) GetBorrowName() string {
@@ -6943,7 +8045,7 @@ type AssetEtf struct {
 
 func (x *AssetEtf) Reset() {
 	*x = AssetEtf{}
-	mi := &file_tinvest_instruments_proto_msgTypes[51]
+	mi := &file_tinvest_instruments_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6955,7 +8057,7 @@ func (x *AssetEtf) String() string {
 func (*AssetEtf) ProtoMessage() {}
 
 func (x *AssetEtf) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[51]
+	mi := &file_tinvest_instruments_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6968,7 +8070,7 @@ func (x *AssetEtf) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetEtf.ProtoReflect.Descriptor instead.
 func (*AssetEtf) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{51}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *AssetEtf) GetTotalExpense() *Quotation {
@@ -7199,7 +8301,7 @@ type AssetClearingCertificate struct {
 
 func (x *AssetClearingCertificate) Reset() {
 	*x = AssetClearingCertificate{}
-	mi := &file_tinvest_instruments_proto_msgTypes[52]
+	mi := &file_tinvest_instruments_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7211,7 +8313,7 @@ func (x *AssetClearingCertificate) String() string {
 func (*AssetClearingCertificate) ProtoMessage() {}
 
 func (x *AssetClearingCertificate) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[52]
+	mi := &file_tinvest_instruments_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7224,7 +8326,7 @@ func (x *AssetClearingCertificate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetClearingCertificate.ProtoReflect.Descriptor instead.
 func (*AssetClearingCertificate) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{52}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *AssetClearingCertificate) GetNominal() *Quotation {
@@ -7258,7 +8360,7 @@ type Brand struct {
 
 func (x *Brand) Reset() {
 	*x = Brand{}
-	mi := &file_tinvest_instruments_proto_msgTypes[53]
+	mi := &file_tinvest_instruments_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7270,7 +8372,7 @@ func (x *Brand) String() string {
 func (*Brand) ProtoMessage() {}
 
 func (x *Brand) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[53]
+	mi := &file_tinvest_instruments_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7283,7 +8385,7 @@ func (x *Brand) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Brand.ProtoReflect.Descriptor instead.
 func (*Brand) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{53}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *Brand) GetUid() string {
@@ -7359,7 +8461,7 @@ type AssetInstrument struct {
 
 func (x *AssetInstrument) Reset() {
 	*x = AssetInstrument{}
-	mi := &file_tinvest_instruments_proto_msgTypes[54]
+	mi := &file_tinvest_instruments_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7371,7 +8473,7 @@ func (x *AssetInstrument) String() string {
 func (*AssetInstrument) ProtoMessage() {}
 
 func (x *AssetInstrument) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[54]
+	mi := &file_tinvest_instruments_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7384,7 +8486,7 @@ func (x *AssetInstrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetInstrument.ProtoReflect.Descriptor instead.
 func (*AssetInstrument) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{54}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *AssetInstrument) GetUid() string {
@@ -7454,7 +8556,7 @@ type InstrumentLink struct {
 
 func (x *InstrumentLink) Reset() {
 	*x = InstrumentLink{}
-	mi := &file_tinvest_instruments_proto_msgTypes[55]
+	mi := &file_tinvest_instruments_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7466,7 +8568,7 @@ func (x *InstrumentLink) String() string {
 func (*InstrumentLink) ProtoMessage() {}
 
 func (x *InstrumentLink) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[55]
+	mi := &file_tinvest_instruments_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7479,7 +8581,7 @@ func (x *InstrumentLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstrumentLink.ProtoReflect.Descriptor instead.
 func (*InstrumentLink) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{55}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *InstrumentLink) GetType() string {
@@ -7506,7 +8608,7 @@ type GetFavoritesRequest struct {
 
 func (x *GetFavoritesRequest) Reset() {
 	*x = GetFavoritesRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[56]
+	mi := &file_tinvest_instruments_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7518,7 +8620,7 @@ func (x *GetFavoritesRequest) String() string {
 func (*GetFavoritesRequest) ProtoMessage() {}
 
 func (x *GetFavoritesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[56]
+	mi := &file_tinvest_instruments_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7531,7 +8633,7 @@ func (x *GetFavoritesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoritesRequest.ProtoReflect.Descriptor instead.
 func (*GetFavoritesRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{56}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *GetFavoritesRequest) GetGroupId() string {
@@ -7552,7 +8654,7 @@ type GetFavoritesResponse struct {
 
 func (x *GetFavoritesResponse) Reset() {
 	*x = GetFavoritesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[57]
+	mi := &file_tinvest_instruments_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7564,7 +8666,7 @@ func (x *GetFavoritesResponse) String() string {
 func (*GetFavoritesResponse) ProtoMessage() {}
 
 func (x *GetFavoritesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[57]
+	mi := &file_tinvest_instruments_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7577,7 +8679,7 @@ func (x *GetFavoritesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoritesResponse.ProtoReflect.Descriptor instead.
 func (*GetFavoritesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{57}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *GetFavoritesResponse) GetFavoriteInstruments() []*FavoriteInstrument {
@@ -7613,7 +8715,7 @@ type FavoriteInstrument struct {
 
 func (x *FavoriteInstrument) Reset() {
 	*x = FavoriteInstrument{}
-	mi := &file_tinvest_instruments_proto_msgTypes[58]
+	mi := &file_tinvest_instruments_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7625,7 +8727,7 @@ func (x *FavoriteInstrument) String() string {
 func (*FavoriteInstrument) ProtoMessage() {}
 
 func (x *FavoriteInstrument) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[58]
+	mi := &file_tinvest_instruments_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7638,7 +8740,7 @@ func (x *FavoriteInstrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FavoriteInstrument.ProtoReflect.Descriptor instead.
 func (*FavoriteInstrument) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{58}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *FavoriteInstrument) GetFigi() string {
@@ -7723,7 +8825,7 @@ type EditFavoritesRequest struct {
 
 func (x *EditFavoritesRequest) Reset() {
 	*x = EditFavoritesRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[59]
+	mi := &file_tinvest_instruments_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7735,7 +8837,7 @@ func (x *EditFavoritesRequest) String() string {
 func (*EditFavoritesRequest) ProtoMessage() {}
 
 func (x *EditFavoritesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[59]
+	mi := &file_tinvest_instruments_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7748,7 +8850,7 @@ func (x *EditFavoritesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditFavoritesRequest.ProtoReflect.Descriptor instead.
 func (*EditFavoritesRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{59}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *EditFavoritesRequest) GetInstruments() []*EditFavoritesRequestInstrument {
@@ -7784,7 +8886,7 @@ type EditFavoritesRequestInstrument struct {
 
 func (x *EditFavoritesRequestInstrument) Reset() {
 	*x = EditFavoritesRequestInstrument{}
-	mi := &file_tinvest_instruments_proto_msgTypes[60]
+	mi := &file_tinvest_instruments_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7796,7 +8898,7 @@ func (x *EditFavoritesRequestInstrument) String() string {
 func (*EditFavoritesRequestInstrument) ProtoMessage() {}
 
 func (x *EditFavoritesRequestInstrument) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[60]
+	mi := &file_tinvest_instruments_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7809,7 +8911,7 @@ func (x *EditFavoritesRequestInstrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditFavoritesRequestInstrument.ProtoReflect.Descriptor instead.
 func (*EditFavoritesRequestInstrument) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{60}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{69}
 }
 
 // Deprecated: Marked as deprecated in tinvest/instruments.proto.
@@ -7838,7 +8940,7 @@ type EditFavoritesResponse struct {
 
 func (x *EditFavoritesResponse) Reset() {
 	*x = EditFavoritesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[61]
+	mi := &file_tinvest_instruments_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7850,7 +8952,7 @@ func (x *EditFavoritesResponse) String() string {
 func (*EditFavoritesResponse) ProtoMessage() {}
 
 func (x *EditFavoritesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[61]
+	mi := &file_tinvest_instruments_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7863,7 +8965,7 @@ func (x *EditFavoritesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditFavoritesResponse.ProtoReflect.Descriptor instead.
 func (*EditFavoritesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{61}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *EditFavoritesResponse) GetFavoriteInstruments() []*FavoriteInstrument {
@@ -7892,7 +8994,7 @@ type CreateFavoriteGroupRequest struct {
 
 func (x *CreateFavoriteGroupRequest) Reset() {
 	*x = CreateFavoriteGroupRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[62]
+	mi := &file_tinvest_instruments_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7904,7 +9006,7 @@ func (x *CreateFavoriteGroupRequest) String() string {
 func (*CreateFavoriteGroupRequest) ProtoMessage() {}
 
 func (x *CreateFavoriteGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[62]
+	mi := &file_tinvest_instruments_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7917,7 +9019,7 @@ func (x *CreateFavoriteGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFavoriteGroupRequest.ProtoReflect.Descriptor instead.
 func (*CreateFavoriteGroupRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{62}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *CreateFavoriteGroupRequest) GetGroupName() string {
@@ -7951,7 +9053,7 @@ type CreateFavoriteGroupResponse struct {
 
 func (x *CreateFavoriteGroupResponse) Reset() {
 	*x = CreateFavoriteGroupResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[63]
+	mi := &file_tinvest_instruments_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7963,7 +9065,7 @@ func (x *CreateFavoriteGroupResponse) String() string {
 func (*CreateFavoriteGroupResponse) ProtoMessage() {}
 
 func (x *CreateFavoriteGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[63]
+	mi := &file_tinvest_instruments_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7976,7 +9078,7 @@ func (x *CreateFavoriteGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFavoriteGroupResponse.ProtoReflect.Descriptor instead.
 func (*CreateFavoriteGroupResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{63}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *CreateFavoriteGroupResponse) GetGroupId() string {
@@ -8003,7 +9105,7 @@ type DeleteFavoriteGroupRequest struct {
 
 func (x *DeleteFavoriteGroupRequest) Reset() {
 	*x = DeleteFavoriteGroupRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[64]
+	mi := &file_tinvest_instruments_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8015,7 +9117,7 @@ func (x *DeleteFavoriteGroupRequest) String() string {
 func (*DeleteFavoriteGroupRequest) ProtoMessage() {}
 
 func (x *DeleteFavoriteGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[64]
+	mi := &file_tinvest_instruments_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8028,7 +9130,7 @@ func (x *DeleteFavoriteGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFavoriteGroupRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFavoriteGroupRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{64}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *DeleteFavoriteGroupRequest) GetGroupId() string {
@@ -8046,7 +9148,7 @@ type DeleteFavoriteGroupResponse struct {
 
 func (x *DeleteFavoriteGroupResponse) Reset() {
 	*x = DeleteFavoriteGroupResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[65]
+	mi := &file_tinvest_instruments_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8058,7 +9160,7 @@ func (x *DeleteFavoriteGroupResponse) String() string {
 func (*DeleteFavoriteGroupResponse) ProtoMessage() {}
 
 func (x *DeleteFavoriteGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[65]
+	mi := &file_tinvest_instruments_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8071,7 +9173,7 @@ func (x *DeleteFavoriteGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFavoriteGroupResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFavoriteGroupResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{65}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{74}
 }
 
 // Запрос получения списка избранных групп
@@ -8085,7 +9187,7 @@ type GetFavoriteGroupsRequest struct {
 
 func (x *GetFavoriteGroupsRequest) Reset() {
 	*x = GetFavoriteGroupsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[66]
+	mi := &file_tinvest_instruments_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8097,7 +9199,7 @@ func (x *GetFavoriteGroupsRequest) String() string {
 func (*GetFavoriteGroupsRequest) ProtoMessage() {}
 
 func (x *GetFavoriteGroupsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[66]
+	mi := &file_tinvest_instruments_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8110,7 +9212,7 @@ func (x *GetFavoriteGroupsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoriteGroupsRequest.ProtoReflect.Descriptor instead.
 func (*GetFavoriteGroupsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{66}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *GetFavoriteGroupsRequest) GetInstrumentId() []string {
@@ -8137,7 +9239,7 @@ type GetFavoriteGroupsResponse struct {
 
 func (x *GetFavoriteGroupsResponse) Reset() {
 	*x = GetFavoriteGroupsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[67]
+	mi := &file_tinvest_instruments_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8149,7 +9251,7 @@ func (x *GetFavoriteGroupsResponse) String() string {
 func (*GetFavoriteGroupsResponse) ProtoMessage() {}
 
 func (x *GetFavoriteGroupsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[67]
+	mi := &file_tinvest_instruments_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8162,7 +9264,7 @@ func (x *GetFavoriteGroupsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoriteGroupsResponse.ProtoReflect.Descriptor instead.
 func (*GetFavoriteGroupsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{67}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *GetFavoriteGroupsResponse) GetGroups() []*GetFavoriteGroupsResponse_FavoriteGroup {
@@ -8181,7 +9283,7 @@ type GetCountriesRequest struct {
 
 func (x *GetCountriesRequest) Reset() {
 	*x = GetCountriesRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[68]
+	mi := &file_tinvest_instruments_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8193,7 +9295,7 @@ func (x *GetCountriesRequest) String() string {
 func (*GetCountriesRequest) ProtoMessage() {}
 
 func (x *GetCountriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[68]
+	mi := &file_tinvest_instruments_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8206,7 +9308,7 @@ func (x *GetCountriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountriesRequest.ProtoReflect.Descriptor instead.
 func (*GetCountriesRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{68}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{77}
 }
 
 // Справочник стран.
@@ -8219,7 +9321,7 @@ type GetCountriesResponse struct {
 
 func (x *GetCountriesResponse) Reset() {
 	*x = GetCountriesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[69]
+	mi := &file_tinvest_instruments_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8231,7 +9333,7 @@ func (x *GetCountriesResponse) String() string {
 func (*GetCountriesResponse) ProtoMessage() {}
 
 func (x *GetCountriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[69]
+	mi := &file_tinvest_instruments_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8244,7 +9346,7 @@ func (x *GetCountriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountriesResponse.ProtoReflect.Descriptor instead.
 func (*GetCountriesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{69}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *GetCountriesResponse) GetCountries() []*CountryResponse {
@@ -8263,7 +9365,7 @@ type IndicativesRequest struct {
 
 func (x *IndicativesRequest) Reset() {
 	*x = IndicativesRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[70]
+	mi := &file_tinvest_instruments_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8275,7 +9377,7 @@ func (x *IndicativesRequest) String() string {
 func (*IndicativesRequest) ProtoMessage() {}
 
 func (x *IndicativesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[70]
+	mi := &file_tinvest_instruments_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8288,7 +9390,7 @@ func (x *IndicativesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicativesRequest.ProtoReflect.Descriptor instead.
 func (*IndicativesRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{70}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{79}
 }
 
 // Справочник индексов и товаров
@@ -8301,7 +9403,7 @@ type IndicativesResponse struct {
 
 func (x *IndicativesResponse) Reset() {
 	*x = IndicativesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[71]
+	mi := &file_tinvest_instruments_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8313,7 +9415,7 @@ func (x *IndicativesResponse) String() string {
 func (*IndicativesResponse) ProtoMessage() {}
 
 func (x *IndicativesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[71]
+	mi := &file_tinvest_instruments_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8326,7 +9428,7 @@ func (x *IndicativesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicativesResponse.ProtoReflect.Descriptor instead.
 func (*IndicativesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{71}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *IndicativesResponse) GetInstruments() []*IndicativeResponse {
@@ -8349,13 +9451,14 @@ type IndicativeResponse struct {
 	Uid               string                 `protobuf:"bytes,14,opt,name=uid,proto3" json:"uid,omitempty"`                                                                                                        // Уникальный идентификатор инструмента.
 	BuyAvailableFlag  bool                   `protobuf:"varint,404,opt,name=buy_available_flag,json=buyAvailableFlag,proto3" json:"buy_available_flag,omitempty"`                                                  // Признак доступности для покупки.
 	SellAvailableFlag bool                   `protobuf:"varint,405,opt,name=sell_available_flag,json=sellAvailableFlag,proto3" json:"sell_available_flag,omitempty"`                                               // Признак доступности для продажи.
+	IndexComposition  []*IndexInstrument     `protobuf:"bytes,406,rep,name=index_composition,json=indexComposition,proto3" json:"index_composition,omitempty"`                                                     // Состав индекса.
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *IndicativeResponse) Reset() {
 	*x = IndicativeResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[72]
+	mi := &file_tinvest_instruments_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8367,7 +9470,7 @@ func (x *IndicativeResponse) String() string {
 func (*IndicativeResponse) ProtoMessage() {}
 
 func (x *IndicativeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[72]
+	mi := &file_tinvest_instruments_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8380,7 +9483,7 @@ func (x *IndicativeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicativeResponse.ProtoReflect.Descriptor instead.
 func (*IndicativeResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{72}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *IndicativeResponse) GetFigi() string {
@@ -8453,6 +9556,66 @@ func (x *IndicativeResponse) GetSellAvailableFlag() bool {
 	return false
 }
 
+func (x *IndicativeResponse) GetIndexComposition() []*IndexInstrument {
+	if x != nil {
+		return x.IndexComposition
+	}
+	return nil
+}
+
+// Инструмент в составе индекса
+type IndexInstrument struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`       // Идентификатор инструмента.
+	Weight        *Quotation             `protobuf:"bytes,2,opt,name=weight,proto3" json:"weight,omitempty"` // Вес инструмента в составе индекса в %.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IndexInstrument) Reset() {
+	*x = IndexInstrument{}
+	mi := &file_tinvest_instruments_proto_msgTypes[82]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IndexInstrument) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IndexInstrument) ProtoMessage() {}
+
+func (x *IndexInstrument) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[82]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IndexInstrument.ProtoReflect.Descriptor instead.
+func (*IndexInstrument) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{82}
+}
+
+func (x *IndexInstrument) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *IndexInstrument) GetWeight() *Quotation {
+	if x != nil {
+		return x.Weight
+	}
+	return nil
+}
+
 // Данные о стране.
 type CountryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -8466,7 +9629,7 @@ type CountryResponse struct {
 
 func (x *CountryResponse) Reset() {
 	*x = CountryResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[73]
+	mi := &file_tinvest_instruments_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8478,7 +9641,7 @@ func (x *CountryResponse) String() string {
 func (*CountryResponse) ProtoMessage() {}
 
 func (x *CountryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[73]
+	mi := &file_tinvest_instruments_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8491,7 +9654,7 @@ func (x *CountryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountryResponse.ProtoReflect.Descriptor instead.
 func (*CountryResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{73}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *CountryResponse) GetAlfaTwo() string {
@@ -8534,7 +9697,7 @@ type FindInstrumentRequest struct {
 
 func (x *FindInstrumentRequest) Reset() {
 	*x = FindInstrumentRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[74]
+	mi := &file_tinvest_instruments_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8546,7 +9709,7 @@ func (x *FindInstrumentRequest) String() string {
 func (*FindInstrumentRequest) ProtoMessage() {}
 
 func (x *FindInstrumentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[74]
+	mi := &file_tinvest_instruments_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8559,7 +9722,7 @@ func (x *FindInstrumentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindInstrumentRequest.ProtoReflect.Descriptor instead.
 func (*FindInstrumentRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{74}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *FindInstrumentRequest) GetQuery() string {
@@ -8593,7 +9756,7 @@ type FindInstrumentResponse struct {
 
 func (x *FindInstrumentResponse) Reset() {
 	*x = FindInstrumentResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[75]
+	mi := &file_tinvest_instruments_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8605,7 +9768,7 @@ func (x *FindInstrumentResponse) String() string {
 func (*FindInstrumentResponse) ProtoMessage() {}
 
 func (x *FindInstrumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[75]
+	mi := &file_tinvest_instruments_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8618,7 +9781,7 @@ func (x *FindInstrumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindInstrumentResponse.ProtoReflect.Descriptor instead.
 func (*FindInstrumentResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{75}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *FindInstrumentResponse) GetInstruments() []*InstrumentShort {
@@ -8654,7 +9817,7 @@ type InstrumentShort struct {
 
 func (x *InstrumentShort) Reset() {
 	*x = InstrumentShort{}
-	mi := &file_tinvest_instruments_proto_msgTypes[76]
+	mi := &file_tinvest_instruments_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8666,7 +9829,7 @@ func (x *InstrumentShort) String() string {
 func (*InstrumentShort) ProtoMessage() {}
 
 func (x *InstrumentShort) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[76]
+	mi := &file_tinvest_instruments_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8679,7 +9842,7 @@ func (x *InstrumentShort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstrumentShort.ProtoReflect.Descriptor instead.
 func (*InstrumentShort) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{76}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *InstrumentShort) GetIsin() string {
@@ -8811,7 +9974,7 @@ type GetBrandsRequest struct {
 
 func (x *GetBrandsRequest) Reset() {
 	*x = GetBrandsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[77]
+	mi := &file_tinvest_instruments_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8823,7 +9986,7 @@ func (x *GetBrandsRequest) String() string {
 func (*GetBrandsRequest) ProtoMessage() {}
 
 func (x *GetBrandsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[77]
+	mi := &file_tinvest_instruments_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8836,7 +9999,7 @@ func (x *GetBrandsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBrandsRequest.ProtoReflect.Descriptor instead.
 func (*GetBrandsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{77}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *GetBrandsRequest) GetPaging() *Page {
@@ -8856,7 +10019,7 @@ type GetBrandRequest struct {
 
 func (x *GetBrandRequest) Reset() {
 	*x = GetBrandRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[78]
+	mi := &file_tinvest_instruments_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8868,7 +10031,7 @@ func (x *GetBrandRequest) String() string {
 func (*GetBrandRequest) ProtoMessage() {}
 
 func (x *GetBrandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[78]
+	mi := &file_tinvest_instruments_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8881,7 +10044,7 @@ func (x *GetBrandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBrandRequest.ProtoReflect.Descriptor instead.
 func (*GetBrandRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{78}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *GetBrandRequest) GetId() string {
@@ -8902,7 +10065,7 @@ type GetBrandsResponse struct {
 
 func (x *GetBrandsResponse) Reset() {
 	*x = GetBrandsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[79]
+	mi := &file_tinvest_instruments_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8914,7 +10077,7 @@ func (x *GetBrandsResponse) String() string {
 func (*GetBrandsResponse) ProtoMessage() {}
 
 func (x *GetBrandsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[79]
+	mi := &file_tinvest_instruments_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8927,7 +10090,7 @@ func (x *GetBrandsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBrandsResponse.ProtoReflect.Descriptor instead.
 func (*GetBrandsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{79}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *GetBrandsResponse) GetBrands() []*Brand {
@@ -8954,7 +10117,7 @@ type GetAssetFundamentalsRequest struct {
 
 func (x *GetAssetFundamentalsRequest) Reset() {
 	*x = GetAssetFundamentalsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[80]
+	mi := &file_tinvest_instruments_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8966,7 +10129,7 @@ func (x *GetAssetFundamentalsRequest) String() string {
 func (*GetAssetFundamentalsRequest) ProtoMessage() {}
 
 func (x *GetAssetFundamentalsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[80]
+	mi := &file_tinvest_instruments_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8979,7 +10142,7 @@ func (x *GetAssetFundamentalsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAssetFundamentalsRequest.ProtoReflect.Descriptor instead.
 func (*GetAssetFundamentalsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{80}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *GetAssetFundamentalsRequest) GetAssets() []string {
@@ -8999,7 +10162,7 @@ type GetAssetFundamentalsResponse struct {
 
 func (x *GetAssetFundamentalsResponse) Reset() {
 	*x = GetAssetFundamentalsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[81]
+	mi := &file_tinvest_instruments_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9011,7 +10174,7 @@ func (x *GetAssetFundamentalsResponse) String() string {
 func (*GetAssetFundamentalsResponse) ProtoMessage() {}
 
 func (x *GetAssetFundamentalsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[81]
+	mi := &file_tinvest_instruments_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9024,7 +10187,7 @@ func (x *GetAssetFundamentalsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAssetFundamentalsResponse.ProtoReflect.Descriptor instead.
 func (*GetAssetFundamentalsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{81}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *GetAssetFundamentalsResponse) GetFundamentals() []*GetAssetFundamentalsResponse_StatisticResponse {
@@ -9037,7 +10200,7 @@ func (x *GetAssetFundamentalsResponse) GetFundamentals() []*GetAssetFundamentals
 // Запрос отчетов эмитентов
 type GetAssetReportsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	InstrumentId  string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента в формате UID.
+	InstrumentId  string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` //Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	From          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3,oneof" json:"from,omitempty"`                               //Начало запрашиваемого периода по UTC.
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3,oneof" json:"to,omitempty"`                                   //Окончание запрашиваемого периода по UTC.
 	unknownFields protoimpl.UnknownFields
@@ -9046,7 +10209,7 @@ type GetAssetReportsRequest struct {
 
 func (x *GetAssetReportsRequest) Reset() {
 	*x = GetAssetReportsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[82]
+	mi := &file_tinvest_instruments_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9058,7 +10221,7 @@ func (x *GetAssetReportsRequest) String() string {
 func (*GetAssetReportsRequest) ProtoMessage() {}
 
 func (x *GetAssetReportsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[82]
+	mi := &file_tinvest_instruments_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9071,7 +10234,7 @@ func (x *GetAssetReportsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAssetReportsRequest.ProtoReflect.Descriptor instead.
 func (*GetAssetReportsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{82}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *GetAssetReportsRequest) GetInstrumentId() string {
@@ -9105,7 +10268,7 @@ type GetAssetReportsResponse struct {
 
 func (x *GetAssetReportsResponse) Reset() {
 	*x = GetAssetReportsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[83]
+	mi := &file_tinvest_instruments_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9117,7 +10280,7 @@ func (x *GetAssetReportsResponse) String() string {
 func (*GetAssetReportsResponse) ProtoMessage() {}
 
 func (x *GetAssetReportsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[83]
+	mi := &file_tinvest_instruments_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9130,7 +10293,7 @@ func (x *GetAssetReportsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAssetReportsResponse.ProtoReflect.Descriptor instead.
 func (*GetAssetReportsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{83}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *GetAssetReportsResponse) GetEvents() []*GetAssetReportsResponse_GetAssetReportsEvent {
@@ -9150,7 +10313,7 @@ type GetConsensusForecastsRequest struct {
 
 func (x *GetConsensusForecastsRequest) Reset() {
 	*x = GetConsensusForecastsRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[84]
+	mi := &file_tinvest_instruments_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9162,7 +10325,7 @@ func (x *GetConsensusForecastsRequest) String() string {
 func (*GetConsensusForecastsRequest) ProtoMessage() {}
 
 func (x *GetConsensusForecastsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[84]
+	mi := &file_tinvest_instruments_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9175,7 +10338,7 @@ func (x *GetConsensusForecastsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetConsensusForecastsRequest.ProtoReflect.Descriptor instead.
 func (*GetConsensusForecastsRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{84}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *GetConsensusForecastsRequest) GetPaging() *Page {
@@ -9196,7 +10359,7 @@ type GetConsensusForecastsResponse struct {
 
 func (x *GetConsensusForecastsResponse) Reset() {
 	*x = GetConsensusForecastsResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[85]
+	mi := &file_tinvest_instruments_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9208,7 +10371,7 @@ func (x *GetConsensusForecastsResponse) String() string {
 func (*GetConsensusForecastsResponse) ProtoMessage() {}
 
 func (x *GetConsensusForecastsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[85]
+	mi := &file_tinvest_instruments_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9221,7 +10384,7 @@ func (x *GetConsensusForecastsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetConsensusForecastsResponse.ProtoReflect.Descriptor instead.
 func (*GetConsensusForecastsResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{85}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *GetConsensusForecastsResponse) GetItems() []*GetConsensusForecastsResponse_ConsensusForecastsItem {
@@ -9241,14 +10404,14 @@ func (x *GetConsensusForecastsResponse) GetPage() *PageResponse {
 // Запрос прогнозов инвестдомов.
 type GetForecastRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	InstrumentId  string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` // Идентификатор инструмента.
+	InstrumentId  string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` // Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetForecastRequest) Reset() {
 	*x = GetForecastRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[86]
+	mi := &file_tinvest_instruments_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9260,7 +10423,7 @@ func (x *GetForecastRequest) String() string {
 func (*GetForecastRequest) ProtoMessage() {}
 
 func (x *GetForecastRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[86]
+	mi := &file_tinvest_instruments_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9273,7 +10436,7 @@ func (x *GetForecastRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetForecastRequest.ProtoReflect.Descriptor instead.
 func (*GetForecastRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{86}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *GetForecastRequest) GetInstrumentId() string {
@@ -9294,7 +10457,7 @@ type GetForecastResponse struct {
 
 func (x *GetForecastResponse) Reset() {
 	*x = GetForecastResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[87]
+	mi := &file_tinvest_instruments_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9306,7 +10469,7 @@ func (x *GetForecastResponse) String() string {
 func (*GetForecastResponse) ProtoMessage() {}
 
 func (x *GetForecastResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[87]
+	mi := &file_tinvest_instruments_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9319,7 +10482,7 @@ func (x *GetForecastResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetForecastResponse.ProtoReflect.Descriptor instead.
 func (*GetForecastResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{87}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *GetForecastResponse) GetTargets() []*GetForecastResponse_TargetItem {
@@ -9339,14 +10502,14 @@ func (x *GetForecastResponse) GetConsensus() *GetForecastResponse_ConsensusItem 
 // Запрос ставок риска
 type RiskRatesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	InstrumentId  []string               `protobuf:"bytes,1,rep,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` // Идентификаторы инструментов.
+	InstrumentId  []string               `protobuf:"bytes,1,rep,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` // Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RiskRatesRequest) Reset() {
 	*x = RiskRatesRequest{}
-	mi := &file_tinvest_instruments_proto_msgTypes[88]
+	mi := &file_tinvest_instruments_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9358,7 +10521,7 @@ func (x *RiskRatesRequest) String() string {
 func (*RiskRatesRequest) ProtoMessage() {}
 
 func (x *RiskRatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[88]
+	mi := &file_tinvest_instruments_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9371,7 +10534,7 @@ func (x *RiskRatesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RiskRatesRequest.ProtoReflect.Descriptor instead.
 func (*RiskRatesRequest) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{88}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *RiskRatesRequest) GetInstrumentId() []string {
@@ -9391,7 +10554,7 @@ type RiskRatesResponse struct {
 
 func (x *RiskRatesResponse) Reset() {
 	*x = RiskRatesResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[89]
+	mi := &file_tinvest_instruments_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9403,7 +10566,7 @@ func (x *RiskRatesResponse) String() string {
 func (*RiskRatesResponse) ProtoMessage() {}
 
 func (x *RiskRatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[89]
+	mi := &file_tinvest_instruments_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9416,7 +10579,7 @@ func (x *RiskRatesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RiskRatesResponse.ProtoReflect.Descriptor instead.
 func (*RiskRatesResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{89}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *RiskRatesResponse) GetInstrumentRiskRates() []*RiskRatesResponse_RiskRateResult {
@@ -9436,7 +10599,7 @@ type TradingInterval struct {
 
 func (x *TradingInterval) Reset() {
 	*x = TradingInterval{}
-	mi := &file_tinvest_instruments_proto_msgTypes[90]
+	mi := &file_tinvest_instruments_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9448,7 +10611,7 @@ func (x *TradingInterval) String() string {
 func (*TradingInterval) ProtoMessage() {}
 
 func (x *TradingInterval) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[90]
+	mi := &file_tinvest_instruments_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9461,7 +10624,7 @@ func (x *TradingInterval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradingInterval.ProtoReflect.Descriptor instead.
 func (*TradingInterval) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{90}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *TradingInterval) GetType() string {
@@ -9478,9 +10641,450 @@ func (x *TradingInterval) GetInterval() *TradingInterval_TimeInterval {
 	return nil
 }
 
+// Запрос сделок по инсайдерам
+type GetInsiderDealsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	InstrumentId  string                 `protobuf:"bytes,1,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"` // Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`                                  // Количество выводимых записей в ответе, не больше 100.
+	NextCursor    *string                `protobuf:"bytes,3,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"` // Курсор.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInsiderDealsRequest) Reset() {
+	*x = GetInsiderDealsRequest{}
+	mi := &file_tinvest_instruments_proto_msgTypes[101]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInsiderDealsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInsiderDealsRequest) ProtoMessage() {}
+
+func (x *GetInsiderDealsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[101]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInsiderDealsRequest.ProtoReflect.Descriptor instead.
+func (*GetInsiderDealsRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{101}
+}
+
+func (x *GetInsiderDealsRequest) GetInstrumentId() string {
+	if x != nil {
+		return x.InstrumentId
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetInsiderDealsRequest) GetNextCursor() string {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return ""
+}
+
+// сделки инсайдеров
+type GetInsiderDealsResponse struct {
+	state         protoimpl.MessageState                 `protogen:"open.v1"`
+	InsiderDeals  []*GetInsiderDealsResponse_InsiderDeal `protobuf:"bytes,1,rep,name=insider_deals,json=insiderDeals,proto3" json:"insider_deals,omitempty"` // Массив сделок.
+	NextCursor    *string                                `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"` // Курсор для получения следующей страницы.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInsiderDealsResponse) Reset() {
+	*x = GetInsiderDealsResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[102]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInsiderDealsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInsiderDealsResponse) ProtoMessage() {}
+
+func (x *GetInsiderDealsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[102]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInsiderDealsResponse.ProtoReflect.Descriptor instead.
+func (*GetInsiderDealsResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{102}
+}
+
+func (x *GetInsiderDealsResponse) GetInsiderDeals() []*GetInsiderDealsResponse_InsiderDeal {
+	if x != nil {
+		return x.InsiderDeals
+	}
+	return nil
+}
+
+func (x *GetInsiderDealsResponse) GetNextCursor() string {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return ""
+}
+
+// Запрос цифровых активов
+type DfasRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DfasRequest) Reset() {
+	*x = DfasRequest{}
+	mi := &file_tinvest_instruments_proto_msgTypes[103]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DfasRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DfasRequest) ProtoMessage() {}
+
+func (x *DfasRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[103]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DfasRequest.ProtoReflect.Descriptor instead.
+func (*DfasRequest) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{103}
+}
+
+// Цифровой актив
+type DfaResponse struct {
+	state                       protoimpl.MessageState     `protogen:"open.v1"`
+	Uid                         string                     `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                                                                          // Уникальный идентификатор инструмента.
+	Ticker                      string                     `protobuf:"bytes,2,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                    // Тикер инструмента.
+	Name                        string                     `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                                                                                        // Название инструмента.
+	PositionUid                 string                     `protobuf:"bytes,4,opt,name=position_uid,json=positionUid,proto3" json:"position_uid,omitempty"`                                                       // Уникальный идентификатор позиции.
+	MinPriceIncrement           *Quotation                 `protobuf:"bytes,5,opt,name=min_price_increment,json=minPriceIncrement,proto3" json:"min_price_increment,omitempty"`                                   // Шаг цены.
+	Lot                         int32                      `protobuf:"varint,6,opt,name=lot,proto3" json:"lot,omitempty"`                                                                                         // Количество лотов.
+	Nominal                     *MoneyValue                `protobuf:"bytes,7,opt,name=nominal,proto3" json:"nominal,omitempty"`                                                                                  // Номинал.
+	Currency                    string                     `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`                                                                                // Валюта.
+	MaturityDate                *timestamppb.Timestamp     `protobuf:"bytes,9,opt,name=maturity_date,json=maturityDate,proto3" json:"maturity_date,omitempty"`                                                    // Дата погашения ЦФА в формате UTC.
+	ShortEnabledFlag            bool                       `protobuf:"varint,10,opt,name=short_enabled_flag,json=shortEnabledFlag,proto3" json:"short_enabled_flag,omitempty"`                                    // Признак доступности для операций шорт.
+	ApiTradeAvailableFlag       bool                       `protobuf:"varint,11,opt,name=api_trade_available_flag,json=apiTradeAvailableFlag,proto3" json:"api_trade_available_flag,omitempty"`                   // Признак доступности торгов по бумаге через API.
+	BuyAvailableFlag            bool                       `protobuf:"varint,12,opt,name=buy_available_flag,json=buyAvailableFlag,proto3" json:"buy_available_flag,omitempty"`                                    // Признак доступности для покупки.
+	SellAvailableFlag           bool                       `protobuf:"varint,13,opt,name=sell_available_flag,json=sellAvailableFlag,proto3" json:"sell_available_flag,omitempty"`                                 // Признак доступности для продажи.
+	LimitOrderAvailableFlag     bool                       `protobuf:"varint,14,opt,name=limit_order_available_flag,json=limitOrderAvailableFlag,proto3" json:"limit_order_available_flag,omitempty"`             // Признак доступности выставления лимитной заявки по инструменту.
+	MarketOrderAvailableFlag    bool                       `protobuf:"varint,15,opt,name=market_order_available_flag,json=marketOrderAvailableFlag,proto3" json:"market_order_available_flag,omitempty"`          // Признак доступности выставления рыночной заявки по инструменту.
+	BestpriceOrderAvailableFlag bool                       `protobuf:"varint,16,opt,name=bestprice_order_available_flag,json=bestpriceOrderAvailableFlag,proto3" json:"bestprice_order_available_flag,omitempty"` // Признак доступности выставления bestprice заявки по инструменту.
+	ForIisFlag                  bool                       `protobuf:"varint,17,opt,name=for_iis_flag,json=forIisFlag,proto3" json:"for_iis_flag,omitempty"`                                                      // Возможность покупки/продажи на ИИС.
+	ForQualInvestorFlag         bool                       `protobuf:"varint,18,opt,name=for_qual_investor_flag,json=forQualInvestorFlag,proto3" json:"for_qual_investor_flag,omitempty"`                         // Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+	Type                        string                     `protobuf:"bytes,19,opt,name=type,proto3" json:"type,omitempty"`                                                                                       // Тип актива. Возможные значения: credit_portfolio_dfa, debt_dfa.
+	BasicAssets                 []*DfaResponse_BasicAsset  `protobuf:"bytes,20,rep,name=basic_assets,json=basicAssets,proto3" json:"basic_assets,omitempty"`                                                      // Базовые активы, входящие в ЦФА.
+	ForecastYield               *DfaResponse_ForecastYield `protobuf:"bytes,21,opt,name=forecast_yield,json=forecastYield,proto3" json:"forecast_yield,omitempty"`                                                // Прогнозная доходность смарт-портфелей, в виде интервала в %.
+	YieldToMaturity             *Quotation                 `protobuf:"bytes,22,opt,name=yield_to_maturity,json=yieldToMaturity,proto3" json:"yield_to_maturity,omitempty"`                                        // Доходность к погашению в %.
+	CouponValue                 *Quotation                 `protobuf:"bytes,23,opt,name=coupon_value,json=couponValue,proto3" json:"coupon_value,omitempty"`                                                      // Величина купона.
+	CouponPaymentFrequency      int32                      `protobuf:"varint,24,opt,name=coupon_payment_frequency,json=couponPaymentFrequency,proto3" json:"coupon_payment_frequency,omitempty"`                  // Количество выплат в год.
+	CouponPaymentDate           *timestamppb.Timestamp     `protobuf:"bytes,25,opt,name=coupon_payment_date,json=couponPaymentDate,proto3" json:"coupon_payment_date,omitempty"`                                  // Дата выплаты купона.
+	AciValue                    *Quotation                 `protobuf:"bytes,26,opt,name=aci_value,json=aciValue,proto3" json:"aci_value,omitempty"`                                                               // Значение НКД (накопленного купонного дохода) на дату.
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
+}
+
+func (x *DfaResponse) Reset() {
+	*x = DfaResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[104]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DfaResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DfaResponse) ProtoMessage() {}
+
+func (x *DfaResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[104]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DfaResponse.ProtoReflect.Descriptor instead.
+func (*DfaResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{104}
+}
+
+func (x *DfaResponse) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetPositionUid() string {
+	if x != nil {
+		return x.PositionUid
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetMinPriceIncrement() *Quotation {
+	if x != nil {
+		return x.MinPriceIncrement
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetLot() int32 {
+	if x != nil {
+		return x.Lot
+	}
+	return 0
+}
+
+func (x *DfaResponse) GetNominal() *MoneyValue {
+	if x != nil {
+		return x.Nominal
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetMaturityDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.MaturityDate
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetShortEnabledFlag() bool {
+	if x != nil {
+		return x.ShortEnabledFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetApiTradeAvailableFlag() bool {
+	if x != nil {
+		return x.ApiTradeAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetBuyAvailableFlag() bool {
+	if x != nil {
+		return x.BuyAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetSellAvailableFlag() bool {
+	if x != nil {
+		return x.SellAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetLimitOrderAvailableFlag() bool {
+	if x != nil {
+		return x.LimitOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetMarketOrderAvailableFlag() bool {
+	if x != nil {
+		return x.MarketOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetBestpriceOrderAvailableFlag() bool {
+	if x != nil {
+		return x.BestpriceOrderAvailableFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetForIisFlag() bool {
+	if x != nil {
+		return x.ForIisFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetForQualInvestorFlag() bool {
+	if x != nil {
+		return x.ForQualInvestorFlag
+	}
+	return false
+}
+
+func (x *DfaResponse) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *DfaResponse) GetBasicAssets() []*DfaResponse_BasicAsset {
+	if x != nil {
+		return x.BasicAssets
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetForecastYield() *DfaResponse_ForecastYield {
+	if x != nil {
+		return x.ForecastYield
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetYieldToMaturity() *Quotation {
+	if x != nil {
+		return x.YieldToMaturity
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetCouponValue() *Quotation {
+	if x != nil {
+		return x.CouponValue
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetCouponPaymentFrequency() int32 {
+	if x != nil {
+		return x.CouponPaymentFrequency
+	}
+	return 0
+}
+
+func (x *DfaResponse) GetCouponPaymentDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CouponPaymentDate
+	}
+	return nil
+}
+
+func (x *DfaResponse) GetAciValue() *Quotation {
+	if x != nil {
+		return x.AciValue
+	}
+	return nil
+}
+
+// Цифровые активы
+type DfasResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Instruments   []*DfaResponse         `protobuf:"bytes,1,rep,name=instruments,proto3" json:"instruments,omitempty"` // Массив инструментов.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DfasResponse) Reset() {
+	*x = DfasResponse{}
+	mi := &file_tinvest_instruments_proto_msgTypes[105]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DfasResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DfasResponse) ProtoMessage() {}
+
+func (x *DfasResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[105]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DfasResponse.ProtoReflect.Descriptor instead.
+func (*DfasResponse) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{105}
+}
+
+func (x *DfasResponse) GetInstruments() []*DfaResponse {
+	if x != nil {
+		return x.Instruments
+	}
+	return nil
+}
+
 type GetBondEventsResponse_BondEvent struct {
 	state              protoimpl.MessageState         `protogen:"open.v1"`
-	InstrumentId       string                         `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                   // Идентификатор инструмента.
+	InstrumentId       string                         `protobuf:"bytes,2,opt,name=instrument_id,json=instrumentId,proto3" json:"instrument_id,omitempty"`                                                                   // Идентификатор инструмента. Принимает значение `figi`, `instrument_uid` или `ticker + '_' + class_code`.
 	EventNumber        int32                          `protobuf:"varint,3,opt,name=event_number,json=eventNumber,proto3" json:"event_number,omitempty"`                                                                     // Номер события для данного типа события.
 	EventDate          *timestamppb.Timestamp         `protobuf:"bytes,4,opt,name=event_date,json=eventDate,proto3" json:"event_date,omitempty"`                                                                            // Дата события.
 	EventType          GetBondEventsRequest_EventType `protobuf:"varint,5,opt,name=event_type,json=eventType,proto3,enum=tinkoff.public.invest.api.contract.v1.GetBondEventsRequest_EventType" json:"event_type,omitempty"` // Тип события.
@@ -9507,7 +11111,7 @@ type GetBondEventsResponse_BondEvent struct {
 
 func (x *GetBondEventsResponse_BondEvent) Reset() {
 	*x = GetBondEventsResponse_BondEvent{}
-	mi := &file_tinvest_instruments_proto_msgTypes[91]
+	mi := &file_tinvest_instruments_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9519,7 +11123,7 @@ func (x *GetBondEventsResponse_BondEvent) String() string {
 func (*GetBondEventsResponse_BondEvent) ProtoMessage() {}
 
 func (x *GetBondEventsResponse_BondEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[91]
+	mi := &file_tinvest_instruments_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9532,7 +11136,7 @@ func (x *GetBondEventsResponse_BondEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBondEventsResponse_BondEvent.ProtoReflect.Descriptor instead.
 func (*GetBondEventsResponse_BondEvent) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{12, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *GetBondEventsResponse_BondEvent) GetInstrumentId() string {
@@ -9682,6 +11286,120 @@ func (x *GetBondEventsResponse_BondEvent) GetCouponInterestRate() *Quotation {
 	return nil
 }
 
+// Базовый актив.
+type StructuredNote_BasicAsset struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`                                                         //Уникальный идентификатор базового актива.
+	Type          AssetType              `protobuf:"varint,2,opt,name=type,proto3,enum=tinkoff.public.invest.api.contract.v1.AssetType" json:"type,omitempty"` //Тип базового актива.
+	InitialPrice  *Quotation             `protobuf:"bytes,3,opt,name=initial_price,json=initialPrice,proto3" json:"initial_price,omitempty"`                   //Начальная цена базового актива.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StructuredNote_BasicAsset) Reset() {
+	*x = StructuredNote_BasicAsset{}
+	mi := &file_tinvest_instruments_proto_msgTypes[107]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StructuredNote_BasicAsset) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StructuredNote_BasicAsset) ProtoMessage() {}
+
+func (x *StructuredNote_BasicAsset) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[107]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StructuredNote_BasicAsset.ProtoReflect.Descriptor instead.
+func (*StructuredNote_BasicAsset) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38, 0}
+}
+
+func (x *StructuredNote_BasicAsset) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *StructuredNote_BasicAsset) GetType() AssetType {
+	if x != nil {
+		return x.Type
+	}
+	return AssetType_ASSET_TYPE_UNSPECIFIED
+}
+
+func (x *StructuredNote_BasicAsset) GetInitialPrice() *Quotation {
+	if x != nil {
+		return x.InitialPrice
+	}
+	return nil
+}
+
+// Доходность.
+type StructuredNote_Yield struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	Type          StructuredNote_YieldType `protobuf:"varint,1,opt,name=type,proto3,enum=tinkoff.public.invest.api.contract.v1.StructuredNote_YieldType" json:"type,omitempty"` //Тип доходности.
+	Value         *Quotation               `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`                                                                    //Значение доходности.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StructuredNote_Yield) Reset() {
+	*x = StructuredNote_Yield{}
+	mi := &file_tinvest_instruments_proto_msgTypes[108]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StructuredNote_Yield) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StructuredNote_Yield) ProtoMessage() {}
+
+func (x *StructuredNote_Yield) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[108]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StructuredNote_Yield.ProtoReflect.Descriptor instead.
+func (*StructuredNote_Yield) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{38, 1}
+}
+
+func (x *StructuredNote_Yield) GetType() StructuredNote_YieldType {
+	if x != nil {
+		return x.Type
+	}
+	return StructuredNote_YIELD_TYPE_UNSPECIFIED
+}
+
+func (x *StructuredNote_Yield) GetValue() *Quotation {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
 // Избранная группа
 type GetFavoriteGroupsResponse_FavoriteGroup struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
@@ -9696,7 +11414,7 @@ type GetFavoriteGroupsResponse_FavoriteGroup struct {
 
 func (x *GetFavoriteGroupsResponse_FavoriteGroup) Reset() {
 	*x = GetFavoriteGroupsResponse_FavoriteGroup{}
-	mi := &file_tinvest_instruments_proto_msgTypes[92]
+	mi := &file_tinvest_instruments_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9708,7 +11426,7 @@ func (x *GetFavoriteGroupsResponse_FavoriteGroup) String() string {
 func (*GetFavoriteGroupsResponse_FavoriteGroup) ProtoMessage() {}
 
 func (x *GetFavoriteGroupsResponse_FavoriteGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[92]
+	mi := &file_tinvest_instruments_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9721,7 +11439,7 @@ func (x *GetFavoriteGroupsResponse_FavoriteGroup) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use GetFavoriteGroupsResponse_FavoriteGroup.ProtoReflect.Descriptor instead.
 func (*GetFavoriteGroupsResponse_FavoriteGroup) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{67, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{76, 0}
 }
 
 func (x *GetFavoriteGroupsResponse_FavoriteGroup) GetGroupId() string {
@@ -9824,7 +11542,7 @@ type GetAssetFundamentalsResponse_StatisticResponse struct {
 
 func (x *GetAssetFundamentalsResponse_StatisticResponse) Reset() {
 	*x = GetAssetFundamentalsResponse_StatisticResponse{}
-	mi := &file_tinvest_instruments_proto_msgTypes[93]
+	mi := &file_tinvest_instruments_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9836,7 +11554,7 @@ func (x *GetAssetFundamentalsResponse_StatisticResponse) String() string {
 func (*GetAssetFundamentalsResponse_StatisticResponse) ProtoMessage() {}
 
 func (x *GetAssetFundamentalsResponse_StatisticResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[93]
+	mi := &file_tinvest_instruments_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9849,7 +11567,7 @@ func (x *GetAssetFundamentalsResponse_StatisticResponse) ProtoReflect() protoref
 
 // Deprecated: Use GetAssetFundamentalsResponse_StatisticResponse.ProtoReflect.Descriptor instead.
 func (*GetAssetFundamentalsResponse_StatisticResponse) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{81, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{91, 0}
 }
 
 func (x *GetAssetFundamentalsResponse_StatisticResponse) GetAssetUid() string {
@@ -10259,7 +11977,7 @@ type GetAssetReportsResponse_GetAssetReportsEvent struct {
 
 func (x *GetAssetReportsResponse_GetAssetReportsEvent) Reset() {
 	*x = GetAssetReportsResponse_GetAssetReportsEvent{}
-	mi := &file_tinvest_instruments_proto_msgTypes[94]
+	mi := &file_tinvest_instruments_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10271,7 +11989,7 @@ func (x *GetAssetReportsResponse_GetAssetReportsEvent) String() string {
 func (*GetAssetReportsResponse_GetAssetReportsEvent) ProtoMessage() {}
 
 func (x *GetAssetReportsResponse_GetAssetReportsEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[94]
+	mi := &file_tinvest_instruments_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10284,7 +12002,7 @@ func (x *GetAssetReportsResponse_GetAssetReportsEvent) ProtoReflect() protorefle
 
 // Deprecated: Use GetAssetReportsResponse_GetAssetReportsEvent.ProtoReflect.Descriptor instead.
 func (*GetAssetReportsResponse_GetAssetReportsEvent) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{83, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{93, 0}
 }
 
 func (x *GetAssetReportsResponse_GetAssetReportsEvent) GetInstrumentId() string {
@@ -10350,7 +12068,7 @@ type GetConsensusForecastsResponse_ConsensusForecastsItem struct {
 
 func (x *GetConsensusForecastsResponse_ConsensusForecastsItem) Reset() {
 	*x = GetConsensusForecastsResponse_ConsensusForecastsItem{}
-	mi := &file_tinvest_instruments_proto_msgTypes[95]
+	mi := &file_tinvest_instruments_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10362,7 +12080,7 @@ func (x *GetConsensusForecastsResponse_ConsensusForecastsItem) String() string {
 func (*GetConsensusForecastsResponse_ConsensusForecastsItem) ProtoMessage() {}
 
 func (x *GetConsensusForecastsResponse_ConsensusForecastsItem) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[95]
+	mi := &file_tinvest_instruments_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10375,7 +12093,7 @@ func (x *GetConsensusForecastsResponse_ConsensusForecastsItem) ProtoReflect() pr
 
 // Deprecated: Use GetConsensusForecastsResponse_ConsensusForecastsItem.ProtoReflect.Descriptor instead.
 func (*GetConsensusForecastsResponse_ConsensusForecastsItem) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{85, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{95, 0}
 }
 
 func (x *GetConsensusForecastsResponse_ConsensusForecastsItem) GetUid() string {
@@ -10482,7 +12200,7 @@ type GetForecastResponse_TargetItem struct {
 
 func (x *GetForecastResponse_TargetItem) Reset() {
 	*x = GetForecastResponse_TargetItem{}
-	mi := &file_tinvest_instruments_proto_msgTypes[96]
+	mi := &file_tinvest_instruments_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10494,7 +12212,7 @@ func (x *GetForecastResponse_TargetItem) String() string {
 func (*GetForecastResponse_TargetItem) ProtoMessage() {}
 
 func (x *GetForecastResponse_TargetItem) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[96]
+	mi := &file_tinvest_instruments_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10507,7 +12225,7 @@ func (x *GetForecastResponse_TargetItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetForecastResponse_TargetItem.ProtoReflect.Descriptor instead.
 func (*GetForecastResponse_TargetItem) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{87, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{97, 0}
 }
 
 func (x *GetForecastResponse_TargetItem) GetUid() string {
@@ -10606,7 +12324,7 @@ type GetForecastResponse_ConsensusItem struct {
 
 func (x *GetForecastResponse_ConsensusItem) Reset() {
 	*x = GetForecastResponse_ConsensusItem{}
-	mi := &file_tinvest_instruments_proto_msgTypes[97]
+	mi := &file_tinvest_instruments_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10618,7 +12336,7 @@ func (x *GetForecastResponse_ConsensusItem) String() string {
 func (*GetForecastResponse_ConsensusItem) ProtoMessage() {}
 
 func (x *GetForecastResponse_ConsensusItem) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[97]
+	mi := &file_tinvest_instruments_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10631,7 +12349,7 @@ func (x *GetForecastResponse_ConsensusItem) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetForecastResponse_ConsensusItem.ProtoReflect.Descriptor instead.
 func (*GetForecastResponse_ConsensusItem) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{87, 1}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{97, 1}
 }
 
 func (x *GetForecastResponse_ConsensusItem) GetUid() string {
@@ -10718,7 +12436,7 @@ type RiskRatesResponse_RiskRateResult struct {
 
 func (x *RiskRatesResponse_RiskRateResult) Reset() {
 	*x = RiskRatesResponse_RiskRateResult{}
-	mi := &file_tinvest_instruments_proto_msgTypes[98]
+	mi := &file_tinvest_instruments_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10730,7 +12448,7 @@ func (x *RiskRatesResponse_RiskRateResult) String() string {
 func (*RiskRatesResponse_RiskRateResult) ProtoMessage() {}
 
 func (x *RiskRatesResponse_RiskRateResult) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[98]
+	mi := &file_tinvest_instruments_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10743,7 +12461,7 @@ func (x *RiskRatesResponse_RiskRateResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RiskRatesResponse_RiskRateResult.ProtoReflect.Descriptor instead.
 func (*RiskRatesResponse_RiskRateResult) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{89, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{99, 0}
 }
 
 func (x *RiskRatesResponse_RiskRateResult) GetInstrumentUid() string {
@@ -10798,7 +12516,7 @@ type RiskRatesResponse_RiskRate struct {
 
 func (x *RiskRatesResponse_RiskRate) Reset() {
 	*x = RiskRatesResponse_RiskRate{}
-	mi := &file_tinvest_instruments_proto_msgTypes[99]
+	mi := &file_tinvest_instruments_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10810,7 +12528,7 @@ func (x *RiskRatesResponse_RiskRate) String() string {
 func (*RiskRatesResponse_RiskRate) ProtoMessage() {}
 
 func (x *RiskRatesResponse_RiskRate) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[99]
+	mi := &file_tinvest_instruments_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10823,7 +12541,7 @@ func (x *RiskRatesResponse_RiskRate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RiskRatesResponse_RiskRate.ProtoReflect.Descriptor instead.
 func (*RiskRatesResponse_RiskRate) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{89, 1}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{99, 1}
 }
 
 func (x *RiskRatesResponse_RiskRate) GetRiskLevelCode() string {
@@ -10850,7 +12568,7 @@ type TradingInterval_TimeInterval struct {
 
 func (x *TradingInterval_TimeInterval) Reset() {
 	*x = TradingInterval_TimeInterval{}
-	mi := &file_tinvest_instruments_proto_msgTypes[100]
+	mi := &file_tinvest_instruments_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10862,7 +12580,7 @@ func (x *TradingInterval_TimeInterval) String() string {
 func (*TradingInterval_TimeInterval) ProtoMessage() {}
 
 func (x *TradingInterval_TimeInterval) ProtoReflect() protoreflect.Message {
-	mi := &file_tinvest_instruments_proto_msgTypes[100]
+	mi := &file_tinvest_instruments_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10875,7 +12593,7 @@ func (x *TradingInterval_TimeInterval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradingInterval_TimeInterval.ProtoReflect.Descriptor instead.
 func (*TradingInterval_TimeInterval) Descriptor() ([]byte, []int) {
-	return file_tinvest_instruments_proto_rawDescGZIP(), []int{90, 0}
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{100, 0}
 }
 
 func (x *TradingInterval_TimeInterval) GetStartTs() *timestamppb.Timestamp {
@@ -10888,6 +12606,244 @@ func (x *TradingInterval_TimeInterval) GetStartTs() *timestamppb.Timestamp {
 func (x *TradingInterval_TimeInterval) GetEndTs() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTs
+	}
+	return nil
+}
+
+type GetInsiderDealsResponse_InsiderDeal struct {
+	state             protoimpl.MessageState                 `protogen:"open.v1"`
+	TradeId           int64                                  `protobuf:"varint,1,opt,name=trade_id,json=tradeId,proto3" json:"trade_id,omitempty"`                                                                        // Уникальный идентификатор сделки.
+	Direction         GetInsiderDealsResponse_TradeDirection `protobuf:"varint,2,opt,name=direction,proto3,enum=tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse_TradeDirection" json:"direction,omitempty"` // Направление сделки.
+	Currency          string                                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`                                                                                      // Валюта сделки.
+	Date              *timestamppb.Timestamp                 `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`                                                                                              // Дата сделки.
+	Quantity          int64                                  `protobuf:"varint,5,opt,name=quantity,proto3" json:"quantity,omitempty"`                                                                                     // Количество.
+	Price             *Quotation                             `protobuf:"bytes,6,opt,name=price,proto3" json:"price,omitempty"`                                                                                            // Цена.
+	InstrumentUid     string                                 `protobuf:"bytes,7,opt,name=instrument_uid,json=instrumentUid,proto3" json:"instrument_uid,omitempty"`                                                       // Уникальный идентификатор инструмента.
+	Ticker            string                                 `protobuf:"bytes,8,opt,name=ticker,proto3" json:"ticker,omitempty"`                                                                                          // Тикер инструмента.
+	InvestorName      string                                 `protobuf:"bytes,9,opt,name=investor_name,json=investorName,proto3" json:"investor_name,omitempty"`                                                          // Имя инвестора.
+	InvestorPosition  string                                 `protobuf:"bytes,10,opt,name=investor_position,json=investorPosition,proto3" json:"investor_position,omitempty"`                                             // Какое отношение покупатель/продавец имеет к эмитенту
+	Percentage        float32                                `protobuf:"fixed32,11,opt,name=percentage,proto3" json:"percentage,omitempty"`                                                                               // Купленный/проданный объём от общего количества ценных бумаг на рынке
+	IsOptionExecution bool                                   `protobuf:"varint,12,opt,name=is_option_execution,json=isOptionExecution,proto3" json:"is_option_execution,omitempty"`                                       //Признак является ли сделка реализацией опциона
+	DisclosureDate    *timestamppb.Timestamp                 `protobuf:"bytes,13,opt,name=disclosure_date,json=disclosureDate,proto3" json:"disclosure_date,omitempty"`                                                   // Дата раскрытия сделки.
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) Reset() {
+	*x = GetInsiderDealsResponse_InsiderDeal{}
+	mi := &file_tinvest_instruments_proto_msgTypes[118]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInsiderDealsResponse_InsiderDeal) ProtoMessage() {}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[118]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInsiderDealsResponse_InsiderDeal.ProtoReflect.Descriptor instead.
+func (*GetInsiderDealsResponse_InsiderDeal) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{102, 0}
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetTradeId() int64 {
+	if x != nil {
+		return x.TradeId
+	}
+	return 0
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetDirection() GetInsiderDealsResponse_TradeDirection {
+	if x != nil {
+		return x.Direction
+	}
+	return GetInsiderDealsResponse_TRADE_DIRECTION_UNSPECIFIED
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetQuantity() int64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetPrice() *Quotation {
+	if x != nil {
+		return x.Price
+	}
+	return nil
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetInstrumentUid() string {
+	if x != nil {
+		return x.InstrumentUid
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetTicker() string {
+	if x != nil {
+		return x.Ticker
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetInvestorName() string {
+	if x != nil {
+		return x.InvestorName
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetInvestorPosition() string {
+	if x != nil {
+		return x.InvestorPosition
+	}
+	return ""
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetPercentage() float32 {
+	if x != nil {
+		return x.Percentage
+	}
+	return 0
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetIsOptionExecution() bool {
+	if x != nil {
+		return x.IsOptionExecution
+	}
+	return false
+}
+
+func (x *GetInsiderDealsResponse_InsiderDeal) GetDisclosureDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DisclosureDate
+	}
+	return nil
+}
+
+// Базовый актив.
+type DfaResponse_BasicAsset struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"` // UID базового актива
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DfaResponse_BasicAsset) Reset() {
+	*x = DfaResponse_BasicAsset{}
+	mi := &file_tinvest_instruments_proto_msgTypes[119]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DfaResponse_BasicAsset) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DfaResponse_BasicAsset) ProtoMessage() {}
+
+func (x *DfaResponse_BasicAsset) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[119]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DfaResponse_BasicAsset.ProtoReflect.Descriptor instead.
+func (*DfaResponse_BasicAsset) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{104, 0}
+}
+
+func (x *DfaResponse_BasicAsset) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+// Прогнозная доходность смарт-портфелей.
+type DfaResponse_ForecastYield struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MinValue      *Quotation             `protobuf:"bytes,1,opt,name=min_value,json=minValue,proto3" json:"min_value,omitempty"` // Минимальное значение прогнозной доходности в %
+	MaxValue      *Quotation             `protobuf:"bytes,2,opt,name=max_value,json=maxValue,proto3" json:"max_value,omitempty"` // Максимальное значение прогнозной доходности в %
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DfaResponse_ForecastYield) Reset() {
+	*x = DfaResponse_ForecastYield{}
+	mi := &file_tinvest_instruments_proto_msgTypes[120]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DfaResponse_ForecastYield) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DfaResponse_ForecastYield) ProtoMessage() {}
+
+func (x *DfaResponse_ForecastYield) ProtoReflect() protoreflect.Message {
+	mi := &file_tinvest_instruments_proto_msgTypes[120]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DfaResponse_ForecastYield.ProtoReflect.Descriptor instead.
+func (*DfaResponse_ForecastYield) Descriptor() ([]byte, []int) {
+	return file_tinvest_instruments_proto_rawDescGZIP(), []int{104, 1}
+}
+
+func (x *DfaResponse_ForecastYield) GetMinValue() *Quotation {
+	if x != nil {
+		return x.MinValue
+	}
+	return nil
+}
+
+func (x *DfaResponse_ForecastYield) GetMaxValue() *Quotation {
+	if x != nil {
+		return x.MaxValue
 	}
 	return nil
 }
@@ -10939,12 +12895,19 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x11instrument_status\x18\x01 \x01(\x0e27.tinkoff.public.invest.api.contract.v1.InstrumentStatusH\x00R\x10instrumentStatus\x88\x01\x01\x12s\n" +
 	"\x13instrument_exchange\x18\x02 \x01(\x0e2=.tinkoff.public.invest.api.contract.v1.InstrumentExchangeTypeH\x01R\x12instrumentExchange\x88\x01\x01B\x14\n" +
 	"\x12_instrument_statusB\x16\n" +
-	"\x14_instrument_exchange\"\xb2\x01\n" +
+	"\x14_instrument_exchange\"\xff\x01\n" +
 	"\x14FilterOptionsRequest\x12+\n" +
 	"\x0fbasic_asset_uid\x18\x01 \x01(\tH\x00R\rbasicAssetUid\x88\x01\x01\x12<\n" +
-	"\x18basic_asset_position_uid\x18\x02 \x01(\tH\x01R\x15basicAssetPositionUid\x88\x01\x01B\x12\n" +
+	"\x18basic_asset_position_uid\x18\x02 \x01(\tH\x01R\x15basicAssetPositionUid\x88\x01\x01\x123\n" +
+	"\x13basic_instrument_id\x18\x03 \x01(\tH\x02R\x11basicInstrumentId\x88\x01\x01B\x12\n" +
 	"\x10_basic_asset_uidB\x1b\n" +
-	"\x19_basic_asset_position_uid\"[\n" +
+	"\x19_basic_asset_position_uidB\x16\n" +
+	"\x14_basic_instrument_id\"Z\n" +
+	"\vNewsRequest\x12\x1b\n" +
+	"\x06cursor\x18\x01 \x01(\x03H\x00R\x06cursor\x88\x01\x01\x12\x19\n" +
+	"\x05limit\x18\x02 \x01(\x05H\x01R\x05limit\x88\x01\x01B\t\n" +
+	"\a_cursorB\b\n" +
+	"\x06_limit\"[\n" +
 	"\fBondResponse\x12K\n" +
 	"\n" +
 	"instrument\x18\x01 \x01(\v2+.tinkoff.public.invest.api.contract.v1.BondR\n" +
@@ -11098,7 +13061,42 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"instrument\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\n" +
 	"instrument\"`\n" +
 	"\x0eSharesResponse\x12N\n" +
-	"\vinstruments\x18\x01 \x03(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\vinstruments\"\xa0\x18\n" +
+	"\vinstruments\x18\x01 \x03(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\vinstruments\"o\n" +
+	"\x16StructuredNoteResponse\x12U\n" +
+	"\n" +
+	"instrument\x18\x01 \x01(\v25.tinkoff.public.invest.api.contract.v1.StructuredNoteR\n" +
+	"instrument\"r\n" +
+	"\x17StructuredNotesResponse\x12W\n" +
+	"\vinstruments\x18\x01 \x03(\v25.tinkoff.public.invest.api.contract.v1.StructuredNoteR\vinstruments\"\xa6\x01\n" +
+	"\fNewsResponse\x12\x19\n" +
+	"\bhas_next\x18\x01 \x01(\bR\ahasNext\x12$\n" +
+	"\vnext_cursor\x18\x02 \x01(\x03H\x00R\n" +
+	"nextCursor\x88\x01\x01\x12E\n" +
+	"\x05items\x18\x03 \x03(\v2/.tinkoff.public.invest.api.contract.v1.NewsItemR\x05itemsB\x0e\n" +
+	"\f_next_cursor\"\xf7\x02\n" +
+	"\bNewsItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06source\x18\x02 \x01(\tR\x06source\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x18\n" +
+	"\acontent\x18\x04 \x01(\tR\acontent\x12\x1d\n" +
+	"\asummary\x18\x05 \x01(\tH\x00R\asummary\x88\x01\x01\x12D\n" +
+	"\x06tables\x18\x06 \x03(\v2,.tinkoff.public.invest.api.contract.v1.TableR\x06tables\x12Z\n" +
+	"\rinstrument_id\x18\a \x03(\v25.tinkoff.public.invest.api.contract.v1.NewsInstrumentR\finstrumentId\x12\x1a\n" +
+	"\bpriority\x18\b \x01(\bR\bpriority\x12*\n" +
+	"\x02ts\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x02tsB\n" +
+	"\n" +
+	"\b_summary\"\x1d\n" +
+	"\x05Table\x12\x14\n" +
+	"\x05table\x18\x01 \x01(\tR\x05table\"k\n" +
+	"\x0eNewsInstrument\x12Y\n" +
+	"\n" +
+	"instrument\x18\x01 \x01(\v29.tinkoff.public.invest.api.contract.v1.NewsInstrumentInfoR\n" +
+	"instrument\"r\n" +
+	"\x12NewsInstrumentInfo\x12%\n" +
+	"\x0einstrument_uid\x18\x01 \x01(\tR\rinstrumentUid\x12\x16\n" +
+	"\x06ticker\x18\x02 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x03 \x01(\tR\tclassCode\"\xa0\x18\n" +
 	"\x04Bond\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x16\n" +
 	"\x06ticker\x18\x02 \x01(\tR\x06ticker\x12\x1d\n" +
@@ -11163,7 +13161,7 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\tbond_type\x18A \x01(\x0e2/.tinkoff.public.invest.api.contract.v1.BondTypeR\bbondType\x127\n" +
 	"\tcall_date\x18E \x01(\v2\x1a.google.protobuf.TimestampR\bcallDate\x12S\n" +
 	"\fdlong_client\x18Z \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\vdlongClient\x12U\n" +
-	"\rdshort_client\x18[ \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\fdshortClient\"\xfc\x0f\n" +
+	"\rdshort_client\x18[ \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\fdshortClient\"\x99\x10\n" +
 	"\bCurrency\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x16\n" +
 	"\x06ticker\x18\x02 \x01(\tR\x06ticker\x12\x1d\n" +
@@ -11196,7 +13194,8 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x03uid\x18\x1b \x01(\tR\x03uid\x12X\n" +
 	"\rreal_exchange\x18\x1c \x01(\x0e23.tinkoff.public.invest.api.contract.v1.RealExchangeR\frealExchange\x12!\n" +
 	"\fposition_uid\x18\x1d \x01(\tR\vpositionUid\x12%\n" +
-	"\x0erequired_tests\x18\x1e \x03(\tR\rrequiredTests\x12 \n" +
+	"\x0erequired_tests\x18\x1e \x03(\tR\rrequiredTests\x12\x1b\n" +
+	"\tasset_uid\x18\x1f \x01(\tR\bassetUid\x12 \n" +
 	"\ffor_iis_flag\x18) \x01(\bR\n" +
 	"forIisFlag\x123\n" +
 	"\x16for_qual_investor_flag\x184 \x01(\bR\x13forQualInvestorFlag\x12!\n" +
@@ -11365,7 +13364,91 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x16first_1day_candle_date\x189 \x01(\v2\x1a.google.protobuf.TimestampR\x13first1dayCandleDate\x12F\n" +
 	"\x05brand\x18< \x01(\v20.tinkoff.public.invest.api.contract.v1.BrandDataR\x05brand\x12S\n" +
 	"\fdlong_client\x18Z \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\vdlongClient\x12U\n" +
-	"\rdshort_client\x18[ \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\fdshortClient\"\xc7\x01\n" +
+	"\rdshort_client\x18[ \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\fdshortClient\"\xa9\x1d\n" +
+	"\x0eStructuredNote\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
+	"\x04figi\x18\x02 \x01(\tR\x04figi\x12\x16\n" +
+	"\x06ticker\x18\x03 \x01(\tR\x06ticker\x12\x1d\n" +
+	"\n" +
+	"class_code\x18\x04 \x01(\tR\tclassCode\x12\x12\n" +
+	"\x04isin\x18\x05 \x01(\tR\x04isin\x12\x12\n" +
+	"\x04name\x18\x06 \x01(\tR\x04name\x12\x1b\n" +
+	"\tasset_uid\x18\a \x01(\tR\bassetUid\x12!\n" +
+	"\fposition_uid\x18\b \x01(\tR\vpositionUid\x12`\n" +
+	"\x13min_price_increment\x18\t \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x11minPriceIncrement\x12\x10\n" +
+	"\x03lot\x18\n" +
+	" \x01(\x05R\x03lot\x12K\n" +
+	"\anominal\x18\v \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\anominal\x12\x1a\n" +
+	"\bcurrency\x18\f \x01(\tR\bcurrency\x12?\n" +
+	"\rmaturity_date\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\fmaturityDate\x12A\n" +
+	"\x0eplacement_date\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\rplacementDate\x12\x1d\n" +
+	"\n" +
+	"issue_kind\x18\x0f \x01(\tR\tissueKind\x12\x1d\n" +
+	"\n" +
+	"issue_size\x18\x10 \x01(\x05R\tissueSize\x12&\n" +
+	"\x0fissue_size_plan\x18\x11 \x01(\x05R\rissueSizePlan\x12S\n" +
+	"\fdlong_client\x18\x12 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\vdlongClient\x12U\n" +
+	"\rdshort_client\x18\x13 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\fdshortClient\x12,\n" +
+	"\x12short_enabled_flag\x18\x14 \x01(\bR\x10shortEnabledFlag\x12\x1a\n" +
+	"\bexchange\x18\x15 \x01(\tR\bexchange\x12c\n" +
+	"\x0etrading_status\x18\x16 \x01(\x0e2<.tinkoff.public.invest.api.contract.v1.SecurityTradingStatusR\rtradingStatus\x127\n" +
+	"\x18api_trade_available_flag\x18\x17 \x01(\bR\x15apiTradeAvailableFlag\x12,\n" +
+	"\x12buy_available_flag\x18\x18 \x01(\bR\x10buyAvailableFlag\x12.\n" +
+	"\x13sell_available_flag\x18\x19 \x01(\bR\x11sellAvailableFlag\x12;\n" +
+	"\x1alimit_order_available_flag\x18\x1a \x01(\bR\x17limitOrderAvailableFlag\x12=\n" +
+	"\x1bmarket_order_available_flag\x18\x1b \x01(\bR\x18marketOrderAvailableFlag\x12C\n" +
+	"\x1ebestprice_order_available_flag\x18\x1c \x01(\bR\x1bbestpriceOrderAvailableFlag\x12!\n" +
+	"\fweekend_flag\x18\x1d \x01(\bR\vweekendFlag\x12%\n" +
+	"\x0eliquidity_flag\x18\x1e \x01(\bR\rliquidityFlag\x12 \n" +
+	"\ffor_iis_flag\x18\x1f \x01(\bR\n" +
+	"forIisFlag\x123\n" +
+	"\x16for_qual_investor_flag\x18  \x01(\bR\x13forQualInvestorFlag\x12,\n" +
+	"\x12pawnshop_list_flag\x18! \x01(\bR\x10pawnshopListFlag\x12X\n" +
+	"\rreal_exchange\x18\" \x01(\x0e23.tinkoff.public.invest.api.contract.v1.RealExchangeR\frealExchange\x12O\n" +
+	"\x16first_1min_candle_date\x18# \x01(\v2\x1a.google.protobuf.TimestampR\x13first1minCandleDate\x12O\n" +
+	"\x16first_1day_candle_date\x18$ \x01(\v2\x1a.google.protobuf.TimestampR\x13first1dayCandleDate\x12\x1f\n" +
+	"\vborrow_name\x18% \x01(\tR\n" +
+	"borrowName\x12\x12\n" +
+	"\x04type\x18& \x01(\tR\x04type\x12m\n" +
+	"\x0flogic_portfolio\x18' \x01(\x0e2D.tinkoff.public.invest.api.contract.v1.StructuredNote.LogicPortfolioR\x0elogicPortfolio\x12O\n" +
+	"\n" +
+	"asset_type\x18( \x01(\x0e20.tinkoff.public.invest.api.contract.v1.AssetTypeR\tassetType\x12c\n" +
+	"\fbasic_assets\x18) \x03(\v2@.tinkoff.public.invest.api.contract.v1.StructuredNote.BasicAssetR\vbasicAssets\x12W\n" +
+	"\x0esafety_barrier\x18* \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\rsafetyBarrier\x12,\n" +
+	"\x12coupon_period_base\x18+ \x01(\tR\x10couponPeriodBase\x12\x7f\n" +
+	"\x15observation_principle\x18, \x01(\x0e2J.tinkoff.public.invest.api.contract.v1.StructuredNote.ObservationPrincipleR\x14observationPrinciple\x123\n" +
+	"\x15observation_frequency\x18- \x01(\tR\x14observationFrequency\x12U\n" +
+	"\x19initial_price_fixing_date\x18. \x01(\v2\x1a.google.protobuf.TimestampR\x16initialPriceFixingDate\x12Q\n" +
+	"\x05yield\x18/ \x03(\v2;.tinkoff.public.invest.api.contract.v1.StructuredNote.YieldR\x05yield\x12,\n" +
+	"\x12coupon_saving_flag\x180 \x01(\bR\x10couponSavingFlag\x12\x16\n" +
+	"\x06sector\x181 \x01(\tR\x06sector\x12&\n" +
+	"\x0fcountry_of_risk\x182 \x01(\tR\rcountryOfRisk\x12/\n" +
+	"\x14country_of_risk_name\x183 \x01(\tR\x11countryOfRiskName\x12\x1b\n" +
+	"\tlogo_name\x184 \x01(\tR\blogoName\x12%\n" +
+	"\x0erequired_tests\x185 \x03(\tR\rrequiredTests\x1a\xbb\x01\n" +
+	"\n" +
+	"BasicAsset\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12D\n" +
+	"\x04type\x18\x02 \x01(\x0e20.tinkoff.public.invest.api.contract.v1.AssetTypeR\x04type\x12U\n" +
+	"\rinitial_price\x18\x03 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\finitialPrice\x1a\xa4\x01\n" +
+	"\x05Yield\x12S\n" +
+	"\x04type\x18\x01 \x01(\x0e2?.tinkoff.public.invest.api.contract.v1.StructuredNote.YieldTypeR\x04type\x12F\n" +
+	"\x05value\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05value\"r\n" +
+	"\x0eLogicPortfolio\x12\x1f\n" +
+	"\x1bLOGIC_PORTFOLIO_UNSPECIFIED\x10\x00\x12\x1e\n" +
+	"\x1aLOGIC_PORTFOLIO_VOLATILITY\x10\x01\x12\x1f\n" +
+	"\x1bLOGIC_PORTFOLIO_CORRELATION\x10\x02\"\x83\x02\n" +
+	"\x14ObservationPrinciple\x12%\n" +
+	"!OBSERVATION_PRINCIPLE_UNSPECIFIED\x10\x00\x12+\n" +
+	"'OBSERVATION_PRINCIPLE_WORST_BASIC_ASSET\x10\x01\x12*\n" +
+	"&OBSERVATION_PRINCIPLE_BEST_BASIC_ASSET\x10\x02\x121\n" +
+	"-OBSERVATION_PRINCIPLE_AVERAGE_OF_BASIC_ASSETS\x10\x03\x128\n" +
+	"4OBSERVATION_PRINCIPLE_SINGLE_BASIC_ASSET_PERFORMANCE\x10\x04\"\x89\x01\n" +
+	"\tYieldType\x12\x1a\n" +
+	"\x16YIELD_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bYIELD_TYPE_GUARANTED_COUPON\x10\x01\x12!\n" +
+	"\x1dYIELD_TYPE_CONDITIONAL_COUPON\x10\x02\x12\x1c\n" +
+	"\x18YIELD_TYPE_PARTICIPATION\x10\x03\"\xc7\x01\n" +
 	"\x1aGetAccruedInterestsRequest\x12\x16\n" +
 	"\x04figi\x18\x01 \x01(\tB\x02\x18\x01R\x04figi\x124\n" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x02R\x04from\x120\n" +
@@ -11714,7 +13797,7 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\tcountries\x18\x01 \x03(\v26.tinkoff.public.invest.api.contract.v1.CountryResponseR\tcountries\"\x14\n" +
 	"\x12IndicativesRequest\"r\n" +
 	"\x13IndicativesResponse\x12[\n" +
-	"\vinstruments\x18\x01 \x03(\v29.tinkoff.public.invest.api.contract.v1.IndicativeResponseR\vinstruments\"\xfd\x02\n" +
+	"\vinstruments\x18\x01 \x03(\v29.tinkoff.public.invest.api.contract.v1.IndicativeResponseR\vinstruments\"\xe3\x03\n" +
 	"\x12IndicativeResponse\x12\x12\n" +
 	"\x04figi\x18\x01 \x01(\tR\x04figi\x12\x16\n" +
 	"\x06ticker\x18\x02 \x01(\tR\x06ticker\x12\x1d\n" +
@@ -11727,7 +13810,11 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\bexchange\x18\r \x01(\tR\bexchange\x12\x10\n" +
 	"\x03uid\x18\x0e \x01(\tR\x03uid\x12-\n" +
 	"\x12buy_available_flag\x18\x94\x03 \x01(\bR\x10buyAvailableFlag\x12/\n" +
-	"\x13sell_available_flag\x18\x95\x03 \x01(\bR\x11sellAvailableFlag\"~\n" +
+	"\x13sell_available_flag\x18\x95\x03 \x01(\bR\x11sellAvailableFlag\x12d\n" +
+	"\x11index_composition\x18\x96\x03 \x03(\v26.tinkoff.public.invest.api.contract.v1.IndexInstrumentR\x10indexComposition\"m\n" +
+	"\x0fIndexInstrument\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12H\n" +
+	"\x06weight\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x06weight\"~\n" +
 	"\x0fCountryResponse\x12\x19\n" +
 	"\balfa_two\x18\x01 \x01(\tR\aalfaTwo\x12\x1d\n" +
 	"\n" +
@@ -11939,7 +14026,79 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\binterval\x18\x02 \x01(\v2C.tinkoff.public.invest.api.contract.v1.TradingInterval.TimeIntervalR\binterval\x1ax\n" +
 	"\fTimeInterval\x125\n" +
 	"\bstart_ts\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\astartTs\x121\n" +
-	"\x06end_ts\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05endTs*\xd7\x01\n" +
+	"\x06end_ts\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05endTs\"\x89\x01\n" +
+	"\x16GetInsiderDealsRequest\x12#\n" +
+	"\rinstrument_id\x18\x01 \x01(\tR\finstrumentId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12$\n" +
+	"\vnext_cursor\x18\x03 \x01(\tH\x00R\n" +
+	"nextCursor\x88\x01\x01B\x0e\n" +
+	"\f_next_cursor\"\xd1\a\n" +
+	"\x17GetInsiderDealsResponse\x12o\n" +
+	"\rinsider_deals\x18\x01 \x03(\v2J.tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDealR\finsiderDeals\x12$\n" +
+	"\vnext_cursor\x18\x02 \x01(\tH\x00R\n" +
+	"nextCursor\x88\x01\x01\x1a\xeb\x04\n" +
+	"\vInsiderDeal\x12\x19\n" +
+	"\btrade_id\x18\x01 \x01(\x03R\atradeId\x12k\n" +
+	"\tdirection\x18\x02 \x01(\x0e2M.tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.TradeDirectionR\tdirection\x12\x1a\n" +
+	"\bcurrency\x18\x03 \x01(\tR\bcurrency\x12.\n" +
+	"\x04date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x1a\n" +
+	"\bquantity\x18\x05 \x01(\x03R\bquantity\x12F\n" +
+	"\x05price\x18\x06 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x05price\x12%\n" +
+	"\x0einstrument_uid\x18\a \x01(\tR\rinstrumentUid\x12\x16\n" +
+	"\x06ticker\x18\b \x01(\tR\x06ticker\x12#\n" +
+	"\rinvestor_name\x18\t \x01(\tR\finvestorName\x12+\n" +
+	"\x11investor_position\x18\n" +
+	" \x01(\tR\x10investorPosition\x12\x1e\n" +
+	"\n" +
+	"percentage\x18\v \x01(\x02R\n" +
+	"percentage\x12.\n" +
+	"\x13is_option_execution\x18\f \x01(\bR\x11isOptionExecution\x12C\n" +
+	"\x0fdisclosure_date\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\x0edisclosureDate\"\xa0\x01\n" +
+	"\x0eTradeDirection\x12\x1f\n" +
+	"\x1bTRADE_DIRECTION_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13TRADE_DIRECTION_BUY\x10\x01\x12\x18\n" +
+	"\x14TRADE_DIRECTION_SELL\x10\x02\x12\x1c\n" +
+	"\x18TRADE_DIRECTION_INCREASE\x10\x03\x12\x1c\n" +
+	"\x18TRADE_DIRECTION_DECREASE\x10\x04B\x0e\n" +
+	"\f_next_cursor\"\r\n" +
+	"\vDfasRequest\"\xa0\r\n" +
+	"\vDfaResponse\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x16\n" +
+	"\x06ticker\x18\x02 \x01(\tR\x06ticker\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12!\n" +
+	"\fposition_uid\x18\x04 \x01(\tR\vpositionUid\x12`\n" +
+	"\x13min_price_increment\x18\x05 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x11minPriceIncrement\x12\x10\n" +
+	"\x03lot\x18\x06 \x01(\x05R\x03lot\x12K\n" +
+	"\anominal\x18\a \x01(\v21.tinkoff.public.invest.api.contract.v1.MoneyValueR\anominal\x12\x1a\n" +
+	"\bcurrency\x18\b \x01(\tR\bcurrency\x12?\n" +
+	"\rmaturity_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\fmaturityDate\x12,\n" +
+	"\x12short_enabled_flag\x18\n" +
+	" \x01(\bR\x10shortEnabledFlag\x127\n" +
+	"\x18api_trade_available_flag\x18\v \x01(\bR\x15apiTradeAvailableFlag\x12,\n" +
+	"\x12buy_available_flag\x18\f \x01(\bR\x10buyAvailableFlag\x12.\n" +
+	"\x13sell_available_flag\x18\r \x01(\bR\x11sellAvailableFlag\x12;\n" +
+	"\x1alimit_order_available_flag\x18\x0e \x01(\bR\x17limitOrderAvailableFlag\x12=\n" +
+	"\x1bmarket_order_available_flag\x18\x0f \x01(\bR\x18marketOrderAvailableFlag\x12C\n" +
+	"\x1ebestprice_order_available_flag\x18\x10 \x01(\bR\x1bbestpriceOrderAvailableFlag\x12 \n" +
+	"\ffor_iis_flag\x18\x11 \x01(\bR\n" +
+	"forIisFlag\x123\n" +
+	"\x16for_qual_investor_flag\x18\x12 \x01(\bR\x13forQualInvestorFlag\x12\x12\n" +
+	"\x04type\x18\x13 \x01(\tR\x04type\x12`\n" +
+	"\fbasic_assets\x18\x14 \x03(\v2=.tinkoff.public.invest.api.contract.v1.DfaResponse.BasicAssetR\vbasicAssets\x12g\n" +
+	"\x0eforecast_yield\x18\x15 \x01(\v2@.tinkoff.public.invest.api.contract.v1.DfaResponse.ForecastYieldR\rforecastYield\x12\\\n" +
+	"\x11yield_to_maturity\x18\x16 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\x0fyieldToMaturity\x12S\n" +
+	"\fcoupon_value\x18\x17 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\vcouponValue\x128\n" +
+	"\x18coupon_payment_frequency\x18\x18 \x01(\x05R\x16couponPaymentFrequency\x12J\n" +
+	"\x13coupon_payment_date\x18\x19 \x01(\v2\x1a.google.protobuf.TimestampR\x11couponPaymentDate\x12M\n" +
+	"\taci_value\x18\x1a \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\baciValue\x1a\x1e\n" +
+	"\n" +
+	"BasicAsset\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x1a\xad\x01\n" +
+	"\rForecastYield\x12M\n" +
+	"\tmin_value\x18\x01 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\bminValue\x12M\n" +
+	"\tmax_value\x18\x02 \x01(\v20.tinkoff.public.invest.api.contract.v1.QuotationR\bmaxValue\"d\n" +
+	"\fDfasResponse\x12T\n" +
+	"\vinstruments\x18\x01 \x03(\v22.tinkoff.public.invest.api.contract.v1.DfaResponseR\vinstruments*\xd7\x01\n" +
 	"\n" +
 	"CouponType\x12\x1b\n" +
 	"\x17COUPON_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
@@ -11965,13 +14124,14 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x14OptionSettlementType\x12%\n" +
 	"!OPTION_EXECUTION_TYPE_UNSPECIFIED\x10\x00\x12+\n" +
 	"'OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY\x10\x01\x12)\n" +
-	"%OPTION_EXECUTION_TYPE_CASH_SETTLEMENT\x10\x02*\xae\x01\n" +
+	"%OPTION_EXECUTION_TYPE_CASH_SETTLEMENT\x10\x02*\xc9\x01\n" +
 	"\x10InstrumentIdType\x12\x1d\n" +
 	"\x19INSTRUMENT_ID_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17INSTRUMENT_ID_TYPE_FIGI\x10\x01\x12\x1d\n" +
 	"\x19INSTRUMENT_ID_TYPE_TICKER\x10\x02\x12\x1a\n" +
 	"\x16INSTRUMENT_ID_TYPE_UID\x10\x03\x12#\n" +
-	"\x1fINSTRUMENT_ID_TYPE_POSITION_UID\x10\x04*\xe5\x01\n" +
+	"\x1fINSTRUMENT_ID_TYPE_POSITION_UID\x10\x04\x12\x19\n" +
+	"\x15INSTRUMENT_ID_TYPE_ID\x10\x05*\xe5\x01\n" +
 	"\tShareType\x12\x1a\n" +
 	"\x16SHARE_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11SHARE_TYPE_COMMON\x10\x01\x12\x18\n" +
@@ -11995,13 +14155,7 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x17EditFavoritesActionType\x12*\n" +
 	"&EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eEDIT_FAVORITES_ACTION_TYPE_ADD\x10\x01\x12\"\n" +
-	"\x1eEDIT_FAVORITES_ACTION_TYPE_DEL\x10\x02*\x8d\x01\n" +
-	"\fRealExchange\x12\x1d\n" +
-	"\x19REAL_EXCHANGE_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12REAL_EXCHANGE_MOEX\x10\x01\x12\x15\n" +
-	"\x11REAL_EXCHANGE_RTS\x10\x02\x12\x15\n" +
-	"\x11REAL_EXCHANGE_OTC\x10\x03\x12\x18\n" +
-	"\x14REAL_EXCHANGE_DEALER\x10\x04*z\n" +
+	"\x1eEDIT_FAVORITES_ACTION_TYPE_DEL\x10\x02*z\n" +
 	"\x0eRecommendation\x12\x1e\n" +
 	"\x1aRECOMMENDATION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12RECOMMENDATION_BUY\x10\x01\x12\x17\n" +
@@ -12017,7 +14171,7 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x12BOND_TYPE_REPLACED\x10\x01*]\n" +
 	"\x16InstrumentExchangeType\x12#\n" +
 	"\x1fINSTRUMENT_EXCHANGE_UNSPECIFIED\x10\x00\x12\x1e\n" +
-	"\x1aINSTRUMENT_EXCHANGE_DEALER\x10\x012\xca'\n" +
+	"\x1aINSTRUMENT_EXCHANGE_DEALER\x10\x012\xd3-\n" +
 	"\x12InstrumentsService\x12\x93\x01\n" +
 	"\x10TradingSchedules\x12>.tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest\x1a?.tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse\x12w\n" +
 	"\x06BondBy\x128.tinkoff.public.invest.api.contract.v1.InstrumentRequest\x1a3.tinkoff.public.invest.api.contract.v1.BondResponse\x12x\n" +
@@ -12036,7 +14190,9 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\aOptions\x129.tinkoff.public.invest.api.contract.v1.InstrumentsRequest\x1a6.tinkoff.public.invest.api.contract.v1.OptionsResponse\"\x03\x88\x02\x01\x12\x80\x01\n" +
 	"\tOptionsBy\x12;.tinkoff.public.invest.api.contract.v1.FilterOptionsRequest\x1a6.tinkoff.public.invest.api.contract.v1.OptionsResponse\x12y\n" +
 	"\aShareBy\x128.tinkoff.public.invest.api.contract.v1.InstrumentRequest\x1a4.tinkoff.public.invest.api.contract.v1.ShareResponse\x12z\n" +
-	"\x06Shares\x129.tinkoff.public.invest.api.contract.v1.InstrumentsRequest\x1a5.tinkoff.public.invest.api.contract.v1.SharesResponse\x12\x84\x01\n" +
+	"\x06Shares\x129.tinkoff.public.invest.api.contract.v1.InstrumentsRequest\x1a5.tinkoff.public.invest.api.contract.v1.SharesResponse\x12u\n" +
+	"\x05DfaBy\x128.tinkoff.public.invest.api.contract.v1.InstrumentRequest\x1a2.tinkoff.public.invest.api.contract.v1.DfaResponse\x12o\n" +
+	"\x04Dfas\x122.tinkoff.public.invest.api.contract.v1.DfasRequest\x1a3.tinkoff.public.invest.api.contract.v1.DfasResponse\x12\x84\x01\n" +
 	"\vIndicatives\x129.tinkoff.public.invest.api.contract.v1.IndicativesRequest\x1a:.tinkoff.public.invest.api.contract.v1.IndicativesResponse\x12\x9c\x01\n" +
 	"\x13GetAccruedInterests\x12A.tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest\x1aB.tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse\x12\x93\x01\n" +
 	"\x10GetFuturesMargin\x12>.tinkoff.public.invest.api.contract.v1.GetFuturesMarginRequest\x1a?.tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse\x12\x86\x01\n" +
@@ -12059,7 +14215,11 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x0fGetAssetReports\x12=.tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse\x12\xa2\x01\n" +
 	"\x15GetConsensusForecasts\x12C.tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest\x1aD.tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse\x12\x86\x01\n" +
 	"\rGetForecastBy\x129.tinkoff.public.invest.api.contract.v1.GetForecastRequest\x1a:.tinkoff.public.invest.api.contract.v1.GetForecastResponse\x12\x81\x01\n" +
-	"\fGetRiskRates\x127.tinkoff.public.invest.api.contract.v1.RiskRatesRequest\x1a8.tinkoff.public.invest.api.contract.v1.RiskRatesResponseBa\n" +
+	"\fGetRiskRates\x127.tinkoff.public.invest.api.contract.v1.RiskRatesRequest\x1a8.tinkoff.public.invest.api.contract.v1.RiskRatesResponse\x12\x90\x01\n" +
+	"\x0fGetInsiderDeals\x12=.tinkoff.public.invest.api.contract.v1.GetInsiderDealsRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse\x12\x8b\x01\n" +
+	"\x10StructuredNoteBy\x128.tinkoff.public.invest.api.contract.v1.InstrumentRequest\x1a=.tinkoff.public.invest.api.contract.v1.StructuredNoteResponse\x12\x8c\x01\n" +
+	"\x0fStructuredNotes\x129.tinkoff.public.invest.api.contract.v1.InstrumentsRequest\x1a>.tinkoff.public.invest.api.contract.v1.StructuredNotesResponse\x12o\n" +
+	"\x04News\x122.tinkoff.public.invest.api.contract.v1.NewsRequest\x1a3.tinkoff.public.invest.api.contract.v1.NewsResponseBa\n" +
 	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
@@ -12074,555 +14234,638 @@ func file_tinvest_instruments_proto_rawDescGZIP() []byte {
 	return file_tinvest_instruments_proto_rawDescData
 }
 
-var file_tinvest_instruments_proto_enumTypes = make([]protoimpl.EnumInfo, 17)
-var file_tinvest_instruments_proto_msgTypes = make([]protoimpl.MessageInfo, 101)
+var file_tinvest_instruments_proto_enumTypes = make([]protoimpl.EnumInfo, 20)
+var file_tinvest_instruments_proto_msgTypes = make([]protoimpl.MessageInfo, 121)
 var file_tinvest_instruments_proto_goTypes = []any{
-	(CouponType)(0),                     // 0: tinkoff.public.invest.api.contract.v1.CouponType
-	(OptionDirection)(0),                // 1: tinkoff.public.invest.api.contract.v1.OptionDirection
-	(OptionPaymentType)(0),              // 2: tinkoff.public.invest.api.contract.v1.OptionPaymentType
-	(OptionStyle)(0),                    // 3: tinkoff.public.invest.api.contract.v1.OptionStyle
-	(OptionSettlementType)(0),           // 4: tinkoff.public.invest.api.contract.v1.OptionSettlementType
-	(InstrumentIdType)(0),               // 5: tinkoff.public.invest.api.contract.v1.InstrumentIdType
-	(ShareType)(0),                      // 6: tinkoff.public.invest.api.contract.v1.ShareType
-	(AssetType)(0),                      // 7: tinkoff.public.invest.api.contract.v1.AssetType
-	(StructuredProductType)(0),          // 8: tinkoff.public.invest.api.contract.v1.StructuredProductType
-	(EditFavoritesActionType)(0),        // 9: tinkoff.public.invest.api.contract.v1.EditFavoritesActionType
-	(RealExchange)(0),                   // 10: tinkoff.public.invest.api.contract.v1.RealExchange
-	(Recommendation)(0),                 // 11: tinkoff.public.invest.api.contract.v1.Recommendation
-	(RiskLevel)(0),                      // 12: tinkoff.public.invest.api.contract.v1.RiskLevel
-	(BondType)(0),                       // 13: tinkoff.public.invest.api.contract.v1.BondType
-	(InstrumentExchangeType)(0),         // 14: tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
-	(GetBondEventsRequest_EventType)(0), // 15: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
-	(GetAssetReportsResponse_AssetReportPeriodType)(0),           // 16: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.AssetReportPeriodType
-	(*TradingSchedulesRequest)(nil),                              // 17: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest
-	(*TradingSchedulesResponse)(nil),                             // 18: tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse
-	(*TradingSchedule)(nil),                                      // 19: tinkoff.public.invest.api.contract.v1.TradingSchedule
-	(*TradingDay)(nil),                                           // 20: tinkoff.public.invest.api.contract.v1.TradingDay
-	(*InstrumentRequest)(nil),                                    // 21: tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	(*InstrumentsRequest)(nil),                                   // 22: tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	(*FilterOptionsRequest)(nil),                                 // 23: tinkoff.public.invest.api.contract.v1.FilterOptionsRequest
-	(*BondResponse)(nil),                                         // 24: tinkoff.public.invest.api.contract.v1.BondResponse
-	(*BondsResponse)(nil),                                        // 25: tinkoff.public.invest.api.contract.v1.BondsResponse
-	(*GetBondCouponsRequest)(nil),                                // 26: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest
-	(*GetBondCouponsResponse)(nil),                               // 27: tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse
-	(*GetBondEventsRequest)(nil),                                 // 28: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest
-	(*GetBondEventsResponse)(nil),                                // 29: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse
-	(*Coupon)(nil),                                               // 30: tinkoff.public.invest.api.contract.v1.Coupon
-	(*CurrencyResponse)(nil),                                     // 31: tinkoff.public.invest.api.contract.v1.CurrencyResponse
-	(*CurrenciesResponse)(nil),                                   // 32: tinkoff.public.invest.api.contract.v1.CurrenciesResponse
-	(*EtfResponse)(nil),                                          // 33: tinkoff.public.invest.api.contract.v1.EtfResponse
-	(*EtfsResponse)(nil),                                         // 34: tinkoff.public.invest.api.contract.v1.EtfsResponse
-	(*FutureResponse)(nil),                                       // 35: tinkoff.public.invest.api.contract.v1.FutureResponse
-	(*FuturesResponse)(nil),                                      // 36: tinkoff.public.invest.api.contract.v1.FuturesResponse
-	(*OptionResponse)(nil),                                       // 37: tinkoff.public.invest.api.contract.v1.OptionResponse
-	(*OptionsResponse)(nil),                                      // 38: tinkoff.public.invest.api.contract.v1.OptionsResponse
-	(*Option)(nil),                                               // 39: tinkoff.public.invest.api.contract.v1.Option
-	(*ShareResponse)(nil),                                        // 40: tinkoff.public.invest.api.contract.v1.ShareResponse
-	(*SharesResponse)(nil),                                       // 41: tinkoff.public.invest.api.contract.v1.SharesResponse
-	(*Bond)(nil),                                                 // 42: tinkoff.public.invest.api.contract.v1.Bond
-	(*Currency)(nil),                                             // 43: tinkoff.public.invest.api.contract.v1.Currency
-	(*Etf)(nil),                                                  // 44: tinkoff.public.invest.api.contract.v1.Etf
-	(*Future)(nil),                                               // 45: tinkoff.public.invest.api.contract.v1.Future
-	(*Share)(nil),                                                // 46: tinkoff.public.invest.api.contract.v1.Share
-	(*GetAccruedInterestsRequest)(nil),                           // 47: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest
-	(*GetAccruedInterestsResponse)(nil),                          // 48: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse
-	(*AccruedInterest)(nil),                                      // 49: tinkoff.public.invest.api.contract.v1.AccruedInterest
-	(*GetFuturesMarginRequest)(nil),                              // 50: tinkoff.public.invest.api.contract.v1.GetFuturesMarginRequest
-	(*GetFuturesMarginResponse)(nil),                             // 51: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse
-	(*InstrumentResponse)(nil),                                   // 52: tinkoff.public.invest.api.contract.v1.InstrumentResponse
-	(*Instrument)(nil),                                           // 53: tinkoff.public.invest.api.contract.v1.Instrument
-	(*GetDividendsRequest)(nil),                                  // 54: tinkoff.public.invest.api.contract.v1.GetDividendsRequest
-	(*GetDividendsResponse)(nil),                                 // 55: tinkoff.public.invest.api.contract.v1.GetDividendsResponse
-	(*Dividend)(nil),                                             // 56: tinkoff.public.invest.api.contract.v1.Dividend
-	(*AssetRequest)(nil),                                         // 57: tinkoff.public.invest.api.contract.v1.AssetRequest
-	(*AssetResponse)(nil),                                        // 58: tinkoff.public.invest.api.contract.v1.AssetResponse
-	(*AssetsRequest)(nil),                                        // 59: tinkoff.public.invest.api.contract.v1.AssetsRequest
-	(*AssetsResponse)(nil),                                       // 60: tinkoff.public.invest.api.contract.v1.AssetsResponse
-	(*AssetFull)(nil),                                            // 61: tinkoff.public.invest.api.contract.v1.AssetFull
-	(*Asset)(nil),                                                // 62: tinkoff.public.invest.api.contract.v1.Asset
-	(*AssetCurrency)(nil),                                        // 63: tinkoff.public.invest.api.contract.v1.AssetCurrency
-	(*AssetSecurity)(nil),                                        // 64: tinkoff.public.invest.api.contract.v1.AssetSecurity
-	(*AssetShare)(nil),                                           // 65: tinkoff.public.invest.api.contract.v1.AssetShare
-	(*AssetBond)(nil),                                            // 66: tinkoff.public.invest.api.contract.v1.AssetBond
-	(*AssetStructuredProduct)(nil),                               // 67: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct
-	(*AssetEtf)(nil),                                             // 68: tinkoff.public.invest.api.contract.v1.AssetEtf
-	(*AssetClearingCertificate)(nil),                             // 69: tinkoff.public.invest.api.contract.v1.AssetClearingCertificate
-	(*Brand)(nil),                                                // 70: tinkoff.public.invest.api.contract.v1.Brand
-	(*AssetInstrument)(nil),                                      // 71: tinkoff.public.invest.api.contract.v1.AssetInstrument
-	(*InstrumentLink)(nil),                                       // 72: tinkoff.public.invest.api.contract.v1.InstrumentLink
-	(*GetFavoritesRequest)(nil),                                  // 73: tinkoff.public.invest.api.contract.v1.GetFavoritesRequest
-	(*GetFavoritesResponse)(nil),                                 // 74: tinkoff.public.invest.api.contract.v1.GetFavoritesResponse
-	(*FavoriteInstrument)(nil),                                   // 75: tinkoff.public.invest.api.contract.v1.FavoriteInstrument
-	(*EditFavoritesRequest)(nil),                                 // 76: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest
-	(*EditFavoritesRequestInstrument)(nil),                       // 77: tinkoff.public.invest.api.contract.v1.EditFavoritesRequestInstrument
-	(*EditFavoritesResponse)(nil),                                // 78: tinkoff.public.invest.api.contract.v1.EditFavoritesResponse
-	(*CreateFavoriteGroupRequest)(nil),                           // 79: tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupRequest
-	(*CreateFavoriteGroupResponse)(nil),                          // 80: tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupResponse
-	(*DeleteFavoriteGroupRequest)(nil),                           // 81: tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupRequest
-	(*DeleteFavoriteGroupResponse)(nil),                          // 82: tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupResponse
-	(*GetFavoriteGroupsRequest)(nil),                             // 83: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsRequest
-	(*GetFavoriteGroupsResponse)(nil),                            // 84: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse
-	(*GetCountriesRequest)(nil),                                  // 85: tinkoff.public.invest.api.contract.v1.GetCountriesRequest
-	(*GetCountriesResponse)(nil),                                 // 86: tinkoff.public.invest.api.contract.v1.GetCountriesResponse
-	(*IndicativesRequest)(nil),                                   // 87: tinkoff.public.invest.api.contract.v1.IndicativesRequest
-	(*IndicativesResponse)(nil),                                  // 88: tinkoff.public.invest.api.contract.v1.IndicativesResponse
-	(*IndicativeResponse)(nil),                                   // 89: tinkoff.public.invest.api.contract.v1.IndicativeResponse
-	(*CountryResponse)(nil),                                      // 90: tinkoff.public.invest.api.contract.v1.CountryResponse
-	(*FindInstrumentRequest)(nil),                                // 91: tinkoff.public.invest.api.contract.v1.FindInstrumentRequest
-	(*FindInstrumentResponse)(nil),                               // 92: tinkoff.public.invest.api.contract.v1.FindInstrumentResponse
-	(*InstrumentShort)(nil),                                      // 93: tinkoff.public.invest.api.contract.v1.InstrumentShort
-	(*GetBrandsRequest)(nil),                                     // 94: tinkoff.public.invest.api.contract.v1.GetBrandsRequest
-	(*GetBrandRequest)(nil),                                      // 95: tinkoff.public.invest.api.contract.v1.GetBrandRequest
-	(*GetBrandsResponse)(nil),                                    // 96: tinkoff.public.invest.api.contract.v1.GetBrandsResponse
-	(*GetAssetFundamentalsRequest)(nil),                          // 97: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsRequest
-	(*GetAssetFundamentalsResponse)(nil),                         // 98: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse
-	(*GetAssetReportsRequest)(nil),                               // 99: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest
-	(*GetAssetReportsResponse)(nil),                              // 100: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse
-	(*GetConsensusForecastsRequest)(nil),                         // 101: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest
-	(*GetConsensusForecastsResponse)(nil),                        // 102: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse
-	(*GetForecastRequest)(nil),                                   // 103: tinkoff.public.invest.api.contract.v1.GetForecastRequest
-	(*GetForecastResponse)(nil),                                  // 104: tinkoff.public.invest.api.contract.v1.GetForecastResponse
-	(*RiskRatesRequest)(nil),                                     // 105: tinkoff.public.invest.api.contract.v1.RiskRatesRequest
-	(*RiskRatesResponse)(nil),                                    // 106: tinkoff.public.invest.api.contract.v1.RiskRatesResponse
-	(*TradingInterval)(nil),                                      // 107: tinkoff.public.invest.api.contract.v1.TradingInterval
-	(*GetBondEventsResponse_BondEvent)(nil),                      // 108: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent
-	(*GetFavoriteGroupsResponse_FavoriteGroup)(nil),              // 109: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.FavoriteGroup
-	(*GetAssetFundamentalsResponse_StatisticResponse)(nil),       // 110: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse
-	(*GetAssetReportsResponse_GetAssetReportsEvent)(nil),         // 111: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent
-	(*GetConsensusForecastsResponse_ConsensusForecastsItem)(nil), // 112: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem
-	(*GetForecastResponse_TargetItem)(nil),                       // 113: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem
-	(*GetForecastResponse_ConsensusItem)(nil),                    // 114: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem
-	(*RiskRatesResponse_RiskRateResult)(nil),                     // 115: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult
-	(*RiskRatesResponse_RiskRate)(nil),                           // 116: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
-	(*TradingInterval_TimeInterval)(nil),                         // 117: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval
-	(*timestamppb.Timestamp)(nil),                                // 118: google.protobuf.Timestamp
-	(InstrumentStatus)(0),                                        // 119: tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	(*MoneyValue)(nil),                                           // 120: tinkoff.public.invest.api.contract.v1.MoneyValue
-	(SecurityTradingStatus)(0),                                   // 121: tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	(*BrandData)(nil),                                            // 122: tinkoff.public.invest.api.contract.v1.BrandData
-	(*Quotation)(nil),                                            // 123: tinkoff.public.invest.api.contract.v1.Quotation
-	(InstrumentType)(0),                                          // 124: tinkoff.public.invest.api.contract.v1.InstrumentType
-	(*Page)(nil),                                                 // 125: tinkoff.public.invest.api.contract.v1.Page
-	(*PageResponse)(nil),                                         // 126: tinkoff.public.invest.api.contract.v1.PageResponse
+	(CouponType)(0),                                              // 0: tinkoff.public.invest.api.contract.v1.CouponType
+	(OptionDirection)(0),                                         // 1: tinkoff.public.invest.api.contract.v1.OptionDirection
+	(OptionPaymentType)(0),                                       // 2: tinkoff.public.invest.api.contract.v1.OptionPaymentType
+	(OptionStyle)(0),                                             // 3: tinkoff.public.invest.api.contract.v1.OptionStyle
+	(OptionSettlementType)(0),                                    // 4: tinkoff.public.invest.api.contract.v1.OptionSettlementType
+	(InstrumentIdType)(0),                                        // 5: tinkoff.public.invest.api.contract.v1.InstrumentIdType
+	(ShareType)(0),                                               // 6: tinkoff.public.invest.api.contract.v1.ShareType
+	(AssetType)(0),                                               // 7: tinkoff.public.invest.api.contract.v1.AssetType
+	(StructuredProductType)(0),                                   // 8: tinkoff.public.invest.api.contract.v1.StructuredProductType
+	(EditFavoritesActionType)(0),                                 // 9: tinkoff.public.invest.api.contract.v1.EditFavoritesActionType
+	(Recommendation)(0),                                          // 10: tinkoff.public.invest.api.contract.v1.Recommendation
+	(RiskLevel)(0),                                               // 11: tinkoff.public.invest.api.contract.v1.RiskLevel
+	(BondType)(0),                                                // 12: tinkoff.public.invest.api.contract.v1.BondType
+	(InstrumentExchangeType)(0),                                  // 13: tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
+	(GetBondEventsRequest_EventType)(0),                          // 14: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
+	(StructuredNote_LogicPortfolio)(0),                           // 15: tinkoff.public.invest.api.contract.v1.StructuredNote.LogicPortfolio
+	(StructuredNote_ObservationPrinciple)(0),                     // 16: tinkoff.public.invest.api.contract.v1.StructuredNote.ObservationPrinciple
+	(StructuredNote_YieldType)(0),                                // 17: tinkoff.public.invest.api.contract.v1.StructuredNote.YieldType
+	(GetAssetReportsResponse_AssetReportPeriodType)(0),           // 18: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.AssetReportPeriodType
+	(GetInsiderDealsResponse_TradeDirection)(0),                  // 19: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.TradeDirection
+	(*TradingSchedulesRequest)(nil),                              // 20: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest
+	(*TradingSchedulesResponse)(nil),                             // 21: tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse
+	(*TradingSchedule)(nil),                                      // 22: tinkoff.public.invest.api.contract.v1.TradingSchedule
+	(*TradingDay)(nil),                                           // 23: tinkoff.public.invest.api.contract.v1.TradingDay
+	(*InstrumentRequest)(nil),                                    // 24: tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	(*InstrumentsRequest)(nil),                                   // 25: tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	(*FilterOptionsRequest)(nil),                                 // 26: tinkoff.public.invest.api.contract.v1.FilterOptionsRequest
+	(*NewsRequest)(nil),                                          // 27: tinkoff.public.invest.api.contract.v1.NewsRequest
+	(*BondResponse)(nil),                                         // 28: tinkoff.public.invest.api.contract.v1.BondResponse
+	(*BondsResponse)(nil),                                        // 29: tinkoff.public.invest.api.contract.v1.BondsResponse
+	(*GetBondCouponsRequest)(nil),                                // 30: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest
+	(*GetBondCouponsResponse)(nil),                               // 31: tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse
+	(*GetBondEventsRequest)(nil),                                 // 32: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest
+	(*GetBondEventsResponse)(nil),                                // 33: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse
+	(*Coupon)(nil),                                               // 34: tinkoff.public.invest.api.contract.v1.Coupon
+	(*CurrencyResponse)(nil),                                     // 35: tinkoff.public.invest.api.contract.v1.CurrencyResponse
+	(*CurrenciesResponse)(nil),                                   // 36: tinkoff.public.invest.api.contract.v1.CurrenciesResponse
+	(*EtfResponse)(nil),                                          // 37: tinkoff.public.invest.api.contract.v1.EtfResponse
+	(*EtfsResponse)(nil),                                         // 38: tinkoff.public.invest.api.contract.v1.EtfsResponse
+	(*FutureResponse)(nil),                                       // 39: tinkoff.public.invest.api.contract.v1.FutureResponse
+	(*FuturesResponse)(nil),                                      // 40: tinkoff.public.invest.api.contract.v1.FuturesResponse
+	(*OptionResponse)(nil),                                       // 41: tinkoff.public.invest.api.contract.v1.OptionResponse
+	(*OptionsResponse)(nil),                                      // 42: tinkoff.public.invest.api.contract.v1.OptionsResponse
+	(*Option)(nil),                                               // 43: tinkoff.public.invest.api.contract.v1.Option
+	(*ShareResponse)(nil),                                        // 44: tinkoff.public.invest.api.contract.v1.ShareResponse
+	(*SharesResponse)(nil),                                       // 45: tinkoff.public.invest.api.contract.v1.SharesResponse
+	(*StructuredNoteResponse)(nil),                               // 46: tinkoff.public.invest.api.contract.v1.StructuredNoteResponse
+	(*StructuredNotesResponse)(nil),                              // 47: tinkoff.public.invest.api.contract.v1.StructuredNotesResponse
+	(*NewsResponse)(nil),                                         // 48: tinkoff.public.invest.api.contract.v1.NewsResponse
+	(*NewsItem)(nil),                                             // 49: tinkoff.public.invest.api.contract.v1.NewsItem
+	(*Table)(nil),                                                // 50: tinkoff.public.invest.api.contract.v1.Table
+	(*NewsInstrument)(nil),                                       // 51: tinkoff.public.invest.api.contract.v1.NewsInstrument
+	(*NewsInstrumentInfo)(nil),                                   // 52: tinkoff.public.invest.api.contract.v1.NewsInstrumentInfo
+	(*Bond)(nil),                                                 // 53: tinkoff.public.invest.api.contract.v1.Bond
+	(*Currency)(nil),                                             // 54: tinkoff.public.invest.api.contract.v1.Currency
+	(*Etf)(nil),                                                  // 55: tinkoff.public.invest.api.contract.v1.Etf
+	(*Future)(nil),                                               // 56: tinkoff.public.invest.api.contract.v1.Future
+	(*Share)(nil),                                                // 57: tinkoff.public.invest.api.contract.v1.Share
+	(*StructuredNote)(nil),                                       // 58: tinkoff.public.invest.api.contract.v1.StructuredNote
+	(*GetAccruedInterestsRequest)(nil),                           // 59: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest
+	(*GetAccruedInterestsResponse)(nil),                          // 60: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse
+	(*AccruedInterest)(nil),                                      // 61: tinkoff.public.invest.api.contract.v1.AccruedInterest
+	(*GetFuturesMarginRequest)(nil),                              // 62: tinkoff.public.invest.api.contract.v1.GetFuturesMarginRequest
+	(*GetFuturesMarginResponse)(nil),                             // 63: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse
+	(*InstrumentResponse)(nil),                                   // 64: tinkoff.public.invest.api.contract.v1.InstrumentResponse
+	(*Instrument)(nil),                                           // 65: tinkoff.public.invest.api.contract.v1.Instrument
+	(*GetDividendsRequest)(nil),                                  // 66: tinkoff.public.invest.api.contract.v1.GetDividendsRequest
+	(*GetDividendsResponse)(nil),                                 // 67: tinkoff.public.invest.api.contract.v1.GetDividendsResponse
+	(*Dividend)(nil),                                             // 68: tinkoff.public.invest.api.contract.v1.Dividend
+	(*AssetRequest)(nil),                                         // 69: tinkoff.public.invest.api.contract.v1.AssetRequest
+	(*AssetResponse)(nil),                                        // 70: tinkoff.public.invest.api.contract.v1.AssetResponse
+	(*AssetsRequest)(nil),                                        // 71: tinkoff.public.invest.api.contract.v1.AssetsRequest
+	(*AssetsResponse)(nil),                                       // 72: tinkoff.public.invest.api.contract.v1.AssetsResponse
+	(*AssetFull)(nil),                                            // 73: tinkoff.public.invest.api.contract.v1.AssetFull
+	(*Asset)(nil),                                                // 74: tinkoff.public.invest.api.contract.v1.Asset
+	(*AssetCurrency)(nil),                                        // 75: tinkoff.public.invest.api.contract.v1.AssetCurrency
+	(*AssetSecurity)(nil),                                        // 76: tinkoff.public.invest.api.contract.v1.AssetSecurity
+	(*AssetShare)(nil),                                           // 77: tinkoff.public.invest.api.contract.v1.AssetShare
+	(*AssetBond)(nil),                                            // 78: tinkoff.public.invest.api.contract.v1.AssetBond
+	(*AssetStructuredProduct)(nil),                               // 79: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct
+	(*AssetEtf)(nil),                                             // 80: tinkoff.public.invest.api.contract.v1.AssetEtf
+	(*AssetClearingCertificate)(nil),                             // 81: tinkoff.public.invest.api.contract.v1.AssetClearingCertificate
+	(*Brand)(nil),                                                // 82: tinkoff.public.invest.api.contract.v1.Brand
+	(*AssetInstrument)(nil),                                      // 83: tinkoff.public.invest.api.contract.v1.AssetInstrument
+	(*InstrumentLink)(nil),                                       // 84: tinkoff.public.invest.api.contract.v1.InstrumentLink
+	(*GetFavoritesRequest)(nil),                                  // 85: tinkoff.public.invest.api.contract.v1.GetFavoritesRequest
+	(*GetFavoritesResponse)(nil),                                 // 86: tinkoff.public.invest.api.contract.v1.GetFavoritesResponse
+	(*FavoriteInstrument)(nil),                                   // 87: tinkoff.public.invest.api.contract.v1.FavoriteInstrument
+	(*EditFavoritesRequest)(nil),                                 // 88: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest
+	(*EditFavoritesRequestInstrument)(nil),                       // 89: tinkoff.public.invest.api.contract.v1.EditFavoritesRequestInstrument
+	(*EditFavoritesResponse)(nil),                                // 90: tinkoff.public.invest.api.contract.v1.EditFavoritesResponse
+	(*CreateFavoriteGroupRequest)(nil),                           // 91: tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupRequest
+	(*CreateFavoriteGroupResponse)(nil),                          // 92: tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupResponse
+	(*DeleteFavoriteGroupRequest)(nil),                           // 93: tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupRequest
+	(*DeleteFavoriteGroupResponse)(nil),                          // 94: tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupResponse
+	(*GetFavoriteGroupsRequest)(nil),                             // 95: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsRequest
+	(*GetFavoriteGroupsResponse)(nil),                            // 96: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse
+	(*GetCountriesRequest)(nil),                                  // 97: tinkoff.public.invest.api.contract.v1.GetCountriesRequest
+	(*GetCountriesResponse)(nil),                                 // 98: tinkoff.public.invest.api.contract.v1.GetCountriesResponse
+	(*IndicativesRequest)(nil),                                   // 99: tinkoff.public.invest.api.contract.v1.IndicativesRequest
+	(*IndicativesResponse)(nil),                                  // 100: tinkoff.public.invest.api.contract.v1.IndicativesResponse
+	(*IndicativeResponse)(nil),                                   // 101: tinkoff.public.invest.api.contract.v1.IndicativeResponse
+	(*IndexInstrument)(nil),                                      // 102: tinkoff.public.invest.api.contract.v1.IndexInstrument
+	(*CountryResponse)(nil),                                      // 103: tinkoff.public.invest.api.contract.v1.CountryResponse
+	(*FindInstrumentRequest)(nil),                                // 104: tinkoff.public.invest.api.contract.v1.FindInstrumentRequest
+	(*FindInstrumentResponse)(nil),                               // 105: tinkoff.public.invest.api.contract.v1.FindInstrumentResponse
+	(*InstrumentShort)(nil),                                      // 106: tinkoff.public.invest.api.contract.v1.InstrumentShort
+	(*GetBrandsRequest)(nil),                                     // 107: tinkoff.public.invest.api.contract.v1.GetBrandsRequest
+	(*GetBrandRequest)(nil),                                      // 108: tinkoff.public.invest.api.contract.v1.GetBrandRequest
+	(*GetBrandsResponse)(nil),                                    // 109: tinkoff.public.invest.api.contract.v1.GetBrandsResponse
+	(*GetAssetFundamentalsRequest)(nil),                          // 110: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsRequest
+	(*GetAssetFundamentalsResponse)(nil),                         // 111: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse
+	(*GetAssetReportsRequest)(nil),                               // 112: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest
+	(*GetAssetReportsResponse)(nil),                              // 113: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse
+	(*GetConsensusForecastsRequest)(nil),                         // 114: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest
+	(*GetConsensusForecastsResponse)(nil),                        // 115: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse
+	(*GetForecastRequest)(nil),                                   // 116: tinkoff.public.invest.api.contract.v1.GetForecastRequest
+	(*GetForecastResponse)(nil),                                  // 117: tinkoff.public.invest.api.contract.v1.GetForecastResponse
+	(*RiskRatesRequest)(nil),                                     // 118: tinkoff.public.invest.api.contract.v1.RiskRatesRequest
+	(*RiskRatesResponse)(nil),                                    // 119: tinkoff.public.invest.api.contract.v1.RiskRatesResponse
+	(*TradingInterval)(nil),                                      // 120: tinkoff.public.invest.api.contract.v1.TradingInterval
+	(*GetInsiderDealsRequest)(nil),                               // 121: tinkoff.public.invest.api.contract.v1.GetInsiderDealsRequest
+	(*GetInsiderDealsResponse)(nil),                              // 122: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse
+	(*DfasRequest)(nil),                                          // 123: tinkoff.public.invest.api.contract.v1.DfasRequest
+	(*DfaResponse)(nil),                                          // 124: tinkoff.public.invest.api.contract.v1.DfaResponse
+	(*DfasResponse)(nil),                                         // 125: tinkoff.public.invest.api.contract.v1.DfasResponse
+	(*GetBondEventsResponse_BondEvent)(nil),                      // 126: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent
+	(*StructuredNote_BasicAsset)(nil),                            // 127: tinkoff.public.invest.api.contract.v1.StructuredNote.BasicAsset
+	(*StructuredNote_Yield)(nil),                                 // 128: tinkoff.public.invest.api.contract.v1.StructuredNote.Yield
+	(*GetFavoriteGroupsResponse_FavoriteGroup)(nil),              // 129: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.FavoriteGroup
+	(*GetAssetFundamentalsResponse_StatisticResponse)(nil),       // 130: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse
+	(*GetAssetReportsResponse_GetAssetReportsEvent)(nil),         // 131: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent
+	(*GetConsensusForecastsResponse_ConsensusForecastsItem)(nil), // 132: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem
+	(*GetForecastResponse_TargetItem)(nil),                       // 133: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem
+	(*GetForecastResponse_ConsensusItem)(nil),                    // 134: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem
+	(*RiskRatesResponse_RiskRateResult)(nil),                     // 135: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult
+	(*RiskRatesResponse_RiskRate)(nil),                           // 136: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
+	(*TradingInterval_TimeInterval)(nil),                         // 137: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval
+	(*GetInsiderDealsResponse_InsiderDeal)(nil),                  // 138: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal
+	(*DfaResponse_BasicAsset)(nil),                               // 139: tinkoff.public.invest.api.contract.v1.DfaResponse.BasicAsset
+	(*DfaResponse_ForecastYield)(nil),                            // 140: tinkoff.public.invest.api.contract.v1.DfaResponse.ForecastYield
+	(*timestamppb.Timestamp)(nil),                                // 141: google.protobuf.Timestamp
+	(InstrumentStatus)(0),                                        // 142: tinkoff.public.invest.api.contract.v1.InstrumentStatus
+	(*MoneyValue)(nil),                                           // 143: tinkoff.public.invest.api.contract.v1.MoneyValue
+	(SecurityTradingStatus)(0),                                   // 144: tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	(RealExchange)(0),                                            // 145: tinkoff.public.invest.api.contract.v1.RealExchange
+	(*BrandData)(nil),                                            // 146: tinkoff.public.invest.api.contract.v1.BrandData
+	(*Quotation)(nil),                                            // 147: tinkoff.public.invest.api.contract.v1.Quotation
+	(InstrumentType)(0),                                          // 148: tinkoff.public.invest.api.contract.v1.InstrumentType
+	(*Page)(nil),                                                 // 149: tinkoff.public.invest.api.contract.v1.Page
+	(*PageResponse)(nil),                                         // 150: tinkoff.public.invest.api.contract.v1.PageResponse
 }
 var file_tinvest_instruments_proto_depIdxs = []int32{
-	118, // 0: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 1: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest.to:type_name -> google.protobuf.Timestamp
-	19,  // 2: tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse.exchanges:type_name -> tinkoff.public.invest.api.contract.v1.TradingSchedule
-	20,  // 3: tinkoff.public.invest.api.contract.v1.TradingSchedule.days:type_name -> tinkoff.public.invest.api.contract.v1.TradingDay
-	118, // 4: tinkoff.public.invest.api.contract.v1.TradingDay.date:type_name -> google.protobuf.Timestamp
-	118, // 5: tinkoff.public.invest.api.contract.v1.TradingDay.start_time:type_name -> google.protobuf.Timestamp
-	118, // 6: tinkoff.public.invest.api.contract.v1.TradingDay.end_time:type_name -> google.protobuf.Timestamp
-	118, // 7: tinkoff.public.invest.api.contract.v1.TradingDay.opening_auction_start_time:type_name -> google.protobuf.Timestamp
-	118, // 8: tinkoff.public.invest.api.contract.v1.TradingDay.closing_auction_end_time:type_name -> google.protobuf.Timestamp
-	118, // 9: tinkoff.public.invest.api.contract.v1.TradingDay.evening_opening_auction_start_time:type_name -> google.protobuf.Timestamp
-	118, // 10: tinkoff.public.invest.api.contract.v1.TradingDay.evening_start_time:type_name -> google.protobuf.Timestamp
-	118, // 11: tinkoff.public.invest.api.contract.v1.TradingDay.evening_end_time:type_name -> google.protobuf.Timestamp
-	118, // 12: tinkoff.public.invest.api.contract.v1.TradingDay.clearing_start_time:type_name -> google.protobuf.Timestamp
-	118, // 13: tinkoff.public.invest.api.contract.v1.TradingDay.clearing_end_time:type_name -> google.protobuf.Timestamp
-	118, // 14: tinkoff.public.invest.api.contract.v1.TradingDay.premarket_start_time:type_name -> google.protobuf.Timestamp
-	118, // 15: tinkoff.public.invest.api.contract.v1.TradingDay.premarket_end_time:type_name -> google.protobuf.Timestamp
-	118, // 16: tinkoff.public.invest.api.contract.v1.TradingDay.closing_auction_start_time:type_name -> google.protobuf.Timestamp
-	118, // 17: tinkoff.public.invest.api.contract.v1.TradingDay.opening_auction_end_time:type_name -> google.protobuf.Timestamp
-	107, // 18: tinkoff.public.invest.api.contract.v1.TradingDay.intervals:type_name -> tinkoff.public.invest.api.contract.v1.TradingInterval
+	141, // 0: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 1: tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest.to:type_name -> google.protobuf.Timestamp
+	22,  // 2: tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse.exchanges:type_name -> tinkoff.public.invest.api.contract.v1.TradingSchedule
+	23,  // 3: tinkoff.public.invest.api.contract.v1.TradingSchedule.days:type_name -> tinkoff.public.invest.api.contract.v1.TradingDay
+	141, // 4: tinkoff.public.invest.api.contract.v1.TradingDay.date:type_name -> google.protobuf.Timestamp
+	141, // 5: tinkoff.public.invest.api.contract.v1.TradingDay.start_time:type_name -> google.protobuf.Timestamp
+	141, // 6: tinkoff.public.invest.api.contract.v1.TradingDay.end_time:type_name -> google.protobuf.Timestamp
+	141, // 7: tinkoff.public.invest.api.contract.v1.TradingDay.opening_auction_start_time:type_name -> google.protobuf.Timestamp
+	141, // 8: tinkoff.public.invest.api.contract.v1.TradingDay.closing_auction_end_time:type_name -> google.protobuf.Timestamp
+	141, // 9: tinkoff.public.invest.api.contract.v1.TradingDay.evening_opening_auction_start_time:type_name -> google.protobuf.Timestamp
+	141, // 10: tinkoff.public.invest.api.contract.v1.TradingDay.evening_start_time:type_name -> google.protobuf.Timestamp
+	141, // 11: tinkoff.public.invest.api.contract.v1.TradingDay.evening_end_time:type_name -> google.protobuf.Timestamp
+	141, // 12: tinkoff.public.invest.api.contract.v1.TradingDay.clearing_start_time:type_name -> google.protobuf.Timestamp
+	141, // 13: tinkoff.public.invest.api.contract.v1.TradingDay.clearing_end_time:type_name -> google.protobuf.Timestamp
+	141, // 14: tinkoff.public.invest.api.contract.v1.TradingDay.premarket_start_time:type_name -> google.protobuf.Timestamp
+	141, // 15: tinkoff.public.invest.api.contract.v1.TradingDay.premarket_end_time:type_name -> google.protobuf.Timestamp
+	141, // 16: tinkoff.public.invest.api.contract.v1.TradingDay.closing_auction_start_time:type_name -> google.protobuf.Timestamp
+	141, // 17: tinkoff.public.invest.api.contract.v1.TradingDay.opening_auction_end_time:type_name -> google.protobuf.Timestamp
+	120, // 18: tinkoff.public.invest.api.contract.v1.TradingDay.intervals:type_name -> tinkoff.public.invest.api.contract.v1.TradingInterval
 	5,   // 19: tinkoff.public.invest.api.contract.v1.InstrumentRequest.id_type:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentIdType
-	119, // 20: tinkoff.public.invest.api.contract.v1.InstrumentsRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	14,  // 21: tinkoff.public.invest.api.contract.v1.InstrumentsRequest.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
-	42,  // 22: tinkoff.public.invest.api.contract.v1.BondResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Bond
-	42,  // 23: tinkoff.public.invest.api.contract.v1.BondsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Bond
-	118, // 24: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 25: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest.to:type_name -> google.protobuf.Timestamp
-	30,  // 26: tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.Coupon
-	118, // 27: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 28: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.to:type_name -> google.protobuf.Timestamp
-	15,  // 29: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.type:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
-	108, // 30: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent
-	118, // 31: tinkoff.public.invest.api.contract.v1.Coupon.coupon_date:type_name -> google.protobuf.Timestamp
-	118, // 32: tinkoff.public.invest.api.contract.v1.Coupon.fix_date:type_name -> google.protobuf.Timestamp
-	120, // 33: tinkoff.public.invest.api.contract.v1.Coupon.pay_one_bond:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	142, // 20: tinkoff.public.invest.api.contract.v1.InstrumentsRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
+	13,  // 21: tinkoff.public.invest.api.contract.v1.InstrumentsRequest.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
+	53,  // 22: tinkoff.public.invest.api.contract.v1.BondResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Bond
+	53,  // 23: tinkoff.public.invest.api.contract.v1.BondsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Bond
+	141, // 24: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 25: tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest.to:type_name -> google.protobuf.Timestamp
+	34,  // 26: tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.Coupon
+	141, // 27: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 28: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.to:type_name -> google.protobuf.Timestamp
+	14,  // 29: tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.type:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
+	126, // 30: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent
+	141, // 31: tinkoff.public.invest.api.contract.v1.Coupon.coupon_date:type_name -> google.protobuf.Timestamp
+	141, // 32: tinkoff.public.invest.api.contract.v1.Coupon.fix_date:type_name -> google.protobuf.Timestamp
+	143, // 33: tinkoff.public.invest.api.contract.v1.Coupon.pay_one_bond:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
 	0,   // 34: tinkoff.public.invest.api.contract.v1.Coupon.coupon_type:type_name -> tinkoff.public.invest.api.contract.v1.CouponType
-	118, // 35: tinkoff.public.invest.api.contract.v1.Coupon.coupon_start_date:type_name -> google.protobuf.Timestamp
-	118, // 36: tinkoff.public.invest.api.contract.v1.Coupon.coupon_end_date:type_name -> google.protobuf.Timestamp
-	43,  // 37: tinkoff.public.invest.api.contract.v1.CurrencyResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Currency
-	43,  // 38: tinkoff.public.invest.api.contract.v1.CurrenciesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Currency
-	44,  // 39: tinkoff.public.invest.api.contract.v1.EtfResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Etf
-	44,  // 40: tinkoff.public.invest.api.contract.v1.EtfsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Etf
-	45,  // 41: tinkoff.public.invest.api.contract.v1.FutureResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Future
-	45,  // 42: tinkoff.public.invest.api.contract.v1.FuturesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Future
-	39,  // 43: tinkoff.public.invest.api.contract.v1.OptionResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Option
-	39,  // 44: tinkoff.public.invest.api.contract.v1.OptionsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Option
-	121, // 45: tinkoff.public.invest.api.contract.v1.Option.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	10,  // 46: tinkoff.public.invest.api.contract.v1.Option.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	141, // 35: tinkoff.public.invest.api.contract.v1.Coupon.coupon_start_date:type_name -> google.protobuf.Timestamp
+	141, // 36: tinkoff.public.invest.api.contract.v1.Coupon.coupon_end_date:type_name -> google.protobuf.Timestamp
+	54,  // 37: tinkoff.public.invest.api.contract.v1.CurrencyResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Currency
+	54,  // 38: tinkoff.public.invest.api.contract.v1.CurrenciesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Currency
+	55,  // 39: tinkoff.public.invest.api.contract.v1.EtfResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Etf
+	55,  // 40: tinkoff.public.invest.api.contract.v1.EtfsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Etf
+	56,  // 41: tinkoff.public.invest.api.contract.v1.FutureResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Future
+	56,  // 42: tinkoff.public.invest.api.contract.v1.FuturesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Future
+	43,  // 43: tinkoff.public.invest.api.contract.v1.OptionResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Option
+	43,  // 44: tinkoff.public.invest.api.contract.v1.OptionsResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Option
+	144, // 45: tinkoff.public.invest.api.contract.v1.Option.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	145, // 46: tinkoff.public.invest.api.contract.v1.Option.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
 	1,   // 47: tinkoff.public.invest.api.contract.v1.Option.direction:type_name -> tinkoff.public.invest.api.contract.v1.OptionDirection
 	2,   // 48: tinkoff.public.invest.api.contract.v1.Option.payment_type:type_name -> tinkoff.public.invest.api.contract.v1.OptionPaymentType
 	3,   // 49: tinkoff.public.invest.api.contract.v1.Option.style:type_name -> tinkoff.public.invest.api.contract.v1.OptionStyle
 	4,   // 50: tinkoff.public.invest.api.contract.v1.Option.settlement_type:type_name -> tinkoff.public.invest.api.contract.v1.OptionSettlementType
-	122, // 51: tinkoff.public.invest.api.contract.v1.Option.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 52: tinkoff.public.invest.api.contract.v1.Option.basic_asset_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 53: tinkoff.public.invest.api.contract.v1.Option.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 54: tinkoff.public.invest.api.contract.v1.Option.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 55: tinkoff.public.invest.api.contract.v1.Option.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 56: tinkoff.public.invest.api.contract.v1.Option.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 57: tinkoff.public.invest.api.contract.v1.Option.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 58: tinkoff.public.invest.api.contract.v1.Option.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 59: tinkoff.public.invest.api.contract.v1.Option.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	120, // 60: tinkoff.public.invest.api.contract.v1.Option.strike_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	123, // 61: tinkoff.public.invest.api.contract.v1.Option.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 62: tinkoff.public.invest.api.contract.v1.Option.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 63: tinkoff.public.invest.api.contract.v1.Option.expiration_date:type_name -> google.protobuf.Timestamp
-	118, // 64: tinkoff.public.invest.api.contract.v1.Option.first_trade_date:type_name -> google.protobuf.Timestamp
-	118, // 65: tinkoff.public.invest.api.contract.v1.Option.last_trade_date:type_name -> google.protobuf.Timestamp
-	118, // 66: tinkoff.public.invest.api.contract.v1.Option.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 67: tinkoff.public.invest.api.contract.v1.Option.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	46,  // 68: tinkoff.public.invest.api.contract.v1.ShareResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	46,  // 69: tinkoff.public.invest.api.contract.v1.SharesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	123, // 70: tinkoff.public.invest.api.contract.v1.Bond.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 71: tinkoff.public.invest.api.contract.v1.Bond.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 72: tinkoff.public.invest.api.contract.v1.Bond.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 73: tinkoff.public.invest.api.contract.v1.Bond.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 74: tinkoff.public.invest.api.contract.v1.Bond.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 75: tinkoff.public.invest.api.contract.v1.Bond.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 76: tinkoff.public.invest.api.contract.v1.Bond.maturity_date:type_name -> google.protobuf.Timestamp
-	120, // 77: tinkoff.public.invest.api.contract.v1.Bond.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	120, // 78: tinkoff.public.invest.api.contract.v1.Bond.initial_nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	118, // 79: tinkoff.public.invest.api.contract.v1.Bond.state_reg_date:type_name -> google.protobuf.Timestamp
-	118, // 80: tinkoff.public.invest.api.contract.v1.Bond.placement_date:type_name -> google.protobuf.Timestamp
-	120, // 81: tinkoff.public.invest.api.contract.v1.Bond.placement_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	120, // 82: tinkoff.public.invest.api.contract.v1.Bond.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	121, // 83: tinkoff.public.invest.api.contract.v1.Bond.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	123, // 84: tinkoff.public.invest.api.contract.v1.Bond.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 85: tinkoff.public.invest.api.contract.v1.Bond.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	118, // 86: tinkoff.public.invest.api.contract.v1.Bond.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 87: tinkoff.public.invest.api.contract.v1.Bond.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	12,  // 88: tinkoff.public.invest.api.contract.v1.Bond.risk_level:type_name -> tinkoff.public.invest.api.contract.v1.RiskLevel
-	122, // 89: tinkoff.public.invest.api.contract.v1.Bond.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	13,  // 90: tinkoff.public.invest.api.contract.v1.Bond.bond_type:type_name -> tinkoff.public.invest.api.contract.v1.BondType
-	118, // 91: tinkoff.public.invest.api.contract.v1.Bond.call_date:type_name -> google.protobuf.Timestamp
-	123, // 92: tinkoff.public.invest.api.contract.v1.Bond.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 93: tinkoff.public.invest.api.contract.v1.Bond.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 94: tinkoff.public.invest.api.contract.v1.Currency.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 95: tinkoff.public.invest.api.contract.v1.Currency.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 96: tinkoff.public.invest.api.contract.v1.Currency.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 97: tinkoff.public.invest.api.contract.v1.Currency.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 98: tinkoff.public.invest.api.contract.v1.Currency.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 99: tinkoff.public.invest.api.contract.v1.Currency.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	120, // 100: tinkoff.public.invest.api.contract.v1.Currency.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	121, // 101: tinkoff.public.invest.api.contract.v1.Currency.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	123, // 102: tinkoff.public.invest.api.contract.v1.Currency.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 103: tinkoff.public.invest.api.contract.v1.Currency.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	118, // 104: tinkoff.public.invest.api.contract.v1.Currency.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 105: tinkoff.public.invest.api.contract.v1.Currency.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	122, // 106: tinkoff.public.invest.api.contract.v1.Currency.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 107: tinkoff.public.invest.api.contract.v1.Currency.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 108: tinkoff.public.invest.api.contract.v1.Currency.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 109: tinkoff.public.invest.api.contract.v1.Etf.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 110: tinkoff.public.invest.api.contract.v1.Etf.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 111: tinkoff.public.invest.api.contract.v1.Etf.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 112: tinkoff.public.invest.api.contract.v1.Etf.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 113: tinkoff.public.invest.api.contract.v1.Etf.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 114: tinkoff.public.invest.api.contract.v1.Etf.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 115: tinkoff.public.invest.api.contract.v1.Etf.fixed_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 116: tinkoff.public.invest.api.contract.v1.Etf.released_date:type_name -> google.protobuf.Timestamp
-	123, // 117: tinkoff.public.invest.api.contract.v1.Etf.num_shares:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	121, // 118: tinkoff.public.invest.api.contract.v1.Etf.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	123, // 119: tinkoff.public.invest.api.contract.v1.Etf.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 120: tinkoff.public.invest.api.contract.v1.Etf.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	14,  // 121: tinkoff.public.invest.api.contract.v1.Etf.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
-	118, // 122: tinkoff.public.invest.api.contract.v1.Etf.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 123: tinkoff.public.invest.api.contract.v1.Etf.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	122, // 124: tinkoff.public.invest.api.contract.v1.Etf.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 125: tinkoff.public.invest.api.contract.v1.Etf.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 126: tinkoff.public.invest.api.contract.v1.Etf.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 127: tinkoff.public.invest.api.contract.v1.Future.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 128: tinkoff.public.invest.api.contract.v1.Future.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 129: tinkoff.public.invest.api.contract.v1.Future.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 130: tinkoff.public.invest.api.contract.v1.Future.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 131: tinkoff.public.invest.api.contract.v1.Future.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 132: tinkoff.public.invest.api.contract.v1.Future.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 133: tinkoff.public.invest.api.contract.v1.Future.first_trade_date:type_name -> google.protobuf.Timestamp
-	118, // 134: tinkoff.public.invest.api.contract.v1.Future.last_trade_date:type_name -> google.protobuf.Timestamp
-	123, // 135: tinkoff.public.invest.api.contract.v1.Future.basic_asset_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 136: tinkoff.public.invest.api.contract.v1.Future.expiration_date:type_name -> google.protobuf.Timestamp
-	121, // 137: tinkoff.public.invest.api.contract.v1.Future.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	123, // 138: tinkoff.public.invest.api.contract.v1.Future.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 139: tinkoff.public.invest.api.contract.v1.Future.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	118, // 140: tinkoff.public.invest.api.contract.v1.Future.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 141: tinkoff.public.invest.api.contract.v1.Future.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	120, // 142: tinkoff.public.invest.api.contract.v1.Future.initial_margin_on_buy:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	120, // 143: tinkoff.public.invest.api.contract.v1.Future.initial_margin_on_sell:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	123, // 144: tinkoff.public.invest.api.contract.v1.Future.min_price_increment_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	122, // 145: tinkoff.public.invest.api.contract.v1.Future.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 146: tinkoff.public.invest.api.contract.v1.Future.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 147: tinkoff.public.invest.api.contract.v1.Future.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 148: tinkoff.public.invest.api.contract.v1.Share.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 149: tinkoff.public.invest.api.contract.v1.Share.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 150: tinkoff.public.invest.api.contract.v1.Share.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 151: tinkoff.public.invest.api.contract.v1.Share.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 152: tinkoff.public.invest.api.contract.v1.Share.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 153: tinkoff.public.invest.api.contract.v1.Share.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 154: tinkoff.public.invest.api.contract.v1.Share.ipo_date:type_name -> google.protobuf.Timestamp
-	120, // 155: tinkoff.public.invest.api.contract.v1.Share.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	121, // 156: tinkoff.public.invest.api.contract.v1.Share.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	6,   // 157: tinkoff.public.invest.api.contract.v1.Share.share_type:type_name -> tinkoff.public.invest.api.contract.v1.ShareType
-	123, // 158: tinkoff.public.invest.api.contract.v1.Share.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 159: tinkoff.public.invest.api.contract.v1.Share.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	14,  // 160: tinkoff.public.invest.api.contract.v1.Share.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
-	118, // 161: tinkoff.public.invest.api.contract.v1.Share.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 162: tinkoff.public.invest.api.contract.v1.Share.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	122, // 163: tinkoff.public.invest.api.contract.v1.Share.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 164: tinkoff.public.invest.api.contract.v1.Share.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 165: tinkoff.public.invest.api.contract.v1.Share.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 166: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 167: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest.to:type_name -> google.protobuf.Timestamp
-	49,  // 168: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse.accrued_interests:type_name -> tinkoff.public.invest.api.contract.v1.AccruedInterest
-	118, // 169: tinkoff.public.invest.api.contract.v1.AccruedInterest.date:type_name -> google.protobuf.Timestamp
-	123, // 170: tinkoff.public.invest.api.contract.v1.AccruedInterest.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 171: tinkoff.public.invest.api.contract.v1.AccruedInterest.value_percent:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 172: tinkoff.public.invest.api.contract.v1.AccruedInterest.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	120, // 173: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.initial_margin_on_buy:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	120, // 174: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.initial_margin_on_sell:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	123, // 175: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 176: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.min_price_increment_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	53,  // 177: tinkoff.public.invest.api.contract.v1.InstrumentResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Instrument
-	123, // 178: tinkoff.public.invest.api.contract.v1.Instrument.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 179: tinkoff.public.invest.api.contract.v1.Instrument.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 180: tinkoff.public.invest.api.contract.v1.Instrument.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 181: tinkoff.public.invest.api.contract.v1.Instrument.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 182: tinkoff.public.invest.api.contract.v1.Instrument.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 183: tinkoff.public.invest.api.contract.v1.Instrument.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	121, // 184: tinkoff.public.invest.api.contract.v1.Instrument.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
-	123, // 185: tinkoff.public.invest.api.contract.v1.Instrument.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	10,  // 186: tinkoff.public.invest.api.contract.v1.Instrument.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
-	124, // 187: tinkoff.public.invest.api.contract.v1.Instrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	118, // 188: tinkoff.public.invest.api.contract.v1.Instrument.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 189: tinkoff.public.invest.api.contract.v1.Instrument.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	122, // 190: tinkoff.public.invest.api.contract.v1.Instrument.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
-	123, // 191: tinkoff.public.invest.api.contract.v1.Instrument.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 192: tinkoff.public.invest.api.contract.v1.Instrument.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 193: tinkoff.public.invest.api.contract.v1.GetDividendsRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 194: tinkoff.public.invest.api.contract.v1.GetDividendsRequest.to:type_name -> google.protobuf.Timestamp
-	56,  // 195: tinkoff.public.invest.api.contract.v1.GetDividendsResponse.dividends:type_name -> tinkoff.public.invest.api.contract.v1.Dividend
-	120, // 196: tinkoff.public.invest.api.contract.v1.Dividend.dividend_net:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	118, // 197: tinkoff.public.invest.api.contract.v1.Dividend.payment_date:type_name -> google.protobuf.Timestamp
-	118, // 198: tinkoff.public.invest.api.contract.v1.Dividend.declared_date:type_name -> google.protobuf.Timestamp
-	118, // 199: tinkoff.public.invest.api.contract.v1.Dividend.last_buy_date:type_name -> google.protobuf.Timestamp
-	118, // 200: tinkoff.public.invest.api.contract.v1.Dividend.record_date:type_name -> google.protobuf.Timestamp
-	120, // 201: tinkoff.public.invest.api.contract.v1.Dividend.close_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	123, // 202: tinkoff.public.invest.api.contract.v1.Dividend.yield_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 203: tinkoff.public.invest.api.contract.v1.Dividend.created_at:type_name -> google.protobuf.Timestamp
-	61,  // 204: tinkoff.public.invest.api.contract.v1.AssetResponse.asset:type_name -> tinkoff.public.invest.api.contract.v1.AssetFull
-	124, // 205: tinkoff.public.invest.api.contract.v1.AssetsRequest.instrument_type:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	119, // 206: tinkoff.public.invest.api.contract.v1.AssetsRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
-	62,  // 207: tinkoff.public.invest.api.contract.v1.AssetsResponse.assets:type_name -> tinkoff.public.invest.api.contract.v1.Asset
-	7,   // 208: tinkoff.public.invest.api.contract.v1.AssetFull.type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
-	118, // 209: tinkoff.public.invest.api.contract.v1.AssetFull.deleted_at:type_name -> google.protobuf.Timestamp
-	63,  // 210: tinkoff.public.invest.api.contract.v1.AssetFull.currency:type_name -> tinkoff.public.invest.api.contract.v1.AssetCurrency
-	64,  // 211: tinkoff.public.invest.api.contract.v1.AssetFull.security:type_name -> tinkoff.public.invest.api.contract.v1.AssetSecurity
-	70,  // 212: tinkoff.public.invest.api.contract.v1.AssetFull.brand:type_name -> tinkoff.public.invest.api.contract.v1.Brand
-	118, // 213: tinkoff.public.invest.api.contract.v1.AssetFull.updated_at:type_name -> google.protobuf.Timestamp
-	71,  // 214: tinkoff.public.invest.api.contract.v1.AssetFull.instruments:type_name -> tinkoff.public.invest.api.contract.v1.AssetInstrument
-	7,   // 215: tinkoff.public.invest.api.contract.v1.Asset.type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
-	71,  // 216: tinkoff.public.invest.api.contract.v1.Asset.instruments:type_name -> tinkoff.public.invest.api.contract.v1.AssetInstrument
-	124, // 217: tinkoff.public.invest.api.contract.v1.AssetSecurity.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	65,  // 218: tinkoff.public.invest.api.contract.v1.AssetSecurity.share:type_name -> tinkoff.public.invest.api.contract.v1.AssetShare
-	66,  // 219: tinkoff.public.invest.api.contract.v1.AssetSecurity.bond:type_name -> tinkoff.public.invest.api.contract.v1.AssetBond
-	67,  // 220: tinkoff.public.invest.api.contract.v1.AssetSecurity.sp:type_name -> tinkoff.public.invest.api.contract.v1.AssetStructuredProduct
-	68,  // 221: tinkoff.public.invest.api.contract.v1.AssetSecurity.etf:type_name -> tinkoff.public.invest.api.contract.v1.AssetEtf
-	69,  // 222: tinkoff.public.invest.api.contract.v1.AssetSecurity.clearing_certificate:type_name -> tinkoff.public.invest.api.contract.v1.AssetClearingCertificate
-	6,   // 223: tinkoff.public.invest.api.contract.v1.AssetShare.type:type_name -> tinkoff.public.invest.api.contract.v1.ShareType
-	123, // 224: tinkoff.public.invest.api.contract.v1.AssetShare.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 225: tinkoff.public.invest.api.contract.v1.AssetShare.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 226: tinkoff.public.invest.api.contract.v1.AssetShare.dividend_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 227: tinkoff.public.invest.api.contract.v1.AssetShare.ipo_date:type_name -> google.protobuf.Timestamp
-	118, // 228: tinkoff.public.invest.api.contract.v1.AssetShare.registry_date:type_name -> google.protobuf.Timestamp
-	118, // 229: tinkoff.public.invest.api.contract.v1.AssetShare.placement_date:type_name -> google.protobuf.Timestamp
-	123, // 230: tinkoff.public.invest.api.contract.v1.AssetShare.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 231: tinkoff.public.invest.api.contract.v1.AssetShare.total_float:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 232: tinkoff.public.invest.api.contract.v1.AssetBond.current_nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 233: tinkoff.public.invest.api.contract.v1.AssetBond.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 234: tinkoff.public.invest.api.contract.v1.AssetBond.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 235: tinkoff.public.invest.api.contract.v1.AssetBond.maturity_date:type_name -> google.protobuf.Timestamp
-	118, // 236: tinkoff.public.invest.api.contract.v1.AssetBond.state_reg_date:type_name -> google.protobuf.Timestamp
-	118, // 237: tinkoff.public.invest.api.contract.v1.AssetBond.placement_date:type_name -> google.protobuf.Timestamp
-	123, // 238: tinkoff.public.invest.api.contract.v1.AssetBond.placement_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 239: tinkoff.public.invest.api.contract.v1.AssetBond.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 240: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	8,   // 241: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.type:type_name -> tinkoff.public.invest.api.contract.v1.StructuredProductType
-	7,   // 242: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.asset_type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
-	123, // 243: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.safety_barrier:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 244: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.maturity_date:type_name -> google.protobuf.Timestamp
-	123, // 245: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 246: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 247: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.placement_date:type_name -> google.protobuf.Timestamp
-	123, // 248: tinkoff.public.invest.api.contract.v1.AssetEtf.total_expense:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 249: tinkoff.public.invest.api.contract.v1.AssetEtf.hurdle_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 250: tinkoff.public.invest.api.contract.v1.AssetEtf.performance_fee:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 251: tinkoff.public.invest.api.contract.v1.AssetEtf.fixed_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 252: tinkoff.public.invest.api.contract.v1.AssetEtf.buy_premium:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 253: tinkoff.public.invest.api.contract.v1.AssetEtf.sell_discount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 254: tinkoff.public.invest.api.contract.v1.AssetEtf.num_share:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 255: tinkoff.public.invest.api.contract.v1.AssetEtf.released_date:type_name -> google.protobuf.Timestamp
-	123, // 256: tinkoff.public.invest.api.contract.v1.AssetEtf.index_recovery_period:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 257: tinkoff.public.invest.api.contract.v1.AssetEtf.expense_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 258: tinkoff.public.invest.api.contract.v1.AssetEtf.primary_index_tracking_error:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 259: tinkoff.public.invest.api.contract.v1.AssetEtf.rebalancing_dates:type_name -> google.protobuf.Timestamp
-	123, // 260: tinkoff.public.invest.api.contract.v1.AssetEtf.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 261: tinkoff.public.invest.api.contract.v1.AssetClearingCertificate.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	72,  // 262: tinkoff.public.invest.api.contract.v1.AssetInstrument.links:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentLink
-	124, // 263: tinkoff.public.invest.api.contract.v1.AssetInstrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	75,  // 264: tinkoff.public.invest.api.contract.v1.GetFavoritesResponse.favorite_instruments:type_name -> tinkoff.public.invest.api.contract.v1.FavoriteInstrument
-	124, // 265: tinkoff.public.invest.api.contract.v1.FavoriteInstrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	77,  // 266: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.EditFavoritesRequestInstrument
-	9,   // 267: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest.action_type:type_name -> tinkoff.public.invest.api.contract.v1.EditFavoritesActionType
-	75,  // 268: tinkoff.public.invest.api.contract.v1.EditFavoritesResponse.favorite_instruments:type_name -> tinkoff.public.invest.api.contract.v1.FavoriteInstrument
-	109, // 269: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.groups:type_name -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.FavoriteGroup
-	90,  // 270: tinkoff.public.invest.api.contract.v1.GetCountriesResponse.countries:type_name -> tinkoff.public.invest.api.contract.v1.CountryResponse
-	89,  // 271: tinkoff.public.invest.api.contract.v1.IndicativesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.IndicativeResponse
-	124, // 272: tinkoff.public.invest.api.contract.v1.IndicativeResponse.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	124, // 273: tinkoff.public.invest.api.contract.v1.FindInstrumentRequest.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	93,  // 274: tinkoff.public.invest.api.contract.v1.FindInstrumentResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentShort
-	124, // 275: tinkoff.public.invest.api.contract.v1.InstrumentShort.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
-	118, // 276: tinkoff.public.invest.api.contract.v1.InstrumentShort.first_1min_candle_date:type_name -> google.protobuf.Timestamp
-	118, // 277: tinkoff.public.invest.api.contract.v1.InstrumentShort.first_1day_candle_date:type_name -> google.protobuf.Timestamp
-	125, // 278: tinkoff.public.invest.api.contract.v1.GetBrandsRequest.paging:type_name -> tinkoff.public.invest.api.contract.v1.Page
-	70,  // 279: tinkoff.public.invest.api.contract.v1.GetBrandsResponse.brands:type_name -> tinkoff.public.invest.api.contract.v1.Brand
-	126, // 280: tinkoff.public.invest.api.contract.v1.GetBrandsResponse.paging:type_name -> tinkoff.public.invest.api.contract.v1.PageResponse
-	110, // 281: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.fundamentals:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse
-	118, // 282: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest.from:type_name -> google.protobuf.Timestamp
-	118, // 283: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest.to:type_name -> google.protobuf.Timestamp
-	111, // 284: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent
-	125, // 285: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest.paging:type_name -> tinkoff.public.invest.api.contract.v1.Page
-	112, // 286: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.items:type_name -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem
-	126, // 287: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.page:type_name -> tinkoff.public.invest.api.contract.v1.PageResponse
-	113, // 288: tinkoff.public.invest.api.contract.v1.GetForecastResponse.targets:type_name -> tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem
-	114, // 289: tinkoff.public.invest.api.contract.v1.GetForecastResponse.consensus:type_name -> tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem
-	115, // 290: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.instrument_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult
-	117, // 291: tinkoff.public.invest.api.contract.v1.TradingInterval.interval:type_name -> tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval
-	118, // 292: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_date:type_name -> google.protobuf.Timestamp
-	15,  // 293: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_type:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
-	123, // 294: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_total_vol:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 295: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.fix_date:type_name -> google.protobuf.Timestamp
-	118, // 296: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.rate_date:type_name -> google.protobuf.Timestamp
-	118, // 297: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.default_date:type_name -> google.protobuf.Timestamp
-	118, // 298: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.real_pay_date:type_name -> google.protobuf.Timestamp
-	118, // 299: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.pay_date:type_name -> google.protobuf.Timestamp
-	120, // 300: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.pay_one_bond:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	120, // 301: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.money_flow_val:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
-	123, // 302: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 303: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_start_date:type_name -> google.protobuf.Timestamp
-	118, // 304: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_end_date:type_name -> google.protobuf.Timestamp
-	123, // 305: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_interest_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 306: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.ex_dividend_date:type_name -> google.protobuf.Timestamp
-	118, // 307: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.fiscal_period_start_date:type_name -> google.protobuf.Timestamp
-	118, // 308: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.fiscal_period_end_date:type_name -> google.protobuf.Timestamp
-	118, // 309: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.report_date:type_name -> google.protobuf.Timestamp
-	16,  // 310: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.period_type:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.AssetReportPeriodType
-	118, // 311: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.created_at:type_name -> google.protobuf.Timestamp
-	118, // 312: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.created_at:type_name -> google.protobuf.Timestamp
-	123, // 313: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 314: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_low:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 315: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_high:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	11,  // 316: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.consensus:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
-	118, // 317: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.prognosis_date:type_name -> google.protobuf.Timestamp
-	11,  // 318: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.recommendation:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
-	118, // 319: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.recommendation_date:type_name -> google.protobuf.Timestamp
-	123, // 320: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.current_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 321: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.target_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 322: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.price_change:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 323: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.price_change_rel:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	11,  // 324: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.recommendation:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
-	123, // 325: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.current_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 326: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.consensus:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 327: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.min_target:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 328: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.max_target:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 329: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.price_change:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	123, // 330: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.price_change_rel:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	116, // 331: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.short_risk_rate:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
-	116, // 332: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.long_risk_rate:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
-	116, // 333: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.short_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
-	116, // 334: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.long_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
-	123, // 335: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
-	118, // 336: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval.start_ts:type_name -> google.protobuf.Timestamp
-	118, // 337: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval.end_ts:type_name -> google.protobuf.Timestamp
-	17,  // 338: tinkoff.public.invest.api.contract.v1.InstrumentsService.TradingSchedules:input_type -> tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest
-	21,  // 339: tinkoff.public.invest.api.contract.v1.InstrumentsService.BondBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 340: tinkoff.public.invest.api.contract.v1.InstrumentsService.Bonds:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	26,  // 341: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondCoupons:input_type -> tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest
-	28,  // 342: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondEvents:input_type -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest
-	21,  // 343: tinkoff.public.invest.api.contract.v1.InstrumentsService.CurrencyBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 344: tinkoff.public.invest.api.contract.v1.InstrumentsService.Currencies:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	21,  // 345: tinkoff.public.invest.api.contract.v1.InstrumentsService.EtfBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 346: tinkoff.public.invest.api.contract.v1.InstrumentsService.Etfs:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	21,  // 347: tinkoff.public.invest.api.contract.v1.InstrumentsService.FutureBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 348: tinkoff.public.invest.api.contract.v1.InstrumentsService.Futures:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	21,  // 349: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 350: tinkoff.public.invest.api.contract.v1.InstrumentsService.Options:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	23,  // 351: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionsBy:input_type -> tinkoff.public.invest.api.contract.v1.FilterOptionsRequest
-	21,  // 352: tinkoff.public.invest.api.contract.v1.InstrumentsService.ShareBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	22,  // 353: tinkoff.public.invest.api.contract.v1.InstrumentsService.Shares:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
-	87,  // 354: tinkoff.public.invest.api.contract.v1.InstrumentsService.Indicatives:input_type -> tinkoff.public.invest.api.contract.v1.IndicativesRequest
-	47,  // 355: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAccruedInterests:input_type -> tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest
-	50,  // 356: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFuturesMargin:input_type -> tinkoff.public.invest.api.contract.v1.GetFuturesMarginRequest
-	21,  // 357: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInstrumentBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
-	54,  // 358: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetDividends:input_type -> tinkoff.public.invest.api.contract.v1.GetDividendsRequest
-	57,  // 359: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetBy:input_type -> tinkoff.public.invest.api.contract.v1.AssetRequest
-	59,  // 360: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssets:input_type -> tinkoff.public.invest.api.contract.v1.AssetsRequest
-	73,  // 361: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavorites:input_type -> tinkoff.public.invest.api.contract.v1.GetFavoritesRequest
-	76,  // 362: tinkoff.public.invest.api.contract.v1.InstrumentsService.EditFavorites:input_type -> tinkoff.public.invest.api.contract.v1.EditFavoritesRequest
-	79,  // 363: tinkoff.public.invest.api.contract.v1.InstrumentsService.CreateFavoriteGroup:input_type -> tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupRequest
-	81,  // 364: tinkoff.public.invest.api.contract.v1.InstrumentsService.DeleteFavoriteGroup:input_type -> tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupRequest
-	83,  // 365: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavoriteGroups:input_type -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsRequest
-	85,  // 366: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetCountries:input_type -> tinkoff.public.invest.api.contract.v1.GetCountriesRequest
-	91,  // 367: tinkoff.public.invest.api.contract.v1.InstrumentsService.FindInstrument:input_type -> tinkoff.public.invest.api.contract.v1.FindInstrumentRequest
-	94,  // 368: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrands:input_type -> tinkoff.public.invest.api.contract.v1.GetBrandsRequest
-	95,  // 369: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrandBy:input_type -> tinkoff.public.invest.api.contract.v1.GetBrandRequest
-	97,  // 370: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetFundamentals:input_type -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsRequest
-	99,  // 371: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetReports:input_type -> tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest
-	101, // 372: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetConsensusForecasts:input_type -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest
-	103, // 373: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetForecastBy:input_type -> tinkoff.public.invest.api.contract.v1.GetForecastRequest
-	105, // 374: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetRiskRates:input_type -> tinkoff.public.invest.api.contract.v1.RiskRatesRequest
-	18,  // 375: tinkoff.public.invest.api.contract.v1.InstrumentsService.TradingSchedules:output_type -> tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse
-	24,  // 376: tinkoff.public.invest.api.contract.v1.InstrumentsService.BondBy:output_type -> tinkoff.public.invest.api.contract.v1.BondResponse
-	25,  // 377: tinkoff.public.invest.api.contract.v1.InstrumentsService.Bonds:output_type -> tinkoff.public.invest.api.contract.v1.BondsResponse
-	27,  // 378: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondCoupons:output_type -> tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse
-	29,  // 379: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondEvents:output_type -> tinkoff.public.invest.api.contract.v1.GetBondEventsResponse
-	31,  // 380: tinkoff.public.invest.api.contract.v1.InstrumentsService.CurrencyBy:output_type -> tinkoff.public.invest.api.contract.v1.CurrencyResponse
-	32,  // 381: tinkoff.public.invest.api.contract.v1.InstrumentsService.Currencies:output_type -> tinkoff.public.invest.api.contract.v1.CurrenciesResponse
-	33,  // 382: tinkoff.public.invest.api.contract.v1.InstrumentsService.EtfBy:output_type -> tinkoff.public.invest.api.contract.v1.EtfResponse
-	34,  // 383: tinkoff.public.invest.api.contract.v1.InstrumentsService.Etfs:output_type -> tinkoff.public.invest.api.contract.v1.EtfsResponse
-	35,  // 384: tinkoff.public.invest.api.contract.v1.InstrumentsService.FutureBy:output_type -> tinkoff.public.invest.api.contract.v1.FutureResponse
-	36,  // 385: tinkoff.public.invest.api.contract.v1.InstrumentsService.Futures:output_type -> tinkoff.public.invest.api.contract.v1.FuturesResponse
-	37,  // 386: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionBy:output_type -> tinkoff.public.invest.api.contract.v1.OptionResponse
-	38,  // 387: tinkoff.public.invest.api.contract.v1.InstrumentsService.Options:output_type -> tinkoff.public.invest.api.contract.v1.OptionsResponse
-	38,  // 388: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionsBy:output_type -> tinkoff.public.invest.api.contract.v1.OptionsResponse
-	40,  // 389: tinkoff.public.invest.api.contract.v1.InstrumentsService.ShareBy:output_type -> tinkoff.public.invest.api.contract.v1.ShareResponse
-	41,  // 390: tinkoff.public.invest.api.contract.v1.InstrumentsService.Shares:output_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
-	88,  // 391: tinkoff.public.invest.api.contract.v1.InstrumentsService.Indicatives:output_type -> tinkoff.public.invest.api.contract.v1.IndicativesResponse
-	48,  // 392: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAccruedInterests:output_type -> tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse
-	51,  // 393: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFuturesMargin:output_type -> tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse
-	52,  // 394: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInstrumentBy:output_type -> tinkoff.public.invest.api.contract.v1.InstrumentResponse
-	55,  // 395: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetDividends:output_type -> tinkoff.public.invest.api.contract.v1.GetDividendsResponse
-	58,  // 396: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetBy:output_type -> tinkoff.public.invest.api.contract.v1.AssetResponse
-	60,  // 397: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssets:output_type -> tinkoff.public.invest.api.contract.v1.AssetsResponse
-	74,  // 398: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavorites:output_type -> tinkoff.public.invest.api.contract.v1.GetFavoritesResponse
-	78,  // 399: tinkoff.public.invest.api.contract.v1.InstrumentsService.EditFavorites:output_type -> tinkoff.public.invest.api.contract.v1.EditFavoritesResponse
-	80,  // 400: tinkoff.public.invest.api.contract.v1.InstrumentsService.CreateFavoriteGroup:output_type -> tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupResponse
-	82,  // 401: tinkoff.public.invest.api.contract.v1.InstrumentsService.DeleteFavoriteGroup:output_type -> tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupResponse
-	84,  // 402: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavoriteGroups:output_type -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse
-	86,  // 403: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetCountries:output_type -> tinkoff.public.invest.api.contract.v1.GetCountriesResponse
-	92,  // 404: tinkoff.public.invest.api.contract.v1.InstrumentsService.FindInstrument:output_type -> tinkoff.public.invest.api.contract.v1.FindInstrumentResponse
-	96,  // 405: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrands:output_type -> tinkoff.public.invest.api.contract.v1.GetBrandsResponse
-	70,  // 406: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrandBy:output_type -> tinkoff.public.invest.api.contract.v1.Brand
-	98,  // 407: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetFundamentals:output_type -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse
-	100, // 408: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetReports:output_type -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse
-	102, // 409: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetConsensusForecasts:output_type -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse
-	104, // 410: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetForecastBy:output_type -> tinkoff.public.invest.api.contract.v1.GetForecastResponse
-	106, // 411: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetRiskRates:output_type -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse
-	375, // [375:412] is the sub-list for method output_type
-	338, // [338:375] is the sub-list for method input_type
-	338, // [338:338] is the sub-list for extension type_name
-	338, // [338:338] is the sub-list for extension extendee
-	0,   // [0:338] is the sub-list for field type_name
+	146, // 51: tinkoff.public.invest.api.contract.v1.Option.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 52: tinkoff.public.invest.api.contract.v1.Option.basic_asset_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 53: tinkoff.public.invest.api.contract.v1.Option.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 54: tinkoff.public.invest.api.contract.v1.Option.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 55: tinkoff.public.invest.api.contract.v1.Option.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 56: tinkoff.public.invest.api.contract.v1.Option.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 57: tinkoff.public.invest.api.contract.v1.Option.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 58: tinkoff.public.invest.api.contract.v1.Option.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 59: tinkoff.public.invest.api.contract.v1.Option.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	143, // 60: tinkoff.public.invest.api.contract.v1.Option.strike_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	147, // 61: tinkoff.public.invest.api.contract.v1.Option.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 62: tinkoff.public.invest.api.contract.v1.Option.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 63: tinkoff.public.invest.api.contract.v1.Option.expiration_date:type_name -> google.protobuf.Timestamp
+	141, // 64: tinkoff.public.invest.api.contract.v1.Option.first_trade_date:type_name -> google.protobuf.Timestamp
+	141, // 65: tinkoff.public.invest.api.contract.v1.Option.last_trade_date:type_name -> google.protobuf.Timestamp
+	141, // 66: tinkoff.public.invest.api.contract.v1.Option.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 67: tinkoff.public.invest.api.contract.v1.Option.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	57,  // 68: tinkoff.public.invest.api.contract.v1.ShareResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	57,  // 69: tinkoff.public.invest.api.contract.v1.SharesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	58,  // 70: tinkoff.public.invest.api.contract.v1.StructuredNoteResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote
+	58,  // 71: tinkoff.public.invest.api.contract.v1.StructuredNotesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote
+	49,  // 72: tinkoff.public.invest.api.contract.v1.NewsResponse.items:type_name -> tinkoff.public.invest.api.contract.v1.NewsItem
+	50,  // 73: tinkoff.public.invest.api.contract.v1.NewsItem.tables:type_name -> tinkoff.public.invest.api.contract.v1.Table
+	51,  // 74: tinkoff.public.invest.api.contract.v1.NewsItem.instrument_id:type_name -> tinkoff.public.invest.api.contract.v1.NewsInstrument
+	141, // 75: tinkoff.public.invest.api.contract.v1.NewsItem.ts:type_name -> google.protobuf.Timestamp
+	52,  // 76: tinkoff.public.invest.api.contract.v1.NewsInstrument.instrument:type_name -> tinkoff.public.invest.api.contract.v1.NewsInstrumentInfo
+	147, // 77: tinkoff.public.invest.api.contract.v1.Bond.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 78: tinkoff.public.invest.api.contract.v1.Bond.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 79: tinkoff.public.invest.api.contract.v1.Bond.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 80: tinkoff.public.invest.api.contract.v1.Bond.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 81: tinkoff.public.invest.api.contract.v1.Bond.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 82: tinkoff.public.invest.api.contract.v1.Bond.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 83: tinkoff.public.invest.api.contract.v1.Bond.maturity_date:type_name -> google.protobuf.Timestamp
+	143, // 84: tinkoff.public.invest.api.contract.v1.Bond.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	143, // 85: tinkoff.public.invest.api.contract.v1.Bond.initial_nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	141, // 86: tinkoff.public.invest.api.contract.v1.Bond.state_reg_date:type_name -> google.protobuf.Timestamp
+	141, // 87: tinkoff.public.invest.api.contract.v1.Bond.placement_date:type_name -> google.protobuf.Timestamp
+	143, // 88: tinkoff.public.invest.api.contract.v1.Bond.placement_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	143, // 89: tinkoff.public.invest.api.contract.v1.Bond.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	144, // 90: tinkoff.public.invest.api.contract.v1.Bond.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	147, // 91: tinkoff.public.invest.api.contract.v1.Bond.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 92: tinkoff.public.invest.api.contract.v1.Bond.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	141, // 93: tinkoff.public.invest.api.contract.v1.Bond.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 94: tinkoff.public.invest.api.contract.v1.Bond.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	11,  // 95: tinkoff.public.invest.api.contract.v1.Bond.risk_level:type_name -> tinkoff.public.invest.api.contract.v1.RiskLevel
+	146, // 96: tinkoff.public.invest.api.contract.v1.Bond.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	12,  // 97: tinkoff.public.invest.api.contract.v1.Bond.bond_type:type_name -> tinkoff.public.invest.api.contract.v1.BondType
+	141, // 98: tinkoff.public.invest.api.contract.v1.Bond.call_date:type_name -> google.protobuf.Timestamp
+	147, // 99: tinkoff.public.invest.api.contract.v1.Bond.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 100: tinkoff.public.invest.api.contract.v1.Bond.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 101: tinkoff.public.invest.api.contract.v1.Currency.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 102: tinkoff.public.invest.api.contract.v1.Currency.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 103: tinkoff.public.invest.api.contract.v1.Currency.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 104: tinkoff.public.invest.api.contract.v1.Currency.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 105: tinkoff.public.invest.api.contract.v1.Currency.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 106: tinkoff.public.invest.api.contract.v1.Currency.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	143, // 107: tinkoff.public.invest.api.contract.v1.Currency.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	144, // 108: tinkoff.public.invest.api.contract.v1.Currency.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	147, // 109: tinkoff.public.invest.api.contract.v1.Currency.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 110: tinkoff.public.invest.api.contract.v1.Currency.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	141, // 111: tinkoff.public.invest.api.contract.v1.Currency.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 112: tinkoff.public.invest.api.contract.v1.Currency.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	146, // 113: tinkoff.public.invest.api.contract.v1.Currency.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 114: tinkoff.public.invest.api.contract.v1.Currency.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 115: tinkoff.public.invest.api.contract.v1.Currency.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 116: tinkoff.public.invest.api.contract.v1.Etf.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 117: tinkoff.public.invest.api.contract.v1.Etf.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 118: tinkoff.public.invest.api.contract.v1.Etf.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 119: tinkoff.public.invest.api.contract.v1.Etf.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 120: tinkoff.public.invest.api.contract.v1.Etf.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 121: tinkoff.public.invest.api.contract.v1.Etf.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 122: tinkoff.public.invest.api.contract.v1.Etf.fixed_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 123: tinkoff.public.invest.api.contract.v1.Etf.released_date:type_name -> google.protobuf.Timestamp
+	147, // 124: tinkoff.public.invest.api.contract.v1.Etf.num_shares:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	144, // 125: tinkoff.public.invest.api.contract.v1.Etf.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	147, // 126: tinkoff.public.invest.api.contract.v1.Etf.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 127: tinkoff.public.invest.api.contract.v1.Etf.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	13,  // 128: tinkoff.public.invest.api.contract.v1.Etf.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
+	141, // 129: tinkoff.public.invest.api.contract.v1.Etf.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 130: tinkoff.public.invest.api.contract.v1.Etf.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	146, // 131: tinkoff.public.invest.api.contract.v1.Etf.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 132: tinkoff.public.invest.api.contract.v1.Etf.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 133: tinkoff.public.invest.api.contract.v1.Etf.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 134: tinkoff.public.invest.api.contract.v1.Future.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 135: tinkoff.public.invest.api.contract.v1.Future.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 136: tinkoff.public.invest.api.contract.v1.Future.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 137: tinkoff.public.invest.api.contract.v1.Future.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 138: tinkoff.public.invest.api.contract.v1.Future.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 139: tinkoff.public.invest.api.contract.v1.Future.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 140: tinkoff.public.invest.api.contract.v1.Future.first_trade_date:type_name -> google.protobuf.Timestamp
+	141, // 141: tinkoff.public.invest.api.contract.v1.Future.last_trade_date:type_name -> google.protobuf.Timestamp
+	147, // 142: tinkoff.public.invest.api.contract.v1.Future.basic_asset_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 143: tinkoff.public.invest.api.contract.v1.Future.expiration_date:type_name -> google.protobuf.Timestamp
+	144, // 144: tinkoff.public.invest.api.contract.v1.Future.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	147, // 145: tinkoff.public.invest.api.contract.v1.Future.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 146: tinkoff.public.invest.api.contract.v1.Future.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	141, // 147: tinkoff.public.invest.api.contract.v1.Future.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 148: tinkoff.public.invest.api.contract.v1.Future.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	143, // 149: tinkoff.public.invest.api.contract.v1.Future.initial_margin_on_buy:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	143, // 150: tinkoff.public.invest.api.contract.v1.Future.initial_margin_on_sell:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	147, // 151: tinkoff.public.invest.api.contract.v1.Future.min_price_increment_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	146, // 152: tinkoff.public.invest.api.contract.v1.Future.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 153: tinkoff.public.invest.api.contract.v1.Future.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 154: tinkoff.public.invest.api.contract.v1.Future.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 155: tinkoff.public.invest.api.contract.v1.Share.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 156: tinkoff.public.invest.api.contract.v1.Share.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 157: tinkoff.public.invest.api.contract.v1.Share.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 158: tinkoff.public.invest.api.contract.v1.Share.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 159: tinkoff.public.invest.api.contract.v1.Share.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 160: tinkoff.public.invest.api.contract.v1.Share.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 161: tinkoff.public.invest.api.contract.v1.Share.ipo_date:type_name -> google.protobuf.Timestamp
+	143, // 162: tinkoff.public.invest.api.contract.v1.Share.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	144, // 163: tinkoff.public.invest.api.contract.v1.Share.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	6,   // 164: tinkoff.public.invest.api.contract.v1.Share.share_type:type_name -> tinkoff.public.invest.api.contract.v1.ShareType
+	147, // 165: tinkoff.public.invest.api.contract.v1.Share.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 166: tinkoff.public.invest.api.contract.v1.Share.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	13,  // 167: tinkoff.public.invest.api.contract.v1.Share.instrument_exchange:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentExchangeType
+	141, // 168: tinkoff.public.invest.api.contract.v1.Share.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 169: tinkoff.public.invest.api.contract.v1.Share.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	146, // 170: tinkoff.public.invest.api.contract.v1.Share.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 171: tinkoff.public.invest.api.contract.v1.Share.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 172: tinkoff.public.invest.api.contract.v1.Share.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 173: tinkoff.public.invest.api.contract.v1.StructuredNote.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	143, // 174: tinkoff.public.invest.api.contract.v1.StructuredNote.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	141, // 175: tinkoff.public.invest.api.contract.v1.StructuredNote.maturity_date:type_name -> google.protobuf.Timestamp
+	141, // 176: tinkoff.public.invest.api.contract.v1.StructuredNote.placement_date:type_name -> google.protobuf.Timestamp
+	147, // 177: tinkoff.public.invest.api.contract.v1.StructuredNote.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 178: tinkoff.public.invest.api.contract.v1.StructuredNote.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	144, // 179: tinkoff.public.invest.api.contract.v1.StructuredNote.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	145, // 180: tinkoff.public.invest.api.contract.v1.StructuredNote.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	141, // 181: tinkoff.public.invest.api.contract.v1.StructuredNote.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 182: tinkoff.public.invest.api.contract.v1.StructuredNote.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	15,  // 183: tinkoff.public.invest.api.contract.v1.StructuredNote.logic_portfolio:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote.LogicPortfolio
+	7,   // 184: tinkoff.public.invest.api.contract.v1.StructuredNote.asset_type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
+	127, // 185: tinkoff.public.invest.api.contract.v1.StructuredNote.basic_assets:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote.BasicAsset
+	147, // 186: tinkoff.public.invest.api.contract.v1.StructuredNote.safety_barrier:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	16,  // 187: tinkoff.public.invest.api.contract.v1.StructuredNote.observation_principle:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote.ObservationPrinciple
+	141, // 188: tinkoff.public.invest.api.contract.v1.StructuredNote.initial_price_fixing_date:type_name -> google.protobuf.Timestamp
+	128, // 189: tinkoff.public.invest.api.contract.v1.StructuredNote.yield:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote.Yield
+	141, // 190: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 191: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest.to:type_name -> google.protobuf.Timestamp
+	61,  // 192: tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse.accrued_interests:type_name -> tinkoff.public.invest.api.contract.v1.AccruedInterest
+	141, // 193: tinkoff.public.invest.api.contract.v1.AccruedInterest.date:type_name -> google.protobuf.Timestamp
+	147, // 194: tinkoff.public.invest.api.contract.v1.AccruedInterest.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 195: tinkoff.public.invest.api.contract.v1.AccruedInterest.value_percent:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 196: tinkoff.public.invest.api.contract.v1.AccruedInterest.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	143, // 197: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.initial_margin_on_buy:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	143, // 198: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.initial_margin_on_sell:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	147, // 199: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 200: tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse.min_price_increment_amount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	65,  // 201: tinkoff.public.invest.api.contract.v1.InstrumentResponse.instrument:type_name -> tinkoff.public.invest.api.contract.v1.Instrument
+	147, // 202: tinkoff.public.invest.api.contract.v1.Instrument.klong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 203: tinkoff.public.invest.api.contract.v1.Instrument.kshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 204: tinkoff.public.invest.api.contract.v1.Instrument.dlong:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 205: tinkoff.public.invest.api.contract.v1.Instrument.dshort:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 206: tinkoff.public.invest.api.contract.v1.Instrument.dlong_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 207: tinkoff.public.invest.api.contract.v1.Instrument.dshort_min:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	144, // 208: tinkoff.public.invest.api.contract.v1.Instrument.trading_status:type_name -> tinkoff.public.invest.api.contract.v1.SecurityTradingStatus
+	147, // 209: tinkoff.public.invest.api.contract.v1.Instrument.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	145, // 210: tinkoff.public.invest.api.contract.v1.Instrument.real_exchange:type_name -> tinkoff.public.invest.api.contract.v1.RealExchange
+	148, // 211: tinkoff.public.invest.api.contract.v1.Instrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	141, // 212: tinkoff.public.invest.api.contract.v1.Instrument.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 213: tinkoff.public.invest.api.contract.v1.Instrument.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	146, // 214: tinkoff.public.invest.api.contract.v1.Instrument.brand:type_name -> tinkoff.public.invest.api.contract.v1.BrandData
+	147, // 215: tinkoff.public.invest.api.contract.v1.Instrument.dlong_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 216: tinkoff.public.invest.api.contract.v1.Instrument.dshort_client:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 217: tinkoff.public.invest.api.contract.v1.GetDividendsRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 218: tinkoff.public.invest.api.contract.v1.GetDividendsRequest.to:type_name -> google.protobuf.Timestamp
+	68,  // 219: tinkoff.public.invest.api.contract.v1.GetDividendsResponse.dividends:type_name -> tinkoff.public.invest.api.contract.v1.Dividend
+	143, // 220: tinkoff.public.invest.api.contract.v1.Dividend.dividend_net:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	141, // 221: tinkoff.public.invest.api.contract.v1.Dividend.payment_date:type_name -> google.protobuf.Timestamp
+	141, // 222: tinkoff.public.invest.api.contract.v1.Dividend.declared_date:type_name -> google.protobuf.Timestamp
+	141, // 223: tinkoff.public.invest.api.contract.v1.Dividend.last_buy_date:type_name -> google.protobuf.Timestamp
+	141, // 224: tinkoff.public.invest.api.contract.v1.Dividend.record_date:type_name -> google.protobuf.Timestamp
+	143, // 225: tinkoff.public.invest.api.contract.v1.Dividend.close_price:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	147, // 226: tinkoff.public.invest.api.contract.v1.Dividend.yield_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 227: tinkoff.public.invest.api.contract.v1.Dividend.created_at:type_name -> google.protobuf.Timestamp
+	73,  // 228: tinkoff.public.invest.api.contract.v1.AssetResponse.asset:type_name -> tinkoff.public.invest.api.contract.v1.AssetFull
+	148, // 229: tinkoff.public.invest.api.contract.v1.AssetsRequest.instrument_type:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	142, // 230: tinkoff.public.invest.api.contract.v1.AssetsRequest.instrument_status:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentStatus
+	74,  // 231: tinkoff.public.invest.api.contract.v1.AssetsResponse.assets:type_name -> tinkoff.public.invest.api.contract.v1.Asset
+	7,   // 232: tinkoff.public.invest.api.contract.v1.AssetFull.type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
+	141, // 233: tinkoff.public.invest.api.contract.v1.AssetFull.deleted_at:type_name -> google.protobuf.Timestamp
+	75,  // 234: tinkoff.public.invest.api.contract.v1.AssetFull.currency:type_name -> tinkoff.public.invest.api.contract.v1.AssetCurrency
+	76,  // 235: tinkoff.public.invest.api.contract.v1.AssetFull.security:type_name -> tinkoff.public.invest.api.contract.v1.AssetSecurity
+	82,  // 236: tinkoff.public.invest.api.contract.v1.AssetFull.brand:type_name -> tinkoff.public.invest.api.contract.v1.Brand
+	141, // 237: tinkoff.public.invest.api.contract.v1.AssetFull.updated_at:type_name -> google.protobuf.Timestamp
+	83,  // 238: tinkoff.public.invest.api.contract.v1.AssetFull.instruments:type_name -> tinkoff.public.invest.api.contract.v1.AssetInstrument
+	7,   // 239: tinkoff.public.invest.api.contract.v1.Asset.type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
+	83,  // 240: tinkoff.public.invest.api.contract.v1.Asset.instruments:type_name -> tinkoff.public.invest.api.contract.v1.AssetInstrument
+	148, // 241: tinkoff.public.invest.api.contract.v1.AssetSecurity.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	77,  // 242: tinkoff.public.invest.api.contract.v1.AssetSecurity.share:type_name -> tinkoff.public.invest.api.contract.v1.AssetShare
+	78,  // 243: tinkoff.public.invest.api.contract.v1.AssetSecurity.bond:type_name -> tinkoff.public.invest.api.contract.v1.AssetBond
+	79,  // 244: tinkoff.public.invest.api.contract.v1.AssetSecurity.sp:type_name -> tinkoff.public.invest.api.contract.v1.AssetStructuredProduct
+	80,  // 245: tinkoff.public.invest.api.contract.v1.AssetSecurity.etf:type_name -> tinkoff.public.invest.api.contract.v1.AssetEtf
+	81,  // 246: tinkoff.public.invest.api.contract.v1.AssetSecurity.clearing_certificate:type_name -> tinkoff.public.invest.api.contract.v1.AssetClearingCertificate
+	6,   // 247: tinkoff.public.invest.api.contract.v1.AssetShare.type:type_name -> tinkoff.public.invest.api.contract.v1.ShareType
+	147, // 248: tinkoff.public.invest.api.contract.v1.AssetShare.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 249: tinkoff.public.invest.api.contract.v1.AssetShare.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 250: tinkoff.public.invest.api.contract.v1.AssetShare.dividend_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 251: tinkoff.public.invest.api.contract.v1.AssetShare.ipo_date:type_name -> google.protobuf.Timestamp
+	141, // 252: tinkoff.public.invest.api.contract.v1.AssetShare.registry_date:type_name -> google.protobuf.Timestamp
+	141, // 253: tinkoff.public.invest.api.contract.v1.AssetShare.placement_date:type_name -> google.protobuf.Timestamp
+	147, // 254: tinkoff.public.invest.api.contract.v1.AssetShare.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 255: tinkoff.public.invest.api.contract.v1.AssetShare.total_float:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 256: tinkoff.public.invest.api.contract.v1.AssetBond.current_nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 257: tinkoff.public.invest.api.contract.v1.AssetBond.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 258: tinkoff.public.invest.api.contract.v1.AssetBond.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 259: tinkoff.public.invest.api.contract.v1.AssetBond.maturity_date:type_name -> google.protobuf.Timestamp
+	141, // 260: tinkoff.public.invest.api.contract.v1.AssetBond.state_reg_date:type_name -> google.protobuf.Timestamp
+	141, // 261: tinkoff.public.invest.api.contract.v1.AssetBond.placement_date:type_name -> google.protobuf.Timestamp
+	147, // 262: tinkoff.public.invest.api.contract.v1.AssetBond.placement_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 263: tinkoff.public.invest.api.contract.v1.AssetBond.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 264: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	8,   // 265: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.type:type_name -> tinkoff.public.invest.api.contract.v1.StructuredProductType
+	7,   // 266: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.asset_type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
+	147, // 267: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.safety_barrier:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 268: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.maturity_date:type_name -> google.protobuf.Timestamp
+	147, // 269: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.issue_size_plan:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 270: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.issue_size:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 271: tinkoff.public.invest.api.contract.v1.AssetStructuredProduct.placement_date:type_name -> google.protobuf.Timestamp
+	147, // 272: tinkoff.public.invest.api.contract.v1.AssetEtf.total_expense:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 273: tinkoff.public.invest.api.contract.v1.AssetEtf.hurdle_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 274: tinkoff.public.invest.api.contract.v1.AssetEtf.performance_fee:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 275: tinkoff.public.invest.api.contract.v1.AssetEtf.fixed_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 276: tinkoff.public.invest.api.contract.v1.AssetEtf.buy_premium:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 277: tinkoff.public.invest.api.contract.v1.AssetEtf.sell_discount:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 278: tinkoff.public.invest.api.contract.v1.AssetEtf.num_share:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 279: tinkoff.public.invest.api.contract.v1.AssetEtf.released_date:type_name -> google.protobuf.Timestamp
+	147, // 280: tinkoff.public.invest.api.contract.v1.AssetEtf.index_recovery_period:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 281: tinkoff.public.invest.api.contract.v1.AssetEtf.expense_commission:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 282: tinkoff.public.invest.api.contract.v1.AssetEtf.primary_index_tracking_error:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 283: tinkoff.public.invest.api.contract.v1.AssetEtf.rebalancing_dates:type_name -> google.protobuf.Timestamp
+	147, // 284: tinkoff.public.invest.api.contract.v1.AssetEtf.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 285: tinkoff.public.invest.api.contract.v1.AssetClearingCertificate.nominal:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	84,  // 286: tinkoff.public.invest.api.contract.v1.AssetInstrument.links:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentLink
+	148, // 287: tinkoff.public.invest.api.contract.v1.AssetInstrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	87,  // 288: tinkoff.public.invest.api.contract.v1.GetFavoritesResponse.favorite_instruments:type_name -> tinkoff.public.invest.api.contract.v1.FavoriteInstrument
+	148, // 289: tinkoff.public.invest.api.contract.v1.FavoriteInstrument.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	89,  // 290: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest.instruments:type_name -> tinkoff.public.invest.api.contract.v1.EditFavoritesRequestInstrument
+	9,   // 291: tinkoff.public.invest.api.contract.v1.EditFavoritesRequest.action_type:type_name -> tinkoff.public.invest.api.contract.v1.EditFavoritesActionType
+	87,  // 292: tinkoff.public.invest.api.contract.v1.EditFavoritesResponse.favorite_instruments:type_name -> tinkoff.public.invest.api.contract.v1.FavoriteInstrument
+	129, // 293: tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.groups:type_name -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse.FavoriteGroup
+	103, // 294: tinkoff.public.invest.api.contract.v1.GetCountriesResponse.countries:type_name -> tinkoff.public.invest.api.contract.v1.CountryResponse
+	101, // 295: tinkoff.public.invest.api.contract.v1.IndicativesResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.IndicativeResponse
+	148, // 296: tinkoff.public.invest.api.contract.v1.IndicativeResponse.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	102, // 297: tinkoff.public.invest.api.contract.v1.IndicativeResponse.index_composition:type_name -> tinkoff.public.invest.api.contract.v1.IndexInstrument
+	147, // 298: tinkoff.public.invest.api.contract.v1.IndexInstrument.weight:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	148, // 299: tinkoff.public.invest.api.contract.v1.FindInstrumentRequest.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	106, // 300: tinkoff.public.invest.api.contract.v1.FindInstrumentResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentShort
+	148, // 301: tinkoff.public.invest.api.contract.v1.InstrumentShort.instrument_kind:type_name -> tinkoff.public.invest.api.contract.v1.InstrumentType
+	141, // 302: tinkoff.public.invest.api.contract.v1.InstrumentShort.first_1min_candle_date:type_name -> google.protobuf.Timestamp
+	141, // 303: tinkoff.public.invest.api.contract.v1.InstrumentShort.first_1day_candle_date:type_name -> google.protobuf.Timestamp
+	149, // 304: tinkoff.public.invest.api.contract.v1.GetBrandsRequest.paging:type_name -> tinkoff.public.invest.api.contract.v1.Page
+	82,  // 305: tinkoff.public.invest.api.contract.v1.GetBrandsResponse.brands:type_name -> tinkoff.public.invest.api.contract.v1.Brand
+	150, // 306: tinkoff.public.invest.api.contract.v1.GetBrandsResponse.paging:type_name -> tinkoff.public.invest.api.contract.v1.PageResponse
+	130, // 307: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.fundamentals:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse
+	141, // 308: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest.from:type_name -> google.protobuf.Timestamp
+	141, // 309: tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest.to:type_name -> google.protobuf.Timestamp
+	131, // 310: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.events:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent
+	149, // 311: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest.paging:type_name -> tinkoff.public.invest.api.contract.v1.Page
+	132, // 312: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.items:type_name -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem
+	150, // 313: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.page:type_name -> tinkoff.public.invest.api.contract.v1.PageResponse
+	133, // 314: tinkoff.public.invest.api.contract.v1.GetForecastResponse.targets:type_name -> tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem
+	134, // 315: tinkoff.public.invest.api.contract.v1.GetForecastResponse.consensus:type_name -> tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem
+	135, // 316: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.instrument_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult
+	137, // 317: tinkoff.public.invest.api.contract.v1.TradingInterval.interval:type_name -> tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval
+	138, // 318: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.insider_deals:type_name -> tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal
+	147, // 319: tinkoff.public.invest.api.contract.v1.DfaResponse.min_price_increment:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	143, // 320: tinkoff.public.invest.api.contract.v1.DfaResponse.nominal:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	141, // 321: tinkoff.public.invest.api.contract.v1.DfaResponse.maturity_date:type_name -> google.protobuf.Timestamp
+	139, // 322: tinkoff.public.invest.api.contract.v1.DfaResponse.basic_assets:type_name -> tinkoff.public.invest.api.contract.v1.DfaResponse.BasicAsset
+	140, // 323: tinkoff.public.invest.api.contract.v1.DfaResponse.forecast_yield:type_name -> tinkoff.public.invest.api.contract.v1.DfaResponse.ForecastYield
+	147, // 324: tinkoff.public.invest.api.contract.v1.DfaResponse.yield_to_maturity:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 325: tinkoff.public.invest.api.contract.v1.DfaResponse.coupon_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 326: tinkoff.public.invest.api.contract.v1.DfaResponse.coupon_payment_date:type_name -> google.protobuf.Timestamp
+	147, // 327: tinkoff.public.invest.api.contract.v1.DfaResponse.aci_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	124, // 328: tinkoff.public.invest.api.contract.v1.DfasResponse.instruments:type_name -> tinkoff.public.invest.api.contract.v1.DfaResponse
+	141, // 329: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_date:type_name -> google.protobuf.Timestamp
+	14,  // 330: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_type:type_name -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest.EventType
+	147, // 331: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.event_total_vol:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 332: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.fix_date:type_name -> google.protobuf.Timestamp
+	141, // 333: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.rate_date:type_name -> google.protobuf.Timestamp
+	141, // 334: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.default_date:type_name -> google.protobuf.Timestamp
+	141, // 335: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.real_pay_date:type_name -> google.protobuf.Timestamp
+	141, // 336: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.pay_date:type_name -> google.protobuf.Timestamp
+	143, // 337: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.pay_one_bond:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	143, // 338: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.money_flow_val:type_name -> tinkoff.public.invest.api.contract.v1.MoneyValue
+	147, // 339: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 340: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_start_date:type_name -> google.protobuf.Timestamp
+	141, // 341: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_end_date:type_name -> google.protobuf.Timestamp
+	147, // 342: tinkoff.public.invest.api.contract.v1.GetBondEventsResponse.BondEvent.coupon_interest_rate:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	7,   // 343: tinkoff.public.invest.api.contract.v1.StructuredNote.BasicAsset.type:type_name -> tinkoff.public.invest.api.contract.v1.AssetType
+	147, // 344: tinkoff.public.invest.api.contract.v1.StructuredNote.BasicAsset.initial_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	17,  // 345: tinkoff.public.invest.api.contract.v1.StructuredNote.Yield.type:type_name -> tinkoff.public.invest.api.contract.v1.StructuredNote.YieldType
+	147, // 346: tinkoff.public.invest.api.contract.v1.StructuredNote.Yield.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 347: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.ex_dividend_date:type_name -> google.protobuf.Timestamp
+	141, // 348: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.fiscal_period_start_date:type_name -> google.protobuf.Timestamp
+	141, // 349: tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse.StatisticResponse.fiscal_period_end_date:type_name -> google.protobuf.Timestamp
+	141, // 350: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.report_date:type_name -> google.protobuf.Timestamp
+	18,  // 351: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.period_type:type_name -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.AssetReportPeriodType
+	141, // 352: tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse.GetAssetReportsEvent.created_at:type_name -> google.protobuf.Timestamp
+	141, // 353: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.created_at:type_name -> google.protobuf.Timestamp
+	147, // 354: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 355: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_low:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 356: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.best_target_high:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	10,  // 357: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.consensus:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
+	141, // 358: tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse.ConsensusForecastsItem.prognosis_date:type_name -> google.protobuf.Timestamp
+	10,  // 359: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.recommendation:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
+	141, // 360: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.recommendation_date:type_name -> google.protobuf.Timestamp
+	147, // 361: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.current_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 362: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.target_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 363: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.price_change:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 364: tinkoff.public.invest.api.contract.v1.GetForecastResponse.TargetItem.price_change_rel:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	10,  // 365: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.recommendation:type_name -> tinkoff.public.invest.api.contract.v1.Recommendation
+	147, // 366: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.current_price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 367: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.consensus:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 368: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.min_target:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 369: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.max_target:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 370: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.price_change:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 371: tinkoff.public.invest.api.contract.v1.GetForecastResponse.ConsensusItem.price_change_rel:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	136, // 372: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.short_risk_rate:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
+	136, // 373: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.long_risk_rate:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
+	136, // 374: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.short_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
+	136, // 375: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRateResult.long_risk_rates:type_name -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate
+	147, // 376: tinkoff.public.invest.api.contract.v1.RiskRatesResponse.RiskRate.value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 377: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval.start_ts:type_name -> google.protobuf.Timestamp
+	141, // 378: tinkoff.public.invest.api.contract.v1.TradingInterval.TimeInterval.end_ts:type_name -> google.protobuf.Timestamp
+	19,  // 379: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal.direction:type_name -> tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.TradeDirection
+	141, // 380: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal.date:type_name -> google.protobuf.Timestamp
+	147, // 381: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal.price:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	141, // 382: tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse.InsiderDeal.disclosure_date:type_name -> google.protobuf.Timestamp
+	147, // 383: tinkoff.public.invest.api.contract.v1.DfaResponse.ForecastYield.min_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	147, // 384: tinkoff.public.invest.api.contract.v1.DfaResponse.ForecastYield.max_value:type_name -> tinkoff.public.invest.api.contract.v1.Quotation
+	20,  // 385: tinkoff.public.invest.api.contract.v1.InstrumentsService.TradingSchedules:input_type -> tinkoff.public.invest.api.contract.v1.TradingSchedulesRequest
+	24,  // 386: tinkoff.public.invest.api.contract.v1.InstrumentsService.BondBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 387: tinkoff.public.invest.api.contract.v1.InstrumentsService.Bonds:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	30,  // 388: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondCoupons:input_type -> tinkoff.public.invest.api.contract.v1.GetBondCouponsRequest
+	32,  // 389: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondEvents:input_type -> tinkoff.public.invest.api.contract.v1.GetBondEventsRequest
+	24,  // 390: tinkoff.public.invest.api.contract.v1.InstrumentsService.CurrencyBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 391: tinkoff.public.invest.api.contract.v1.InstrumentsService.Currencies:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	24,  // 392: tinkoff.public.invest.api.contract.v1.InstrumentsService.EtfBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 393: tinkoff.public.invest.api.contract.v1.InstrumentsService.Etfs:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	24,  // 394: tinkoff.public.invest.api.contract.v1.InstrumentsService.FutureBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 395: tinkoff.public.invest.api.contract.v1.InstrumentsService.Futures:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	24,  // 396: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 397: tinkoff.public.invest.api.contract.v1.InstrumentsService.Options:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	26,  // 398: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionsBy:input_type -> tinkoff.public.invest.api.contract.v1.FilterOptionsRequest
+	24,  // 399: tinkoff.public.invest.api.contract.v1.InstrumentsService.ShareBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 400: tinkoff.public.invest.api.contract.v1.InstrumentsService.Shares:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	24,  // 401: tinkoff.public.invest.api.contract.v1.InstrumentsService.DfaBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	123, // 402: tinkoff.public.invest.api.contract.v1.InstrumentsService.Dfas:input_type -> tinkoff.public.invest.api.contract.v1.DfasRequest
+	99,  // 403: tinkoff.public.invest.api.contract.v1.InstrumentsService.Indicatives:input_type -> tinkoff.public.invest.api.contract.v1.IndicativesRequest
+	59,  // 404: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAccruedInterests:input_type -> tinkoff.public.invest.api.contract.v1.GetAccruedInterestsRequest
+	62,  // 405: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFuturesMargin:input_type -> tinkoff.public.invest.api.contract.v1.GetFuturesMarginRequest
+	24,  // 406: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInstrumentBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	66,  // 407: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetDividends:input_type -> tinkoff.public.invest.api.contract.v1.GetDividendsRequest
+	69,  // 408: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetBy:input_type -> tinkoff.public.invest.api.contract.v1.AssetRequest
+	71,  // 409: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssets:input_type -> tinkoff.public.invest.api.contract.v1.AssetsRequest
+	85,  // 410: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavorites:input_type -> tinkoff.public.invest.api.contract.v1.GetFavoritesRequest
+	88,  // 411: tinkoff.public.invest.api.contract.v1.InstrumentsService.EditFavorites:input_type -> tinkoff.public.invest.api.contract.v1.EditFavoritesRequest
+	91,  // 412: tinkoff.public.invest.api.contract.v1.InstrumentsService.CreateFavoriteGroup:input_type -> tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupRequest
+	93,  // 413: tinkoff.public.invest.api.contract.v1.InstrumentsService.DeleteFavoriteGroup:input_type -> tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupRequest
+	95,  // 414: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavoriteGroups:input_type -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsRequest
+	97,  // 415: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetCountries:input_type -> tinkoff.public.invest.api.contract.v1.GetCountriesRequest
+	104, // 416: tinkoff.public.invest.api.contract.v1.InstrumentsService.FindInstrument:input_type -> tinkoff.public.invest.api.contract.v1.FindInstrumentRequest
+	107, // 417: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrands:input_type -> tinkoff.public.invest.api.contract.v1.GetBrandsRequest
+	108, // 418: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrandBy:input_type -> tinkoff.public.invest.api.contract.v1.GetBrandRequest
+	110, // 419: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetFundamentals:input_type -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsRequest
+	112, // 420: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetReports:input_type -> tinkoff.public.invest.api.contract.v1.GetAssetReportsRequest
+	114, // 421: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetConsensusForecasts:input_type -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsRequest
+	116, // 422: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetForecastBy:input_type -> tinkoff.public.invest.api.contract.v1.GetForecastRequest
+	118, // 423: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetRiskRates:input_type -> tinkoff.public.invest.api.contract.v1.RiskRatesRequest
+	121, // 424: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInsiderDeals:input_type -> tinkoff.public.invest.api.contract.v1.GetInsiderDealsRequest
+	24,  // 425: tinkoff.public.invest.api.contract.v1.InstrumentsService.StructuredNoteBy:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentRequest
+	25,  // 426: tinkoff.public.invest.api.contract.v1.InstrumentsService.StructuredNotes:input_type -> tinkoff.public.invest.api.contract.v1.InstrumentsRequest
+	27,  // 427: tinkoff.public.invest.api.contract.v1.InstrumentsService.News:input_type -> tinkoff.public.invest.api.contract.v1.NewsRequest
+	21,  // 428: tinkoff.public.invest.api.contract.v1.InstrumentsService.TradingSchedules:output_type -> tinkoff.public.invest.api.contract.v1.TradingSchedulesResponse
+	28,  // 429: tinkoff.public.invest.api.contract.v1.InstrumentsService.BondBy:output_type -> tinkoff.public.invest.api.contract.v1.BondResponse
+	29,  // 430: tinkoff.public.invest.api.contract.v1.InstrumentsService.Bonds:output_type -> tinkoff.public.invest.api.contract.v1.BondsResponse
+	31,  // 431: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondCoupons:output_type -> tinkoff.public.invest.api.contract.v1.GetBondCouponsResponse
+	33,  // 432: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBondEvents:output_type -> tinkoff.public.invest.api.contract.v1.GetBondEventsResponse
+	35,  // 433: tinkoff.public.invest.api.contract.v1.InstrumentsService.CurrencyBy:output_type -> tinkoff.public.invest.api.contract.v1.CurrencyResponse
+	36,  // 434: tinkoff.public.invest.api.contract.v1.InstrumentsService.Currencies:output_type -> tinkoff.public.invest.api.contract.v1.CurrenciesResponse
+	37,  // 435: tinkoff.public.invest.api.contract.v1.InstrumentsService.EtfBy:output_type -> tinkoff.public.invest.api.contract.v1.EtfResponse
+	38,  // 436: tinkoff.public.invest.api.contract.v1.InstrumentsService.Etfs:output_type -> tinkoff.public.invest.api.contract.v1.EtfsResponse
+	39,  // 437: tinkoff.public.invest.api.contract.v1.InstrumentsService.FutureBy:output_type -> tinkoff.public.invest.api.contract.v1.FutureResponse
+	40,  // 438: tinkoff.public.invest.api.contract.v1.InstrumentsService.Futures:output_type -> tinkoff.public.invest.api.contract.v1.FuturesResponse
+	41,  // 439: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionBy:output_type -> tinkoff.public.invest.api.contract.v1.OptionResponse
+	42,  // 440: tinkoff.public.invest.api.contract.v1.InstrumentsService.Options:output_type -> tinkoff.public.invest.api.contract.v1.OptionsResponse
+	42,  // 441: tinkoff.public.invest.api.contract.v1.InstrumentsService.OptionsBy:output_type -> tinkoff.public.invest.api.contract.v1.OptionsResponse
+	44,  // 442: tinkoff.public.invest.api.contract.v1.InstrumentsService.ShareBy:output_type -> tinkoff.public.invest.api.contract.v1.ShareResponse
+	45,  // 443: tinkoff.public.invest.api.contract.v1.InstrumentsService.Shares:output_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
+	124, // 444: tinkoff.public.invest.api.contract.v1.InstrumentsService.DfaBy:output_type -> tinkoff.public.invest.api.contract.v1.DfaResponse
+	125, // 445: tinkoff.public.invest.api.contract.v1.InstrumentsService.Dfas:output_type -> tinkoff.public.invest.api.contract.v1.DfasResponse
+	100, // 446: tinkoff.public.invest.api.contract.v1.InstrumentsService.Indicatives:output_type -> tinkoff.public.invest.api.contract.v1.IndicativesResponse
+	60,  // 447: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAccruedInterests:output_type -> tinkoff.public.invest.api.contract.v1.GetAccruedInterestsResponse
+	63,  // 448: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFuturesMargin:output_type -> tinkoff.public.invest.api.contract.v1.GetFuturesMarginResponse
+	64,  // 449: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInstrumentBy:output_type -> tinkoff.public.invest.api.contract.v1.InstrumentResponse
+	67,  // 450: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetDividends:output_type -> tinkoff.public.invest.api.contract.v1.GetDividendsResponse
+	70,  // 451: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetBy:output_type -> tinkoff.public.invest.api.contract.v1.AssetResponse
+	72,  // 452: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssets:output_type -> tinkoff.public.invest.api.contract.v1.AssetsResponse
+	86,  // 453: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavorites:output_type -> tinkoff.public.invest.api.contract.v1.GetFavoritesResponse
+	90,  // 454: tinkoff.public.invest.api.contract.v1.InstrumentsService.EditFavorites:output_type -> tinkoff.public.invest.api.contract.v1.EditFavoritesResponse
+	92,  // 455: tinkoff.public.invest.api.contract.v1.InstrumentsService.CreateFavoriteGroup:output_type -> tinkoff.public.invest.api.contract.v1.CreateFavoriteGroupResponse
+	94,  // 456: tinkoff.public.invest.api.contract.v1.InstrumentsService.DeleteFavoriteGroup:output_type -> tinkoff.public.invest.api.contract.v1.DeleteFavoriteGroupResponse
+	96,  // 457: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetFavoriteGroups:output_type -> tinkoff.public.invest.api.contract.v1.GetFavoriteGroupsResponse
+	98,  // 458: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetCountries:output_type -> tinkoff.public.invest.api.contract.v1.GetCountriesResponse
+	105, // 459: tinkoff.public.invest.api.contract.v1.InstrumentsService.FindInstrument:output_type -> tinkoff.public.invest.api.contract.v1.FindInstrumentResponse
+	109, // 460: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrands:output_type -> tinkoff.public.invest.api.contract.v1.GetBrandsResponse
+	82,  // 461: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetBrandBy:output_type -> tinkoff.public.invest.api.contract.v1.Brand
+	111, // 462: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetFundamentals:output_type -> tinkoff.public.invest.api.contract.v1.GetAssetFundamentalsResponse
+	113, // 463: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetAssetReports:output_type -> tinkoff.public.invest.api.contract.v1.GetAssetReportsResponse
+	115, // 464: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetConsensusForecasts:output_type -> tinkoff.public.invest.api.contract.v1.GetConsensusForecastsResponse
+	117, // 465: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetForecastBy:output_type -> tinkoff.public.invest.api.contract.v1.GetForecastResponse
+	119, // 466: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetRiskRates:output_type -> tinkoff.public.invest.api.contract.v1.RiskRatesResponse
+	122, // 467: tinkoff.public.invest.api.contract.v1.InstrumentsService.GetInsiderDeals:output_type -> tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse
+	46,  // 468: tinkoff.public.invest.api.contract.v1.InstrumentsService.StructuredNoteBy:output_type -> tinkoff.public.invest.api.contract.v1.StructuredNoteResponse
+	47,  // 469: tinkoff.public.invest.api.contract.v1.InstrumentsService.StructuredNotes:output_type -> tinkoff.public.invest.api.contract.v1.StructuredNotesResponse
+	48,  // 470: tinkoff.public.invest.api.contract.v1.InstrumentsService.News:output_type -> tinkoff.public.invest.api.contract.v1.NewsResponse
+	428, // [428:471] is the sub-list for method output_type
+	385, // [385:428] is the sub-list for method input_type
+	385, // [385:385] is the sub-list for extension type_name
+	385, // [385:385] is the sub-list for extension extendee
+	0,   // [0:385] is the sub-list for field type_name
 }
 
 func init() { file_tinvest_instruments_proto_init() }
@@ -12635,39 +14878,44 @@ func file_tinvest_instruments_proto_init() {
 	file_tinvest_instruments_proto_msgTypes[4].OneofWrappers = []any{}
 	file_tinvest_instruments_proto_msgTypes[5].OneofWrappers = []any{}
 	file_tinvest_instruments_proto_msgTypes[6].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[9].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[11].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[37].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[42].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[44].OneofWrappers = []any{
+	file_tinvest_instruments_proto_msgTypes[7].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[10].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[12].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[28].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[29].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[46].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[51].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[53].OneofWrappers = []any{
 		(*AssetFull_Currency)(nil),
 		(*AssetFull_Security)(nil),
 	}
-	file_tinvest_instruments_proto_msgTypes[47].OneofWrappers = []any{
+	file_tinvest_instruments_proto_msgTypes[56].OneofWrappers = []any{
 		(*AssetSecurity_Share)(nil),
 		(*AssetSecurity_Bond)(nil),
 		(*AssetSecurity_Sp)(nil),
 		(*AssetSecurity_Etf)(nil),
 		(*AssetSecurity_ClearingCertificate)(nil),
 	}
-	file_tinvest_instruments_proto_msgTypes[56].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[57].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[59].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[60].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[61].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[62].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[74].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[82].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[65].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[66].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[68].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[69].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[70].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[71].OneofWrappers = []any{}
 	file_tinvest_instruments_proto_msgTypes[84].OneofWrappers = []any{}
 	file_tinvest_instruments_proto_msgTypes[92].OneofWrappers = []any{}
-	file_tinvest_instruments_proto_msgTypes[98].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[94].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[101].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[102].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[109].OneofWrappers = []any{}
+	file_tinvest_instruments_proto_msgTypes[115].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tinvest_instruments_proto_rawDesc), len(file_tinvest_instruments_proto_rawDesc)),
-			NumEnums:      17,
-			NumMessages:   101,
+			NumEnums:      20,
+			NumMessages:   121,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
