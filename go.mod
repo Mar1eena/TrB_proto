@@ -1,6 +1,6 @@
 module github.com/Mar1eena/trb_proto
 
-go 1.24.1
+go 1.26.3
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3
