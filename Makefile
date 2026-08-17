@@ -15,6 +15,8 @@ gene:
 	--go-grpc_opt=paths=source_relative \
 	--grpc-gateway_out=./gen/go \
 	--grpc-gateway_opt=paths=source_relative \
+	--js_out=import_style=commonjs,binary:./gen/js-ts \
+	--grpc-web_out=import_style=typescript,mode=grpcweb:./gen/js-ts \
 	--include_imports --include_source_info --descriptor_set_out=./gen/desc/trb_protos.pb 
 
 desc: 
@@ -27,6 +29,20 @@ desc:
 buf:
 	buf generate
 
+# JavaScript (google-protobuf / commonjs) → gen/js
 gen-js:
-	protoc --js_out=import_style=commonjs,binary:./gen/js --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./gen/js --proto_path=./proto ./proto/*.proto
+	protoc -I./services \
+	./services/example/*.proto \
+	./services/tinvest/*.proto \
+	./services/nats/*.proto \
+	./services/moex/*.proto \
+	./services/clickhouse/*.proto \
+	./services/manager_indicators/*.proto \
+	./services/google/api/*.proto \
+	--js_out=import_style=commonjs,binary:./gen/js
+
+# TypeScript (protobuf-es) → gen/ts
+gen-ts:
+	npm install
+	npm run gen:es
 	
