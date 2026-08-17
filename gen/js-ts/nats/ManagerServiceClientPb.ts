@@ -426,6 +426,49 @@ export class NatsJetStreamManagerClient {
     this.methodDescriptorGetMsg);
   }
 
+  methodDescriptorGetMsgs = new grpcWeb.MethodDescriptor(
+    '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsgs',
+    grpcWeb.MethodType.UNARY,
+    nats_manager_pb.MsgRange,
+    nats_manager_pb.MsgList,
+    (request: nats_manager_pb.MsgRange) => {
+      return request.serializeBinary();
+    },
+    nats_manager_pb.MsgList.deserializeBinary
+  );
+
+  getMsgs(
+    request: nats_manager_pb.MsgRange,
+    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.MsgList>;
+
+  getMsgs(
+    request: nats_manager_pb.MsgRange,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: nats_manager_pb.MsgList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.MsgList>;
+
+  getMsgs(
+    request: nats_manager_pb.MsgRange,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: nats_manager_pb.MsgList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsgs',
+        request,
+        metadata || {},
+        this.methodDescriptorGetMsgs,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsgs',
+    request,
+    metadata || {},
+    this.methodDescriptorGetMsgs);
+  }
+
   methodDescriptorGetLastMsg = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg',
     grpcWeb.MethodType.UNARY,

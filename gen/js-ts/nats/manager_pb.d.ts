@@ -842,6 +842,52 @@ export namespace Msg {
   }
 }
 
+export class MsgRange extends jspb.Message {
+  getName(): string;
+  setName(value: string): MsgRange;
+
+  getFromSeq(): number;
+  setFromSeq(value: number): MsgRange;
+
+  getToSeq(): number;
+  setToSeq(value: number): MsgRange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MsgRange.AsObject;
+  static toObject(includeInstance: boolean, msg: MsgRange): MsgRange.AsObject;
+  static serializeBinaryToWriter(message: MsgRange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MsgRange;
+  static deserializeBinaryFromReader(message: MsgRange, reader: jspb.BinaryReader): MsgRange;
+}
+
+export namespace MsgRange {
+  export type AsObject = {
+    name: string,
+    fromSeq: number,
+    toSeq: number,
+  }
+}
+
+export class MsgList extends jspb.Message {
+  getItemsList(): Array<RawStreamMsg>;
+  setItemsList(value: Array<RawStreamMsg>): MsgList;
+  clearItemsList(): MsgList;
+  addItems(value?: RawStreamMsg, index?: number): RawStreamMsg;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MsgList.AsObject;
+  static toObject(includeInstance: boolean, msg: MsgList): MsgList.AsObject;
+  static serializeBinaryToWriter(message: MsgList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MsgList;
+  static deserializeBinaryFromReader(message: MsgList, reader: jspb.BinaryReader): MsgList;
+}
+
+export namespace MsgList {
+  export type AsObject = {
+    itemsList: Array<RawStreamMsg.AsObject>,
+  }
+}
+
 export class LastMsg extends jspb.Message {
   getName(): string;
   setName(value: string): LastMsg;

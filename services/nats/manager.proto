@@ -73,6 +73,13 @@ service NatsJetStreamManager {
     };
   }
 
+  rpc GetMsgs (MsgRange) returns (MsgList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/messages"
+      additional_bindings { post: "/GetMsgs" body: "*" }
+    };
+  }
+
   rpc GetLastMsg (LastMsg) returns (RawStreamMsg) {
     option (google.api.http) = {
       get: "/v1/nats/streams/{name}/messages:last"
@@ -353,6 +360,16 @@ message JsOpts {}
 message Msg {
   string  name = 1;
   uint64 seq = 2; 
+}
+
+message MsgRange {
+  string name = 1;
+  uint64 from_seq = 2;
+  uint64 to_seq = 3;
+}
+
+message MsgList {
+  repeated RawStreamMsg items = 1;
 }
 
 message LastMsg {

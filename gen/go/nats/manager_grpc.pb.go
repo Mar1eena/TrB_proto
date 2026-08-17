@@ -28,6 +28,7 @@ const (
 	NatsJetStreamManager_Streams_FullMethodName             = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams"
 	NatsJetStreamManager_StreamNames_FullMethodName         = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames"
 	NatsJetStreamManager_GetMsg_FullMethodName              = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg"
+	NatsJetStreamManager_GetMsgs_FullMethodName             = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsgs"
 	NatsJetStreamManager_GetLastMsg_FullMethodName          = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg"
 	NatsJetStreamManager_DeleteMsg_FullMethodName           = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg"
 	NatsJetStreamManager_SecureDeleteMsg_FullMethodName     = "/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg"
@@ -57,6 +58,7 @@ type NatsJetStreamManagerClient interface {
 	Streams(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*StreamList, error)
 	StreamNames(ctx context.Context, in *JsOpts, opts ...grpc.CallOption) (*StreamNameList, error)
 	GetMsg(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*RawStreamMsg, error)
+	GetMsgs(ctx context.Context, in *MsgRange, opts ...grpc.CallOption) (*MsgList, error)
 	GetLastMsg(ctx context.Context, in *LastMsg, opts ...grpc.CallOption) (*RawStreamMsg, error)
 	DeleteMsg(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Response, error)
 	SecureDeleteMsg(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Response, error)
@@ -165,6 +167,16 @@ func (c *natsJetStreamManagerClient) GetMsg(ctx context.Context, in *Msg, opts .
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RawStreamMsg)
 	err := c.cc.Invoke(ctx, NatsJetStreamManager_GetMsg_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *natsJetStreamManagerClient) GetMsgs(ctx context.Context, in *MsgRange, opts ...grpc.CallOption) (*MsgList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgList)
+	err := c.cc.Invoke(ctx, NatsJetStreamManager_GetMsgs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -315,6 +327,7 @@ type NatsJetStreamManagerServer interface {
 	Streams(context.Context, *JsOpts) (*StreamList, error)
 	StreamNames(context.Context, *JsOpts) (*StreamNameList, error)
 	GetMsg(context.Context, *Msg) (*RawStreamMsg, error)
+	GetMsgs(context.Context, *MsgRange) (*MsgList, error)
 	GetLastMsg(context.Context, *LastMsg) (*RawStreamMsg, error)
 	DeleteMsg(context.Context, *Msg) (*Response, error)
 	SecureDeleteMsg(context.Context, *Msg) (*Response, error)
@@ -365,6 +378,9 @@ func (UnimplementedNatsJetStreamManagerServer) StreamNames(context.Context, *JsO
 }
 func (UnimplementedNatsJetStreamManagerServer) GetMsg(context.Context, *Msg) (*RawStreamMsg, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMsg not implemented")
+}
+func (UnimplementedNatsJetStreamManagerServer) GetMsgs(context.Context, *MsgRange) (*MsgList, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMsgs not implemented")
 }
 func (UnimplementedNatsJetStreamManagerServer) GetLastMsg(context.Context, *LastMsg) (*RawStreamMsg, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLastMsg not implemented")
@@ -584,6 +600,24 @@ func _NatsJetStreamManager_GetMsg_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NatsJetStreamManagerServer).GetMsg(ctx, req.(*Msg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NatsJetStreamManager_GetMsgs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRange)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NatsJetStreamManagerServer).GetMsgs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NatsJetStreamManager_GetMsgs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NatsJetStreamManagerServer).GetMsgs(ctx, req.(*MsgRange))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -864,6 +898,10 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMsg",
 			Handler:    _NatsJetStreamManager_GetMsg_Handler,
+		},
+		{
+			MethodName: "GetMsgs",
+			Handler:    _NatsJetStreamManager_GetMsgs_Handler,
 		},
 		{
 			MethodName: "GetLastMsg",
