@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package trb.db.api.public.contract.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/db_api;db_api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
+// Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
+//
+// Расширение: добавьте RPC сюда и обработчик в internal/services/db_api.
+// Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
+service DbApi {
+  rpc ListInstruments(ListInstrumentsRequest) returns (ListInstrumentsResponse) {
+    option (google.api.http) = {
+      get: "/v1/instruments"
+      additional_bindings { post: "/ListInstruments" body: "*" }
+    };
+  }
+
+  rpc ListSchedulerTargets(ListSchedulerTargetsRequest) returns (ListSchedulerTargetsResponse) {
+    option (google.api.http) = {
+      get: "/v1/scheduler/targets"
+      additional_bindings { post: "/ListSchedulerTargets" body: "*" }
+    };
+  }
+
+  rpc SyncSchedulerTargets(SyncSchedulerTargetsRequest) returns (SyncSchedulerTargetsResponse) {
+    option (google.api.http) = {
+      put: "/v1/scheduler/targets"
+      body: "*"
+      additional_bindings { post: "/SyncSchedulerTargets" body: "*" }
+    };
+  }
+
+  rpc ListLastDownloads(ListLastDownloadsRequest) returns (ListLastDownloadsResponse) {
+    option (google.api.http) = {
+      get: "/v1/historic-candles/last-downloads"
+      additional_bindings { post: "/ListLastDownloads" body: "*" }
+    };
+  }
+}
+
+message ListFilter {
+  string q = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListInstrumentsRequest {
+  ListFilter filter = 1;
+  // lite=true — только uid/figi/ticker/name (каталог планировщика).
+  bool lite = 2;
+}
+
+message ListInstrumentsResponse {
+  repeated Instrument items = 1;
+}
+
+message Instrument {
+  string uid = 1;
+  string figi = 2;
+  string ticker = 3;
+  string name = 4;
+  string class_code = 5;
+  string isin = 6;
+  int32 lot = 7;
+  string currency = 8;
+  string exchange = 9;
+  string sector = 10;
+  int32 trading_status = 11;
+  bool liquidity_flag = 12;
+  bool short_enabled_flag = 13;
+  bool api_trade_available_flag = 14;
+  bool buy_available_flag = 15;
+  bool sell_available_flag = 16;
+  google.protobuf.Timestamp first_1min_candle_date = 17;
+  google.protobuf.Timestamp first_1day_candle_date = 18;
+}
+
+message ListSchedulerTargetsRequest {}
+
+message ListSchedulerTargetsResponse {
+  repeated SchedulerTarget items = 1;
+}
+
+message SchedulerTarget {
+  string uid = 1;
+  int32 interval = 2;
+  bool enabled = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  string ticker = 6;
+  string name = 7;
+  string figi = 8;
+}
+
+message SyncSchedulerTargetsRequest {
+  repeated SchedulerTargetInstrument instruments = 1;
+  // false + пустой список — ошибка, чтобы не стереть цели случайно.
+  bool allow_empty = 2;
+}
+
+message SchedulerTargetInstrument {
+  string uid = 1;
+  repeated int32 intervals = 2;
+}
+
+message SyncSchedulerTargetsResponse {
+  int32 count = 1;
+}
+
+message ListLastDownloadsRequest {
+  ListFilter filter = 1;
+}
+
+message ListLastDownloadsResponse {
+  repeated LastDownload items = 1;
+}
+
+message LastDownload {
+  string uid = 1;
+  string figi = 2;
+  string ticker = 3;
+  string name = 4;
+  int32 interval = 5;
+  google.protobuf.Timestamp last_start = 6;
+  google.protobuf.Timestamp last_end = 7;
+  bool has_download = 8;
+}

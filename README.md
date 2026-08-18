@@ -32,7 +32,9 @@ const req = new MessageRequest();
 req.setText('hello');
 ```
 
-Сервисы: `example`, `tinvest`, `nats`, `moex`, `clickhouse`, `manager_indicators`.
+Сервисы: `example`, `tinvest`, `nats`, `moex`, `clickhouse`, `manager_indicators`, `db_api`.
+
+`db_api` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/db_api/db_api.proto`.
 
 ## Публикация
 
