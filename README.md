@@ -38,23 +38,27 @@ req.setText('hello');
 
 `db_api` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/db_api/db_api.proto`.
 
-## Публикация
+## Релиз
+
+Одна команда: коммит (если указан `MSG`), новая версия и тег, push в GitHub, публикация npm.
 
 ```bash
 make gene
-make login
-make publish
+make release PART=patch MSG="add ClickHouse manager" OTP=123456
 ```
 
-Если `make` не спрашивает 2FA (часто на Windows):
+`PART`: `patch` (0.1.3 → 0.1.4), `minor` (0.2.0), `major` (1.0.0).
+
+Если изменения уже закоммичены:
+
+```bash
+make release PART=patch OTP=123456
+```
+
+Через token вместо OTP: `TOKEN=npm_...` (сначала `make logout`).
+
+Только npm, без тега и push:
 
 ```bash
 make publish OTP=123456
-```
-
-Через [granular token](https://www.npmjs.com/settings/marleena/tokens/create) (Read and write + Bypass 2FA):
-
-```bash
-make logout
-make publish TOKEN=npm_...
 ```

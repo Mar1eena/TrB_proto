@@ -1,4 +1,4 @@
-.PHONY: gene desc buf login logout publish
+.PHONY: gene desc buf login logout publish release
 
 PROTOC     := protoc
 PROTO_PATH := ./services
@@ -47,6 +47,27 @@ login:
 logout:
 	npm logout
 
+# make publish
+# make publish OTP=123456
+# make publish TOKEN=npm_...
 publish:
-	npm publish
+ifneq ($(TOKEN),)
+	npm publish --access public --//registry.npmjs.org/:_authToken=$(TOKEN)
+else ifneq ($(OTP),)
+	npm publish --access public --otp=$(OTP)
+else
+	npm publish --access public
+endif
+
+# Коммит (если MSG=...), тег, push в GitHub, npm publish.
+# make release PART=patch MSG="add ClickHouse manager" OTP=123456
+PART ?= patch
+release:
+ifdef MSG
+	git add -A
+	git commit -m "$(MSG)"
+endif
+	npm version $(PART) -m "v%s"
+	git push origin HEAD --follow-tags
+	$(MAKE) publish
 
