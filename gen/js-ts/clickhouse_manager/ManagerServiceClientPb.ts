@@ -770,5 +770,349 @@ export class ClickHouseManagerClient {
     this.methodDescriptorModifyColumn);
   }
 
+  methodDescriptorExecuteQuery = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    clickhouse_manager_manager_pb.ExecuteQueryResponse,
+    (request: clickhouse_manager_manager_pb.ExecuteQueryRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.ExecuteQueryResponse.deserializeBinary
+  );
+
+  executeQuery(
+    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+
+  executeQuery(
+    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+
+  executeQuery(
+    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery',
+        request,
+        metadata || {},
+        this.methodDescriptorExecuteQuery,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery',
+    request,
+    metadata || {},
+    this.methodDescriptorExecuteQuery);
+  }
+
+  methodDescriptorPreviewTableData = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    clickhouse_manager_manager_pb.ExecuteQueryResponse,
+    (request: clickhouse_manager_manager_pb.PreviewTableDataRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.ExecuteQueryResponse.deserializeBinary
+  );
+
+  previewTableData(
+    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+
+  previewTableData(
+    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+
+  previewTableData(
+    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData',
+        request,
+        metadata || {},
+        this.methodDescriptorPreviewTableData,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData',
+    request,
+    metadata || {},
+    this.methodDescriptorPreviewTableData);
+  }
+
+  methodDescriptorListParts = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.ListPartsRequest,
+    clickhouse_manager_manager_pb.PartsList,
+    (request: clickhouse_manager_manager_pb.ListPartsRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.PartsList.deserializeBinary
+  );
+
+  listParts(
+    request: clickhouse_manager_manager_pb.ListPartsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.PartsList>;
+
+  listParts(
+    request: clickhouse_manager_manager_pb.ListPartsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.PartsList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.PartsList>;
+
+  listParts(
+    request: clickhouse_manager_manager_pb.ListPartsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.PartsList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts',
+        request,
+        metadata || {},
+        this.methodDescriptorListParts,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts',
+    request,
+    metadata || {},
+    this.methodDescriptorListParts);
+  }
+
+  methodDescriptorDropPartition = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.DropPartitionRequest,
+    clickhouse_manager_manager_pb.Status,
+    (request: clickhouse_manager_manager_pb.DropPartitionRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.Status.deserializeBinary
+  );
+
+  dropPartition(
+    request: clickhouse_manager_manager_pb.DropPartitionRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+
+  dropPartition(
+    request: clickhouse_manager_manager_pb.DropPartitionRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+
+  dropPartition(
+    request: clickhouse_manager_manager_pb.DropPartitionRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.Status) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition',
+        request,
+        metadata || {},
+        this.methodDescriptorDropPartition,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition',
+    request,
+    metadata || {},
+    this.methodDescriptorDropPartition);
+  }
+
+  methodDescriptorListProcesses = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.ListProcessesRequest,
+    clickhouse_manager_manager_pb.ProcessList,
+    (request: clickhouse_manager_manager_pb.ListProcessesRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.ProcessList.deserializeBinary
+  );
+
+  listProcesses(
+    request: clickhouse_manager_manager_pb.ListProcessesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ProcessList>;
+
+  listProcesses(
+    request: clickhouse_manager_manager_pb.ListProcessesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ProcessList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ProcessList>;
+
+  listProcesses(
+    request: clickhouse_manager_manager_pb.ListProcessesRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.ProcessList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses',
+        request,
+        metadata || {},
+        this.methodDescriptorListProcesses,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses',
+    request,
+    metadata || {},
+    this.methodDescriptorListProcesses);
+  }
+
+  methodDescriptorKillProcess = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.KillProcessRequest,
+    clickhouse_manager_manager_pb.Status,
+    (request: clickhouse_manager_manager_pb.KillProcessRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.Status.deserializeBinary
+  );
+
+  killProcess(
+    request: clickhouse_manager_manager_pb.KillProcessRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+
+  killProcess(
+    request: clickhouse_manager_manager_pb.KillProcessRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+
+  killProcess(
+    request: clickhouse_manager_manager_pb.KillProcessRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.Status) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess',
+        request,
+        metadata || {},
+        this.methodDescriptorKillProcess,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess',
+    request,
+    metadata || {},
+    this.methodDescriptorKillProcess);
+  }
+
+  methodDescriptorListDisks = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.ListDisksRequest,
+    clickhouse_manager_manager_pb.DiskList,
+    (request: clickhouse_manager_manager_pb.ListDisksRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.DiskList.deserializeBinary
+  );
+
+  listDisks(
+    request: clickhouse_manager_manager_pb.ListDisksRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.DiskList>;
+
+  listDisks(
+    request: clickhouse_manager_manager_pb.ListDisksRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.DiskList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.DiskList>;
+
+  listDisks(
+    request: clickhouse_manager_manager_pb.ListDisksRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.DiskList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks',
+        request,
+        metadata || {},
+        this.methodDescriptorListDisks,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks',
+    request,
+    metadata || {},
+    this.methodDescriptorListDisks);
+  }
+
+  methodDescriptorGetMetrics = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.GetMetricsRequest,
+    clickhouse_manager_manager_pb.MetricsResponse,
+    (request: clickhouse_manager_manager_pb.GetMetricsRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.MetricsResponse.deserializeBinary
+  );
+
+  getMetrics(
+    request: clickhouse_manager_manager_pb.GetMetricsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.MetricsResponse>;
+
+  getMetrics(
+    request: clickhouse_manager_manager_pb.GetMetricsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.MetricsResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.MetricsResponse>;
+
+  getMetrics(
+    request: clickhouse_manager_manager_pb.GetMetricsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.MetricsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics',
+        request,
+        metadata || {},
+        this.methodDescriptorGetMetrics,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics',
+    request,
+    metadata || {},
+    this.methodDescriptorGetMetrics);
+  }
+
 }
 

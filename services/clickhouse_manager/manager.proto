@@ -8,9 +8,7 @@ import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 
-// ClickHouseManager — типизированное управление схемой ClickHouse (DDL).
-// Произвольный SQL с клиента не принимается: запросы — clickhouse.grpc.ClickHouse,
-// прикладные выборки — trb.db.api.public.contract.v1.DbApi.
+// ClickHouseManager — типизированное управление схемой, мониторинг и выполнение запросов к ClickHouse.
 service ClickHouseManager {
   rpc Ping(PingRequest) returns (PingResponse) {
     option (google.api.http) = {
@@ -137,6 +135,66 @@ service ClickHouseManager {
       additional_bindings { post: "/ModifyColumn" body: "*" }
     };
   }
+
+  rpc ExecuteQuery(ExecuteQueryRequest) returns (ExecuteQueryResponse) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/query"
+      body: "*"
+      additional_bindings { post: "/ExecuteQuery" body: "*" }
+    };
+  }
+
+  rpc PreviewTableData(PreviewTableDataRequest) returns (ExecuteQueryResponse) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{table}:preview"
+      body: "*"
+      additional_bindings { post: "/PreviewTableData" body: "*" }
+    };
+  }
+
+  rpc ListParts(ListPartsRequest) returns (PartsList) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/databases/{database}/tables/{table}/parts"
+      additional_bindings { post: "/ListParts" body: "*" }
+    };
+  }
+
+  rpc DropPartition(DropPartitionRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{table}/partitions:drop"
+      body: "*"
+      additional_bindings { post: "/DropPartition" body: "*" }
+    };
+  }
+
+  rpc ListProcesses(ListProcessesRequest) returns (ProcessList) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/processes"
+      additional_bindings { post: "/ListProcesses" body: "*" }
+    };
+  }
+
+  rpc KillProcess(KillProcessRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/processes:kill"
+      body: "*"
+      additional_bindings { post: "/KillProcess" body: "*" }
+    };
+  }
+
+  rpc ListDisks(ListDisksRequest) returns (DiskList) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/disks"
+      additional_bindings { post: "/ListDisks" body: "*" }
+    };
+  }
+
+  rpc GetMetrics(GetMetricsRequest) returns (MetricsResponse) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/metrics"
+      additional_bindings { post: "/GetMetrics" body: "*" }
+    };
+  }
 }
 
 message Status {
@@ -184,6 +242,9 @@ message Database {
   string name = 1;
   string engine = 2;
   string comment = 3;
+  uint64 tables_count = 4;
+  uint64 total_bytes = 5;
+  uint64 total_rows = 6;
 }
 
 message DatabaseList {
@@ -247,6 +308,8 @@ message Table {
   string create_table_query = 10;
   google.protobuf.Timestamp metadata_modification_time = 11;
   repeated Column columns = 12;
+  uint64 parts_count = 13;
+  uint64 data_uncompressed_bytes = 14;
 }
 
 message TableList {
@@ -300,4 +363,115 @@ message ModifyColumnRequest {
   string table = 2 [(google.api.field_behavior) = REQUIRED];
   Column column = 3 [(google.api.field_behavior) = REQUIRED];
   string cluster = 4;
+}
+
+message QueryRow {
+  repeated string values = 1;
+}
+
+message ExecuteQueryRequest {
+  string query = 1 [(google.api.field_behavior) = REQUIRED];
+  uint32 max_rows = 2;
+  string database = 3;
+}
+
+message ExecuteQueryResponse {
+  repeated string columns = 1;
+  repeated string types = 2;
+  repeated QueryRow rows = 3;
+  uint64 total_rows = 4;
+  double elapsed_seconds = 5;
+  uint64 bytes_read = 6;
+  uint64 rows_read = 7;
+}
+
+message PreviewTableDataRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  uint32 limit = 3;
+  uint32 offset = 4;
+  string order_by = 5;
+  string where = 6;
+}
+
+message TablePart {
+  string partition = 1;
+  string name = 2;
+  bool active = 3;
+  uint64 rows = 4;
+  uint64 bytes_on_disk = 5;
+  uint64 data_uncompressed_bytes = 6;
+  google.protobuf.Timestamp modification_time = 7;
+  string disk_name = 8;
+  string min_date = 9;
+  string max_date = 10;
+}
+
+message ListPartsRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  bool active_only = 3;
+}
+
+message PartsList {
+  repeated TablePart items = 1;
+}
+
+message DropPartitionRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  string partition = 3 [(google.api.field_behavior) = REQUIRED];
+  bool detach = 4;
+  string cluster = 5;
+}
+
+message ProcessInfo {
+  string query_id = 1;
+  string user = 2;
+  double elapsed_seconds = 3;
+  uint64 rows_read = 4;
+  uint64 bytes_read = 5;
+  uint64 memory_usage = 6;
+  string query = 7;
+  string client_name = 8;
+  string os_user = 9;
+  bool is_cancelled = 10;
+}
+
+message ListProcessesRequest {}
+
+message ProcessList {
+  repeated ProcessInfo items = 1;
+}
+
+message KillProcessRequest {
+  string query_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DiskInfo {
+  string name = 1;
+  string path = 2;
+  uint64 free_space = 3;
+  uint64 total_space = 4;
+  uint64 unreserved_space = 5;
+  string type = 6;
+}
+
+message ListDisksRequest {}
+
+message DiskList {
+  repeated DiskInfo items = 1;
+}
+
+message MetricItem {
+  string name = 1;
+  double value = 2;
+  string description = 3;
+}
+
+message GetMetricsRequest {}
+
+message MetricsResponse {
+  repeated MetricItem metrics = 1;
+  repeated MetricItem async_metrics = 2;
 }

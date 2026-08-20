@@ -203,6 +203,15 @@ export class Database extends jspb.Message {
   getComment(): string;
   setComment(value: string): Database;
 
+  getTablesCount(): number;
+  setTablesCount(value: number): Database;
+
+  getTotalBytes(): number;
+  setTotalBytes(value: number): Database;
+
+  getTotalRows(): number;
+  setTotalRows(value: number): Database;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Database.AsObject;
   static toObject(includeInstance: boolean, msg: Database): Database.AsObject;
@@ -216,6 +225,9 @@ export namespace Database {
     name: string,
     engine: string,
     comment: string,
+    tablesCount: number,
+    totalBytes: number,
+    totalRows: number,
   }
 }
 
@@ -472,6 +484,12 @@ export class Table extends jspb.Message {
   clearColumnsList(): Table;
   addColumns(value?: Column, index?: number): Column;
 
+  getPartsCount(): number;
+  setPartsCount(value: number): Table;
+
+  getDataUncompressedBytes(): number;
+  setDataUncompressedBytes(value: number): Table;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Table.AsObject;
   static toObject(includeInstance: boolean, msg: Table): Table.AsObject;
@@ -494,6 +512,8 @@ export namespace Table {
     createTableQuery: string,
     metadataModificationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     columnsList: Array<Column.AsObject>,
+    partsCount: number,
+    dataUncompressedBytes: number,
   }
 }
 
@@ -726,6 +746,518 @@ export namespace ModifyColumnRequest {
     table: string,
     column?: Column.AsObject,
     cluster: string,
+  }
+}
+
+export class QueryRow extends jspb.Message {
+  getValuesList(): Array<string>;
+  setValuesList(value: Array<string>): QueryRow;
+  clearValuesList(): QueryRow;
+  addValues(value: string, index?: number): QueryRow;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): QueryRow.AsObject;
+  static toObject(includeInstance: boolean, msg: QueryRow): QueryRow.AsObject;
+  static serializeBinaryToWriter(message: QueryRow, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): QueryRow;
+  static deserializeBinaryFromReader(message: QueryRow, reader: jspb.BinaryReader): QueryRow;
+}
+
+export namespace QueryRow {
+  export type AsObject = {
+    valuesList: Array<string>,
+  }
+}
+
+export class ExecuteQueryRequest extends jspb.Message {
+  getQuery(): string;
+  setQuery(value: string): ExecuteQueryRequest;
+
+  getMaxRows(): number;
+  setMaxRows(value: number): ExecuteQueryRequest;
+
+  getDatabase(): string;
+  setDatabase(value: string): ExecuteQueryRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExecuteQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ExecuteQueryRequest): ExecuteQueryRequest.AsObject;
+  static serializeBinaryToWriter(message: ExecuteQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExecuteQueryRequest;
+  static deserializeBinaryFromReader(message: ExecuteQueryRequest, reader: jspb.BinaryReader): ExecuteQueryRequest;
+}
+
+export namespace ExecuteQueryRequest {
+  export type AsObject = {
+    query: string,
+    maxRows: number,
+    database: string,
+  }
+}
+
+export class ExecuteQueryResponse extends jspb.Message {
+  getColumnsList(): Array<string>;
+  setColumnsList(value: Array<string>): ExecuteQueryResponse;
+  clearColumnsList(): ExecuteQueryResponse;
+  addColumns(value: string, index?: number): ExecuteQueryResponse;
+
+  getTypesList(): Array<string>;
+  setTypesList(value: Array<string>): ExecuteQueryResponse;
+  clearTypesList(): ExecuteQueryResponse;
+  addTypes(value: string, index?: number): ExecuteQueryResponse;
+
+  getRowsList(): Array<QueryRow>;
+  setRowsList(value: Array<QueryRow>): ExecuteQueryResponse;
+  clearRowsList(): ExecuteQueryResponse;
+  addRows(value?: QueryRow, index?: number): QueryRow;
+
+  getTotalRows(): number;
+  setTotalRows(value: number): ExecuteQueryResponse;
+
+  getElapsedSeconds(): number;
+  setElapsedSeconds(value: number): ExecuteQueryResponse;
+
+  getBytesRead(): number;
+  setBytesRead(value: number): ExecuteQueryResponse;
+
+  getRowsRead(): number;
+  setRowsRead(value: number): ExecuteQueryResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExecuteQueryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ExecuteQueryResponse): ExecuteQueryResponse.AsObject;
+  static serializeBinaryToWriter(message: ExecuteQueryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExecuteQueryResponse;
+  static deserializeBinaryFromReader(message: ExecuteQueryResponse, reader: jspb.BinaryReader): ExecuteQueryResponse;
+}
+
+export namespace ExecuteQueryResponse {
+  export type AsObject = {
+    columnsList: Array<string>,
+    typesList: Array<string>,
+    rowsList: Array<QueryRow.AsObject>,
+    totalRows: number,
+    elapsedSeconds: number,
+    bytesRead: number,
+    rowsRead: number,
+  }
+}
+
+export class PreviewTableDataRequest extends jspb.Message {
+  getDatabase(): string;
+  setDatabase(value: string): PreviewTableDataRequest;
+
+  getTable(): string;
+  setTable(value: string): PreviewTableDataRequest;
+
+  getLimit(): number;
+  setLimit(value: number): PreviewTableDataRequest;
+
+  getOffset(): number;
+  setOffset(value: number): PreviewTableDataRequest;
+
+  getOrderBy(): string;
+  setOrderBy(value: string): PreviewTableDataRequest;
+
+  getWhere(): string;
+  setWhere(value: string): PreviewTableDataRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PreviewTableDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: PreviewTableDataRequest): PreviewTableDataRequest.AsObject;
+  static serializeBinaryToWriter(message: PreviewTableDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PreviewTableDataRequest;
+  static deserializeBinaryFromReader(message: PreviewTableDataRequest, reader: jspb.BinaryReader): PreviewTableDataRequest;
+}
+
+export namespace PreviewTableDataRequest {
+  export type AsObject = {
+    database: string,
+    table: string,
+    limit: number,
+    offset: number,
+    orderBy: string,
+    where: string,
+  }
+}
+
+export class TablePart extends jspb.Message {
+  getPartition(): string;
+  setPartition(value: string): TablePart;
+
+  getName(): string;
+  setName(value: string): TablePart;
+
+  getActive(): boolean;
+  setActive(value: boolean): TablePart;
+
+  getRows(): number;
+  setRows(value: number): TablePart;
+
+  getBytesOnDisk(): number;
+  setBytesOnDisk(value: number): TablePart;
+
+  getDataUncompressedBytes(): number;
+  setDataUncompressedBytes(value: number): TablePart;
+
+  getModificationTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setModificationTime(value?: google_protobuf_timestamp_pb.Timestamp): TablePart;
+  hasModificationTime(): boolean;
+  clearModificationTime(): TablePart;
+
+  getDiskName(): string;
+  setDiskName(value: string): TablePart;
+
+  getMinDate(): string;
+  setMinDate(value: string): TablePart;
+
+  getMaxDate(): string;
+  setMaxDate(value: string): TablePart;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TablePart.AsObject;
+  static toObject(includeInstance: boolean, msg: TablePart): TablePart.AsObject;
+  static serializeBinaryToWriter(message: TablePart, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TablePart;
+  static deserializeBinaryFromReader(message: TablePart, reader: jspb.BinaryReader): TablePart;
+}
+
+export namespace TablePart {
+  export type AsObject = {
+    partition: string,
+    name: string,
+    active: boolean,
+    rows: number,
+    bytesOnDisk: number,
+    dataUncompressedBytes: number,
+    modificationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    diskName: string,
+    minDate: string,
+    maxDate: string,
+  }
+}
+
+export class ListPartsRequest extends jspb.Message {
+  getDatabase(): string;
+  setDatabase(value: string): ListPartsRequest;
+
+  getTable(): string;
+  setTable(value: string): ListPartsRequest;
+
+  getActiveOnly(): boolean;
+  setActiveOnly(value: boolean): ListPartsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListPartsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListPartsRequest): ListPartsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListPartsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListPartsRequest;
+  static deserializeBinaryFromReader(message: ListPartsRequest, reader: jspb.BinaryReader): ListPartsRequest;
+}
+
+export namespace ListPartsRequest {
+  export type AsObject = {
+    database: string,
+    table: string,
+    activeOnly: boolean,
+  }
+}
+
+export class PartsList extends jspb.Message {
+  getItemsList(): Array<TablePart>;
+  setItemsList(value: Array<TablePart>): PartsList;
+  clearItemsList(): PartsList;
+  addItems(value?: TablePart, index?: number): TablePart;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PartsList.AsObject;
+  static toObject(includeInstance: boolean, msg: PartsList): PartsList.AsObject;
+  static serializeBinaryToWriter(message: PartsList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PartsList;
+  static deserializeBinaryFromReader(message: PartsList, reader: jspb.BinaryReader): PartsList;
+}
+
+export namespace PartsList {
+  export type AsObject = {
+    itemsList: Array<TablePart.AsObject>,
+  }
+}
+
+export class DropPartitionRequest extends jspb.Message {
+  getDatabase(): string;
+  setDatabase(value: string): DropPartitionRequest;
+
+  getTable(): string;
+  setTable(value: string): DropPartitionRequest;
+
+  getPartition(): string;
+  setPartition(value: string): DropPartitionRequest;
+
+  getDetach(): boolean;
+  setDetach(value: boolean): DropPartitionRequest;
+
+  getCluster(): string;
+  setCluster(value: string): DropPartitionRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DropPartitionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DropPartitionRequest): DropPartitionRequest.AsObject;
+  static serializeBinaryToWriter(message: DropPartitionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DropPartitionRequest;
+  static deserializeBinaryFromReader(message: DropPartitionRequest, reader: jspb.BinaryReader): DropPartitionRequest;
+}
+
+export namespace DropPartitionRequest {
+  export type AsObject = {
+    database: string,
+    table: string,
+    partition: string,
+    detach: boolean,
+    cluster: string,
+  }
+}
+
+export class ProcessInfo extends jspb.Message {
+  getQueryId(): string;
+  setQueryId(value: string): ProcessInfo;
+
+  getUser(): string;
+  setUser(value: string): ProcessInfo;
+
+  getElapsedSeconds(): number;
+  setElapsedSeconds(value: number): ProcessInfo;
+
+  getRowsRead(): number;
+  setRowsRead(value: number): ProcessInfo;
+
+  getBytesRead(): number;
+  setBytesRead(value: number): ProcessInfo;
+
+  getMemoryUsage(): number;
+  setMemoryUsage(value: number): ProcessInfo;
+
+  getQuery(): string;
+  setQuery(value: string): ProcessInfo;
+
+  getClientName(): string;
+  setClientName(value: string): ProcessInfo;
+
+  getOsUser(): string;
+  setOsUser(value: string): ProcessInfo;
+
+  getIsCancelled(): boolean;
+  setIsCancelled(value: boolean): ProcessInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProcessInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ProcessInfo): ProcessInfo.AsObject;
+  static serializeBinaryToWriter(message: ProcessInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProcessInfo;
+  static deserializeBinaryFromReader(message: ProcessInfo, reader: jspb.BinaryReader): ProcessInfo;
+}
+
+export namespace ProcessInfo {
+  export type AsObject = {
+    queryId: string,
+    user: string,
+    elapsedSeconds: number,
+    rowsRead: number,
+    bytesRead: number,
+    memoryUsage: number,
+    query: string,
+    clientName: string,
+    osUser: string,
+    isCancelled: boolean,
+  }
+}
+
+export class ListProcessesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListProcessesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListProcessesRequest): ListProcessesRequest.AsObject;
+  static serializeBinaryToWriter(message: ListProcessesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListProcessesRequest;
+  static deserializeBinaryFromReader(message: ListProcessesRequest, reader: jspb.BinaryReader): ListProcessesRequest;
+}
+
+export namespace ListProcessesRequest {
+  export type AsObject = {
+  }
+}
+
+export class ProcessList extends jspb.Message {
+  getItemsList(): Array<ProcessInfo>;
+  setItemsList(value: Array<ProcessInfo>): ProcessList;
+  clearItemsList(): ProcessList;
+  addItems(value?: ProcessInfo, index?: number): ProcessInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProcessList.AsObject;
+  static toObject(includeInstance: boolean, msg: ProcessList): ProcessList.AsObject;
+  static serializeBinaryToWriter(message: ProcessList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProcessList;
+  static deserializeBinaryFromReader(message: ProcessList, reader: jspb.BinaryReader): ProcessList;
+}
+
+export namespace ProcessList {
+  export type AsObject = {
+    itemsList: Array<ProcessInfo.AsObject>,
+  }
+}
+
+export class KillProcessRequest extends jspb.Message {
+  getQueryId(): string;
+  setQueryId(value: string): KillProcessRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): KillProcessRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: KillProcessRequest): KillProcessRequest.AsObject;
+  static serializeBinaryToWriter(message: KillProcessRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KillProcessRequest;
+  static deserializeBinaryFromReader(message: KillProcessRequest, reader: jspb.BinaryReader): KillProcessRequest;
+}
+
+export namespace KillProcessRequest {
+  export type AsObject = {
+    queryId: string,
+  }
+}
+
+export class DiskInfo extends jspb.Message {
+  getName(): string;
+  setName(value: string): DiskInfo;
+
+  getPath(): string;
+  setPath(value: string): DiskInfo;
+
+  getFreeSpace(): number;
+  setFreeSpace(value: number): DiskInfo;
+
+  getTotalSpace(): number;
+  setTotalSpace(value: number): DiskInfo;
+
+  getUnreservedSpace(): number;
+  setUnreservedSpace(value: number): DiskInfo;
+
+  getType(): string;
+  setType(value: string): DiskInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DiskInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: DiskInfo): DiskInfo.AsObject;
+  static serializeBinaryToWriter(message: DiskInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DiskInfo;
+  static deserializeBinaryFromReader(message: DiskInfo, reader: jspb.BinaryReader): DiskInfo;
+}
+
+export namespace DiskInfo {
+  export type AsObject = {
+    name: string,
+    path: string,
+    freeSpace: number,
+    totalSpace: number,
+    unreservedSpace: number,
+    type: string,
+  }
+}
+
+export class ListDisksRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListDisksRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDisksRequest): ListDisksRequest.AsObject;
+  static serializeBinaryToWriter(message: ListDisksRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDisksRequest;
+  static deserializeBinaryFromReader(message: ListDisksRequest, reader: jspb.BinaryReader): ListDisksRequest;
+}
+
+export namespace ListDisksRequest {
+  export type AsObject = {
+  }
+}
+
+export class DiskList extends jspb.Message {
+  getItemsList(): Array<DiskInfo>;
+  setItemsList(value: Array<DiskInfo>): DiskList;
+  clearItemsList(): DiskList;
+  addItems(value?: DiskInfo, index?: number): DiskInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DiskList.AsObject;
+  static toObject(includeInstance: boolean, msg: DiskList): DiskList.AsObject;
+  static serializeBinaryToWriter(message: DiskList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DiskList;
+  static deserializeBinaryFromReader(message: DiskList, reader: jspb.BinaryReader): DiskList;
+}
+
+export namespace DiskList {
+  export type AsObject = {
+    itemsList: Array<DiskInfo.AsObject>,
+  }
+}
+
+export class MetricItem extends jspb.Message {
+  getName(): string;
+  setName(value: string): MetricItem;
+
+  getValue(): number;
+  setValue(value: number): MetricItem;
+
+  getDescription(): string;
+  setDescription(value: string): MetricItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MetricItem.AsObject;
+  static toObject(includeInstance: boolean, msg: MetricItem): MetricItem.AsObject;
+  static serializeBinaryToWriter(message: MetricItem, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MetricItem;
+  static deserializeBinaryFromReader(message: MetricItem, reader: jspb.BinaryReader): MetricItem;
+}
+
+export namespace MetricItem {
+  export type AsObject = {
+    name: string,
+    value: number,
+    description: string,
+  }
+}
+
+export class GetMetricsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMetricsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMetricsRequest): GetMetricsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetMetricsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMetricsRequest;
+  static deserializeBinaryFromReader(message: GetMetricsRequest, reader: jspb.BinaryReader): GetMetricsRequest;
+}
+
+export namespace GetMetricsRequest {
+  export type AsObject = {
+  }
+}
+
+export class MetricsResponse extends jspb.Message {
+  getMetricsList(): Array<MetricItem>;
+  setMetricsList(value: Array<MetricItem>): MetricsResponse;
+  clearMetricsList(): MetricsResponse;
+  addMetrics(value?: MetricItem, index?: number): MetricItem;
+
+  getAsyncMetricsList(): Array<MetricItem>;
+  setAsyncMetricsList(value: Array<MetricItem>): MetricsResponse;
+  clearAsyncMetricsList(): MetricsResponse;
+  addAsyncMetrics(value?: MetricItem, index?: number): MetricItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MetricsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MetricsResponse): MetricsResponse.AsObject;
+  static serializeBinaryToWriter(message: MetricsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MetricsResponse;
+  static deserializeBinaryFromReader(message: MetricsResponse, reader: jspb.BinaryReader): MetricsResponse;
+}
+
+export namespace MetricsResponse {
+  export type AsObject = {
+    metricsList: Array<MetricItem.AsObject>,
+    asyncMetricsList: Array<MetricItem.AsObject>,
   }
 }
 

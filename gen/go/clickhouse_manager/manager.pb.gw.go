@@ -1431,6 +1431,530 @@ func local_request_ClickHouseManager_ModifyColumn_1(ctx context.Context, marshal
 	return msg, metadata, err
 }
 
+func request_ClickHouseManager_ExecuteQuery_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ExecuteQueryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ExecuteQuery(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ExecuteQuery_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ExecuteQueryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ExecuteQuery(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ExecuteQuery_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ExecuteQueryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ExecuteQuery(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ExecuteQuery_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ExecuteQueryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ExecuteQuery(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_PreviewTableData_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PreviewTableDataRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	msg, err := client.PreviewTableData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_PreviewTableData_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PreviewTableDataRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	msg, err := server.PreviewTableData(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_PreviewTableData_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PreviewTableDataRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.PreviewTableData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_PreviewTableData_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq PreviewTableDataRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.PreviewTableData(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ClickHouseManager_ListParts_0 = &utilities.DoubleArray{Encoding: map[string]int{"database": 0, "table": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+
+func request_ClickHouseManager_ListParts_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPartsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ClickHouseManager_ListParts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListParts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListParts_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPartsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ClickHouseManager_ListParts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListParts(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ListParts_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPartsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListParts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListParts_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPartsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListParts(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_DropPartition_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DropPartitionRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	msg, err := client.DropPartition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_DropPartition_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DropPartitionRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["database"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "database")
+	}
+	protoReq.Database, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "database", err)
+	}
+	val, ok = pathParams["table"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table")
+	}
+	protoReq.Table, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table", err)
+	}
+	msg, err := server.DropPartition(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_DropPartition_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DropPartitionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DropPartition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_DropPartition_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DropPartitionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.DropPartition(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ListProcesses_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListProcessesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListProcesses(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListProcesses_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListProcessesRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.ListProcesses(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ListProcesses_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListProcessesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListProcesses(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListProcesses_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListProcessesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListProcesses(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_KillProcess_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq KillProcessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.KillProcess(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_KillProcess_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq KillProcessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.KillProcess(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_KillProcess_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq KillProcessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.KillProcess(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_KillProcess_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq KillProcessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.KillProcess(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ListDisks_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListDisksRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListDisks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListDisks_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListDisksRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.ListDisks(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_ListDisks_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListDisksRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListDisks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_ListDisks_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListDisksRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListDisks(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_GetMetrics_0(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMetricsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetMetrics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_GetMetrics_0(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMetricsRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetMetrics(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ClickHouseManager_GetMetrics_1(ctx context.Context, marshaler runtime.Marshaler, client ClickHouseManagerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMetricsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetMetrics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ClickHouseManager_GetMetrics_1(ctx context.Context, marshaler runtime.Marshaler, server ClickHouseManagerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMetricsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetMetrics(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterClickHouseManagerHandlerServer registers the http handlers for service ClickHouseManager to "mux".
 // UnaryRPC     :call ClickHouseManagerServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -2117,6 +2641,326 @@ func RegisterClickHouseManagerHandlerServer(ctx context.Context, mux *runtime.Se
 		}
 		forward_ClickHouseManager_ModifyColumn_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ExecuteQuery_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery", runtime.WithHTTPPathPattern("/v1/clickhouse/query"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ExecuteQuery_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ExecuteQuery_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ExecuteQuery_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery", runtime.WithHTTPPathPattern("/ExecuteQuery"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ExecuteQuery_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ExecuteQuery_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_PreviewTableData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}:preview"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_PreviewTableData_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_PreviewTableData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_PreviewTableData_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData", runtime.WithHTTPPathPattern("/PreviewTableData"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_PreviewTableData_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_PreviewTableData_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}/parts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListParts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListParts_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts", runtime.WithHTTPPathPattern("/ListParts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListParts_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListParts_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_DropPartition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}/partitions:drop"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_DropPartition_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_DropPartition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_DropPartition_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition", runtime.WithHTTPPathPattern("/DropPartition"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_DropPartition_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_DropPartition_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListProcesses_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses", runtime.WithHTTPPathPattern("/v1/clickhouse/processes"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListProcesses_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListProcesses_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListProcesses_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses", runtime.WithHTTPPathPattern("/ListProcesses"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListProcesses_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListProcesses_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_KillProcess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess", runtime.WithHTTPPathPattern("/v1/clickhouse/processes:kill"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_KillProcess_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_KillProcess_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_KillProcess_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess", runtime.WithHTTPPathPattern("/KillProcess"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_KillProcess_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_KillProcess_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListDisks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks", runtime.WithHTTPPathPattern("/v1/clickhouse/disks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListDisks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListDisks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListDisks_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks", runtime.WithHTTPPathPattern("/ListDisks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_ListDisks_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListDisks_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_GetMetrics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics", runtime.WithHTTPPathPattern("/v1/clickhouse/metrics"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_GetMetrics_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_GetMetrics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_GetMetrics_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics", runtime.WithHTTPPathPattern("/GetMetrics"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ClickHouseManager_GetMetrics_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_GetMetrics_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -2735,79 +3579,383 @@ func RegisterClickHouseManagerHandlerClient(ctx context.Context, mux *runtime.Se
 		}
 		forward_ClickHouseManager_ModifyColumn_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ExecuteQuery_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery", runtime.WithHTTPPathPattern("/v1/clickhouse/query"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ExecuteQuery_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ExecuteQuery_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ExecuteQuery_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery", runtime.WithHTTPPathPattern("/ExecuteQuery"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ExecuteQuery_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ExecuteQuery_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_PreviewTableData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}:preview"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_PreviewTableData_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_PreviewTableData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_PreviewTableData_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData", runtime.WithHTTPPathPattern("/PreviewTableData"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_PreviewTableData_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_PreviewTableData_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}/parts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListParts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListParts_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts", runtime.WithHTTPPathPattern("/ListParts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListParts_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListParts_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_DropPartition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition", runtime.WithHTTPPathPattern("/v1/clickhouse/databases/{database}/tables/{table}/partitions:drop"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_DropPartition_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_DropPartition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_DropPartition_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition", runtime.WithHTTPPathPattern("/DropPartition"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_DropPartition_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_DropPartition_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListProcesses_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses", runtime.WithHTTPPathPattern("/v1/clickhouse/processes"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListProcesses_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListProcesses_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListProcesses_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses", runtime.WithHTTPPathPattern("/ListProcesses"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListProcesses_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListProcesses_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_KillProcess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess", runtime.WithHTTPPathPattern("/v1/clickhouse/processes:kill"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_KillProcess_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_KillProcess_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_KillProcess_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess", runtime.WithHTTPPathPattern("/KillProcess"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_KillProcess_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_KillProcess_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_ListDisks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks", runtime.WithHTTPPathPattern("/v1/clickhouse/disks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListDisks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListDisks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_ListDisks_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks", runtime.WithHTTPPathPattern("/ListDisks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_ListDisks_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_ListDisks_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ClickHouseManager_GetMetrics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics", runtime.WithHTTPPathPattern("/v1/clickhouse/metrics"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_GetMetrics_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_GetMetrics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ClickHouseManager_GetMetrics_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics", runtime.WithHTTPPathPattern("/GetMetrics"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ClickHouseManager_GetMetrics_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ClickHouseManager_GetMetrics_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_ClickHouseManager_Ping_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "ping"}, ""))
-	pattern_ClickHouseManager_Ping_1           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Ping"}, ""))
-	pattern_ClickHouseManager_ServerInfo_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "info"}, ""))
-	pattern_ClickHouseManager_ServerInfo_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ServerInfo"}, ""))
-	pattern_ClickHouseManager_CreateDatabase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "databases"}, ""))
-	pattern_ClickHouseManager_CreateDatabase_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateDatabase"}, ""))
-	pattern_ClickHouseManager_DropDatabase_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "clickhouse", "databases", "name"}, ""))
-	pattern_ClickHouseManager_DropDatabase_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropDatabase"}, ""))
-	pattern_ClickHouseManager_ListDatabases_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "databases"}, ""))
-	pattern_ClickHouseManager_ListDatabases_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListDatabases"}, ""))
-	pattern_ClickHouseManager_DatabaseInfo_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "clickhouse", "databases", "name"}, ""))
-	pattern_ClickHouseManager_DatabaseInfo_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DatabaseInfo"}, ""))
-	pattern_ClickHouseManager_CreateTable_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "clickhouse", "databases", "database", "tables"}, ""))
-	pattern_ClickHouseManager_CreateTable_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateTable"}, ""))
-	pattern_ClickHouseManager_DropTable_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, ""))
-	pattern_ClickHouseManager_DropTable_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropTable"}, ""))
-	pattern_ClickHouseManager_TruncateTable_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "truncate"))
-	pattern_ClickHouseManager_TruncateTable_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"TruncateTable"}, ""))
-	pattern_ClickHouseManager_RenameTable_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "rename"))
-	pattern_ClickHouseManager_RenameTable_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"RenameTable"}, ""))
-	pattern_ClickHouseManager_OptimizeTable_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "optimize"))
-	pattern_ClickHouseManager_OptimizeTable_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"OptimizeTable"}, ""))
-	pattern_ClickHouseManager_ListTables_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "clickhouse", "databases", "database", "tables"}, ""))
-	pattern_ClickHouseManager_ListTables_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListTables"}, ""))
-	pattern_ClickHouseManager_TableInfo_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, ""))
-	pattern_ClickHouseManager_TableInfo_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"TableInfo"}, ""))
-	pattern_ClickHouseManager_AddColumn_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns"}, ""))
-	pattern_ClickHouseManager_AddColumn_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddColumn"}, ""))
-	pattern_ClickHouseManager_DropColumn_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "name"}, ""))
-	pattern_ClickHouseManager_DropColumn_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropColumn"}, ""))
-	pattern_ClickHouseManager_RenameColumn_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "name"}, "rename"))
-	pattern_ClickHouseManager_RenameColumn_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"RenameColumn"}, ""))
-	pattern_ClickHouseManager_ModifyColumn_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "column.name"}, ""))
-	pattern_ClickHouseManager_ModifyColumn_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ModifyColumn"}, ""))
+	pattern_ClickHouseManager_Ping_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "ping"}, ""))
+	pattern_ClickHouseManager_Ping_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"Ping"}, ""))
+	pattern_ClickHouseManager_ServerInfo_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "info"}, ""))
+	pattern_ClickHouseManager_ServerInfo_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ServerInfo"}, ""))
+	pattern_ClickHouseManager_CreateDatabase_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "databases"}, ""))
+	pattern_ClickHouseManager_CreateDatabase_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateDatabase"}, ""))
+	pattern_ClickHouseManager_DropDatabase_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "clickhouse", "databases", "name"}, ""))
+	pattern_ClickHouseManager_DropDatabase_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropDatabase"}, ""))
+	pattern_ClickHouseManager_ListDatabases_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "databases"}, ""))
+	pattern_ClickHouseManager_ListDatabases_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListDatabases"}, ""))
+	pattern_ClickHouseManager_DatabaseInfo_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "clickhouse", "databases", "name"}, ""))
+	pattern_ClickHouseManager_DatabaseInfo_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DatabaseInfo"}, ""))
+	pattern_ClickHouseManager_CreateTable_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "clickhouse", "databases", "database", "tables"}, ""))
+	pattern_ClickHouseManager_CreateTable_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateTable"}, ""))
+	pattern_ClickHouseManager_DropTable_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, ""))
+	pattern_ClickHouseManager_DropTable_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropTable"}, ""))
+	pattern_ClickHouseManager_TruncateTable_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "truncate"))
+	pattern_ClickHouseManager_TruncateTable_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"TruncateTable"}, ""))
+	pattern_ClickHouseManager_RenameTable_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "rename"))
+	pattern_ClickHouseManager_RenameTable_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"RenameTable"}, ""))
+	pattern_ClickHouseManager_OptimizeTable_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, "optimize"))
+	pattern_ClickHouseManager_OptimizeTable_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"OptimizeTable"}, ""))
+	pattern_ClickHouseManager_ListTables_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "clickhouse", "databases", "database", "tables"}, ""))
+	pattern_ClickHouseManager_ListTables_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListTables"}, ""))
+	pattern_ClickHouseManager_TableInfo_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "name"}, ""))
+	pattern_ClickHouseManager_TableInfo_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"TableInfo"}, ""))
+	pattern_ClickHouseManager_AddColumn_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns"}, ""))
+	pattern_ClickHouseManager_AddColumn_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"AddColumn"}, ""))
+	pattern_ClickHouseManager_DropColumn_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "name"}, ""))
+	pattern_ClickHouseManager_DropColumn_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropColumn"}, ""))
+	pattern_ClickHouseManager_RenameColumn_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "name"}, "rename"))
+	pattern_ClickHouseManager_RenameColumn_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"RenameColumn"}, ""))
+	pattern_ClickHouseManager_ModifyColumn_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "columns", "column.name"}, ""))
+	pattern_ClickHouseManager_ModifyColumn_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ModifyColumn"}, ""))
+	pattern_ClickHouseManager_ExecuteQuery_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "query"}, ""))
+	pattern_ClickHouseManager_ExecuteQuery_1     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ExecuteQuery"}, ""))
+	pattern_ClickHouseManager_PreviewTableData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "clickhouse", "databases", "database", "tables", "table"}, "preview"))
+	pattern_ClickHouseManager_PreviewTableData_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"PreviewTableData"}, ""))
+	pattern_ClickHouseManager_ListParts_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "parts"}, ""))
+	pattern_ClickHouseManager_ListParts_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListParts"}, ""))
+	pattern_ClickHouseManager_DropPartition_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1", "clickhouse", "databases", "database", "tables", "table", "partitions"}, "drop"))
+	pattern_ClickHouseManager_DropPartition_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DropPartition"}, ""))
+	pattern_ClickHouseManager_ListProcesses_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "processes"}, ""))
+	pattern_ClickHouseManager_ListProcesses_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListProcesses"}, ""))
+	pattern_ClickHouseManager_KillProcess_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "processes"}, "kill"))
+	pattern_ClickHouseManager_KillProcess_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"KillProcess"}, ""))
+	pattern_ClickHouseManager_ListDisks_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "disks"}, ""))
+	pattern_ClickHouseManager_ListDisks_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListDisks"}, ""))
+	pattern_ClickHouseManager_GetMetrics_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "clickhouse", "metrics"}, ""))
+	pattern_ClickHouseManager_GetMetrics_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetMetrics"}, ""))
 )
 
 var (
-	forward_ClickHouseManager_Ping_0           = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_Ping_1           = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ServerInfo_0     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ServerInfo_1     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_CreateDatabase_0 = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_CreateDatabase_1 = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropDatabase_0   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropDatabase_1   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ListDatabases_0  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ListDatabases_1  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DatabaseInfo_0   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DatabaseInfo_1   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_CreateTable_0    = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_CreateTable_1    = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropTable_0      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropTable_1      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_TruncateTable_0  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_TruncateTable_1  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_RenameTable_0    = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_RenameTable_1    = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_OptimizeTable_0  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_OptimizeTable_1  = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ListTables_0     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ListTables_1     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_TableInfo_0      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_TableInfo_1      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_AddColumn_0      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_AddColumn_1      = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropColumn_0     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_DropColumn_1     = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_RenameColumn_0   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_RenameColumn_1   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ModifyColumn_0   = runtime.ForwardResponseMessage
-	forward_ClickHouseManager_ModifyColumn_1   = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_Ping_0             = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_Ping_1             = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ServerInfo_0       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ServerInfo_1       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_CreateDatabase_0   = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_CreateDatabase_1   = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropDatabase_0     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropDatabase_1     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListDatabases_0    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListDatabases_1    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DatabaseInfo_0     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DatabaseInfo_1     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_CreateTable_0      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_CreateTable_1      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropTable_0        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropTable_1        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_TruncateTable_0    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_TruncateTable_1    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_RenameTable_0      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_RenameTable_1      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_OptimizeTable_0    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_OptimizeTable_1    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListTables_0       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListTables_1       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_TableInfo_0        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_TableInfo_1        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_AddColumn_0        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_AddColumn_1        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropColumn_0       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropColumn_1       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_RenameColumn_0     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_RenameColumn_1     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ModifyColumn_0     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ModifyColumn_1     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ExecuteQuery_0     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ExecuteQuery_1     = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_PreviewTableData_0 = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_PreviewTableData_1 = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListParts_0        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListParts_1        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropPartition_0    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_DropPartition_1    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListProcesses_0    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListProcesses_1    = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_KillProcess_0      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_KillProcess_1      = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListDisks_0        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_ListDisks_1        = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_GetMetrics_0       = runtime.ForwardResponseMessage
+	forward_ClickHouseManager_GetMetrics_1       = runtime.ForwardResponseMessage
 )

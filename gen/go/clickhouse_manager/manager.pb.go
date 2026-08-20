@@ -468,6 +468,9 @@ type Database struct {
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Engine        string                 `protobuf:"bytes,2,opt,name=engine,proto3" json:"engine,omitempty"`
 	Comment       string                 `protobuf:"bytes,3,opt,name=comment,proto3" json:"comment,omitempty"`
+	TablesCount   uint64                 `protobuf:"varint,4,opt,name=tables_count,json=tablesCount,proto3" json:"tables_count,omitempty"`
+	TotalBytes    uint64                 `protobuf:"varint,5,opt,name=total_bytes,json=totalBytes,proto3" json:"total_bytes,omitempty"`
+	TotalRows     uint64                 `protobuf:"varint,6,opt,name=total_rows,json=totalRows,proto3" json:"total_rows,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -521,6 +524,27 @@ func (x *Database) GetComment() string {
 		return x.Comment
 	}
 	return ""
+}
+
+func (x *Database) GetTablesCount() uint64 {
+	if x != nil {
+		return x.TablesCount
+	}
+	return 0
+}
+
+func (x *Database) GetTotalBytes() uint64 {
+	if x != nil {
+		return x.TotalBytes
+	}
+	return 0
+}
+
+func (x *Database) GetTotalRows() uint64 {
+	if x != nil {
+		return x.TotalRows
+	}
+	return 0
 }
 
 type DatabaseList struct {
@@ -993,6 +1017,8 @@ type Table struct {
 	CreateTableQuery         string                 `protobuf:"bytes,10,opt,name=create_table_query,json=createTableQuery,proto3" json:"create_table_query,omitempty"`
 	MetadataModificationTime *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=metadata_modification_time,json=metadataModificationTime,proto3" json:"metadata_modification_time,omitempty"`
 	Columns                  []*Column              `protobuf:"bytes,12,rep,name=columns,proto3" json:"columns,omitempty"`
+	PartsCount               uint64                 `protobuf:"varint,13,opt,name=parts_count,json=partsCount,proto3" json:"parts_count,omitempty"`
+	DataUncompressedBytes    uint64                 `protobuf:"varint,14,opt,name=data_uncompressed_bytes,json=dataUncompressedBytes,proto3" json:"data_uncompressed_bytes,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -1109,6 +1135,20 @@ func (x *Table) GetColumns() []*Column {
 		return x.Columns
 	}
 	return nil
+}
+
+func (x *Table) GetPartsCount() uint64 {
+	if x != nil {
+		return x.PartsCount
+	}
+	return 0
+}
+
+func (x *Table) GetDataUncompressedBytes() uint64 {
+	if x != nil {
+		return x.DataUncompressedBytes
+	}
+	return 0
 }
 
 type TableList struct {
@@ -1619,6 +1659,1134 @@ func (x *ModifyColumnRequest) GetCluster() string {
 	return ""
 }
 
+type QueryRow struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Values        []string               `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *QueryRow) Reset() {
+	*x = QueryRow{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *QueryRow) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryRow) ProtoMessage() {}
+
+func (x *QueryRow) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use QueryRow.ProtoReflect.Descriptor instead.
+func (*QueryRow) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *QueryRow) GetValues() []string {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+type ExecuteQueryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	MaxRows       uint32                 `protobuf:"varint,2,opt,name=max_rows,json=maxRows,proto3" json:"max_rows,omitempty"`
+	Database      string                 `protobuf:"bytes,3,opt,name=database,proto3" json:"database,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExecuteQueryRequest) Reset() {
+	*x = ExecuteQueryRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExecuteQueryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExecuteQueryRequest) ProtoMessage() {}
+
+func (x *ExecuteQueryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExecuteQueryRequest.ProtoReflect.Descriptor instead.
+func (*ExecuteQueryRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ExecuteQueryRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *ExecuteQueryRequest) GetMaxRows() uint32 {
+	if x != nil {
+		return x.MaxRows
+	}
+	return 0
+}
+
+func (x *ExecuteQueryRequest) GetDatabase() string {
+	if x != nil {
+		return x.Database
+	}
+	return ""
+}
+
+type ExecuteQueryResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Columns        []string               `protobuf:"bytes,1,rep,name=columns,proto3" json:"columns,omitempty"`
+	Types          []string               `protobuf:"bytes,2,rep,name=types,proto3" json:"types,omitempty"`
+	Rows           []*QueryRow            `protobuf:"bytes,3,rep,name=rows,proto3" json:"rows,omitempty"`
+	TotalRows      uint64                 `protobuf:"varint,4,opt,name=total_rows,json=totalRows,proto3" json:"total_rows,omitempty"`
+	ElapsedSeconds float64                `protobuf:"fixed64,5,opt,name=elapsed_seconds,json=elapsedSeconds,proto3" json:"elapsed_seconds,omitempty"`
+	BytesRead      uint64                 `protobuf:"varint,6,opt,name=bytes_read,json=bytesRead,proto3" json:"bytes_read,omitempty"`
+	RowsRead       uint64                 `protobuf:"varint,7,opt,name=rows_read,json=rowsRead,proto3" json:"rows_read,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ExecuteQueryResponse) Reset() {
+	*x = ExecuteQueryResponse{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExecuteQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExecuteQueryResponse) ProtoMessage() {}
+
+func (x *ExecuteQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExecuteQueryResponse.ProtoReflect.Descriptor instead.
+func (*ExecuteQueryResponse) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ExecuteQueryResponse) GetColumns() []string {
+	if x != nil {
+		return x.Columns
+	}
+	return nil
+}
+
+func (x *ExecuteQueryResponse) GetTypes() []string {
+	if x != nil {
+		return x.Types
+	}
+	return nil
+}
+
+func (x *ExecuteQueryResponse) GetRows() []*QueryRow {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+func (x *ExecuteQueryResponse) GetTotalRows() uint64 {
+	if x != nil {
+		return x.TotalRows
+	}
+	return 0
+}
+
+func (x *ExecuteQueryResponse) GetElapsedSeconds() float64 {
+	if x != nil {
+		return x.ElapsedSeconds
+	}
+	return 0
+}
+
+func (x *ExecuteQueryResponse) GetBytesRead() uint64 {
+	if x != nil {
+		return x.BytesRead
+	}
+	return 0
+}
+
+func (x *ExecuteQueryResponse) GetRowsRead() uint64 {
+	if x != nil {
+		return x.RowsRead
+	}
+	return 0
+}
+
+type PreviewTableDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Database      string                 `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
+	Table         string                 `protobuf:"bytes,2,opt,name=table,proto3" json:"table,omitempty"`
+	Limit         uint32                 `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        uint32                 `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	OrderBy       string                 `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Where         string                 `protobuf:"bytes,6,opt,name=where,proto3" json:"where,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PreviewTableDataRequest) Reset() {
+	*x = PreviewTableDataRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PreviewTableDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreviewTableDataRequest) ProtoMessage() {}
+
+func (x *PreviewTableDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreviewTableDataRequest.ProtoReflect.Descriptor instead.
+func (*PreviewTableDataRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *PreviewTableDataRequest) GetDatabase() string {
+	if x != nil {
+		return x.Database
+	}
+	return ""
+}
+
+func (x *PreviewTableDataRequest) GetTable() string {
+	if x != nil {
+		return x.Table
+	}
+	return ""
+}
+
+func (x *PreviewTableDataRequest) GetLimit() uint32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *PreviewTableDataRequest) GetOffset() uint32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *PreviewTableDataRequest) GetOrderBy() string {
+	if x != nil {
+		return x.OrderBy
+	}
+	return ""
+}
+
+func (x *PreviewTableDataRequest) GetWhere() string {
+	if x != nil {
+		return x.Where
+	}
+	return ""
+}
+
+type TablePart struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	Partition             string                 `protobuf:"bytes,1,opt,name=partition,proto3" json:"partition,omitempty"`
+	Name                  string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Active                bool                   `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
+	Rows                  uint64                 `protobuf:"varint,4,opt,name=rows,proto3" json:"rows,omitempty"`
+	BytesOnDisk           uint64                 `protobuf:"varint,5,opt,name=bytes_on_disk,json=bytesOnDisk,proto3" json:"bytes_on_disk,omitempty"`
+	DataUncompressedBytes uint64                 `protobuf:"varint,6,opt,name=data_uncompressed_bytes,json=dataUncompressedBytes,proto3" json:"data_uncompressed_bytes,omitempty"`
+	ModificationTime      *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=modification_time,json=modificationTime,proto3" json:"modification_time,omitempty"`
+	DiskName              string                 `protobuf:"bytes,8,opt,name=disk_name,json=diskName,proto3" json:"disk_name,omitempty"`
+	MinDate               string                 `protobuf:"bytes,9,opt,name=min_date,json=minDate,proto3" json:"min_date,omitempty"`
+	MaxDate               string                 `protobuf:"bytes,10,opt,name=max_date,json=maxDate,proto3" json:"max_date,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *TablePart) Reset() {
+	*x = TablePart{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TablePart) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TablePart) ProtoMessage() {}
+
+func (x *TablePart) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TablePart.ProtoReflect.Descriptor instead.
+func (*TablePart) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *TablePart) GetPartition() string {
+	if x != nil {
+		return x.Partition
+	}
+	return ""
+}
+
+func (x *TablePart) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TablePart) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *TablePart) GetRows() uint64 {
+	if x != nil {
+		return x.Rows
+	}
+	return 0
+}
+
+func (x *TablePart) GetBytesOnDisk() uint64 {
+	if x != nil {
+		return x.BytesOnDisk
+	}
+	return 0
+}
+
+func (x *TablePart) GetDataUncompressedBytes() uint64 {
+	if x != nil {
+		return x.DataUncompressedBytes
+	}
+	return 0
+}
+
+func (x *TablePart) GetModificationTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ModificationTime
+	}
+	return nil
+}
+
+func (x *TablePart) GetDiskName() string {
+	if x != nil {
+		return x.DiskName
+	}
+	return ""
+}
+
+func (x *TablePart) GetMinDate() string {
+	if x != nil {
+		return x.MinDate
+	}
+	return ""
+}
+
+func (x *TablePart) GetMaxDate() string {
+	if x != nil {
+		return x.MaxDate
+	}
+	return ""
+}
+
+type ListPartsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Database      string                 `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
+	Table         string                 `protobuf:"bytes,2,opt,name=table,proto3" json:"table,omitempty"`
+	ActiveOnly    bool                   `protobuf:"varint,3,opt,name=active_only,json=activeOnly,proto3" json:"active_only,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPartsRequest) Reset() {
+	*x = ListPartsRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPartsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPartsRequest) ProtoMessage() {}
+
+func (x *ListPartsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPartsRequest.ProtoReflect.Descriptor instead.
+func (*ListPartsRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ListPartsRequest) GetDatabase() string {
+	if x != nil {
+		return x.Database
+	}
+	return ""
+}
+
+func (x *ListPartsRequest) GetTable() string {
+	if x != nil {
+		return x.Table
+	}
+	return ""
+}
+
+func (x *ListPartsRequest) GetActiveOnly() bool {
+	if x != nil {
+		return x.ActiveOnly
+	}
+	return false
+}
+
+type PartsList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*TablePart           `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PartsList) Reset() {
+	*x = PartsList{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PartsList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PartsList) ProtoMessage() {}
+
+func (x *PartsList) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PartsList.ProtoReflect.Descriptor instead.
+func (*PartsList) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *PartsList) GetItems() []*TablePart {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type DropPartitionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Database      string                 `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
+	Table         string                 `protobuf:"bytes,2,opt,name=table,proto3" json:"table,omitempty"`
+	Partition     string                 `protobuf:"bytes,3,opt,name=partition,proto3" json:"partition,omitempty"`
+	Detach        bool                   `protobuf:"varint,4,opt,name=detach,proto3" json:"detach,omitempty"`
+	Cluster       string                 `protobuf:"bytes,5,opt,name=cluster,proto3" json:"cluster,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DropPartitionRequest) Reset() {
+	*x = DropPartitionRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DropPartitionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DropPartitionRequest) ProtoMessage() {}
+
+func (x *DropPartitionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DropPartitionRequest.ProtoReflect.Descriptor instead.
+func (*DropPartitionRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *DropPartitionRequest) GetDatabase() string {
+	if x != nil {
+		return x.Database
+	}
+	return ""
+}
+
+func (x *DropPartitionRequest) GetTable() string {
+	if x != nil {
+		return x.Table
+	}
+	return ""
+}
+
+func (x *DropPartitionRequest) GetPartition() string {
+	if x != nil {
+		return x.Partition
+	}
+	return ""
+}
+
+func (x *DropPartitionRequest) GetDetach() bool {
+	if x != nil {
+		return x.Detach
+	}
+	return false
+}
+
+func (x *DropPartitionRequest) GetCluster() string {
+	if x != nil {
+		return x.Cluster
+	}
+	return ""
+}
+
+type ProcessInfo struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	QueryId        string                 `protobuf:"bytes,1,opt,name=query_id,json=queryId,proto3" json:"query_id,omitempty"`
+	User           string                 `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	ElapsedSeconds float64                `protobuf:"fixed64,3,opt,name=elapsed_seconds,json=elapsedSeconds,proto3" json:"elapsed_seconds,omitempty"`
+	RowsRead       uint64                 `protobuf:"varint,4,opt,name=rows_read,json=rowsRead,proto3" json:"rows_read,omitempty"`
+	BytesRead      uint64                 `protobuf:"varint,5,opt,name=bytes_read,json=bytesRead,proto3" json:"bytes_read,omitempty"`
+	MemoryUsage    uint64                 `protobuf:"varint,6,opt,name=memory_usage,json=memoryUsage,proto3" json:"memory_usage,omitempty"`
+	Query          string                 `protobuf:"bytes,7,opt,name=query,proto3" json:"query,omitempty"`
+	ClientName     string                 `protobuf:"bytes,8,opt,name=client_name,json=clientName,proto3" json:"client_name,omitempty"`
+	OsUser         string                 `protobuf:"bytes,9,opt,name=os_user,json=osUser,proto3" json:"os_user,omitempty"`
+	IsCancelled    bool                   `protobuf:"varint,10,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProcessInfo) Reset() {
+	*x = ProcessInfo{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProcessInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProcessInfo) ProtoMessage() {}
+
+func (x *ProcessInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProcessInfo.ProtoReflect.Descriptor instead.
+func (*ProcessInfo) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *ProcessInfo) GetQueryId() string {
+	if x != nil {
+		return x.QueryId
+	}
+	return ""
+}
+
+func (x *ProcessInfo) GetUser() string {
+	if x != nil {
+		return x.User
+	}
+	return ""
+}
+
+func (x *ProcessInfo) GetElapsedSeconds() float64 {
+	if x != nil {
+		return x.ElapsedSeconds
+	}
+	return 0
+}
+
+func (x *ProcessInfo) GetRowsRead() uint64 {
+	if x != nil {
+		return x.RowsRead
+	}
+	return 0
+}
+
+func (x *ProcessInfo) GetBytesRead() uint64 {
+	if x != nil {
+		return x.BytesRead
+	}
+	return 0
+}
+
+func (x *ProcessInfo) GetMemoryUsage() uint64 {
+	if x != nil {
+		return x.MemoryUsage
+	}
+	return 0
+}
+
+func (x *ProcessInfo) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *ProcessInfo) GetClientName() string {
+	if x != nil {
+		return x.ClientName
+	}
+	return ""
+}
+
+func (x *ProcessInfo) GetOsUser() string {
+	if x != nil {
+		return x.OsUser
+	}
+	return ""
+}
+
+func (x *ProcessInfo) GetIsCancelled() bool {
+	if x != nil {
+		return x.IsCancelled
+	}
+	return false
+}
+
+type ListProcessesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListProcessesRequest) Reset() {
+	*x = ListProcessesRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListProcessesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListProcessesRequest) ProtoMessage() {}
+
+func (x *ListProcessesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListProcessesRequest.ProtoReflect.Descriptor instead.
+func (*ListProcessesRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{32}
+}
+
+type ProcessList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*ProcessInfo         `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProcessList) Reset() {
+	*x = ProcessList{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProcessList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProcessList) ProtoMessage() {}
+
+func (x *ProcessList) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProcessList.ProtoReflect.Descriptor instead.
+func (*ProcessList) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ProcessList) GetItems() []*ProcessInfo {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type KillProcessRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	QueryId       string                 `protobuf:"bytes,1,opt,name=query_id,json=queryId,proto3" json:"query_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *KillProcessRequest) Reset() {
+	*x = KillProcessRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *KillProcessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KillProcessRequest) ProtoMessage() {}
+
+func (x *KillProcessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KillProcessRequest.ProtoReflect.Descriptor instead.
+func (*KillProcessRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *KillProcessRequest) GetQueryId() string {
+	if x != nil {
+		return x.QueryId
+	}
+	return ""
+}
+
+type DiskInfo struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Name            string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Path            string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	FreeSpace       uint64                 `protobuf:"varint,3,opt,name=free_space,json=freeSpace,proto3" json:"free_space,omitempty"`
+	TotalSpace      uint64                 `protobuf:"varint,4,opt,name=total_space,json=totalSpace,proto3" json:"total_space,omitempty"`
+	UnreservedSpace uint64                 `protobuf:"varint,5,opt,name=unreserved_space,json=unreservedSpace,proto3" json:"unreserved_space,omitempty"`
+	Type            string                 `protobuf:"bytes,6,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *DiskInfo) Reset() {
+	*x = DiskInfo{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiskInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiskInfo) ProtoMessage() {}
+
+func (x *DiskInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiskInfo.ProtoReflect.Descriptor instead.
+func (*DiskInfo) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *DiskInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *DiskInfo) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *DiskInfo) GetFreeSpace() uint64 {
+	if x != nil {
+		return x.FreeSpace
+	}
+	return 0
+}
+
+func (x *DiskInfo) GetTotalSpace() uint64 {
+	if x != nil {
+		return x.TotalSpace
+	}
+	return 0
+}
+
+func (x *DiskInfo) GetUnreservedSpace() uint64 {
+	if x != nil {
+		return x.UnreservedSpace
+	}
+	return 0
+}
+
+func (x *DiskInfo) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type ListDisksRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListDisksRequest) Reset() {
+	*x = ListDisksRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListDisksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListDisksRequest) ProtoMessage() {}
+
+func (x *ListDisksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListDisksRequest.ProtoReflect.Descriptor instead.
+func (*ListDisksRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{36}
+}
+
+type DiskList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*DiskInfo            `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DiskList) Reset() {
+	*x = DiskList{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiskList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiskList) ProtoMessage() {}
+
+func (x *DiskList) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiskList.ProtoReflect.Descriptor instead.
+func (*DiskList) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *DiskList) GetItems() []*DiskInfo {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type MetricItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Value         float64                `protobuf:"fixed64,2,opt,name=value,proto3" json:"value,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MetricItem) Reset() {
+	*x = MetricItem{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MetricItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MetricItem) ProtoMessage() {}
+
+func (x *MetricItem) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MetricItem.ProtoReflect.Descriptor instead.
+func (*MetricItem) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *MetricItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *MetricItem) GetValue() float64 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+func (x *MetricItem) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type GetMetricsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetMetricsRequest) Reset() {
+	*x = GetMetricsRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMetricsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMetricsRequest) ProtoMessage() {}
+
+func (x *GetMetricsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMetricsRequest.ProtoReflect.Descriptor instead.
+func (*GetMetricsRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{39}
+}
+
+type MetricsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Metrics       []*MetricItem          `protobuf:"bytes,1,rep,name=metrics,proto3" json:"metrics,omitempty"`
+	AsyncMetrics  []*MetricItem          `protobuf:"bytes,2,rep,name=async_metrics,json=asyncMetrics,proto3" json:"async_metrics,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MetricsResponse) Reset() {
+	*x = MetricsResponse{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MetricsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MetricsResponse) ProtoMessage() {}
+
+func (x *MetricsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MetricsResponse.ProtoReflect.Descriptor instead.
+func (*MetricsResponse) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *MetricsResponse) GetMetrics() []*MetricItem {
+	if x != nil {
+		return x.Metrics
+	}
+	return nil
+}
+
+func (x *MetricsResponse) GetAsyncMetrics() []*MetricItem {
+	if x != nil {
+		return x.AsyncMetrics
+	}
+	return nil
+}
+
 var File_clickhouse_manager_manager_proto protoreflect.FileDescriptor
 
 const file_clickhouse_manager_manager_proto_rawDesc = "" +
@@ -1650,11 +2818,16 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\x04sync\x18\x03 \x01(\bR\x04sync\x12\x18\n" +
 	"\acluster\x18\x04 \x01(\tR\acluster\"*\n" +
 	"\x14ListDatabasesRequest\x12\x12\n" +
-	"\x04like\x18\x01 \x01(\tR\x04like\"P\n" +
+	"\x04like\x18\x01 \x01(\tR\x04like\"\xb3\x01\n" +
 	"\bDatabase\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
 	"\x06engine\x18\x02 \x01(\tR\x06engine\x12\x18\n" +
-	"\acomment\x18\x03 \x01(\tR\acomment\"Y\n" +
+	"\acomment\x18\x03 \x01(\tR\acomment\x12!\n" +
+	"\ftables_count\x18\x04 \x01(\x04R\vtablesCount\x12\x1f\n" +
+	"\vtotal_bytes\x18\x05 \x01(\x04R\n" +
+	"totalBytes\x12\x1d\n" +
+	"\n" +
+	"total_rows\x18\x06 \x01(\x04R\ttotalRows\"Y\n" +
 	"\fDatabaseList\x12I\n" +
 	"\x05items\x18\x01 \x03(\v23.trb.clickhouse.manager.public.contract.v1.DatabaseR\x05items\"\xd0\x01\n" +
 	"\x06Column\x12\x18\n" +
@@ -1695,7 +2868,7 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\acluster\x18\x05 \x01(\tR\acluster\"I\n" +
 	"\x11ListTablesRequest\x12 \n" +
 	"\bdatabase\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bdatabase\x12\x12\n" +
-	"\x04like\x18\x02 \x01(\tR\x04like\"\xe5\x03\n" +
+	"\x04like\x18\x02 \x01(\tR\x04like\"\xbe\x04\n" +
 	"\x05Table\x12\x1a\n" +
 	"\bdatabase\x18\x01 \x01(\tR\bdatabase\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
@@ -1713,7 +2886,10 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\x12create_table_query\x18\n" +
 	" \x01(\tR\x10createTableQuery\x12X\n" +
 	"\x1ametadata_modification_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\x18metadataModificationTime\x12K\n" +
-	"\acolumns\x18\f \x03(\v21.trb.clickhouse.manager.public.contract.v1.ColumnR\acolumns\"S\n" +
+	"\acolumns\x18\f \x03(\v21.trb.clickhouse.manager.public.contract.v1.ColumnR\acolumns\x12\x1f\n" +
+	"\vparts_count\x18\r \x01(\x04R\n" +
+	"partsCount\x126\n" +
+	"\x17data_uncompressed_bytes\x18\x0e \x01(\x04R\x15dataUncompressedBytes\"S\n" +
 	"\tTableList\x12F\n" +
 	"\x05items\x18\x01 \x03(\v20.trb.clickhouse.manager.public.contract.v1.TableR\x05items\"\xae\x01\n" +
 	"\x12RenameTableRequest\x12 \n" +
@@ -1752,7 +2928,95 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\bdatabase\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bdatabase\x12\x1a\n" +
 	"\x05table\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x05table\x12O\n" +
 	"\x06column\x18\x03 \x01(\v21.trb.clickhouse.manager.public.contract.v1.ColumnB\x04\xe2A\x01\x02R\x06column\x12\x18\n" +
-	"\acluster\x18\x04 \x01(\tR\acluster2\x92\x1b\n" +
+	"\acluster\x18\x04 \x01(\tR\acluster\"\"\n" +
+	"\bQueryRow\x12\x16\n" +
+	"\x06values\x18\x01 \x03(\tR\x06values\"h\n" +
+	"\x13ExecuteQueryRequest\x12\x1a\n" +
+	"\x05query\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\x05query\x12\x19\n" +
+	"\bmax_rows\x18\x02 \x01(\rR\amaxRows\x12\x1a\n" +
+	"\bdatabase\x18\x03 \x01(\tR\bdatabase\"\x93\x02\n" +
+	"\x14ExecuteQueryResponse\x12\x18\n" +
+	"\acolumns\x18\x01 \x03(\tR\acolumns\x12\x14\n" +
+	"\x05types\x18\x02 \x03(\tR\x05types\x12G\n" +
+	"\x04rows\x18\x03 \x03(\v23.trb.clickhouse.manager.public.contract.v1.QueryRowR\x04rows\x12\x1d\n" +
+	"\n" +
+	"total_rows\x18\x04 \x01(\x04R\ttotalRows\x12'\n" +
+	"\x0felapsed_seconds\x18\x05 \x01(\x01R\x0eelapsedSeconds\x12\x1d\n" +
+	"\n" +
+	"bytes_read\x18\x06 \x01(\x04R\tbytesRead\x12\x1b\n" +
+	"\trows_read\x18\a \x01(\x04R\browsRead\"\xb6\x01\n" +
+	"\x17PreviewTableDataRequest\x12 \n" +
+	"\bdatabase\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bdatabase\x12\x1a\n" +
+	"\x05table\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x05table\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\rR\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\rR\x06offset\x12\x19\n" +
+	"\border_by\x18\x05 \x01(\tR\aorderBy\x12\x14\n" +
+	"\x05where\x18\x06 \x01(\tR\x05where\"\xe1\x02\n" +
+	"\tTablePart\x12\x1c\n" +
+	"\tpartition\x18\x01 \x01(\tR\tpartition\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06active\x18\x03 \x01(\bR\x06active\x12\x12\n" +
+	"\x04rows\x18\x04 \x01(\x04R\x04rows\x12\"\n" +
+	"\rbytes_on_disk\x18\x05 \x01(\x04R\vbytesOnDisk\x126\n" +
+	"\x17data_uncompressed_bytes\x18\x06 \x01(\x04R\x15dataUncompressedBytes\x12G\n" +
+	"\x11modification_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x10modificationTime\x12\x1b\n" +
+	"\tdisk_name\x18\b \x01(\tR\bdiskName\x12\x19\n" +
+	"\bmin_date\x18\t \x01(\tR\aminDate\x12\x19\n" +
+	"\bmax_date\x18\n" +
+	" \x01(\tR\amaxDate\"q\n" +
+	"\x10ListPartsRequest\x12 \n" +
+	"\bdatabase\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bdatabase\x12\x1a\n" +
+	"\x05table\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x05table\x12\x1f\n" +
+	"\vactive_only\x18\x03 \x01(\bR\n" +
+	"activeOnly\"W\n" +
+	"\tPartsList\x12J\n" +
+	"\x05items\x18\x01 \x03(\v24.trb.clickhouse.manager.public.contract.v1.TablePartR\x05items\"\xaa\x01\n" +
+	"\x14DropPartitionRequest\x12 \n" +
+	"\bdatabase\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\bdatabase\x12\x1a\n" +
+	"\x05table\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x05table\x12\"\n" +
+	"\tpartition\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\tpartition\x12\x16\n" +
+	"\x06detach\x18\x04 \x01(\bR\x06detach\x12\x18\n" +
+	"\acluster\x18\x05 \x01(\tR\acluster\"\xb7\x02\n" +
+	"\vProcessInfo\x12\x19\n" +
+	"\bquery_id\x18\x01 \x01(\tR\aqueryId\x12\x12\n" +
+	"\x04user\x18\x02 \x01(\tR\x04user\x12'\n" +
+	"\x0felapsed_seconds\x18\x03 \x01(\x01R\x0eelapsedSeconds\x12\x1b\n" +
+	"\trows_read\x18\x04 \x01(\x04R\browsRead\x12\x1d\n" +
+	"\n" +
+	"bytes_read\x18\x05 \x01(\x04R\tbytesRead\x12!\n" +
+	"\fmemory_usage\x18\x06 \x01(\x04R\vmemoryUsage\x12\x14\n" +
+	"\x05query\x18\a \x01(\tR\x05query\x12\x1f\n" +
+	"\vclient_name\x18\b \x01(\tR\n" +
+	"clientName\x12\x17\n" +
+	"\aos_user\x18\t \x01(\tR\x06osUser\x12!\n" +
+	"\fis_cancelled\x18\n" +
+	" \x01(\bR\visCancelled\"\x16\n" +
+	"\x14ListProcessesRequest\"[\n" +
+	"\vProcessList\x12L\n" +
+	"\x05items\x18\x01 \x03(\v26.trb.clickhouse.manager.public.contract.v1.ProcessInfoR\x05items\"5\n" +
+	"\x12KillProcessRequest\x12\x1f\n" +
+	"\bquery_id\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\aqueryId\"\xb1\x01\n" +
+	"\bDiskInfo\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04path\x18\x02 \x01(\tR\x04path\x12\x1d\n" +
+	"\n" +
+	"free_space\x18\x03 \x01(\x04R\tfreeSpace\x12\x1f\n" +
+	"\vtotal_space\x18\x04 \x01(\x04R\n" +
+	"totalSpace\x12)\n" +
+	"\x10unreserved_space\x18\x05 \x01(\x04R\x0funreservedSpace\x12\x12\n" +
+	"\x04type\x18\x06 \x01(\tR\x04type\"\x12\n" +
+	"\x10ListDisksRequest\"U\n" +
+	"\bDiskList\x12I\n" +
+	"\x05items\x18\x01 \x03(\v23.trb.clickhouse.manager.public.contract.v1.DiskInfoR\x05items\"X\n" +
+	"\n" +
+	"MetricItem\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"\x13\n" +
+	"\x11GetMetricsRequest\"\xbe\x01\n" +
+	"\x0fMetricsResponse\x12O\n" +
+	"\ametrics\x18\x01 \x03(\v25.trb.clickhouse.manager.public.contract.v1.MetricItemR\ametrics\x12Z\n" +
+	"\rasync_metrics\x18\x02 \x03(\v25.trb.clickhouse.manager.public.contract.v1.MetricItemR\fasyncMetrics2\xfb'\n" +
 	"\x11ClickHouseManager\x12\xa0\x01\n" +
 	"\x04Ping\x126.trb.clickhouse.manager.public.contract.v1.PingRequest\x1a7.trb.clickhouse.manager.public.contract.v1.PingResponse\"'\x82\xd3\xe4\x93\x02!Z\n" +
 	":\x01*\"\x05/Ping\x12\x13/v1/clickhouse/ping\x12\xb8\x01\n" +
@@ -1777,7 +3041,18 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\n" +
 	"DropColumn\x12<.trb.clickhouse.manager.public.contract.v1.DropColumnRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\"[\x82\xd3\xe4\x93\x02UZ\x10:\x01*\"\v/DropColumn*A/v1/clickhouse/databases/{database}/tables/{table}/columns/{name}\x12\xea\x01\n" +
 	"\fRenameColumn\x12>.trb.clickhouse.manager.public.contract.v1.RenameColumnRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\"g\x82\xd3\xe4\x93\x02a:\x01*Z\x12:\x01*\"\r/RenameColumn\"H/v1/clickhouse/databases/{database}/tables/{table}/columns/{name}:rename\x12\xea\x01\n" +
-	"\fModifyColumn\x12>.trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\"g\x82\xd3\xe4\x93\x02a:\x01*Z\x12:\x01*\"\r/ModifyColumn\x1aH/v1/clickhouse/databases/{database}/tables/{table}/columns/{column.name}BLZJgithub.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_managerb\x06proto3"
+	"\fModifyColumn\x12>.trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\"g\x82\xd3\xe4\x93\x02a:\x01*Z\x12:\x01*\"\r/ModifyColumn\x1aH/v1/clickhouse/databases/{database}/tables/{table}/columns/{column.name}\x12\xc4\x01\n" +
+	"\fExecuteQuery\x12>.trb.clickhouse.manager.public.contract.v1.ExecuteQueryRequest\x1a?.trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse\"3\x82\xd3\xe4\x93\x02-:\x01*Z\x12:\x01*\"\r/ExecuteQuery\"\x14/v1/clickhouse/query\x12\xf6\x01\n" +
+	"\x10PreviewTableData\x12B.trb.clickhouse.manager.public.contract.v1.PreviewTableDataRequest\x1a?.trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse\"]\x82\xd3\xe4\x93\x02W:\x01*Z\x16:\x01*\"\x11/PreviewTableData\":/v1/clickhouse/databases/{database}/tables/{table}:preview\x12\xd1\x01\n" +
+	"\tListParts\x12;.trb.clickhouse.manager.public.contract.v1.ListPartsRequest\x1a4.trb.clickhouse.manager.public.contract.v1.PartsList\"Q\x82\xd3\xe4\x93\x02KZ\x0f:\x01*\"\n" +
+	"/ListParts\x128/v1/clickhouse/databases/{database}/tables/{table}/parts\x12\xe7\x01\n" +
+	"\rDropPartition\x12?.trb.clickhouse.manager.public.contract.v1.DropPartitionRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\"b\x82\xd3\xe4\x93\x02\\:\x01*Z\x13:\x01*\"\x0e/DropPartition\"B/v1/clickhouse/databases/{database}/tables/{table}/partitions:drop\x12\xbf\x01\n" +
+	"\rListProcesses\x12?.trb.clickhouse.manager.public.contract.v1.ListProcessesRequest\x1a6.trb.clickhouse.manager.public.contract.v1.ProcessList\"5\x82\xd3\xe4\x93\x02/Z\x13:\x01*\"\x0e/ListProcesses\x12\x18/v1/clickhouse/processes\x12\xbc\x01\n" +
+	"\vKillProcess\x12=.trb.clickhouse.manager.public.contract.v1.KillProcessRequest\x1a1.trb.clickhouse.manager.public.contract.v1.Status\";\x82\xd3\xe4\x93\x025:\x01*Z\x11:\x01*\"\f/KillProcess\"\x1d/v1/clickhouse/processes:kill\x12\xac\x01\n" +
+	"\tListDisks\x12;.trb.clickhouse.manager.public.contract.v1.ListDisksRequest\x1a3.trb.clickhouse.manager.public.contract.v1.DiskList\"-\x82\xd3\xe4\x93\x02'Z\x0f:\x01*\"\n" +
+	"/ListDisks\x12\x14/v1/clickhouse/disks\x12\xb8\x01\n" +
+	"\n" +
+	"GetMetrics\x12<.trb.clickhouse.manager.public.contract.v1.GetMetricsRequest\x1a:.trb.clickhouse.manager.public.contract.v1.MetricsResponse\"0\x82\xd3\xe4\x93\x02*Z\x10:\x01*\"\v/GetMetrics\x12\x16/v1/clickhouse/metricsBLZJgithub.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_managerb\x06proto3"
 
 var (
 	file_clickhouse_manager_manager_proto_rawDescOnce sync.Once
@@ -1791,83 +3066,124 @@ func file_clickhouse_manager_manager_proto_rawDescGZIP() []byte {
 	return file_clickhouse_manager_manager_proto_rawDescData
 }
 
-var file_clickhouse_manager_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_clickhouse_manager_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
 var file_clickhouse_manager_manager_proto_goTypes = []any{
-	(*Status)(nil),                // 0: trb.clickhouse.manager.public.contract.v1.Status
-	(*PingRequest)(nil),           // 1: trb.clickhouse.manager.public.contract.v1.PingRequest
-	(*PingResponse)(nil),          // 2: trb.clickhouse.manager.public.contract.v1.PingResponse
-	(*ServerInfoRequest)(nil),     // 3: trb.clickhouse.manager.public.contract.v1.ServerInfoRequest
-	(*ServerInfoResponse)(nil),    // 4: trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
-	(*DatabaseSpec)(nil),          // 5: trb.clickhouse.manager.public.contract.v1.DatabaseSpec
-	(*DatabaseName)(nil),          // 6: trb.clickhouse.manager.public.contract.v1.DatabaseName
-	(*ListDatabasesRequest)(nil),  // 7: trb.clickhouse.manager.public.contract.v1.ListDatabasesRequest
-	(*Database)(nil),              // 8: trb.clickhouse.manager.public.contract.v1.Database
-	(*DatabaseList)(nil),          // 9: trb.clickhouse.manager.public.contract.v1.DatabaseList
-	(*Column)(nil),                // 10: trb.clickhouse.manager.public.contract.v1.Column
-	(*TableEngine)(nil),           // 11: trb.clickhouse.manager.public.contract.v1.TableEngine
-	(*TableSpec)(nil),             // 12: trb.clickhouse.manager.public.contract.v1.TableSpec
-	(*TableName)(nil),             // 13: trb.clickhouse.manager.public.contract.v1.TableName
-	(*ListTablesRequest)(nil),     // 14: trb.clickhouse.manager.public.contract.v1.ListTablesRequest
-	(*Table)(nil),                 // 15: trb.clickhouse.manager.public.contract.v1.Table
-	(*TableList)(nil),             // 16: trb.clickhouse.manager.public.contract.v1.TableList
-	(*RenameTableRequest)(nil),    // 17: trb.clickhouse.manager.public.contract.v1.RenameTableRequest
-	(*OptimizeTableRequest)(nil),  // 18: trb.clickhouse.manager.public.contract.v1.OptimizeTableRequest
-	(*AddColumnRequest)(nil),      // 19: trb.clickhouse.manager.public.contract.v1.AddColumnRequest
-	(*DropColumnRequest)(nil),     // 20: trb.clickhouse.manager.public.contract.v1.DropColumnRequest
-	(*RenameColumnRequest)(nil),   // 21: trb.clickhouse.manager.public.contract.v1.RenameColumnRequest
-	(*ModifyColumnRequest)(nil),   // 22: trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest
-	nil,                           // 23: trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
-	(*timestamppb.Timestamp)(nil), // 24: google.protobuf.Timestamp
+	(*Status)(nil),                  // 0: trb.clickhouse.manager.public.contract.v1.Status
+	(*PingRequest)(nil),             // 1: trb.clickhouse.manager.public.contract.v1.PingRequest
+	(*PingResponse)(nil),            // 2: trb.clickhouse.manager.public.contract.v1.PingResponse
+	(*ServerInfoRequest)(nil),       // 3: trb.clickhouse.manager.public.contract.v1.ServerInfoRequest
+	(*ServerInfoResponse)(nil),      // 4: trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
+	(*DatabaseSpec)(nil),            // 5: trb.clickhouse.manager.public.contract.v1.DatabaseSpec
+	(*DatabaseName)(nil),            // 6: trb.clickhouse.manager.public.contract.v1.DatabaseName
+	(*ListDatabasesRequest)(nil),    // 7: trb.clickhouse.manager.public.contract.v1.ListDatabasesRequest
+	(*Database)(nil),                // 8: trb.clickhouse.manager.public.contract.v1.Database
+	(*DatabaseList)(nil),            // 9: trb.clickhouse.manager.public.contract.v1.DatabaseList
+	(*Column)(nil),                  // 10: trb.clickhouse.manager.public.contract.v1.Column
+	(*TableEngine)(nil),             // 11: trb.clickhouse.manager.public.contract.v1.TableEngine
+	(*TableSpec)(nil),               // 12: trb.clickhouse.manager.public.contract.v1.TableSpec
+	(*TableName)(nil),               // 13: trb.clickhouse.manager.public.contract.v1.TableName
+	(*ListTablesRequest)(nil),       // 14: trb.clickhouse.manager.public.contract.v1.ListTablesRequest
+	(*Table)(nil),                   // 15: trb.clickhouse.manager.public.contract.v1.Table
+	(*TableList)(nil),               // 16: trb.clickhouse.manager.public.contract.v1.TableList
+	(*RenameTableRequest)(nil),      // 17: trb.clickhouse.manager.public.contract.v1.RenameTableRequest
+	(*OptimizeTableRequest)(nil),    // 18: trb.clickhouse.manager.public.contract.v1.OptimizeTableRequest
+	(*AddColumnRequest)(nil),        // 19: trb.clickhouse.manager.public.contract.v1.AddColumnRequest
+	(*DropColumnRequest)(nil),       // 20: trb.clickhouse.manager.public.contract.v1.DropColumnRequest
+	(*RenameColumnRequest)(nil),     // 21: trb.clickhouse.manager.public.contract.v1.RenameColumnRequest
+	(*ModifyColumnRequest)(nil),     // 22: trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest
+	(*QueryRow)(nil),                // 23: trb.clickhouse.manager.public.contract.v1.QueryRow
+	(*ExecuteQueryRequest)(nil),     // 24: trb.clickhouse.manager.public.contract.v1.ExecuteQueryRequest
+	(*ExecuteQueryResponse)(nil),    // 25: trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
+	(*PreviewTableDataRequest)(nil), // 26: trb.clickhouse.manager.public.contract.v1.PreviewTableDataRequest
+	(*TablePart)(nil),               // 27: trb.clickhouse.manager.public.contract.v1.TablePart
+	(*ListPartsRequest)(nil),        // 28: trb.clickhouse.manager.public.contract.v1.ListPartsRequest
+	(*PartsList)(nil),               // 29: trb.clickhouse.manager.public.contract.v1.PartsList
+	(*DropPartitionRequest)(nil),    // 30: trb.clickhouse.manager.public.contract.v1.DropPartitionRequest
+	(*ProcessInfo)(nil),             // 31: trb.clickhouse.manager.public.contract.v1.ProcessInfo
+	(*ListProcessesRequest)(nil),    // 32: trb.clickhouse.manager.public.contract.v1.ListProcessesRequest
+	(*ProcessList)(nil),             // 33: trb.clickhouse.manager.public.contract.v1.ProcessList
+	(*KillProcessRequest)(nil),      // 34: trb.clickhouse.manager.public.contract.v1.KillProcessRequest
+	(*DiskInfo)(nil),                // 35: trb.clickhouse.manager.public.contract.v1.DiskInfo
+	(*ListDisksRequest)(nil),        // 36: trb.clickhouse.manager.public.contract.v1.ListDisksRequest
+	(*DiskList)(nil),                // 37: trb.clickhouse.manager.public.contract.v1.DiskList
+	(*MetricItem)(nil),              // 38: trb.clickhouse.manager.public.contract.v1.MetricItem
+	(*GetMetricsRequest)(nil),       // 39: trb.clickhouse.manager.public.contract.v1.GetMetricsRequest
+	(*MetricsResponse)(nil),         // 40: trb.clickhouse.manager.public.contract.v1.MetricsResponse
+	nil,                             // 41: trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
+	(*timestamppb.Timestamp)(nil),   // 42: google.protobuf.Timestamp
 }
 var file_clickhouse_manager_manager_proto_depIdxs = []int32{
 	8,  // 0: trb.clickhouse.manager.public.contract.v1.DatabaseList.items:type_name -> trb.clickhouse.manager.public.contract.v1.Database
 	10, // 1: trb.clickhouse.manager.public.contract.v1.TableSpec.columns:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	11, // 2: trb.clickhouse.manager.public.contract.v1.TableSpec.engine:type_name -> trb.clickhouse.manager.public.contract.v1.TableEngine
-	23, // 3: trb.clickhouse.manager.public.contract.v1.TableSpec.settings:type_name -> trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
-	24, // 4: trb.clickhouse.manager.public.contract.v1.Table.metadata_modification_time:type_name -> google.protobuf.Timestamp
+	41, // 3: trb.clickhouse.manager.public.contract.v1.TableSpec.settings:type_name -> trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
+	42, // 4: trb.clickhouse.manager.public.contract.v1.Table.metadata_modification_time:type_name -> google.protobuf.Timestamp
 	10, // 5: trb.clickhouse.manager.public.contract.v1.Table.columns:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	15, // 6: trb.clickhouse.manager.public.contract.v1.TableList.items:type_name -> trb.clickhouse.manager.public.contract.v1.Table
 	10, // 7: trb.clickhouse.manager.public.contract.v1.AddColumnRequest.column:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	10, // 8: trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest.column:type_name -> trb.clickhouse.manager.public.contract.v1.Column
-	1,  // 9: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:input_type -> trb.clickhouse.manager.public.contract.v1.PingRequest
-	3,  // 10: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:input_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoRequest
-	5,  // 11: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseSpec
-	6,  // 12: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseName
-	7,  // 13: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:input_type -> trb.clickhouse.manager.public.contract.v1.ListDatabasesRequest
-	6,  // 14: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseName
-	12, // 15: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableSpec
-	13, // 16: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
-	13, // 17: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
-	17, // 18: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:input_type -> trb.clickhouse.manager.public.contract.v1.RenameTableRequest
-	18, // 19: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:input_type -> trb.clickhouse.manager.public.contract.v1.OptimizeTableRequest
-	14, // 20: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:input_type -> trb.clickhouse.manager.public.contract.v1.ListTablesRequest
-	13, // 21: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
-	19, // 22: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:input_type -> trb.clickhouse.manager.public.contract.v1.AddColumnRequest
-	20, // 23: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:input_type -> trb.clickhouse.manager.public.contract.v1.DropColumnRequest
-	21, // 24: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:input_type -> trb.clickhouse.manager.public.contract.v1.RenameColumnRequest
-	22, // 25: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:input_type -> trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest
-	2,  // 26: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:output_type -> trb.clickhouse.manager.public.contract.v1.PingResponse
-	4,  // 27: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:output_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
-	0,  // 28: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 29: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	9,  // 30: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:output_type -> trb.clickhouse.manager.public.contract.v1.DatabaseList
-	8,  // 31: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Database
-	0,  // 32: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 33: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 34: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 35: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 36: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	16, // 37: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:output_type -> trb.clickhouse.manager.public.contract.v1.TableList
-	15, // 38: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Table
-	0,  // 39: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 40: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 41: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 42: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	26, // [26:43] is the sub-list for method output_type
-	9,  // [9:26] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	23, // 9: trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse.rows:type_name -> trb.clickhouse.manager.public.contract.v1.QueryRow
+	42, // 10: trb.clickhouse.manager.public.contract.v1.TablePart.modification_time:type_name -> google.protobuf.Timestamp
+	27, // 11: trb.clickhouse.manager.public.contract.v1.PartsList.items:type_name -> trb.clickhouse.manager.public.contract.v1.TablePart
+	31, // 12: trb.clickhouse.manager.public.contract.v1.ProcessList.items:type_name -> trb.clickhouse.manager.public.contract.v1.ProcessInfo
+	35, // 13: trb.clickhouse.manager.public.contract.v1.DiskList.items:type_name -> trb.clickhouse.manager.public.contract.v1.DiskInfo
+	38, // 14: trb.clickhouse.manager.public.contract.v1.MetricsResponse.metrics:type_name -> trb.clickhouse.manager.public.contract.v1.MetricItem
+	38, // 15: trb.clickhouse.manager.public.contract.v1.MetricsResponse.async_metrics:type_name -> trb.clickhouse.manager.public.contract.v1.MetricItem
+	1,  // 16: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:input_type -> trb.clickhouse.manager.public.contract.v1.PingRequest
+	3,  // 17: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:input_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoRequest
+	5,  // 18: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseSpec
+	6,  // 19: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseName
+	7,  // 20: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:input_type -> trb.clickhouse.manager.public.contract.v1.ListDatabasesRequest
+	6,  // 21: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:input_type -> trb.clickhouse.manager.public.contract.v1.DatabaseName
+	12, // 22: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableSpec
+	13, // 23: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
+	13, // 24: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
+	17, // 25: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:input_type -> trb.clickhouse.manager.public.contract.v1.RenameTableRequest
+	18, // 26: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:input_type -> trb.clickhouse.manager.public.contract.v1.OptimizeTableRequest
+	14, // 27: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:input_type -> trb.clickhouse.manager.public.contract.v1.ListTablesRequest
+	13, // 28: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:input_type -> trb.clickhouse.manager.public.contract.v1.TableName
+	19, // 29: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:input_type -> trb.clickhouse.manager.public.contract.v1.AddColumnRequest
+	20, // 30: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:input_type -> trb.clickhouse.manager.public.contract.v1.DropColumnRequest
+	21, // 31: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:input_type -> trb.clickhouse.manager.public.contract.v1.RenameColumnRequest
+	22, // 32: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:input_type -> trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest
+	24, // 33: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ExecuteQuery:input_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryRequest
+	26, // 34: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.PreviewTableData:input_type -> trb.clickhouse.manager.public.contract.v1.PreviewTableDataRequest
+	28, // 35: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListParts:input_type -> trb.clickhouse.manager.public.contract.v1.ListPartsRequest
+	30, // 36: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropPartition:input_type -> trb.clickhouse.manager.public.contract.v1.DropPartitionRequest
+	32, // 37: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListProcesses:input_type -> trb.clickhouse.manager.public.contract.v1.ListProcessesRequest
+	34, // 38: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.KillProcess:input_type -> trb.clickhouse.manager.public.contract.v1.KillProcessRequest
+	36, // 39: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDisks:input_type -> trb.clickhouse.manager.public.contract.v1.ListDisksRequest
+	39, // 40: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetMetrics:input_type -> trb.clickhouse.manager.public.contract.v1.GetMetricsRequest
+	2,  // 41: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:output_type -> trb.clickhouse.manager.public.contract.v1.PingResponse
+	4,  // 42: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:output_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
+	0,  // 43: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 44: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	9,  // 45: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:output_type -> trb.clickhouse.manager.public.contract.v1.DatabaseList
+	8,  // 46: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Database
+	0,  // 47: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 48: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 49: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 50: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 51: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	16, // 52: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:output_type -> trb.clickhouse.manager.public.contract.v1.TableList
+	15, // 53: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Table
+	0,  // 54: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 55: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 56: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 57: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	25, // 58: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ExecuteQuery:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
+	25, // 59: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.PreviewTableData:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
+	29, // 60: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListParts:output_type -> trb.clickhouse.manager.public.contract.v1.PartsList
+	0,  // 61: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropPartition:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	33, // 62: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListProcesses:output_type -> trb.clickhouse.manager.public.contract.v1.ProcessList
+	0,  // 63: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.KillProcess:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	37, // 64: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDisks:output_type -> trb.clickhouse.manager.public.contract.v1.DiskList
+	40, // 65: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetMetrics:output_type -> trb.clickhouse.manager.public.contract.v1.MetricsResponse
+	41, // [41:66] is the sub-list for method output_type
+	16, // [16:41] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_clickhouse_manager_manager_proto_init() }
@@ -1881,7 +3197,7 @@ func file_clickhouse_manager_manager_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_clickhouse_manager_manager_proto_rawDesc), len(file_clickhouse_manager_manager_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   42,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

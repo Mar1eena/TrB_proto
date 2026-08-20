@@ -19,32 +19,38 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ClickHouseManager_Ping_FullMethodName           = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/Ping"
-	ClickHouseManager_ServerInfo_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ServerInfo"
-	ClickHouseManager_CreateDatabase_FullMethodName = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateDatabase"
-	ClickHouseManager_DropDatabase_FullMethodName   = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropDatabase"
-	ClickHouseManager_ListDatabases_FullMethodName  = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDatabases"
-	ClickHouseManager_DatabaseInfo_FullMethodName   = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DatabaseInfo"
-	ClickHouseManager_CreateTable_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateTable"
-	ClickHouseManager_DropTable_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropTable"
-	ClickHouseManager_TruncateTable_FullMethodName  = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TruncateTable"
-	ClickHouseManager_RenameTable_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameTable"
-	ClickHouseManager_OptimizeTable_FullMethodName  = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/OptimizeTable"
-	ClickHouseManager_ListTables_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListTables"
-	ClickHouseManager_TableInfo_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TableInfo"
-	ClickHouseManager_AddColumn_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/AddColumn"
-	ClickHouseManager_DropColumn_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropColumn"
-	ClickHouseManager_RenameColumn_FullMethodName   = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameColumn"
-	ClickHouseManager_ModifyColumn_FullMethodName   = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ModifyColumn"
+	ClickHouseManager_Ping_FullMethodName             = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/Ping"
+	ClickHouseManager_ServerInfo_FullMethodName       = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ServerInfo"
+	ClickHouseManager_CreateDatabase_FullMethodName   = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateDatabase"
+	ClickHouseManager_DropDatabase_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropDatabase"
+	ClickHouseManager_ListDatabases_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDatabases"
+	ClickHouseManager_DatabaseInfo_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DatabaseInfo"
+	ClickHouseManager_CreateTable_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateTable"
+	ClickHouseManager_DropTable_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropTable"
+	ClickHouseManager_TruncateTable_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TruncateTable"
+	ClickHouseManager_RenameTable_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameTable"
+	ClickHouseManager_OptimizeTable_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/OptimizeTable"
+	ClickHouseManager_ListTables_FullMethodName       = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListTables"
+	ClickHouseManager_TableInfo_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TableInfo"
+	ClickHouseManager_AddColumn_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/AddColumn"
+	ClickHouseManager_DropColumn_FullMethodName       = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropColumn"
+	ClickHouseManager_RenameColumn_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameColumn"
+	ClickHouseManager_ModifyColumn_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ModifyColumn"
+	ClickHouseManager_ExecuteQuery_FullMethodName     = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery"
+	ClickHouseManager_PreviewTableData_FullMethodName = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData"
+	ClickHouseManager_ListParts_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts"
+	ClickHouseManager_DropPartition_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition"
+	ClickHouseManager_ListProcesses_FullMethodName    = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses"
+	ClickHouseManager_KillProcess_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess"
+	ClickHouseManager_ListDisks_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks"
+	ClickHouseManager_GetMetrics_FullMethodName       = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics"
 )
 
 // ClickHouseManagerClient is the client API for ClickHouseManager service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// ClickHouseManager — типизированное управление схемой ClickHouse (DDL).
-// Произвольный SQL с клиента не принимается: запросы — clickhouse.grpc.ClickHouse,
-// прикладные выборки — trb.db.api.public.contract.v1.DbApi.
+// ClickHouseManager — типизированное управление схемой, мониторинг и выполнение запросов к ClickHouse.
 type ClickHouseManagerClient interface {
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	ServerInfo(ctx context.Context, in *ServerInfoRequest, opts ...grpc.CallOption) (*ServerInfoResponse, error)
@@ -63,6 +69,14 @@ type ClickHouseManagerClient interface {
 	DropColumn(ctx context.Context, in *DropColumnRequest, opts ...grpc.CallOption) (*Status, error)
 	RenameColumn(ctx context.Context, in *RenameColumnRequest, opts ...grpc.CallOption) (*Status, error)
 	ModifyColumn(ctx context.Context, in *ModifyColumnRequest, opts ...grpc.CallOption) (*Status, error)
+	ExecuteQuery(ctx context.Context, in *ExecuteQueryRequest, opts ...grpc.CallOption) (*ExecuteQueryResponse, error)
+	PreviewTableData(ctx context.Context, in *PreviewTableDataRequest, opts ...grpc.CallOption) (*ExecuteQueryResponse, error)
+	ListParts(ctx context.Context, in *ListPartsRequest, opts ...grpc.CallOption) (*PartsList, error)
+	DropPartition(ctx context.Context, in *DropPartitionRequest, opts ...grpc.CallOption) (*Status, error)
+	ListProcesses(ctx context.Context, in *ListProcessesRequest, opts ...grpc.CallOption) (*ProcessList, error)
+	KillProcess(ctx context.Context, in *KillProcessRequest, opts ...grpc.CallOption) (*Status, error)
+	ListDisks(ctx context.Context, in *ListDisksRequest, opts ...grpc.CallOption) (*DiskList, error)
+	GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*MetricsResponse, error)
 }
 
 type clickHouseManagerClient struct {
@@ -243,13 +257,91 @@ func (c *clickHouseManagerClient) ModifyColumn(ctx context.Context, in *ModifyCo
 	return out, nil
 }
 
+func (c *clickHouseManagerClient) ExecuteQuery(ctx context.Context, in *ExecuteQueryRequest, opts ...grpc.CallOption) (*ExecuteQueryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExecuteQueryResponse)
+	err := c.cc.Invoke(ctx, ClickHouseManager_ExecuteQuery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) PreviewTableData(ctx context.Context, in *PreviewTableDataRequest, opts ...grpc.CallOption) (*ExecuteQueryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExecuteQueryResponse)
+	err := c.cc.Invoke(ctx, ClickHouseManager_PreviewTableData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) ListParts(ctx context.Context, in *ListPartsRequest, opts ...grpc.CallOption) (*PartsList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PartsList)
+	err := c.cc.Invoke(ctx, ClickHouseManager_ListParts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) DropPartition(ctx context.Context, in *DropPartitionRequest, opts ...grpc.CallOption) (*Status, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Status)
+	err := c.cc.Invoke(ctx, ClickHouseManager_DropPartition_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) ListProcesses(ctx context.Context, in *ListProcessesRequest, opts ...grpc.CallOption) (*ProcessList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProcessList)
+	err := c.cc.Invoke(ctx, ClickHouseManager_ListProcesses_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) KillProcess(ctx context.Context, in *KillProcessRequest, opts ...grpc.CallOption) (*Status, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Status)
+	err := c.cc.Invoke(ctx, ClickHouseManager_KillProcess_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) ListDisks(ctx context.Context, in *ListDisksRequest, opts ...grpc.CallOption) (*DiskList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiskList)
+	err := c.cc.Invoke(ctx, ClickHouseManager_ListDisks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clickHouseManagerClient) GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*MetricsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MetricsResponse)
+	err := c.cc.Invoke(ctx, ClickHouseManager_GetMetrics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ClickHouseManagerServer is the server API for ClickHouseManager service.
 // All implementations must embed UnimplementedClickHouseManagerServer
 // for forward compatibility.
 //
-// ClickHouseManager — типизированное управление схемой ClickHouse (DDL).
-// Произвольный SQL с клиента не принимается: запросы — clickhouse.grpc.ClickHouse,
-// прикладные выборки — trb.db.api.public.contract.v1.DbApi.
+// ClickHouseManager — типизированное управление схемой, мониторинг и выполнение запросов к ClickHouse.
 type ClickHouseManagerServer interface {
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	ServerInfo(context.Context, *ServerInfoRequest) (*ServerInfoResponse, error)
@@ -268,6 +360,14 @@ type ClickHouseManagerServer interface {
 	DropColumn(context.Context, *DropColumnRequest) (*Status, error)
 	RenameColumn(context.Context, *RenameColumnRequest) (*Status, error)
 	ModifyColumn(context.Context, *ModifyColumnRequest) (*Status, error)
+	ExecuteQuery(context.Context, *ExecuteQueryRequest) (*ExecuteQueryResponse, error)
+	PreviewTableData(context.Context, *PreviewTableDataRequest) (*ExecuteQueryResponse, error)
+	ListParts(context.Context, *ListPartsRequest) (*PartsList, error)
+	DropPartition(context.Context, *DropPartitionRequest) (*Status, error)
+	ListProcesses(context.Context, *ListProcessesRequest) (*ProcessList, error)
+	KillProcess(context.Context, *KillProcessRequest) (*Status, error)
+	ListDisks(context.Context, *ListDisksRequest) (*DiskList, error)
+	GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error)
 	mustEmbedUnimplementedClickHouseManagerServer()
 }
 
@@ -328,6 +428,30 @@ func (UnimplementedClickHouseManagerServer) RenameColumn(context.Context, *Renam
 }
 func (UnimplementedClickHouseManagerServer) ModifyColumn(context.Context, *ModifyColumnRequest) (*Status, error) {
 	return nil, status.Error(codes.Unimplemented, "method ModifyColumn not implemented")
+}
+func (UnimplementedClickHouseManagerServer) ExecuteQuery(context.Context, *ExecuteQueryRequest) (*ExecuteQueryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ExecuteQuery not implemented")
+}
+func (UnimplementedClickHouseManagerServer) PreviewTableData(context.Context, *PreviewTableDataRequest) (*ExecuteQueryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PreviewTableData not implemented")
+}
+func (UnimplementedClickHouseManagerServer) ListParts(context.Context, *ListPartsRequest) (*PartsList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListParts not implemented")
+}
+func (UnimplementedClickHouseManagerServer) DropPartition(context.Context, *DropPartitionRequest) (*Status, error) {
+	return nil, status.Error(codes.Unimplemented, "method DropPartition not implemented")
+}
+func (UnimplementedClickHouseManagerServer) ListProcesses(context.Context, *ListProcessesRequest) (*ProcessList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListProcesses not implemented")
+}
+func (UnimplementedClickHouseManagerServer) KillProcess(context.Context, *KillProcessRequest) (*Status, error) {
+	return nil, status.Error(codes.Unimplemented, "method KillProcess not implemented")
+}
+func (UnimplementedClickHouseManagerServer) ListDisks(context.Context, *ListDisksRequest) (*DiskList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListDisks not implemented")
+}
+func (UnimplementedClickHouseManagerServer) GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMetrics not implemented")
 }
 func (UnimplementedClickHouseManagerServer) mustEmbedUnimplementedClickHouseManagerServer() {}
 func (UnimplementedClickHouseManagerServer) testEmbeddedByValue()                           {}
@@ -656,6 +780,150 @@ func _ClickHouseManager_ModifyColumn_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClickHouseManager_ExecuteQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).ExecuteQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_ExecuteQuery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).ExecuteQuery(ctx, req.(*ExecuteQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_PreviewTableData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreviewTableDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).PreviewTableData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_PreviewTableData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).PreviewTableData(ctx, req.(*PreviewTableDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_ListParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPartsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).ListParts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_ListParts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).ListParts(ctx, req.(*ListPartsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_DropPartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DropPartitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).DropPartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_DropPartition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).DropPartition(ctx, req.(*DropPartitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_ListProcesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProcessesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).ListProcesses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_ListProcesses_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).ListProcesses(ctx, req.(*ListProcessesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_KillProcess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KillProcessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).KillProcess(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_KillProcess_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).KillProcess(ctx, req.(*KillProcessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_ListDisks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDisksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).ListDisks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_ListDisks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).ListDisks(ctx, req.(*ListDisksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClickHouseManager_GetMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMetricsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).GetMetrics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_GetMetrics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).GetMetrics(ctx, req.(*GetMetricsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ClickHouseManager_ServiceDesc is the grpc.ServiceDesc for ClickHouseManager service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -730,6 +998,38 @@ var ClickHouseManager_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ModifyColumn",
 			Handler:    _ClickHouseManager_ModifyColumn_Handler,
+		},
+		{
+			MethodName: "ExecuteQuery",
+			Handler:    _ClickHouseManager_ExecuteQuery_Handler,
+		},
+		{
+			MethodName: "PreviewTableData",
+			Handler:    _ClickHouseManager_PreviewTableData_Handler,
+		},
+		{
+			MethodName: "ListParts",
+			Handler:    _ClickHouseManager_ListParts_Handler,
+		},
+		{
+			MethodName: "DropPartition",
+			Handler:    _ClickHouseManager_DropPartition_Handler,
+		},
+		{
+			MethodName: "ListProcesses",
+			Handler:    _ClickHouseManager_ListProcesses_Handler,
+		},
+		{
+			MethodName: "KillProcess",
+			Handler:    _ClickHouseManager_KillProcess_Handler,
+		},
+		{
+			MethodName: "ListDisks",
+			Handler:    _ClickHouseManager_ListDisks_Handler,
+		},
+		{
+			MethodName: "GetMetrics",
+			Handler:    _ClickHouseManager_GetMetrics_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
