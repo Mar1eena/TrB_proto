@@ -1,0 +1,303 @@
+syntax = "proto3";
+
+package trb.clickhouse.manager.public.contract.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_manager";
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// ClickHouseManager — типизированное управление схемой ClickHouse (DDL).
+// Произвольный SQL с клиента не принимается: запросы — clickhouse.grpc.ClickHouse,
+// прикладные выборки — trb.db.api.public.contract.v1.DbApi.
+service ClickHouseManager {
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/ping"
+      additional_bindings { post: "/Ping" body: "*" }
+    };
+  }
+
+  rpc ServerInfo(ServerInfoRequest) returns (ServerInfoResponse) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/info"
+      additional_bindings { post: "/ServerInfo" body: "*" }
+    };
+  }
+
+  rpc CreateDatabase(DatabaseSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases"
+      body: "*"
+      additional_bindings { post: "/CreateDatabase" body: "*" }
+    };
+  }
+
+  rpc DropDatabase(DatabaseName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/clickhouse/databases/{name}"
+      additional_bindings { post: "/DropDatabase" body: "*" }
+    };
+  }
+
+  rpc ListDatabases(ListDatabasesRequest) returns (DatabaseList) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/databases"
+      additional_bindings { post: "/ListDatabases" body: "*" }
+    };
+  }
+
+  rpc DatabaseInfo(DatabaseName) returns (Database) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/databases/{name}"
+      additional_bindings { post: "/DatabaseInfo" body: "*" }
+    };
+  }
+
+  rpc CreateTable(TableSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables"
+      body: "*"
+      additional_bindings { post: "/CreateTable" body: "*" }
+    };
+  }
+
+  rpc DropTable(TableName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/clickhouse/databases/{database}/tables/{name}"
+      additional_bindings { post: "/DropTable" body: "*" }
+    };
+  }
+
+  rpc TruncateTable(TableName) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{name}:truncate"
+      additional_bindings { post: "/TruncateTable" body: "*" }
+    };
+  }
+
+  rpc RenameTable(RenameTableRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{name}:rename"
+      body: "*"
+      additional_bindings { post: "/RenameTable" body: "*" }
+    };
+  }
+
+  rpc OptimizeTable(OptimizeTableRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{name}:optimize"
+      body: "*"
+      additional_bindings { post: "/OptimizeTable" body: "*" }
+    };
+  }
+
+  rpc ListTables(ListTablesRequest) returns (TableList) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/databases/{database}/tables"
+      additional_bindings { post: "/ListTables" body: "*" }
+    };
+  }
+
+  rpc TableInfo(TableName) returns (Table) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/databases/{database}/tables/{name}"
+      additional_bindings { post: "/TableInfo" body: "*" }
+    };
+  }
+
+  rpc AddColumn(AddColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{table}/columns"
+      body: "*"
+      additional_bindings { post: "/AddColumn" body: "*" }
+    };
+  }
+
+  rpc DropColumn(DropColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/clickhouse/databases/{database}/tables/{table}/columns/{name}"
+      additional_bindings { post: "/DropColumn" body: "*" }
+    };
+  }
+
+  rpc RenameColumn(RenameColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/clickhouse/databases/{database}/tables/{table}/columns/{name}:rename"
+      body: "*"
+      additional_bindings { post: "/RenameColumn" body: "*" }
+    };
+  }
+
+  rpc ModifyColumn(ModifyColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      put: "/v1/clickhouse/databases/{database}/tables/{table}/columns/{column.name}"
+      body: "*"
+      additional_bindings { post: "/ModifyColumn" body: "*" }
+    };
+  }
+}
+
+message Status {
+  bool success = 1;
+  string message = 2;
+}
+
+message PingRequest {}
+
+message PingResponse {
+  bool ok = 1;
+  string version = 2;
+}
+
+message ServerInfoRequest {}
+
+message ServerInfoResponse {
+  string version = 1;
+  string display_name = 2;
+  uint32 revision = 3;
+  string timezone = 4;
+  uint32 uptime_seconds = 5;
+}
+
+message DatabaseSpec {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  string engine = 2; // Atomic, Lazy, Memory, …
+  string comment = 3;
+  bool if_not_exists = 4;
+  string cluster = 5; // ON CLUSTER
+}
+
+message DatabaseName {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 2;
+  bool sync = 3;
+  string cluster = 4;
+}
+
+message ListDatabasesRequest {
+  string like = 1;
+}
+
+message Database {
+  string name = 1;
+  string engine = 2;
+  string comment = 3;
+}
+
+message DatabaseList {
+  repeated Database items = 1;
+}
+
+message Column {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  string type = 2 [(google.api.field_behavior) = REQUIRED]; // DateTime, String, Float64, …
+  string default_kind = 3; // DEFAULT, MATERIALIZED, ALIAS, EPHEMERAL
+  string default_expression = 4;
+  string codec = 5;
+  string ttl = 6;
+  string comment = 7;
+}
+
+message TableEngine {
+  string name = 1; // MergeTree, ReplacingMergeTree, AggregatingMergeTree, …
+  repeated string params = 2;
+}
+
+message TableSpec {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  repeated Column columns = 3;
+  TableEngine engine = 4;
+  string order_by = 5;
+  string partition_by = 6;
+  string primary_key = 7;
+  string sample_by = 8;
+  string ttl = 9;
+  map<string, string> settings = 10;
+  string comment = 11;
+  bool if_not_exists = 12;
+  string cluster = 13;
+}
+
+message TableName {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 3;
+  bool sync = 4;
+  string cluster = 5;
+}
+
+message ListTablesRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string like = 2;
+}
+
+message Table {
+  string database = 1;
+  string name = 2;
+  string engine = 3;
+  uint64 total_rows = 4;
+  uint64 total_bytes = 5;
+  string partition_key = 6;
+  string sorting_key = 7;
+  string primary_key = 8;
+  string comment = 9;
+  string create_table_query = 10;
+  google.protobuf.Timestamp metadata_modification_time = 11;
+  repeated Column columns = 12;
+}
+
+message TableList {
+  repeated Table items = 1;
+}
+
+message RenameTableRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  string new_database = 3;
+  string new_name = 4 [(google.api.field_behavior) = REQUIRED];
+  string cluster = 5;
+}
+
+message OptimizeTableRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  string partition = 3;
+  bool final = 4;
+  bool deduplicate = 5;
+  string cluster = 6;
+}
+
+message AddColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  Column column = 3 [(google.api.field_behavior) = REQUIRED];
+  string after = 4; // AFTER col; пусто — в конец, FIRST — в начало
+  bool if_not_exists = 5;
+  string cluster = 6;
+}
+
+message DropColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 4;
+  string cluster = 5;
+}
+
+message RenameColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  string new_name = 4 [(google.api.field_behavior) = REQUIRED];
+  string cluster = 5;
+}
+
+message ModifyColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string table = 2 [(google.api.field_behavior) = REQUIRED];
+  Column column = 3 [(google.api.field_behavior) = REQUIRED];
+  string cluster = 4;
+}

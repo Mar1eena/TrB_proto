@@ -11,6 +11,7 @@ PROTOS := \
 	$(PROTO_PATH)/nats/*.proto \
 	$(PROTO_PATH)/moex/*.proto \
 	$(PROTO_PATH)/clickhouse/*.proto \
+	$(PROTO_PATH)/clickhouse_manager/*.proto \
 	$(PROTO_PATH)/manager_indicators/*.proto \
 	$(PROTO_PATH)/db_api/*.proto
 
