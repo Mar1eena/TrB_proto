@@ -195,6 +195,13 @@ service ClickHouseManager {
       additional_bindings { post: "/GetMetrics" body: "*" }
     };
   }
+
+  rpc GetTableOptions(TableOptionsRequest) returns (TableOptionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/clickhouse/table_options"
+      additional_bindings { post: "/GetTableOptions" body: "*" }
+    };
+  }
 }
 
 message Status {
@@ -474,4 +481,13 @@ message GetMetricsRequest {}
 message MetricsResponse {
   repeated MetricItem metrics = 1;
   repeated MetricItem async_metrics = 2;
+}
+
+message TableOptionsRequest {}
+
+message TableOptionsResponse {
+  repeated string engines = 1;
+  repeated string data_types = 2;
+  repeated string merge_tree_settings = 3;
+  repeated string codecs = 4;
 }

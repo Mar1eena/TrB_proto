@@ -2787,6 +2787,110 @@ func (x *MetricsResponse) GetAsyncMetrics() []*MetricItem {
 	return nil
 }
 
+type TableOptionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TableOptionsRequest) Reset() {
+	*x = TableOptionsRequest{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableOptionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableOptionsRequest) ProtoMessage() {}
+
+func (x *TableOptionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableOptionsRequest.ProtoReflect.Descriptor instead.
+func (*TableOptionsRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{41}
+}
+
+type TableOptionsResponse struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Engines           []string               `protobuf:"bytes,1,rep,name=engines,proto3" json:"engines,omitempty"`
+	DataTypes         []string               `protobuf:"bytes,2,rep,name=data_types,json=dataTypes,proto3" json:"data_types,omitempty"`
+	MergeTreeSettings []string               `protobuf:"bytes,3,rep,name=merge_tree_settings,json=mergeTreeSettings,proto3" json:"merge_tree_settings,omitempty"`
+	Codecs            []string               `protobuf:"bytes,4,rep,name=codecs,proto3" json:"codecs,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *TableOptionsResponse) Reset() {
+	*x = TableOptionsResponse{}
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableOptionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableOptionsResponse) ProtoMessage() {}
+
+func (x *TableOptionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_manager_manager_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableOptionsResponse.ProtoReflect.Descriptor instead.
+func (*TableOptionsResponse) Descriptor() ([]byte, []int) {
+	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *TableOptionsResponse) GetEngines() []string {
+	if x != nil {
+		return x.Engines
+	}
+	return nil
+}
+
+func (x *TableOptionsResponse) GetDataTypes() []string {
+	if x != nil {
+		return x.DataTypes
+	}
+	return nil
+}
+
+func (x *TableOptionsResponse) GetMergeTreeSettings() []string {
+	if x != nil {
+		return x.MergeTreeSettings
+	}
+	return nil
+}
+
+func (x *TableOptionsResponse) GetCodecs() []string {
+	if x != nil {
+		return x.Codecs
+	}
+	return nil
+}
+
 var File_clickhouse_manager_manager_proto protoreflect.FileDescriptor
 
 const file_clickhouse_manager_manager_proto_rawDesc = "" +
@@ -3016,7 +3120,14 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\x11GetMetricsRequest\"\xbe\x01\n" +
 	"\x0fMetricsResponse\x12O\n" +
 	"\ametrics\x18\x01 \x03(\v25.trb.clickhouse.manager.public.contract.v1.MetricItemR\ametrics\x12Z\n" +
-	"\rasync_metrics\x18\x02 \x03(\v25.trb.clickhouse.manager.public.contract.v1.MetricItemR\fasyncMetrics2\xfb'\n" +
+	"\rasync_metrics\x18\x02 \x03(\v25.trb.clickhouse.manager.public.contract.v1.MetricItemR\fasyncMetrics\"\x15\n" +
+	"\x13TableOptionsRequest\"\x97\x01\n" +
+	"\x14TableOptionsResponse\x12\x18\n" +
+	"\aengines\x18\x01 \x03(\tR\aengines\x12\x1d\n" +
+	"\n" +
+	"data_types\x18\x02 \x03(\tR\tdataTypes\x12.\n" +
+	"\x13merge_tree_settings\x18\x03 \x03(\tR\x11mergeTreeSettings\x12\x16\n" +
+	"\x06codecs\x18\x04 \x03(\tR\x06codecs2\xcd)\n" +
 	"\x11ClickHouseManager\x12\xa0\x01\n" +
 	"\x04Ping\x126.trb.clickhouse.manager.public.contract.v1.PingRequest\x1a7.trb.clickhouse.manager.public.contract.v1.PingResponse\"'\x82\xd3\xe4\x93\x02!Z\n" +
 	":\x01*\"\x05/Ping\x12\x13/v1/clickhouse/ping\x12\xb8\x01\n" +
@@ -3052,7 +3163,8 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"\tListDisks\x12;.trb.clickhouse.manager.public.contract.v1.ListDisksRequest\x1a3.trb.clickhouse.manager.public.contract.v1.DiskList\"-\x82\xd3\xe4\x93\x02'Z\x0f:\x01*\"\n" +
 	"/ListDisks\x12\x14/v1/clickhouse/disks\x12\xb8\x01\n" +
 	"\n" +
-	"GetMetrics\x12<.trb.clickhouse.manager.public.contract.v1.GetMetricsRequest\x1a:.trb.clickhouse.manager.public.contract.v1.MetricsResponse\"0\x82\xd3\xe4\x93\x02*Z\x10:\x01*\"\v/GetMetrics\x12\x16/v1/clickhouse/metricsBLZJgithub.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_managerb\x06proto3"
+	"GetMetrics\x12<.trb.clickhouse.manager.public.contract.v1.GetMetricsRequest\x1a:.trb.clickhouse.manager.public.contract.v1.MetricsResponse\"0\x82\xd3\xe4\x93\x02*Z\x10:\x01*\"\v/GetMetrics\x12\x16/v1/clickhouse/metrics\x12\xcf\x01\n" +
+	"\x0fGetTableOptions\x12>.trb.clickhouse.manager.public.contract.v1.TableOptionsRequest\x1a?.trb.clickhouse.manager.public.contract.v1.TableOptionsResponse\";\x82\xd3\xe4\x93\x025Z\x15:\x01*\"\x10/GetTableOptions\x12\x1c/v1/clickhouse/table_optionsBLZJgithub.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_managerb\x06proto3"
 
 var (
 	file_clickhouse_manager_manager_proto_rawDescOnce sync.Once
@@ -3066,7 +3178,7 @@ func file_clickhouse_manager_manager_proto_rawDescGZIP() []byte {
 	return file_clickhouse_manager_manager_proto_rawDescData
 }
 
-var file_clickhouse_manager_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_clickhouse_manager_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_clickhouse_manager_manager_proto_goTypes = []any{
 	(*Status)(nil),                  // 0: trb.clickhouse.manager.public.contract.v1.Status
 	(*PingRequest)(nil),             // 1: trb.clickhouse.manager.public.contract.v1.PingRequest
@@ -3109,21 +3221,23 @@ var file_clickhouse_manager_manager_proto_goTypes = []any{
 	(*MetricItem)(nil),              // 38: trb.clickhouse.manager.public.contract.v1.MetricItem
 	(*GetMetricsRequest)(nil),       // 39: trb.clickhouse.manager.public.contract.v1.GetMetricsRequest
 	(*MetricsResponse)(nil),         // 40: trb.clickhouse.manager.public.contract.v1.MetricsResponse
-	nil,                             // 41: trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
-	(*timestamppb.Timestamp)(nil),   // 42: google.protobuf.Timestamp
+	(*TableOptionsRequest)(nil),     // 41: trb.clickhouse.manager.public.contract.v1.TableOptionsRequest
+	(*TableOptionsResponse)(nil),    // 42: trb.clickhouse.manager.public.contract.v1.TableOptionsResponse
+	nil,                             // 43: trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
+	(*timestamppb.Timestamp)(nil),   // 44: google.protobuf.Timestamp
 }
 var file_clickhouse_manager_manager_proto_depIdxs = []int32{
 	8,  // 0: trb.clickhouse.manager.public.contract.v1.DatabaseList.items:type_name -> trb.clickhouse.manager.public.contract.v1.Database
 	10, // 1: trb.clickhouse.manager.public.contract.v1.TableSpec.columns:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	11, // 2: trb.clickhouse.manager.public.contract.v1.TableSpec.engine:type_name -> trb.clickhouse.manager.public.contract.v1.TableEngine
-	41, // 3: trb.clickhouse.manager.public.contract.v1.TableSpec.settings:type_name -> trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
-	42, // 4: trb.clickhouse.manager.public.contract.v1.Table.metadata_modification_time:type_name -> google.protobuf.Timestamp
+	43, // 3: trb.clickhouse.manager.public.contract.v1.TableSpec.settings:type_name -> trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
+	44, // 4: trb.clickhouse.manager.public.contract.v1.Table.metadata_modification_time:type_name -> google.protobuf.Timestamp
 	10, // 5: trb.clickhouse.manager.public.contract.v1.Table.columns:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	15, // 6: trb.clickhouse.manager.public.contract.v1.TableList.items:type_name -> trb.clickhouse.manager.public.contract.v1.Table
 	10, // 7: trb.clickhouse.manager.public.contract.v1.AddColumnRequest.column:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	10, // 8: trb.clickhouse.manager.public.contract.v1.ModifyColumnRequest.column:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	23, // 9: trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse.rows:type_name -> trb.clickhouse.manager.public.contract.v1.QueryRow
-	42, // 10: trb.clickhouse.manager.public.contract.v1.TablePart.modification_time:type_name -> google.protobuf.Timestamp
+	44, // 10: trb.clickhouse.manager.public.contract.v1.TablePart.modification_time:type_name -> google.protobuf.Timestamp
 	27, // 11: trb.clickhouse.manager.public.contract.v1.PartsList.items:type_name -> trb.clickhouse.manager.public.contract.v1.TablePart
 	31, // 12: trb.clickhouse.manager.public.contract.v1.ProcessList.items:type_name -> trb.clickhouse.manager.public.contract.v1.ProcessInfo
 	35, // 13: trb.clickhouse.manager.public.contract.v1.DiskList.items:type_name -> trb.clickhouse.manager.public.contract.v1.DiskInfo
@@ -3154,33 +3268,35 @@ var file_clickhouse_manager_manager_proto_depIdxs = []int32{
 	34, // 38: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.KillProcess:input_type -> trb.clickhouse.manager.public.contract.v1.KillProcessRequest
 	36, // 39: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDisks:input_type -> trb.clickhouse.manager.public.contract.v1.ListDisksRequest
 	39, // 40: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetMetrics:input_type -> trb.clickhouse.manager.public.contract.v1.GetMetricsRequest
-	2,  // 41: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:output_type -> trb.clickhouse.manager.public.contract.v1.PingResponse
-	4,  // 42: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:output_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
-	0,  // 43: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 44: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	9,  // 45: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:output_type -> trb.clickhouse.manager.public.contract.v1.DatabaseList
-	8,  // 46: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Database
-	0,  // 47: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 48: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 49: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 50: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 51: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	16, // 52: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:output_type -> trb.clickhouse.manager.public.contract.v1.TableList
-	15, // 53: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Table
-	0,  // 54: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 55: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 56: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	0,  // 57: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	25, // 58: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ExecuteQuery:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
-	25, // 59: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.PreviewTableData:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
-	29, // 60: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListParts:output_type -> trb.clickhouse.manager.public.contract.v1.PartsList
-	0,  // 61: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropPartition:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	33, // 62: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListProcesses:output_type -> trb.clickhouse.manager.public.contract.v1.ProcessList
-	0,  // 63: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.KillProcess:output_type -> trb.clickhouse.manager.public.contract.v1.Status
-	37, // 64: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDisks:output_type -> trb.clickhouse.manager.public.contract.v1.DiskList
-	40, // 65: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetMetrics:output_type -> trb.clickhouse.manager.public.contract.v1.MetricsResponse
-	41, // [41:66] is the sub-list for method output_type
-	16, // [16:41] is the sub-list for method input_type
+	41, // 41: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetTableOptions:input_type -> trb.clickhouse.manager.public.contract.v1.TableOptionsRequest
+	2,  // 42: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.Ping:output_type -> trb.clickhouse.manager.public.contract.v1.PingResponse
+	4,  // 43: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ServerInfo:output_type -> trb.clickhouse.manager.public.contract.v1.ServerInfoResponse
+	0,  // 44: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 45: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropDatabase:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	9,  // 46: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDatabases:output_type -> trb.clickhouse.manager.public.contract.v1.DatabaseList
+	8,  // 47: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DatabaseInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Database
+	0,  // 48: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.CreateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 49: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 50: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TruncateTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 51: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 52: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.OptimizeTable:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	16, // 53: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListTables:output_type -> trb.clickhouse.manager.public.contract.v1.TableList
+	15, // 54: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.TableInfo:output_type -> trb.clickhouse.manager.public.contract.v1.Table
+	0,  // 55: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.AddColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 56: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 57: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.RenameColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	0,  // 58: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ModifyColumn:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	25, // 59: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ExecuteQuery:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
+	25, // 60: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.PreviewTableData:output_type -> trb.clickhouse.manager.public.contract.v1.ExecuteQueryResponse
+	29, // 61: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListParts:output_type -> trb.clickhouse.manager.public.contract.v1.PartsList
+	0,  // 62: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.DropPartition:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	33, // 63: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListProcesses:output_type -> trb.clickhouse.manager.public.contract.v1.ProcessList
+	0,  // 64: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.KillProcess:output_type -> trb.clickhouse.manager.public.contract.v1.Status
+	37, // 65: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.ListDisks:output_type -> trb.clickhouse.manager.public.contract.v1.DiskList
+	40, // 66: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetMetrics:output_type -> trb.clickhouse.manager.public.contract.v1.MetricsResponse
+	42, // 67: trb.clickhouse.manager.public.contract.v1.ClickHouseManager.GetTableOptions:output_type -> trb.clickhouse.manager.public.contract.v1.TableOptionsResponse
+	42, // [42:68] is the sub-list for method output_type
+	16, // [16:42] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
 	16, // [16:16] is the sub-list for extension extendee
 	0,  // [0:16] is the sub-list for field type_name
@@ -3197,7 +3313,7 @@ func file_clickhouse_manager_manager_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_clickhouse_manager_manager_proto_rawDesc), len(file_clickhouse_manager_manager_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   42,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -44,6 +44,7 @@ const (
 	ClickHouseManager_KillProcess_FullMethodName      = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess"
 	ClickHouseManager_ListDisks_FullMethodName        = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks"
 	ClickHouseManager_GetMetrics_FullMethodName       = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics"
+	ClickHouseManager_GetTableOptions_FullMethodName  = "/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetTableOptions"
 )
 
 // ClickHouseManagerClient is the client API for ClickHouseManager service.
@@ -77,6 +78,7 @@ type ClickHouseManagerClient interface {
 	KillProcess(ctx context.Context, in *KillProcessRequest, opts ...grpc.CallOption) (*Status, error)
 	ListDisks(ctx context.Context, in *ListDisksRequest, opts ...grpc.CallOption) (*DiskList, error)
 	GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*MetricsResponse, error)
+	GetTableOptions(ctx context.Context, in *TableOptionsRequest, opts ...grpc.CallOption) (*TableOptionsResponse, error)
 }
 
 type clickHouseManagerClient struct {
@@ -337,6 +339,16 @@ func (c *clickHouseManagerClient) GetMetrics(ctx context.Context, in *GetMetrics
 	return out, nil
 }
 
+func (c *clickHouseManagerClient) GetTableOptions(ctx context.Context, in *TableOptionsRequest, opts ...grpc.CallOption) (*TableOptionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TableOptionsResponse)
+	err := c.cc.Invoke(ctx, ClickHouseManager_GetTableOptions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ClickHouseManagerServer is the server API for ClickHouseManager service.
 // All implementations must embed UnimplementedClickHouseManagerServer
 // for forward compatibility.
@@ -368,6 +380,7 @@ type ClickHouseManagerServer interface {
 	KillProcess(context.Context, *KillProcessRequest) (*Status, error)
 	ListDisks(context.Context, *ListDisksRequest) (*DiskList, error)
 	GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error)
+	GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error)
 	mustEmbedUnimplementedClickHouseManagerServer()
 }
 
@@ -452,6 +465,9 @@ func (UnimplementedClickHouseManagerServer) ListDisks(context.Context, *ListDisk
 }
 func (UnimplementedClickHouseManagerServer) GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMetrics not implemented")
+}
+func (UnimplementedClickHouseManagerServer) GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTableOptions not implemented")
 }
 func (UnimplementedClickHouseManagerServer) mustEmbedUnimplementedClickHouseManagerServer() {}
 func (UnimplementedClickHouseManagerServer) testEmbeddedByValue()                           {}
@@ -924,6 +940,24 @@ func _ClickHouseManager_GetMetrics_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClickHouseManager_GetTableOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TableOptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseManagerServer).GetTableOptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouseManager_GetTableOptions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseManagerServer).GetTableOptions(ctx, req.(*TableOptionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ClickHouseManager_ServiceDesc is the grpc.ServiceDesc for ClickHouseManager service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1030,6 +1064,10 @@ var ClickHouseManager_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMetrics",
 			Handler:    _ClickHouseManager_GetMetrics_Handler,
+		},
+		{
+			MethodName: "GetTableOptions",
+			Handler:    _ClickHouseManager_GetTableOptions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -1114,5 +1114,48 @@ export class ClickHouseManagerClient {
     this.methodDescriptorGetMetrics);
   }
 
+  methodDescriptorGetTableOptions = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetTableOptions',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_manager_manager_pb.TableOptionsRequest,
+    clickhouse_manager_manager_pb.TableOptionsResponse,
+    (request: clickhouse_manager_manager_pb.TableOptionsRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_manager_manager_pb.TableOptionsResponse.deserializeBinary
+  );
+
+  getTableOptions(
+    request: clickhouse_manager_manager_pb.TableOptionsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.TableOptionsResponse>;
+
+  getTableOptions(
+    request: clickhouse_manager_manager_pb.TableOptionsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.TableOptionsResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.TableOptionsResponse>;
+
+  getTableOptions(
+    request: clickhouse_manager_manager_pb.TableOptionsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_manager_manager_pb.TableOptionsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetTableOptions',
+        request,
+        metadata || {},
+        this.methodDescriptorGetTableOptions,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetTableOptions',
+    request,
+    metadata || {},
+    this.methodDescriptorGetTableOptions);
+  }
+
 }
 

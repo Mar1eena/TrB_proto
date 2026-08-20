@@ -1261,3 +1261,55 @@ export namespace MetricsResponse {
   }
 }
 
+export class TableOptionsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TableOptionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TableOptionsRequest): TableOptionsRequest.AsObject;
+  static serializeBinaryToWriter(message: TableOptionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TableOptionsRequest;
+  static deserializeBinaryFromReader(message: TableOptionsRequest, reader: jspb.BinaryReader): TableOptionsRequest;
+}
+
+export namespace TableOptionsRequest {
+  export type AsObject = {
+  }
+}
+
+export class TableOptionsResponse extends jspb.Message {
+  getEnginesList(): Array<string>;
+  setEnginesList(value: Array<string>): TableOptionsResponse;
+  clearEnginesList(): TableOptionsResponse;
+  addEngines(value: string, index?: number): TableOptionsResponse;
+
+  getDataTypesList(): Array<string>;
+  setDataTypesList(value: Array<string>): TableOptionsResponse;
+  clearDataTypesList(): TableOptionsResponse;
+  addDataTypes(value: string, index?: number): TableOptionsResponse;
+
+  getMergeTreeSettingsList(): Array<string>;
+  setMergeTreeSettingsList(value: Array<string>): TableOptionsResponse;
+  clearMergeTreeSettingsList(): TableOptionsResponse;
+  addMergeTreeSettings(value: string, index?: number): TableOptionsResponse;
+
+  getCodecsList(): Array<string>;
+  setCodecsList(value: Array<string>): TableOptionsResponse;
+  clearCodecsList(): TableOptionsResponse;
+  addCodecs(value: string, index?: number): TableOptionsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TableOptionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TableOptionsResponse): TableOptionsResponse.AsObject;
+  static serializeBinaryToWriter(message: TableOptionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TableOptionsResponse;
+  static deserializeBinaryFromReader(message: TableOptionsResponse, reader: jspb.BinaryReader): TableOptionsResponse;
+}
+
+export namespace TableOptionsResponse {
+  export type AsObject = {
+    enginesList: Array<string>,
+    dataTypesList: Array<string>,
+    mergeTreeSettingsList: Array<string>,
+    codecsList: Array<string>,
+  }
+}
+
