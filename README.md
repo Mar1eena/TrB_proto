@@ -38,6 +38,16 @@ req.setText('hello');
 
 `api/db_api` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/api/db_api/db_api.proto`.
 
+## CI/CD
+
+GitHub Actions:
+
+- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go, проверка npm-пакета, `make gene` и сверка `gen/` с git.
+- [Publish](.github/workflows/publish.yml) — публикация `@marleena/trb-proto` при push тега `v*` (и вручную через *Run workflow*).
+
+В репозитории нужен secret **`NPM_TOKEN`**: Automation-токен с [npmjs.com](https://www.npmjs.com/) с правом publish для `@marleena/trb-proto`  
+(*Settings → Secrets and variables → Actions*).
+
 ## Релиз
 
 Одна команда: коммит (если указан `MSG`), новая версия и тег, push в GitHub, публикация npm.
