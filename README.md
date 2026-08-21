@@ -40,15 +40,12 @@ req.setText('hello');
 
 ## CI/CD
 
-GitHub Actions:
+Один workflow [Release](.github/workflows/release.yml): при коммите в `main` с сообщением `v1.2.3`
 
-- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go и проверка npm-пакета.
-- [Release](.github/workflows/release.yml) — если последний коммит в `main` имеет сообщение вида `v1.2.3`:
-  1. публикует `@marleena/trb-proto` этой версии в npm;
-  2. создаёт и пушит git-тег `v1.2.3`;
-  3. запрашивает индексацию модуля на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
+- публикует `@marleena/trb-proto` в npm;
+- просит [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto) проиндексировать `github.com/Mar1eena/trb_proto@v1.2.3` (для этого пушится git-тег той же версии).
 
-Версия в сообщении коммита должна совпадать с `package.json`. Нужен secret **`NPM_TOKEN`**.
+Нужен secret **`NPM_TOKEN`**. Сообщение коммита должно совпадать с версией в `package.json`.
 
 ## Релиз
 

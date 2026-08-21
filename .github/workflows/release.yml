@@ -8,11 +8,10 @@ permissions:
   contents: write
 
 jobs:
-  decide:
+  release:
     runs-on: ubuntu-latest
-    outputs:
-      should: ${{ steps.parse.outputs.should }}
-      tag: ${{ steps.parse.outputs.tag }}
+    env:
+      MODULE: github.com/Mar1eena/trb_proto
     steps:
       - id: parse
         env:
@@ -21,31 +20,25 @@ jobs:
           MSG="${COMMIT_MSG%%$'\n'*}"
           MSG="${MSG%%[[:space:]]*}"
           if [[ "$MSG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "should=true" >> "$GITHUB_OUTPUT"
             echo "tag=$MSG" >> "$GITHUB_OUTPUT"
           else
-            echo "should=false" >> "$GITHUB_OUTPUT"
+            echo "Not a version commit, skip"
           fi
 
-  release:
-    needs: decide
-    if: needs.decide.outputs.should == 'true'
-    runs-on: ubuntu-latest
-    env:
-      TAG: ${{ needs.decide.outputs.tag }}
-      MODULE: github.com/Mar1eena/trb_proto
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - if: steps.parse.outputs.tag != ''
+        uses: actions/checkout@v4
+
+      - if: steps.parse.outputs.tag != ''
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
           registry-url: https://registry.npmjs.org
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-          cache-dependency-path: go.sum
-      - name: Check package.json version
+
+      - if: steps.parse.outputs.tag != ''
+        name: Publish npm
+        env:
+          TAG: ${{ steps.parse.outputs.tag }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           PKG=$(node -p "require('./package.json').version")
           case "$PKG" in
@@ -55,28 +48,22 @@ jobs:
               exit 1
               ;;
           esac
-      - run: npm ci
-      - name: Create and push git tag
+          npm publish --access public
+
+      - if: steps.parse.outputs.tag != ''
+        name: Update pkg.go.dev
+        env:
+          TAG: ${{ steps.parse.outputs.tag }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}"; then
-            echo "Tag ${TAG} already exists"
-          else
+          if ! git ls-remote --exit-code --tags origin "refs/tags/${TAG}"; then
             git tag -a "${TAG}" -m "${TAG}"
             git push origin "refs/tags/${TAG}"
           fi
-      - name: Publish npm
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Request pkg.go.dev index
-        run: |
           URL="https://proxy.golang.org/${MODULE}/@v/${TAG}.info"
           for i in 1 2 3 4 5 6; do
             if curl -fsSL "$URL"; then
-              GOPROXY=https://proxy.golang.org go list -m "${MODULE}@${TAG}"
-              echo "Indexed ${MODULE}@${TAG}"
               echo "https://pkg.go.dev/${MODULE}@${TAG}"
               exit 0
             fi
