@@ -110,9 +110,9 @@ const file_api_test_test_proto_rawDesc = "" +
 	"\x13api/test/test.proto\x12\x1btrb.test.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17api/db_api/db_api.proto\"\x18\n" +
 	"\x16SyncInstrumentsRequest\"k\n" +
 	"\x17SyncInstrumentsResponse\x12P\n" +
-	"\x06upsert\x18\x01 \x01(\v28.trb.db.api.public.contract.v1.UpsertInstrumentsResponseR\x06upsert2\xc2\x01\n" +
-	"\x04Test\x12\xb9\x01\n" +
-	"\x0fSyncInstruments\x123.trb.test.public.contract.v1.SyncInstrumentsRequest\x1a4.trb.test.public.contract.v1.SyncInstrumentsResponse\";\x82\xd3\xe4\x93\x025:\x01*Z\x15:\x01*\"\x10/SyncInstruments\"\x19/v1/test/instruments/syncB4Z2github.com/Mar1eena/trb_proto/gen/go/api/test;testb\x06proto3"
+	"\x06upsert\x18\x01 \x01(\v28.trb.db.api.public.contract.v1.UpsertInstrumentsResponseR\x06upsert2\xc3\x01\n" +
+	"\x04Test\x12\xba\x01\n" +
+	"\x10SyncInstrumentsA\x123.trb.test.public.contract.v1.SyncInstrumentsRequest\x1a4.trb.test.public.contract.v1.SyncInstrumentsResponse\";\x82\xd3\xe4\x93\x025:\x01*Z\x15:\x01*\"\x10/SyncInstruments\"\x19/v1/test/instruments/syncB4Z2github.com/Mar1eena/trb_proto/gen/go/api/test;testb\x06proto3"
 
 var (
 	file_api_test_test_proto_rawDescOnce sync.Once
@@ -134,8 +134,8 @@ var file_api_test_test_proto_goTypes = []any{
 }
 var file_api_test_test_proto_depIdxs = []int32{
 	2, // 0: trb.test.public.contract.v1.SyncInstrumentsResponse.upsert:type_name -> trb.db.api.public.contract.v1.UpsertInstrumentsResponse
-	0, // 1: trb.test.public.contract.v1.Test.SyncInstruments:input_type -> trb.test.public.contract.v1.SyncInstrumentsRequest
-	1, // 2: trb.test.public.contract.v1.Test.SyncInstruments:output_type -> trb.test.public.contract.v1.SyncInstrumentsResponse
+	0, // 1: trb.test.public.contract.v1.Test.SyncInstrumentsA:input_type -> trb.test.public.contract.v1.SyncInstrumentsRequest
+	1, // 2: trb.test.public.contract.v1.Test.SyncInstrumentsA:output_type -> trb.test.public.contract.v1.SyncInstrumentsResponse
 	2, // [2:3] is the sub-list for method output_type
 	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

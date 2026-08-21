@@ -1,6 +1,6 @@
 {
   "name": "@marleena/trb-proto",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Generated protobuf messages and gRPC-Web clients for TrB services",
   "license": "MIT",
   "repository": {

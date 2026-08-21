@@ -39,8 +39,8 @@ export class TestClient {
     this.options_ = options;
   }
 
-  methodDescriptorSyncInstruments = new grpcWeb.MethodDescriptor(
-    '/trb.test.public.contract.v1.Test/SyncInstruments',
+  methodDescriptorSyncInstrumentsA = new grpcWeb.MethodDescriptor(
+    '/trb.test.public.contract.v1.Test/SyncInstrumentsA',
     grpcWeb.MethodType.UNARY,
     api_test_test_pb.SyncInstrumentsRequest,
     api_test_test_pb.SyncInstrumentsResponse,
@@ -50,17 +50,17 @@ export class TestClient {
     api_test_test_pb.SyncInstrumentsResponse.deserializeBinary
   );
 
-  syncInstruments(
+  syncInstrumentsA(
     request: api_test_test_pb.SyncInstrumentsRequest,
     metadata?: grpcWeb.Metadata | null): Promise<api_test_test_pb.SyncInstrumentsResponse>;
 
-  syncInstruments(
+  syncInstrumentsA(
     request: api_test_test_pb.SyncInstrumentsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: api_test_test_pb.SyncInstrumentsResponse) => void): grpcWeb.ClientReadableStream<api_test_test_pb.SyncInstrumentsResponse>;
 
-  syncInstruments(
+  syncInstrumentsA(
     request: api_test_test_pb.SyncInstrumentsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
@@ -68,18 +68,18 @@ export class TestClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/trb.test.public.contract.v1.Test/SyncInstruments',
+          '/trb.test.public.contract.v1.Test/SyncInstrumentsA',
         request,
         metadata || {},
-        this.methodDescriptorSyncInstruments,
+        this.methodDescriptorSyncInstrumentsA,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/trb.test.public.contract.v1.Test/SyncInstruments',
+      '/trb.test.public.contract.v1.Test/SyncInstrumentsA',
     request,
     metadata || {},
-    this.methodDescriptorSyncInstruments);
+    this.methodDescriptorSyncInstrumentsA);
   }
 
 }

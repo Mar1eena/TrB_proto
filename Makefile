@@ -1,4 +1,4 @@
-.PHONY: gene desc buf login logout publish release
+.PHONY: gene desc buf rel
 
 PROTOC     := protoc
 PROTO_PATH := ./services
@@ -41,42 +41,12 @@ desc:
 buf:
 	buf generate
 
-login:
-	npm login
-
-logout:
-	npm logout
-
-# make publish
-# make publish OTP=123456
-# make publish TOKEN=npm_...
-publish:
-ifneq ($(TOKEN),)
-	npm publish --access public --//registry.npmjs.org/:_authToken=$(TOKEN)
-else ifneq ($(OTP),)
-	npm publish --access public --otp=$(OTP)
-else
-	npm publish --access public
-endif
-
-# Коммит (если MSG=...), bump версии, push. Тег, npm и pkg.go.dev — GitHub Actions
-# по коммиту с сообщением vX.Y.Z.
-# make release PART=patch MSG="add ClickHouse manager"
-PART ?= patch
 GIT_NAME  ?= $(shell git log -1 --format=%an)
 GIT_EMAIL ?= $(shell git log -1 --format=%ae)
 GIT       := git -c user.name="$(GIT_NAME)" -c user.email="$(GIT_EMAIL)"
 
-release:
-ifeq ($(strip $(GIT_NAME)),)
-	$(error Git author is unknown. Set GIT_NAME and GIT_EMAIL or configure user.name / user.email)
-endif
-ifdef MSG
+rel: gene
+	npm version $(or $(PART),patch) --no-git-tag-version
 	git add -A
-	$(GIT) commit -m "$(MSG)"
-endif
-	npm version $(PART) --no-git-tag-version
-	git add package.json package-lock.json
 	$(GIT) commit -m "$$(node -p "const v=require('./package.json').version; v.startsWith('v')?v:'v'+v")"
 	git push origin HEAD
-

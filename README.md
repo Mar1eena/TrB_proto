@@ -49,19 +49,12 @@ req.setText('hello');
 
 ## Релиз
 
-Генерация локально, bump версии и push. Остальное делает Actions.
-
 ```bash
-make gene
-make release PART=patch MSG="add ClickHouse manager"
+make rel
 ```
 
-`PART`: `patch`, `minor`, `major`. `npm version` создаёт коммит `v1.0.10` (без тега).
+Собирает proto, поднимает patch-версию, коммитит все изменения с сообщением `v1.2.3` и пушит в `main`. Actions публикует npm и обновляет pkg.go.dev.
 
-Если изменения уже закоммичены:
+Другой шаг версии: `make rel PART=minor` или `PART=major`.
 
-```bash
-make release PART=patch
-```
-
-Вручную тот же эффект: коммит с сообщением `v1.0.10` (как в `package.json`) и push в `main`.
+Для коммита нужны `user.name` и `user.email` в Git.
