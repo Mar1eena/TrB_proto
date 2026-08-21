@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v7.34.1
-// source: nats/manager.proto
+// source: api/nats/manager.proto
 
 package nats
 
@@ -957,5 +957,5 @@ var NatsJetStreamManager_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "nats/manager.proto",
+	Metadata: "api/nats/manager.proto",
 }

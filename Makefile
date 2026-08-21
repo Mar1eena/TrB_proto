@@ -6,14 +6,12 @@ GEN_GO     := ./gen/go
 GEN_JS     := ./gen/js-ts
 
 PROTOS := \
-	$(PROTO_PATH)/example/*.proto \
 	$(PROTO_PATH)/tinvest/*.proto \
-	$(PROTO_PATH)/nats/*.proto \
-	$(PROTO_PATH)/moex/*.proto \
+	$(PROTO_PATH)/api/nats/*.proto \
 	$(PROTO_PATH)/clickhouse/*.proto \
-	$(PROTO_PATH)/clickhouse_manager/*.proto \
+	$(PROTO_PATH)/api/clickhouse/*.proto \
 	$(PROTO_PATH)/manager_indicators/*.proto \
-	$(PROTO_PATH)/db_api/*.proto
+	$(PROTO_PATH)/api/data/*.proto
 
 GOOGLE_API := $(PROTO_PATH)/google/api/*.proto
 
@@ -34,7 +32,7 @@ desc:
 	$(PROTOC) -I$(PROTO_PATH) \
 		$(PROTO_PATH)/example/*.proto \
 		$(PROTO_PATH)/tinvest/*.proto \
-		$(PROTO_PATH)/nats/*.proto \
+		$(PROTO_PATH)/api/nats/*.proto \
 		--include_imports --include_source_info \
 		--descriptor_set_out=./gen/desc/trb_proto.pb
 

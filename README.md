@@ -32,11 +32,11 @@ const req = new MessageRequest();
 req.setText('hello');
 ```
 
-Сервисы: `example`, `tinvest`, `nats`, `moex`, `clickhouse`, `clickhouse_manager`, `manager_indicators`, `db_api`.
+Сервисы: `example`, `tinvest`, `moex`, `clickhouse` (native gRPC), `manager_indicators`, `api/nats`, `api/clickhouse`, `api/data`.
 
-`clickhouse_manager` (`trb.clickhouse.manager.public.contract.v1.ClickHouseManager`) — DDL: базы, таблицы, колонки. Запросы — `clickhouse.grpc.ClickHouse`, прикладные выборки — `db_api`.
+`api/clickhouse` (`trb.clickhouse.manager.public.contract.v1.ClickHouseManager`) — DDL: базы, таблицы, колонки. Запросы — `clickhouse.grpc.ClickHouse`, прикладные выборки — `api/data`.
 
-`db_api` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/db_api/db_api.proto`.
+`api/data` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/api/data/data.proto`.
 
 ## Релиз
 

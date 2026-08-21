@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.34.1
-// source: nats/manager.proto
+// source: api/nats/manager.proto
 
 package nats
 
@@ -33,7 +33,7 @@ type PublishRequest struct {
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_nats_manager_proto_msgTypes[0]
+	mi := &file_api_nats_manager_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[0]
+	mi := &file_api_nats_manager_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{0}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PublishRequest) GetSubject() string {
@@ -84,7 +84,7 @@ type PublishResponse struct {
 
 func (x *PublishResponse) Reset() {
 	*x = PublishResponse{}
-	mi := &file_nats_manager_proto_msgTypes[1]
+	mi := &file_api_nats_manager_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -96,7 +96,7 @@ func (x *PublishResponse) String() string {
 func (*PublishResponse) ProtoMessage() {}
 
 func (x *PublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[1]
+	mi := &file_api_nats_manager_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +109,7 @@ func (x *PublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishResponse.ProtoReflect.Descriptor instead.
 func (*PublishResponse) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{1}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PublishResponse) GetResponse() string {
@@ -128,7 +128,7 @@ type ResponseStreamNameBySubject struct {
 
 func (x *ResponseStreamNameBySubject) Reset() {
 	*x = ResponseStreamNameBySubject{}
-	mi := &file_nats_manager_proto_msgTypes[2]
+	mi := &file_api_nats_manager_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -140,7 +140,7 @@ func (x *ResponseStreamNameBySubject) String() string {
 func (*ResponseStreamNameBySubject) ProtoMessage() {}
 
 func (x *ResponseStreamNameBySubject) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[2]
+	mi := &file_api_nats_manager_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +153,7 @@ func (x *ResponseStreamNameBySubject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResponseStreamNameBySubject.ProtoReflect.Descriptor instead.
 func (*ResponseStreamNameBySubject) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{2}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResponseStreamNameBySubject) GetResponse() string {
@@ -172,7 +172,7 @@ type SubjectQuery struct {
 
 func (x *SubjectQuery) Reset() {
 	*x = SubjectQuery{}
-	mi := &file_nats_manager_proto_msgTypes[3]
+	mi := &file_api_nats_manager_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -184,7 +184,7 @@ func (x *SubjectQuery) String() string {
 func (*SubjectQuery) ProtoMessage() {}
 
 func (x *SubjectQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[3]
+	mi := &file_api_nats_manager_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -197,7 +197,7 @@ func (x *SubjectQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubjectQuery.ProtoReflect.Descriptor instead.
 func (*SubjectQuery) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{3}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SubjectQuery) GetSubject() string {
@@ -216,7 +216,7 @@ type StreamList struct {
 
 func (x *StreamList) Reset() {
 	*x = StreamList{}
-	mi := &file_nats_manager_proto_msgTypes[4]
+	mi := &file_api_nats_manager_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +228,7 @@ func (x *StreamList) String() string {
 func (*StreamList) ProtoMessage() {}
 
 func (x *StreamList) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[4]
+	mi := &file_api_nats_manager_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +241,7 @@ func (x *StreamList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamList.ProtoReflect.Descriptor instead.
 func (*StreamList) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{4}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *StreamList) GetItems() []*StreamInfos {
@@ -260,7 +260,7 @@ type StreamNameList struct {
 
 func (x *StreamNameList) Reset() {
 	*x = StreamNameList{}
-	mi := &file_nats_manager_proto_msgTypes[5]
+	mi := &file_api_nats_manager_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +272,7 @@ func (x *StreamNameList) String() string {
 func (*StreamNameList) ProtoMessage() {}
 
 func (x *StreamNameList) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[5]
+	mi := &file_api_nats_manager_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -285,7 +285,7 @@ func (x *StreamNameList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamNameList.ProtoReflect.Descriptor instead.
 func (*StreamNameList) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{5}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *StreamNameList) GetNames() []string {
@@ -304,7 +304,7 @@ type ConsumerList struct {
 
 func (x *ConsumerList) Reset() {
 	*x = ConsumerList{}
-	mi := &file_nats_manager_proto_msgTypes[6]
+	mi := &file_api_nats_manager_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -316,7 +316,7 @@ func (x *ConsumerList) String() string {
 func (*ConsumerList) ProtoMessage() {}
 
 func (x *ConsumerList) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[6]
+	mi := &file_api_nats_manager_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -329,7 +329,7 @@ func (x *ConsumerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerList.ProtoReflect.Descriptor instead.
 func (*ConsumerList) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{6}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ConsumerList) GetItems() []*ConsumerInfos {
@@ -348,7 +348,7 @@ type ConsumerNameList struct {
 
 func (x *ConsumerNameList) Reset() {
 	*x = ConsumerNameList{}
-	mi := &file_nats_manager_proto_msgTypes[7]
+	mi := &file_api_nats_manager_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -360,7 +360,7 @@ func (x *ConsumerNameList) String() string {
 func (*ConsumerNameList) ProtoMessage() {}
 
 func (x *ConsumerNameList) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[7]
+	mi := &file_api_nats_manager_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -373,7 +373,7 @@ func (x *ConsumerNameList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerNameList.ProtoReflect.Descriptor instead.
 func (*ConsumerNameList) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{7}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ConsumerNameList) GetNames() []string {
@@ -392,7 +392,7 @@ type Response struct {
 
 func (x *Response) Reset() {
 	*x = Response{}
-	mi := &file_nats_manager_proto_msgTypes[8]
+	mi := &file_api_nats_manager_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -404,7 +404,7 @@ func (x *Response) String() string {
 func (*Response) ProtoMessage() {}
 
 func (x *Response) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[8]
+	mi := &file_api_nats_manager_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -417,7 +417,7 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Response.ProtoReflect.Descriptor instead.
 func (*Response) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{8}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Response) GetResponse() string {
@@ -436,7 +436,7 @@ type StreamName struct {
 
 func (x *StreamName) Reset() {
 	*x = StreamName{}
-	mi := &file_nats_manager_proto_msgTypes[9]
+	mi := &file_api_nats_manager_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -448,7 +448,7 @@ func (x *StreamName) String() string {
 func (*StreamName) ProtoMessage() {}
 
 func (x *StreamName) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[9]
+	mi := &file_api_nats_manager_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -461,7 +461,7 @@ func (x *StreamName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamName.ProtoReflect.Descriptor instead.
 func (*StreamName) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{9}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *StreamName) GetName() string {
@@ -514,7 +514,7 @@ type StreamConfig struct {
 
 func (x *StreamConfig) Reset() {
 	*x = StreamConfig{}
-	mi := &file_nats_manager_proto_msgTypes[10]
+	mi := &file_api_nats_manager_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -526,7 +526,7 @@ func (x *StreamConfig) String() string {
 func (*StreamConfig) ProtoMessage() {}
 
 func (x *StreamConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[10]
+	mi := &file_api_nats_manager_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -539,7 +539,7 @@ func (x *StreamConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamConfig.ProtoReflect.Descriptor instead.
 func (*StreamConfig) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{10}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *StreamConfig) GetName() string {
@@ -790,7 +790,7 @@ type Placement struct {
 
 func (x *Placement) Reset() {
 	*x = Placement{}
-	mi := &file_nats_manager_proto_msgTypes[11]
+	mi := &file_api_nats_manager_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -802,7 +802,7 @@ func (x *Placement) String() string {
 func (*Placement) ProtoMessage() {}
 
 func (x *Placement) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[11]
+	mi := &file_api_nats_manager_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -815,7 +815,7 @@ func (x *Placement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Placement.ProtoReflect.Descriptor instead.
 func (*Placement) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{11}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Placement) GetCluster() string {
@@ -847,7 +847,7 @@ type StreamSource struct {
 
 func (x *StreamSource) Reset() {
 	*x = StreamSource{}
-	mi := &file_nats_manager_proto_msgTypes[12]
+	mi := &file_api_nats_manager_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -859,7 +859,7 @@ func (x *StreamSource) String() string {
 func (*StreamSource) ProtoMessage() {}
 
 func (x *StreamSource) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[12]
+	mi := &file_api_nats_manager_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -872,7 +872,7 @@ func (x *StreamSource) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamSource.ProtoReflect.Descriptor instead.
 func (*StreamSource) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{12}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *StreamSource) GetName() string {
@@ -934,7 +934,7 @@ type ExternalStream struct {
 
 func (x *ExternalStream) Reset() {
 	*x = ExternalStream{}
-	mi := &file_nats_manager_proto_msgTypes[13]
+	mi := &file_api_nats_manager_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -946,7 +946,7 @@ func (x *ExternalStream) String() string {
 func (*ExternalStream) ProtoMessage() {}
 
 func (x *ExternalStream) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[13]
+	mi := &file_api_nats_manager_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -959,7 +959,7 @@ func (x *ExternalStream) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalStream.ProtoReflect.Descriptor instead.
 func (*ExternalStream) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{13}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ExternalStream) GetApi() string {
@@ -986,7 +986,7 @@ type SubjectTransformConfig struct {
 
 func (x *SubjectTransformConfig) Reset() {
 	*x = SubjectTransformConfig{}
-	mi := &file_nats_manager_proto_msgTypes[14]
+	mi := &file_api_nats_manager_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -998,7 +998,7 @@ func (x *SubjectTransformConfig) String() string {
 func (*SubjectTransformConfig) ProtoMessage() {}
 
 func (x *SubjectTransformConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[14]
+	mi := &file_api_nats_manager_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1011,7 +1011,7 @@ func (x *SubjectTransformConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubjectTransformConfig.ProtoReflect.Descriptor instead.
 func (*SubjectTransformConfig) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{14}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SubjectTransformConfig) GetSrc() string {
@@ -1039,7 +1039,7 @@ type RePublish struct {
 
 func (x *RePublish) Reset() {
 	*x = RePublish{}
-	mi := &file_nats_manager_proto_msgTypes[15]
+	mi := &file_api_nats_manager_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1051,7 +1051,7 @@ func (x *RePublish) String() string {
 func (*RePublish) ProtoMessage() {}
 
 func (x *RePublish) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[15]
+	mi := &file_api_nats_manager_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1064,7 +1064,7 @@ func (x *RePublish) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RePublish.ProtoReflect.Descriptor instead.
 func (*RePublish) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{15}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *RePublish) GetSrc() string {
@@ -1098,7 +1098,7 @@ type StreamConsumerLimits struct {
 
 func (x *StreamConsumerLimits) Reset() {
 	*x = StreamConsumerLimits{}
-	mi := &file_nats_manager_proto_msgTypes[16]
+	mi := &file_api_nats_manager_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1110,7 +1110,7 @@ func (x *StreamConsumerLimits) String() string {
 func (*StreamConsumerLimits) ProtoMessage() {}
 
 func (x *StreamConsumerLimits) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[16]
+	mi := &file_api_nats_manager_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1123,7 +1123,7 @@ func (x *StreamConsumerLimits) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamConsumerLimits.ProtoReflect.Descriptor instead.
 func (*StreamConsumerLimits) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{16}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *StreamConsumerLimits) GetInactiveThreshold() int64 {
@@ -1156,7 +1156,7 @@ type StreamInfos struct {
 
 func (x *StreamInfos) Reset() {
 	*x = StreamInfos{}
-	mi := &file_nats_manager_proto_msgTypes[17]
+	mi := &file_api_nats_manager_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1168,7 +1168,7 @@ func (x *StreamInfos) String() string {
 func (*StreamInfos) ProtoMessage() {}
 
 func (x *StreamInfos) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[17]
+	mi := &file_api_nats_manager_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1181,7 +1181,7 @@ func (x *StreamInfos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamInfos.ProtoReflect.Descriptor instead.
 func (*StreamInfos) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{17}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *StreamInfos) GetConfig() *StreamConfig {
@@ -1248,7 +1248,7 @@ type StreamSourceInfo struct {
 
 func (x *StreamSourceInfo) Reset() {
 	*x = StreamSourceInfo{}
-	mi := &file_nats_manager_proto_msgTypes[18]
+	mi := &file_api_nats_manager_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1260,7 +1260,7 @@ func (x *StreamSourceInfo) String() string {
 func (*StreamSourceInfo) ProtoMessage() {}
 
 func (x *StreamSourceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[18]
+	mi := &file_api_nats_manager_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1273,7 +1273,7 @@ func (x *StreamSourceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamSourceInfo.ProtoReflect.Descriptor instead.
 func (*StreamSourceInfo) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{18}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *StreamSourceInfo) GetName() string {
@@ -1336,7 +1336,7 @@ type StreamAlternate struct {
 
 func (x *StreamAlternate) Reset() {
 	*x = StreamAlternate{}
-	mi := &file_nats_manager_proto_msgTypes[19]
+	mi := &file_api_nats_manager_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1348,7 +1348,7 @@ func (x *StreamAlternate) String() string {
 func (*StreamAlternate) ProtoMessage() {}
 
 func (x *StreamAlternate) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[19]
+	mi := &file_api_nats_manager_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1361,7 +1361,7 @@ func (x *StreamAlternate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamAlternate.ProtoReflect.Descriptor instead.
 func (*StreamAlternate) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{19}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *StreamAlternate) GetName() string {
@@ -1396,7 +1396,7 @@ type APIError struct {
 
 func (x *APIError) Reset() {
 	*x = APIError{}
-	mi := &file_nats_manager_proto_msgTypes[20]
+	mi := &file_api_nats_manager_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1408,7 +1408,7 @@ func (x *APIError) String() string {
 func (*APIError) ProtoMessage() {}
 
 func (x *APIError) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[20]
+	mi := &file_api_nats_manager_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1421,7 +1421,7 @@ func (x *APIError) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIError.ProtoReflect.Descriptor instead.
 func (*APIError) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{20}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *APIError) GetCode() int32 {
@@ -1456,7 +1456,7 @@ type ClusterInfo struct {
 
 func (x *ClusterInfo) Reset() {
 	*x = ClusterInfo{}
-	mi := &file_nats_manager_proto_msgTypes[21]
+	mi := &file_api_nats_manager_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1468,7 +1468,7 @@ func (x *ClusterInfo) String() string {
 func (*ClusterInfo) ProtoMessage() {}
 
 func (x *ClusterInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[21]
+	mi := &file_api_nats_manager_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1481,7 +1481,7 @@ func (x *ClusterInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClusterInfo.ProtoReflect.Descriptor instead.
 func (*ClusterInfo) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{21}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ClusterInfo) GetName() string {
@@ -1518,7 +1518,7 @@ type PeerInfo struct {
 
 func (x *PeerInfo) Reset() {
 	*x = PeerInfo{}
-	mi := &file_nats_manager_proto_msgTypes[22]
+	mi := &file_api_nats_manager_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1530,7 +1530,7 @@ func (x *PeerInfo) String() string {
 func (*PeerInfo) ProtoMessage() {}
 
 func (x *PeerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[22]
+	mi := &file_api_nats_manager_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1543,7 +1543,7 @@ func (x *PeerInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PeerInfo.ProtoReflect.Descriptor instead.
 func (*PeerInfo) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{22}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *PeerInfo) GetName() string {
@@ -1600,7 +1600,7 @@ type StreamState struct {
 
 func (x *StreamState) Reset() {
 	*x = StreamState{}
-	mi := &file_nats_manager_proto_msgTypes[23]
+	mi := &file_api_nats_manager_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1612,7 +1612,7 @@ func (x *StreamState) String() string {
 func (*StreamState) ProtoMessage() {}
 
 func (x *StreamState) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[23]
+	mi := &file_api_nats_manager_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1625,7 +1625,7 @@ func (x *StreamState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamState.ProtoReflect.Descriptor instead.
 func (*StreamState) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{23}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *StreamState) GetMsgs() uint64 {
@@ -1714,7 +1714,7 @@ type JsOpts struct {
 
 func (x *JsOpts) Reset() {
 	*x = JsOpts{}
-	mi := &file_nats_manager_proto_msgTypes[24]
+	mi := &file_api_nats_manager_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1726,7 +1726,7 @@ func (x *JsOpts) String() string {
 func (*JsOpts) ProtoMessage() {}
 
 func (x *JsOpts) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[24]
+	mi := &file_api_nats_manager_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1739,7 +1739,7 @@ func (x *JsOpts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JsOpts.ProtoReflect.Descriptor instead.
 func (*JsOpts) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{24}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{24}
 }
 
 // Msg
@@ -1753,7 +1753,7 @@ type Msg struct {
 
 func (x *Msg) Reset() {
 	*x = Msg{}
-	mi := &file_nats_manager_proto_msgTypes[25]
+	mi := &file_api_nats_manager_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1765,7 +1765,7 @@ func (x *Msg) String() string {
 func (*Msg) ProtoMessage() {}
 
 func (x *Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[25]
+	mi := &file_api_nats_manager_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1778,7 +1778,7 @@ func (x *Msg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Msg.ProtoReflect.Descriptor instead.
 func (*Msg) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{25}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Msg) GetName() string {
@@ -1806,7 +1806,7 @@ type MsgRange struct {
 
 func (x *MsgRange) Reset() {
 	*x = MsgRange{}
-	mi := &file_nats_manager_proto_msgTypes[26]
+	mi := &file_api_nats_manager_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1818,7 +1818,7 @@ func (x *MsgRange) String() string {
 func (*MsgRange) ProtoMessage() {}
 
 func (x *MsgRange) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[26]
+	mi := &file_api_nats_manager_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1831,7 +1831,7 @@ func (x *MsgRange) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MsgRange.ProtoReflect.Descriptor instead.
 func (*MsgRange) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{26}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *MsgRange) GetName() string {
@@ -1864,7 +1864,7 @@ type MsgList struct {
 
 func (x *MsgList) Reset() {
 	*x = MsgList{}
-	mi := &file_nats_manager_proto_msgTypes[27]
+	mi := &file_api_nats_manager_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1876,7 +1876,7 @@ func (x *MsgList) String() string {
 func (*MsgList) ProtoMessage() {}
 
 func (x *MsgList) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[27]
+	mi := &file_api_nats_manager_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1889,7 +1889,7 @@ func (x *MsgList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MsgList.ProtoReflect.Descriptor instead.
 func (*MsgList) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{27}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *MsgList) GetItems() []*RawStreamMsg {
@@ -1909,7 +1909,7 @@ type LastMsg struct {
 
 func (x *LastMsg) Reset() {
 	*x = LastMsg{}
-	mi := &file_nats_manager_proto_msgTypes[28]
+	mi := &file_api_nats_manager_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1921,7 +1921,7 @@ func (x *LastMsg) String() string {
 func (*LastMsg) ProtoMessage() {}
 
 func (x *LastMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[28]
+	mi := &file_api_nats_manager_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1934,7 +1934,7 @@ func (x *LastMsg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LastMsg.ProtoReflect.Descriptor instead.
 func (*LastMsg) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{28}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *LastMsg) GetName() string {
@@ -1964,7 +1964,7 @@ type RawStreamMsg struct {
 
 func (x *RawStreamMsg) Reset() {
 	*x = RawStreamMsg{}
-	mi := &file_nats_manager_proto_msgTypes[29]
+	mi := &file_api_nats_manager_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1976,7 +1976,7 @@ func (x *RawStreamMsg) String() string {
 func (*RawStreamMsg) ProtoMessage() {}
 
 func (x *RawStreamMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[29]
+	mi := &file_api_nats_manager_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1989,7 +1989,7 @@ func (x *RawStreamMsg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RawStreamMsg.ProtoReflect.Descriptor instead.
 func (*RawStreamMsg) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{29}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *RawStreamMsg) GetSubject() string {
@@ -2036,7 +2036,7 @@ type Strings struct {
 
 func (x *Strings) Reset() {
 	*x = Strings{}
-	mi := &file_nats_manager_proto_msgTypes[30]
+	mi := &file_api_nats_manager_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2048,7 +2048,7 @@ func (x *Strings) String() string {
 func (*Strings) ProtoMessage() {}
 
 func (x *Strings) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[30]
+	mi := &file_api_nats_manager_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2061,7 +2061,7 @@ func (x *Strings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Strings.ProtoReflect.Descriptor instead.
 func (*Strings) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{30}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *Strings) GetValues() []string {
@@ -2082,7 +2082,7 @@ type ConsumerName struct {
 
 func (x *ConsumerName) Reset() {
 	*x = ConsumerName{}
-	mi := &file_nats_manager_proto_msgTypes[31]
+	mi := &file_api_nats_manager_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2094,7 +2094,7 @@ func (x *ConsumerName) String() string {
 func (*ConsumerName) ProtoMessage() {}
 
 func (x *ConsumerName) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[31]
+	mi := &file_api_nats_manager_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2107,7 +2107,7 @@ func (x *ConsumerName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerName.ProtoReflect.Descriptor instead.
 func (*ConsumerName) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{31}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ConsumerName) GetStream() string {
@@ -2134,7 +2134,7 @@ type Consumer struct {
 
 func (x *Consumer) Reset() {
 	*x = Consumer{}
-	mi := &file_nats_manager_proto_msgTypes[32]
+	mi := &file_api_nats_manager_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2146,7 +2146,7 @@ func (x *Consumer) String() string {
 func (*Consumer) ProtoMessage() {}
 
 func (x *Consumer) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[32]
+	mi := &file_api_nats_manager_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2159,7 +2159,7 @@ func (x *Consumer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Consumer.ProtoReflect.Descriptor instead.
 func (*Consumer) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{32}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *Consumer) GetName() string {
@@ -2218,7 +2218,7 @@ type ConsumerConfig struct {
 
 func (x *ConsumerConfig) Reset() {
 	*x = ConsumerConfig{}
-	mi := &file_nats_manager_proto_msgTypes[33]
+	mi := &file_api_nats_manager_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2230,7 +2230,7 @@ func (x *ConsumerConfig) String() string {
 func (*ConsumerConfig) ProtoMessage() {}
 
 func (x *ConsumerConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[33]
+	mi := &file_api_nats_manager_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2243,7 +2243,7 @@ func (x *ConsumerConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerConfig.ProtoReflect.Descriptor instead.
 func (*ConsumerConfig) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{33}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ConsumerConfig) GetDurable() string {
@@ -2469,7 +2469,7 @@ type ConsumerInfos struct {
 
 func (x *ConsumerInfos) Reset() {
 	*x = ConsumerInfos{}
-	mi := &file_nats_manager_proto_msgTypes[34]
+	mi := &file_api_nats_manager_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2481,7 +2481,7 @@ func (x *ConsumerInfos) String() string {
 func (*ConsumerInfos) ProtoMessage() {}
 
 func (x *ConsumerInfos) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[34]
+	mi := &file_api_nats_manager_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2494,7 +2494,7 @@ func (x *ConsumerInfos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsumerInfos.ProtoReflect.Descriptor instead.
 func (*ConsumerInfos) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{34}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ConsumerInfos) GetStreamName() string {
@@ -2592,7 +2592,7 @@ type SequenceInfo struct {
 
 func (x *SequenceInfo) Reset() {
 	*x = SequenceInfo{}
-	mi := &file_nats_manager_proto_msgTypes[35]
+	mi := &file_api_nats_manager_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2604,7 +2604,7 @@ func (x *SequenceInfo) String() string {
 func (*SequenceInfo) ProtoMessage() {}
 
 func (x *SequenceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[35]
+	mi := &file_api_nats_manager_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2617,7 +2617,7 @@ func (x *SequenceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SequenceInfo.ProtoReflect.Descriptor instead.
 func (*SequenceInfo) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{35}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SequenceInfo) GetConsumerSeq() uint64 {
@@ -2650,7 +2650,7 @@ type ConsNames struct {
 
 func (x *ConsNames) Reset() {
 	*x = ConsNames{}
-	mi := &file_nats_manager_proto_msgTypes[36]
+	mi := &file_api_nats_manager_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2662,7 +2662,7 @@ func (x *ConsNames) String() string {
 func (*ConsNames) ProtoMessage() {}
 
 func (x *ConsNames) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[36]
+	mi := &file_api_nats_manager_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2675,7 +2675,7 @@ func (x *ConsNames) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsNames.ProtoReflect.Descriptor instead.
 func (*ConsNames) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{36}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ConsNames) GetResponse() string {
@@ -2697,7 +2697,7 @@ type AccountInfos struct {
 
 func (x *AccountInfos) Reset() {
 	*x = AccountInfos{}
-	mi := &file_nats_manager_proto_msgTypes[37]
+	mi := &file_api_nats_manager_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2709,7 +2709,7 @@ func (x *AccountInfos) String() string {
 func (*AccountInfos) ProtoMessage() {}
 
 func (x *AccountInfos) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[37]
+	mi := &file_api_nats_manager_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2722,7 +2722,7 @@ func (x *AccountInfos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccountInfos.ProtoReflect.Descriptor instead.
 func (*AccountInfos) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{37}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *AccountInfos) GetTier() *Tier {
@@ -2768,7 +2768,7 @@ type Tier struct {
 
 func (x *Tier) Reset() {
 	*x = Tier{}
-	mi := &file_nats_manager_proto_msgTypes[38]
+	mi := &file_api_nats_manager_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2780,7 +2780,7 @@ func (x *Tier) String() string {
 func (*Tier) ProtoMessage() {}
 
 func (x *Tier) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[38]
+	mi := &file_api_nats_manager_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2793,7 +2793,7 @@ func (x *Tier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tier.ProtoReflect.Descriptor instead.
 func (*Tier) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{38}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *Tier) GetMemory() uint64 {
@@ -2861,7 +2861,7 @@ type AccountLimits struct {
 
 func (x *AccountLimits) Reset() {
 	*x = AccountLimits{}
-	mi := &file_nats_manager_proto_msgTypes[39]
+	mi := &file_api_nats_manager_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2873,7 +2873,7 @@ func (x *AccountLimits) String() string {
 func (*AccountLimits) ProtoMessage() {}
 
 func (x *AccountLimits) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[39]
+	mi := &file_api_nats_manager_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2886,7 +2886,7 @@ func (x *AccountLimits) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccountLimits.ProtoReflect.Descriptor instead.
 func (*AccountLimits) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{39}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *AccountLimits) GetMaxMemory() int64 {
@@ -2955,7 +2955,7 @@ type APIStats struct {
 
 func (x *APIStats) Reset() {
 	*x = APIStats{}
-	mi := &file_nats_manager_proto_msgTypes[40]
+	mi := &file_api_nats_manager_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2967,7 +2967,7 @@ func (x *APIStats) String() string {
 func (*APIStats) ProtoMessage() {}
 
 func (x *APIStats) ProtoReflect() protoreflect.Message {
-	mi := &file_nats_manager_proto_msgTypes[40]
+	mi := &file_api_nats_manager_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2980,7 +2980,7 @@ func (x *APIStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIStats.ProtoReflect.Descriptor instead.
 func (*APIStats) Descriptor() ([]byte, []int) {
-	return file_nats_manager_proto_rawDescGZIP(), []int{40}
+	return file_api_nats_manager_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *APIStats) GetTotal() uint64 {
@@ -2997,11 +2997,11 @@ func (x *APIStats) GetErrors() uint64 {
 	return 0
 }
 
-var File_nats_manager_proto protoreflect.FileDescriptor
+var File_api_nats_manager_proto protoreflect.FileDescriptor
 
-const file_nats_manager_proto_rawDesc = "" +
+const file_api_nats_manager_proto_rawDesc = "" +
 	"\n" +
-	"\x12nats/manager.proto\x12#trb.nats.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
+	"\x16api/nats/manager.proto\x12#trb.nats.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
 	"\x0ePublishRequest\x12\x18\n" +
 	"\asubject\x18\x01 \x01(\tR\asubject\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\tR\x04data\"-\n" +
@@ -3298,22 +3298,22 @@ const file_nats_manager_proto_rawDesc = "" +
 	"\rConsumerNames\x12/.trb.nats.manager.public.contract.v1.StreamName\x1a5.trb.nats.manager.public.contract.v1.ConsumerNameList\"C\x82\xd3\xe4\x93\x02=Z\x13:\x01*\"\x0e/ConsumerNames\x12&/v1/nats/streams/{name}/consumer-names\x12\x9a\x01\n" +
 	"\vAccountInfo\x12+.trb.nats.manager.public.contract.v1.JsOpts\x1a1.trb.nats.manager.public.contract.v1.AccountInfos\"+\x82\xd3\xe4\x93\x02%Z\x11:\x01*\"\f/AccountInfo\x12\x10/v1/nats/account\x12\xb8\x01\n" +
 	"\x13StreamNameBySubject\x121.trb.nats.manager.public.contract.v1.SubjectQuery\x1a/.trb.nats.manager.public.contract.v1.StreamName\"=\x82\xd3\xe4\x93\x027Z\x19:\x01*\"\x14/StreamNameBySubject\x12\x1a/v1/nats/stream-by-subject\x12\xa0\x01\n" +
-	"\aPublish\x123.trb.nats.manager.public.contract.v1.PublishRequest\x1a4.trb.nats.manager.public.contract.v1.PublishResponse\"*\x82\xd3\xe4\x93\x02$:\x01*Z\r:\x01*\"\b/Publish\"\x10/v1/nats/publishB0Z.github.com/Mar1eena/trb_proto/gen/go/nats;natsb\x06proto3"
+	"\aPublish\x123.trb.nats.manager.public.contract.v1.PublishRequest\x1a4.trb.nats.manager.public.contract.v1.PublishResponse\"*\x82\xd3\xe4\x93\x02$:\x01*Z\r:\x01*\"\b/Publish\"\x10/v1/nats/publishB4Z2github.com/Mar1eena/trb_proto/gen/go/api/nats;natsb\x06proto3"
 
 var (
-	file_nats_manager_proto_rawDescOnce sync.Once
-	file_nats_manager_proto_rawDescData []byte
+	file_api_nats_manager_proto_rawDescOnce sync.Once
+	file_api_nats_manager_proto_rawDescData []byte
 )
 
-func file_nats_manager_proto_rawDescGZIP() []byte {
-	file_nats_manager_proto_rawDescOnce.Do(func() {
-		file_nats_manager_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_nats_manager_proto_rawDesc), len(file_nats_manager_proto_rawDesc)))
+func file_api_nats_manager_proto_rawDescGZIP() []byte {
+	file_api_nats_manager_proto_rawDescOnce.Do(func() {
+		file_api_nats_manager_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_nats_manager_proto_rawDesc), len(file_api_nats_manager_proto_rawDesc)))
 	})
-	return file_nats_manager_proto_rawDescData
+	return file_api_nats_manager_proto_rawDescData
 }
 
-var file_nats_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
-var file_nats_manager_proto_goTypes = []any{
+var file_api_nats_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
+var file_api_nats_manager_proto_goTypes = []any{
 	(*PublishRequest)(nil),              // 0: trb.nats.manager.public.contract.v1.PublishRequest
 	(*PublishResponse)(nil),             // 1: trb.nats.manager.public.contract.v1.PublishResponse
 	(*ResponseStreamNameBySubject)(nil), // 2: trb.nats.manager.public.contract.v1.ResponseStreamNameBySubject
@@ -3362,7 +3362,7 @@ var file_nats_manager_proto_goTypes = []any{
 	nil,                                 // 45: trb.nats.manager.public.contract.v1.AccountInfos.TiersEntry
 	(*timestamppb.Timestamp)(nil),       // 46: google.protobuf.Timestamp
 }
-var file_nats_manager_proto_depIdxs = []int32{
+var file_api_nats_manager_proto_depIdxs = []int32{
 	17, // 0: trb.nats.manager.public.contract.v1.StreamList.items:type_name -> trb.nats.manager.public.contract.v1.StreamInfos
 	34, // 1: trb.nats.manager.public.contract.v1.ConsumerList.items:type_name -> trb.nats.manager.public.contract.v1.ConsumerInfos
 	11, // 2: trb.nats.manager.public.contract.v1.StreamConfig.placement:type_name -> trb.nats.manager.public.contract.v1.Placement
@@ -3460,26 +3460,26 @@ var file_nats_manager_proto_depIdxs = []int32{
 	0,  // [0:44] is the sub-list for field type_name
 }
 
-func init() { file_nats_manager_proto_init() }
-func file_nats_manager_proto_init() {
-	if File_nats_manager_proto != nil {
+func init() { file_api_nats_manager_proto_init() }
+func file_api_nats_manager_proto_init() {
+	if File_api_nats_manager_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_nats_manager_proto_rawDesc), len(file_nats_manager_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_nats_manager_proto_rawDesc), len(file_api_nats_manager_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   46,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_nats_manager_proto_goTypes,
-		DependencyIndexes: file_nats_manager_proto_depIdxs,
-		MessageInfos:      file_nats_manager_proto_msgTypes,
+		GoTypes:           file_api_nats_manager_proto_goTypes,
+		DependencyIndexes: file_api_nats_manager_proto_depIdxs,
+		MessageInfos:      file_api_nats_manager_proto_msgTypes,
 	}.Build()
-	File_nats_manager_proto = out.File
-	file_nats_manager_proto_goTypes = nil
-	file_nats_manager_proto_depIdxs = nil
+	File_api_nats_manager_proto = out.File
+	file_api_nats_manager_proto_goTypes = nil
+	file_api_nats_manager_proto_depIdxs = nil
 }

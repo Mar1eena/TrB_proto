@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.34.1
-// source: clickhouse_manager/manager.proto
+// source: api/clickhouse/manager.proto
 
-package clickhouse_manager
+package clickhouse
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -33,7 +33,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[0]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[0]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{0}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Status) GetSuccess() bool {
@@ -83,7 +83,7 @@ type PingRequest struct {
 
 func (x *PingRequest) Reset() {
 	*x = PingRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[1]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +95,7 @@ func (x *PingRequest) String() string {
 func (*PingRequest) ProtoMessage() {}
 
 func (x *PingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[1]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +108,7 @@ func (x *PingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingRequest.ProtoReflect.Descriptor instead.
 func (*PingRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{1}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{1}
 }
 
 type PingResponse struct {
@@ -121,7 +121,7 @@ type PingResponse struct {
 
 func (x *PingResponse) Reset() {
 	*x = PingResponse{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[2]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -133,7 +133,7 @@ func (x *PingResponse) String() string {
 func (*PingResponse) ProtoMessage() {}
 
 func (x *PingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[2]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +146,7 @@ func (x *PingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
 func (*PingResponse) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{2}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PingResponse) GetOk() bool {
@@ -171,7 +171,7 @@ type ServerInfoRequest struct {
 
 func (x *ServerInfoRequest) Reset() {
 	*x = ServerInfoRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[3]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +183,7 @@ func (x *ServerInfoRequest) String() string {
 func (*ServerInfoRequest) ProtoMessage() {}
 
 func (x *ServerInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[3]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +196,7 @@ func (x *ServerInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerInfoRequest.ProtoReflect.Descriptor instead.
 func (*ServerInfoRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{3}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{3}
 }
 
 type ServerInfoResponse struct {
@@ -212,7 +212,7 @@ type ServerInfoResponse struct {
 
 func (x *ServerInfoResponse) Reset() {
 	*x = ServerInfoResponse{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[4]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -224,7 +224,7 @@ func (x *ServerInfoResponse) String() string {
 func (*ServerInfoResponse) ProtoMessage() {}
 
 func (x *ServerInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[4]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -237,7 +237,7 @@ func (x *ServerInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerInfoResponse.ProtoReflect.Descriptor instead.
 func (*ServerInfoResponse) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{4}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ServerInfoResponse) GetVersion() string {
@@ -288,7 +288,7 @@ type DatabaseSpec struct {
 
 func (x *DatabaseSpec) Reset() {
 	*x = DatabaseSpec{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[5]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +300,7 @@ func (x *DatabaseSpec) String() string {
 func (*DatabaseSpec) ProtoMessage() {}
 
 func (x *DatabaseSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[5]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +313,7 @@ func (x *DatabaseSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseSpec.ProtoReflect.Descriptor instead.
 func (*DatabaseSpec) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{5}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DatabaseSpec) GetName() string {
@@ -363,7 +363,7 @@ type DatabaseName struct {
 
 func (x *DatabaseName) Reset() {
 	*x = DatabaseName{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[6]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -375,7 +375,7 @@ func (x *DatabaseName) String() string {
 func (*DatabaseName) ProtoMessage() {}
 
 func (x *DatabaseName) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[6]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -388,7 +388,7 @@ func (x *DatabaseName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseName.ProtoReflect.Descriptor instead.
 func (*DatabaseName) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{6}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DatabaseName) GetName() string {
@@ -428,7 +428,7 @@ type ListDatabasesRequest struct {
 
 func (x *ListDatabasesRequest) Reset() {
 	*x = ListDatabasesRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[7]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -440,7 +440,7 @@ func (x *ListDatabasesRequest) String() string {
 func (*ListDatabasesRequest) ProtoMessage() {}
 
 func (x *ListDatabasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[7]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -453,7 +453,7 @@ func (x *ListDatabasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDatabasesRequest.ProtoReflect.Descriptor instead.
 func (*ListDatabasesRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{7}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListDatabasesRequest) GetLike() string {
@@ -477,7 +477,7 @@ type Database struct {
 
 func (x *Database) Reset() {
 	*x = Database{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[8]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -489,7 +489,7 @@ func (x *Database) String() string {
 func (*Database) ProtoMessage() {}
 
 func (x *Database) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[8]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -502,7 +502,7 @@ func (x *Database) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database.ProtoReflect.Descriptor instead.
 func (*Database) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{8}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Database) GetName() string {
@@ -556,7 +556,7 @@ type DatabaseList struct {
 
 func (x *DatabaseList) Reset() {
 	*x = DatabaseList{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[9]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -568,7 +568,7 @@ func (x *DatabaseList) String() string {
 func (*DatabaseList) ProtoMessage() {}
 
 func (x *DatabaseList) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[9]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,7 +581,7 @@ func (x *DatabaseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseList.ProtoReflect.Descriptor instead.
 func (*DatabaseList) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{9}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DatabaseList) GetItems() []*Database {
@@ -606,7 +606,7 @@ type Column struct {
 
 func (x *Column) Reset() {
 	*x = Column{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[10]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -618,7 +618,7 @@ func (x *Column) String() string {
 func (*Column) ProtoMessage() {}
 
 func (x *Column) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[10]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -631,7 +631,7 @@ func (x *Column) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Column.ProtoReflect.Descriptor instead.
 func (*Column) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{10}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Column) GetName() string {
@@ -693,7 +693,7 @@ type TableEngine struct {
 
 func (x *TableEngine) Reset() {
 	*x = TableEngine{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[11]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -705,7 +705,7 @@ func (x *TableEngine) String() string {
 func (*TableEngine) ProtoMessage() {}
 
 func (x *TableEngine) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[11]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -718,7 +718,7 @@ func (x *TableEngine) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableEngine.ProtoReflect.Descriptor instead.
 func (*TableEngine) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{11}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *TableEngine) GetName() string {
@@ -756,7 +756,7 @@ type TableSpec struct {
 
 func (x *TableSpec) Reset() {
 	*x = TableSpec{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[12]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -768,7 +768,7 @@ func (x *TableSpec) String() string {
 func (*TableSpec) ProtoMessage() {}
 
 func (x *TableSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[12]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -781,7 +781,7 @@ func (x *TableSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableSpec.ProtoReflect.Descriptor instead.
 func (*TableSpec) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{12}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TableSpec) GetDatabase() string {
@@ -888,7 +888,7 @@ type TableName struct {
 
 func (x *TableName) Reset() {
 	*x = TableName{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[13]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -900,7 +900,7 @@ func (x *TableName) String() string {
 func (*TableName) ProtoMessage() {}
 
 func (x *TableName) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[13]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -913,7 +913,7 @@ func (x *TableName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableName.ProtoReflect.Descriptor instead.
 func (*TableName) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{13}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *TableName) GetDatabase() string {
@@ -961,7 +961,7 @@ type ListTablesRequest struct {
 
 func (x *ListTablesRequest) Reset() {
 	*x = ListTablesRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[14]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -973,7 +973,7 @@ func (x *ListTablesRequest) String() string {
 func (*ListTablesRequest) ProtoMessage() {}
 
 func (x *ListTablesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[14]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -986,7 +986,7 @@ func (x *ListTablesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTablesRequest.ProtoReflect.Descriptor instead.
 func (*ListTablesRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{14}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListTablesRequest) GetDatabase() string {
@@ -1025,7 +1025,7 @@ type Table struct {
 
 func (x *Table) Reset() {
 	*x = Table{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[15]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1037,7 +1037,7 @@ func (x *Table) String() string {
 func (*Table) ProtoMessage() {}
 
 func (x *Table) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[15]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1050,7 +1050,7 @@ func (x *Table) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Table.ProtoReflect.Descriptor instead.
 func (*Table) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{15}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *Table) GetDatabase() string {
@@ -1160,7 +1160,7 @@ type TableList struct {
 
 func (x *TableList) Reset() {
 	*x = TableList{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[16]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1172,7 +1172,7 @@ func (x *TableList) String() string {
 func (*TableList) ProtoMessage() {}
 
 func (x *TableList) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[16]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1185,7 +1185,7 @@ func (x *TableList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableList.ProtoReflect.Descriptor instead.
 func (*TableList) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{16}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *TableList) GetItems() []*Table {
@@ -1208,7 +1208,7 @@ type RenameTableRequest struct {
 
 func (x *RenameTableRequest) Reset() {
 	*x = RenameTableRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[17]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1220,7 +1220,7 @@ func (x *RenameTableRequest) String() string {
 func (*RenameTableRequest) ProtoMessage() {}
 
 func (x *RenameTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[17]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1233,7 +1233,7 @@ func (x *RenameTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameTableRequest.ProtoReflect.Descriptor instead.
 func (*RenameTableRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{17}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *RenameTableRequest) GetDatabase() string {
@@ -1285,7 +1285,7 @@ type OptimizeTableRequest struct {
 
 func (x *OptimizeTableRequest) Reset() {
 	*x = OptimizeTableRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[18]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1297,7 +1297,7 @@ func (x *OptimizeTableRequest) String() string {
 func (*OptimizeTableRequest) ProtoMessage() {}
 
 func (x *OptimizeTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[18]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1310,7 +1310,7 @@ func (x *OptimizeTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OptimizeTableRequest.ProtoReflect.Descriptor instead.
 func (*OptimizeTableRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{18}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *OptimizeTableRequest) GetDatabase() string {
@@ -1369,7 +1369,7 @@ type AddColumnRequest struct {
 
 func (x *AddColumnRequest) Reset() {
 	*x = AddColumnRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[19]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1381,7 +1381,7 @@ func (x *AddColumnRequest) String() string {
 func (*AddColumnRequest) ProtoMessage() {}
 
 func (x *AddColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[19]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1394,7 +1394,7 @@ func (x *AddColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddColumnRequest.ProtoReflect.Descriptor instead.
 func (*AddColumnRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{19}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *AddColumnRequest) GetDatabase() string {
@@ -1452,7 +1452,7 @@ type DropColumnRequest struct {
 
 func (x *DropColumnRequest) Reset() {
 	*x = DropColumnRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[20]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1464,7 +1464,7 @@ func (x *DropColumnRequest) String() string {
 func (*DropColumnRequest) ProtoMessage() {}
 
 func (x *DropColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[20]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1477,7 +1477,7 @@ func (x *DropColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DropColumnRequest.ProtoReflect.Descriptor instead.
 func (*DropColumnRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{20}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *DropColumnRequest) GetDatabase() string {
@@ -1528,7 +1528,7 @@ type RenameColumnRequest struct {
 
 func (x *RenameColumnRequest) Reset() {
 	*x = RenameColumnRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[21]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1540,7 +1540,7 @@ func (x *RenameColumnRequest) String() string {
 func (*RenameColumnRequest) ProtoMessage() {}
 
 func (x *RenameColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[21]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1553,7 +1553,7 @@ func (x *RenameColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameColumnRequest.ProtoReflect.Descriptor instead.
 func (*RenameColumnRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{21}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *RenameColumnRequest) GetDatabase() string {
@@ -1603,7 +1603,7 @@ type ModifyColumnRequest struct {
 
 func (x *ModifyColumnRequest) Reset() {
 	*x = ModifyColumnRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[22]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1615,7 +1615,7 @@ func (x *ModifyColumnRequest) String() string {
 func (*ModifyColumnRequest) ProtoMessage() {}
 
 func (x *ModifyColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[22]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1628,7 +1628,7 @@ func (x *ModifyColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModifyColumnRequest.ProtoReflect.Descriptor instead.
 func (*ModifyColumnRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{22}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ModifyColumnRequest) GetDatabase() string {
@@ -1668,7 +1668,7 @@ type QueryRow struct {
 
 func (x *QueryRow) Reset() {
 	*x = QueryRow{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[23]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1680,7 +1680,7 @@ func (x *QueryRow) String() string {
 func (*QueryRow) ProtoMessage() {}
 
 func (x *QueryRow) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[23]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1693,7 +1693,7 @@ func (x *QueryRow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRow.ProtoReflect.Descriptor instead.
 func (*QueryRow) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{23}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *QueryRow) GetValues() []string {
@@ -1714,7 +1714,7 @@ type ExecuteQueryRequest struct {
 
 func (x *ExecuteQueryRequest) Reset() {
 	*x = ExecuteQueryRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[24]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1726,7 +1726,7 @@ func (x *ExecuteQueryRequest) String() string {
 func (*ExecuteQueryRequest) ProtoMessage() {}
 
 func (x *ExecuteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[24]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1739,7 +1739,7 @@ func (x *ExecuteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteQueryRequest.ProtoReflect.Descriptor instead.
 func (*ExecuteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{24}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ExecuteQueryRequest) GetQuery() string {
@@ -1778,7 +1778,7 @@ type ExecuteQueryResponse struct {
 
 func (x *ExecuteQueryResponse) Reset() {
 	*x = ExecuteQueryResponse{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[25]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1790,7 +1790,7 @@ func (x *ExecuteQueryResponse) String() string {
 func (*ExecuteQueryResponse) ProtoMessage() {}
 
 func (x *ExecuteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[25]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1803,7 +1803,7 @@ func (x *ExecuteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteQueryResponse.ProtoReflect.Descriptor instead.
 func (*ExecuteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{25}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ExecuteQueryResponse) GetColumns() []string {
@@ -1869,7 +1869,7 @@ type PreviewTableDataRequest struct {
 
 func (x *PreviewTableDataRequest) Reset() {
 	*x = PreviewTableDataRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[26]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1881,7 +1881,7 @@ func (x *PreviewTableDataRequest) String() string {
 func (*PreviewTableDataRequest) ProtoMessage() {}
 
 func (x *PreviewTableDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[26]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1894,7 +1894,7 @@ func (x *PreviewTableDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreviewTableDataRequest.ProtoReflect.Descriptor instead.
 func (*PreviewTableDataRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{26}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *PreviewTableDataRequest) GetDatabase() string {
@@ -1957,7 +1957,7 @@ type TablePart struct {
 
 func (x *TablePart) Reset() {
 	*x = TablePart{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[27]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1969,7 +1969,7 @@ func (x *TablePart) String() string {
 func (*TablePart) ProtoMessage() {}
 
 func (x *TablePart) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[27]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1982,7 +1982,7 @@ func (x *TablePart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TablePart.ProtoReflect.Descriptor instead.
 func (*TablePart) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{27}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *TablePart) GetPartition() string {
@@ -2066,7 +2066,7 @@ type ListPartsRequest struct {
 
 func (x *ListPartsRequest) Reset() {
 	*x = ListPartsRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[28]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2078,7 +2078,7 @@ func (x *ListPartsRequest) String() string {
 func (*ListPartsRequest) ProtoMessage() {}
 
 func (x *ListPartsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[28]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2091,7 +2091,7 @@ func (x *ListPartsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPartsRequest.ProtoReflect.Descriptor instead.
 func (*ListPartsRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{28}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListPartsRequest) GetDatabase() string {
@@ -2124,7 +2124,7 @@ type PartsList struct {
 
 func (x *PartsList) Reset() {
 	*x = PartsList{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[29]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2136,7 +2136,7 @@ func (x *PartsList) String() string {
 func (*PartsList) ProtoMessage() {}
 
 func (x *PartsList) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[29]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2149,7 +2149,7 @@ func (x *PartsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartsList.ProtoReflect.Descriptor instead.
 func (*PartsList) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{29}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *PartsList) GetItems() []*TablePart {
@@ -2172,7 +2172,7 @@ type DropPartitionRequest struct {
 
 func (x *DropPartitionRequest) Reset() {
 	*x = DropPartitionRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[30]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2184,7 +2184,7 @@ func (x *DropPartitionRequest) String() string {
 func (*DropPartitionRequest) ProtoMessage() {}
 
 func (x *DropPartitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[30]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2197,7 +2197,7 @@ func (x *DropPartitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DropPartitionRequest.ProtoReflect.Descriptor instead.
 func (*DropPartitionRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{30}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DropPartitionRequest) GetDatabase() string {
@@ -2253,7 +2253,7 @@ type ProcessInfo struct {
 
 func (x *ProcessInfo) Reset() {
 	*x = ProcessInfo{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[31]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2265,7 +2265,7 @@ func (x *ProcessInfo) String() string {
 func (*ProcessInfo) ProtoMessage() {}
 
 func (x *ProcessInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[31]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2278,7 +2278,7 @@ func (x *ProcessInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessInfo.ProtoReflect.Descriptor instead.
 func (*ProcessInfo) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{31}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ProcessInfo) GetQueryId() string {
@@ -2359,7 +2359,7 @@ type ListProcessesRequest struct {
 
 func (x *ListProcessesRequest) Reset() {
 	*x = ListProcessesRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[32]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2371,7 +2371,7 @@ func (x *ListProcessesRequest) String() string {
 func (*ListProcessesRequest) ProtoMessage() {}
 
 func (x *ListProcessesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[32]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2384,7 +2384,7 @@ func (x *ListProcessesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProcessesRequest.ProtoReflect.Descriptor instead.
 func (*ListProcessesRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{32}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{32}
 }
 
 type ProcessList struct {
@@ -2396,7 +2396,7 @@ type ProcessList struct {
 
 func (x *ProcessList) Reset() {
 	*x = ProcessList{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[33]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2408,7 +2408,7 @@ func (x *ProcessList) String() string {
 func (*ProcessList) ProtoMessage() {}
 
 func (x *ProcessList) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[33]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2421,7 +2421,7 @@ func (x *ProcessList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessList.ProtoReflect.Descriptor instead.
 func (*ProcessList) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{33}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ProcessList) GetItems() []*ProcessInfo {
@@ -2440,7 +2440,7 @@ type KillProcessRequest struct {
 
 func (x *KillProcessRequest) Reset() {
 	*x = KillProcessRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[34]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2452,7 +2452,7 @@ func (x *KillProcessRequest) String() string {
 func (*KillProcessRequest) ProtoMessage() {}
 
 func (x *KillProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[34]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2465,7 +2465,7 @@ func (x *KillProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KillProcessRequest.ProtoReflect.Descriptor instead.
 func (*KillProcessRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{34}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *KillProcessRequest) GetQueryId() string {
@@ -2489,7 +2489,7 @@ type DiskInfo struct {
 
 func (x *DiskInfo) Reset() {
 	*x = DiskInfo{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[35]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2501,7 +2501,7 @@ func (x *DiskInfo) String() string {
 func (*DiskInfo) ProtoMessage() {}
 
 func (x *DiskInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[35]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2514,7 +2514,7 @@ func (x *DiskInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiskInfo.ProtoReflect.Descriptor instead.
 func (*DiskInfo) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{35}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *DiskInfo) GetName() string {
@@ -2567,7 +2567,7 @@ type ListDisksRequest struct {
 
 func (x *ListDisksRequest) Reset() {
 	*x = ListDisksRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[36]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2579,7 +2579,7 @@ func (x *ListDisksRequest) String() string {
 func (*ListDisksRequest) ProtoMessage() {}
 
 func (x *ListDisksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[36]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2592,7 +2592,7 @@ func (x *ListDisksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDisksRequest.ProtoReflect.Descriptor instead.
 func (*ListDisksRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{36}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{36}
 }
 
 type DiskList struct {
@@ -2604,7 +2604,7 @@ type DiskList struct {
 
 func (x *DiskList) Reset() {
 	*x = DiskList{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[37]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2616,7 +2616,7 @@ func (x *DiskList) String() string {
 func (*DiskList) ProtoMessage() {}
 
 func (x *DiskList) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[37]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2629,7 +2629,7 @@ func (x *DiskList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiskList.ProtoReflect.Descriptor instead.
 func (*DiskList) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{37}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *DiskList) GetItems() []*DiskInfo {
@@ -2650,7 +2650,7 @@ type MetricItem struct {
 
 func (x *MetricItem) Reset() {
 	*x = MetricItem{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[38]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2662,7 +2662,7 @@ func (x *MetricItem) String() string {
 func (*MetricItem) ProtoMessage() {}
 
 func (x *MetricItem) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[38]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2675,7 +2675,7 @@ func (x *MetricItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricItem.ProtoReflect.Descriptor instead.
 func (*MetricItem) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{38}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *MetricItem) GetName() string {
@@ -2707,7 +2707,7 @@ type GetMetricsRequest struct {
 
 func (x *GetMetricsRequest) Reset() {
 	*x = GetMetricsRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[39]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2719,7 +2719,7 @@ func (x *GetMetricsRequest) String() string {
 func (*GetMetricsRequest) ProtoMessage() {}
 
 func (x *GetMetricsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[39]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2732,7 +2732,7 @@ func (x *GetMetricsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMetricsRequest.ProtoReflect.Descriptor instead.
 func (*GetMetricsRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{39}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{39}
 }
 
 type MetricsResponse struct {
@@ -2745,7 +2745,7 @@ type MetricsResponse struct {
 
 func (x *MetricsResponse) Reset() {
 	*x = MetricsResponse{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[40]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2757,7 +2757,7 @@ func (x *MetricsResponse) String() string {
 func (*MetricsResponse) ProtoMessage() {}
 
 func (x *MetricsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[40]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2770,7 +2770,7 @@ func (x *MetricsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricsResponse.ProtoReflect.Descriptor instead.
 func (*MetricsResponse) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{40}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *MetricsResponse) GetMetrics() []*MetricItem {
@@ -2795,7 +2795,7 @@ type TableOptionsRequest struct {
 
 func (x *TableOptionsRequest) Reset() {
 	*x = TableOptionsRequest{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[41]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2807,7 +2807,7 @@ func (x *TableOptionsRequest) String() string {
 func (*TableOptionsRequest) ProtoMessage() {}
 
 func (x *TableOptionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[41]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2820,7 +2820,7 @@ func (x *TableOptionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableOptionsRequest.ProtoReflect.Descriptor instead.
 func (*TableOptionsRequest) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{41}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{41}
 }
 
 type TableOptionsResponse struct {
@@ -2835,7 +2835,7 @@ type TableOptionsResponse struct {
 
 func (x *TableOptionsResponse) Reset() {
 	*x = TableOptionsResponse{}
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[42]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2847,7 +2847,7 @@ func (x *TableOptionsResponse) String() string {
 func (*TableOptionsResponse) ProtoMessage() {}
 
 func (x *TableOptionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_clickhouse_manager_manager_proto_msgTypes[42]
+	mi := &file_api_clickhouse_manager_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2860,7 +2860,7 @@ func (x *TableOptionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableOptionsResponse.ProtoReflect.Descriptor instead.
 func (*TableOptionsResponse) Descriptor() ([]byte, []int) {
-	return file_clickhouse_manager_manager_proto_rawDescGZIP(), []int{42}
+	return file_api_clickhouse_manager_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *TableOptionsResponse) GetEngines() []string {
@@ -2891,11 +2891,11 @@ func (x *TableOptionsResponse) GetCodecs() []string {
 	return nil
 }
 
-var File_clickhouse_manager_manager_proto protoreflect.FileDescriptor
+var File_api_clickhouse_manager_proto protoreflect.FileDescriptor
 
-const file_clickhouse_manager_manager_proto_rawDesc = "" +
+const file_api_clickhouse_manager_proto_rawDesc = "" +
 	"\n" +
-	" clickhouse_manager/manager.proto\x12)trb.clickhouse.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"<\n" +
+	"\x1capi/clickhouse/manager.proto\x12)trb.clickhouse.manager.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"<\n" +
 	"\x06Status\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\r\n" +
@@ -3164,22 +3164,22 @@ const file_clickhouse_manager_manager_proto_rawDesc = "" +
 	"/ListDisks\x12\x14/v1/clickhouse/disks\x12\xb8\x01\n" +
 	"\n" +
 	"GetMetrics\x12<.trb.clickhouse.manager.public.contract.v1.GetMetricsRequest\x1a:.trb.clickhouse.manager.public.contract.v1.MetricsResponse\"0\x82\xd3\xe4\x93\x02*Z\x10:\x01*\"\v/GetMetrics\x12\x16/v1/clickhouse/metrics\x12\xcf\x01\n" +
-	"\x0fGetTableOptions\x12>.trb.clickhouse.manager.public.contract.v1.TableOptionsRequest\x1a?.trb.clickhouse.manager.public.contract.v1.TableOptionsResponse\";\x82\xd3\xe4\x93\x025Z\x15:\x01*\"\x10/GetTableOptions\x12\x1c/v1/clickhouse/table_optionsBLZJgithub.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_managerb\x06proto3"
+	"\x0fGetTableOptions\x12>.trb.clickhouse.manager.public.contract.v1.TableOptionsRequest\x1a?.trb.clickhouse.manager.public.contract.v1.TableOptionsResponse\";\x82\xd3\xe4\x93\x025Z\x15:\x01*\"\x10/GetTableOptions\x12\x1c/v1/clickhouse/table_optionsB@Z>github.com/Mar1eena/trb_proto/gen/go/api/clickhouse;clickhouseb\x06proto3"
 
 var (
-	file_clickhouse_manager_manager_proto_rawDescOnce sync.Once
-	file_clickhouse_manager_manager_proto_rawDescData []byte
+	file_api_clickhouse_manager_proto_rawDescOnce sync.Once
+	file_api_clickhouse_manager_proto_rawDescData []byte
 )
 
-func file_clickhouse_manager_manager_proto_rawDescGZIP() []byte {
-	file_clickhouse_manager_manager_proto_rawDescOnce.Do(func() {
-		file_clickhouse_manager_manager_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_clickhouse_manager_manager_proto_rawDesc), len(file_clickhouse_manager_manager_proto_rawDesc)))
+func file_api_clickhouse_manager_proto_rawDescGZIP() []byte {
+	file_api_clickhouse_manager_proto_rawDescOnce.Do(func() {
+		file_api_clickhouse_manager_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_clickhouse_manager_proto_rawDesc), len(file_api_clickhouse_manager_proto_rawDesc)))
 	})
-	return file_clickhouse_manager_manager_proto_rawDescData
+	return file_api_clickhouse_manager_proto_rawDescData
 }
 
-var file_clickhouse_manager_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
-var file_clickhouse_manager_manager_proto_goTypes = []any{
+var file_api_clickhouse_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_api_clickhouse_manager_proto_goTypes = []any{
 	(*Status)(nil),                  // 0: trb.clickhouse.manager.public.contract.v1.Status
 	(*PingRequest)(nil),             // 1: trb.clickhouse.manager.public.contract.v1.PingRequest
 	(*PingResponse)(nil),            // 2: trb.clickhouse.manager.public.contract.v1.PingResponse
@@ -3226,7 +3226,7 @@ var file_clickhouse_manager_manager_proto_goTypes = []any{
 	nil,                             // 43: trb.clickhouse.manager.public.contract.v1.TableSpec.SettingsEntry
 	(*timestamppb.Timestamp)(nil),   // 44: google.protobuf.Timestamp
 }
-var file_clickhouse_manager_manager_proto_depIdxs = []int32{
+var file_api_clickhouse_manager_proto_depIdxs = []int32{
 	8,  // 0: trb.clickhouse.manager.public.contract.v1.DatabaseList.items:type_name -> trb.clickhouse.manager.public.contract.v1.Database
 	10, // 1: trb.clickhouse.manager.public.contract.v1.TableSpec.columns:type_name -> trb.clickhouse.manager.public.contract.v1.Column
 	11, // 2: trb.clickhouse.manager.public.contract.v1.TableSpec.engine:type_name -> trb.clickhouse.manager.public.contract.v1.TableEngine
@@ -3302,26 +3302,26 @@ var file_clickhouse_manager_manager_proto_depIdxs = []int32{
 	0,  // [0:16] is the sub-list for field type_name
 }
 
-func init() { file_clickhouse_manager_manager_proto_init() }
-func file_clickhouse_manager_manager_proto_init() {
-	if File_clickhouse_manager_manager_proto != nil {
+func init() { file_api_clickhouse_manager_proto_init() }
+func file_api_clickhouse_manager_proto_init() {
+	if File_api_clickhouse_manager_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_clickhouse_manager_manager_proto_rawDesc), len(file_clickhouse_manager_manager_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_clickhouse_manager_proto_rawDesc), len(file_api_clickhouse_manager_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_clickhouse_manager_manager_proto_goTypes,
-		DependencyIndexes: file_clickhouse_manager_manager_proto_depIdxs,
-		MessageInfos:      file_clickhouse_manager_manager_proto_msgTypes,
+		GoTypes:           file_api_clickhouse_manager_proto_goTypes,
+		DependencyIndexes: file_api_clickhouse_manager_proto_depIdxs,
+		MessageInfos:      file_api_clickhouse_manager_proto_msgTypes,
 	}.Build()
-	File_clickhouse_manager_manager_proto = out.File
-	file_clickhouse_manager_manager_proto_goTypes = nil
-	file_clickhouse_manager_manager_proto_depIdxs = nil
+	File_api_clickhouse_manager_proto = out.File
+	file_api_clickhouse_manager_proto_goTypes = nil
+	file_api_clickhouse_manager_proto_depIdxs = nil
 }

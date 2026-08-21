@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v7.34.1
-// source: clickhouse_manager/manager.proto
+// source: api/clickhouse/manager.proto
 
-package clickhouse_manager
+package clickhouse
 
 import (
 	context "context"
@@ -1071,5 +1071,5 @@ var ClickHouseManager_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "clickhouse_manager/manager.proto",
+	Metadata: "api/clickhouse/manager.proto",
 }

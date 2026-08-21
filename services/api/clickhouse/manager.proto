@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package trb.clickhouse.manager.public.contract.v1;
 
-option go_package = "github.com/Mar1eena/trb_proto/gen/go/clickhouse_manager;clickhouse_manager";
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/clickhouse;clickhouse";
 
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";

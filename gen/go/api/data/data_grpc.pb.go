@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v7.34.1
-// source: db_api/db_api.proto
+// source: api/data/data.proto
 
-package db_api
+package data
 
 import (
 	context "context"
@@ -32,7 +32,7 @@ const (
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/db_api.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiClient interface {
 	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*ListInstrumentsResponse, error)
@@ -96,7 +96,7 @@ func (c *dbApiClient) ListLastDownloads(ctx context.Context, in *ListLastDownloa
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/db_api.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiServer interface {
 	ListInstruments(context.Context, *ListInstrumentsRequest) (*ListInstrumentsResponse, error)
@@ -243,5 +243,5 @@ var DbApi_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "db_api/db_api.proto",
+	Metadata: "api/data/data.proto",
 }

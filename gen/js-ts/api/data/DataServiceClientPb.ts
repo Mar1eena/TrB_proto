@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v7.34.1
-// source: db_api/db_api.proto
+// source: api/data/data.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as db_api_db_api_pb from '../db_api/db_api_pb'; // proto import: "db_api/db_api.proto"
+import * as api_data_data_pb from '../../api/data/data_pb'; // proto import: "api/data/data.proto"
 
 
 export class DbApiClient {
@@ -42,29 +42,29 @@ export class DbApiClient {
   methodDescriptorListInstruments = new grpcWeb.MethodDescriptor(
     '/trb.db.api.public.contract.v1.DbApi/ListInstruments',
     grpcWeb.MethodType.UNARY,
-    db_api_db_api_pb.ListInstrumentsRequest,
-    db_api_db_api_pb.ListInstrumentsResponse,
-    (request: db_api_db_api_pb.ListInstrumentsRequest) => {
+    api_data_data_pb.ListInstrumentsRequest,
+    api_data_data_pb.ListInstrumentsResponse,
+    (request: api_data_data_pb.ListInstrumentsRequest) => {
       return request.serializeBinary();
     },
-    db_api_db_api_pb.ListInstrumentsResponse.deserializeBinary
+    api_data_data_pb.ListInstrumentsResponse.deserializeBinary
   );
 
   listInstruments(
-    request: db_api_db_api_pb.ListInstrumentsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<db_api_db_api_pb.ListInstrumentsResponse>;
+    request: api_data_data_pb.ListInstrumentsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_data_data_pb.ListInstrumentsResponse>;
 
   listInstruments(
-    request: db_api_db_api_pb.ListInstrumentsRequest,
+    request: api_data_data_pb.ListInstrumentsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListInstrumentsResponse) => void): grpcWeb.ClientReadableStream<db_api_db_api_pb.ListInstrumentsResponse>;
+               response: api_data_data_pb.ListInstrumentsResponse) => void): grpcWeb.ClientReadableStream<api_data_data_pb.ListInstrumentsResponse>;
 
   listInstruments(
-    request: db_api_db_api_pb.ListInstrumentsRequest,
+    request: api_data_data_pb.ListInstrumentsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListInstrumentsResponse) => void) {
+               response: api_data_data_pb.ListInstrumentsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -85,29 +85,29 @@ export class DbApiClient {
   methodDescriptorListSchedulerTargets = new grpcWeb.MethodDescriptor(
     '/trb.db.api.public.contract.v1.DbApi/ListSchedulerTargets',
     grpcWeb.MethodType.UNARY,
-    db_api_db_api_pb.ListSchedulerTargetsRequest,
-    db_api_db_api_pb.ListSchedulerTargetsResponse,
-    (request: db_api_db_api_pb.ListSchedulerTargetsRequest) => {
+    api_data_data_pb.ListSchedulerTargetsRequest,
+    api_data_data_pb.ListSchedulerTargetsResponse,
+    (request: api_data_data_pb.ListSchedulerTargetsRequest) => {
       return request.serializeBinary();
     },
-    db_api_db_api_pb.ListSchedulerTargetsResponse.deserializeBinary
+    api_data_data_pb.ListSchedulerTargetsResponse.deserializeBinary
   );
 
   listSchedulerTargets(
-    request: db_api_db_api_pb.ListSchedulerTargetsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<db_api_db_api_pb.ListSchedulerTargetsResponse>;
+    request: api_data_data_pb.ListSchedulerTargetsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_data_data_pb.ListSchedulerTargetsResponse>;
 
   listSchedulerTargets(
-    request: db_api_db_api_pb.ListSchedulerTargetsRequest,
+    request: api_data_data_pb.ListSchedulerTargetsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListSchedulerTargetsResponse) => void): grpcWeb.ClientReadableStream<db_api_db_api_pb.ListSchedulerTargetsResponse>;
+               response: api_data_data_pb.ListSchedulerTargetsResponse) => void): grpcWeb.ClientReadableStream<api_data_data_pb.ListSchedulerTargetsResponse>;
 
   listSchedulerTargets(
-    request: db_api_db_api_pb.ListSchedulerTargetsRequest,
+    request: api_data_data_pb.ListSchedulerTargetsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListSchedulerTargetsResponse) => void) {
+               response: api_data_data_pb.ListSchedulerTargetsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -128,29 +128,29 @@ export class DbApiClient {
   methodDescriptorSyncSchedulerTargets = new grpcWeb.MethodDescriptor(
     '/trb.db.api.public.contract.v1.DbApi/SyncSchedulerTargets',
     grpcWeb.MethodType.UNARY,
-    db_api_db_api_pb.SyncSchedulerTargetsRequest,
-    db_api_db_api_pb.SyncSchedulerTargetsResponse,
-    (request: db_api_db_api_pb.SyncSchedulerTargetsRequest) => {
+    api_data_data_pb.SyncSchedulerTargetsRequest,
+    api_data_data_pb.SyncSchedulerTargetsResponse,
+    (request: api_data_data_pb.SyncSchedulerTargetsRequest) => {
       return request.serializeBinary();
     },
-    db_api_db_api_pb.SyncSchedulerTargetsResponse.deserializeBinary
+    api_data_data_pb.SyncSchedulerTargetsResponse.deserializeBinary
   );
 
   syncSchedulerTargets(
-    request: db_api_db_api_pb.SyncSchedulerTargetsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<db_api_db_api_pb.SyncSchedulerTargetsResponse>;
+    request: api_data_data_pb.SyncSchedulerTargetsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_data_data_pb.SyncSchedulerTargetsResponse>;
 
   syncSchedulerTargets(
-    request: db_api_db_api_pb.SyncSchedulerTargetsRequest,
+    request: api_data_data_pb.SyncSchedulerTargetsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.SyncSchedulerTargetsResponse) => void): grpcWeb.ClientReadableStream<db_api_db_api_pb.SyncSchedulerTargetsResponse>;
+               response: api_data_data_pb.SyncSchedulerTargetsResponse) => void): grpcWeb.ClientReadableStream<api_data_data_pb.SyncSchedulerTargetsResponse>;
 
   syncSchedulerTargets(
-    request: db_api_db_api_pb.SyncSchedulerTargetsRequest,
+    request: api_data_data_pb.SyncSchedulerTargetsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.SyncSchedulerTargetsResponse) => void) {
+               response: api_data_data_pb.SyncSchedulerTargetsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -171,29 +171,29 @@ export class DbApiClient {
   methodDescriptorListLastDownloads = new grpcWeb.MethodDescriptor(
     '/trb.db.api.public.contract.v1.DbApi/ListLastDownloads',
     grpcWeb.MethodType.UNARY,
-    db_api_db_api_pb.ListLastDownloadsRequest,
-    db_api_db_api_pb.ListLastDownloadsResponse,
-    (request: db_api_db_api_pb.ListLastDownloadsRequest) => {
+    api_data_data_pb.ListLastDownloadsRequest,
+    api_data_data_pb.ListLastDownloadsResponse,
+    (request: api_data_data_pb.ListLastDownloadsRequest) => {
       return request.serializeBinary();
     },
-    db_api_db_api_pb.ListLastDownloadsResponse.deserializeBinary
+    api_data_data_pb.ListLastDownloadsResponse.deserializeBinary
   );
 
   listLastDownloads(
-    request: db_api_db_api_pb.ListLastDownloadsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<db_api_db_api_pb.ListLastDownloadsResponse>;
+    request: api_data_data_pb.ListLastDownloadsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_data_data_pb.ListLastDownloadsResponse>;
 
   listLastDownloads(
-    request: db_api_db_api_pb.ListLastDownloadsRequest,
+    request: api_data_data_pb.ListLastDownloadsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListLastDownloadsResponse) => void): grpcWeb.ClientReadableStream<db_api_db_api_pb.ListLastDownloadsResponse>;
+               response: api_data_data_pb.ListLastDownloadsResponse) => void): grpcWeb.ClientReadableStream<api_data_data_pb.ListLastDownloadsResponse>;
 
   listLastDownloads(
-    request: db_api_db_api_pb.ListLastDownloadsRequest,
+    request: api_data_data_pb.ListLastDownloadsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: db_api_db_api_pb.ListLastDownloadsResponse) => void) {
+               response: api_data_data_pb.ListLastDownloadsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

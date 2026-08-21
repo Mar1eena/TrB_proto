@@ -1,4 +1,4 @@
-// source: nats/manager.proto
+// source: api/nats/manager.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -21,7 +21,7 @@ var global =
     (function () { return this; }).call(null) ||
     Function('return this')();
 
-var google_api_annotations_pb = require('../google/api/annotations_pb.js');
+var google_api_annotations_pb = require('../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);

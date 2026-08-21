@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v7.34.1
-// source: nats/manager.proto
+// source: api/nats/manager.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as nats_manager_pb from '../nats/manager_pb'; // proto import: "nats/manager.proto"
+import * as api_nats_manager_pb from '../../api/nats/manager_pb'; // proto import: "api/nats/manager.proto"
 
 
 export class NatsJetStreamManagerClient {
@@ -42,29 +42,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorAddStream = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddStream',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamConfig,
-    nats_manager_pb.StreamInfos,
-    (request: nats_manager_pb.StreamConfig) => {
+    api_nats_manager_pb.StreamConfig,
+    api_nats_manager_pb.StreamInfos,
+    (request: api_nats_manager_pb.StreamConfig) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamInfos.deserializeBinary
+    api_nats_manager_pb.StreamInfos.deserializeBinary
   );
 
   addStream(
-    request: nats_manager_pb.StreamConfig,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamInfos>;
+    request: api_nats_manager_pb.StreamConfig,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamInfos>;
 
   addStream(
-    request: nats_manager_pb.StreamConfig,
+    request: api_nats_manager_pb.StreamConfig,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamInfos>;
+               response: api_nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamInfos>;
 
   addStream(
-    request: nats_manager_pb.StreamConfig,
+    request: api_nats_manager_pb.StreamConfig,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void) {
+               response: api_nats_manager_pb.StreamInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -85,29 +85,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorUpdateStream = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateStream',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamConfig,
-    nats_manager_pb.StreamInfos,
-    (request: nats_manager_pb.StreamConfig) => {
+    api_nats_manager_pb.StreamConfig,
+    api_nats_manager_pb.StreamInfos,
+    (request: api_nats_manager_pb.StreamConfig) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamInfos.deserializeBinary
+    api_nats_manager_pb.StreamInfos.deserializeBinary
   );
 
   updateStream(
-    request: nats_manager_pb.StreamConfig,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamInfos>;
+    request: api_nats_manager_pb.StreamConfig,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamInfos>;
 
   updateStream(
-    request: nats_manager_pb.StreamConfig,
+    request: api_nats_manager_pb.StreamConfig,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamInfos>;
+               response: api_nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamInfos>;
 
   updateStream(
-    request: nats_manager_pb.StreamConfig,
+    request: api_nats_manager_pb.StreamConfig,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void) {
+               response: api_nats_manager_pb.StreamInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -128,29 +128,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorDeleteStream = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteStream',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.Response,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.Response,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.Response.deserializeBinary
+    api_nats_manager_pb.Response.deserializeBinary
   );
 
   deleteStream(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.Response>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.Response>;
 
   deleteStream(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<nats_manager_pb.Response>;
+               response: api_nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.Response>;
 
   deleteStream(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void) {
+               response: api_nats_manager_pb.Response) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -171,29 +171,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorStreamInfo = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamInfo',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.StreamInfos,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.StreamInfos,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamInfos.deserializeBinary
+    api_nats_manager_pb.StreamInfos.deserializeBinary
   );
 
   streamInfo(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamInfos>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamInfos>;
 
   streamInfo(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamInfos>;
+               response: api_nats_manager_pb.StreamInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamInfos>;
 
   streamInfo(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamInfos) => void) {
+               response: api_nats_manager_pb.StreamInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -214,29 +214,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorPurgeStream = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/PurgeStream',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.Response,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.Response,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.Response.deserializeBinary
+    api_nats_manager_pb.Response.deserializeBinary
   );
 
   purgeStream(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.Response>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.Response>;
 
   purgeStream(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<nats_manager_pb.Response>;
+               response: api_nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.Response>;
 
   purgeStream(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void) {
+               response: api_nats_manager_pb.Response) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -257,29 +257,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorStreamsInfo = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamsInfo',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.JsOpts,
-    nats_manager_pb.StreamList,
-    (request: nats_manager_pb.JsOpts) => {
+    api_nats_manager_pb.JsOpts,
+    api_nats_manager_pb.StreamList,
+    (request: api_nats_manager_pb.JsOpts) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamList.deserializeBinary
+    api_nats_manager_pb.StreamList.deserializeBinary
   );
 
   streamsInfo(
-    request: nats_manager_pb.JsOpts,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamList>;
+    request: api_nats_manager_pb.JsOpts,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamList>;
 
   streamsInfo(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamList>;
+               response: api_nats_manager_pb.StreamList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamList>;
 
   streamsInfo(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamList) => void) {
+               response: api_nats_manager_pb.StreamList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -300,29 +300,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorStreams = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Streams',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.JsOpts,
-    nats_manager_pb.StreamList,
-    (request: nats_manager_pb.JsOpts) => {
+    api_nats_manager_pb.JsOpts,
+    api_nats_manager_pb.StreamList,
+    (request: api_nats_manager_pb.JsOpts) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamList.deserializeBinary
+    api_nats_manager_pb.StreamList.deserializeBinary
   );
 
   streams(
-    request: nats_manager_pb.JsOpts,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamList>;
+    request: api_nats_manager_pb.JsOpts,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamList>;
 
   streams(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamList>;
+               response: api_nats_manager_pb.StreamList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamList>;
 
   streams(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamList) => void) {
+               response: api_nats_manager_pb.StreamList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -343,29 +343,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorStreamNames = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNames',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.JsOpts,
-    nats_manager_pb.StreamNameList,
-    (request: nats_manager_pb.JsOpts) => {
+    api_nats_manager_pb.JsOpts,
+    api_nats_manager_pb.StreamNameList,
+    (request: api_nats_manager_pb.JsOpts) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamNameList.deserializeBinary
+    api_nats_manager_pb.StreamNameList.deserializeBinary
   );
 
   streamNames(
-    request: nats_manager_pb.JsOpts,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamNameList>;
+    request: api_nats_manager_pb.JsOpts,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamNameList>;
 
   streamNames(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamNameList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamNameList>;
+               response: api_nats_manager_pb.StreamNameList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamNameList>;
 
   streamNames(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamNameList) => void) {
+               response: api_nats_manager_pb.StreamNameList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -386,29 +386,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorGetMsg = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsg',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.Msg,
-    nats_manager_pb.RawStreamMsg,
-    (request: nats_manager_pb.Msg) => {
+    api_nats_manager_pb.Msg,
+    api_nats_manager_pb.RawStreamMsg,
+    (request: api_nats_manager_pb.Msg) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.RawStreamMsg.deserializeBinary
+    api_nats_manager_pb.RawStreamMsg.deserializeBinary
   );
 
   getMsg(
-    request: nats_manager_pb.Msg,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.RawStreamMsg>;
+    request: api_nats_manager_pb.Msg,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.RawStreamMsg>;
 
   getMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.RawStreamMsg) => void): grpcWeb.ClientReadableStream<nats_manager_pb.RawStreamMsg>;
+               response: api_nats_manager_pb.RawStreamMsg) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.RawStreamMsg>;
 
   getMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.RawStreamMsg) => void) {
+               response: api_nats_manager_pb.RawStreamMsg) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -429,29 +429,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorGetMsgs = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetMsgs',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.MsgRange,
-    nats_manager_pb.MsgList,
-    (request: nats_manager_pb.MsgRange) => {
+    api_nats_manager_pb.MsgRange,
+    api_nats_manager_pb.MsgList,
+    (request: api_nats_manager_pb.MsgRange) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.MsgList.deserializeBinary
+    api_nats_manager_pb.MsgList.deserializeBinary
   );
 
   getMsgs(
-    request: nats_manager_pb.MsgRange,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.MsgList>;
+    request: api_nats_manager_pb.MsgRange,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.MsgList>;
 
   getMsgs(
-    request: nats_manager_pb.MsgRange,
+    request: api_nats_manager_pb.MsgRange,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.MsgList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.MsgList>;
+               response: api_nats_manager_pb.MsgList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.MsgList>;
 
   getMsgs(
-    request: nats_manager_pb.MsgRange,
+    request: api_nats_manager_pb.MsgRange,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.MsgList) => void) {
+               response: api_nats_manager_pb.MsgList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -472,29 +472,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorGetLastMsg = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/GetLastMsg',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.LastMsg,
-    nats_manager_pb.RawStreamMsg,
-    (request: nats_manager_pb.LastMsg) => {
+    api_nats_manager_pb.LastMsg,
+    api_nats_manager_pb.RawStreamMsg,
+    (request: api_nats_manager_pb.LastMsg) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.RawStreamMsg.deserializeBinary
+    api_nats_manager_pb.RawStreamMsg.deserializeBinary
   );
 
   getLastMsg(
-    request: nats_manager_pb.LastMsg,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.RawStreamMsg>;
+    request: api_nats_manager_pb.LastMsg,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.RawStreamMsg>;
 
   getLastMsg(
-    request: nats_manager_pb.LastMsg,
+    request: api_nats_manager_pb.LastMsg,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.RawStreamMsg) => void): grpcWeb.ClientReadableStream<nats_manager_pb.RawStreamMsg>;
+               response: api_nats_manager_pb.RawStreamMsg) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.RawStreamMsg>;
 
   getLastMsg(
-    request: nats_manager_pb.LastMsg,
+    request: api_nats_manager_pb.LastMsg,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.RawStreamMsg) => void) {
+               response: api_nats_manager_pb.RawStreamMsg) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -515,29 +515,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorDeleteMsg = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteMsg',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.Msg,
-    nats_manager_pb.Response,
-    (request: nats_manager_pb.Msg) => {
+    api_nats_manager_pb.Msg,
+    api_nats_manager_pb.Response,
+    (request: api_nats_manager_pb.Msg) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.Response.deserializeBinary
+    api_nats_manager_pb.Response.deserializeBinary
   );
 
   deleteMsg(
-    request: nats_manager_pb.Msg,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.Response>;
+    request: api_nats_manager_pb.Msg,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.Response>;
 
   deleteMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<nats_manager_pb.Response>;
+               response: api_nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.Response>;
 
   deleteMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void) {
+               response: api_nats_manager_pb.Response) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -558,29 +558,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorSecureDeleteMsg = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/SecureDeleteMsg',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.Msg,
-    nats_manager_pb.Response,
-    (request: nats_manager_pb.Msg) => {
+    api_nats_manager_pb.Msg,
+    api_nats_manager_pb.Response,
+    (request: api_nats_manager_pb.Msg) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.Response.deserializeBinary
+    api_nats_manager_pb.Response.deserializeBinary
   );
 
   secureDeleteMsg(
-    request: nats_manager_pb.Msg,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.Response>;
+    request: api_nats_manager_pb.Msg,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.Response>;
 
   secureDeleteMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<nats_manager_pb.Response>;
+               response: api_nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.Response>;
 
   secureDeleteMsg(
-    request: nats_manager_pb.Msg,
+    request: api_nats_manager_pb.Msg,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void) {
+               response: api_nats_manager_pb.Response) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -601,29 +601,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorAddConsumer = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AddConsumer',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.Consumer,
-    nats_manager_pb.ConsumerInfos,
-    (request: nats_manager_pb.Consumer) => {
+    api_nats_manager_pb.Consumer,
+    api_nats_manager_pb.ConsumerInfos,
+    (request: api_nats_manager_pb.Consumer) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerInfos.deserializeBinary
+    api_nats_manager_pb.ConsumerInfos.deserializeBinary
   );
 
   addConsumer(
-    request: nats_manager_pb.Consumer,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerInfos>;
+    request: api_nats_manager_pb.Consumer,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerInfos>;
 
   addConsumer(
-    request: nats_manager_pb.Consumer,
+    request: api_nats_manager_pb.Consumer,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerInfos>;
+               response: api_nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerInfos>;
 
   addConsumer(
-    request: nats_manager_pb.Consumer,
+    request: api_nats_manager_pb.Consumer,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void) {
+               response: api_nats_manager_pb.ConsumerInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -644,29 +644,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorUpdateConsumer = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/UpdateConsumer',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.Consumer,
-    nats_manager_pb.ConsumerInfos,
-    (request: nats_manager_pb.Consumer) => {
+    api_nats_manager_pb.Consumer,
+    api_nats_manager_pb.ConsumerInfos,
+    (request: api_nats_manager_pb.Consumer) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerInfos.deserializeBinary
+    api_nats_manager_pb.ConsumerInfos.deserializeBinary
   );
 
   updateConsumer(
-    request: nats_manager_pb.Consumer,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerInfos>;
+    request: api_nats_manager_pb.Consumer,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerInfos>;
 
   updateConsumer(
-    request: nats_manager_pb.Consumer,
+    request: api_nats_manager_pb.Consumer,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerInfos>;
+               response: api_nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerInfos>;
 
   updateConsumer(
-    request: nats_manager_pb.Consumer,
+    request: api_nats_manager_pb.Consumer,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void) {
+               response: api_nats_manager_pb.ConsumerInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -687,29 +687,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorDeleteConsumer = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/DeleteConsumer',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.ConsumerName,
-    nats_manager_pb.Response,
-    (request: nats_manager_pb.ConsumerName) => {
+    api_nats_manager_pb.ConsumerName,
+    api_nats_manager_pb.Response,
+    (request: api_nats_manager_pb.ConsumerName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.Response.deserializeBinary
+    api_nats_manager_pb.Response.deserializeBinary
   );
 
   deleteConsumer(
-    request: nats_manager_pb.ConsumerName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.Response>;
+    request: api_nats_manager_pb.ConsumerName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.Response>;
 
   deleteConsumer(
-    request: nats_manager_pb.ConsumerName,
+    request: api_nats_manager_pb.ConsumerName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<nats_manager_pb.Response>;
+               response: api_nats_manager_pb.Response) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.Response>;
 
   deleteConsumer(
-    request: nats_manager_pb.ConsumerName,
+    request: api_nats_manager_pb.ConsumerName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.Response) => void) {
+               response: api_nats_manager_pb.Response) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -730,29 +730,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorConsumerInfo = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerInfo',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.ConsumerName,
-    nats_manager_pb.ConsumerInfos,
-    (request: nats_manager_pb.ConsumerName) => {
+    api_nats_manager_pb.ConsumerName,
+    api_nats_manager_pb.ConsumerInfos,
+    (request: api_nats_manager_pb.ConsumerName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerInfos.deserializeBinary
+    api_nats_manager_pb.ConsumerInfos.deserializeBinary
   );
 
   consumerInfo(
-    request: nats_manager_pb.ConsumerName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerInfos>;
+    request: api_nats_manager_pb.ConsumerName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerInfos>;
 
   consumerInfo(
-    request: nats_manager_pb.ConsumerName,
+    request: api_nats_manager_pb.ConsumerName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerInfos>;
+               response: api_nats_manager_pb.ConsumerInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerInfos>;
 
   consumerInfo(
-    request: nats_manager_pb.ConsumerName,
+    request: api_nats_manager_pb.ConsumerName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerInfos) => void) {
+               response: api_nats_manager_pb.ConsumerInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -773,29 +773,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorConsumersInfo = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumersInfo',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.ConsumerList,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.ConsumerList,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerList.deserializeBinary
+    api_nats_manager_pb.ConsumerList.deserializeBinary
   );
 
   consumersInfo(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerList>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerList>;
 
   consumersInfo(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerList>;
+               response: api_nats_manager_pb.ConsumerList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerList>;
 
   consumersInfo(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerList) => void) {
+               response: api_nats_manager_pb.ConsumerList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -816,29 +816,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorConsumers = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Consumers',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.ConsumerList,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.ConsumerList,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerList.deserializeBinary
+    api_nats_manager_pb.ConsumerList.deserializeBinary
   );
 
   consumers(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerList>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerList>;
 
   consumers(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerList>;
+               response: api_nats_manager_pb.ConsumerList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerList>;
 
   consumers(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerList) => void) {
+               response: api_nats_manager_pb.ConsumerList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -859,29 +859,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorConsumerNames = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/ConsumerNames',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.StreamName,
-    nats_manager_pb.ConsumerNameList,
-    (request: nats_manager_pb.StreamName) => {
+    api_nats_manager_pb.StreamName,
+    api_nats_manager_pb.ConsumerNameList,
+    (request: api_nats_manager_pb.StreamName) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.ConsumerNameList.deserializeBinary
+    api_nats_manager_pb.ConsumerNameList.deserializeBinary
   );
 
   consumerNames(
-    request: nats_manager_pb.StreamName,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.ConsumerNameList>;
+    request: api_nats_manager_pb.StreamName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.ConsumerNameList>;
 
   consumerNames(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerNameList) => void): grpcWeb.ClientReadableStream<nats_manager_pb.ConsumerNameList>;
+               response: api_nats_manager_pb.ConsumerNameList) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.ConsumerNameList>;
 
   consumerNames(
-    request: nats_manager_pb.StreamName,
+    request: api_nats_manager_pb.StreamName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.ConsumerNameList) => void) {
+               response: api_nats_manager_pb.ConsumerNameList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -902,29 +902,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorAccountInfo = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/AccountInfo',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.JsOpts,
-    nats_manager_pb.AccountInfos,
-    (request: nats_manager_pb.JsOpts) => {
+    api_nats_manager_pb.JsOpts,
+    api_nats_manager_pb.AccountInfos,
+    (request: api_nats_manager_pb.JsOpts) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.AccountInfos.deserializeBinary
+    api_nats_manager_pb.AccountInfos.deserializeBinary
   );
 
   accountInfo(
-    request: nats_manager_pb.JsOpts,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.AccountInfos>;
+    request: api_nats_manager_pb.JsOpts,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.AccountInfos>;
 
   accountInfo(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.AccountInfos) => void): grpcWeb.ClientReadableStream<nats_manager_pb.AccountInfos>;
+               response: api_nats_manager_pb.AccountInfos) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.AccountInfos>;
 
   accountInfo(
-    request: nats_manager_pb.JsOpts,
+    request: api_nats_manager_pb.JsOpts,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.AccountInfos) => void) {
+               response: api_nats_manager_pb.AccountInfos) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -945,29 +945,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorStreamNameBySubject = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/StreamNameBySubject',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.SubjectQuery,
-    nats_manager_pb.StreamName,
-    (request: nats_manager_pb.SubjectQuery) => {
+    api_nats_manager_pb.SubjectQuery,
+    api_nats_manager_pb.StreamName,
+    (request: api_nats_manager_pb.SubjectQuery) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.StreamName.deserializeBinary
+    api_nats_manager_pb.StreamName.deserializeBinary
   );
 
   streamNameBySubject(
-    request: nats_manager_pb.SubjectQuery,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.StreamName>;
+    request: api_nats_manager_pb.SubjectQuery,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.StreamName>;
 
   streamNameBySubject(
-    request: nats_manager_pb.SubjectQuery,
+    request: api_nats_manager_pb.SubjectQuery,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamName) => void): grpcWeb.ClientReadableStream<nats_manager_pb.StreamName>;
+               response: api_nats_manager_pb.StreamName) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.StreamName>;
 
   streamNameBySubject(
-    request: nats_manager_pb.SubjectQuery,
+    request: api_nats_manager_pb.SubjectQuery,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.StreamName) => void) {
+               response: api_nats_manager_pb.StreamName) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -988,29 +988,29 @@ export class NatsJetStreamManagerClient {
   methodDescriptorPublish = new grpcWeb.MethodDescriptor(
     '/trb.nats.manager.public.contract.v1.NatsJetStreamManager/Publish',
     grpcWeb.MethodType.UNARY,
-    nats_manager_pb.PublishRequest,
-    nats_manager_pb.PublishResponse,
-    (request: nats_manager_pb.PublishRequest) => {
+    api_nats_manager_pb.PublishRequest,
+    api_nats_manager_pb.PublishResponse,
+    (request: api_nats_manager_pb.PublishRequest) => {
       return request.serializeBinary();
     },
-    nats_manager_pb.PublishResponse.deserializeBinary
+    api_nats_manager_pb.PublishResponse.deserializeBinary
   );
 
   publish(
-    request: nats_manager_pb.PublishRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<nats_manager_pb.PublishResponse>;
+    request: api_nats_manager_pb.PublishRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_nats_manager_pb.PublishResponse>;
 
   publish(
-    request: nats_manager_pb.PublishRequest,
+    request: api_nats_manager_pb.PublishRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.PublishResponse) => void): grpcWeb.ClientReadableStream<nats_manager_pb.PublishResponse>;
+               response: api_nats_manager_pb.PublishResponse) => void): grpcWeb.ClientReadableStream<api_nats_manager_pb.PublishResponse>;
 
   publish(
-    request: nats_manager_pb.PublishRequest,
+    request: api_nats_manager_pb.PublishRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: nats_manager_pb.PublishResponse) => void) {
+               response: api_nats_manager_pb.PublishResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

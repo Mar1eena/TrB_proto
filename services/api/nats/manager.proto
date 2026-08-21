@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package trb.nats.manager.public.contract.v1;
-option go_package = "github.com/Mar1eena/trb_proto/gen/go/nats;nats";
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/nats;nats";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";

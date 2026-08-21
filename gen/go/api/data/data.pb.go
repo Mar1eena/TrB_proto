@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.34.1
-// source: db_api/db_api.proto
+// source: api/data/data.proto
 
-package db_api
+package data
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -34,7 +34,7 @@ type ListFilter struct {
 
 func (x *ListFilter) Reset() {
 	*x = ListFilter{}
-	mi := &file_db_api_db_api_proto_msgTypes[0]
+	mi := &file_api_data_data_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *ListFilter) String() string {
 func (*ListFilter) ProtoMessage() {}
 
 func (x *ListFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[0]
+	mi := &file_api_data_data_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *ListFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilter.ProtoReflect.Descriptor instead.
 func (*ListFilter) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{0}
+	return file_api_data_data_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ListFilter) GetQ() string {
@@ -94,7 +94,7 @@ type ListInstrumentsRequest struct {
 
 func (x *ListInstrumentsRequest) Reset() {
 	*x = ListInstrumentsRequest{}
-	mi := &file_db_api_db_api_proto_msgTypes[1]
+	mi := &file_api_data_data_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -106,7 +106,7 @@ func (x *ListInstrumentsRequest) String() string {
 func (*ListInstrumentsRequest) ProtoMessage() {}
 
 func (x *ListInstrumentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[1]
+	mi := &file_api_data_data_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119,7 +119,7 @@ func (x *ListInstrumentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentsRequest.ProtoReflect.Descriptor instead.
 func (*ListInstrumentsRequest) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{1}
+	return file_api_data_data_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ListInstrumentsRequest) GetFilter() *ListFilter {
@@ -145,7 +145,7 @@ type ListInstrumentsResponse struct {
 
 func (x *ListInstrumentsResponse) Reset() {
 	*x = ListInstrumentsResponse{}
-	mi := &file_db_api_db_api_proto_msgTypes[2]
+	mi := &file_api_data_data_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -157,7 +157,7 @@ func (x *ListInstrumentsResponse) String() string {
 func (*ListInstrumentsResponse) ProtoMessage() {}
 
 func (x *ListInstrumentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[2]
+	mi := &file_api_data_data_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -170,7 +170,7 @@ func (x *ListInstrumentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentsResponse.ProtoReflect.Descriptor instead.
 func (*ListInstrumentsResponse) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{2}
+	return file_api_data_data_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListInstrumentsResponse) GetItems() []*Instrument {
@@ -206,7 +206,7 @@ type Instrument struct {
 
 func (x *Instrument) Reset() {
 	*x = Instrument{}
-	mi := &file_db_api_db_api_proto_msgTypes[3]
+	mi := &file_api_data_data_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -218,7 +218,7 @@ func (x *Instrument) String() string {
 func (*Instrument) ProtoMessage() {}
 
 func (x *Instrument) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[3]
+	mi := &file_api_data_data_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -231,7 +231,7 @@ func (x *Instrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Instrument.ProtoReflect.Descriptor instead.
 func (*Instrument) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{3}
+	return file_api_data_data_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Instrument) GetUid() string {
@@ -368,7 +368,7 @@ type ListSchedulerTargetsRequest struct {
 
 func (x *ListSchedulerTargetsRequest) Reset() {
 	*x = ListSchedulerTargetsRequest{}
-	mi := &file_db_api_db_api_proto_msgTypes[4]
+	mi := &file_api_data_data_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -380,7 +380,7 @@ func (x *ListSchedulerTargetsRequest) String() string {
 func (*ListSchedulerTargetsRequest) ProtoMessage() {}
 
 func (x *ListSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[4]
+	mi := &file_api_data_data_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -393,7 +393,7 @@ func (x *ListSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSchedulerTargetsRequest.ProtoReflect.Descriptor instead.
 func (*ListSchedulerTargetsRequest) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{4}
+	return file_api_data_data_proto_rawDescGZIP(), []int{4}
 }
 
 type ListSchedulerTargetsResponse struct {
@@ -405,7 +405,7 @@ type ListSchedulerTargetsResponse struct {
 
 func (x *ListSchedulerTargetsResponse) Reset() {
 	*x = ListSchedulerTargetsResponse{}
-	mi := &file_db_api_db_api_proto_msgTypes[5]
+	mi := &file_api_data_data_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -417,7 +417,7 @@ func (x *ListSchedulerTargetsResponse) String() string {
 func (*ListSchedulerTargetsResponse) ProtoMessage() {}
 
 func (x *ListSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[5]
+	mi := &file_api_data_data_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -430,7 +430,7 @@ func (x *ListSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSchedulerTargetsResponse.ProtoReflect.Descriptor instead.
 func (*ListSchedulerTargetsResponse) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{5}
+	return file_api_data_data_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListSchedulerTargetsResponse) GetItems() []*SchedulerTarget {
@@ -456,7 +456,7 @@ type SchedulerTarget struct {
 
 func (x *SchedulerTarget) Reset() {
 	*x = SchedulerTarget{}
-	mi := &file_db_api_db_api_proto_msgTypes[6]
+	mi := &file_api_data_data_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +468,7 @@ func (x *SchedulerTarget) String() string {
 func (*SchedulerTarget) ProtoMessage() {}
 
 func (x *SchedulerTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[6]
+	mi := &file_api_data_data_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +481,7 @@ func (x *SchedulerTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchedulerTarget.ProtoReflect.Descriptor instead.
 func (*SchedulerTarget) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{6}
+	return file_api_data_data_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SchedulerTarget) GetUid() string {
@@ -551,7 +551,7 @@ type SyncSchedulerTargetsRequest struct {
 
 func (x *SyncSchedulerTargetsRequest) Reset() {
 	*x = SyncSchedulerTargetsRequest{}
-	mi := &file_db_api_db_api_proto_msgTypes[7]
+	mi := &file_api_data_data_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -563,7 +563,7 @@ func (x *SyncSchedulerTargetsRequest) String() string {
 func (*SyncSchedulerTargetsRequest) ProtoMessage() {}
 
 func (x *SyncSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[7]
+	mi := &file_api_data_data_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -576,7 +576,7 @@ func (x *SyncSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSchedulerTargetsRequest.ProtoReflect.Descriptor instead.
 func (*SyncSchedulerTargetsRequest) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{7}
+	return file_api_data_data_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SyncSchedulerTargetsRequest) GetInstruments() []*SchedulerTargetInstrument {
@@ -603,7 +603,7 @@ type SchedulerTargetInstrument struct {
 
 func (x *SchedulerTargetInstrument) Reset() {
 	*x = SchedulerTargetInstrument{}
-	mi := &file_db_api_db_api_proto_msgTypes[8]
+	mi := &file_api_data_data_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +615,7 @@ func (x *SchedulerTargetInstrument) String() string {
 func (*SchedulerTargetInstrument) ProtoMessage() {}
 
 func (x *SchedulerTargetInstrument) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[8]
+	mi := &file_api_data_data_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +628,7 @@ func (x *SchedulerTargetInstrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchedulerTargetInstrument.ProtoReflect.Descriptor instead.
 func (*SchedulerTargetInstrument) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{8}
+	return file_api_data_data_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SchedulerTargetInstrument) GetUid() string {
@@ -654,7 +654,7 @@ type SyncSchedulerTargetsResponse struct {
 
 func (x *SyncSchedulerTargetsResponse) Reset() {
 	*x = SyncSchedulerTargetsResponse{}
-	mi := &file_db_api_db_api_proto_msgTypes[9]
+	mi := &file_api_data_data_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +666,7 @@ func (x *SyncSchedulerTargetsResponse) String() string {
 func (*SyncSchedulerTargetsResponse) ProtoMessage() {}
 
 func (x *SyncSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[9]
+	mi := &file_api_data_data_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +679,7 @@ func (x *SyncSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSchedulerTargetsResponse.ProtoReflect.Descriptor instead.
 func (*SyncSchedulerTargetsResponse) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{9}
+	return file_api_data_data_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SyncSchedulerTargetsResponse) GetCount() int32 {
@@ -698,7 +698,7 @@ type ListLastDownloadsRequest struct {
 
 func (x *ListLastDownloadsRequest) Reset() {
 	*x = ListLastDownloadsRequest{}
-	mi := &file_db_api_db_api_proto_msgTypes[10]
+	mi := &file_api_data_data_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -710,7 +710,7 @@ func (x *ListLastDownloadsRequest) String() string {
 func (*ListLastDownloadsRequest) ProtoMessage() {}
 
 func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[10]
+	mi := &file_api_data_data_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -723,7 +723,7 @@ func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsRequest.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsRequest) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{10}
+	return file_api_data_data_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListLastDownloadsRequest) GetFilter() *ListFilter {
@@ -742,7 +742,7 @@ type ListLastDownloadsResponse struct {
 
 func (x *ListLastDownloadsResponse) Reset() {
 	*x = ListLastDownloadsResponse{}
-	mi := &file_db_api_db_api_proto_msgTypes[11]
+	mi := &file_api_data_data_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -754,7 +754,7 @@ func (x *ListLastDownloadsResponse) String() string {
 func (*ListLastDownloadsResponse) ProtoMessage() {}
 
 func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[11]
+	mi := &file_api_data_data_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -767,7 +767,7 @@ func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsResponse.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsResponse) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{11}
+	return file_api_data_data_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListLastDownloadsResponse) GetItems() []*LastDownload {
@@ -793,7 +793,7 @@ type LastDownload struct {
 
 func (x *LastDownload) Reset() {
 	*x = LastDownload{}
-	mi := &file_db_api_db_api_proto_msgTypes[12]
+	mi := &file_api_data_data_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -805,7 +805,7 @@ func (x *LastDownload) String() string {
 func (*LastDownload) ProtoMessage() {}
 
 func (x *LastDownload) ProtoReflect() protoreflect.Message {
-	mi := &file_db_api_db_api_proto_msgTypes[12]
+	mi := &file_api_data_data_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -818,7 +818,7 @@ func (x *LastDownload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LastDownload.ProtoReflect.Descriptor instead.
 func (*LastDownload) Descriptor() ([]byte, []int) {
-	return file_db_api_db_api_proto_rawDescGZIP(), []int{12}
+	return file_api_data_data_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *LastDownload) GetUid() string {
@@ -877,11 +877,11 @@ func (x *LastDownload) GetHasDownload() bool {
 	return false
 }
 
-var File_db_api_db_api_proto protoreflect.FileDescriptor
+var File_api_data_data_proto protoreflect.FileDescriptor
 
-const file_db_api_db_api_proto_rawDesc = "" +
+const file_api_data_data_proto_rawDesc = "" +
 	"\n" +
-	"\x13db_api/db_api.proto\x12\x1dtrb.db.api.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"H\n" +
+	"\x13api/data/data.proto\x12\x1dtrb.db.api.public.contract.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"H\n" +
 	"\n" +
 	"ListFilter\x12\f\n" +
 	"\x01q\x18\x01 \x01(\tR\x01q\x12\x14\n" +
@@ -955,22 +955,22 @@ const file_db_api_db_api_proto_rawDesc = "" +
 	"\x0fListInstruments\x125.trb.db.api.public.contract.v1.ListInstrumentsRequest\x1a6.trb.db.api.public.contract.v1.ListInstrumentsResponse\".\x82\xd3\xe4\x93\x02(Z\x15:\x01*\"\x10/ListInstruments\x12\x0f/v1/instruments\x12\xca\x01\n" +
 	"\x14ListSchedulerTargets\x12:.trb.db.api.public.contract.v1.ListSchedulerTargetsRequest\x1a;.trb.db.api.public.contract.v1.ListSchedulerTargetsResponse\"9\x82\xd3\xe4\x93\x023Z\x1a:\x01*\"\x15/ListSchedulerTargets\x12\x15/v1/scheduler/targets\x12\xcd\x01\n" +
 	"\x14SyncSchedulerTargets\x12:.trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest\x1a;.trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse\"<\x82\xd3\xe4\x93\x026:\x01*Z\x1a:\x01*\"\x15/SyncSchedulerTargets\x1a\x15/v1/scheduler/targets\x12\xcc\x01\n" +
-	"\x11ListLastDownloads\x127.trb.db.api.public.contract.v1.ListLastDownloadsRequest\x1a8.trb.db.api.public.contract.v1.ListLastDownloadsResponse\"D\x82\xd3\xe4\x93\x02>Z\x17:\x01*\"\x12/ListLastDownloads\x12#/v1/historic-candles/last-downloadsB4Z2github.com/Mar1eena/trb_proto/gen/go/db_api;db_apib\x06proto3"
+	"\x11ListLastDownloads\x127.trb.db.api.public.contract.v1.ListLastDownloadsRequest\x1a8.trb.db.api.public.contract.v1.ListLastDownloadsResponse\"D\x82\xd3\xe4\x93\x02>Z\x17:\x01*\"\x12/ListLastDownloads\x12#/v1/historic-candles/last-downloadsB4Z2github.com/Mar1eena/trb_proto/gen/go/api/data;datab\x06proto3"
 
 var (
-	file_db_api_db_api_proto_rawDescOnce sync.Once
-	file_db_api_db_api_proto_rawDescData []byte
+	file_api_data_data_proto_rawDescOnce sync.Once
+	file_api_data_data_proto_rawDescData []byte
 )
 
-func file_db_api_db_api_proto_rawDescGZIP() []byte {
-	file_db_api_db_api_proto_rawDescOnce.Do(func() {
-		file_db_api_db_api_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_db_api_db_api_proto_rawDesc), len(file_db_api_db_api_proto_rawDesc)))
+func file_api_data_data_proto_rawDescGZIP() []byte {
+	file_api_data_data_proto_rawDescOnce.Do(func() {
+		file_api_data_data_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_data_data_proto_rawDesc), len(file_api_data_data_proto_rawDesc)))
 	})
-	return file_db_api_db_api_proto_rawDescData
+	return file_api_data_data_proto_rawDescData
 }
 
-var file_db_api_db_api_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_db_api_db_api_proto_goTypes = []any{
+var file_api_data_data_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_api_data_data_proto_goTypes = []any{
 	(*ListFilter)(nil),                   // 0: trb.db.api.public.contract.v1.ListFilter
 	(*ListInstrumentsRequest)(nil),       // 1: trb.db.api.public.contract.v1.ListInstrumentsRequest
 	(*ListInstrumentsResponse)(nil),      // 2: trb.db.api.public.contract.v1.ListInstrumentsResponse
@@ -986,7 +986,7 @@ var file_db_api_db_api_proto_goTypes = []any{
 	(*LastDownload)(nil),                 // 12: trb.db.api.public.contract.v1.LastDownload
 	(*timestamppb.Timestamp)(nil),        // 13: google.protobuf.Timestamp
 }
-var file_db_api_db_api_proto_depIdxs = []int32{
+var file_api_data_data_proto_depIdxs = []int32{
 	0,  // 0: trb.db.api.public.contract.v1.ListInstrumentsRequest.filter:type_name -> trb.db.api.public.contract.v1.ListFilter
 	3,  // 1: trb.db.api.public.contract.v1.ListInstrumentsResponse.items:type_name -> trb.db.api.public.contract.v1.Instrument
 	13, // 2: trb.db.api.public.contract.v1.Instrument.first_1min_candle_date:type_name -> google.protobuf.Timestamp
@@ -1014,26 +1014,26 @@ var file_db_api_db_api_proto_depIdxs = []int32{
 	0,  // [0:12] is the sub-list for field type_name
 }
 
-func init() { file_db_api_db_api_proto_init() }
-func file_db_api_db_api_proto_init() {
-	if File_db_api_db_api_proto != nil {
+func init() { file_api_data_data_proto_init() }
+func file_api_data_data_proto_init() {
+	if File_api_data_data_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_db_api_db_api_proto_rawDesc), len(file_db_api_db_api_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_data_data_proto_rawDesc), len(file_api_data_data_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_db_api_db_api_proto_goTypes,
-		DependencyIndexes: file_db_api_db_api_proto_depIdxs,
-		MessageInfos:      file_db_api_db_api_proto_msgTypes,
+		GoTypes:           file_api_data_data_proto_goTypes,
+		DependencyIndexes: file_api_data_data_proto_depIdxs,
+		MessageInfos:      file_api_data_data_proto_msgTypes,
 	}.Build()
-	File_db_api_db_api_proto = out.File
-	file_db_api_db_api_proto_goTypes = nil
-	file_db_api_db_api_proto_depIdxs = nil
+	File_api_data_data_proto = out.File
+	file_api_data_data_proto_goTypes = nil
+	file_api_data_data_proto_depIdxs = nil
 }

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package trb.db.api.public.contract.v1;
 
-option go_package = "github.com/Mar1eena/trb_proto/gen/go/db_api;db_api";
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/data;data";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -10,7 +10,7 @@ import "google/protobuf/timestamp.proto";
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/db_api.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 service DbApi {
   rpc ListInstruments(ListInstrumentsRequest) returns (ListInstrumentsResponse) {

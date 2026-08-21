@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v7.34.1
-// source: clickhouse_manager/manager.proto
+// source: api/clickhouse/manager.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as clickhouse_manager_manager_pb from '../clickhouse_manager/manager_pb'; // proto import: "clickhouse_manager/manager.proto"
+import * as api_clickhouse_manager_pb from '../../api/clickhouse/manager_pb'; // proto import: "api/clickhouse/manager.proto"
 
 
 export class ClickHouseManagerClient {
@@ -42,29 +42,29 @@ export class ClickHouseManagerClient {
   methodDescriptorPing = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/Ping',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.PingRequest,
-    clickhouse_manager_manager_pb.PingResponse,
-    (request: clickhouse_manager_manager_pb.PingRequest) => {
+    api_clickhouse_manager_pb.PingRequest,
+    api_clickhouse_manager_pb.PingResponse,
+    (request: api_clickhouse_manager_pb.PingRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.PingResponse.deserializeBinary
+    api_clickhouse_manager_pb.PingResponse.deserializeBinary
   );
 
   ping(
-    request: clickhouse_manager_manager_pb.PingRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.PingResponse>;
+    request: api_clickhouse_manager_pb.PingRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.PingResponse>;
 
   ping(
-    request: clickhouse_manager_manager_pb.PingRequest,
+    request: api_clickhouse_manager_pb.PingRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.PingResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.PingResponse>;
+               response: api_clickhouse_manager_pb.PingResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.PingResponse>;
 
   ping(
-    request: clickhouse_manager_manager_pb.PingRequest,
+    request: api_clickhouse_manager_pb.PingRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.PingResponse) => void) {
+               response: api_clickhouse_manager_pb.PingResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -85,29 +85,29 @@ export class ClickHouseManagerClient {
   methodDescriptorServerInfo = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ServerInfo',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ServerInfoRequest,
-    clickhouse_manager_manager_pb.ServerInfoResponse,
-    (request: clickhouse_manager_manager_pb.ServerInfoRequest) => {
+    api_clickhouse_manager_pb.ServerInfoRequest,
+    api_clickhouse_manager_pb.ServerInfoResponse,
+    (request: api_clickhouse_manager_pb.ServerInfoRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.ServerInfoResponse.deserializeBinary
+    api_clickhouse_manager_pb.ServerInfoResponse.deserializeBinary
   );
 
   serverInfo(
-    request: clickhouse_manager_manager_pb.ServerInfoRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ServerInfoResponse>;
+    request: api_clickhouse_manager_pb.ServerInfoRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.ServerInfoResponse>;
 
   serverInfo(
-    request: clickhouse_manager_manager_pb.ServerInfoRequest,
+    request: api_clickhouse_manager_pb.ServerInfoRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ServerInfoResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ServerInfoResponse>;
+               response: api_clickhouse_manager_pb.ServerInfoResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.ServerInfoResponse>;
 
   serverInfo(
-    request: clickhouse_manager_manager_pb.ServerInfoRequest,
+    request: api_clickhouse_manager_pb.ServerInfoRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ServerInfoResponse) => void) {
+               response: api_clickhouse_manager_pb.ServerInfoResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -128,29 +128,29 @@ export class ClickHouseManagerClient {
   methodDescriptorCreateDatabase = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateDatabase',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.DatabaseSpec,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.DatabaseSpec) => {
+    api_clickhouse_manager_pb.DatabaseSpec,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.DatabaseSpec) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   createDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseSpec,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.DatabaseSpec,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   createDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseSpec,
+    request: api_clickhouse_manager_pb.DatabaseSpec,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   createDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseSpec,
+    request: api_clickhouse_manager_pb.DatabaseSpec,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -171,29 +171,29 @@ export class ClickHouseManagerClient {
   methodDescriptorDropDatabase = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropDatabase',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.DatabaseName,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.DatabaseName) => {
+    api_clickhouse_manager_pb.DatabaseName,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.DatabaseName) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   dropDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseName,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.DatabaseName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   dropDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseName,
+    request: api_clickhouse_manager_pb.DatabaseName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   dropDatabase(
-    request: clickhouse_manager_manager_pb.DatabaseName,
+    request: api_clickhouse_manager_pb.DatabaseName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -214,29 +214,29 @@ export class ClickHouseManagerClient {
   methodDescriptorListDatabases = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDatabases',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ListDatabasesRequest,
-    clickhouse_manager_manager_pb.DatabaseList,
-    (request: clickhouse_manager_manager_pb.ListDatabasesRequest) => {
+    api_clickhouse_manager_pb.ListDatabasesRequest,
+    api_clickhouse_manager_pb.DatabaseList,
+    (request: api_clickhouse_manager_pb.ListDatabasesRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.DatabaseList.deserializeBinary
+    api_clickhouse_manager_pb.DatabaseList.deserializeBinary
   );
 
   listDatabases(
-    request: clickhouse_manager_manager_pb.ListDatabasesRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.DatabaseList>;
+    request: api_clickhouse_manager_pb.ListDatabasesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.DatabaseList>;
 
   listDatabases(
-    request: clickhouse_manager_manager_pb.ListDatabasesRequest,
+    request: api_clickhouse_manager_pb.ListDatabasesRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.DatabaseList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.DatabaseList>;
+               response: api_clickhouse_manager_pb.DatabaseList) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.DatabaseList>;
 
   listDatabases(
-    request: clickhouse_manager_manager_pb.ListDatabasesRequest,
+    request: api_clickhouse_manager_pb.ListDatabasesRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.DatabaseList) => void) {
+               response: api_clickhouse_manager_pb.DatabaseList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -257,29 +257,29 @@ export class ClickHouseManagerClient {
   methodDescriptorDatabaseInfo = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DatabaseInfo',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.DatabaseName,
-    clickhouse_manager_manager_pb.Database,
-    (request: clickhouse_manager_manager_pb.DatabaseName) => {
+    api_clickhouse_manager_pb.DatabaseName,
+    api_clickhouse_manager_pb.Database,
+    (request: api_clickhouse_manager_pb.DatabaseName) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Database.deserializeBinary
+    api_clickhouse_manager_pb.Database.deserializeBinary
   );
 
   databaseInfo(
-    request: clickhouse_manager_manager_pb.DatabaseName,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Database>;
+    request: api_clickhouse_manager_pb.DatabaseName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Database>;
 
   databaseInfo(
-    request: clickhouse_manager_manager_pb.DatabaseName,
+    request: api_clickhouse_manager_pb.DatabaseName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Database) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Database>;
+               response: api_clickhouse_manager_pb.Database) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Database>;
 
   databaseInfo(
-    request: clickhouse_manager_manager_pb.DatabaseName,
+    request: api_clickhouse_manager_pb.DatabaseName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Database) => void) {
+               response: api_clickhouse_manager_pb.Database) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -300,29 +300,29 @@ export class ClickHouseManagerClient {
   methodDescriptorCreateTable = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/CreateTable',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.TableSpec,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.TableSpec) => {
+    api_clickhouse_manager_pb.TableSpec,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.TableSpec) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   createTable(
-    request: clickhouse_manager_manager_pb.TableSpec,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.TableSpec,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   createTable(
-    request: clickhouse_manager_manager_pb.TableSpec,
+    request: api_clickhouse_manager_pb.TableSpec,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   createTable(
-    request: clickhouse_manager_manager_pb.TableSpec,
+    request: api_clickhouse_manager_pb.TableSpec,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -343,29 +343,29 @@ export class ClickHouseManagerClient {
   methodDescriptorDropTable = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropTable',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.TableName,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.TableName) => {
+    api_clickhouse_manager_pb.TableName,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.TableName) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   dropTable(
-    request: clickhouse_manager_manager_pb.TableName,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.TableName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   dropTable(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   dropTable(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -386,29 +386,29 @@ export class ClickHouseManagerClient {
   methodDescriptorTruncateTable = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TruncateTable',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.TableName,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.TableName) => {
+    api_clickhouse_manager_pb.TableName,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.TableName) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   truncateTable(
-    request: clickhouse_manager_manager_pb.TableName,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.TableName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   truncateTable(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   truncateTable(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -429,29 +429,29 @@ export class ClickHouseManagerClient {
   methodDescriptorRenameTable = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameTable',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.RenameTableRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.RenameTableRequest) => {
+    api_clickhouse_manager_pb.RenameTableRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.RenameTableRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   renameTable(
-    request: clickhouse_manager_manager_pb.RenameTableRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.RenameTableRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   renameTable(
-    request: clickhouse_manager_manager_pb.RenameTableRequest,
+    request: api_clickhouse_manager_pb.RenameTableRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   renameTable(
-    request: clickhouse_manager_manager_pb.RenameTableRequest,
+    request: api_clickhouse_manager_pb.RenameTableRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -472,29 +472,29 @@ export class ClickHouseManagerClient {
   methodDescriptorOptimizeTable = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/OptimizeTable',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.OptimizeTableRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.OptimizeTableRequest) => {
+    api_clickhouse_manager_pb.OptimizeTableRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.OptimizeTableRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   optimizeTable(
-    request: clickhouse_manager_manager_pb.OptimizeTableRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.OptimizeTableRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   optimizeTable(
-    request: clickhouse_manager_manager_pb.OptimizeTableRequest,
+    request: api_clickhouse_manager_pb.OptimizeTableRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   optimizeTable(
-    request: clickhouse_manager_manager_pb.OptimizeTableRequest,
+    request: api_clickhouse_manager_pb.OptimizeTableRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -515,29 +515,29 @@ export class ClickHouseManagerClient {
   methodDescriptorListTables = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListTables',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ListTablesRequest,
-    clickhouse_manager_manager_pb.TableList,
-    (request: clickhouse_manager_manager_pb.ListTablesRequest) => {
+    api_clickhouse_manager_pb.ListTablesRequest,
+    api_clickhouse_manager_pb.TableList,
+    (request: api_clickhouse_manager_pb.ListTablesRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.TableList.deserializeBinary
+    api_clickhouse_manager_pb.TableList.deserializeBinary
   );
 
   listTables(
-    request: clickhouse_manager_manager_pb.ListTablesRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.TableList>;
+    request: api_clickhouse_manager_pb.ListTablesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.TableList>;
 
   listTables(
-    request: clickhouse_manager_manager_pb.ListTablesRequest,
+    request: api_clickhouse_manager_pb.ListTablesRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.TableList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.TableList>;
+               response: api_clickhouse_manager_pb.TableList) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.TableList>;
 
   listTables(
-    request: clickhouse_manager_manager_pb.ListTablesRequest,
+    request: api_clickhouse_manager_pb.ListTablesRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.TableList) => void) {
+               response: api_clickhouse_manager_pb.TableList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -558,29 +558,29 @@ export class ClickHouseManagerClient {
   methodDescriptorTableInfo = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/TableInfo',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.TableName,
-    clickhouse_manager_manager_pb.Table,
-    (request: clickhouse_manager_manager_pb.TableName) => {
+    api_clickhouse_manager_pb.TableName,
+    api_clickhouse_manager_pb.Table,
+    (request: api_clickhouse_manager_pb.TableName) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Table.deserializeBinary
+    api_clickhouse_manager_pb.Table.deserializeBinary
   );
 
   tableInfo(
-    request: clickhouse_manager_manager_pb.TableName,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Table>;
+    request: api_clickhouse_manager_pb.TableName,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Table>;
 
   tableInfo(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Table) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Table>;
+               response: api_clickhouse_manager_pb.Table) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Table>;
 
   tableInfo(
-    request: clickhouse_manager_manager_pb.TableName,
+    request: api_clickhouse_manager_pb.TableName,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Table) => void) {
+               response: api_clickhouse_manager_pb.Table) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -601,29 +601,29 @@ export class ClickHouseManagerClient {
   methodDescriptorAddColumn = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/AddColumn',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.AddColumnRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.AddColumnRequest) => {
+    api_clickhouse_manager_pb.AddColumnRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.AddColumnRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   addColumn(
-    request: clickhouse_manager_manager_pb.AddColumnRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.AddColumnRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   addColumn(
-    request: clickhouse_manager_manager_pb.AddColumnRequest,
+    request: api_clickhouse_manager_pb.AddColumnRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   addColumn(
-    request: clickhouse_manager_manager_pb.AddColumnRequest,
+    request: api_clickhouse_manager_pb.AddColumnRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -644,29 +644,29 @@ export class ClickHouseManagerClient {
   methodDescriptorDropColumn = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropColumn',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.DropColumnRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.DropColumnRequest) => {
+    api_clickhouse_manager_pb.DropColumnRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.DropColumnRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   dropColumn(
-    request: clickhouse_manager_manager_pb.DropColumnRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.DropColumnRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   dropColumn(
-    request: clickhouse_manager_manager_pb.DropColumnRequest,
+    request: api_clickhouse_manager_pb.DropColumnRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   dropColumn(
-    request: clickhouse_manager_manager_pb.DropColumnRequest,
+    request: api_clickhouse_manager_pb.DropColumnRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -687,29 +687,29 @@ export class ClickHouseManagerClient {
   methodDescriptorRenameColumn = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/RenameColumn',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.RenameColumnRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.RenameColumnRequest) => {
+    api_clickhouse_manager_pb.RenameColumnRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.RenameColumnRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   renameColumn(
-    request: clickhouse_manager_manager_pb.RenameColumnRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.RenameColumnRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   renameColumn(
-    request: clickhouse_manager_manager_pb.RenameColumnRequest,
+    request: api_clickhouse_manager_pb.RenameColumnRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   renameColumn(
-    request: clickhouse_manager_manager_pb.RenameColumnRequest,
+    request: api_clickhouse_manager_pb.RenameColumnRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -730,29 +730,29 @@ export class ClickHouseManagerClient {
   methodDescriptorModifyColumn = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ModifyColumn',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ModifyColumnRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.ModifyColumnRequest) => {
+    api_clickhouse_manager_pb.ModifyColumnRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.ModifyColumnRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   modifyColumn(
-    request: clickhouse_manager_manager_pb.ModifyColumnRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.ModifyColumnRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   modifyColumn(
-    request: clickhouse_manager_manager_pb.ModifyColumnRequest,
+    request: api_clickhouse_manager_pb.ModifyColumnRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   modifyColumn(
-    request: clickhouse_manager_manager_pb.ModifyColumnRequest,
+    request: api_clickhouse_manager_pb.ModifyColumnRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -773,29 +773,29 @@ export class ClickHouseManagerClient {
   methodDescriptorExecuteQuery = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ExecuteQuery',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ExecuteQueryRequest,
-    clickhouse_manager_manager_pb.ExecuteQueryResponse,
-    (request: clickhouse_manager_manager_pb.ExecuteQueryRequest) => {
+    api_clickhouse_manager_pb.ExecuteQueryRequest,
+    api_clickhouse_manager_pb.ExecuteQueryResponse,
+    (request: api_clickhouse_manager_pb.ExecuteQueryRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.ExecuteQueryResponse.deserializeBinary
+    api_clickhouse_manager_pb.ExecuteQueryResponse.deserializeBinary
   );
 
   executeQuery(
-    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+    request: api_clickhouse_manager_pb.ExecuteQueryRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.ExecuteQueryResponse>;
 
   executeQuery(
-    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    request: api_clickhouse_manager_pb.ExecuteQueryRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+               response: api_clickhouse_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.ExecuteQueryResponse>;
 
   executeQuery(
-    request: clickhouse_manager_manager_pb.ExecuteQueryRequest,
+    request: api_clickhouse_manager_pb.ExecuteQueryRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void) {
+               response: api_clickhouse_manager_pb.ExecuteQueryResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -816,29 +816,29 @@ export class ClickHouseManagerClient {
   methodDescriptorPreviewTableData = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/PreviewTableData',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.PreviewTableDataRequest,
-    clickhouse_manager_manager_pb.ExecuteQueryResponse,
-    (request: clickhouse_manager_manager_pb.PreviewTableDataRequest) => {
+    api_clickhouse_manager_pb.PreviewTableDataRequest,
+    api_clickhouse_manager_pb.ExecuteQueryResponse,
+    (request: api_clickhouse_manager_pb.PreviewTableDataRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.ExecuteQueryResponse.deserializeBinary
+    api_clickhouse_manager_pb.ExecuteQueryResponse.deserializeBinary
   );
 
   previewTableData(
-    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+    request: api_clickhouse_manager_pb.PreviewTableDataRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.ExecuteQueryResponse>;
 
   previewTableData(
-    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    request: api_clickhouse_manager_pb.PreviewTableDataRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ExecuteQueryResponse>;
+               response: api_clickhouse_manager_pb.ExecuteQueryResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.ExecuteQueryResponse>;
 
   previewTableData(
-    request: clickhouse_manager_manager_pb.PreviewTableDataRequest,
+    request: api_clickhouse_manager_pb.PreviewTableDataRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ExecuteQueryResponse) => void) {
+               response: api_clickhouse_manager_pb.ExecuteQueryResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -859,29 +859,29 @@ export class ClickHouseManagerClient {
   methodDescriptorListParts = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListParts',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ListPartsRequest,
-    clickhouse_manager_manager_pb.PartsList,
-    (request: clickhouse_manager_manager_pb.ListPartsRequest) => {
+    api_clickhouse_manager_pb.ListPartsRequest,
+    api_clickhouse_manager_pb.PartsList,
+    (request: api_clickhouse_manager_pb.ListPartsRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.PartsList.deserializeBinary
+    api_clickhouse_manager_pb.PartsList.deserializeBinary
   );
 
   listParts(
-    request: clickhouse_manager_manager_pb.ListPartsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.PartsList>;
+    request: api_clickhouse_manager_pb.ListPartsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.PartsList>;
 
   listParts(
-    request: clickhouse_manager_manager_pb.ListPartsRequest,
+    request: api_clickhouse_manager_pb.ListPartsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.PartsList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.PartsList>;
+               response: api_clickhouse_manager_pb.PartsList) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.PartsList>;
 
   listParts(
-    request: clickhouse_manager_manager_pb.ListPartsRequest,
+    request: api_clickhouse_manager_pb.ListPartsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.PartsList) => void) {
+               response: api_clickhouse_manager_pb.PartsList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -902,29 +902,29 @@ export class ClickHouseManagerClient {
   methodDescriptorDropPartition = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/DropPartition',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.DropPartitionRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.DropPartitionRequest) => {
+    api_clickhouse_manager_pb.DropPartitionRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.DropPartitionRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   dropPartition(
-    request: clickhouse_manager_manager_pb.DropPartitionRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.DropPartitionRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   dropPartition(
-    request: clickhouse_manager_manager_pb.DropPartitionRequest,
+    request: api_clickhouse_manager_pb.DropPartitionRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   dropPartition(
-    request: clickhouse_manager_manager_pb.DropPartitionRequest,
+    request: api_clickhouse_manager_pb.DropPartitionRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -945,29 +945,29 @@ export class ClickHouseManagerClient {
   methodDescriptorListProcesses = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListProcesses',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ListProcessesRequest,
-    clickhouse_manager_manager_pb.ProcessList,
-    (request: clickhouse_manager_manager_pb.ListProcessesRequest) => {
+    api_clickhouse_manager_pb.ListProcessesRequest,
+    api_clickhouse_manager_pb.ProcessList,
+    (request: api_clickhouse_manager_pb.ListProcessesRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.ProcessList.deserializeBinary
+    api_clickhouse_manager_pb.ProcessList.deserializeBinary
   );
 
   listProcesses(
-    request: clickhouse_manager_manager_pb.ListProcessesRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.ProcessList>;
+    request: api_clickhouse_manager_pb.ListProcessesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.ProcessList>;
 
   listProcesses(
-    request: clickhouse_manager_manager_pb.ListProcessesRequest,
+    request: api_clickhouse_manager_pb.ListProcessesRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ProcessList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.ProcessList>;
+               response: api_clickhouse_manager_pb.ProcessList) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.ProcessList>;
 
   listProcesses(
-    request: clickhouse_manager_manager_pb.ListProcessesRequest,
+    request: api_clickhouse_manager_pb.ListProcessesRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.ProcessList) => void) {
+               response: api_clickhouse_manager_pb.ProcessList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -988,29 +988,29 @@ export class ClickHouseManagerClient {
   methodDescriptorKillProcess = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/KillProcess',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.KillProcessRequest,
-    clickhouse_manager_manager_pb.Status,
-    (request: clickhouse_manager_manager_pb.KillProcessRequest) => {
+    api_clickhouse_manager_pb.KillProcessRequest,
+    api_clickhouse_manager_pb.Status,
+    (request: api_clickhouse_manager_pb.KillProcessRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.Status.deserializeBinary
+    api_clickhouse_manager_pb.Status.deserializeBinary
   );
 
   killProcess(
-    request: clickhouse_manager_manager_pb.KillProcessRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.Status>;
+    request: api_clickhouse_manager_pb.KillProcessRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.Status>;
 
   killProcess(
-    request: clickhouse_manager_manager_pb.KillProcessRequest,
+    request: api_clickhouse_manager_pb.KillProcessRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.Status>;
+               response: api_clickhouse_manager_pb.Status) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.Status>;
 
   killProcess(
-    request: clickhouse_manager_manager_pb.KillProcessRequest,
+    request: api_clickhouse_manager_pb.KillProcessRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.Status) => void) {
+               response: api_clickhouse_manager_pb.Status) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -1031,29 +1031,29 @@ export class ClickHouseManagerClient {
   methodDescriptorListDisks = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/ListDisks',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.ListDisksRequest,
-    clickhouse_manager_manager_pb.DiskList,
-    (request: clickhouse_manager_manager_pb.ListDisksRequest) => {
+    api_clickhouse_manager_pb.ListDisksRequest,
+    api_clickhouse_manager_pb.DiskList,
+    (request: api_clickhouse_manager_pb.ListDisksRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.DiskList.deserializeBinary
+    api_clickhouse_manager_pb.DiskList.deserializeBinary
   );
 
   listDisks(
-    request: clickhouse_manager_manager_pb.ListDisksRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.DiskList>;
+    request: api_clickhouse_manager_pb.ListDisksRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.DiskList>;
 
   listDisks(
-    request: clickhouse_manager_manager_pb.ListDisksRequest,
+    request: api_clickhouse_manager_pb.ListDisksRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.DiskList) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.DiskList>;
+               response: api_clickhouse_manager_pb.DiskList) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.DiskList>;
 
   listDisks(
-    request: clickhouse_manager_manager_pb.ListDisksRequest,
+    request: api_clickhouse_manager_pb.ListDisksRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.DiskList) => void) {
+               response: api_clickhouse_manager_pb.DiskList) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -1074,29 +1074,29 @@ export class ClickHouseManagerClient {
   methodDescriptorGetMetrics = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetMetrics',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.GetMetricsRequest,
-    clickhouse_manager_manager_pb.MetricsResponse,
-    (request: clickhouse_manager_manager_pb.GetMetricsRequest) => {
+    api_clickhouse_manager_pb.GetMetricsRequest,
+    api_clickhouse_manager_pb.MetricsResponse,
+    (request: api_clickhouse_manager_pb.GetMetricsRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.MetricsResponse.deserializeBinary
+    api_clickhouse_manager_pb.MetricsResponse.deserializeBinary
   );
 
   getMetrics(
-    request: clickhouse_manager_manager_pb.GetMetricsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.MetricsResponse>;
+    request: api_clickhouse_manager_pb.GetMetricsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.MetricsResponse>;
 
   getMetrics(
-    request: clickhouse_manager_manager_pb.GetMetricsRequest,
+    request: api_clickhouse_manager_pb.GetMetricsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.MetricsResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.MetricsResponse>;
+               response: api_clickhouse_manager_pb.MetricsResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.MetricsResponse>;
 
   getMetrics(
-    request: clickhouse_manager_manager_pb.GetMetricsRequest,
+    request: api_clickhouse_manager_pb.GetMetricsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.MetricsResponse) => void) {
+               response: api_clickhouse_manager_pb.MetricsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -1117,29 +1117,29 @@ export class ClickHouseManagerClient {
   methodDescriptorGetTableOptions = new grpcWeb.MethodDescriptor(
     '/trb.clickhouse.manager.public.contract.v1.ClickHouseManager/GetTableOptions',
     grpcWeb.MethodType.UNARY,
-    clickhouse_manager_manager_pb.TableOptionsRequest,
-    clickhouse_manager_manager_pb.TableOptionsResponse,
-    (request: clickhouse_manager_manager_pb.TableOptionsRequest) => {
+    api_clickhouse_manager_pb.TableOptionsRequest,
+    api_clickhouse_manager_pb.TableOptionsResponse,
+    (request: api_clickhouse_manager_pb.TableOptionsRequest) => {
       return request.serializeBinary();
     },
-    clickhouse_manager_manager_pb.TableOptionsResponse.deserializeBinary
+    api_clickhouse_manager_pb.TableOptionsResponse.deserializeBinary
   );
 
   getTableOptions(
-    request: clickhouse_manager_manager_pb.TableOptionsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_manager_manager_pb.TableOptionsResponse>;
+    request: api_clickhouse_manager_pb.TableOptionsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_clickhouse_manager_pb.TableOptionsResponse>;
 
   getTableOptions(
-    request: clickhouse_manager_manager_pb.TableOptionsRequest,
+    request: api_clickhouse_manager_pb.TableOptionsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.TableOptionsResponse) => void): grpcWeb.ClientReadableStream<clickhouse_manager_manager_pb.TableOptionsResponse>;
+               response: api_clickhouse_manager_pb.TableOptionsResponse) => void): grpcWeb.ClientReadableStream<api_clickhouse_manager_pb.TableOptionsResponse>;
 
   getTableOptions(
-    request: clickhouse_manager_manager_pb.TableOptionsRequest,
+    request: api_clickhouse_manager_pb.TableOptionsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: clickhouse_manager_manager_pb.TableOptionsResponse) => void) {
+               response: api_clickhouse_manager_pb.TableOptionsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
