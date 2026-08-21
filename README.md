@@ -42,7 +42,7 @@ req.setText('hello');
 
 GitHub Actions:
 
-- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go, проверка npm-пакета, `make gene` и сверка `gen/` с git.
+- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go и проверка npm-пакета. Генерацию (`make gene`) нужно делать локально и коммитить `gen/`.
 - [Publish](.github/workflows/publish.yml) — публикация `@marleena/trb-proto` при push тега `v*` (и вручную через *Run workflow*).
 
 В репозитории нужен secret **`NPM_TOKEN`**: Automation-токен с [npmjs.com](https://www.npmjs.com/) с правом publish для `@marleena/trb-proto`  
