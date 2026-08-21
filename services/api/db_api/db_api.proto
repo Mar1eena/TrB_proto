@@ -21,6 +21,14 @@ service DbApi {
     };
   }
 
+  // ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
+  rpc ListInstrumentVersions(ListInstrumentVersionsRequest) returns (ListInstrumentVersionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/instruments/{uid}/versions"
+      additional_bindings { post: "/ListInstrumentVersions" body: "*" }
+    };
+  }
+
   // UpsertInstruments сохраняет акции в TrB.sht.
   // При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
   rpc UpsertInstruments(tinkoff.public.invest.api.contract.v1.SharesResponse) returns (UpsertInstrumentsResponse) {
@@ -64,6 +72,20 @@ message ListInstrumentsRequest {
   ListFilter filter = 1;
   // lite=true — только uid/figi/ticker/name (каталог планировщика).
   bool lite = 2;
+}
+
+message ListInstrumentVersionsRequest {
+  string uid = 1;
+}
+
+message InstrumentVersion {
+  tinkoff.public.invest.api.contract.v1.Share share = 1;
+  bool actual = 2;
+  google.protobuf.Timestamp version = 3;
+}
+
+message ListInstrumentVersionsResponse {
+  repeated InstrumentVersion items = 1;
 }
 
 message UpsertInstrumentsResponse {

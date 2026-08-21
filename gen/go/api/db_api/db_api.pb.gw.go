@@ -98,6 +98,72 @@ func local_request_DbApi_ListInstruments_1(ctx context.Context, marshaler runtim
 	return msg, metadata, err
 }
 
+func request_DbApi_ListInstrumentVersions_0(ctx context.Context, marshaler runtime.Marshaler, client DbApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListInstrumentVersionsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["uid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "uid")
+	}
+	protoReq.Uid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "uid", err)
+	}
+	msg, err := client.ListInstrumentVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_DbApi_ListInstrumentVersions_0(ctx context.Context, marshaler runtime.Marshaler, server DbApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListInstrumentVersionsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["uid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "uid")
+	}
+	protoReq.Uid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "uid", err)
+	}
+	msg, err := server.ListInstrumentVersions(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_DbApi_ListInstrumentVersions_1(ctx context.Context, marshaler runtime.Marshaler, client DbApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListInstrumentVersionsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListInstrumentVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_DbApi_ListInstrumentVersions_1(ctx context.Context, marshaler runtime.Marshaler, server DbApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListInstrumentVersionsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListInstrumentVersions(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_DbApi_UpsertInstruments_0(ctx context.Context, marshaler runtime.Marshaler, client DbApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq investapi.SharesResponse
@@ -362,6 +428,46 @@ func RegisterDbApiHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		}
 		forward_DbApi_ListInstruments_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_DbApi_ListInstrumentVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions", runtime.WithHTTPPathPattern("/v1/instruments/{uid}/versions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_DbApi_ListInstrumentVersions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DbApi_ListInstrumentVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_DbApi_ListInstrumentVersions_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions", runtime.WithHTTPPathPattern("/ListInstrumentVersions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_DbApi_ListInstrumentVersions_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DbApi_ListInstrumentVersions_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_DbApi_UpsertInstruments_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -596,6 +702,40 @@ func RegisterDbApiHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		}
 		forward_DbApi_ListInstruments_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_DbApi_ListInstrumentVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions", runtime.WithHTTPPathPattern("/v1/instruments/{uid}/versions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_DbApi_ListInstrumentVersions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DbApi_ListInstrumentVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_DbApi_ListInstrumentVersions_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions", runtime.WithHTTPPathPattern("/ListInstrumentVersions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_DbApi_ListInstrumentVersions_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DbApi_ListInstrumentVersions_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_DbApi_UpsertInstruments_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -736,27 +876,31 @@ func RegisterDbApiHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_DbApi_ListInstruments_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "instruments"}, ""))
-	pattern_DbApi_ListInstruments_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListInstruments"}, ""))
-	pattern_DbApi_UpsertInstruments_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "instruments", "upsert"}, ""))
-	pattern_DbApi_UpsertInstruments_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpsertInstruments"}, ""))
-	pattern_DbApi_ListSchedulerTargets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "scheduler", "targets"}, ""))
-	pattern_DbApi_ListSchedulerTargets_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSchedulerTargets"}, ""))
-	pattern_DbApi_SyncSchedulerTargets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "scheduler", "targets"}, ""))
-	pattern_DbApi_SyncSchedulerTargets_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SyncSchedulerTargets"}, ""))
-	pattern_DbApi_ListLastDownloads_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "historic-candles", "last-downloads"}, ""))
-	pattern_DbApi_ListLastDownloads_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListLastDownloads"}, ""))
+	pattern_DbApi_ListInstruments_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "instruments"}, ""))
+	pattern_DbApi_ListInstruments_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListInstruments"}, ""))
+	pattern_DbApi_ListInstrumentVersions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "instruments", "uid", "versions"}, ""))
+	pattern_DbApi_ListInstrumentVersions_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListInstrumentVersions"}, ""))
+	pattern_DbApi_UpsertInstruments_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "instruments", "upsert"}, ""))
+	pattern_DbApi_UpsertInstruments_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"UpsertInstruments"}, ""))
+	pattern_DbApi_ListSchedulerTargets_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "scheduler", "targets"}, ""))
+	pattern_DbApi_ListSchedulerTargets_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSchedulerTargets"}, ""))
+	pattern_DbApi_SyncSchedulerTargets_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "scheduler", "targets"}, ""))
+	pattern_DbApi_SyncSchedulerTargets_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SyncSchedulerTargets"}, ""))
+	pattern_DbApi_ListLastDownloads_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "historic-candles", "last-downloads"}, ""))
+	pattern_DbApi_ListLastDownloads_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListLastDownloads"}, ""))
 )
 
 var (
-	forward_DbApi_ListInstruments_0      = runtime.ForwardResponseMessage
-	forward_DbApi_ListInstruments_1      = runtime.ForwardResponseMessage
-	forward_DbApi_UpsertInstruments_0    = runtime.ForwardResponseMessage
-	forward_DbApi_UpsertInstruments_1    = runtime.ForwardResponseMessage
-	forward_DbApi_ListSchedulerTargets_0 = runtime.ForwardResponseMessage
-	forward_DbApi_ListSchedulerTargets_1 = runtime.ForwardResponseMessage
-	forward_DbApi_SyncSchedulerTargets_0 = runtime.ForwardResponseMessage
-	forward_DbApi_SyncSchedulerTargets_1 = runtime.ForwardResponseMessage
-	forward_DbApi_ListLastDownloads_0    = runtime.ForwardResponseMessage
-	forward_DbApi_ListLastDownloads_1    = runtime.ForwardResponseMessage
+	forward_DbApi_ListInstruments_0        = runtime.ForwardResponseMessage
+	forward_DbApi_ListInstruments_1        = runtime.ForwardResponseMessage
+	forward_DbApi_ListInstrumentVersions_0 = runtime.ForwardResponseMessage
+	forward_DbApi_ListInstrumentVersions_1 = runtime.ForwardResponseMessage
+	forward_DbApi_UpsertInstruments_0      = runtime.ForwardResponseMessage
+	forward_DbApi_UpsertInstruments_1      = runtime.ForwardResponseMessage
+	forward_DbApi_ListSchedulerTargets_0   = runtime.ForwardResponseMessage
+	forward_DbApi_ListSchedulerTargets_1   = runtime.ForwardResponseMessage
+	forward_DbApi_SyncSchedulerTargets_0   = runtime.ForwardResponseMessage
+	forward_DbApi_SyncSchedulerTargets_1   = runtime.ForwardResponseMessage
+	forward_DbApi_ListLastDownloads_0      = runtime.ForwardResponseMessage
+	forward_DbApi_ListLastDownloads_1      = runtime.ForwardResponseMessage
 )

@@ -55,6 +55,74 @@ export namespace ListInstrumentsRequest {
   }
 }
 
+export class ListInstrumentVersionsRequest extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): ListInstrumentVersionsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListInstrumentVersionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListInstrumentVersionsRequest): ListInstrumentVersionsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListInstrumentVersionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListInstrumentVersionsRequest;
+  static deserializeBinaryFromReader(message: ListInstrumentVersionsRequest, reader: jspb.BinaryReader): ListInstrumentVersionsRequest;
+}
+
+export namespace ListInstrumentVersionsRequest {
+  export type AsObject = {
+    uid: string,
+  }
+}
+
+export class InstrumentVersion extends jspb.Message {
+  getShare(): tinvest_instruments_pb.Share | undefined;
+  setShare(value?: tinvest_instruments_pb.Share): InstrumentVersion;
+  hasShare(): boolean;
+  clearShare(): InstrumentVersion;
+
+  getActual(): boolean;
+  setActual(value: boolean): InstrumentVersion;
+
+  getVersion(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setVersion(value?: google_protobuf_timestamp_pb.Timestamp): InstrumentVersion;
+  hasVersion(): boolean;
+  clearVersion(): InstrumentVersion;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InstrumentVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: InstrumentVersion): InstrumentVersion.AsObject;
+  static serializeBinaryToWriter(message: InstrumentVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InstrumentVersion;
+  static deserializeBinaryFromReader(message: InstrumentVersion, reader: jspb.BinaryReader): InstrumentVersion;
+}
+
+export namespace InstrumentVersion {
+  export type AsObject = {
+    share?: tinvest_instruments_pb.Share.AsObject,
+    actual: boolean,
+    version?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class ListInstrumentVersionsResponse extends jspb.Message {
+  getItemsList(): Array<InstrumentVersion>;
+  setItemsList(value: Array<InstrumentVersion>): ListInstrumentVersionsResponse;
+  clearItemsList(): ListInstrumentVersionsResponse;
+  addItems(value?: InstrumentVersion, index?: number): InstrumentVersion;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListInstrumentVersionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListInstrumentVersionsResponse): ListInstrumentVersionsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListInstrumentVersionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListInstrumentVersionsResponse;
+  static deserializeBinaryFromReader(message: ListInstrumentVersionsResponse, reader: jspb.BinaryReader): ListInstrumentVersionsResponse;
+}
+
+export namespace ListInstrumentVersionsResponse {
+  export type AsObject = {
+    itemsList: Array<InstrumentVersion.AsObject>,
+  }
+}
+
 export class UpsertInstrumentsResponse extends jspb.Message {
   getFetched(): number;
   setFetched(value: number): UpsertInstrumentsResponse;

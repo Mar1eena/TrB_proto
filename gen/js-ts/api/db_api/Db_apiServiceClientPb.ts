@@ -83,6 +83,49 @@ export class DbApiClient {
     this.methodDescriptorListInstruments);
   }
 
+  methodDescriptorListInstrumentVersions = new grpcWeb.MethodDescriptor(
+    '/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions',
+    grpcWeb.MethodType.UNARY,
+    api_db_api_db_api_pb.ListInstrumentVersionsRequest,
+    api_db_api_db_api_pb.ListInstrumentVersionsResponse,
+    (request: api_db_api_db_api_pb.ListInstrumentVersionsRequest) => {
+      return request.serializeBinary();
+    },
+    api_db_api_db_api_pb.ListInstrumentVersionsResponse.deserializeBinary
+  );
+
+  listInstrumentVersions(
+    request: api_db_api_db_api_pb.ListInstrumentVersionsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<api_db_api_db_api_pb.ListInstrumentVersionsResponse>;
+
+  listInstrumentVersions(
+    request: api_db_api_db_api_pb.ListInstrumentVersionsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: api_db_api_db_api_pb.ListInstrumentVersionsResponse) => void): grpcWeb.ClientReadableStream<api_db_api_db_api_pb.ListInstrumentVersionsResponse>;
+
+  listInstrumentVersions(
+    request: api_db_api_db_api_pb.ListInstrumentVersionsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: api_db_api_db_api_pb.ListInstrumentVersionsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions',
+        request,
+        metadata || {},
+        this.methodDescriptorListInstrumentVersions,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions',
+    request,
+    metadata || {},
+    this.methodDescriptorListInstrumentVersions);
+  }
+
   methodDescriptorUpsertInstruments = new grpcWeb.MethodDescriptor(
     '/trb.db.api.public.contract.v1.DbApi/UpsertInstruments',
     grpcWeb.MethodType.UNARY,

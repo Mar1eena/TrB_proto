@@ -137,6 +137,154 @@ func (x *ListInstrumentsRequest) GetLite() bool {
 	return false
 }
 
+type ListInstrumentVersionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListInstrumentVersionsRequest) Reset() {
+	*x = ListInstrumentVersionsRequest{}
+	mi := &file_api_db_api_db_api_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListInstrumentVersionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListInstrumentVersionsRequest) ProtoMessage() {}
+
+func (x *ListInstrumentVersionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_db_api_db_api_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListInstrumentVersionsRequest.ProtoReflect.Descriptor instead.
+func (*ListInstrumentVersionsRequest) Descriptor() ([]byte, []int) {
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ListInstrumentVersionsRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+type InstrumentVersion struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Share         *tinvest.Share         `protobuf:"bytes,1,opt,name=share,proto3" json:"share,omitempty"`
+	Actual        bool                   `protobuf:"varint,2,opt,name=actual,proto3" json:"actual,omitempty"`
+	Version       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InstrumentVersion) Reset() {
+	*x = InstrumentVersion{}
+	mi := &file_api_db_api_db_api_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InstrumentVersion) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InstrumentVersion) ProtoMessage() {}
+
+func (x *InstrumentVersion) ProtoReflect() protoreflect.Message {
+	mi := &file_api_db_api_db_api_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InstrumentVersion.ProtoReflect.Descriptor instead.
+func (*InstrumentVersion) Descriptor() ([]byte, []int) {
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *InstrumentVersion) GetShare() *tinvest.Share {
+	if x != nil {
+		return x.Share
+	}
+	return nil
+}
+
+func (x *InstrumentVersion) GetActual() bool {
+	if x != nil {
+		return x.Actual
+	}
+	return false
+}
+
+func (x *InstrumentVersion) GetVersion() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Version
+	}
+	return nil
+}
+
+type ListInstrumentVersionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*InstrumentVersion   `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListInstrumentVersionsResponse) Reset() {
+	*x = ListInstrumentVersionsResponse{}
+	mi := &file_api_db_api_db_api_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListInstrumentVersionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListInstrumentVersionsResponse) ProtoMessage() {}
+
+func (x *ListInstrumentVersionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_db_api_db_api_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListInstrumentVersionsResponse.ProtoReflect.Descriptor instead.
+func (*ListInstrumentVersionsResponse) Descriptor() ([]byte, []int) {
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ListInstrumentVersionsResponse) GetItems() []*InstrumentVersion {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 type UpsertInstrumentsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Fetched       int32                  `protobuf:"varint,1,opt,name=fetched,proto3" json:"fetched,omitempty"`
@@ -149,7 +297,7 @@ type UpsertInstrumentsResponse struct {
 
 func (x *UpsertInstrumentsResponse) Reset() {
 	*x = UpsertInstrumentsResponse{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[2]
+	mi := &file_api_db_api_db_api_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -161,7 +309,7 @@ func (x *UpsertInstrumentsResponse) String() string {
 func (*UpsertInstrumentsResponse) ProtoMessage() {}
 
 func (x *UpsertInstrumentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[2]
+	mi := &file_api_db_api_db_api_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -174,7 +322,7 @@ func (x *UpsertInstrumentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertInstrumentsResponse.ProtoReflect.Descriptor instead.
 func (*UpsertInstrumentsResponse) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{2}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpsertInstrumentsResponse) GetFetched() int32 {
@@ -213,7 +361,7 @@ type ListSchedulerTargetsRequest struct {
 
 func (x *ListSchedulerTargetsRequest) Reset() {
 	*x = ListSchedulerTargetsRequest{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[3]
+	mi := &file_api_db_api_db_api_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -225,7 +373,7 @@ func (x *ListSchedulerTargetsRequest) String() string {
 func (*ListSchedulerTargetsRequest) ProtoMessage() {}
 
 func (x *ListSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[3]
+	mi := &file_api_db_api_db_api_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -238,7 +386,7 @@ func (x *ListSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSchedulerTargetsRequest.ProtoReflect.Descriptor instead.
 func (*ListSchedulerTargetsRequest) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{3}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{6}
 }
 
 type ListSchedulerTargetsResponse struct {
@@ -250,7 +398,7 @@ type ListSchedulerTargetsResponse struct {
 
 func (x *ListSchedulerTargetsResponse) Reset() {
 	*x = ListSchedulerTargetsResponse{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[4]
+	mi := &file_api_db_api_db_api_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -262,7 +410,7 @@ func (x *ListSchedulerTargetsResponse) String() string {
 func (*ListSchedulerTargetsResponse) ProtoMessage() {}
 
 func (x *ListSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[4]
+	mi := &file_api_db_api_db_api_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -275,7 +423,7 @@ func (x *ListSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSchedulerTargetsResponse.ProtoReflect.Descriptor instead.
 func (*ListSchedulerTargetsResponse) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{4}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListSchedulerTargetsResponse) GetItems() []*SchedulerTarget {
@@ -301,7 +449,7 @@ type SchedulerTarget struct {
 
 func (x *SchedulerTarget) Reset() {
 	*x = SchedulerTarget{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[5]
+	mi := &file_api_db_api_db_api_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -313,7 +461,7 @@ func (x *SchedulerTarget) String() string {
 func (*SchedulerTarget) ProtoMessage() {}
 
 func (x *SchedulerTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[5]
+	mi := &file_api_db_api_db_api_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -326,7 +474,7 @@ func (x *SchedulerTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchedulerTarget.ProtoReflect.Descriptor instead.
 func (*SchedulerTarget) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{5}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SchedulerTarget) GetUid() string {
@@ -396,7 +544,7 @@ type SyncSchedulerTargetsRequest struct {
 
 func (x *SyncSchedulerTargetsRequest) Reset() {
 	*x = SyncSchedulerTargetsRequest{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[6]
+	mi := &file_api_db_api_db_api_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -408,7 +556,7 @@ func (x *SyncSchedulerTargetsRequest) String() string {
 func (*SyncSchedulerTargetsRequest) ProtoMessage() {}
 
 func (x *SyncSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[6]
+	mi := &file_api_db_api_db_api_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -421,7 +569,7 @@ func (x *SyncSchedulerTargetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSchedulerTargetsRequest.ProtoReflect.Descriptor instead.
 func (*SyncSchedulerTargetsRequest) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{6}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SyncSchedulerTargetsRequest) GetInstruments() []*SchedulerTargetInstrument {
@@ -448,7 +596,7 @@ type SchedulerTargetInstrument struct {
 
 func (x *SchedulerTargetInstrument) Reset() {
 	*x = SchedulerTargetInstrument{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[7]
+	mi := &file_api_db_api_db_api_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -460,7 +608,7 @@ func (x *SchedulerTargetInstrument) String() string {
 func (*SchedulerTargetInstrument) ProtoMessage() {}
 
 func (x *SchedulerTargetInstrument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[7]
+	mi := &file_api_db_api_db_api_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -473,7 +621,7 @@ func (x *SchedulerTargetInstrument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchedulerTargetInstrument.ProtoReflect.Descriptor instead.
 func (*SchedulerTargetInstrument) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{7}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SchedulerTargetInstrument) GetUid() string {
@@ -499,7 +647,7 @@ type SyncSchedulerTargetsResponse struct {
 
 func (x *SyncSchedulerTargetsResponse) Reset() {
 	*x = SyncSchedulerTargetsResponse{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[8]
+	mi := &file_api_db_api_db_api_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -511,7 +659,7 @@ func (x *SyncSchedulerTargetsResponse) String() string {
 func (*SyncSchedulerTargetsResponse) ProtoMessage() {}
 
 func (x *SyncSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[8]
+	mi := &file_api_db_api_db_api_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,7 +672,7 @@ func (x *SyncSchedulerTargetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSchedulerTargetsResponse.ProtoReflect.Descriptor instead.
 func (*SyncSchedulerTargetsResponse) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{8}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SyncSchedulerTargetsResponse) GetCount() int32 {
@@ -543,7 +691,7 @@ type ListLastDownloadsRequest struct {
 
 func (x *ListLastDownloadsRequest) Reset() {
 	*x = ListLastDownloadsRequest{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[9]
+	mi := &file_api_db_api_db_api_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -555,7 +703,7 @@ func (x *ListLastDownloadsRequest) String() string {
 func (*ListLastDownloadsRequest) ProtoMessage() {}
 
 func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[9]
+	mi := &file_api_db_api_db_api_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,7 +716,7 @@ func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsRequest.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsRequest) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{9}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListLastDownloadsRequest) GetFilter() *ListFilter {
@@ -587,7 +735,7 @@ type ListLastDownloadsResponse struct {
 
 func (x *ListLastDownloadsResponse) Reset() {
 	*x = ListLastDownloadsResponse{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[10]
+	mi := &file_api_db_api_db_api_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -599,7 +747,7 @@ func (x *ListLastDownloadsResponse) String() string {
 func (*ListLastDownloadsResponse) ProtoMessage() {}
 
 func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[10]
+	mi := &file_api_db_api_db_api_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -612,7 +760,7 @@ func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsResponse.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsResponse) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{10}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListLastDownloadsResponse) GetItems() []*LastDownload {
@@ -638,7 +786,7 @@ type LastDownload struct {
 
 func (x *LastDownload) Reset() {
 	*x = LastDownload{}
-	mi := &file_api_db_api_db_api_proto_msgTypes[11]
+	mi := &file_api_db_api_db_api_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -650,7 +798,7 @@ func (x *LastDownload) String() string {
 func (*LastDownload) ProtoMessage() {}
 
 func (x *LastDownload) ProtoReflect() protoreflect.Message {
-	mi := &file_api_db_api_db_api_proto_msgTypes[11]
+	mi := &file_api_db_api_db_api_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -663,7 +811,7 @@ func (x *LastDownload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LastDownload.ProtoReflect.Descriptor instead.
 func (*LastDownload) Descriptor() ([]byte, []int) {
-	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{11}
+	return file_api_db_api_db_api_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *LastDownload) GetUid() string {
@@ -734,7 +882,15 @@ const file_api_db_api_db_api_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"o\n" +
 	"\x16ListInstrumentsRequest\x12A\n" +
 	"\x06filter\x18\x01 \x01(\v2).trb.db.api.public.contract.v1.ListFilterR\x06filter\x12\x12\n" +
-	"\x04lite\x18\x02 \x01(\bR\x04lite\"\x89\x01\n" +
+	"\x04lite\x18\x02 \x01(\bR\x04lite\"1\n" +
+	"\x1dListInstrumentVersionsRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"\xa5\x01\n" +
+	"\x11InstrumentVersion\x12B\n" +
+	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x12\x16\n" +
+	"\x06actual\x18\x02 \x01(\bR\x06actual\x124\n" +
+	"\aversion\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\"h\n" +
+	"\x1eListInstrumentVersionsResponse\x12F\n" +
+	"\x05items\x18\x01 \x03(\v20.trb.db.api.public.contract.v1.InstrumentVersionR\x05items\"\x89\x01\n" +
 	"\x19UpsertInstrumentsResponse\x12\x18\n" +
 	"\afetched\x18\x01 \x01(\x05R\afetched\x12\x1a\n" +
 	"\binserted\x18\x02 \x01(\x05R\binserted\x12\x18\n" +
@@ -776,9 +932,10 @@ const file_api_db_api_db_api_proto_rawDesc = "" +
 	"\n" +
 	"last_start\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tlastStart\x125\n" +
 	"\blast_end\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\alastEnd\x12!\n" +
-	"\fhas_download\x18\b \x01(\bR\vhasDownload2\xe8\a\n" +
+	"\fhas_download\x18\b \x01(\bR\vhasDownload2\xc6\t\n" +
 	"\x05DbApi\x12\xaf\x01\n" +
-	"\x0fListInstruments\x125.trb.db.api.public.contract.v1.ListInstrumentsRequest\x1a5.tinkoff.public.invest.api.contract.v1.SharesResponse\".\x82\xd3\xe4\x93\x02(Z\x15:\x01*\"\x10/ListInstruments\x12\x0f/v1/instruments\x12\xc0\x01\n" +
+	"\x0fListInstruments\x125.trb.db.api.public.contract.v1.ListInstrumentsRequest\x1a5.tinkoff.public.invest.api.contract.v1.SharesResponse\".\x82\xd3\xe4\x93\x02(Z\x15:\x01*\"\x10/ListInstruments\x12\x0f/v1/instruments\x12\xdb\x01\n" +
+	"\x16ListInstrumentVersions\x12<.trb.db.api.public.contract.v1.ListInstrumentVersionsRequest\x1a=.trb.db.api.public.contract.v1.ListInstrumentVersionsResponse\"D\x82\xd3\xe4\x93\x02>Z\x1c:\x01*\"\x17/ListInstrumentVersions\x12\x1e/v1/instruments/{uid}/versions\x12\xc0\x01\n" +
 	"\x11UpsertInstruments\x125.tinkoff.public.invest.api.contract.v1.SharesResponse\x1a8.trb.db.api.public.contract.v1.UpsertInstrumentsResponse\":\x82\xd3\xe4\x93\x024:\x01*Z\x17:\x01*\"\x12/UpsertInstruments\"\x16/v1/instruments/upsert\x12\xca\x01\n" +
 	"\x14ListSchedulerTargets\x12:.trb.db.api.public.contract.v1.ListSchedulerTargetsRequest\x1a;.trb.db.api.public.contract.v1.ListSchedulerTargetsResponse\"9\x82\xd3\xe4\x93\x023Z\x1a:\x01*\"\x15/ListSchedulerTargets\x12\x15/v1/scheduler/targets\x12\xcd\x01\n" +
 	"\x14SyncSchedulerTargets\x12:.trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest\x1a;.trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse\"<\x82\xd3\xe4\x93\x026:\x01*Z\x1a:\x01*\"\x15/SyncSchedulerTargets\x1a\x15/v1/scheduler/targets\x12\xcc\x01\n" +
@@ -796,48 +953,57 @@ func file_api_db_api_db_api_proto_rawDescGZIP() []byte {
 	return file_api_db_api_db_api_proto_rawDescData
 }
 
-var file_api_db_api_db_api_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_api_db_api_db_api_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_api_db_api_db_api_proto_goTypes = []any{
-	(*ListFilter)(nil),                   // 0: trb.db.api.public.contract.v1.ListFilter
-	(*ListInstrumentsRequest)(nil),       // 1: trb.db.api.public.contract.v1.ListInstrumentsRequest
-	(*UpsertInstrumentsResponse)(nil),    // 2: trb.db.api.public.contract.v1.UpsertInstrumentsResponse
-	(*ListSchedulerTargetsRequest)(nil),  // 3: trb.db.api.public.contract.v1.ListSchedulerTargetsRequest
-	(*ListSchedulerTargetsResponse)(nil), // 4: trb.db.api.public.contract.v1.ListSchedulerTargetsResponse
-	(*SchedulerTarget)(nil),              // 5: trb.db.api.public.contract.v1.SchedulerTarget
-	(*SyncSchedulerTargetsRequest)(nil),  // 6: trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest
-	(*SchedulerTargetInstrument)(nil),    // 7: trb.db.api.public.contract.v1.SchedulerTargetInstrument
-	(*SyncSchedulerTargetsResponse)(nil), // 8: trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse
-	(*ListLastDownloadsRequest)(nil),     // 9: trb.db.api.public.contract.v1.ListLastDownloadsRequest
-	(*ListLastDownloadsResponse)(nil),    // 10: trb.db.api.public.contract.v1.ListLastDownloadsResponse
-	(*LastDownload)(nil),                 // 11: trb.db.api.public.contract.v1.LastDownload
-	(*timestamppb.Timestamp)(nil),        // 12: google.protobuf.Timestamp
-	(*tinvest.SharesResponse)(nil),       // 13: tinkoff.public.invest.api.contract.v1.SharesResponse
+	(*ListFilter)(nil),                     // 0: trb.db.api.public.contract.v1.ListFilter
+	(*ListInstrumentsRequest)(nil),         // 1: trb.db.api.public.contract.v1.ListInstrumentsRequest
+	(*ListInstrumentVersionsRequest)(nil),  // 2: trb.db.api.public.contract.v1.ListInstrumentVersionsRequest
+	(*InstrumentVersion)(nil),              // 3: trb.db.api.public.contract.v1.InstrumentVersion
+	(*ListInstrumentVersionsResponse)(nil), // 4: trb.db.api.public.contract.v1.ListInstrumentVersionsResponse
+	(*UpsertInstrumentsResponse)(nil),      // 5: trb.db.api.public.contract.v1.UpsertInstrumentsResponse
+	(*ListSchedulerTargetsRequest)(nil),    // 6: trb.db.api.public.contract.v1.ListSchedulerTargetsRequest
+	(*ListSchedulerTargetsResponse)(nil),   // 7: trb.db.api.public.contract.v1.ListSchedulerTargetsResponse
+	(*SchedulerTarget)(nil),                // 8: trb.db.api.public.contract.v1.SchedulerTarget
+	(*SyncSchedulerTargetsRequest)(nil),    // 9: trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest
+	(*SchedulerTargetInstrument)(nil),      // 10: trb.db.api.public.contract.v1.SchedulerTargetInstrument
+	(*SyncSchedulerTargetsResponse)(nil),   // 11: trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse
+	(*ListLastDownloadsRequest)(nil),       // 12: trb.db.api.public.contract.v1.ListLastDownloadsRequest
+	(*ListLastDownloadsResponse)(nil),      // 13: trb.db.api.public.contract.v1.ListLastDownloadsResponse
+	(*LastDownload)(nil),                   // 14: trb.db.api.public.contract.v1.LastDownload
+	(*tinvest.Share)(nil),                  // 15: tinkoff.public.invest.api.contract.v1.Share
+	(*timestamppb.Timestamp)(nil),          // 16: google.protobuf.Timestamp
+	(*tinvest.SharesResponse)(nil),         // 17: tinkoff.public.invest.api.contract.v1.SharesResponse
 }
 var file_api_db_api_db_api_proto_depIdxs = []int32{
 	0,  // 0: trb.db.api.public.contract.v1.ListInstrumentsRequest.filter:type_name -> trb.db.api.public.contract.v1.ListFilter
-	5,  // 1: trb.db.api.public.contract.v1.ListSchedulerTargetsResponse.items:type_name -> trb.db.api.public.contract.v1.SchedulerTarget
-	12, // 2: trb.db.api.public.contract.v1.SchedulerTarget.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: trb.db.api.public.contract.v1.SchedulerTarget.updated_at:type_name -> google.protobuf.Timestamp
-	7,  // 4: trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest.instruments:type_name -> trb.db.api.public.contract.v1.SchedulerTargetInstrument
-	0,  // 5: trb.db.api.public.contract.v1.ListLastDownloadsRequest.filter:type_name -> trb.db.api.public.contract.v1.ListFilter
-	11, // 6: trb.db.api.public.contract.v1.ListLastDownloadsResponse.items:type_name -> trb.db.api.public.contract.v1.LastDownload
-	12, // 7: trb.db.api.public.contract.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
-	12, // 8: trb.db.api.public.contract.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
-	1,  // 9: trb.db.api.public.contract.v1.DbApi.ListInstruments:input_type -> trb.db.api.public.contract.v1.ListInstrumentsRequest
-	13, // 10: trb.db.api.public.contract.v1.DbApi.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
-	3,  // 11: trb.db.api.public.contract.v1.DbApi.ListSchedulerTargets:input_type -> trb.db.api.public.contract.v1.ListSchedulerTargetsRequest
-	6,  // 12: trb.db.api.public.contract.v1.DbApi.SyncSchedulerTargets:input_type -> trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest
-	9,  // 13: trb.db.api.public.contract.v1.DbApi.ListLastDownloads:input_type -> trb.db.api.public.contract.v1.ListLastDownloadsRequest
-	13, // 14: trb.db.api.public.contract.v1.DbApi.ListInstruments:output_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
-	2,  // 15: trb.db.api.public.contract.v1.DbApi.UpsertInstruments:output_type -> trb.db.api.public.contract.v1.UpsertInstrumentsResponse
-	4,  // 16: trb.db.api.public.contract.v1.DbApi.ListSchedulerTargets:output_type -> trb.db.api.public.contract.v1.ListSchedulerTargetsResponse
-	8,  // 17: trb.db.api.public.contract.v1.DbApi.SyncSchedulerTargets:output_type -> trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse
-	10, // 18: trb.db.api.public.contract.v1.DbApi.ListLastDownloads:output_type -> trb.db.api.public.contract.v1.ListLastDownloadsResponse
-	14, // [14:19] is the sub-list for method output_type
-	9,  // [9:14] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	15, // 1: trb.db.api.public.contract.v1.InstrumentVersion.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	16, // 2: trb.db.api.public.contract.v1.InstrumentVersion.version:type_name -> google.protobuf.Timestamp
+	3,  // 3: trb.db.api.public.contract.v1.ListInstrumentVersionsResponse.items:type_name -> trb.db.api.public.contract.v1.InstrumentVersion
+	8,  // 4: trb.db.api.public.contract.v1.ListSchedulerTargetsResponse.items:type_name -> trb.db.api.public.contract.v1.SchedulerTarget
+	16, // 5: trb.db.api.public.contract.v1.SchedulerTarget.created_at:type_name -> google.protobuf.Timestamp
+	16, // 6: trb.db.api.public.contract.v1.SchedulerTarget.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 7: trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest.instruments:type_name -> trb.db.api.public.contract.v1.SchedulerTargetInstrument
+	0,  // 8: trb.db.api.public.contract.v1.ListLastDownloadsRequest.filter:type_name -> trb.db.api.public.contract.v1.ListFilter
+	14, // 9: trb.db.api.public.contract.v1.ListLastDownloadsResponse.items:type_name -> trb.db.api.public.contract.v1.LastDownload
+	16, // 10: trb.db.api.public.contract.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
+	16, // 11: trb.db.api.public.contract.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
+	1,  // 12: trb.db.api.public.contract.v1.DbApi.ListInstruments:input_type -> trb.db.api.public.contract.v1.ListInstrumentsRequest
+	2,  // 13: trb.db.api.public.contract.v1.DbApi.ListInstrumentVersions:input_type -> trb.db.api.public.contract.v1.ListInstrumentVersionsRequest
+	17, // 14: trb.db.api.public.contract.v1.DbApi.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
+	6,  // 15: trb.db.api.public.contract.v1.DbApi.ListSchedulerTargets:input_type -> trb.db.api.public.contract.v1.ListSchedulerTargetsRequest
+	9,  // 16: trb.db.api.public.contract.v1.DbApi.SyncSchedulerTargets:input_type -> trb.db.api.public.contract.v1.SyncSchedulerTargetsRequest
+	12, // 17: trb.db.api.public.contract.v1.DbApi.ListLastDownloads:input_type -> trb.db.api.public.contract.v1.ListLastDownloadsRequest
+	17, // 18: trb.db.api.public.contract.v1.DbApi.ListInstruments:output_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
+	4,  // 19: trb.db.api.public.contract.v1.DbApi.ListInstrumentVersions:output_type -> trb.db.api.public.contract.v1.ListInstrumentVersionsResponse
+	5,  // 20: trb.db.api.public.contract.v1.DbApi.UpsertInstruments:output_type -> trb.db.api.public.contract.v1.UpsertInstrumentsResponse
+	7,  // 21: trb.db.api.public.contract.v1.DbApi.ListSchedulerTargets:output_type -> trb.db.api.public.contract.v1.ListSchedulerTargetsResponse
+	11, // 22: trb.db.api.public.contract.v1.DbApi.SyncSchedulerTargets:output_type -> trb.db.api.public.contract.v1.SyncSchedulerTargetsResponse
+	13, // 23: trb.db.api.public.contract.v1.DbApi.ListLastDownloads:output_type -> trb.db.api.public.contract.v1.ListLastDownloadsResponse
+	18, // [18:24] is the sub-list for method output_type
+	12, // [12:18] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_api_db_api_db_api_proto_init() }
@@ -851,7 +1017,7 @@ func file_api_db_api_db_api_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_db_api_db_api_proto_rawDesc), len(file_api_db_api_db_api_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

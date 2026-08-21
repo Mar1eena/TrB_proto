@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DbApi_ListInstruments_FullMethodName      = "/trb.db.api.public.contract.v1.DbApi/ListInstruments"
-	DbApi_UpsertInstruments_FullMethodName    = "/trb.db.api.public.contract.v1.DbApi/UpsertInstruments"
-	DbApi_ListSchedulerTargets_FullMethodName = "/trb.db.api.public.contract.v1.DbApi/ListSchedulerTargets"
-	DbApi_SyncSchedulerTargets_FullMethodName = "/trb.db.api.public.contract.v1.DbApi/SyncSchedulerTargets"
-	DbApi_ListLastDownloads_FullMethodName    = "/trb.db.api.public.contract.v1.DbApi/ListLastDownloads"
+	DbApi_ListInstruments_FullMethodName        = "/trb.db.api.public.contract.v1.DbApi/ListInstruments"
+	DbApi_ListInstrumentVersions_FullMethodName = "/trb.db.api.public.contract.v1.DbApi/ListInstrumentVersions"
+	DbApi_UpsertInstruments_FullMethodName      = "/trb.db.api.public.contract.v1.DbApi/UpsertInstruments"
+	DbApi_ListSchedulerTargets_FullMethodName   = "/trb.db.api.public.contract.v1.DbApi/ListSchedulerTargets"
+	DbApi_SyncSchedulerTargets_FullMethodName   = "/trb.db.api.public.contract.v1.DbApi/SyncSchedulerTargets"
+	DbApi_ListLastDownloads_FullMethodName      = "/trb.db.api.public.contract.v1.DbApi/ListLastDownloads"
 )
 
 // DbApiClient is the client API for DbApi service.
@@ -38,6 +39,8 @@ const (
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiClient interface {
 	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*tinvest.SharesResponse, error)
+	// ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
+	ListInstrumentVersions(ctx context.Context, in *ListInstrumentVersionsRequest, opts ...grpc.CallOption) (*ListInstrumentVersionsResponse, error)
 	// UpsertInstruments сохраняет акции в TrB.sht.
 	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
 	UpsertInstruments(ctx context.Context, in *tinvest.SharesResponse, opts ...grpc.CallOption) (*UpsertInstrumentsResponse, error)
@@ -58,6 +61,16 @@ func (c *dbApiClient) ListInstruments(ctx context.Context, in *ListInstrumentsRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(tinvest.SharesResponse)
 	err := c.cc.Invoke(ctx, DbApi_ListInstruments_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dbApiClient) ListInstrumentVersions(ctx context.Context, in *ListInstrumentVersionsRequest, opts ...grpc.CallOption) (*ListInstrumentVersionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListInstrumentVersionsResponse)
+	err := c.cc.Invoke(ctx, DbApi_ListInstrumentVersions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,6 +128,8 @@ func (c *dbApiClient) ListLastDownloads(ctx context.Context, in *ListLastDownloa
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiServer interface {
 	ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error)
+	// ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
+	ListInstrumentVersions(context.Context, *ListInstrumentVersionsRequest) (*ListInstrumentVersionsResponse, error)
 	// UpsertInstruments сохраняет акции в TrB.sht.
 	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
 	UpsertInstruments(context.Context, *tinvest.SharesResponse) (*UpsertInstrumentsResponse, error)
@@ -133,6 +148,9 @@ type UnimplementedDbApiServer struct{}
 
 func (UnimplementedDbApiServer) ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListInstruments not implemented")
+}
+func (UnimplementedDbApiServer) ListInstrumentVersions(context.Context, *ListInstrumentVersionsRequest) (*ListInstrumentVersionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListInstrumentVersions not implemented")
 }
 func (UnimplementedDbApiServer) UpsertInstruments(context.Context, *tinvest.SharesResponse) (*UpsertInstrumentsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpsertInstruments not implemented")
@@ -181,6 +199,24 @@ func _DbApi_ListInstruments_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DbApiServer).ListInstruments(ctx, req.(*ListInstrumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DbApi_ListInstrumentVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListInstrumentVersionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DbApiServer).ListInstrumentVersions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DbApi_ListInstrumentVersions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DbApiServer).ListInstrumentVersions(ctx, req.(*ListInstrumentVersionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -267,6 +303,10 @@ var DbApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListInstruments",
 			Handler:    _DbApi_ListInstruments_Handler,
+		},
+		{
+			MethodName: "ListInstrumentVersions",
+			Handler:    _DbApi_ListInstrumentVersions_Handler,
 		},
 		{
 			MethodName: "UpsertInstruments",
