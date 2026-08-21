@@ -59,15 +59,17 @@ else
 	npm publish --access public
 endif
 
-# Коммит (если MSG=...), тег, push в GitHub, npm publish.
-# make release PART=patch MSG="add ClickHouse manager" OTP=123456
+# Коммит (если MSG=...), bump версии, push. Тег, npm и pkg.go.dev — GitHub Actions
+# по коммиту с сообщением vX.Y.Z.
+# make release PART=patch MSG="add ClickHouse manager"
 PART ?= patch
 release:
 ifdef MSG
 	git add -A
 	git commit -m "$(MSG)"
 endif
-	npm version $(PART) -m "v%s"
-	git push origin HEAD --follow-tags
-	$(MAKE) publish
+	npm version $(PART) --no-git-tag-version
+	git add package.json package-lock.json
+	git commit -m "$$(node -p "const v=require('./package.json').version; v.startsWith('v')?v:'v'+v")"
+	git push origin HEAD
 

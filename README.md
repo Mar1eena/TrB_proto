@@ -42,33 +42,29 @@ req.setText('hello');
 
 GitHub Actions:
 
-- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go и проверка npm-пакета. Генерацию (`make gene`) нужно делать локально и коммитить `gen/`.
-- [Publish](.github/workflows/publish.yml) — публикация `@marleena/trb-proto` при push тега `v*` (и вручную через *Run workflow*).
+- [CI](.github/workflows/ci.yml) — на `main` и PR: сборка Go и проверка npm-пакета.
+- [Release](.github/workflows/release.yml) — если последний коммит в `main` имеет сообщение вида `v1.2.3`:
+  1. публикует `@marleena/trb-proto` этой версии в npm;
+  2. создаёт и пушит git-тег `v1.2.3`;
+  3. запрашивает индексацию модуля на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
 
-В репозитории нужен secret **`NPM_TOKEN`**: Automation-токен с [npmjs.com](https://www.npmjs.com/) с правом publish для `@marleena/trb-proto`  
-(*Settings → Secrets and variables → Actions*).
+Версия в сообщении коммита должна совпадать с `package.json`. Нужен secret **`NPM_TOKEN`**.
 
 ## Релиз
 
-Одна команда: коммит (если указан `MSG`), новая версия и тег, push в GitHub, публикация npm.
+Генерация локально, bump версии и push. Остальное делает Actions.
 
 ```bash
 make gene
-make release PART=patch MSG="add ClickHouse manager" OTP=123456
+make release PART=patch MSG="add ClickHouse manager"
 ```
 
-`PART`: `patch` (0.1.3 → 0.1.4), `minor` (0.2.0), `major` (1.0.0).
+`PART`: `patch`, `minor`, `major`. `npm version` создаёт коммит `v1.0.10` (без тега).
 
 Если изменения уже закоммичены:
 
 ```bash
-make release PART=patch OTP=123456
+make release PART=patch
 ```
 
-Через token вместо OTP: `TOKEN=npm_...` (сначала `make logout`).
-
-Только npm, без тега и push:
-
-```bash
-make publish OTP=123456
-```
+Вручную тот же эффект: коммит с сообщением `v1.0.10` (как в `package.json`) и push в `main`.
