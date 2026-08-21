@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   release:
@@ -31,14 +32,13 @@ jobs:
       - if: steps.parse.outputs.tag != ''
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: "24"
           registry-url: https://registry.npmjs.org
 
       - if: steps.parse.outputs.tag != ''
         name: Publish npm
         env:
           TAG: ${{ steps.parse.outputs.tag }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           PKG=$(node -p "require('./package.json').version")
           case "$PKG" in

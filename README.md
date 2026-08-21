@@ -45,7 +45,16 @@ req.setText('hello');
 - публикует `@marleena/trb-proto` в npm;
 - просит [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto) проиндексировать `github.com/Mar1eena/trb_proto@v1.2.3` (для этого пушится git-тег той же версии).
 
-Нужен secret **`NPM_TOKEN`**. Сообщение коммита должно совпадать с версией в `package.json`.
+Публикация в npm через [Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) (OIDC, без `NPM_TOKEN`).
+
+На [npmjs.com](https://www.npmjs.com) → пакет `@marleena/trb-proto` → **Settings** → **Trusted Publisher** → GitHub Actions:
+
+- Organization or user: `Mar1eena`
+- Repository: `TrB_proto`
+- Workflow filename: `release.yml`
+- Allowed actions: `npm publish`
+
+После успешного релиза токен в GitHub можно удалить. Сообщение коммита должно совпадать с версией в `package.json`.
 
 ## Релиз
 
