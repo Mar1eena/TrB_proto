@@ -44,28 +44,28 @@ export class DbApiClient {
     '/trb.db.api.public.contract.v1.DbApi/ListInstruments',
     grpcWeb.MethodType.UNARY,
     api_db_api_db_api_pb.ListInstrumentsRequest,
-    tinvest_instruments_pb.SharesResponse,
+    api_db_api_db_api_pb.ListInstrumentsResponse,
     (request: api_db_api_db_api_pb.ListInstrumentsRequest) => {
       return request.serializeBinary();
     },
-    tinvest_instruments_pb.SharesResponse.deserializeBinary
+    api_db_api_db_api_pb.ListInstrumentsResponse.deserializeBinary
   );
 
   listInstruments(
     request: api_db_api_db_api_pb.ListInstrumentsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<tinvest_instruments_pb.SharesResponse>;
+    metadata?: grpcWeb.Metadata | null): Promise<api_db_api_db_api_pb.ListInstrumentsResponse>;
 
   listInstruments(
     request: api_db_api_db_api_pb.ListInstrumentsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: tinvest_instruments_pb.SharesResponse) => void): grpcWeb.ClientReadableStream<tinvest_instruments_pb.SharesResponse>;
+               response: api_db_api_db_api_pb.ListInstrumentsResponse) => void): grpcWeb.ClientReadableStream<api_db_api_db_api_pb.ListInstrumentsResponse>;
 
   listInstruments(
     request: api_db_api_db_api_pb.ListInstrumentsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: tinvest_instruments_pb.SharesResponse) => void) {
+               response: api_db_api_db_api_pb.ListInstrumentsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

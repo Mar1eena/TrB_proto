@@ -14,7 +14,7 @@ import "tinvest/instruments.proto";
 // Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 service DbApi {
-  rpc ListInstruments(ListInstrumentsRequest) returns (tinkoff.public.invest.api.contract.v1.SharesResponse) {
+  rpc ListInstruments(ListInstrumentsRequest) returns (ListInstrumentsResponse) {
     option (google.api.http) = {
       get: "/v1/instruments"
       additional_bindings { post: "/ListInstruments" body: "*" }
@@ -72,6 +72,18 @@ message ListInstrumentsRequest {
   ListFilter filter = 1;
   // lite=true — только uid/figi/ticker/name (каталог планировщика).
   bool lite = 2;
+}
+
+message InstrumentListItem {
+  tinkoff.public.invest.api.contract.v1.Share share = 1;
+  bool actual = 2;
+  google.protobuf.Timestamp version = 3;
+  // Число версий в TrB.sht (без FINAL), с дедупом по (version, actual).
+  int32 version_count = 4;
+}
+
+message ListInstrumentsResponse {
+  repeated InstrumentListItem items = 1;
 }
 
 message ListInstrumentVersionsRequest {

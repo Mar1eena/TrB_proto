@@ -38,7 +38,7 @@ const (
 // Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiClient interface {
-	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*tinvest.SharesResponse, error)
+	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*ListInstrumentsResponse, error)
 	// ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
 	ListInstrumentVersions(ctx context.Context, in *ListInstrumentVersionsRequest, opts ...grpc.CallOption) (*ListInstrumentVersionsResponse, error)
 	// UpsertInstruments сохраняет акции в TrB.sht.
@@ -57,9 +57,9 @@ func NewDbApiClient(cc grpc.ClientConnInterface) DbApiClient {
 	return &dbApiClient{cc}
 }
 
-func (c *dbApiClient) ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*tinvest.SharesResponse, error) {
+func (c *dbApiClient) ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*ListInstrumentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(tinvest.SharesResponse)
+	out := new(ListInstrumentsResponse)
 	err := c.cc.Invoke(ctx, DbApi_ListInstruments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -127,7 +127,7 @@ func (c *dbApiClient) ListLastDownloads(ctx context.Context, in *ListLastDownloa
 // Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiServer interface {
-	ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error)
+	ListInstruments(context.Context, *ListInstrumentsRequest) (*ListInstrumentsResponse, error)
 	// ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
 	ListInstrumentVersions(context.Context, *ListInstrumentVersionsRequest) (*ListInstrumentVersionsResponse, error)
 	// UpsertInstruments сохраняет акции в TrB.sht.
@@ -146,7 +146,7 @@ type DbApiServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDbApiServer struct{}
 
-func (UnimplementedDbApiServer) ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error) {
+func (UnimplementedDbApiServer) ListInstruments(context.Context, *ListInstrumentsRequest) (*ListInstrumentsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListInstruments not implemented")
 }
 func (UnimplementedDbApiServer) ListInstrumentVersions(context.Context, *ListInstrumentVersionsRequest) (*ListInstrumentVersionsResponse, error) {

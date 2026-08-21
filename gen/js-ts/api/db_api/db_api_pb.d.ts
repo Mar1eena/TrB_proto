@@ -55,6 +55,60 @@ export namespace ListInstrumentsRequest {
   }
 }
 
+export class InstrumentListItem extends jspb.Message {
+  getShare(): tinvest_instruments_pb.Share | undefined;
+  setShare(value?: tinvest_instruments_pb.Share): InstrumentListItem;
+  hasShare(): boolean;
+  clearShare(): InstrumentListItem;
+
+  getActual(): boolean;
+  setActual(value: boolean): InstrumentListItem;
+
+  getVersion(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setVersion(value?: google_protobuf_timestamp_pb.Timestamp): InstrumentListItem;
+  hasVersion(): boolean;
+  clearVersion(): InstrumentListItem;
+
+  getVersionCount(): number;
+  setVersionCount(value: number): InstrumentListItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InstrumentListItem.AsObject;
+  static toObject(includeInstance: boolean, msg: InstrumentListItem): InstrumentListItem.AsObject;
+  static serializeBinaryToWriter(message: InstrumentListItem, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InstrumentListItem;
+  static deserializeBinaryFromReader(message: InstrumentListItem, reader: jspb.BinaryReader): InstrumentListItem;
+}
+
+export namespace InstrumentListItem {
+  export type AsObject = {
+    share?: tinvest_instruments_pb.Share.AsObject,
+    actual: boolean,
+    version?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    versionCount: number,
+  }
+}
+
+export class ListInstrumentsResponse extends jspb.Message {
+  getItemsList(): Array<InstrumentListItem>;
+  setItemsList(value: Array<InstrumentListItem>): ListInstrumentsResponse;
+  clearItemsList(): ListInstrumentsResponse;
+  addItems(value?: InstrumentListItem, index?: number): InstrumentListItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListInstrumentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListInstrumentsResponse): ListInstrumentsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListInstrumentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListInstrumentsResponse;
+  static deserializeBinaryFromReader(message: ListInstrumentsResponse, reader: jspb.BinaryReader): ListInstrumentsResponse;
+}
+
+export namespace ListInstrumentsResponse {
+  export type AsObject = {
+    itemsList: Array<InstrumentListItem.AsObject>,
+  }
+}
+
 export class ListInstrumentVersionsRequest extends jspb.Message {
   getUid(): string;
   setUid(value: string): ListInstrumentVersionsRequest;
