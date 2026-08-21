@@ -40,21 +40,9 @@ req.setText('hello');
 
 ## CI/CD
 
-Один workflow [Release](.github/workflows/release.yml): при коммите в `main` с сообщением `v1.2.3`
+[Release](.github/workflows/release.yml) на коммит `v1.2.3` в `main`: npm (если версии ещё нет) и `POST /fetch/...` на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
 
-- публикует `@marleena/trb-proto` в npm, если этой версии ещё нет на registry;
-- просит [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto) проиндексировать `github.com/Mar1eena/trb_proto@v1.2.3` (git-тег + запрос к module proxy).
-
-Публикация в npm через [Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) (OIDC, без `NPM_TOKEN`).
-
-На [npmjs.com](https://www.npmjs.com) → пакет `@marleena/trb-proto` → **Settings** → **Trusted Publisher** → GitHub Actions:
-
-- Organization or user: `Mar1eena`
-- Repository: `TrB_proto`
-- Workflow filename: `release.yml`
-- Allowed actions: `npm publish`
-
-После успешного релиза токен в GitHub можно удалить. Сообщение коммита должно совпадать с версией в `package.json`.
+Trusted Publisher на npm: GitHub `Mar1eena` / `TrB_proto` / `release.yml` / `npm publish`.
 
 ## Релиз
 

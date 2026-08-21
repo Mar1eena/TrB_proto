@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
 
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: true
-
 permissions:
   contents: write
   id-token: write
@@ -17,95 +13,23 @@ jobs:
     if: startsWith(github.event.head_commit.message, 'v')
     runs-on: ubuntu-latest
     env:
-      MODULE: github.com/Mar1eena/trb_proto
-      NPM_PKG: "@marleena/trb-proto"
+      TAG: ${{ github.event.head_commit.message }}
     steps:
-      - id: parse
-        env:
-          COMMIT_MSG: ${{ github.event.head_commit.message }}
-        run: |
-          MSG="${COMMIT_MSG%%$'\n'*}"
-          MSG="${MSG%%[[:space:]]*}"
-          if [[ ! "$MSG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Not a semver commit, skip"
-            exit 0
-          fi
-          echo "tag=$MSG" >> "$GITHUB_OUTPUT"
-          echo "npm=${MSG#v}" >> "$GITHUB_OUTPUT"
-
-      - if: steps.parse.outputs.tag != ''
-        uses: actions/checkout@v4
-
-      - if: steps.parse.outputs.tag != ''
-        id: ver
-        env:
-          TAG: ${{ steps.parse.outputs.tag }}
-        run: |
-          PKG=$(sed -n 's/.*"version": "\([^"]*\)".*/\1/p' package.json | head -1)
-          case "$PKG" in
-            "$TAG"|"${TAG#v}") ;;
-            *)
-              echo "package.json version ($PKG) does not match commit $TAG"
-              exit 1
-              ;;
-          esac
-          echo "pkg=$PKG" >> "$GITHUB_OUTPUT"
-          code=$(curl -sS -o /dev/null -w "%{http_code}" "https://registry.npmjs.org/${NPM_PKG}/${PKG}")
-          if [ "$code" = "200" ]; then
-            echo "npm_publish=false" >> "$GITHUB_OUTPUT"
-            echo "npm ${PKG} already published, skip"
-          else
-            echo "npm_publish=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - if: steps.parse.outputs.tag != '' && steps.ver.outputs.npm_publish == 'true'
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "24"
           registry-url: https://registry.npmjs.org
-
-      - if: steps.parse.outputs.tag != '' && steps.ver.outputs.npm_publish == 'true'
-        name: Publish npm
-        run: npm publish --access public
-
-      - if: steps.parse.outputs.tag != ''
-        name: Update pkg.go.dev
-        env:
-          TAG: ${{ steps.parse.outputs.tag }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git ls-remote --exit-code --tags origin "refs/tags/${TAG}"; then
-            git tag -a "${TAG}" -m "${TAG}"
-            git push origin "refs/tags/${TAG}"
-          fi
-          # Go module proxy encodes uppercase as ! + lowercase (Mar1eena → !mar1eena)
-          ENCODED=$(python3 -c "import os; print(''.join('!'+c.lower() if c.isupper() else c for c in os.environ['MODULE']))")
-          INFO="https://proxy.golang.org/${ENCODED}/@v/${TAG}.info"
-          for i in 1 2 3 4 5; do
-            if curl -fsSL "$INFO"; then
-              echo "Indexed at proxy.golang.org as ${TAG}"
-              PATHNAME="/${MODULE}@${TAG}"
-              FETCH_URL="https://pkg.go.dev/fetch${PATHNAME}"
-              UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-              echo "POST ${FETCH_URL}"
-              code=$(curl -sS -o /tmp/pkgsite-fetch.html -w "%{http_code}" \
-                --max-time 60 \
-                -X POST \
-                -A "$UA" \
-                -H "Origin: https://pkg.go.dev" \
-                -H "Referer: https://pkg.go.dev${PATHNAME}" \
-                -H "Accept: text/html,application/xhtml+xml" \
-                "$FETCH_URL" || true)
-              echo "pkg.go.dev fetch HTTP ${code}"
-              if [ "$code" != "200" ]; then
-                head -c 2000 /tmp/pkgsite-fetch.html || true
-                echo
-              fi
-              echo "https://pkg.go.dev${PATHNAME}"
-              exit 0
-            fi
-            sleep 3
-          done
-          echo "Could not fetch ${INFO}"
-          exit 1
+      - run: |
+          TAG=${TAG%%$'\n'*}
+          TAG=${TAG%% *}
+          git tag "$TAG" || true
+          git push origin "$TAG" || true
+          VER=$(node -p "require('./package.json').version")
+          curl -sf "https://registry.npmjs.org/@marleena/trb-proto/${VER}" >/dev/null \
+            || npm publish --access public
+          curl -fsSL "https://proxy.golang.org/github.com/!mar1eena/trb_proto/@v/${TAG}.info"
+          curl -sS -X POST --max-time 60 \
+            -H "Origin: https://pkg.go.dev" \
+            -H "Referer: https://pkg.go.dev/github.com/Mar1eena/trb_proto@${TAG}" \
+            "https://pkg.go.dev/fetch/github.com/Mar1eena/trb_proto@${TAG}"
