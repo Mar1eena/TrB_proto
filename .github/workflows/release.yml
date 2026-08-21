@@ -84,12 +84,25 @@ jobs:
           INFO="https://proxy.golang.org/${ENCODED}/@v/${TAG}.info"
           for i in 1 2 3 4 5; do
             if curl -fsSL "$INFO"; then
-              UA="Mozilla/5.0 (compatible; TrB-proto-release/1.0; +https://github.com/Mar1eena/TrB_proto)"
-              curl -sS -A "$UA" -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}" || true
-              curl -sS -A "$UA" -o /dev/null "https://pkg.go.dev/${MODULE}?tab=versions" || true
               echo "Indexed at proxy.golang.org as ${TAG}"
-              echo "Version page: https://pkg.go.dev/${MODULE}@${TAG}"
-              echo "Unversioned https://pkg.go.dev/${MODULE} can stay on an older default for several minutes."
+              PATHNAME="/${MODULE}@${TAG}"
+              FETCH_URL="https://pkg.go.dev/fetch${PATHNAME}"
+              UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+              echo "POST ${FETCH_URL}"
+              code=$(curl -sS -o /tmp/pkgsite-fetch.html -w "%{http_code}" \
+                --max-time 60 \
+                -X POST \
+                -A "$UA" \
+                -H "Origin: https://pkg.go.dev" \
+                -H "Referer: https://pkg.go.dev${PATHNAME}" \
+                -H "Accept: text/html,application/xhtml+xml" \
+                "$FETCH_URL" || true)
+              echo "pkg.go.dev fetch HTTP ${code}"
+              if [ "$code" != "200" ]; then
+                head -c 2000 /tmp/pkgsite-fetch.html || true
+                echo
+              fi
+              echo "https://pkg.go.dev${PATHNAME}"
               exit 0
             fi
             sleep 3
