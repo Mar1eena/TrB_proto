@@ -5887,8 +5887,8 @@ const file_tinvest_marketdata_proto_rawDesc = "" +
 	"\x0fGetMarketValues\x12=.tinkoff.public.invest.api.contract.v1.GetMarketValuesRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetMarketValuesResponse2\xcd\x02\n" +
 	"\x17MarketDataStreamService\x12\x8b\x01\n" +
 	"\x10MarketDataStream\x128.tinkoff.public.invest.api.contract.v1.MarketDataRequest\x1a9.tinkoff.public.invest.api.contract.v1.MarketDataResponse(\x010\x01\x12\xa3\x01\n" +
-	"\x1aMarketDataServerSideStream\x12H.tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest\x1a9.tinkoff.public.invest.api.contract.v1.MarketDataResponse0\x01Ba\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x1aMarketDataServerSideStream\x12H.tinkoff.public.invest.api.contract.v1.MarketDataServerSideStreamRequest\x1a9.tinkoff.public.invest.api.contract.v1.MarketDataResponse0\x01B\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_marketdata_proto_rawDescOnce sync.Once

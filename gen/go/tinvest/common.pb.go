@@ -1041,8 +1041,8 @@ const file_tinvest_common_proto_rawDesc = "" +
 	"\x12REAL_EXCHANGE_MOEX\x10\x01\x12\x15\n" +
 	"\x11REAL_EXCHANGE_RTS\x10\x02\x12\x15\n" +
 	"\x11REAL_EXCHANGE_OTC\x10\x03\x12\x18\n" +
-	"\x14REAL_EXCHANGE_DEALER\x10\x04Ba\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x14REAL_EXCHANGE_DEALER\x10\x04B\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_common_proto_rawDescOnce sync.Once

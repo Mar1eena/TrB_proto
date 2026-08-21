@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package trb.test.public.contract.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/test;test";
+
+import "google/api/annotations.proto";
+import "api/db_api/db_api.proto";
+
+// Test — оркестратор: клиент invest и DbApi. Сам к брокеру и БД не ходит.
+service Test {
+  // SyncInstruments запрашивает акции у invest и вызывает DbApi.UpsertInstruments.
+  rpc SyncInstruments(SyncInstrumentsRequest) returns (SyncInstrumentsResponse) {
+    option (google.api.http) = {
+      post: "/v1/test/instruments/sync"
+      body: "*"
+      additional_bindings { post: "/SyncInstruments" body: "*" }
+    };
+  }
+}
+
+message SyncInstrumentsRequest {}
+
+message SyncInstrumentsResponse {
+  trb.db.api.public.contract.v1.UpsertInstrumentsResponse upsert = 1;
+}

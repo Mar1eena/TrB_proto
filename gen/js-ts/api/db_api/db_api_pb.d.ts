@@ -2,6 +2,7 @@ import * as jspb from 'google-protobuf'
 
 import * as google_api_annotations_pb from '../../google/api/annotations_pb'; // proto import: "google/api/annotations.proto"
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
+import * as tinvest_instruments_pb from '../../tinvest/instruments_pb'; // proto import: "tinvest/instruments.proto"
 
 
 export class ListFilter extends jspb.Message {
@@ -54,113 +55,33 @@ export namespace ListInstrumentsRequest {
   }
 }
 
-export class ListInstrumentsResponse extends jspb.Message {
-  getItemsList(): Array<Instrument>;
-  setItemsList(value: Array<Instrument>): ListInstrumentsResponse;
-  clearItemsList(): ListInstrumentsResponse;
-  addItems(value?: Instrument, index?: number): Instrument;
+export class UpsertInstrumentsResponse extends jspb.Message {
+  getFetched(): number;
+  setFetched(value: number): UpsertInstrumentsResponse;
+
+  getInserted(): number;
+  setInserted(value: number): UpsertInstrumentsResponse;
+
+  getUpdated(): number;
+  setUpdated(value: number): UpsertInstrumentsResponse;
+
+  getUnchanged(): number;
+  setUnchanged(value: number): UpsertInstrumentsResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListInstrumentsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListInstrumentsResponse): ListInstrumentsResponse.AsObject;
-  static serializeBinaryToWriter(message: ListInstrumentsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListInstrumentsResponse;
-  static deserializeBinaryFromReader(message: ListInstrumentsResponse, reader: jspb.BinaryReader): ListInstrumentsResponse;
+  toObject(includeInstance?: boolean): UpsertInstrumentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpsertInstrumentsResponse): UpsertInstrumentsResponse.AsObject;
+  static serializeBinaryToWriter(message: UpsertInstrumentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpsertInstrumentsResponse;
+  static deserializeBinaryFromReader(message: UpsertInstrumentsResponse, reader: jspb.BinaryReader): UpsertInstrumentsResponse;
 }
 
-export namespace ListInstrumentsResponse {
+export namespace UpsertInstrumentsResponse {
   export type AsObject = {
-    itemsList: Array<Instrument.AsObject>,
-  }
-}
-
-export class Instrument extends jspb.Message {
-  getUid(): string;
-  setUid(value: string): Instrument;
-
-  getFigi(): string;
-  setFigi(value: string): Instrument;
-
-  getTicker(): string;
-  setTicker(value: string): Instrument;
-
-  getName(): string;
-  setName(value: string): Instrument;
-
-  getClassCode(): string;
-  setClassCode(value: string): Instrument;
-
-  getIsin(): string;
-  setIsin(value: string): Instrument;
-
-  getLot(): number;
-  setLot(value: number): Instrument;
-
-  getCurrency(): string;
-  setCurrency(value: string): Instrument;
-
-  getExchange(): string;
-  setExchange(value: string): Instrument;
-
-  getSector(): string;
-  setSector(value: string): Instrument;
-
-  getTradingStatus(): number;
-  setTradingStatus(value: number): Instrument;
-
-  getLiquidityFlag(): boolean;
-  setLiquidityFlag(value: boolean): Instrument;
-
-  getShortEnabledFlag(): boolean;
-  setShortEnabledFlag(value: boolean): Instrument;
-
-  getApiTradeAvailableFlag(): boolean;
-  setApiTradeAvailableFlag(value: boolean): Instrument;
-
-  getBuyAvailableFlag(): boolean;
-  setBuyAvailableFlag(value: boolean): Instrument;
-
-  getSellAvailableFlag(): boolean;
-  setSellAvailableFlag(value: boolean): Instrument;
-
-  getFirst1minCandleDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setFirst1minCandleDate(value?: google_protobuf_timestamp_pb.Timestamp): Instrument;
-  hasFirst1minCandleDate(): boolean;
-  clearFirst1minCandleDate(): Instrument;
-
-  getFirst1dayCandleDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setFirst1dayCandleDate(value?: google_protobuf_timestamp_pb.Timestamp): Instrument;
-  hasFirst1dayCandleDate(): boolean;
-  clearFirst1dayCandleDate(): Instrument;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Instrument.AsObject;
-  static toObject(includeInstance: boolean, msg: Instrument): Instrument.AsObject;
-  static serializeBinaryToWriter(message: Instrument, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Instrument;
-  static deserializeBinaryFromReader(message: Instrument, reader: jspb.BinaryReader): Instrument;
-}
-
-export namespace Instrument {
-  export type AsObject = {
-    uid: string,
-    figi: string,
-    ticker: string,
-    name: string,
-    classCode: string,
-    isin: string,
-    lot: number,
-    currency: string,
-    exchange: string,
-    sector: string,
-    tradingStatus: number,
-    liquidityFlag: boolean,
-    shortEnabledFlag: boolean,
-    apiTradeAvailableFlag: boolean,
-    buyAvailableFlag: boolean,
-    sellAvailableFlag: boolean,
-    first1minCandleDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    first1dayCandleDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fetched: number,
+    inserted: number,
+    updated: number,
+    unchanged: number,
   }
 }
 

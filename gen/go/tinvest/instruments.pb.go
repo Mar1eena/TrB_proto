@@ -14219,8 +14219,8 @@ const file_tinvest_instruments_proto_rawDesc = "" +
 	"\x0fGetInsiderDeals\x12=.tinkoff.public.invest.api.contract.v1.GetInsiderDealsRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetInsiderDealsResponse\x12\x8b\x01\n" +
 	"\x10StructuredNoteBy\x128.tinkoff.public.invest.api.contract.v1.InstrumentRequest\x1a=.tinkoff.public.invest.api.contract.v1.StructuredNoteResponse\x12\x8c\x01\n" +
 	"\x0fStructuredNotes\x129.tinkoff.public.invest.api.contract.v1.InstrumentsRequest\x1a>.tinkoff.public.invest.api.contract.v1.StructuredNotesResponse\x12o\n" +
-	"\x04News\x122.tinkoff.public.invest.api.contract.v1.NewsRequest\x1a3.tinkoff.public.invest.api.contract.v1.NewsResponseBa\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x04News\x122.tinkoff.public.invest.api.contract.v1.NewsRequest\x1a3.tinkoff.public.invest.api.contract.v1.NewsResponseB\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_instruments_proto_rawDescOnce sync.Once

@@ -1596,8 +1596,8 @@ const file_tinvest_users_proto_rawDesc = "" +
 	"\x0fGetBankAccounts\x12=.tinkoff.public.invest.api.contract.v1.GetBankAccountsRequest\x1a>.tinkoff.public.invest.api.contract.v1.GetBankAccountsResponse\x12\x93\x01\n" +
 	"\x10CurrencyTransfer\x12>.tinkoff.public.invest.api.contract.v1.CurrencyTransferRequest\x1a?.tinkoff.public.invest.api.contract.v1.CurrencyTransferResponse\x12r\n" +
 	"\x05PayIn\x123.tinkoff.public.invest.api.contract.v1.PayInRequest\x1a4.tinkoff.public.invest.api.contract.v1.PayInResponse\x12\x93\x01\n" +
-	"\x10GetAccountValues\x12>.tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest\x1a?.tinkoff.public.invest.api.contract.v1.GetAccountValuesResponseBa\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x10GetAccountValues\x12>.tinkoff.public.invest.api.contract.v1.GetAccountValuesRequest\x1a?.tinkoff.public.invest.api.contract.v1.GetAccountValuesResponseB\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_users_proto_rawDescOnce sync.Once

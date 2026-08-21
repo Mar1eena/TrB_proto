@@ -2,12 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v7.34.1
-// source: api/data/data.proto
+// source: api/db_api/db_api.proto
 
-package data
+package db_api
 
 import (
 	context "context"
+	tinvest "github.com/Mar1eena/trb_proto/gen/go/tinvest"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	DbApi_ListInstruments_FullMethodName      = "/trb.db.api.public.contract.v1.DbApi/ListInstruments"
+	DbApi_UpsertInstruments_FullMethodName    = "/trb.db.api.public.contract.v1.DbApi/UpsertInstruments"
 	DbApi_ListSchedulerTargets_FullMethodName = "/trb.db.api.public.contract.v1.DbApi/ListSchedulerTargets"
 	DbApi_SyncSchedulerTargets_FullMethodName = "/trb.db.api.public.contract.v1.DbApi/SyncSchedulerTargets"
 	DbApi_ListLastDownloads_FullMethodName    = "/trb.db.api.public.contract.v1.DbApi/ListLastDownloads"
@@ -32,10 +34,13 @@ const (
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiClient interface {
-	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*ListInstrumentsResponse, error)
+	ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*tinvest.SharesResponse, error)
+	// UpsertInstruments сохраняет акции в TrB.sht.
+	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
+	UpsertInstruments(ctx context.Context, in *tinvest.SharesResponse, opts ...grpc.CallOption) (*UpsertInstrumentsResponse, error)
 	ListSchedulerTargets(ctx context.Context, in *ListSchedulerTargetsRequest, opts ...grpc.CallOption) (*ListSchedulerTargetsResponse, error)
 	SyncSchedulerTargets(ctx context.Context, in *SyncSchedulerTargetsRequest, opts ...grpc.CallOption) (*SyncSchedulerTargetsResponse, error)
 	ListLastDownloads(ctx context.Context, in *ListLastDownloadsRequest, opts ...grpc.CallOption) (*ListLastDownloadsResponse, error)
@@ -49,10 +54,20 @@ func NewDbApiClient(cc grpc.ClientConnInterface) DbApiClient {
 	return &dbApiClient{cc}
 }
 
-func (c *dbApiClient) ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*ListInstrumentsResponse, error) {
+func (c *dbApiClient) ListInstruments(ctx context.Context, in *ListInstrumentsRequest, opts ...grpc.CallOption) (*tinvest.SharesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListInstrumentsResponse)
+	out := new(tinvest.SharesResponse)
 	err := c.cc.Invoke(ctx, DbApi_ListInstruments_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dbApiClient) UpsertInstruments(ctx context.Context, in *tinvest.SharesResponse, opts ...grpc.CallOption) (*UpsertInstrumentsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpsertInstrumentsResponse)
+	err := c.cc.Invoke(ctx, DbApi_UpsertInstruments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,10 +111,13 @@ func (c *dbApiClient) ListLastDownloads(ctx context.Context, in *ListLastDownloa
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 type DbApiServer interface {
-	ListInstruments(context.Context, *ListInstrumentsRequest) (*ListInstrumentsResponse, error)
+	ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error)
+	// UpsertInstruments сохраняет акции в TrB.sht.
+	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
+	UpsertInstruments(context.Context, *tinvest.SharesResponse) (*UpsertInstrumentsResponse, error)
 	ListSchedulerTargets(context.Context, *ListSchedulerTargetsRequest) (*ListSchedulerTargetsResponse, error)
 	SyncSchedulerTargets(context.Context, *SyncSchedulerTargetsRequest) (*SyncSchedulerTargetsResponse, error)
 	ListLastDownloads(context.Context, *ListLastDownloadsRequest) (*ListLastDownloadsResponse, error)
@@ -113,8 +131,11 @@ type DbApiServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDbApiServer struct{}
 
-func (UnimplementedDbApiServer) ListInstruments(context.Context, *ListInstrumentsRequest) (*ListInstrumentsResponse, error) {
+func (UnimplementedDbApiServer) ListInstruments(context.Context, *ListInstrumentsRequest) (*tinvest.SharesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListInstruments not implemented")
+}
+func (UnimplementedDbApiServer) UpsertInstruments(context.Context, *tinvest.SharesResponse) (*UpsertInstrumentsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpsertInstruments not implemented")
 }
 func (UnimplementedDbApiServer) ListSchedulerTargets(context.Context, *ListSchedulerTargetsRequest) (*ListSchedulerTargetsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListSchedulerTargets not implemented")
@@ -160,6 +181,24 @@ func _DbApi_ListInstruments_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DbApiServer).ListInstruments(ctx, req.(*ListInstrumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DbApi_UpsertInstruments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(tinvest.SharesResponse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DbApiServer).UpsertInstruments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DbApi_UpsertInstruments_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DbApiServer).UpsertInstruments(ctx, req.(*tinvest.SharesResponse))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -230,6 +269,10 @@ var DbApi_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DbApi_ListInstruments_Handler,
 		},
 		{
+			MethodName: "UpsertInstruments",
+			Handler:    _DbApi_UpsertInstruments_Handler,
+		},
+		{
 			MethodName: "ListSchedulerTargets",
 			Handler:    _DbApi_ListSchedulerTargets_Handler,
 		},
@@ -243,5 +286,5 @@ var DbApi_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/data/data.proto",
+	Metadata: "api/db_api/db_api.proto",
 }

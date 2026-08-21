@@ -2,21 +2,32 @@ syntax = "proto3";
 
 package trb.db.api.public.contract.v1;
 
-option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/data;data";
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/api/db_api;db_api";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "tinvest/instruments.proto";
 
 // DbApi — gRPC-сервис доступа веб-клиента к базам TrB (ClickHouse и Postgres).
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
 //
-// Расширение: добавьте RPC сюда и обработчик в internal/services/api/data.
+// Расширение: добавьте RPC сюда и обработчик в internal/services/api/db_api.
 // Envoy маршрутизирует весь префикс /trb.db.api.public.contract.v1.DbApi.
 service DbApi {
-  rpc ListInstruments(ListInstrumentsRequest) returns (ListInstrumentsResponse) {
+  rpc ListInstruments(ListInstrumentsRequest) returns (tinkoff.public.invest.api.contract.v1.SharesResponse) {
     option (google.api.http) = {
       get: "/v1/instruments"
       additional_bindings { post: "/ListInstruments" body: "*" }
+    };
+  }
+
+  // UpsertInstruments сохраняет акции в TrB.sht.
+  // При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
+  rpc UpsertInstruments(tinkoff.public.invest.api.contract.v1.SharesResponse) returns (UpsertInstrumentsResponse) {
+    option (google.api.http) = {
+      post: "/v1/instruments/upsert"
+      body: "*"
+      additional_bindings { post: "/UpsertInstruments" body: "*" }
     };
   }
 
@@ -55,29 +66,11 @@ message ListInstrumentsRequest {
   bool lite = 2;
 }
 
-message ListInstrumentsResponse {
-  repeated Instrument items = 1;
-}
-
-message Instrument {
-  string uid = 1;
-  string figi = 2;
-  string ticker = 3;
-  string name = 4;
-  string class_code = 5;
-  string isin = 6;
-  int32 lot = 7;
-  string currency = 8;
-  string exchange = 9;
-  string sector = 10;
-  int32 trading_status = 11;
-  bool liquidity_flag = 12;
-  bool short_enabled_flag = 13;
-  bool api_trade_available_flag = 14;
-  bool buy_available_flag = 15;
-  bool sell_available_flag = 16;
-  google.protobuf.Timestamp first_1min_candle_date = 17;
-  google.protobuf.Timestamp first_1day_candle_date = 18;
+message UpsertInstrumentsResponse {
+  int32 fetched = 1;
+  int32 inserted = 2;
+  int32 updated = 3;
+  int32 unchanged = 4;
 }
 
 message ListSchedulerTargetsRequest {}

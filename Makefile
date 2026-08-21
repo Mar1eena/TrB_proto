@@ -5,13 +5,15 @@ PROTO_PATH := ./services
 GEN_GO     := ./gen/go
 GEN_JS     := ./gen/js-ts
 
-PROTOS := \
+PROTOS := $(wildcard \
 	$(PROTO_PATH)/tinvest/*.proto \
 	$(PROTO_PATH)/api/nats/*.proto \
 	$(PROTO_PATH)/clickhouse/*.proto \
 	$(PROTO_PATH)/api/clickhouse/*.proto \
 	$(PROTO_PATH)/manager_indicators/*.proto \
-	$(PROTO_PATH)/api/data/*.proto
+	$(PROTO_PATH)/api/db_api/*.proto \
+	$(PROTO_PATH)/api/test/*.proto \
+)
 
 GOOGLE_API := $(PROTO_PATH)/google/api/*.proto
 

@@ -814,8 +814,8 @@ const file_tinvest_signals_proto_rawDesc = "" +
 	"\rSignalService\x12\x8a\x01\n" +
 	"\rGetStrategies\x12;.tinkoff.public.invest.api.contract.v1.GetStrategiesRequest\x1a<.tinkoff.public.invest.api.contract.v1.GetStrategiesResponse\x12\x81\x01\n" +
 	"\n" +
-	"GetSignals\x128.tinkoff.public.invest.api.contract.v1.GetSignalsRequest\x1a9.tinkoff.public.invest.api.contract.v1.GetSignalsResponseBa\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"GetSignals\x128.tinkoff.public.invest.api.contract.v1.GetSignalsRequest\x1a9.tinkoff.public.invest.api.contract.v1.GetSignalsResponseB\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_signals_proto_rawDescOnce sync.Once

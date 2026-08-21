@@ -5411,8 +5411,8 @@ const file_tinvest_operations_proto_rawDesc = "" +
 	"\x17OperationsStreamService\x12\x92\x01\n" +
 	"\x0fPortfolioStream\x12=.tinkoff.public.invest.api.contract.v1.PortfolioStreamRequest\x1a>.tinkoff.public.invest.api.contract.v1.PortfolioStreamResponse0\x01\x12\x92\x01\n" +
 	"\x0fPositionsStream\x12=.tinkoff.public.invest.api.contract.v1.PositionsStreamRequest\x1a>.tinkoff.public.invest.api.contract.v1.PositionsStreamResponse0\x01\x12\x95\x01\n" +
-	"\x10OperationsStream\x12>.tinkoff.public.invest.api.contract.v1.OperationsStreamRequest\x1a?.tinkoff.public.invest.api.contract.v1.OperationsStreamResponse0\x01Ba\n" +
-	"\x1cru.tinkoff.piapi.contract.v1P\x01Z\f./;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
+	"\x10OperationsStream\x12>.tinkoff.public.invest.api.contract.v1.OperationsStreamRequest\x1a?.tinkoff.public.invest.api.contract.v1.OperationsStreamResponse0\x01B\x8b\x01\n" +
+	"\x1cru.tinkoff.piapi.contract.v1P\x01Z6github.com/Mar1eena/trb_proto/gen/go/tinvest;investapi\xa2\x02\x05TIAPI\xaa\x02\x14Tinkoff.InvestApi.V1\xca\x02\x11Tinkoff\\Invest\\V1b\x06proto3"
 
 var (
 	file_tinvest_operations_proto_rawDescOnce sync.Once
