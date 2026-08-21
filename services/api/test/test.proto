@@ -10,7 +10,7 @@ import "api/db_api/db_api.proto";
 // Test — оркестратор: клиент invest и DbApi. Сам к брокеру и БД не ходит.
 service Test {
   // SyncInstruments запрашивает акции у invest и вызывает DbApi.UpsertInstruments.
-  rpc SyncInstruments(SyncInstrumentsRequest) returns (SyncInstrumentsResponse) {
+  rpc SyncInstrumentsADS(SyncInstrumentsRequest) returns (SyncInstrumentsResponse) {
     option (google.api.http) = {
       post: "/v1/test/instruments/sync"
       body: "*"
