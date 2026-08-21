@@ -84,8 +84,8 @@ jobs:
           INFO="https://proxy.golang.org/${ENCODED}/@v/${TAG}.info"
           for i in 1 2 3 4 5; do
             if curl -fsSL "$INFO"; then
-              curl -fsSL "https://sum.golang.org/lookup/${MODULE}@${TAG}" >/dev/null
-              curl -fsSL -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}"
+              curl -sS "https://sum.golang.org/lookup/${ENCODED}@${TAG}" >/dev/null || true
+              curl -sS -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}" || true
               echo "https://pkg.go.dev/${MODULE}@${TAG}"
               exit 0
             fi
