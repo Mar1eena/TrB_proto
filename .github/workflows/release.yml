@@ -84,9 +84,12 @@ jobs:
           INFO="https://proxy.golang.org/${ENCODED}/@v/${TAG}.info"
           for i in 1 2 3 4 5; do
             if curl -fsSL "$INFO"; then
-              curl -sS "https://sum.golang.org/lookup/${ENCODED}@${TAG}" >/dev/null || true
-              curl -sS -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}" || true
-              echo "https://pkg.go.dev/${MODULE}@${TAG}"
+              UA="Mozilla/5.0 (compatible; TrB-proto-release/1.0; +https://github.com/Mar1eena/TrB_proto)"
+              curl -sS -A "$UA" -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}" || true
+              curl -sS -A "$UA" -o /dev/null "https://pkg.go.dev/${MODULE}?tab=versions" || true
+              echo "Indexed at proxy.golang.org as ${TAG}"
+              echo "Version page: https://pkg.go.dev/${MODULE}@${TAG}"
+              echo "Unversioned https://pkg.go.dev/${MODULE} can stay on an older default for several minutes."
               exit 0
             fi
             sleep 3
