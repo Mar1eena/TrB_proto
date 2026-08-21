@@ -4,15 +4,21 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   id-token: write
 
 jobs:
   release:
+    if: startsWith(github.event.head_commit.message, 'v')
     runs-on: ubuntu-latest
     env:
       MODULE: github.com/Mar1eena/trb_proto
+      NPM_PKG: "@marleena/trb-proto"
     steps:
       - id: parse
         env:
@@ -20,27 +26,22 @@ jobs:
         run: |
           MSG="${COMMIT_MSG%%$'\n'*}"
           MSG="${MSG%%[[:space:]]*}"
-          if [[ "$MSG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "tag=$MSG" >> "$GITHUB_OUTPUT"
-          else
-            echo "Not a version commit, skip"
+          if [[ ! "$MSG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Not a semver commit, skip"
+            exit 0
           fi
+          echo "tag=$MSG" >> "$GITHUB_OUTPUT"
+          echo "npm=${MSG#v}" >> "$GITHUB_OUTPUT"
 
       - if: steps.parse.outputs.tag != ''
         uses: actions/checkout@v4
 
       - if: steps.parse.outputs.tag != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          registry-url: https://registry.npmjs.org
-
-      - if: steps.parse.outputs.tag != ''
-        name: Publish npm
+        id: ver
         env:
           TAG: ${{ steps.parse.outputs.tag }}
         run: |
-          PKG=$(node -p "require('./package.json').version")
+          PKG=$(sed -n 's/.*"version": "\([^"]*\)".*/\1/p' package.json | head -1)
           case "$PKG" in
             "$TAG"|"${TAG#v}") ;;
             *)
@@ -48,7 +49,24 @@ jobs:
               exit 1
               ;;
           esac
-          npm publish --access public
+          echo "pkg=$PKG" >> "$GITHUB_OUTPUT"
+          code=$(curl -sS -o /dev/null -w "%{http_code}" "https://registry.npmjs.org/${NPM_PKG}/${PKG}")
+          if [ "$code" = "200" ]; then
+            echo "npm_publish=false" >> "$GITHUB_OUTPUT"
+            echo "npm ${PKG} already published, skip"
+          else
+            echo "npm_publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.parse.outputs.tag != '' && steps.ver.outputs.npm_publish == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+
+      - if: steps.parse.outputs.tag != '' && steps.ver.outputs.npm_publish == 'true'
+        name: Publish npm
+        run: npm publish --access public
 
       - if: steps.parse.outputs.tag != ''
         name: Update pkg.go.dev
@@ -61,14 +79,17 @@ jobs:
             git tag -a "${TAG}" -m "${TAG}"
             git push origin "refs/tags/${TAG}"
           fi
-          URL="https://proxy.golang.org/${MODULE}/@v/${TAG}.info"
-          for i in 1 2 3 4 5 6; do
-            if curl -fsSL "$URL"; then
+          # Go module proxy encodes uppercase as ! + lowercase (Mar1eena → !mar1eena)
+          ENCODED=$(python3 -c "import os; print(''.join('!'+c.lower() if c.isupper() else c for c in os.environ['MODULE']))")
+          INFO="https://proxy.golang.org/${ENCODED}/@v/${TAG}.info"
+          for i in 1 2 3 4 5; do
+            if curl -fsSL "$INFO"; then
+              curl -fsSL "https://sum.golang.org/lookup/${MODULE}@${TAG}" >/dev/null
+              curl -fsSL -o /dev/null "https://pkg.go.dev/${MODULE}@${TAG}"
               echo "https://pkg.go.dev/${MODULE}@${TAG}"
               exit 0
             fi
-            echo "proxy not ready yet (attempt ${i}), waiting..."
-            sleep 15
+            sleep 3
           done
-          echo "Could not fetch ${URL}"
+          echo "Could not fetch ${INFO}"
           exit 1

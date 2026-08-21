@@ -42,8 +42,8 @@ req.setText('hello');
 
 Один workflow [Release](.github/workflows/release.yml): при коммите в `main` с сообщением `v1.2.3`
 
-- публикует `@marleena/trb-proto` в npm;
-- просит [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto) проиндексировать `github.com/Mar1eena/trb_proto@v1.2.3` (для этого пушится git-тег той же версии).
+- публикует `@marleena/trb-proto` в npm, если этой версии ещё нет на registry;
+- просит [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto) проиндексировать `github.com/Mar1eena/trb_proto@v1.2.3` (git-тег + запрос к module proxy).
 
 Публикация в npm через [Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) (OIDC, без `NPM_TOKEN`).
 
