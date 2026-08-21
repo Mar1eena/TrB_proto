@@ -61,9 +61,6 @@ export class InstrumentListItem extends jspb.Message {
   hasShare(): boolean;
   clearShare(): InstrumentListItem;
 
-  getActual(): boolean;
-  setActual(value: boolean): InstrumentListItem;
-
   getVersion(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setVersion(value?: google_protobuf_timestamp_pb.Timestamp): InstrumentListItem;
   hasVersion(): boolean;
@@ -83,7 +80,6 @@ export class InstrumentListItem extends jspb.Message {
 export namespace InstrumentListItem {
   export type AsObject = {
     share?: tinvest_instruments_pb.Share.AsObject,
-    actual: boolean,
     version?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     versionCount: number,
   }
@@ -133,9 +129,6 @@ export class InstrumentVersion extends jspb.Message {
   hasShare(): boolean;
   clearShare(): InstrumentVersion;
 
-  getActual(): boolean;
-  setActual(value: boolean): InstrumentVersion;
-
   getVersion(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setVersion(value?: google_protobuf_timestamp_pb.Timestamp): InstrumentVersion;
   hasVersion(): boolean;
@@ -152,7 +145,6 @@ export class InstrumentVersion extends jspb.Message {
 export namespace InstrumentVersion {
   export type AsObject = {
     share?: tinvest_instruments_pb.Share.AsObject,
-    actual: boolean,
     version?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

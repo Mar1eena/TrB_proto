@@ -140,10 +140,9 @@ func (x *ListInstrumentsRequest) GetLite() bool {
 type InstrumentListItem struct {
 	state   protoimpl.MessageState `protogen:"open.v1"`
 	Share   *tinvest.Share         `protobuf:"bytes,1,opt,name=share,proto3" json:"share,omitempty"`
-	Actual  bool                   `protobuf:"varint,2,opt,name=actual,proto3" json:"actual,omitempty"`
-	Version *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Число версий в TrB.sht (без FINAL), с дедупом по (version, actual).
-	VersionCount  int32 `protobuf:"varint,4,opt,name=version_count,json=versionCount,proto3" json:"version_count,omitempty"`
+	Version *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	// Число версий в TrB.sht (без FINAL), uniqExact(version).
+	VersionCount  int32 `protobuf:"varint,3,opt,name=version_count,json=versionCount,proto3" json:"version_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,13 +182,6 @@ func (x *InstrumentListItem) GetShare() *tinvest.Share {
 		return x.Share
 	}
 	return nil
-}
-
-func (x *InstrumentListItem) GetActual() bool {
-	if x != nil {
-		return x.Actual
-	}
-	return false
 }
 
 func (x *InstrumentListItem) GetVersion() *timestamppb.Timestamp {
@@ -297,8 +289,7 @@ func (x *ListInstrumentVersionsRequest) GetUid() string {
 type InstrumentVersion struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Share         *tinvest.Share         `protobuf:"bytes,1,opt,name=share,proto3" json:"share,omitempty"`
-	Actual        bool                   `protobuf:"varint,2,opt,name=actual,proto3" json:"actual,omitempty"`
-	Version       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	Version       *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -338,13 +329,6 @@ func (x *InstrumentVersion) GetShare() *tinvest.Share {
 		return x.Share
 	}
 	return nil
-}
-
-func (x *InstrumentVersion) GetActual() bool {
-	if x != nil {
-		return x.Actual
-	}
-	return false
 }
 
 func (x *InstrumentVersion) GetVersion() *timestamppb.Timestamp {
@@ -995,20 +979,18 @@ const file_api_db_api_db_api_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"o\n" +
 	"\x16ListInstrumentsRequest\x12A\n" +
 	"\x06filter\x18\x01 \x01(\v2).trb.db.api.public.contract.v1.ListFilterR\x06filter\x12\x12\n" +
-	"\x04lite\x18\x02 \x01(\bR\x04lite\"\xcb\x01\n" +
+	"\x04lite\x18\x02 \x01(\bR\x04lite\"\xb3\x01\n" +
 	"\x12InstrumentListItem\x12B\n" +
-	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x12\x16\n" +
-	"\x06actual\x18\x02 \x01(\bR\x06actual\x124\n" +
-	"\aversion\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\x12#\n" +
-	"\rversion_count\x18\x04 \x01(\x05R\fversionCount\"b\n" +
+	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x124\n" +
+	"\aversion\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\x12#\n" +
+	"\rversion_count\x18\x03 \x01(\x05R\fversionCount\"b\n" +
 	"\x17ListInstrumentsResponse\x12G\n" +
 	"\x05items\x18\x01 \x03(\v21.trb.db.api.public.contract.v1.InstrumentListItemR\x05items\"1\n" +
 	"\x1dListInstrumentVersionsRequest\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\"\xa5\x01\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"\x8d\x01\n" +
 	"\x11InstrumentVersion\x12B\n" +
-	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x12\x16\n" +
-	"\x06actual\x18\x02 \x01(\bR\x06actual\x124\n" +
-	"\aversion\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\"h\n" +
+	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x124\n" +
+	"\aversion\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\"h\n" +
 	"\x1eListInstrumentVersionsResponse\x12F\n" +
 	"\x05items\x18\x01 \x03(\v20.trb.db.api.public.contract.v1.InstrumentVersionR\x05items\"\x89\x01\n" +
 	"\x19UpsertInstrumentsResponse\x12\x18\n" +

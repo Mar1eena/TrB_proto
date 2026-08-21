@@ -76,10 +76,9 @@ message ListInstrumentsRequest {
 
 message InstrumentListItem {
   tinkoff.public.invest.api.contract.v1.Share share = 1;
-  bool actual = 2;
-  google.protobuf.Timestamp version = 3;
-  // Число версий в TrB.sht (без FINAL), с дедупом по (version, actual).
-  int32 version_count = 4;
+  google.protobuf.Timestamp version = 2;
+  // Число версий в TrB.sht (без FINAL), uniqExact(version).
+  int32 version_count = 3;
 }
 
 message ListInstrumentsResponse {
@@ -92,8 +91,7 @@ message ListInstrumentVersionsRequest {
 
 message InstrumentVersion {
   tinkoff.public.invest.api.contract.v1.Share share = 1;
-  bool actual = 2;
-  google.protobuf.Timestamp version = 3;
+  google.protobuf.Timestamp version = 2;
 }
 
 message ListInstrumentVersionsResponse {

@@ -805,9 +805,8 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.toObject = func
 proto.trb.db.api.public.contract.v1.InstrumentListItem.toObject = function(includeInstance, msg) {
   var f, obj = {
 share: (f = msg.getShare()) && tinvest_instruments_pb.Share.toObject(includeInstance, f),
-actual: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
 version: (f = msg.getVersion()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-versionCount: jspb.Message.getFieldWithDefault(msg, 4, 0)
+versionCount: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -850,15 +849,11 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.deserializeBinaryFromRead
       msg.setShare(value);
       break;
     case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setActual(value);
-      break;
-    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setVersion(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setVersionCount(value);
       break;
@@ -899,17 +894,10 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.serializeBinaryToWriter =
       tinvest_instruments_pb.Share.serializeBinaryToWriter
     );
   }
-  f = message.getActual();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
   f = message.getVersion();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -917,7 +905,7 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.serializeBinaryToWriter =
   f = message.getVersionCount();
   if (f !== 0) {
     writer.writeInt32(
-      4,
+      3,
       f
     );
   }
@@ -962,30 +950,12 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.hasShare = func
 
 
 /**
- * optional bool actual = 2;
- * @return {boolean}
- */
-proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.getActual = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.trb.db.api.public.contract.v1.InstrumentListItem} returns this
- */
-proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.setActual = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp version = 3;
+ * optional google.protobuf.Timestamp version = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.getVersion = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
 };
 
 
@@ -994,7 +964,7 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.getVersion = fu
  * @return {!proto.trb.db.api.public.contract.v1.InstrumentListItem} returns this
 */
 proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.setVersion = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1012,16 +982,16 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.clearVersion = 
  * @return {boolean}
  */
 proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.hasVersion = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional int32 version_count = 4;
+ * optional int32 version_count = 3;
  * @return {number}
  */
 proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.getVersionCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
@@ -1030,7 +1000,7 @@ proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.getVersionCount
  * @return {!proto.trb.db.api.public.contract.v1.InstrumentListItem} returns this
  */
 proto.trb.db.api.public.contract.v1.InstrumentListItem.prototype.setVersionCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1357,7 +1327,6 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.toObject = funct
 proto.trb.db.api.public.contract.v1.InstrumentVersion.toObject = function(includeInstance, msg) {
   var f, obj = {
 share: (f = msg.getShare()) && tinvest_instruments_pb.Share.toObject(includeInstance, f),
-actual: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
 version: (f = msg.getVersion()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -1401,10 +1370,6 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.deserializeBinaryFromReade
       msg.setShare(value);
       break;
     case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setActual(value);
-      break;
-    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setVersion(value);
@@ -1446,17 +1411,10 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.serializeBinaryToWriter = 
       tinvest_instruments_pb.Share.serializeBinaryToWriter
     );
   }
-  f = message.getActual();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
   f = message.getVersion();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -1502,30 +1460,12 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.hasShare = funct
 
 
 /**
- * optional bool actual = 2;
- * @return {boolean}
- */
-proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.getActual = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.trb.db.api.public.contract.v1.InstrumentVersion} returns this
- */
-proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.setActual = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp version = 3;
+ * optional google.protobuf.Timestamp version = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.getVersion = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
 };
 
 
@@ -1534,7 +1474,7 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.getVersion = fun
  * @return {!proto.trb.db.api.public.contract.v1.InstrumentVersion} returns this
 */
 proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.setVersion = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1552,7 +1492,7 @@ proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.clearVersion = f
  * @return {boolean}
  */
 proto.trb.db.api.public.contract.v1.InstrumentVersion.prototype.hasVersion = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
