@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Test_SyncInstrumentsAAA_FullMethodName = "/trb.test.public.contract.v1.Test/SyncInstrumentsAAA"
+	Test_SyncInstruments_FullMethodName = "/trb.test.public.contract.v1.Test/SyncInstruments"
 )
 
 // TestClient is the client API for Test service.
@@ -29,7 +29,7 @@ const (
 // Test — оркестратор: клиент invest и DbApi. Сам к брокеру и БД не ходит.
 type TestClient interface {
 	// SyncInstruments запрашивает акции у invest и вызывает DbApi.UpsertInstruments.
-	SyncInstrumentsAAA(ctx context.Context, in *SyncInstrumentsRequest, opts ...grpc.CallOption) (*SyncInstrumentsResponse, error)
+	SyncInstruments(ctx context.Context, in *SyncInstrumentsRequest, opts ...grpc.CallOption) (*SyncInstrumentsResponse, error)
 }
 
 type testClient struct {
@@ -40,10 +40,10 @@ func NewTestClient(cc grpc.ClientConnInterface) TestClient {
 	return &testClient{cc}
 }
 
-func (c *testClient) SyncInstrumentsAAA(ctx context.Context, in *SyncInstrumentsRequest, opts ...grpc.CallOption) (*SyncInstrumentsResponse, error) {
+func (c *testClient) SyncInstruments(ctx context.Context, in *SyncInstrumentsRequest, opts ...grpc.CallOption) (*SyncInstrumentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SyncInstrumentsResponse)
-	err := c.cc.Invoke(ctx, Test_SyncInstrumentsAAA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Test_SyncInstruments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func (c *testClient) SyncInstrumentsAAA(ctx context.Context, in *SyncInstruments
 // Test — оркестратор: клиент invest и DbApi. Сам к брокеру и БД не ходит.
 type TestServer interface {
 	// SyncInstruments запрашивает акции у invest и вызывает DbApi.UpsertInstruments.
-	SyncInstrumentsAAA(context.Context, *SyncInstrumentsRequest) (*SyncInstrumentsResponse, error)
+	SyncInstruments(context.Context, *SyncInstrumentsRequest) (*SyncInstrumentsResponse, error)
 	mustEmbedUnimplementedTestServer()
 }
 
@@ -68,8 +68,8 @@ type TestServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTestServer struct{}
 
-func (UnimplementedTestServer) SyncInstrumentsAAA(context.Context, *SyncInstrumentsRequest) (*SyncInstrumentsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SyncInstrumentsAAA not implemented")
+func (UnimplementedTestServer) SyncInstruments(context.Context, *SyncInstrumentsRequest) (*SyncInstrumentsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SyncInstruments not implemented")
 }
 func (UnimplementedTestServer) mustEmbedUnimplementedTestServer() {}
 func (UnimplementedTestServer) testEmbeddedByValue()              {}
@@ -92,20 +92,20 @@ func RegisterTestServer(s grpc.ServiceRegistrar, srv TestServer) {
 	s.RegisterService(&Test_ServiceDesc, srv)
 }
 
-func _Test_SyncInstrumentsAAA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Test_SyncInstruments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SyncInstrumentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TestServer).SyncInstrumentsAAA(ctx, in)
+		return srv.(TestServer).SyncInstruments(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Test_SyncInstrumentsAAA_FullMethodName,
+		FullMethod: Test_SyncInstruments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServer).SyncInstrumentsAAA(ctx, req.(*SyncInstrumentsRequest))
+		return srv.(TestServer).SyncInstruments(ctx, req.(*SyncInstrumentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -118,8 +118,8 @@ var Test_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TestServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SyncInstrumentsAAA",
-			Handler:    _Test_SyncInstrumentsAAA_Handler,
+			MethodName: "SyncInstruments",
+			Handler:    _Test_SyncInstruments_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
