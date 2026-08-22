@@ -32,11 +32,19 @@ const req = new MessageRequest();
 req.setText('hello');
 ```
 
-Сервисы: `example`, `tinvest`, `moex`, `clickhouse` (native gRPC), `manager_indicators`, `api/nats`, `api/clickhouse`, `api/db_api`, `api/test`.
+Сервисы:
 
-`api/clickhouse` (`trb.clickhouse.manager.public.contract.v1.ClickHouseManager`) — DDL: базы, таблицы, колонки. Запросы — `clickhouse.grpc.ClickHouse`, прикладные выборки — `api/db_api`.
+Внешние контракты в `api/`: `api/tinvest`.
 
-`api/db_api` (`trb.db.api.public.contract.v1.DbApi`) — gRPC API веб-клиента к ClickHouse и Postgres. Новый метод добавляется RPC-ом в `services/api/db_api/db_api.proto`.
+Свои сервисы: `clickhouse`, `nats`, `postgresql`, `test`.
+
+`clickhouse` — два proto: `admin.proto` (`trb.clickhouse.v1.ClickHouse_Admin`) и `clickhouse.proto` (`trb.clickhouse.v1.ClickHouse`).
+
+`postgresql` (`trb.postgresql.v1.PostgreSQL`) — цели планировщика: `ListSchedulerTargets`, `SyncSchedulerTargets`.
+
+`nats` (`trb.nats.v1.Nats`) — управление JetStream.
+
+`test` (`trb.test.v1.Test`) — тестовый оркестратор.
 
 ## CI/CD
 

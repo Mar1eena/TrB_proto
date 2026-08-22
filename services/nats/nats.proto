@@ -1,0 +1,508 @@
+syntax = "proto3";
+
+package trb.nats.v1;
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/nats;nats";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service Nats_Admin {
+  rpc AddStream (StreamConfig) returns (StreamInfos) {
+    option (google.api.http) = {
+      post: "/v1/nats/streams"
+      body: "*"
+      additional_bindings { post: "/AddStream" body: "*" }
+    };
+  }
+
+  rpc UpdateStream (StreamConfig) returns (StreamInfos) {
+    option (google.api.http) = {
+      put: "/v1/nats/streams/{name}"
+      body: "*"
+      additional_bindings { post: "/UpdateStream" body: "*" }
+    };
+  }
+
+  rpc DeleteStream (StreamName) returns (Response) {
+    option (google.api.http) = {
+      delete: "/v1/nats/streams/{name}"
+      additional_bindings { post: "/DeleteStream" body: "*" }
+    };
+  }
+
+  rpc StreamInfo (StreamName) returns (StreamInfos) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}"
+      additional_bindings { post: "/StreamInfo" body: "*" }
+    };
+  }
+
+  rpc PurgeStream (StreamName) returns (Response) {
+    option (google.api.http) = {
+      post: "/v1/nats/streams/{name}:purge"
+      additional_bindings { post: "/PurgeStream" body: "*" }
+    };
+  }
+
+  // StreamsInfo — устаревший алиас Streams.
+  rpc StreamsInfo (JsOpts) returns (StreamList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams:info"
+      additional_bindings { post: "/StreamsInfo" body: "*" }
+    };
+  }
+
+  rpc Streams (JsOpts) returns (StreamList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams"
+      additional_bindings { post: "/Streams" body: "*" }
+    };
+  }
+
+  rpc StreamNames (JsOpts) returns (StreamNameList) {
+    option (google.api.http) = {
+      get: "/v1/nats/stream-names"
+      additional_bindings { post: "/StreamNames" body: "*" }
+    };
+  }
+
+  rpc GetMsg (Msg) returns (RawStreamMsg) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/messages/{seq}"
+      additional_bindings { post: "/GetMsg" body: "*" }
+    };
+  }
+
+  rpc GetMsgs (MsgRange) returns (MsgList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/messages"
+      additional_bindings { post: "/GetMsgs" body: "*" }
+    };
+  }
+
+  rpc GetLastMsg (LastMsg) returns (RawStreamMsg) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/messages:last"
+      additional_bindings { post: "/GetLastMsg" body: "*" }
+    };
+  }
+
+  rpc DeleteMsg (Msg) returns (Response) {
+    option (google.api.http) = {
+      delete: "/v1/nats/streams/{name}/messages/{seq}"
+      additional_bindings { post: "/DeleteMsg" body: "*" }
+    };
+  }
+
+  rpc SecureDeleteMsg (Msg) returns (Response) {
+    option (google.api.http) = {
+      post: "/v1/nats/streams/{name}/messages/{seq}:secureDelete"
+      additional_bindings { post: "/SecureDeleteMsg" body: "*" }
+    };
+  }
+
+  rpc AddConsumer (Consumer) returns (ConsumerInfos) {
+    option (google.api.http) = {
+      post: "/v1/nats/streams/{name}/consumers"
+      body: "*"
+      additional_bindings { post: "/AddConsumer" body: "*" }
+    };
+  }
+
+  rpc UpdateConsumer (Consumer) returns (ConsumerInfos) {
+    option (google.api.http) = {
+      put: "/v1/nats/streams/{name}/consumers"
+      body: "*"
+      additional_bindings { post: "/UpdateConsumer" body: "*" }
+    };
+  }
+
+  rpc DeleteConsumer (ConsumerName) returns (Response) {
+    option (google.api.http) = {
+      delete: "/v1/nats/streams/{stream}/consumers/{name}"
+      additional_bindings { post: "/DeleteConsumer" body: "*" }
+    };
+  }
+
+  rpc ConsumerInfo (ConsumerName) returns (ConsumerInfos) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{stream}/consumers/{name}"
+      additional_bindings { post: "/ConsumerInfo" body: "*" }
+    };
+  }
+
+  // ConsumersInfo — устаревший алиас Consumers.
+  rpc ConsumersInfo (StreamName) returns (ConsumerList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/consumers:info"
+      additional_bindings { post: "/ConsumersInfo" body: "*" }
+    };
+  }
+
+  rpc Consumers (StreamName) returns (ConsumerList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/consumers"
+      additional_bindings { post: "/Consumers" body: "*" }
+    };
+  }
+
+  rpc ConsumerNames (StreamName) returns (ConsumerNameList) {
+    option (google.api.http) = {
+      get: "/v1/nats/streams/{name}/consumer-names"
+      additional_bindings { post: "/ConsumerNames" body: "*" }
+    };
+  }
+
+  rpc AccountInfo (JsOpts) returns (AccountInfos) {
+    option (google.api.http) = {
+      get: "/v1/nats/account"
+      additional_bindings { post: "/AccountInfo" body: "*" }
+    };
+  }
+
+  rpc StreamNameBySubject (SubjectQuery) returns (StreamName) {
+    option (google.api.http) = {
+      get: "/v1/nats/stream-by-subject"
+      additional_bindings { post: "/StreamNameBySubject" body: "*" }
+    };
+  }
+
+  rpc Publish (PublishRequest) returns (PublishResponse) {
+    option (google.api.http) = {
+      post: "/v1/nats/publish"
+      body: "*"
+      additional_bindings { post: "/Publish" body: "*" }
+    };
+  }
+}
+
+message PublishRequest {
+  string subject = 1;
+  string data = 2;
+}
+
+message PublishResponse {
+  string response = 1;
+}
+
+message ResponseStreamNameBySubject {
+  string response = 1;
+}
+
+message SubjectQuery {
+  string subject = 1;
+}
+
+message StreamList {
+  repeated StreamInfos items = 1;
+}
+
+message StreamNameList {
+  repeated string names = 1;
+}
+
+message ConsumerList {
+  repeated ConsumerInfos items = 1;
+}
+
+message ConsumerNameList {
+  repeated string names = 1;
+}
+
+message Response {
+  string Response = 1;
+}
+
+message StreamName {
+  string name = 1;
+}
+
+// StreamConfig
+message StreamConfig {
+  string name = 1;
+  string description = 2;
+  repeated string subjects = 3;
+  int32 retention = 4;
+  int32 max_consumers = 5;
+  int64 max_msgs = 6;
+  int64 max_bytes = 7;
+  int32 discard = 8;
+  bool discard_new_per_subject = 9;
+  int64 max_age = 10;
+  int64 max_msgs_per_subject = 11;
+  int32 max_msg_size = 12;
+  int32 storage = 13;
+  int32 replicas = 14;
+  bool no_ack = 15;
+  int64 duplicate_window = 16;
+  Placement placement = 17;
+  StreamSource mirror = 18;
+  repeated StreamSource sources = 19;
+  bool sealed = 20;
+  bool deny_delete = 21;
+  bool deny_purge = 22;
+  bool allow_rollup = 23;
+  int32 compression = 24;
+  uint64 first_seq = 25;
+  SubjectTransformConfig subject_transform = 26;
+  RePublish republish = 27;
+  bool allow_direct = 28;
+  bool mirror_direct = 29;
+  StreamConsumerLimits consumer_limits = 30;
+  map<string, string> metadata = 31;
+  string template_owner = 32;
+  bool allow_msg_ttl = 33;
+  int64 subject_delete_marker_ttl = 34;
+}
+
+message Placement {
+  string cluster = 1;
+  repeated string tags = 2;
+}
+
+message StreamSource {
+  string name = 1;
+  uint64 opt_start_seq = 2;                  
+  google.protobuf.Timestamp opt_start_time = 3;
+  string filter_subject = 5; 
+  repeated SubjectTransformConfig subject_transforms = 4;  
+  ExternalStream external = 6;                  
+  string domain = 7;                           
+}
+
+message ExternalStream {
+  string api = 1;
+  string deliver = 2;
+}
+
+message SubjectTransformConfig {
+  string src = 1;
+  string dest = 2;
+}
+
+message RePublish {
+  string src = 1;
+  string dest = 2;
+  bool headers_only = 3;
+}
+
+message StreamConsumerLimits {
+  int64 inactive_threshold = 2;
+  int64 max_ack_pending = 1;
+}
+
+
+// StreamInfos
+message StreamInfos {
+  StreamConfig config = 1;
+  google.protobuf.Timestamp created = 2;
+	StreamState      state = 3;         
+  ClusterInfo    cluster = 4;        
+	StreamSourceInfo     mirror = 5; 
+	repeated StreamSourceInfo sources = 6;
+	repeated StreamAlternate alternates = 7; 
+}
+
+message StreamSourceInfo {
+  string name = 1;
+  uint64 lag = 2;
+  int64 active = 3;
+  ExternalStream external = 4;
+  APIError error = 5;
+  string filter_subject = 6;
+  repeated SubjectTransformConfig subject_transforms = 7;
+}
+
+message StreamAlternate {
+  string name = 1;
+  string domain = 2;
+  string cluster = 3;
+}
+
+message APIError{
+  int32 code = 1;
+  int32 err_code = 2;
+  string description = 3;
+}
+
+message ClusterInfo {
+  string name = 1;
+  string leader = 2;
+  repeated PeerInfo replicas = 3;
+}
+
+message PeerInfo {
+  string name = 1;
+  bool current = 2;
+  bool offline = 3;
+  int64 active = 4;
+  uint64 lag = 5;
+}
+
+message StreamState {
+  uint64 msgs = 1;
+  uint64 bytes = 2;
+  uint64 first_seq = 3;
+  google.protobuf.Timestamp first_ts = 4;
+  uint64 last_seq = 5;
+  google.protobuf.Timestamp last_ts = 6;
+  int32 consumer_count = 7;
+  repeated uint64 deleted = 8;
+  int32 num_deleted = 9;
+  uint64 num_subjects = 10;
+  map<string, uint64> subjects = 11;
+}
+
+// jsOpts
+message JsOpts {}
+
+// Msg
+message Msg {
+  string  name = 1;
+  uint64 seq = 2; 
+}
+
+message MsgRange {
+  string name = 1;
+  uint64 from_seq = 2;
+  uint64 to_seq = 3;
+}
+
+message MsgList {
+  repeated RawStreamMsg items = 1;
+}
+
+message LastMsg {
+  string  name = 1;
+  string subject = 2; 
+}
+
+message RawStreamMsg {
+  string subject = 1;
+  uint64 seq = 2;
+  map<string, Strings> hdrs = 3;
+  bytes data = 4;
+  google.protobuf.Timestamp time  = 5;
+}
+
+message Strings {
+  repeated string values = 1;
+}
+
+// Consumer
+message ConsumerName {
+  string stream = 1;
+  string name = 2;
+}
+
+message Consumer {
+  string name = 1;
+  ConsumerConfig config = 2;
+}
+
+message ConsumerConfig {
+  string durable = 1;  // json:"durable_name,omitempty"
+  string name = 2;
+  string description = 3;
+  
+  int32 deliver_policy = 4;
+  uint64 opt_start_seq = 5;
+  google.protobuf.Timestamp opt_start_time = 6;
+  int32 ack_policy = 7;
+  int64 ack_wait = 8;
+  int32 max_deliver = 9;
+  repeated int64 backoff = 10;
+  
+  string filter_subject = 11;
+  repeated string filter_subjects = 12;
+  int32 replay_policy = 13;
+  uint64 rate_limit_bps = 14;  // Bits per sec
+  string sample_freq = 15;
+  int32 max_waiting = 16;
+  int32 max_ack_pending = 17;
+  bool flow_control = 18;
+  int64 idle_heartbeat = 19;
+  bool headers_only = 20;
+
+  // Pull based options
+  int32 max_request_batch = 21;    // json:"max_batch,omitempty"
+  int64 max_request_expires = 22;
+  int32 max_request_max_bytes = 23;  // json:"max_bytes,omitempty"
+
+  // Push based consumers
+  string deliver_subject = 24;
+  string deliver_group = 25;
+
+  // Inactivity threshold
+  int64 inactive_threshold = 26;
+
+  // Replication
+  int32 replicas = 27;  // json:"num_replicas"
+  bool memory_storage = 28;  // json:"mem_storage,omitempty"
+
+  // Metadata
+  map<string, string> metadata = 29;  // Keys starting with `_nats` are reserved
+}
+
+message ConsumerInfos {
+  string stream_name = 1;
+  string name = 2;
+  google.protobuf.Timestamp created = 3;
+  SequenceInfo delivered = 4; 
+  SequenceInfo ack_floor = 5;
+  int32 num_ack_pendin = 6;
+  int32 num_redelivered = 7;
+  int32 num_waiting   = 8;
+  uint64 num_pending  = 9;
+  ClusterInfo cluster  = 10;
+  bool push_bound     = 11;
+  ConsumerConfig config = 12;
+}
+
+message SequenceInfo {
+  uint64 Consumer_seq = 1;
+  uint64 stream_seq = 2; 
+  google.protobuf.Timestamp last_active = 3;  
+  
+}
+
+message ConsNames {
+  string Response = 1;
+}
+
+// Account
+
+message AccountInfos {
+  Tier tier = 1;
+  string domain = 2;
+  APIStats api = 3;
+  map<string, Tier> tiers = 4; 
+
+}
+
+message Tier{
+  uint64 memory = 1;
+  uint64 storage = 2;
+  uint64 reserved_memory = 3;
+  uint64 reserved_storage = 4;
+  int32 stream = 5;
+  int32 consumers = 6;
+  AccountLimits limits = 7;
+}
+
+message AccountLimits{
+  int64 max_memory = 1;
+  int64 max_storage = 2;
+  int32 max_streams = 3;
+  int32 max_consumers = 4;
+  int32 max_ack_pending = 5;
+  int64 memory_max_stream_bytes = 6;
+  int64 storage_max_stream_bytes = 7;
+  bool max_bytes_required = 8;
+}
+
+message APIStats {
+  uint64 total = 1;
+  uint64 errors = 2;
+}
+

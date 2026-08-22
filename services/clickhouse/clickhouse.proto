@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package trb.clickhouse.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/clickhouse;clickhouse";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "api/tinvest/instruments.proto";
+
+// ClickHouse — бизнес-логика: инструменты и загрузки в ClickHouse.
+service ClickHouse {
+  rpc ListInstruments(ListInstrumentsRequest) returns (ListInstrumentsResponse) {
+    option (google.api.http) = {
+      get: "/v1/instruments"
+      additional_bindings { post: "/ListInstruments" body: "*" }
+    };
+  }
+
+  // ListInstrumentVersions — история версий одного инструмента из TrB.sht (без FINAL).
+  rpc ListInstrumentVersions(ListInstrumentVersionsRequest) returns (ListInstrumentVersionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/instruments/{uid}/versions"
+      additional_bindings { post: "/ListInstrumentVersions" body: "*" }
+    };
+  }
+
+  // UpsertInstruments сохраняет акции в TrB.sht.
+  // При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
+  rpc UpsertInstruments(tinkoff.public.invest.api.contract.v1.SharesResponse) returns (UpsertInstrumentsResponse) {
+    option (google.api.http) = {
+      post: "/v1/instruments/upsert"
+      body: "*"
+      additional_bindings { post: "/UpsertInstruments" body: "*" }
+    };
+  }
+
+  rpc ListLastDownloads(ListLastDownloadsRequest) returns (ListLastDownloadsResponse) {
+    option (google.api.http) = {
+      get: "/v1/historic-candles/last-downloads"
+      additional_bindings { post: "/ListLastDownloads" body: "*" }
+    };
+  }
+}
+
+message ListFilter {
+  string q = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListInstrumentsRequest {
+  ListFilter filter = 1;
+  // lite=true — только uid/figi/ticker/name (каталог планировщика).
+  bool lite = 2;
+}
+
+message InstrumentListItem {
+  tinkoff.public.invest.api.contract.v1.Share share = 1;
+  google.protobuf.Timestamp version = 2;
+  // Число версий в TrB.sht (без FINAL), uniqExact(version).
+  int32 version_count = 3;
+}
+
+message ListInstrumentsResponse {
+  repeated InstrumentListItem items = 1;
+}
+
+message ListInstrumentVersionsRequest {
+  string uid = 1;
+}
+
+message InstrumentVersion {
+  tinkoff.public.invest.api.contract.v1.Share share = 1;
+  google.protobuf.Timestamp version = 2;
+}
+
+message ListInstrumentVersionsResponse {
+  repeated InstrumentVersion items = 1;
+}
+
+message UpsertInstrumentsResponse {
+  int32 fetched = 1;
+  int32 inserted = 2;
+  int32 updated = 3;
+  int32 unchanged = 4;
+}
+
+message ListLastDownloadsRequest {
+  ListFilter filter = 1;
+}
+
+message ListLastDownloadsResponse {
+  repeated LastDownload items = 1;
+}
+
+message LastDownload {
+  string uid = 1;
+  string figi = 2;
+  string ticker = 3;
+  string name = 4;
+  int32 interval = 5;
+  google.protobuf.Timestamp last_start = 6;
+  google.protobuf.Timestamp last_end = 7;
+  bool has_download = 8;
+}
