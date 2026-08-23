@@ -29,6 +29,7 @@ const (
 //
 // PostgreSQL — цели планировщика в PostgreSQL.
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
+// Администрирование (DDL, мониторинг, SQL) — PostgreSQL_Admin в admin.proto.
 //
 // Расширение: добавьте RPC сюда и обработчик в internal/services/postgresql.
 // Envoy маршрутизирует весь префикс /trb.postgresql.v1.PostgreSQL.
@@ -71,6 +72,7 @@ func (c *postgreSQLClient) SyncSchedulerTargets(ctx context.Context, in *SyncSch
 //
 // PostgreSQL — цели планировщика в PostgreSQL.
 // Браузер ходит через Envoy (gRPC-Web / JSON). Произвольный SQL с клиента не принимается.
+// Администрирование (DDL, мониторинг, SQL) — PostgreSQL_Admin в admin.proto.
 //
 // Расширение: добавьте RPC сюда и обработчик в internal/services/postgresql.
 // Envoy маршрутизирует весь префикс /trb.postgresql.v1.PostgreSQL.

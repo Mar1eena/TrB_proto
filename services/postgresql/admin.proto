@@ -1,0 +1,704 @@
+syntax = "proto3";
+
+package trb.postgresql.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/postgresql;postgresql";
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// PostgreSQL_Admin — DDL, мониторинг и произвольные запросы к PostgreSQL.
+service PostgreSQL_Admin {
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/ping"
+      additional_bindings { post: "/Ping" body: "*" }
+    };
+  }
+
+  rpc ServerInfo(ServerInfoRequest) returns (ServerInfoResponse) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/info"
+      additional_bindings { post: "/ServerInfo" body: "*" }
+    };
+  }
+
+  rpc CreateDatabase(DatabaseSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases"
+      body: "*"
+      additional_bindings { post: "/CreateDatabase" body: "*" }
+    };
+  }
+
+  rpc DropDatabase(DatabaseName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/postgresql/databases/{name}"
+      additional_bindings { post: "/DropDatabase" body: "*" }
+    };
+  }
+
+  rpc ListDatabases(ListDatabasesRequest) returns (DatabaseList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases"
+      additional_bindings { post: "/ListDatabases" body: "*" }
+    };
+  }
+
+  rpc DatabaseInfo(DatabaseName) returns (Database) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{name}"
+      additional_bindings { post: "/DatabaseInfo" body: "*" }
+    };
+  }
+
+  rpc CreateSchema(SchemaSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas"
+      body: "*"
+      additional_bindings { post: "/CreateSchema" body: "*" }
+    };
+  }
+
+  rpc DropSchema(SchemaName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/postgresql/databases/{database}/schemas/{name}"
+      additional_bindings { post: "/DropSchema" body: "*" }
+    };
+  }
+
+  rpc ListSchemas(ListSchemasRequest) returns (SchemaList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas"
+      additional_bindings { post: "/ListSchemas" body: "*" }
+    };
+  }
+
+  rpc SchemaInfo(SchemaName) returns (Schema) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas/{name}"
+      additional_bindings { post: "/SchemaInfo" body: "*" }
+    };
+  }
+
+  rpc CreateTable(TableSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables"
+      body: "*"
+      additional_bindings { post: "/CreateTable" body: "*" }
+    };
+  }
+
+  rpc DropTable(TableName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}"
+      additional_bindings { post: "/DropTable" body: "*" }
+    };
+  }
+
+  rpc TruncateTable(TableName) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}:truncate"
+      additional_bindings { post: "/TruncateTable" body: "*" }
+    };
+  }
+
+  rpc RenameTable(RenameTableRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}:rename"
+      body: "*"
+      additional_bindings { post: "/RenameTable" body: "*" }
+    };
+  }
+
+  rpc VacuumTable(VacuumTableRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}:vacuum"
+      body: "*"
+      additional_bindings { post: "/VacuumTable" body: "*" }
+    };
+  }
+
+  rpc AnalyzeTable(AnalyzeTableRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}:analyze"
+      body: "*"
+      additional_bindings { post: "/AnalyzeTable" body: "*" }
+    };
+  }
+
+  rpc ListTables(ListTablesRequest) returns (TableList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas/{schema}/tables"
+      additional_bindings { get: "/v1/postgresql/databases/{database}/tables" }
+      additional_bindings { post: "/ListTables" body: "*" }
+    };
+  }
+
+  rpc TableInfo(TableName) returns (Table) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{name}"
+      additional_bindings { post: "/TableInfo" body: "*" }
+    };
+  }
+
+  rpc AddColumn(AddColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/columns"
+      body: "*"
+      additional_bindings { post: "/AddColumn" body: "*" }
+    };
+  }
+
+  rpc DropColumn(DropColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/columns/{name}"
+      additional_bindings { post: "/DropColumn" body: "*" }
+    };
+  }
+
+  rpc RenameColumn(RenameColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/columns/{name}:rename"
+      body: "*"
+      additional_bindings { post: "/RenameColumn" body: "*" }
+    };
+  }
+
+  rpc ModifyColumn(ModifyColumnRequest) returns (Status) {
+    option (google.api.http) = {
+      put: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/columns/{column.name}"
+      body: "*"
+      additional_bindings { post: "/ModifyColumn" body: "*" }
+    };
+  }
+
+  rpc CreateIndex(IndexSpec) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/indexes"
+      body: "*"
+      additional_bindings { post: "/CreateIndex" body: "*" }
+    };
+  }
+
+  rpc DropIndex(IndexName) returns (Status) {
+    option (google.api.http) = {
+      delete: "/v1/postgresql/databases/{database}/schemas/{schema}/indexes/{name}"
+      additional_bindings { post: "/DropIndex" body: "*" }
+    };
+  }
+
+  rpc ListIndexes(ListIndexesRequest) returns (IndexList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/indexes"
+      additional_bindings { post: "/ListIndexes" body: "*" }
+    };
+  }
+
+  rpc Reindex(ReindexRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}:reindex"
+      body: "*"
+      additional_bindings { post: "/Reindex" body: "*" }
+    };
+  }
+
+  rpc ExecuteQuery(ExecuteQueryRequest) returns (ExecuteQueryResponse) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/query"
+      body: "*"
+      additional_bindings { post: "/ExecuteQuery" body: "*" }
+    };
+  }
+
+  rpc PreviewTableData(PreviewTableDataRequest) returns (ExecuteQueryResponse) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}:preview"
+      body: "*"
+      additional_bindings { post: "/PreviewTableData" body: "*" }
+    };
+  }
+
+  rpc ListPartitions(ListPartitionsRequest) returns (PartitionList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/partitions"
+      additional_bindings { post: "/ListPartitions" body: "*" }
+    };
+  }
+
+  rpc DropPartition(DropPartitionRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/databases/{database}/schemas/{schema}/tables/{table}/partitions:drop"
+      body: "*"
+      additional_bindings { post: "/DropPartition" body: "*" }
+    };
+  }
+
+  rpc ListProcesses(ListProcessesRequest) returns (ProcessList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/processes"
+      additional_bindings { post: "/ListProcesses" body: "*" }
+    };
+  }
+
+  rpc KillProcess(KillProcessRequest) returns (Status) {
+    option (google.api.http) = {
+      post: "/v1/postgresql/processes:kill"
+      body: "*"
+      additional_bindings { post: "/KillProcess" body: "*" }
+    };
+  }
+
+  rpc ListLocks(ListLocksRequest) returns (LockList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/locks"
+      additional_bindings { post: "/ListLocks" body: "*" }
+    };
+  }
+
+  rpc ListTablespaces(ListTablespacesRequest) returns (TablespaceList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/tablespaces"
+      additional_bindings { post: "/ListTablespaces" body: "*" }
+    };
+  }
+
+  rpc GetMetrics(GetMetricsRequest) returns (MetricsResponse) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/metrics"
+      additional_bindings { post: "/GetMetrics" body: "*" }
+    };
+  }
+
+  rpc GetTableOptions(TableOptionsRequest) returns (TableOptionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/table_options"
+      additional_bindings { post: "/GetTableOptions" body: "*" }
+    };
+  }
+}
+
+message Status {
+  bool success = 1;
+  string message = 2;
+}
+
+message PingRequest {}
+
+message PingResponse {
+  bool ok = 1;
+  string version = 2;
+}
+
+message ServerInfoRequest {}
+
+message ServerInfoResponse {
+  string version = 1;
+  int32 version_num = 2;
+  string server_encoding = 3;
+  string timezone = 4;
+  uint32 max_connections = 5;
+  uint32 uptime_seconds = 6;
+  string current_database = 7;
+  string current_user = 8;
+  string data_directory = 9;
+  string cluster_name = 10;
+}
+
+message DatabaseSpec {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  string owner = 2;
+  string encoding = 3; // UTF8
+  string collation = 4; // LC_COLLATE
+  string ctype = 5; // LC_CTYPE
+  string template = 6; // template0, template1
+  string tablespace = 7;
+  int32 connection_limit = 8; // -1 — без лимита
+  bool if_not_exists = 9;
+}
+
+message DatabaseName {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 2;
+  bool force = 3; // WITH (FORCE), PostgreSQL 13+
+}
+
+message ListDatabasesRequest {
+  string like = 1;
+}
+
+message Database {
+  string name = 1;
+  string owner = 2;
+  string encoding = 3;
+  string collation = 4;
+  string ctype = 5;
+  uint64 size_bytes = 6;
+  int32 connection_limit = 7;
+  uint32 num_backends = 8;
+  bool allow_connections = 9;
+  string tablespace = 10;
+}
+
+message DatabaseList {
+  repeated Database items = 1;
+}
+
+message SchemaSpec {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  string owner = 3;
+  bool if_not_exists = 4;
+}
+
+message SchemaName {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 3;
+  bool cascade = 4;
+}
+
+message ListSchemasRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string like = 2;
+  bool include_system = 3; // pg_catalog, information_schema
+}
+
+message Schema {
+  string database = 1;
+  string name = 2;
+  string owner = 3;
+  uint64 tables_count = 4;
+  uint64 total_bytes = 5;
+}
+
+message SchemaList {
+  repeated Schema items = 1;
+}
+
+message Column {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  string type = 2 [(google.api.field_behavior) = REQUIRED]; // integer, text, timestamptz, numeric(10,2), …
+  bool nullable = 3;
+  string default_expression = 4;
+  bool is_identity = 5;
+  string identity_generation = 6; // ALWAYS, BY DEFAULT
+  string generated_expression = 7; // GENERATED ALWAYS AS (…) STORED
+  string collation = 8;
+  string comment = 9;
+  bool primary_key = 10;
+  bool unique = 11;
+}
+
+message TableSpec {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  repeated Column columns = 4;
+  repeated string primary_key = 5;
+  string comment = 6;
+  bool if_not_exists = 7;
+  bool unlogged = 8;
+  string tablespace = 9;
+  string partition_by = 10; // RANGE (col), LIST (col), HASH (col)
+  bool temporary = 11;
+}
+
+message TableName {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 4;
+  bool cascade = 5;
+  bool restart_identity = 6; // TRUNCATE … RESTART IDENTITY
+}
+
+message ListTablesRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2; // пусто — все схемы
+  string like = 3;
+  string kind = 4; // table, view, materialized_view, foreign_table, partitioned_table; пусто — table
+}
+
+message Table {
+  string database = 1;
+  string schema = 2;
+  string name = 3;
+  string kind = 4;
+  string owner = 5;
+  uint64 total_rows = 6;
+  uint64 total_bytes = 7;
+  uint64 index_bytes = 8;
+  uint64 toast_bytes = 9;
+  uint64 live_tuples = 10;
+  uint64 dead_tuples = 11;
+  string comment = 12;
+  string create_table_query = 13;
+  string tablespace = 14;
+  string persistence = 15; // permanent, unlogged, temporary
+  google.protobuf.Timestamp last_vacuum = 16;
+  google.protobuf.Timestamp last_analyze = 17;
+  google.protobuf.Timestamp last_autovacuum = 18;
+  google.protobuf.Timestamp last_autoanalyze = 19;
+  repeated Column columns = 20;
+}
+
+message TableList {
+  repeated Table items = 1;
+}
+
+message RenameTableRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  string new_schema = 4; // SET SCHEMA; пусто — та же схема
+  string new_name = 5 [(google.api.field_behavior) = REQUIRED];
+}
+
+message VacuumTableRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  bool full = 4;
+  bool analyze = 5;
+  bool freeze = 6;
+}
+
+message AnalyzeTableRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AddColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  Column column = 4 [(google.api.field_behavior) = REQUIRED];
+  bool if_not_exists = 5;
+}
+
+message DropColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  string name = 4 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 5;
+  bool cascade = 6;
+}
+
+message RenameColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  string name = 4 [(google.api.field_behavior) = REQUIRED];
+  string new_name = 5 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ModifyColumnRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  Column column = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message IndexSpec {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  string name = 4 [(google.api.field_behavior) = REQUIRED];
+  repeated string columns = 5;
+  string method = 6; // btree, hash, gin, gist, spgist, brin
+  bool unique = 7;
+  bool concurrently = 8;
+  string where = 9;
+  bool if_not_exists = 10;
+  string tablespace = 11;
+  string include = 12; // INCLUDE (col, …)
+}
+
+message IndexName {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string name = 3 [(google.api.field_behavior) = REQUIRED];
+  bool if_exists = 4;
+  bool concurrently = 5;
+  bool cascade = 6;
+}
+
+message ListIndexesRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Index {
+  string database = 1;
+  string schema = 2;
+  string table = 3;
+  string name = 4;
+  string method = 5;
+  bool unique = 6;
+  bool primary = 7;
+  bool valid = 8;
+  repeated string columns = 9;
+  string definition = 10;
+  uint64 size_bytes = 11;
+  string tablespace = 12;
+}
+
+message IndexList {
+  repeated Index items = 1;
+}
+
+message ReindexRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  string name = 4; // пусто — вся таблица
+  bool concurrently = 5;
+}
+
+message QueryRow {
+  repeated string values = 1;
+}
+
+message ExecuteQueryRequest {
+  string query = 1 [(google.api.field_behavior) = REQUIRED];
+  uint32 max_rows = 2;
+  string database = 3;
+}
+
+message ExecuteQueryResponse {
+  repeated string columns = 1;
+  repeated string types = 2;
+  repeated QueryRow rows = 3;
+  uint64 total_rows = 4;
+  double elapsed_seconds = 5;
+  uint64 rows_affected = 6;
+}
+
+message PreviewTableDataRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  uint32 limit = 4;
+  uint32 offset = 5;
+  string order_by = 6;
+  string where = 7;
+}
+
+message TablePartition {
+  string schema = 1;
+  string name = 2;
+  string expression = 3;
+  uint64 total_rows = 4;
+  uint64 total_bytes = 5;
+}
+
+message ListPartitionsRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message PartitionList {
+  repeated TablePartition items = 1;
+}
+
+message DropPartitionRequest {
+  string database = 1 [(google.api.field_behavior) = REQUIRED];
+  string schema = 2 [(google.api.field_behavior) = REQUIRED];
+  string table = 3 [(google.api.field_behavior) = REQUIRED];
+  string name = 4 [(google.api.field_behavior) = REQUIRED];
+  bool detach = 5; // DETACH PARTITION вместо DROP
+  bool concurrently = 6;
+  bool cascade = 7;
+}
+
+message ProcessInfo {
+  int32 pid = 1;
+  string user = 2;
+  string database = 3;
+  string application_name = 4;
+  string client_addr = 5;
+  string state = 6;
+  string wait_event_type = 7;
+  string wait_event = 8;
+  string query = 9;
+  google.protobuf.Timestamp backend_start = 10;
+  google.protobuf.Timestamp query_start = 11;
+  google.protobuf.Timestamp state_change = 12;
+  string backend_type = 13;
+}
+
+message ListProcessesRequest {
+  string database = 1;
+  bool active_only = 2;
+}
+
+message ProcessList {
+  repeated ProcessInfo items = 1;
+}
+
+message KillProcessRequest {
+  int32 pid = 1 [(google.api.field_behavior) = REQUIRED];
+  bool terminate = 2; // false — pg_cancel_backend, true — pg_terminate_backend
+}
+
+message LockInfo {
+  int32 pid = 1;
+  string locktype = 2;
+  string database = 3;
+  string relation = 4;
+  string mode = 5;
+  bool granted = 6;
+  bool fastpath = 7;
+  string query = 8;
+}
+
+message ListLocksRequest {
+  string database = 1;
+  bool granted_only = 2;
+}
+
+message LockList {
+  repeated LockInfo items = 1;
+}
+
+message TablespaceInfo {
+  string name = 1;
+  string owner = 2;
+  string location = 3;
+  uint64 size_bytes = 4;
+}
+
+message ListTablespacesRequest {}
+
+message TablespaceList {
+  repeated TablespaceInfo items = 1;
+}
+
+message MetricItem {
+  string name = 1;
+  double value = 2;
+  string description = 3;
+}
+
+message GetMetricsRequest {
+  string database = 1;
+}
+
+message MetricsResponse {
+  repeated MetricItem metrics = 1;
+}
+
+message TableOptionsRequest {}
+
+message TableOptionsResponse {
+  repeated string data_types = 1;
+  repeated string index_methods = 2;
+  repeated string collations = 3;
+  repeated string tablespaces = 4;
+}

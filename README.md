@@ -40,7 +40,11 @@ req.setText('hello');
 
 `clickhouse` — два proto: `admin.proto` (`trb.clickhouse.v1.ClickHouse_Admin`) и `clickhouse.proto` (`trb.clickhouse.v1.ClickHouse`).
 
+`postgresql` — два proto: `admin.proto` (`trb.postgresql.v1.PostgreSQL_Admin`) и `postgresql.proto` (`trb.postgresql.v1.PostgreSQL`).
+
 `postgresql` (`trb.postgresql.v1.PostgreSQL`) — цели планировщика: `ListSchedulerTargets`, `SyncSchedulerTargets`.
+
+`PostgreSQL_Admin` — DDL, мониторинг и произвольные запросы: базы, схемы, таблицы, колонки, индексы, VACUUM/ANALYZE, процессы, блокировки.
 
 `nats` (`trb.nats.v1.Nats`) — управление JetStream.
 
