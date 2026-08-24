@@ -1157,5 +1157,48 @@ export class ClickHouse_AdminClient {
     this.methodDescriptorGetTableOptions);
   }
 
+  methodDescriptorListConnections = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.v1.ClickHouse_Admin/ListConnections',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_admin_pb.ListConnectionsRequest,
+    clickhouse_admin_pb.ConnectionList,
+    (request: clickhouse_admin_pb.ListConnectionsRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_admin_pb.ConnectionList.deserializeBinary
+  );
+
+  listConnections(
+    request: clickhouse_admin_pb.ListConnectionsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_admin_pb.ConnectionList>;
+
+  listConnections(
+    request: clickhouse_admin_pb.ListConnectionsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_admin_pb.ConnectionList) => void): grpcWeb.ClientReadableStream<clickhouse_admin_pb.ConnectionList>;
+
+  listConnections(
+    request: clickhouse_admin_pb.ListConnectionsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_admin_pb.ConnectionList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.v1.ClickHouse_Admin/ListConnections',
+        request,
+        metadata || {},
+        this.methodDescriptorListConnections,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.v1.ClickHouse_Admin/ListConnections',
+    request,
+    metadata || {},
+    this.methodDescriptorListConnections);
+  }
+
 }
 

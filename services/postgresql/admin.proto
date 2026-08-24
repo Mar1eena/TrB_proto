@@ -277,6 +277,26 @@ service PostgreSQL_Admin {
       additional_bindings { post: "/GetTableOptions" body: "*" }
     };
   }
+
+  rpc ListConnections(ListConnectionsRequest) returns (ConnectionList) {
+    option (google.api.http) = {
+      get: "/v1/postgresql/connections"
+      additional_bindings { post: "/ListConnections" body: "*" }
+    };
+  }
+}
+
+message Connection {
+  string name = 1;
+  string host = 2;
+  string database = 3;
+  bool is_default = 4;
+}
+
+message ListConnectionsRequest {}
+
+message ConnectionList {
+  repeated Connection items = 1;
 }
 
 message Status {

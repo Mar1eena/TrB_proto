@@ -23,6 +23,154 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Connection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Host          string                 `protobuf:"bytes,2,opt,name=host,proto3" json:"host,omitempty"`
+	Database      string                 `protobuf:"bytes,3,opt,name=database,proto3" json:"database,omitempty"`
+	IsDefault     bool                   `protobuf:"varint,4,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Connection) Reset() {
+	*x = Connection{}
+	mi := &file_postgresql_admin_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Connection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Connection) ProtoMessage() {}
+
+func (x *Connection) ProtoReflect() protoreflect.Message {
+	mi := &file_postgresql_admin_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Connection.ProtoReflect.Descriptor instead.
+func (*Connection) Descriptor() ([]byte, []int) {
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Connection) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Connection) GetHost() string {
+	if x != nil {
+		return x.Host
+	}
+	return ""
+}
+
+func (x *Connection) GetDatabase() string {
+	if x != nil {
+		return x.Database
+	}
+	return ""
+}
+
+func (x *Connection) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+type ListConnectionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListConnectionsRequest) Reset() {
+	*x = ListConnectionsRequest{}
+	mi := &file_postgresql_admin_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListConnectionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListConnectionsRequest) ProtoMessage() {}
+
+func (x *ListConnectionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_postgresql_admin_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListConnectionsRequest.ProtoReflect.Descriptor instead.
+func (*ListConnectionsRequest) Descriptor() ([]byte, []int) {
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{1}
+}
+
+type ConnectionList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Connection          `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConnectionList) Reset() {
+	*x = ConnectionList{}
+	mi := &file_postgresql_admin_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConnectionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectionList) ProtoMessage() {}
+
+func (x *ConnectionList) ProtoReflect() protoreflect.Message {
+	mi := &file_postgresql_admin_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectionList.ProtoReflect.Descriptor instead.
+func (*ConnectionList) Descriptor() ([]byte, []int) {
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ConnectionList) GetItems() []*Connection {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 type Status struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
@@ -33,7 +181,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_postgresql_admin_proto_msgTypes[0]
+	mi := &file_postgresql_admin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +193,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[0]
+	mi := &file_postgresql_admin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +206,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{0}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Status) GetSuccess() bool {
@@ -83,7 +231,7 @@ type PingRequest struct {
 
 func (x *PingRequest) Reset() {
 	*x = PingRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[1]
+	mi := &file_postgresql_admin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +243,7 @@ func (x *PingRequest) String() string {
 func (*PingRequest) ProtoMessage() {}
 
 func (x *PingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[1]
+	mi := &file_postgresql_admin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +256,7 @@ func (x *PingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingRequest.ProtoReflect.Descriptor instead.
 func (*PingRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{1}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{4}
 }
 
 type PingResponse struct {
@@ -121,7 +269,7 @@ type PingResponse struct {
 
 func (x *PingResponse) Reset() {
 	*x = PingResponse{}
-	mi := &file_postgresql_admin_proto_msgTypes[2]
+	mi := &file_postgresql_admin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -133,7 +281,7 @@ func (x *PingResponse) String() string {
 func (*PingResponse) ProtoMessage() {}
 
 func (x *PingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[2]
+	mi := &file_postgresql_admin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +294,7 @@ func (x *PingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
 func (*PingResponse) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{2}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PingResponse) GetOk() bool {
@@ -171,7 +319,7 @@ type ServerInfoRequest struct {
 
 func (x *ServerInfoRequest) Reset() {
 	*x = ServerInfoRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[3]
+	mi := &file_postgresql_admin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +331,7 @@ func (x *ServerInfoRequest) String() string {
 func (*ServerInfoRequest) ProtoMessage() {}
 
 func (x *ServerInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[3]
+	mi := &file_postgresql_admin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +344,7 @@ func (x *ServerInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerInfoRequest.ProtoReflect.Descriptor instead.
 func (*ServerInfoRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{3}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{6}
 }
 
 type ServerInfoResponse struct {
@@ -217,7 +365,7 @@ type ServerInfoResponse struct {
 
 func (x *ServerInfoResponse) Reset() {
 	*x = ServerInfoResponse{}
-	mi := &file_postgresql_admin_proto_msgTypes[4]
+	mi := &file_postgresql_admin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -229,7 +377,7 @@ func (x *ServerInfoResponse) String() string {
 func (*ServerInfoResponse) ProtoMessage() {}
 
 func (x *ServerInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[4]
+	mi := &file_postgresql_admin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -242,7 +390,7 @@ func (x *ServerInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerInfoResponse.ProtoReflect.Descriptor instead.
 func (*ServerInfoResponse) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{4}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ServerInfoResponse) GetVersion() string {
@@ -332,7 +480,7 @@ type DatabaseSpec struct {
 
 func (x *DatabaseSpec) Reset() {
 	*x = DatabaseSpec{}
-	mi := &file_postgresql_admin_proto_msgTypes[5]
+	mi := &file_postgresql_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -344,7 +492,7 @@ func (x *DatabaseSpec) String() string {
 func (*DatabaseSpec) ProtoMessage() {}
 
 func (x *DatabaseSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[5]
+	mi := &file_postgresql_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,7 +505,7 @@ func (x *DatabaseSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseSpec.ProtoReflect.Descriptor instead.
 func (*DatabaseSpec) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{5}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DatabaseSpec) GetName() string {
@@ -434,7 +582,7 @@ type DatabaseName struct {
 
 func (x *DatabaseName) Reset() {
 	*x = DatabaseName{}
-	mi := &file_postgresql_admin_proto_msgTypes[6]
+	mi := &file_postgresql_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -446,7 +594,7 @@ func (x *DatabaseName) String() string {
 func (*DatabaseName) ProtoMessage() {}
 
 func (x *DatabaseName) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[6]
+	mi := &file_postgresql_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -459,7 +607,7 @@ func (x *DatabaseName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseName.ProtoReflect.Descriptor instead.
 func (*DatabaseName) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{6}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DatabaseName) GetName() string {
@@ -492,7 +640,7 @@ type ListDatabasesRequest struct {
 
 func (x *ListDatabasesRequest) Reset() {
 	*x = ListDatabasesRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[7]
+	mi := &file_postgresql_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +652,7 @@ func (x *ListDatabasesRequest) String() string {
 func (*ListDatabasesRequest) ProtoMessage() {}
 
 func (x *ListDatabasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[7]
+	mi := &file_postgresql_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +665,7 @@ func (x *ListDatabasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDatabasesRequest.ProtoReflect.Descriptor instead.
 func (*ListDatabasesRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{7}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListDatabasesRequest) GetLike() string {
@@ -545,7 +693,7 @@ type Database struct {
 
 func (x *Database) Reset() {
 	*x = Database{}
-	mi := &file_postgresql_admin_proto_msgTypes[8]
+	mi := &file_postgresql_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +705,7 @@ func (x *Database) String() string {
 func (*Database) ProtoMessage() {}
 
 func (x *Database) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[8]
+	mi := &file_postgresql_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +718,7 @@ func (x *Database) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database.ProtoReflect.Descriptor instead.
 func (*Database) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{8}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Database) GetName() string {
@@ -652,7 +800,7 @@ type DatabaseList struct {
 
 func (x *DatabaseList) Reset() {
 	*x = DatabaseList{}
-	mi := &file_postgresql_admin_proto_msgTypes[9]
+	mi := &file_postgresql_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -664,7 +812,7 @@ func (x *DatabaseList) String() string {
 func (*DatabaseList) ProtoMessage() {}
 
 func (x *DatabaseList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[9]
+	mi := &file_postgresql_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -677,7 +825,7 @@ func (x *DatabaseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DatabaseList.ProtoReflect.Descriptor instead.
 func (*DatabaseList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{9}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DatabaseList) GetItems() []*Database {
@@ -699,7 +847,7 @@ type SchemaSpec struct {
 
 func (x *SchemaSpec) Reset() {
 	*x = SchemaSpec{}
-	mi := &file_postgresql_admin_proto_msgTypes[10]
+	mi := &file_postgresql_admin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -711,7 +859,7 @@ func (x *SchemaSpec) String() string {
 func (*SchemaSpec) ProtoMessage() {}
 
 func (x *SchemaSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[10]
+	mi := &file_postgresql_admin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -724,7 +872,7 @@ func (x *SchemaSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchemaSpec.ProtoReflect.Descriptor instead.
 func (*SchemaSpec) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{10}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SchemaSpec) GetDatabase() string {
@@ -767,7 +915,7 @@ type SchemaName struct {
 
 func (x *SchemaName) Reset() {
 	*x = SchemaName{}
-	mi := &file_postgresql_admin_proto_msgTypes[11]
+	mi := &file_postgresql_admin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -779,7 +927,7 @@ func (x *SchemaName) String() string {
 func (*SchemaName) ProtoMessage() {}
 
 func (x *SchemaName) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[11]
+	mi := &file_postgresql_admin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -792,7 +940,7 @@ func (x *SchemaName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchemaName.ProtoReflect.Descriptor instead.
 func (*SchemaName) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{11}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SchemaName) GetDatabase() string {
@@ -834,7 +982,7 @@ type ListSchemasRequest struct {
 
 func (x *ListSchemasRequest) Reset() {
 	*x = ListSchemasRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[12]
+	mi := &file_postgresql_admin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -846,7 +994,7 @@ func (x *ListSchemasRequest) String() string {
 func (*ListSchemasRequest) ProtoMessage() {}
 
 func (x *ListSchemasRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[12]
+	mi := &file_postgresql_admin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -859,7 +1007,7 @@ func (x *ListSchemasRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSchemasRequest.ProtoReflect.Descriptor instead.
 func (*ListSchemasRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{12}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListSchemasRequest) GetDatabase() string {
@@ -896,7 +1044,7 @@ type Schema struct {
 
 func (x *Schema) Reset() {
 	*x = Schema{}
-	mi := &file_postgresql_admin_proto_msgTypes[13]
+	mi := &file_postgresql_admin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -908,7 +1056,7 @@ func (x *Schema) String() string {
 func (*Schema) ProtoMessage() {}
 
 func (x *Schema) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[13]
+	mi := &file_postgresql_admin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -921,7 +1069,7 @@ func (x *Schema) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Schema.ProtoReflect.Descriptor instead.
 func (*Schema) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{13}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *Schema) GetDatabase() string {
@@ -968,7 +1116,7 @@ type SchemaList struct {
 
 func (x *SchemaList) Reset() {
 	*x = SchemaList{}
-	mi := &file_postgresql_admin_proto_msgTypes[14]
+	mi := &file_postgresql_admin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -980,7 +1128,7 @@ func (x *SchemaList) String() string {
 func (*SchemaList) ProtoMessage() {}
 
 func (x *SchemaList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[14]
+	mi := &file_postgresql_admin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -993,7 +1141,7 @@ func (x *SchemaList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SchemaList.ProtoReflect.Descriptor instead.
 func (*SchemaList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{14}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *SchemaList) GetItems() []*Schema {
@@ -1022,7 +1170,7 @@ type Column struct {
 
 func (x *Column) Reset() {
 	*x = Column{}
-	mi := &file_postgresql_admin_proto_msgTypes[15]
+	mi := &file_postgresql_admin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1034,7 +1182,7 @@ func (x *Column) String() string {
 func (*Column) ProtoMessage() {}
 
 func (x *Column) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[15]
+	mi := &file_postgresql_admin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1047,7 +1195,7 @@ func (x *Column) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Column.ProtoReflect.Descriptor instead.
 func (*Column) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{15}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Column) GetName() string {
@@ -1146,7 +1294,7 @@ type TableSpec struct {
 
 func (x *TableSpec) Reset() {
 	*x = TableSpec{}
-	mi := &file_postgresql_admin_proto_msgTypes[16]
+	mi := &file_postgresql_admin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1158,7 +1306,7 @@ func (x *TableSpec) String() string {
 func (*TableSpec) ProtoMessage() {}
 
 func (x *TableSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[16]
+	mi := &file_postgresql_admin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1171,7 +1319,7 @@ func (x *TableSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableSpec.ProtoReflect.Descriptor instead.
 func (*TableSpec) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{16}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *TableSpec) GetDatabase() string {
@@ -1265,7 +1413,7 @@ type TableName struct {
 
 func (x *TableName) Reset() {
 	*x = TableName{}
-	mi := &file_postgresql_admin_proto_msgTypes[17]
+	mi := &file_postgresql_admin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1277,7 +1425,7 @@ func (x *TableName) String() string {
 func (*TableName) ProtoMessage() {}
 
 func (x *TableName) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[17]
+	mi := &file_postgresql_admin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1290,7 +1438,7 @@ func (x *TableName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableName.ProtoReflect.Descriptor instead.
 func (*TableName) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{17}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *TableName) GetDatabase() string {
@@ -1347,7 +1495,7 @@ type ListTablesRequest struct {
 
 func (x *ListTablesRequest) Reset() {
 	*x = ListTablesRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[18]
+	mi := &file_postgresql_admin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1359,7 +1507,7 @@ func (x *ListTablesRequest) String() string {
 func (*ListTablesRequest) ProtoMessage() {}
 
 func (x *ListTablesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[18]
+	mi := &file_postgresql_admin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1372,7 +1520,7 @@ func (x *ListTablesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTablesRequest.ProtoReflect.Descriptor instead.
 func (*ListTablesRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{18}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListTablesRequest) GetDatabase() string {
@@ -1431,7 +1579,7 @@ type Table struct {
 
 func (x *Table) Reset() {
 	*x = Table{}
-	mi := &file_postgresql_admin_proto_msgTypes[19]
+	mi := &file_postgresql_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1443,7 +1591,7 @@ func (x *Table) String() string {
 func (*Table) ProtoMessage() {}
 
 func (x *Table) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[19]
+	mi := &file_postgresql_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1456,7 +1604,7 @@ func (x *Table) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Table.ProtoReflect.Descriptor instead.
 func (*Table) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{19}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *Table) GetDatabase() string {
@@ -1608,7 +1756,7 @@ type TableList struct {
 
 func (x *TableList) Reset() {
 	*x = TableList{}
-	mi := &file_postgresql_admin_proto_msgTypes[20]
+	mi := &file_postgresql_admin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1620,7 +1768,7 @@ func (x *TableList) String() string {
 func (*TableList) ProtoMessage() {}
 
 func (x *TableList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[20]
+	mi := &file_postgresql_admin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1633,7 +1781,7 @@ func (x *TableList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableList.ProtoReflect.Descriptor instead.
 func (*TableList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{20}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *TableList) GetItems() []*Table {
@@ -1656,7 +1804,7 @@ type RenameTableRequest struct {
 
 func (x *RenameTableRequest) Reset() {
 	*x = RenameTableRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[21]
+	mi := &file_postgresql_admin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1668,7 +1816,7 @@ func (x *RenameTableRequest) String() string {
 func (*RenameTableRequest) ProtoMessage() {}
 
 func (x *RenameTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[21]
+	mi := &file_postgresql_admin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1681,7 +1829,7 @@ func (x *RenameTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameTableRequest.ProtoReflect.Descriptor instead.
 func (*RenameTableRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{21}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *RenameTableRequest) GetDatabase() string {
@@ -1733,7 +1881,7 @@ type VacuumTableRequest struct {
 
 func (x *VacuumTableRequest) Reset() {
 	*x = VacuumTableRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[22]
+	mi := &file_postgresql_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1745,7 +1893,7 @@ func (x *VacuumTableRequest) String() string {
 func (*VacuumTableRequest) ProtoMessage() {}
 
 func (x *VacuumTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[22]
+	mi := &file_postgresql_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1758,7 +1906,7 @@ func (x *VacuumTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VacuumTableRequest.ProtoReflect.Descriptor instead.
 func (*VacuumTableRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{22}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *VacuumTableRequest) GetDatabase() string {
@@ -1814,7 +1962,7 @@ type AnalyzeTableRequest struct {
 
 func (x *AnalyzeTableRequest) Reset() {
 	*x = AnalyzeTableRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[23]
+	mi := &file_postgresql_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1826,7 +1974,7 @@ func (x *AnalyzeTableRequest) String() string {
 func (*AnalyzeTableRequest) ProtoMessage() {}
 
 func (x *AnalyzeTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[23]
+	mi := &file_postgresql_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1839,7 +1987,7 @@ func (x *AnalyzeTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeTableRequest.ProtoReflect.Descriptor instead.
 func (*AnalyzeTableRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{23}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *AnalyzeTableRequest) GetDatabase() string {
@@ -1876,7 +2024,7 @@ type AddColumnRequest struct {
 
 func (x *AddColumnRequest) Reset() {
 	*x = AddColumnRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[24]
+	mi := &file_postgresql_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1888,7 +2036,7 @@ func (x *AddColumnRequest) String() string {
 func (*AddColumnRequest) ProtoMessage() {}
 
 func (x *AddColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[24]
+	mi := &file_postgresql_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1901,7 +2049,7 @@ func (x *AddColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddColumnRequest.ProtoReflect.Descriptor instead.
 func (*AddColumnRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{24}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *AddColumnRequest) GetDatabase() string {
@@ -1953,7 +2101,7 @@ type DropColumnRequest struct {
 
 func (x *DropColumnRequest) Reset() {
 	*x = DropColumnRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[25]
+	mi := &file_postgresql_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1965,7 +2113,7 @@ func (x *DropColumnRequest) String() string {
 func (*DropColumnRequest) ProtoMessage() {}
 
 func (x *DropColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[25]
+	mi := &file_postgresql_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1978,7 +2126,7 @@ func (x *DropColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DropColumnRequest.ProtoReflect.Descriptor instead.
 func (*DropColumnRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{25}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DropColumnRequest) GetDatabase() string {
@@ -2036,7 +2184,7 @@ type RenameColumnRequest struct {
 
 func (x *RenameColumnRequest) Reset() {
 	*x = RenameColumnRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[26]
+	mi := &file_postgresql_admin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2048,7 +2196,7 @@ func (x *RenameColumnRequest) String() string {
 func (*RenameColumnRequest) ProtoMessage() {}
 
 func (x *RenameColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[26]
+	mi := &file_postgresql_admin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2061,7 +2209,7 @@ func (x *RenameColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameColumnRequest.ProtoReflect.Descriptor instead.
 func (*RenameColumnRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{26}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *RenameColumnRequest) GetDatabase() string {
@@ -2111,7 +2259,7 @@ type ModifyColumnRequest struct {
 
 func (x *ModifyColumnRequest) Reset() {
 	*x = ModifyColumnRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[27]
+	mi := &file_postgresql_admin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2123,7 +2271,7 @@ func (x *ModifyColumnRequest) String() string {
 func (*ModifyColumnRequest) ProtoMessage() {}
 
 func (x *ModifyColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[27]
+	mi := &file_postgresql_admin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2136,7 +2284,7 @@ func (x *ModifyColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModifyColumnRequest.ProtoReflect.Descriptor instead.
 func (*ModifyColumnRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{27}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ModifyColumnRequest) GetDatabase() string {
@@ -2187,7 +2335,7 @@ type IndexSpec struct {
 
 func (x *IndexSpec) Reset() {
 	*x = IndexSpec{}
-	mi := &file_postgresql_admin_proto_msgTypes[28]
+	mi := &file_postgresql_admin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2199,7 +2347,7 @@ func (x *IndexSpec) String() string {
 func (*IndexSpec) ProtoMessage() {}
 
 func (x *IndexSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[28]
+	mi := &file_postgresql_admin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2212,7 +2360,7 @@ func (x *IndexSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndexSpec.ProtoReflect.Descriptor instead.
 func (*IndexSpec) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{28}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *IndexSpec) GetDatabase() string {
@@ -2313,7 +2461,7 @@ type IndexName struct {
 
 func (x *IndexName) Reset() {
 	*x = IndexName{}
-	mi := &file_postgresql_admin_proto_msgTypes[29]
+	mi := &file_postgresql_admin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2325,7 +2473,7 @@ func (x *IndexName) String() string {
 func (*IndexName) ProtoMessage() {}
 
 func (x *IndexName) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[29]
+	mi := &file_postgresql_admin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2338,7 +2486,7 @@ func (x *IndexName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndexName.ProtoReflect.Descriptor instead.
 func (*IndexName) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{29}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *IndexName) GetDatabase() string {
@@ -2394,7 +2542,7 @@ type ListIndexesRequest struct {
 
 func (x *ListIndexesRequest) Reset() {
 	*x = ListIndexesRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[30]
+	mi := &file_postgresql_admin_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2406,7 +2554,7 @@ func (x *ListIndexesRequest) String() string {
 func (*ListIndexesRequest) ProtoMessage() {}
 
 func (x *ListIndexesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[30]
+	mi := &file_postgresql_admin_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2419,7 +2567,7 @@ func (x *ListIndexesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIndexesRequest.ProtoReflect.Descriptor instead.
 func (*ListIndexesRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{30}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ListIndexesRequest) GetDatabase() string {
@@ -2463,7 +2611,7 @@ type Index struct {
 
 func (x *Index) Reset() {
 	*x = Index{}
-	mi := &file_postgresql_admin_proto_msgTypes[31]
+	mi := &file_postgresql_admin_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2475,7 +2623,7 @@ func (x *Index) String() string {
 func (*Index) ProtoMessage() {}
 
 func (x *Index) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[31]
+	mi := &file_postgresql_admin_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2488,7 +2636,7 @@ func (x *Index) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Index.ProtoReflect.Descriptor instead.
 func (*Index) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{31}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *Index) GetDatabase() string {
@@ -2584,7 +2732,7 @@ type IndexList struct {
 
 func (x *IndexList) Reset() {
 	*x = IndexList{}
-	mi := &file_postgresql_admin_proto_msgTypes[32]
+	mi := &file_postgresql_admin_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2596,7 +2744,7 @@ func (x *IndexList) String() string {
 func (*IndexList) ProtoMessage() {}
 
 func (x *IndexList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[32]
+	mi := &file_postgresql_admin_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2609,7 +2757,7 @@ func (x *IndexList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndexList.ProtoReflect.Descriptor instead.
 func (*IndexList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{32}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *IndexList) GetItems() []*Index {
@@ -2632,7 +2780,7 @@ type ReindexRequest struct {
 
 func (x *ReindexRequest) Reset() {
 	*x = ReindexRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[33]
+	mi := &file_postgresql_admin_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2644,7 +2792,7 @@ func (x *ReindexRequest) String() string {
 func (*ReindexRequest) ProtoMessage() {}
 
 func (x *ReindexRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[33]
+	mi := &file_postgresql_admin_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2657,7 +2805,7 @@ func (x *ReindexRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReindexRequest.ProtoReflect.Descriptor instead.
 func (*ReindexRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{33}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ReindexRequest) GetDatabase() string {
@@ -2704,7 +2852,7 @@ type QueryRow struct {
 
 func (x *QueryRow) Reset() {
 	*x = QueryRow{}
-	mi := &file_postgresql_admin_proto_msgTypes[34]
+	mi := &file_postgresql_admin_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2716,7 +2864,7 @@ func (x *QueryRow) String() string {
 func (*QueryRow) ProtoMessage() {}
 
 func (x *QueryRow) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[34]
+	mi := &file_postgresql_admin_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2729,7 +2877,7 @@ func (x *QueryRow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRow.ProtoReflect.Descriptor instead.
 func (*QueryRow) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{34}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *QueryRow) GetValues() []string {
@@ -2750,7 +2898,7 @@ type ExecuteQueryRequest struct {
 
 func (x *ExecuteQueryRequest) Reset() {
 	*x = ExecuteQueryRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[35]
+	mi := &file_postgresql_admin_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2762,7 +2910,7 @@ func (x *ExecuteQueryRequest) String() string {
 func (*ExecuteQueryRequest) ProtoMessage() {}
 
 func (x *ExecuteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[35]
+	mi := &file_postgresql_admin_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2775,7 +2923,7 @@ func (x *ExecuteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteQueryRequest.ProtoReflect.Descriptor instead.
 func (*ExecuteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{35}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ExecuteQueryRequest) GetQuery() string {
@@ -2813,7 +2961,7 @@ type ExecuteQueryResponse struct {
 
 func (x *ExecuteQueryResponse) Reset() {
 	*x = ExecuteQueryResponse{}
-	mi := &file_postgresql_admin_proto_msgTypes[36]
+	mi := &file_postgresql_admin_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2825,7 +2973,7 @@ func (x *ExecuteQueryResponse) String() string {
 func (*ExecuteQueryResponse) ProtoMessage() {}
 
 func (x *ExecuteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[36]
+	mi := &file_postgresql_admin_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2838,7 +2986,7 @@ func (x *ExecuteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteQueryResponse.ProtoReflect.Descriptor instead.
 func (*ExecuteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{36}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ExecuteQueryResponse) GetColumns() []string {
@@ -2898,7 +3046,7 @@ type PreviewTableDataRequest struct {
 
 func (x *PreviewTableDataRequest) Reset() {
 	*x = PreviewTableDataRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[37]
+	mi := &file_postgresql_admin_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2910,7 +3058,7 @@ func (x *PreviewTableDataRequest) String() string {
 func (*PreviewTableDataRequest) ProtoMessage() {}
 
 func (x *PreviewTableDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[37]
+	mi := &file_postgresql_admin_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2923,7 +3071,7 @@ func (x *PreviewTableDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreviewTableDataRequest.ProtoReflect.Descriptor instead.
 func (*PreviewTableDataRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{37}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *PreviewTableDataRequest) GetDatabase() string {
@@ -2988,7 +3136,7 @@ type TablePartition struct {
 
 func (x *TablePartition) Reset() {
 	*x = TablePartition{}
-	mi := &file_postgresql_admin_proto_msgTypes[38]
+	mi := &file_postgresql_admin_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3000,7 +3148,7 @@ func (x *TablePartition) String() string {
 func (*TablePartition) ProtoMessage() {}
 
 func (x *TablePartition) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[38]
+	mi := &file_postgresql_admin_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3013,7 +3161,7 @@ func (x *TablePartition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TablePartition.ProtoReflect.Descriptor instead.
 func (*TablePartition) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{38}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *TablePartition) GetSchema() string {
@@ -3062,7 +3210,7 @@ type ListPartitionsRequest struct {
 
 func (x *ListPartitionsRequest) Reset() {
 	*x = ListPartitionsRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[39]
+	mi := &file_postgresql_admin_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3074,7 +3222,7 @@ func (x *ListPartitionsRequest) String() string {
 func (*ListPartitionsRequest) ProtoMessage() {}
 
 func (x *ListPartitionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[39]
+	mi := &file_postgresql_admin_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3087,7 +3235,7 @@ func (x *ListPartitionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPartitionsRequest.ProtoReflect.Descriptor instead.
 func (*ListPartitionsRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{39}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ListPartitionsRequest) GetDatabase() string {
@@ -3120,7 +3268,7 @@ type PartitionList struct {
 
 func (x *PartitionList) Reset() {
 	*x = PartitionList{}
-	mi := &file_postgresql_admin_proto_msgTypes[40]
+	mi := &file_postgresql_admin_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3132,7 +3280,7 @@ func (x *PartitionList) String() string {
 func (*PartitionList) ProtoMessage() {}
 
 func (x *PartitionList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[40]
+	mi := &file_postgresql_admin_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3145,7 +3293,7 @@ func (x *PartitionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartitionList.ProtoReflect.Descriptor instead.
 func (*PartitionList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{40}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *PartitionList) GetItems() []*TablePartition {
@@ -3170,7 +3318,7 @@ type DropPartitionRequest struct {
 
 func (x *DropPartitionRequest) Reset() {
 	*x = DropPartitionRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[41]
+	mi := &file_postgresql_admin_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3182,7 +3330,7 @@ func (x *DropPartitionRequest) String() string {
 func (*DropPartitionRequest) ProtoMessage() {}
 
 func (x *DropPartitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[41]
+	mi := &file_postgresql_admin_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3195,7 +3343,7 @@ func (x *DropPartitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DropPartitionRequest.ProtoReflect.Descriptor instead.
 func (*DropPartitionRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{41}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *DropPartitionRequest) GetDatabase() string {
@@ -3268,7 +3416,7 @@ type ProcessInfo struct {
 
 func (x *ProcessInfo) Reset() {
 	*x = ProcessInfo{}
-	mi := &file_postgresql_admin_proto_msgTypes[42]
+	mi := &file_postgresql_admin_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3280,7 +3428,7 @@ func (x *ProcessInfo) String() string {
 func (*ProcessInfo) ProtoMessage() {}
 
 func (x *ProcessInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[42]
+	mi := &file_postgresql_admin_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3293,7 +3441,7 @@ func (x *ProcessInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessInfo.ProtoReflect.Descriptor instead.
 func (*ProcessInfo) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{42}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *ProcessInfo) GetPid() int32 {
@@ -3397,7 +3545,7 @@ type ListProcessesRequest struct {
 
 func (x *ListProcessesRequest) Reset() {
 	*x = ListProcessesRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[43]
+	mi := &file_postgresql_admin_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3409,7 +3557,7 @@ func (x *ListProcessesRequest) String() string {
 func (*ListProcessesRequest) ProtoMessage() {}
 
 func (x *ListProcessesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[43]
+	mi := &file_postgresql_admin_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3422,7 +3570,7 @@ func (x *ListProcessesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProcessesRequest.ProtoReflect.Descriptor instead.
 func (*ListProcessesRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{43}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *ListProcessesRequest) GetDatabase() string {
@@ -3448,7 +3596,7 @@ type ProcessList struct {
 
 func (x *ProcessList) Reset() {
 	*x = ProcessList{}
-	mi := &file_postgresql_admin_proto_msgTypes[44]
+	mi := &file_postgresql_admin_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3460,7 +3608,7 @@ func (x *ProcessList) String() string {
 func (*ProcessList) ProtoMessage() {}
 
 func (x *ProcessList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[44]
+	mi := &file_postgresql_admin_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3473,7 +3621,7 @@ func (x *ProcessList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessList.ProtoReflect.Descriptor instead.
 func (*ProcessList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{44}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *ProcessList) GetItems() []*ProcessInfo {
@@ -3493,7 +3641,7 @@ type KillProcessRequest struct {
 
 func (x *KillProcessRequest) Reset() {
 	*x = KillProcessRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[45]
+	mi := &file_postgresql_admin_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3505,7 +3653,7 @@ func (x *KillProcessRequest) String() string {
 func (*KillProcessRequest) ProtoMessage() {}
 
 func (x *KillProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[45]
+	mi := &file_postgresql_admin_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3518,7 +3666,7 @@ func (x *KillProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KillProcessRequest.ProtoReflect.Descriptor instead.
 func (*KillProcessRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{45}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *KillProcessRequest) GetPid() int32 {
@@ -3551,7 +3699,7 @@ type LockInfo struct {
 
 func (x *LockInfo) Reset() {
 	*x = LockInfo{}
-	mi := &file_postgresql_admin_proto_msgTypes[46]
+	mi := &file_postgresql_admin_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3563,7 +3711,7 @@ func (x *LockInfo) String() string {
 func (*LockInfo) ProtoMessage() {}
 
 func (x *LockInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[46]
+	mi := &file_postgresql_admin_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3576,7 +3724,7 @@ func (x *LockInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockInfo.ProtoReflect.Descriptor instead.
 func (*LockInfo) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{46}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *LockInfo) GetPid() int32 {
@@ -3645,7 +3793,7 @@ type ListLocksRequest struct {
 
 func (x *ListLocksRequest) Reset() {
 	*x = ListLocksRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[47]
+	mi := &file_postgresql_admin_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3657,7 +3805,7 @@ func (x *ListLocksRequest) String() string {
 func (*ListLocksRequest) ProtoMessage() {}
 
 func (x *ListLocksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[47]
+	mi := &file_postgresql_admin_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3670,7 +3818,7 @@ func (x *ListLocksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLocksRequest.ProtoReflect.Descriptor instead.
 func (*ListLocksRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{47}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *ListLocksRequest) GetDatabase() string {
@@ -3696,7 +3844,7 @@ type LockList struct {
 
 func (x *LockList) Reset() {
 	*x = LockList{}
-	mi := &file_postgresql_admin_proto_msgTypes[48]
+	mi := &file_postgresql_admin_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3708,7 +3856,7 @@ func (x *LockList) String() string {
 func (*LockList) ProtoMessage() {}
 
 func (x *LockList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[48]
+	mi := &file_postgresql_admin_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3721,7 +3869,7 @@ func (x *LockList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockList.ProtoReflect.Descriptor instead.
 func (*LockList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{48}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *LockList) GetItems() []*LockInfo {
@@ -3743,7 +3891,7 @@ type TablespaceInfo struct {
 
 func (x *TablespaceInfo) Reset() {
 	*x = TablespaceInfo{}
-	mi := &file_postgresql_admin_proto_msgTypes[49]
+	mi := &file_postgresql_admin_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3755,7 +3903,7 @@ func (x *TablespaceInfo) String() string {
 func (*TablespaceInfo) ProtoMessage() {}
 
 func (x *TablespaceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[49]
+	mi := &file_postgresql_admin_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3768,7 +3916,7 @@ func (x *TablespaceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TablespaceInfo.ProtoReflect.Descriptor instead.
 func (*TablespaceInfo) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{49}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *TablespaceInfo) GetName() string {
@@ -3807,7 +3955,7 @@ type ListTablespacesRequest struct {
 
 func (x *ListTablespacesRequest) Reset() {
 	*x = ListTablespacesRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[50]
+	mi := &file_postgresql_admin_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3819,7 +3967,7 @@ func (x *ListTablespacesRequest) String() string {
 func (*ListTablespacesRequest) ProtoMessage() {}
 
 func (x *ListTablespacesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[50]
+	mi := &file_postgresql_admin_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3832,7 +3980,7 @@ func (x *ListTablespacesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTablespacesRequest.ProtoReflect.Descriptor instead.
 func (*ListTablespacesRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{50}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{53}
 }
 
 type TablespaceList struct {
@@ -3844,7 +3992,7 @@ type TablespaceList struct {
 
 func (x *TablespaceList) Reset() {
 	*x = TablespaceList{}
-	mi := &file_postgresql_admin_proto_msgTypes[51]
+	mi := &file_postgresql_admin_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3856,7 +4004,7 @@ func (x *TablespaceList) String() string {
 func (*TablespaceList) ProtoMessage() {}
 
 func (x *TablespaceList) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[51]
+	mi := &file_postgresql_admin_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3869,7 +4017,7 @@ func (x *TablespaceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TablespaceList.ProtoReflect.Descriptor instead.
 func (*TablespaceList) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{51}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *TablespaceList) GetItems() []*TablespaceInfo {
@@ -3890,7 +4038,7 @@ type MetricItem struct {
 
 func (x *MetricItem) Reset() {
 	*x = MetricItem{}
-	mi := &file_postgresql_admin_proto_msgTypes[52]
+	mi := &file_postgresql_admin_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3902,7 +4050,7 @@ func (x *MetricItem) String() string {
 func (*MetricItem) ProtoMessage() {}
 
 func (x *MetricItem) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[52]
+	mi := &file_postgresql_admin_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3915,7 +4063,7 @@ func (x *MetricItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricItem.ProtoReflect.Descriptor instead.
 func (*MetricItem) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{52}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *MetricItem) GetName() string {
@@ -3948,7 +4096,7 @@ type GetMetricsRequest struct {
 
 func (x *GetMetricsRequest) Reset() {
 	*x = GetMetricsRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[53]
+	mi := &file_postgresql_admin_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3960,7 +4108,7 @@ func (x *GetMetricsRequest) String() string {
 func (*GetMetricsRequest) ProtoMessage() {}
 
 func (x *GetMetricsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[53]
+	mi := &file_postgresql_admin_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3973,7 +4121,7 @@ func (x *GetMetricsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMetricsRequest.ProtoReflect.Descriptor instead.
 func (*GetMetricsRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{53}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetMetricsRequest) GetDatabase() string {
@@ -3992,7 +4140,7 @@ type MetricsResponse struct {
 
 func (x *MetricsResponse) Reset() {
 	*x = MetricsResponse{}
-	mi := &file_postgresql_admin_proto_msgTypes[54]
+	mi := &file_postgresql_admin_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4004,7 +4152,7 @@ func (x *MetricsResponse) String() string {
 func (*MetricsResponse) ProtoMessage() {}
 
 func (x *MetricsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[54]
+	mi := &file_postgresql_admin_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4017,7 +4165,7 @@ func (x *MetricsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricsResponse.ProtoReflect.Descriptor instead.
 func (*MetricsResponse) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{54}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *MetricsResponse) GetMetrics() []*MetricItem {
@@ -4035,7 +4183,7 @@ type TableOptionsRequest struct {
 
 func (x *TableOptionsRequest) Reset() {
 	*x = TableOptionsRequest{}
-	mi := &file_postgresql_admin_proto_msgTypes[55]
+	mi := &file_postgresql_admin_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4047,7 +4195,7 @@ func (x *TableOptionsRequest) String() string {
 func (*TableOptionsRequest) ProtoMessage() {}
 
 func (x *TableOptionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[55]
+	mi := &file_postgresql_admin_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4060,7 +4208,7 @@ func (x *TableOptionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableOptionsRequest.ProtoReflect.Descriptor instead.
 func (*TableOptionsRequest) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{55}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{58}
 }
 
 type TableOptionsResponse struct {
@@ -4075,7 +4223,7 @@ type TableOptionsResponse struct {
 
 func (x *TableOptionsResponse) Reset() {
 	*x = TableOptionsResponse{}
-	mi := &file_postgresql_admin_proto_msgTypes[56]
+	mi := &file_postgresql_admin_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4087,7 +4235,7 @@ func (x *TableOptionsResponse) String() string {
 func (*TableOptionsResponse) ProtoMessage() {}
 
 func (x *TableOptionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_postgresql_admin_proto_msgTypes[56]
+	mi := &file_postgresql_admin_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4100,7 +4248,7 @@ func (x *TableOptionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableOptionsResponse.ProtoReflect.Descriptor instead.
 func (*TableOptionsResponse) Descriptor() ([]byte, []int) {
-	return file_postgresql_admin_proto_rawDescGZIP(), []int{56}
+	return file_postgresql_admin_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *TableOptionsResponse) GetDataTypes() []string {
@@ -4135,7 +4283,17 @@ var File_postgresql_admin_proto protoreflect.FileDescriptor
 
 const file_postgresql_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x16postgresql/admin.proto\x12\x11trb.postgresql.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"<\n" +
+	"\x16postgresql/admin.proto\x12\x11trb.postgresql.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"o\n" +
+	"\n" +
+	"Connection\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04host\x18\x02 \x01(\tR\x04host\x12\x1a\n" +
+	"\bdatabase\x18\x03 \x01(\tR\bdatabase\x12\x1d\n" +
+	"\n" +
+	"is_default\x18\x04 \x01(\bR\tisDefault\"\x18\n" +
+	"\x16ListConnectionsRequest\"E\n" +
+	"\x0eConnectionList\x123\n" +
+	"\x05items\x18\x01 \x03(\v2\x1d.trb.postgresql.v1.ConnectionR\x05items\"<\n" +
 	"\x06Status\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\r\n" +
@@ -4503,7 +4661,7 @@ const file_postgresql_admin_proto_rawDesc = "" +
 	"\n" +
 	"collations\x18\x03 \x03(\tR\n" +
 	"collations\x12 \n" +
-	"\vtablespaces\x18\x04 \x03(\tR\vtablespaces2\x9d/\n" +
+	"\vtablespaces\x18\x04 \x03(\tR\vtablespaces2\xba0\n" +
 	"\x10PostgreSQL_Admin\x12p\n" +
 	"\x04Ping\x12\x1e.trb.postgresql.v1.PingRequest\x1a\x1f.trb.postgresql.v1.PingResponse\"'\x82\xd3\xe4\x93\x02!Z\n" +
 	":\x01*\"\x05/Ping\x12\x13/v1/postgresql/ping\x12\x88\x01\n" +
@@ -4552,7 +4710,8 @@ const file_postgresql_admin_proto_rawDesc = "" +
 	"\x0fListTablespaces\x12).trb.postgresql.v1.ListTablespacesRequest\x1a!.trb.postgresql.v1.TablespaceList\"9\x82\xd3\xe4\x93\x023Z\x15:\x01*\"\x10/ListTablespaces\x12\x1a/v1/postgresql/tablespaces\x12\x88\x01\n" +
 	"\n" +
 	"GetMetrics\x12$.trb.postgresql.v1.GetMetricsRequest\x1a\".trb.postgresql.v1.MetricsResponse\"0\x82\xd3\xe4\x93\x02*Z\x10:\x01*\"\v/GetMetrics\x12\x16/v1/postgresql/metrics\x12\x9f\x01\n" +
-	"\x0fGetTableOptions\x12&.trb.postgresql.v1.TableOptionsRequest\x1a'.trb.postgresql.v1.TableOptionsResponse\";\x82\xd3\xe4\x93\x025Z\x15:\x01*\"\x10/GetTableOptions\x12\x1c/v1/postgresql/table_optionsB<Z:github.com/Mar1eena/trb_proto/gen/go/postgresql;postgresqlb\x06proto3"
+	"\x0fGetTableOptions\x12&.trb.postgresql.v1.TableOptionsRequest\x1a'.trb.postgresql.v1.TableOptionsResponse\";\x82\xd3\xe4\x93\x025Z\x15:\x01*\"\x10/GetTableOptions\x12\x1c/v1/postgresql/table_options\x12\x9a\x01\n" +
+	"\x0fListConnections\x12).trb.postgresql.v1.ListConnectionsRequest\x1a!.trb.postgresql.v1.ConnectionList\"9\x82\xd3\xe4\x93\x023Z\x15:\x01*\"\x10/ListConnections\x12\x1a/v1/postgresql/connectionsB<Z:github.com/Mar1eena/trb_proto/gen/go/postgresql;postgresqlb\x06proto3"
 
 var (
 	file_postgresql_admin_proto_rawDescOnce sync.Once
@@ -4566,166 +4725,172 @@ func file_postgresql_admin_proto_rawDescGZIP() []byte {
 	return file_postgresql_admin_proto_rawDescData
 }
 
-var file_postgresql_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 57)
+var file_postgresql_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
 var file_postgresql_admin_proto_goTypes = []any{
-	(*Status)(nil),                  // 0: trb.postgresql.v1.Status
-	(*PingRequest)(nil),             // 1: trb.postgresql.v1.PingRequest
-	(*PingResponse)(nil),            // 2: trb.postgresql.v1.PingResponse
-	(*ServerInfoRequest)(nil),       // 3: trb.postgresql.v1.ServerInfoRequest
-	(*ServerInfoResponse)(nil),      // 4: trb.postgresql.v1.ServerInfoResponse
-	(*DatabaseSpec)(nil),            // 5: trb.postgresql.v1.DatabaseSpec
-	(*DatabaseName)(nil),            // 6: trb.postgresql.v1.DatabaseName
-	(*ListDatabasesRequest)(nil),    // 7: trb.postgresql.v1.ListDatabasesRequest
-	(*Database)(nil),                // 8: trb.postgresql.v1.Database
-	(*DatabaseList)(nil),            // 9: trb.postgresql.v1.DatabaseList
-	(*SchemaSpec)(nil),              // 10: trb.postgresql.v1.SchemaSpec
-	(*SchemaName)(nil),              // 11: trb.postgresql.v1.SchemaName
-	(*ListSchemasRequest)(nil),      // 12: trb.postgresql.v1.ListSchemasRequest
-	(*Schema)(nil),                  // 13: trb.postgresql.v1.Schema
-	(*SchemaList)(nil),              // 14: trb.postgresql.v1.SchemaList
-	(*Column)(nil),                  // 15: trb.postgresql.v1.Column
-	(*TableSpec)(nil),               // 16: trb.postgresql.v1.TableSpec
-	(*TableName)(nil),               // 17: trb.postgresql.v1.TableName
-	(*ListTablesRequest)(nil),       // 18: trb.postgresql.v1.ListTablesRequest
-	(*Table)(nil),                   // 19: trb.postgresql.v1.Table
-	(*TableList)(nil),               // 20: trb.postgresql.v1.TableList
-	(*RenameTableRequest)(nil),      // 21: trb.postgresql.v1.RenameTableRequest
-	(*VacuumTableRequest)(nil),      // 22: trb.postgresql.v1.VacuumTableRequest
-	(*AnalyzeTableRequest)(nil),     // 23: trb.postgresql.v1.AnalyzeTableRequest
-	(*AddColumnRequest)(nil),        // 24: trb.postgresql.v1.AddColumnRequest
-	(*DropColumnRequest)(nil),       // 25: trb.postgresql.v1.DropColumnRequest
-	(*RenameColumnRequest)(nil),     // 26: trb.postgresql.v1.RenameColumnRequest
-	(*ModifyColumnRequest)(nil),     // 27: trb.postgresql.v1.ModifyColumnRequest
-	(*IndexSpec)(nil),               // 28: trb.postgresql.v1.IndexSpec
-	(*IndexName)(nil),               // 29: trb.postgresql.v1.IndexName
-	(*ListIndexesRequest)(nil),      // 30: trb.postgresql.v1.ListIndexesRequest
-	(*Index)(nil),                   // 31: trb.postgresql.v1.Index
-	(*IndexList)(nil),               // 32: trb.postgresql.v1.IndexList
-	(*ReindexRequest)(nil),          // 33: trb.postgresql.v1.ReindexRequest
-	(*QueryRow)(nil),                // 34: trb.postgresql.v1.QueryRow
-	(*ExecuteQueryRequest)(nil),     // 35: trb.postgresql.v1.ExecuteQueryRequest
-	(*ExecuteQueryResponse)(nil),    // 36: trb.postgresql.v1.ExecuteQueryResponse
-	(*PreviewTableDataRequest)(nil), // 37: trb.postgresql.v1.PreviewTableDataRequest
-	(*TablePartition)(nil),          // 38: trb.postgresql.v1.TablePartition
-	(*ListPartitionsRequest)(nil),   // 39: trb.postgresql.v1.ListPartitionsRequest
-	(*PartitionList)(nil),           // 40: trb.postgresql.v1.PartitionList
-	(*DropPartitionRequest)(nil),    // 41: trb.postgresql.v1.DropPartitionRequest
-	(*ProcessInfo)(nil),             // 42: trb.postgresql.v1.ProcessInfo
-	(*ListProcessesRequest)(nil),    // 43: trb.postgresql.v1.ListProcessesRequest
-	(*ProcessList)(nil),             // 44: trb.postgresql.v1.ProcessList
-	(*KillProcessRequest)(nil),      // 45: trb.postgresql.v1.KillProcessRequest
-	(*LockInfo)(nil),                // 46: trb.postgresql.v1.LockInfo
-	(*ListLocksRequest)(nil),        // 47: trb.postgresql.v1.ListLocksRequest
-	(*LockList)(nil),                // 48: trb.postgresql.v1.LockList
-	(*TablespaceInfo)(nil),          // 49: trb.postgresql.v1.TablespaceInfo
-	(*ListTablespacesRequest)(nil),  // 50: trb.postgresql.v1.ListTablespacesRequest
-	(*TablespaceList)(nil),          // 51: trb.postgresql.v1.TablespaceList
-	(*MetricItem)(nil),              // 52: trb.postgresql.v1.MetricItem
-	(*GetMetricsRequest)(nil),       // 53: trb.postgresql.v1.GetMetricsRequest
-	(*MetricsResponse)(nil),         // 54: trb.postgresql.v1.MetricsResponse
-	(*TableOptionsRequest)(nil),     // 55: trb.postgresql.v1.TableOptionsRequest
-	(*TableOptionsResponse)(nil),    // 56: trb.postgresql.v1.TableOptionsResponse
-	(*timestamppb.Timestamp)(nil),   // 57: google.protobuf.Timestamp
+	(*Connection)(nil),              // 0: trb.postgresql.v1.Connection
+	(*ListConnectionsRequest)(nil),  // 1: trb.postgresql.v1.ListConnectionsRequest
+	(*ConnectionList)(nil),          // 2: trb.postgresql.v1.ConnectionList
+	(*Status)(nil),                  // 3: trb.postgresql.v1.Status
+	(*PingRequest)(nil),             // 4: trb.postgresql.v1.PingRequest
+	(*PingResponse)(nil),            // 5: trb.postgresql.v1.PingResponse
+	(*ServerInfoRequest)(nil),       // 6: trb.postgresql.v1.ServerInfoRequest
+	(*ServerInfoResponse)(nil),      // 7: trb.postgresql.v1.ServerInfoResponse
+	(*DatabaseSpec)(nil),            // 8: trb.postgresql.v1.DatabaseSpec
+	(*DatabaseName)(nil),            // 9: trb.postgresql.v1.DatabaseName
+	(*ListDatabasesRequest)(nil),    // 10: trb.postgresql.v1.ListDatabasesRequest
+	(*Database)(nil),                // 11: trb.postgresql.v1.Database
+	(*DatabaseList)(nil),            // 12: trb.postgresql.v1.DatabaseList
+	(*SchemaSpec)(nil),              // 13: trb.postgresql.v1.SchemaSpec
+	(*SchemaName)(nil),              // 14: trb.postgresql.v1.SchemaName
+	(*ListSchemasRequest)(nil),      // 15: trb.postgresql.v1.ListSchemasRequest
+	(*Schema)(nil),                  // 16: trb.postgresql.v1.Schema
+	(*SchemaList)(nil),              // 17: trb.postgresql.v1.SchemaList
+	(*Column)(nil),                  // 18: trb.postgresql.v1.Column
+	(*TableSpec)(nil),               // 19: trb.postgresql.v1.TableSpec
+	(*TableName)(nil),               // 20: trb.postgresql.v1.TableName
+	(*ListTablesRequest)(nil),       // 21: trb.postgresql.v1.ListTablesRequest
+	(*Table)(nil),                   // 22: trb.postgresql.v1.Table
+	(*TableList)(nil),               // 23: trb.postgresql.v1.TableList
+	(*RenameTableRequest)(nil),      // 24: trb.postgresql.v1.RenameTableRequest
+	(*VacuumTableRequest)(nil),      // 25: trb.postgresql.v1.VacuumTableRequest
+	(*AnalyzeTableRequest)(nil),     // 26: trb.postgresql.v1.AnalyzeTableRequest
+	(*AddColumnRequest)(nil),        // 27: trb.postgresql.v1.AddColumnRequest
+	(*DropColumnRequest)(nil),       // 28: trb.postgresql.v1.DropColumnRequest
+	(*RenameColumnRequest)(nil),     // 29: trb.postgresql.v1.RenameColumnRequest
+	(*ModifyColumnRequest)(nil),     // 30: trb.postgresql.v1.ModifyColumnRequest
+	(*IndexSpec)(nil),               // 31: trb.postgresql.v1.IndexSpec
+	(*IndexName)(nil),               // 32: trb.postgresql.v1.IndexName
+	(*ListIndexesRequest)(nil),      // 33: trb.postgresql.v1.ListIndexesRequest
+	(*Index)(nil),                   // 34: trb.postgresql.v1.Index
+	(*IndexList)(nil),               // 35: trb.postgresql.v1.IndexList
+	(*ReindexRequest)(nil),          // 36: trb.postgresql.v1.ReindexRequest
+	(*QueryRow)(nil),                // 37: trb.postgresql.v1.QueryRow
+	(*ExecuteQueryRequest)(nil),     // 38: trb.postgresql.v1.ExecuteQueryRequest
+	(*ExecuteQueryResponse)(nil),    // 39: trb.postgresql.v1.ExecuteQueryResponse
+	(*PreviewTableDataRequest)(nil), // 40: trb.postgresql.v1.PreviewTableDataRequest
+	(*TablePartition)(nil),          // 41: trb.postgresql.v1.TablePartition
+	(*ListPartitionsRequest)(nil),   // 42: trb.postgresql.v1.ListPartitionsRequest
+	(*PartitionList)(nil),           // 43: trb.postgresql.v1.PartitionList
+	(*DropPartitionRequest)(nil),    // 44: trb.postgresql.v1.DropPartitionRequest
+	(*ProcessInfo)(nil),             // 45: trb.postgresql.v1.ProcessInfo
+	(*ListProcessesRequest)(nil),    // 46: trb.postgresql.v1.ListProcessesRequest
+	(*ProcessList)(nil),             // 47: trb.postgresql.v1.ProcessList
+	(*KillProcessRequest)(nil),      // 48: trb.postgresql.v1.KillProcessRequest
+	(*LockInfo)(nil),                // 49: trb.postgresql.v1.LockInfo
+	(*ListLocksRequest)(nil),        // 50: trb.postgresql.v1.ListLocksRequest
+	(*LockList)(nil),                // 51: trb.postgresql.v1.LockList
+	(*TablespaceInfo)(nil),          // 52: trb.postgresql.v1.TablespaceInfo
+	(*ListTablespacesRequest)(nil),  // 53: trb.postgresql.v1.ListTablespacesRequest
+	(*TablespaceList)(nil),          // 54: trb.postgresql.v1.TablespaceList
+	(*MetricItem)(nil),              // 55: trb.postgresql.v1.MetricItem
+	(*GetMetricsRequest)(nil),       // 56: trb.postgresql.v1.GetMetricsRequest
+	(*MetricsResponse)(nil),         // 57: trb.postgresql.v1.MetricsResponse
+	(*TableOptionsRequest)(nil),     // 58: trb.postgresql.v1.TableOptionsRequest
+	(*TableOptionsResponse)(nil),    // 59: trb.postgresql.v1.TableOptionsResponse
+	(*timestamppb.Timestamp)(nil),   // 60: google.protobuf.Timestamp
 }
 var file_postgresql_admin_proto_depIdxs = []int32{
-	8,  // 0: trb.postgresql.v1.DatabaseList.items:type_name -> trb.postgresql.v1.Database
-	13, // 1: trb.postgresql.v1.SchemaList.items:type_name -> trb.postgresql.v1.Schema
-	15, // 2: trb.postgresql.v1.TableSpec.columns:type_name -> trb.postgresql.v1.Column
-	57, // 3: trb.postgresql.v1.Table.last_vacuum:type_name -> google.protobuf.Timestamp
-	57, // 4: trb.postgresql.v1.Table.last_analyze:type_name -> google.protobuf.Timestamp
-	57, // 5: trb.postgresql.v1.Table.last_autovacuum:type_name -> google.protobuf.Timestamp
-	57, // 6: trb.postgresql.v1.Table.last_autoanalyze:type_name -> google.protobuf.Timestamp
-	15, // 7: trb.postgresql.v1.Table.columns:type_name -> trb.postgresql.v1.Column
-	19, // 8: trb.postgresql.v1.TableList.items:type_name -> trb.postgresql.v1.Table
-	15, // 9: trb.postgresql.v1.AddColumnRequest.column:type_name -> trb.postgresql.v1.Column
-	15, // 10: trb.postgresql.v1.ModifyColumnRequest.column:type_name -> trb.postgresql.v1.Column
-	31, // 11: trb.postgresql.v1.IndexList.items:type_name -> trb.postgresql.v1.Index
-	34, // 12: trb.postgresql.v1.ExecuteQueryResponse.rows:type_name -> trb.postgresql.v1.QueryRow
-	38, // 13: trb.postgresql.v1.PartitionList.items:type_name -> trb.postgresql.v1.TablePartition
-	57, // 14: trb.postgresql.v1.ProcessInfo.backend_start:type_name -> google.protobuf.Timestamp
-	57, // 15: trb.postgresql.v1.ProcessInfo.query_start:type_name -> google.protobuf.Timestamp
-	57, // 16: trb.postgresql.v1.ProcessInfo.state_change:type_name -> google.protobuf.Timestamp
-	42, // 17: trb.postgresql.v1.ProcessList.items:type_name -> trb.postgresql.v1.ProcessInfo
-	46, // 18: trb.postgresql.v1.LockList.items:type_name -> trb.postgresql.v1.LockInfo
-	49, // 19: trb.postgresql.v1.TablespaceList.items:type_name -> trb.postgresql.v1.TablespaceInfo
-	52, // 20: trb.postgresql.v1.MetricsResponse.metrics:type_name -> trb.postgresql.v1.MetricItem
-	1,  // 21: trb.postgresql.v1.PostgreSQL_Admin.Ping:input_type -> trb.postgresql.v1.PingRequest
-	3,  // 22: trb.postgresql.v1.PostgreSQL_Admin.ServerInfo:input_type -> trb.postgresql.v1.ServerInfoRequest
-	5,  // 23: trb.postgresql.v1.PostgreSQL_Admin.CreateDatabase:input_type -> trb.postgresql.v1.DatabaseSpec
-	6,  // 24: trb.postgresql.v1.PostgreSQL_Admin.DropDatabase:input_type -> trb.postgresql.v1.DatabaseName
-	7,  // 25: trb.postgresql.v1.PostgreSQL_Admin.ListDatabases:input_type -> trb.postgresql.v1.ListDatabasesRequest
-	6,  // 26: trb.postgresql.v1.PostgreSQL_Admin.DatabaseInfo:input_type -> trb.postgresql.v1.DatabaseName
-	10, // 27: trb.postgresql.v1.PostgreSQL_Admin.CreateSchema:input_type -> trb.postgresql.v1.SchemaSpec
-	11, // 28: trb.postgresql.v1.PostgreSQL_Admin.DropSchema:input_type -> trb.postgresql.v1.SchemaName
-	12, // 29: trb.postgresql.v1.PostgreSQL_Admin.ListSchemas:input_type -> trb.postgresql.v1.ListSchemasRequest
-	11, // 30: trb.postgresql.v1.PostgreSQL_Admin.SchemaInfo:input_type -> trb.postgresql.v1.SchemaName
-	16, // 31: trb.postgresql.v1.PostgreSQL_Admin.CreateTable:input_type -> trb.postgresql.v1.TableSpec
-	17, // 32: trb.postgresql.v1.PostgreSQL_Admin.DropTable:input_type -> trb.postgresql.v1.TableName
-	17, // 33: trb.postgresql.v1.PostgreSQL_Admin.TruncateTable:input_type -> trb.postgresql.v1.TableName
-	21, // 34: trb.postgresql.v1.PostgreSQL_Admin.RenameTable:input_type -> trb.postgresql.v1.RenameTableRequest
-	22, // 35: trb.postgresql.v1.PostgreSQL_Admin.VacuumTable:input_type -> trb.postgresql.v1.VacuumTableRequest
-	23, // 36: trb.postgresql.v1.PostgreSQL_Admin.AnalyzeTable:input_type -> trb.postgresql.v1.AnalyzeTableRequest
-	18, // 37: trb.postgresql.v1.PostgreSQL_Admin.ListTables:input_type -> trb.postgresql.v1.ListTablesRequest
-	17, // 38: trb.postgresql.v1.PostgreSQL_Admin.TableInfo:input_type -> trb.postgresql.v1.TableName
-	24, // 39: trb.postgresql.v1.PostgreSQL_Admin.AddColumn:input_type -> trb.postgresql.v1.AddColumnRequest
-	25, // 40: trb.postgresql.v1.PostgreSQL_Admin.DropColumn:input_type -> trb.postgresql.v1.DropColumnRequest
-	26, // 41: trb.postgresql.v1.PostgreSQL_Admin.RenameColumn:input_type -> trb.postgresql.v1.RenameColumnRequest
-	27, // 42: trb.postgresql.v1.PostgreSQL_Admin.ModifyColumn:input_type -> trb.postgresql.v1.ModifyColumnRequest
-	28, // 43: trb.postgresql.v1.PostgreSQL_Admin.CreateIndex:input_type -> trb.postgresql.v1.IndexSpec
-	29, // 44: trb.postgresql.v1.PostgreSQL_Admin.DropIndex:input_type -> trb.postgresql.v1.IndexName
-	30, // 45: trb.postgresql.v1.PostgreSQL_Admin.ListIndexes:input_type -> trb.postgresql.v1.ListIndexesRequest
-	33, // 46: trb.postgresql.v1.PostgreSQL_Admin.Reindex:input_type -> trb.postgresql.v1.ReindexRequest
-	35, // 47: trb.postgresql.v1.PostgreSQL_Admin.ExecuteQuery:input_type -> trb.postgresql.v1.ExecuteQueryRequest
-	37, // 48: trb.postgresql.v1.PostgreSQL_Admin.PreviewTableData:input_type -> trb.postgresql.v1.PreviewTableDataRequest
-	39, // 49: trb.postgresql.v1.PostgreSQL_Admin.ListPartitions:input_type -> trb.postgresql.v1.ListPartitionsRequest
-	41, // 50: trb.postgresql.v1.PostgreSQL_Admin.DropPartition:input_type -> trb.postgresql.v1.DropPartitionRequest
-	43, // 51: trb.postgresql.v1.PostgreSQL_Admin.ListProcesses:input_type -> trb.postgresql.v1.ListProcessesRequest
-	45, // 52: trb.postgresql.v1.PostgreSQL_Admin.KillProcess:input_type -> trb.postgresql.v1.KillProcessRequest
-	47, // 53: trb.postgresql.v1.PostgreSQL_Admin.ListLocks:input_type -> trb.postgresql.v1.ListLocksRequest
-	50, // 54: trb.postgresql.v1.PostgreSQL_Admin.ListTablespaces:input_type -> trb.postgresql.v1.ListTablespacesRequest
-	53, // 55: trb.postgresql.v1.PostgreSQL_Admin.GetMetrics:input_type -> trb.postgresql.v1.GetMetricsRequest
-	55, // 56: trb.postgresql.v1.PostgreSQL_Admin.GetTableOptions:input_type -> trb.postgresql.v1.TableOptionsRequest
-	2,  // 57: trb.postgresql.v1.PostgreSQL_Admin.Ping:output_type -> trb.postgresql.v1.PingResponse
-	4,  // 58: trb.postgresql.v1.PostgreSQL_Admin.ServerInfo:output_type -> trb.postgresql.v1.ServerInfoResponse
-	0,  // 59: trb.postgresql.v1.PostgreSQL_Admin.CreateDatabase:output_type -> trb.postgresql.v1.Status
-	0,  // 60: trb.postgresql.v1.PostgreSQL_Admin.DropDatabase:output_type -> trb.postgresql.v1.Status
-	9,  // 61: trb.postgresql.v1.PostgreSQL_Admin.ListDatabases:output_type -> trb.postgresql.v1.DatabaseList
-	8,  // 62: trb.postgresql.v1.PostgreSQL_Admin.DatabaseInfo:output_type -> trb.postgresql.v1.Database
-	0,  // 63: trb.postgresql.v1.PostgreSQL_Admin.CreateSchema:output_type -> trb.postgresql.v1.Status
-	0,  // 64: trb.postgresql.v1.PostgreSQL_Admin.DropSchema:output_type -> trb.postgresql.v1.Status
-	14, // 65: trb.postgresql.v1.PostgreSQL_Admin.ListSchemas:output_type -> trb.postgresql.v1.SchemaList
-	13, // 66: trb.postgresql.v1.PostgreSQL_Admin.SchemaInfo:output_type -> trb.postgresql.v1.Schema
-	0,  // 67: trb.postgresql.v1.PostgreSQL_Admin.CreateTable:output_type -> trb.postgresql.v1.Status
-	0,  // 68: trb.postgresql.v1.PostgreSQL_Admin.DropTable:output_type -> trb.postgresql.v1.Status
-	0,  // 69: trb.postgresql.v1.PostgreSQL_Admin.TruncateTable:output_type -> trb.postgresql.v1.Status
-	0,  // 70: trb.postgresql.v1.PostgreSQL_Admin.RenameTable:output_type -> trb.postgresql.v1.Status
-	0,  // 71: trb.postgresql.v1.PostgreSQL_Admin.VacuumTable:output_type -> trb.postgresql.v1.Status
-	0,  // 72: trb.postgresql.v1.PostgreSQL_Admin.AnalyzeTable:output_type -> trb.postgresql.v1.Status
-	20, // 73: trb.postgresql.v1.PostgreSQL_Admin.ListTables:output_type -> trb.postgresql.v1.TableList
-	19, // 74: trb.postgresql.v1.PostgreSQL_Admin.TableInfo:output_type -> trb.postgresql.v1.Table
-	0,  // 75: trb.postgresql.v1.PostgreSQL_Admin.AddColumn:output_type -> trb.postgresql.v1.Status
-	0,  // 76: trb.postgresql.v1.PostgreSQL_Admin.DropColumn:output_type -> trb.postgresql.v1.Status
-	0,  // 77: trb.postgresql.v1.PostgreSQL_Admin.RenameColumn:output_type -> trb.postgresql.v1.Status
-	0,  // 78: trb.postgresql.v1.PostgreSQL_Admin.ModifyColumn:output_type -> trb.postgresql.v1.Status
-	0,  // 79: trb.postgresql.v1.PostgreSQL_Admin.CreateIndex:output_type -> trb.postgresql.v1.Status
-	0,  // 80: trb.postgresql.v1.PostgreSQL_Admin.DropIndex:output_type -> trb.postgresql.v1.Status
-	32, // 81: trb.postgresql.v1.PostgreSQL_Admin.ListIndexes:output_type -> trb.postgresql.v1.IndexList
-	0,  // 82: trb.postgresql.v1.PostgreSQL_Admin.Reindex:output_type -> trb.postgresql.v1.Status
-	36, // 83: trb.postgresql.v1.PostgreSQL_Admin.ExecuteQuery:output_type -> trb.postgresql.v1.ExecuteQueryResponse
-	36, // 84: trb.postgresql.v1.PostgreSQL_Admin.PreviewTableData:output_type -> trb.postgresql.v1.ExecuteQueryResponse
-	40, // 85: trb.postgresql.v1.PostgreSQL_Admin.ListPartitions:output_type -> trb.postgresql.v1.PartitionList
-	0,  // 86: trb.postgresql.v1.PostgreSQL_Admin.DropPartition:output_type -> trb.postgresql.v1.Status
-	44, // 87: trb.postgresql.v1.PostgreSQL_Admin.ListProcesses:output_type -> trb.postgresql.v1.ProcessList
-	0,  // 88: trb.postgresql.v1.PostgreSQL_Admin.KillProcess:output_type -> trb.postgresql.v1.Status
-	48, // 89: trb.postgresql.v1.PostgreSQL_Admin.ListLocks:output_type -> trb.postgresql.v1.LockList
-	51, // 90: trb.postgresql.v1.PostgreSQL_Admin.ListTablespaces:output_type -> trb.postgresql.v1.TablespaceList
-	54, // 91: trb.postgresql.v1.PostgreSQL_Admin.GetMetrics:output_type -> trb.postgresql.v1.MetricsResponse
-	56, // 92: trb.postgresql.v1.PostgreSQL_Admin.GetTableOptions:output_type -> trb.postgresql.v1.TableOptionsResponse
-	57, // [57:93] is the sub-list for method output_type
-	21, // [21:57] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	0,  // 0: trb.postgresql.v1.ConnectionList.items:type_name -> trb.postgresql.v1.Connection
+	11, // 1: trb.postgresql.v1.DatabaseList.items:type_name -> trb.postgresql.v1.Database
+	16, // 2: trb.postgresql.v1.SchemaList.items:type_name -> trb.postgresql.v1.Schema
+	18, // 3: trb.postgresql.v1.TableSpec.columns:type_name -> trb.postgresql.v1.Column
+	60, // 4: trb.postgresql.v1.Table.last_vacuum:type_name -> google.protobuf.Timestamp
+	60, // 5: trb.postgresql.v1.Table.last_analyze:type_name -> google.protobuf.Timestamp
+	60, // 6: trb.postgresql.v1.Table.last_autovacuum:type_name -> google.protobuf.Timestamp
+	60, // 7: trb.postgresql.v1.Table.last_autoanalyze:type_name -> google.protobuf.Timestamp
+	18, // 8: trb.postgresql.v1.Table.columns:type_name -> trb.postgresql.v1.Column
+	22, // 9: trb.postgresql.v1.TableList.items:type_name -> trb.postgresql.v1.Table
+	18, // 10: trb.postgresql.v1.AddColumnRequest.column:type_name -> trb.postgresql.v1.Column
+	18, // 11: trb.postgresql.v1.ModifyColumnRequest.column:type_name -> trb.postgresql.v1.Column
+	34, // 12: trb.postgresql.v1.IndexList.items:type_name -> trb.postgresql.v1.Index
+	37, // 13: trb.postgresql.v1.ExecuteQueryResponse.rows:type_name -> trb.postgresql.v1.QueryRow
+	41, // 14: trb.postgresql.v1.PartitionList.items:type_name -> trb.postgresql.v1.TablePartition
+	60, // 15: trb.postgresql.v1.ProcessInfo.backend_start:type_name -> google.protobuf.Timestamp
+	60, // 16: trb.postgresql.v1.ProcessInfo.query_start:type_name -> google.protobuf.Timestamp
+	60, // 17: trb.postgresql.v1.ProcessInfo.state_change:type_name -> google.protobuf.Timestamp
+	45, // 18: trb.postgresql.v1.ProcessList.items:type_name -> trb.postgresql.v1.ProcessInfo
+	49, // 19: trb.postgresql.v1.LockList.items:type_name -> trb.postgresql.v1.LockInfo
+	52, // 20: trb.postgresql.v1.TablespaceList.items:type_name -> trb.postgresql.v1.TablespaceInfo
+	55, // 21: trb.postgresql.v1.MetricsResponse.metrics:type_name -> trb.postgresql.v1.MetricItem
+	4,  // 22: trb.postgresql.v1.PostgreSQL_Admin.Ping:input_type -> trb.postgresql.v1.PingRequest
+	6,  // 23: trb.postgresql.v1.PostgreSQL_Admin.ServerInfo:input_type -> trb.postgresql.v1.ServerInfoRequest
+	8,  // 24: trb.postgresql.v1.PostgreSQL_Admin.CreateDatabase:input_type -> trb.postgresql.v1.DatabaseSpec
+	9,  // 25: trb.postgresql.v1.PostgreSQL_Admin.DropDatabase:input_type -> trb.postgresql.v1.DatabaseName
+	10, // 26: trb.postgresql.v1.PostgreSQL_Admin.ListDatabases:input_type -> trb.postgresql.v1.ListDatabasesRequest
+	9,  // 27: trb.postgresql.v1.PostgreSQL_Admin.DatabaseInfo:input_type -> trb.postgresql.v1.DatabaseName
+	13, // 28: trb.postgresql.v1.PostgreSQL_Admin.CreateSchema:input_type -> trb.postgresql.v1.SchemaSpec
+	14, // 29: trb.postgresql.v1.PostgreSQL_Admin.DropSchema:input_type -> trb.postgresql.v1.SchemaName
+	15, // 30: trb.postgresql.v1.PostgreSQL_Admin.ListSchemas:input_type -> trb.postgresql.v1.ListSchemasRequest
+	14, // 31: trb.postgresql.v1.PostgreSQL_Admin.SchemaInfo:input_type -> trb.postgresql.v1.SchemaName
+	19, // 32: trb.postgresql.v1.PostgreSQL_Admin.CreateTable:input_type -> trb.postgresql.v1.TableSpec
+	20, // 33: trb.postgresql.v1.PostgreSQL_Admin.DropTable:input_type -> trb.postgresql.v1.TableName
+	20, // 34: trb.postgresql.v1.PostgreSQL_Admin.TruncateTable:input_type -> trb.postgresql.v1.TableName
+	24, // 35: trb.postgresql.v1.PostgreSQL_Admin.RenameTable:input_type -> trb.postgresql.v1.RenameTableRequest
+	25, // 36: trb.postgresql.v1.PostgreSQL_Admin.VacuumTable:input_type -> trb.postgresql.v1.VacuumTableRequest
+	26, // 37: trb.postgresql.v1.PostgreSQL_Admin.AnalyzeTable:input_type -> trb.postgresql.v1.AnalyzeTableRequest
+	21, // 38: trb.postgresql.v1.PostgreSQL_Admin.ListTables:input_type -> trb.postgresql.v1.ListTablesRequest
+	20, // 39: trb.postgresql.v1.PostgreSQL_Admin.TableInfo:input_type -> trb.postgresql.v1.TableName
+	27, // 40: trb.postgresql.v1.PostgreSQL_Admin.AddColumn:input_type -> trb.postgresql.v1.AddColumnRequest
+	28, // 41: trb.postgresql.v1.PostgreSQL_Admin.DropColumn:input_type -> trb.postgresql.v1.DropColumnRequest
+	29, // 42: trb.postgresql.v1.PostgreSQL_Admin.RenameColumn:input_type -> trb.postgresql.v1.RenameColumnRequest
+	30, // 43: trb.postgresql.v1.PostgreSQL_Admin.ModifyColumn:input_type -> trb.postgresql.v1.ModifyColumnRequest
+	31, // 44: trb.postgresql.v1.PostgreSQL_Admin.CreateIndex:input_type -> trb.postgresql.v1.IndexSpec
+	32, // 45: trb.postgresql.v1.PostgreSQL_Admin.DropIndex:input_type -> trb.postgresql.v1.IndexName
+	33, // 46: trb.postgresql.v1.PostgreSQL_Admin.ListIndexes:input_type -> trb.postgresql.v1.ListIndexesRequest
+	36, // 47: trb.postgresql.v1.PostgreSQL_Admin.Reindex:input_type -> trb.postgresql.v1.ReindexRequest
+	38, // 48: trb.postgresql.v1.PostgreSQL_Admin.ExecuteQuery:input_type -> trb.postgresql.v1.ExecuteQueryRequest
+	40, // 49: trb.postgresql.v1.PostgreSQL_Admin.PreviewTableData:input_type -> trb.postgresql.v1.PreviewTableDataRequest
+	42, // 50: trb.postgresql.v1.PostgreSQL_Admin.ListPartitions:input_type -> trb.postgresql.v1.ListPartitionsRequest
+	44, // 51: trb.postgresql.v1.PostgreSQL_Admin.DropPartition:input_type -> trb.postgresql.v1.DropPartitionRequest
+	46, // 52: trb.postgresql.v1.PostgreSQL_Admin.ListProcesses:input_type -> trb.postgresql.v1.ListProcessesRequest
+	48, // 53: trb.postgresql.v1.PostgreSQL_Admin.KillProcess:input_type -> trb.postgresql.v1.KillProcessRequest
+	50, // 54: trb.postgresql.v1.PostgreSQL_Admin.ListLocks:input_type -> trb.postgresql.v1.ListLocksRequest
+	53, // 55: trb.postgresql.v1.PostgreSQL_Admin.ListTablespaces:input_type -> trb.postgresql.v1.ListTablespacesRequest
+	56, // 56: trb.postgresql.v1.PostgreSQL_Admin.GetMetrics:input_type -> trb.postgresql.v1.GetMetricsRequest
+	58, // 57: trb.postgresql.v1.PostgreSQL_Admin.GetTableOptions:input_type -> trb.postgresql.v1.TableOptionsRequest
+	1,  // 58: trb.postgresql.v1.PostgreSQL_Admin.ListConnections:input_type -> trb.postgresql.v1.ListConnectionsRequest
+	5,  // 59: trb.postgresql.v1.PostgreSQL_Admin.Ping:output_type -> trb.postgresql.v1.PingResponse
+	7,  // 60: trb.postgresql.v1.PostgreSQL_Admin.ServerInfo:output_type -> trb.postgresql.v1.ServerInfoResponse
+	3,  // 61: trb.postgresql.v1.PostgreSQL_Admin.CreateDatabase:output_type -> trb.postgresql.v1.Status
+	3,  // 62: trb.postgresql.v1.PostgreSQL_Admin.DropDatabase:output_type -> trb.postgresql.v1.Status
+	12, // 63: trb.postgresql.v1.PostgreSQL_Admin.ListDatabases:output_type -> trb.postgresql.v1.DatabaseList
+	11, // 64: trb.postgresql.v1.PostgreSQL_Admin.DatabaseInfo:output_type -> trb.postgresql.v1.Database
+	3,  // 65: trb.postgresql.v1.PostgreSQL_Admin.CreateSchema:output_type -> trb.postgresql.v1.Status
+	3,  // 66: trb.postgresql.v1.PostgreSQL_Admin.DropSchema:output_type -> trb.postgresql.v1.Status
+	17, // 67: trb.postgresql.v1.PostgreSQL_Admin.ListSchemas:output_type -> trb.postgresql.v1.SchemaList
+	16, // 68: trb.postgresql.v1.PostgreSQL_Admin.SchemaInfo:output_type -> trb.postgresql.v1.Schema
+	3,  // 69: trb.postgresql.v1.PostgreSQL_Admin.CreateTable:output_type -> trb.postgresql.v1.Status
+	3,  // 70: trb.postgresql.v1.PostgreSQL_Admin.DropTable:output_type -> trb.postgresql.v1.Status
+	3,  // 71: trb.postgresql.v1.PostgreSQL_Admin.TruncateTable:output_type -> trb.postgresql.v1.Status
+	3,  // 72: trb.postgresql.v1.PostgreSQL_Admin.RenameTable:output_type -> trb.postgresql.v1.Status
+	3,  // 73: trb.postgresql.v1.PostgreSQL_Admin.VacuumTable:output_type -> trb.postgresql.v1.Status
+	3,  // 74: trb.postgresql.v1.PostgreSQL_Admin.AnalyzeTable:output_type -> trb.postgresql.v1.Status
+	23, // 75: trb.postgresql.v1.PostgreSQL_Admin.ListTables:output_type -> trb.postgresql.v1.TableList
+	22, // 76: trb.postgresql.v1.PostgreSQL_Admin.TableInfo:output_type -> trb.postgresql.v1.Table
+	3,  // 77: trb.postgresql.v1.PostgreSQL_Admin.AddColumn:output_type -> trb.postgresql.v1.Status
+	3,  // 78: trb.postgresql.v1.PostgreSQL_Admin.DropColumn:output_type -> trb.postgresql.v1.Status
+	3,  // 79: trb.postgresql.v1.PostgreSQL_Admin.RenameColumn:output_type -> trb.postgresql.v1.Status
+	3,  // 80: trb.postgresql.v1.PostgreSQL_Admin.ModifyColumn:output_type -> trb.postgresql.v1.Status
+	3,  // 81: trb.postgresql.v1.PostgreSQL_Admin.CreateIndex:output_type -> trb.postgresql.v1.Status
+	3,  // 82: trb.postgresql.v1.PostgreSQL_Admin.DropIndex:output_type -> trb.postgresql.v1.Status
+	35, // 83: trb.postgresql.v1.PostgreSQL_Admin.ListIndexes:output_type -> trb.postgresql.v1.IndexList
+	3,  // 84: trb.postgresql.v1.PostgreSQL_Admin.Reindex:output_type -> trb.postgresql.v1.Status
+	39, // 85: trb.postgresql.v1.PostgreSQL_Admin.ExecuteQuery:output_type -> trb.postgresql.v1.ExecuteQueryResponse
+	39, // 86: trb.postgresql.v1.PostgreSQL_Admin.PreviewTableData:output_type -> trb.postgresql.v1.ExecuteQueryResponse
+	43, // 87: trb.postgresql.v1.PostgreSQL_Admin.ListPartitions:output_type -> trb.postgresql.v1.PartitionList
+	3,  // 88: trb.postgresql.v1.PostgreSQL_Admin.DropPartition:output_type -> trb.postgresql.v1.Status
+	47, // 89: trb.postgresql.v1.PostgreSQL_Admin.ListProcesses:output_type -> trb.postgresql.v1.ProcessList
+	3,  // 90: trb.postgresql.v1.PostgreSQL_Admin.KillProcess:output_type -> trb.postgresql.v1.Status
+	51, // 91: trb.postgresql.v1.PostgreSQL_Admin.ListLocks:output_type -> trb.postgresql.v1.LockList
+	54, // 92: trb.postgresql.v1.PostgreSQL_Admin.ListTablespaces:output_type -> trb.postgresql.v1.TablespaceList
+	57, // 93: trb.postgresql.v1.PostgreSQL_Admin.GetMetrics:output_type -> trb.postgresql.v1.MetricsResponse
+	59, // 94: trb.postgresql.v1.PostgreSQL_Admin.GetTableOptions:output_type -> trb.postgresql.v1.TableOptionsResponse
+	2,  // 95: trb.postgresql.v1.PostgreSQL_Admin.ListConnections:output_type -> trb.postgresql.v1.ConnectionList
+	59, // [59:96] is the sub-list for method output_type
+	22, // [22:59] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_postgresql_admin_proto_init() }
@@ -4739,7 +4904,7 @@ func file_postgresql_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_postgresql_admin_proto_rawDesc), len(file_postgresql_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   57,
+			NumMessages:   60,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

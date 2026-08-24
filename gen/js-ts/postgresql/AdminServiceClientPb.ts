@@ -1587,5 +1587,48 @@ export class PostgreSQL_AdminClient {
     this.methodDescriptorGetTableOptions);
   }
 
+  methodDescriptorListConnections = new grpcWeb.MethodDescriptor(
+    '/trb.postgresql.v1.PostgreSQL_Admin/ListConnections',
+    grpcWeb.MethodType.UNARY,
+    postgresql_admin_pb.ListConnectionsRequest,
+    postgresql_admin_pb.ConnectionList,
+    (request: postgresql_admin_pb.ListConnectionsRequest) => {
+      return request.serializeBinary();
+    },
+    postgresql_admin_pb.ConnectionList.deserializeBinary
+  );
+
+  listConnections(
+    request: postgresql_admin_pb.ListConnectionsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<postgresql_admin_pb.ConnectionList>;
+
+  listConnections(
+    request: postgresql_admin_pb.ListConnectionsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: postgresql_admin_pb.ConnectionList) => void): grpcWeb.ClientReadableStream<postgresql_admin_pb.ConnectionList>;
+
+  listConnections(
+    request: postgresql_admin_pb.ListConnectionsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: postgresql_admin_pb.ConnectionList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.postgresql.v1.PostgreSQL_Admin/ListConnections',
+        request,
+        metadata || {},
+        this.methodDescriptorListConnections,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.postgresql.v1.PostgreSQL_Admin/ListConnections',
+    request,
+    metadata || {},
+    this.methodDescriptorListConnections);
+  }
+
 }
 

@@ -5,6 +5,70 @@ import * as google_api_field_behavior_pb from '../google/api/field_behavior_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
 
 
+export class Connection extends jspb.Message {
+  getName(): string;
+  setName(value: string): Connection;
+
+  getHost(): string;
+  setHost(value: string): Connection;
+
+  getDatabase(): string;
+  setDatabase(value: string): Connection;
+
+  getIsDefault(): boolean;
+  setIsDefault(value: boolean): Connection;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Connection.AsObject;
+  static toObject(includeInstance: boolean, msg: Connection): Connection.AsObject;
+  static serializeBinaryToWriter(message: Connection, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Connection;
+  static deserializeBinaryFromReader(message: Connection, reader: jspb.BinaryReader): Connection;
+}
+
+export namespace Connection {
+  export type AsObject = {
+    name: string,
+    host: string,
+    database: string,
+    isDefault: boolean,
+  }
+}
+
+export class ListConnectionsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListConnectionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListConnectionsRequest): ListConnectionsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListConnectionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListConnectionsRequest;
+  static deserializeBinaryFromReader(message: ListConnectionsRequest, reader: jspb.BinaryReader): ListConnectionsRequest;
+}
+
+export namespace ListConnectionsRequest {
+  export type AsObject = {
+  }
+}
+
+export class ConnectionList extends jspb.Message {
+  getItemsList(): Array<Connection>;
+  setItemsList(value: Array<Connection>): ConnectionList;
+  clearItemsList(): ConnectionList;
+  addItems(value?: Connection, index?: number): Connection;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConnectionList.AsObject;
+  static toObject(includeInstance: boolean, msg: ConnectionList): ConnectionList.AsObject;
+  static serializeBinaryToWriter(message: ConnectionList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConnectionList;
+  static deserializeBinaryFromReader(message: ConnectionList, reader: jspb.BinaryReader): ConnectionList;
+}
+
+export namespace ConnectionList {
+  export type AsObject = {
+    itemsList: Array<Connection.AsObject>,
+  }
+}
+
 export class Status extends jspb.Message {
   getSuccess(): boolean;
   setSuccess(value: boolean): Status;

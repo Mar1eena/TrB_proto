@@ -45,6 +45,7 @@ const (
 	ClickHouse_Admin_ListDisks_FullMethodName        = "/trb.clickhouse.v1.ClickHouse_Admin/ListDisks"
 	ClickHouse_Admin_GetMetrics_FullMethodName       = "/trb.clickhouse.v1.ClickHouse_Admin/GetMetrics"
 	ClickHouse_Admin_GetTableOptions_FullMethodName  = "/trb.clickhouse.v1.ClickHouse_Admin/GetTableOptions"
+	ClickHouse_Admin_ListConnections_FullMethodName  = "/trb.clickhouse.v1.ClickHouse_Admin/ListConnections"
 )
 
 // ClickHouse_AdminClient is the client API for ClickHouse_Admin service.
@@ -79,6 +80,7 @@ type ClickHouse_AdminClient interface {
 	ListDisks(ctx context.Context, in *ListDisksRequest, opts ...grpc.CallOption) (*DiskList, error)
 	GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*MetricsResponse, error)
 	GetTableOptions(ctx context.Context, in *TableOptionsRequest, opts ...grpc.CallOption) (*TableOptionsResponse, error)
+	ListConnections(ctx context.Context, in *ListConnectionsRequest, opts ...grpc.CallOption) (*ConnectionList, error)
 }
 
 type clickHouse_AdminClient struct {
@@ -349,6 +351,16 @@ func (c *clickHouse_AdminClient) GetTableOptions(ctx context.Context, in *TableO
 	return out, nil
 }
 
+func (c *clickHouse_AdminClient) ListConnections(ctx context.Context, in *ListConnectionsRequest, opts ...grpc.CallOption) (*ConnectionList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ConnectionList)
+	err := c.cc.Invoke(ctx, ClickHouse_Admin_ListConnections_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ClickHouse_AdminServer is the server API for ClickHouse_Admin service.
 // All implementations must embed UnimplementedClickHouse_AdminServer
 // for forward compatibility.
@@ -381,6 +393,7 @@ type ClickHouse_AdminServer interface {
 	ListDisks(context.Context, *ListDisksRequest) (*DiskList, error)
 	GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error)
 	GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error)
+	ListConnections(context.Context, *ListConnectionsRequest) (*ConnectionList, error)
 	mustEmbedUnimplementedClickHouse_AdminServer()
 }
 
@@ -468,6 +481,9 @@ func (UnimplementedClickHouse_AdminServer) GetMetrics(context.Context, *GetMetri
 }
 func (UnimplementedClickHouse_AdminServer) GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTableOptions not implemented")
+}
+func (UnimplementedClickHouse_AdminServer) ListConnections(context.Context, *ListConnectionsRequest) (*ConnectionList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListConnections not implemented")
 }
 func (UnimplementedClickHouse_AdminServer) mustEmbedUnimplementedClickHouse_AdminServer() {}
 func (UnimplementedClickHouse_AdminServer) testEmbeddedByValue()                          {}
@@ -958,6 +974,24 @@ func _ClickHouse_Admin_GetTableOptions_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClickHouse_Admin_ListConnections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouse_AdminServer).ListConnections(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouse_Admin_ListConnections_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouse_AdminServer).ListConnections(ctx, req.(*ListConnectionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ClickHouse_Admin_ServiceDesc is the grpc.ServiceDesc for ClickHouse_Admin service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1068,6 +1102,10 @@ var ClickHouse_Admin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTableOptions",
 			Handler:    _ClickHouse_Admin_GetTableOptions_Handler,
+		},
+		{
+			MethodName: "ListConnections",
+			Handler:    _ClickHouse_Admin_ListConnections_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

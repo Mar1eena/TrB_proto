@@ -55,6 +55,7 @@ const (
 	PostgreSQL_Admin_ListTablespaces_FullMethodName  = "/trb.postgresql.v1.PostgreSQL_Admin/ListTablespaces"
 	PostgreSQL_Admin_GetMetrics_FullMethodName       = "/trb.postgresql.v1.PostgreSQL_Admin/GetMetrics"
 	PostgreSQL_Admin_GetTableOptions_FullMethodName  = "/trb.postgresql.v1.PostgreSQL_Admin/GetTableOptions"
+	PostgreSQL_Admin_ListConnections_FullMethodName  = "/trb.postgresql.v1.PostgreSQL_Admin/ListConnections"
 )
 
 // PostgreSQL_AdminClient is the client API for PostgreSQL_Admin service.
@@ -99,6 +100,7 @@ type PostgreSQL_AdminClient interface {
 	ListTablespaces(ctx context.Context, in *ListTablespacesRequest, opts ...grpc.CallOption) (*TablespaceList, error)
 	GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*MetricsResponse, error)
 	GetTableOptions(ctx context.Context, in *TableOptionsRequest, opts ...grpc.CallOption) (*TableOptionsResponse, error)
+	ListConnections(ctx context.Context, in *ListConnectionsRequest, opts ...grpc.CallOption) (*ConnectionList, error)
 }
 
 type postgreSQL_AdminClient struct {
@@ -469,6 +471,16 @@ func (c *postgreSQL_AdminClient) GetTableOptions(ctx context.Context, in *TableO
 	return out, nil
 }
 
+func (c *postgreSQL_AdminClient) ListConnections(ctx context.Context, in *ListConnectionsRequest, opts ...grpc.CallOption) (*ConnectionList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ConnectionList)
+	err := c.cc.Invoke(ctx, PostgreSQL_Admin_ListConnections_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostgreSQL_AdminServer is the server API for PostgreSQL_Admin service.
 // All implementations must embed UnimplementedPostgreSQL_AdminServer
 // for forward compatibility.
@@ -511,6 +523,7 @@ type PostgreSQL_AdminServer interface {
 	ListTablespaces(context.Context, *ListTablespacesRequest) (*TablespaceList, error)
 	GetMetrics(context.Context, *GetMetricsRequest) (*MetricsResponse, error)
 	GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error)
+	ListConnections(context.Context, *ListConnectionsRequest) (*ConnectionList, error)
 	mustEmbedUnimplementedPostgreSQL_AdminServer()
 }
 
@@ -628,6 +641,9 @@ func (UnimplementedPostgreSQL_AdminServer) GetMetrics(context.Context, *GetMetri
 }
 func (UnimplementedPostgreSQL_AdminServer) GetTableOptions(context.Context, *TableOptionsRequest) (*TableOptionsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTableOptions not implemented")
+}
+func (UnimplementedPostgreSQL_AdminServer) ListConnections(context.Context, *ListConnectionsRequest) (*ConnectionList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListConnections not implemented")
 }
 func (UnimplementedPostgreSQL_AdminServer) mustEmbedUnimplementedPostgreSQL_AdminServer() {}
 func (UnimplementedPostgreSQL_AdminServer) testEmbeddedByValue()                          {}
@@ -1298,6 +1314,24 @@ func _PostgreSQL_Admin_GetTableOptions_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgreSQL_Admin_ListConnections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgreSQL_AdminServer).ListConnections(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgreSQL_Admin_ListConnections_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgreSQL_AdminServer).ListConnections(ctx, req.(*ListConnectionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PostgreSQL_Admin_ServiceDesc is the grpc.ServiceDesc for PostgreSQL_Admin service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1448,6 +1482,10 @@ var PostgreSQL_Admin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTableOptions",
 			Handler:    _PostgreSQL_Admin_GetTableOptions_Handler,
+		},
+		{
+			MethodName: "ListConnections",
+			Handler:    _PostgreSQL_Admin_ListConnections_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
