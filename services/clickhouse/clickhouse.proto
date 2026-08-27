@@ -41,6 +41,14 @@ service ClickHouse {
       additional_bindings { post: "/ListLastDownloads" body: "*" }
     };
   }
+
+  // ListCandles — исторические свечи из TrB.hct по инструменту и интервалу.
+  rpc ListCandles(ListCandlesRequest) returns (ListCandlesResponse) {
+    option (google.api.http) = {
+      get: "/v1/historic-candles/candles"
+      additional_bindings { post: "/ListCandles" body: "*" }
+    };
+  }
 }
 
 message ListFilter {
@@ -103,4 +111,29 @@ message LastDownload {
   google.protobuf.Timestamp last_start = 6;
   google.protobuf.Timestamp last_end = 7;
   bool has_download = 8;
+}
+
+message ListCandlesRequest {
+  string uid = 1;
+  int32 interval = 2;
+  google.protobuf.Timestamp from = 3;
+  google.protobuf.Timestamp to = 4;
+  int32 limit = 5;
+}
+
+message HistoricCandleRow {
+  google.protobuf.Timestamp time = 1;
+  double open = 2;
+  double high = 3;
+  double low = 4;
+  double close = 5;
+  int64 volume = 6;
+  int64 volume_buy = 7;
+  int64 volume_sell = 8;
+  int32 candle_source = 9;
+  bool is_complete = 10;
+}
+
+message ListCandlesResponse {
+  repeated HistoricCandleRow items = 1;
 }

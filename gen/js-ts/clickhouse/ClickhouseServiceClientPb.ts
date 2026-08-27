@@ -212,5 +212,48 @@ export class ClickHouseClient {
     this.methodDescriptorListLastDownloads);
   }
 
+  methodDescriptorListCandles = new grpcWeb.MethodDescriptor(
+    '/trb.clickhouse.v1.ClickHouse/ListCandles',
+    grpcWeb.MethodType.UNARY,
+    clickhouse_clickhouse_pb.ListCandlesRequest,
+    clickhouse_clickhouse_pb.ListCandlesResponse,
+    (request: clickhouse_clickhouse_pb.ListCandlesRequest) => {
+      return request.serializeBinary();
+    },
+    clickhouse_clickhouse_pb.ListCandlesResponse.deserializeBinary
+  );
+
+  listCandles(
+    request: clickhouse_clickhouse_pb.ListCandlesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<clickhouse_clickhouse_pb.ListCandlesResponse>;
+
+  listCandles(
+    request: clickhouse_clickhouse_pb.ListCandlesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: clickhouse_clickhouse_pb.ListCandlesResponse) => void): grpcWeb.ClientReadableStream<clickhouse_clickhouse_pb.ListCandlesResponse>;
+
+  listCandles(
+    request: clickhouse_clickhouse_pb.ListCandlesRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: clickhouse_clickhouse_pb.ListCandlesResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.clickhouse.v1.ClickHouse/ListCandles',
+        request,
+        metadata || {},
+        this.methodDescriptorListCandles,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.clickhouse.v1.ClickHouse/ListCandles',
+    request,
+    metadata || {},
+    this.methodDescriptorListCandles);
+  }
+
 }
 

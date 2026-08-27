@@ -289,3 +289,117 @@ export namespace LastDownload {
   }
 }
 
+export class ListCandlesRequest extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): ListCandlesRequest;
+
+  getInterval(): number;
+  setInterval(value: number): ListCandlesRequest;
+
+  getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFrom(value?: google_protobuf_timestamp_pb.Timestamp): ListCandlesRequest;
+  hasFrom(): boolean;
+  clearFrom(): ListCandlesRequest;
+
+  getTo(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTo(value?: google_protobuf_timestamp_pb.Timestamp): ListCandlesRequest;
+  hasTo(): boolean;
+  clearTo(): ListCandlesRequest;
+
+  getLimit(): number;
+  setLimit(value: number): ListCandlesRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListCandlesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListCandlesRequest): ListCandlesRequest.AsObject;
+  static serializeBinaryToWriter(message: ListCandlesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListCandlesRequest;
+  static deserializeBinaryFromReader(message: ListCandlesRequest, reader: jspb.BinaryReader): ListCandlesRequest;
+}
+
+export namespace ListCandlesRequest {
+  export type AsObject = {
+    uid: string,
+    interval: number,
+    from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    limit: number,
+  }
+}
+
+export class HistoricCandleRow extends jspb.Message {
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): HistoricCandleRow;
+  hasTime(): boolean;
+  clearTime(): HistoricCandleRow;
+
+  getOpen(): number;
+  setOpen(value: number): HistoricCandleRow;
+
+  getHigh(): number;
+  setHigh(value: number): HistoricCandleRow;
+
+  getLow(): number;
+  setLow(value: number): HistoricCandleRow;
+
+  getClose(): number;
+  setClose(value: number): HistoricCandleRow;
+
+  getVolume(): number;
+  setVolume(value: number): HistoricCandleRow;
+
+  getVolumeBuy(): number;
+  setVolumeBuy(value: number): HistoricCandleRow;
+
+  getVolumeSell(): number;
+  setVolumeSell(value: number): HistoricCandleRow;
+
+  getCandleSource(): number;
+  setCandleSource(value: number): HistoricCandleRow;
+
+  getIsComplete(): boolean;
+  setIsComplete(value: boolean): HistoricCandleRow;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HistoricCandleRow.AsObject;
+  static toObject(includeInstance: boolean, msg: HistoricCandleRow): HistoricCandleRow.AsObject;
+  static serializeBinaryToWriter(message: HistoricCandleRow, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HistoricCandleRow;
+  static deserializeBinaryFromReader(message: HistoricCandleRow, reader: jspb.BinaryReader): HistoricCandleRow;
+}
+
+export namespace HistoricCandleRow {
+  export type AsObject = {
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    open: number,
+    high: number,
+    low: number,
+    close: number,
+    volume: number,
+    volumeBuy: number,
+    volumeSell: number,
+    candleSource: number,
+    isComplete: boolean,
+  }
+}
+
+export class ListCandlesResponse extends jspb.Message {
+  getItemsList(): Array<HistoricCandleRow>;
+  setItemsList(value: Array<HistoricCandleRow>): ListCandlesResponse;
+  clearItemsList(): ListCandlesResponse;
+  addItems(value?: HistoricCandleRow, index?: number): HistoricCandleRow;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListCandlesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListCandlesResponse): ListCandlesResponse.AsObject;
+  static serializeBinaryToWriter(message: ListCandlesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListCandlesResponse;
+  static deserializeBinaryFromReader(message: ListCandlesResponse, reader: jspb.BinaryReader): ListCandlesResponse;
+}
+
+export namespace ListCandlesResponse {
+  export type AsObject = {
+    itemsList: Array<HistoricCandleRow.AsObject>,
+  }
+}
+

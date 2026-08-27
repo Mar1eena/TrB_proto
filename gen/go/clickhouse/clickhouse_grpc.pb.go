@@ -24,6 +24,7 @@ const (
 	ClickHouse_ListInstrumentVersions_FullMethodName = "/trb.clickhouse.v1.ClickHouse/ListInstrumentVersions"
 	ClickHouse_UpsertInstruments_FullMethodName      = "/trb.clickhouse.v1.ClickHouse/UpsertInstruments"
 	ClickHouse_ListLastDownloads_FullMethodName      = "/trb.clickhouse.v1.ClickHouse/ListLastDownloads"
+	ClickHouse_ListCandles_FullMethodName            = "/trb.clickhouse.v1.ClickHouse/ListCandles"
 )
 
 // ClickHouseClient is the client API for ClickHouse service.
@@ -39,6 +40,8 @@ type ClickHouseClient interface {
 	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
 	UpsertInstruments(ctx context.Context, in *tinvest.SharesResponse, opts ...grpc.CallOption) (*UpsertInstrumentsResponse, error)
 	ListLastDownloads(ctx context.Context, in *ListLastDownloadsRequest, opts ...grpc.CallOption) (*ListLastDownloadsResponse, error)
+	// ListCandles — исторические свечи из TrB.hct по инструменту и интервалу.
+	ListCandles(ctx context.Context, in *ListCandlesRequest, opts ...grpc.CallOption) (*ListCandlesResponse, error)
 }
 
 type clickHouseClient struct {
@@ -89,6 +92,16 @@ func (c *clickHouseClient) ListLastDownloads(ctx context.Context, in *ListLastDo
 	return out, nil
 }
 
+func (c *clickHouseClient) ListCandles(ctx context.Context, in *ListCandlesRequest, opts ...grpc.CallOption) (*ListCandlesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCandlesResponse)
+	err := c.cc.Invoke(ctx, ClickHouse_ListCandles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ClickHouseServer is the server API for ClickHouse service.
 // All implementations must embed UnimplementedClickHouseServer
 // for forward compatibility.
@@ -102,6 +115,8 @@ type ClickHouseServer interface {
 	// При изменении реквизитов версия (дата) сдвигается на сегодня, строка становится актуальной.
 	UpsertInstruments(context.Context, *tinvest.SharesResponse) (*UpsertInstrumentsResponse, error)
 	ListLastDownloads(context.Context, *ListLastDownloadsRequest) (*ListLastDownloadsResponse, error)
+	// ListCandles — исторические свечи из TrB.hct по инструменту и интервалу.
+	ListCandles(context.Context, *ListCandlesRequest) (*ListCandlesResponse, error)
 	mustEmbedUnimplementedClickHouseServer()
 }
 
@@ -123,6 +138,9 @@ func (UnimplementedClickHouseServer) UpsertInstruments(context.Context, *tinvest
 }
 func (UnimplementedClickHouseServer) ListLastDownloads(context.Context, *ListLastDownloadsRequest) (*ListLastDownloadsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListLastDownloads not implemented")
+}
+func (UnimplementedClickHouseServer) ListCandles(context.Context, *ListCandlesRequest) (*ListCandlesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListCandles not implemented")
 }
 func (UnimplementedClickHouseServer) mustEmbedUnimplementedClickHouseServer() {}
 func (UnimplementedClickHouseServer) testEmbeddedByValue()                    {}
@@ -217,6 +235,24 @@ func _ClickHouse_ListLastDownloads_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClickHouse_ListCandles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCandlesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClickHouseServer).ListCandles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ClickHouse_ListCandles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClickHouseServer).ListCandles(ctx, req.(*ListCandlesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ClickHouse_ServiceDesc is the grpc.ServiceDesc for ClickHouse service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -239,6 +275,10 @@ var ClickHouse_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListLastDownloads",
 			Handler:    _ClickHouse_ListLastDownloads_Handler,
+		},
+		{
+			MethodName: "ListCandles",
+			Handler:    _ClickHouse_ListCandles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

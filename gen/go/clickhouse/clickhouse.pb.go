@@ -638,6 +638,242 @@ func (x *LastDownload) GetHasDownload() bool {
 	return false
 }
 
+type ListCandlesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Interval      int32                  `protobuf:"varint,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	From          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListCandlesRequest) Reset() {
+	*x = ListCandlesRequest{}
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListCandlesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCandlesRequest) ProtoMessage() {}
+
+func (x *ListCandlesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCandlesRequest.ProtoReflect.Descriptor instead.
+func (*ListCandlesRequest) Descriptor() ([]byte, []int) {
+	return file_clickhouse_clickhouse_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListCandlesRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *ListCandlesRequest) GetInterval() int32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
+}
+
+func (x *ListCandlesRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *ListCandlesRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+func (x *ListCandlesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type HistoricCandleRow struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Time          *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
+	Open          float64                `protobuf:"fixed64,2,opt,name=open,proto3" json:"open,omitempty"`
+	High          float64                `protobuf:"fixed64,3,opt,name=high,proto3" json:"high,omitempty"`
+	Low           float64                `protobuf:"fixed64,4,opt,name=low,proto3" json:"low,omitempty"`
+	Close         float64                `protobuf:"fixed64,5,opt,name=close,proto3" json:"close,omitempty"`
+	Volume        int64                  `protobuf:"varint,6,opt,name=volume,proto3" json:"volume,omitempty"`
+	VolumeBuy     int64                  `protobuf:"varint,7,opt,name=volume_buy,json=volumeBuy,proto3" json:"volume_buy,omitempty"`
+	VolumeSell    int64                  `protobuf:"varint,8,opt,name=volume_sell,json=volumeSell,proto3" json:"volume_sell,omitempty"`
+	CandleSource  int32                  `protobuf:"varint,9,opt,name=candle_source,json=candleSource,proto3" json:"candle_source,omitempty"`
+	IsComplete    bool                   `protobuf:"varint,10,opt,name=is_complete,json=isComplete,proto3" json:"is_complete,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HistoricCandleRow) Reset() {
+	*x = HistoricCandleRow{}
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HistoricCandleRow) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HistoricCandleRow) ProtoMessage() {}
+
+func (x *HistoricCandleRow) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HistoricCandleRow.ProtoReflect.Descriptor instead.
+func (*HistoricCandleRow) Descriptor() ([]byte, []int) {
+	return file_clickhouse_clickhouse_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *HistoricCandleRow) GetTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Time
+	}
+	return nil
+}
+
+func (x *HistoricCandleRow) GetOpen() float64 {
+	if x != nil {
+		return x.Open
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetHigh() float64 {
+	if x != nil {
+		return x.High
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetLow() float64 {
+	if x != nil {
+		return x.Low
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetClose() float64 {
+	if x != nil {
+		return x.Close
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetVolume() int64 {
+	if x != nil {
+		return x.Volume
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetVolumeBuy() int64 {
+	if x != nil {
+		return x.VolumeBuy
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetVolumeSell() int64 {
+	if x != nil {
+		return x.VolumeSell
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetCandleSource() int32 {
+	if x != nil {
+		return x.CandleSource
+	}
+	return 0
+}
+
+func (x *HistoricCandleRow) GetIsComplete() bool {
+	if x != nil {
+		return x.IsComplete
+	}
+	return false
+}
+
+type ListCandlesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*HistoricCandleRow   `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListCandlesResponse) Reset() {
+	*x = ListCandlesResponse{}
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListCandlesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCandlesResponse) ProtoMessage() {}
+
+func (x *ListCandlesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_clickhouse_clickhouse_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCandlesResponse.ProtoReflect.Descriptor instead.
+func (*ListCandlesResponse) Descriptor() ([]byte, []int) {
+	return file_clickhouse_clickhouse_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListCandlesResponse) GetItems() []*HistoricCandleRow {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 var File_clickhouse_clickhouse_proto protoreflect.FileDescriptor
 
 const file_clickhouse_clickhouse_proto_rawDesc = "" +
@@ -682,13 +918,37 @@ const file_clickhouse_clickhouse_proto_rawDesc = "" +
 	"\n" +
 	"last_start\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tlastStart\x125\n" +
 	"\blast_end\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\alastEnd\x12!\n" +
-	"\fhas_download\x18\b \x01(\bR\vhasDownload2\xdb\x05\n" +
+	"\fhas_download\x18\b \x01(\bR\vhasDownload\"\xb4\x01\n" +
+	"\x12ListCandlesRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
+	"\binterval\x18\x02 \x01(\x05R\binterval\x12.\n" +
+	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
+	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x14\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\"\xb1\x02\n" +
+	"\x11HistoricCandleRow\x12.\n" +
+	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x12\n" +
+	"\x04open\x18\x02 \x01(\x01R\x04open\x12\x12\n" +
+	"\x04high\x18\x03 \x01(\x01R\x04high\x12\x10\n" +
+	"\x03low\x18\x04 \x01(\x01R\x03low\x12\x14\n" +
+	"\x05close\x18\x05 \x01(\x01R\x05close\x12\x16\n" +
+	"\x06volume\x18\x06 \x01(\x03R\x06volume\x12\x1d\n" +
+	"\n" +
+	"volume_buy\x18\a \x01(\x03R\tvolumeBuy\x12\x1f\n" +
+	"\vvolume_sell\x18\b \x01(\x03R\n" +
+	"volumeSell\x12#\n" +
+	"\rcandle_source\x18\t \x01(\x05R\fcandleSource\x12\x1f\n" +
+	"\vis_complete\x18\n" +
+	" \x01(\bR\n" +
+	"isComplete\"Q\n" +
+	"\x13ListCandlesResponse\x12:\n" +
+	"\x05items\x18\x01 \x03(\v2$.trb.clickhouse.v1.HistoricCandleRowR\x05items2\xf3\x06\n" +
 	"\n" +
 	"ClickHouse\x12\x98\x01\n" +
 	"\x0fListInstruments\x12).trb.clickhouse.v1.ListInstrumentsRequest\x1a*.trb.clickhouse.v1.ListInstrumentsResponse\".\x82\xd3\xe4\x93\x02(Z\x15:\x01*\"\x10/ListInstruments\x12\x0f/v1/instruments\x12\xc3\x01\n" +
 	"\x16ListInstrumentVersions\x120.trb.clickhouse.v1.ListInstrumentVersionsRequest\x1a1.trb.clickhouse.v1.ListInstrumentVersionsResponse\"D\x82\xd3\xe4\x93\x02>Z\x1c:\x01*\"\x17/ListInstrumentVersions\x12\x1e/v1/instruments/{uid}/versions\x12\xb4\x01\n" +
 	"\x11UpsertInstruments\x125.tinkoff.public.invest.api.contract.v1.SharesResponse\x1a,.trb.clickhouse.v1.UpsertInstrumentsResponse\":\x82\xd3\xe4\x93\x024:\x01*Z\x17:\x01*\"\x12/UpsertInstruments\"\x16/v1/instruments/upsert\x12\xb4\x01\n" +
-	"\x11ListLastDownloads\x12+.trb.clickhouse.v1.ListLastDownloadsRequest\x1a,.trb.clickhouse.v1.ListLastDownloadsResponse\"D\x82\xd3\xe4\x93\x02>Z\x17:\x01*\"\x12/ListLastDownloads\x12#/v1/historic-candles/last-downloadsB<Z:github.com/Mar1eena/trb_proto/gen/go/clickhouse;clickhouseb\x06proto3"
+	"\x11ListLastDownloads\x12+.trb.clickhouse.v1.ListLastDownloadsRequest\x1a,.trb.clickhouse.v1.ListLastDownloadsResponse\"D\x82\xd3\xe4\x93\x02>Z\x17:\x01*\"\x12/ListLastDownloads\x12#/v1/historic-candles/last-downloads\x12\x95\x01\n" +
+	"\vListCandles\x12%.trb.clickhouse.v1.ListCandlesRequest\x1a&.trb.clickhouse.v1.ListCandlesResponse\"7\x82\xd3\xe4\x93\x021Z\x11:\x01*\"\f/ListCandles\x12\x1c/v1/historic-candles/candlesB<Z:github.com/Mar1eena/trb_proto/gen/go/clickhouse;clickhouseb\x06proto3"
 
 var (
 	file_clickhouse_clickhouse_proto_rawDescOnce sync.Once
@@ -702,7 +962,7 @@ func file_clickhouse_clickhouse_proto_rawDescGZIP() []byte {
 	return file_clickhouse_clickhouse_proto_rawDescData
 }
 
-var file_clickhouse_clickhouse_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_clickhouse_clickhouse_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_clickhouse_clickhouse_proto_goTypes = []any{
 	(*ListFilter)(nil),                     // 0: trb.clickhouse.v1.ListFilter
 	(*ListInstrumentsRequest)(nil),         // 1: trb.clickhouse.v1.ListInstrumentsRequest
@@ -715,35 +975,44 @@ var file_clickhouse_clickhouse_proto_goTypes = []any{
 	(*ListLastDownloadsRequest)(nil),       // 8: trb.clickhouse.v1.ListLastDownloadsRequest
 	(*ListLastDownloadsResponse)(nil),      // 9: trb.clickhouse.v1.ListLastDownloadsResponse
 	(*LastDownload)(nil),                   // 10: trb.clickhouse.v1.LastDownload
-	(*tinvest.Share)(nil),                  // 11: tinkoff.public.invest.api.contract.v1.Share
-	(*timestamppb.Timestamp)(nil),          // 12: google.protobuf.Timestamp
-	(*tinvest.SharesResponse)(nil),         // 13: tinkoff.public.invest.api.contract.v1.SharesResponse
+	(*ListCandlesRequest)(nil),             // 11: trb.clickhouse.v1.ListCandlesRequest
+	(*HistoricCandleRow)(nil),              // 12: trb.clickhouse.v1.HistoricCandleRow
+	(*ListCandlesResponse)(nil),            // 13: trb.clickhouse.v1.ListCandlesResponse
+	(*tinvest.Share)(nil),                  // 14: tinkoff.public.invest.api.contract.v1.Share
+	(*timestamppb.Timestamp)(nil),          // 15: google.protobuf.Timestamp
+	(*tinvest.SharesResponse)(nil),         // 16: tinkoff.public.invest.api.contract.v1.SharesResponse
 }
 var file_clickhouse_clickhouse_proto_depIdxs = []int32{
 	0,  // 0: trb.clickhouse.v1.ListInstrumentsRequest.filter:type_name -> trb.clickhouse.v1.ListFilter
-	11, // 1: trb.clickhouse.v1.InstrumentListItem.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	12, // 2: trb.clickhouse.v1.InstrumentListItem.version:type_name -> google.protobuf.Timestamp
+	14, // 1: trb.clickhouse.v1.InstrumentListItem.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	15, // 2: trb.clickhouse.v1.InstrumentListItem.version:type_name -> google.protobuf.Timestamp
 	2,  // 3: trb.clickhouse.v1.ListInstrumentsResponse.items:type_name -> trb.clickhouse.v1.InstrumentListItem
-	11, // 4: trb.clickhouse.v1.InstrumentVersion.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	12, // 5: trb.clickhouse.v1.InstrumentVersion.version:type_name -> google.protobuf.Timestamp
+	14, // 4: trb.clickhouse.v1.InstrumentVersion.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	15, // 5: trb.clickhouse.v1.InstrumentVersion.version:type_name -> google.protobuf.Timestamp
 	5,  // 6: trb.clickhouse.v1.ListInstrumentVersionsResponse.items:type_name -> trb.clickhouse.v1.InstrumentVersion
 	0,  // 7: trb.clickhouse.v1.ListLastDownloadsRequest.filter:type_name -> trb.clickhouse.v1.ListFilter
 	10, // 8: trb.clickhouse.v1.ListLastDownloadsResponse.items:type_name -> trb.clickhouse.v1.LastDownload
-	12, // 9: trb.clickhouse.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
-	12, // 10: trb.clickhouse.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
-	1,  // 11: trb.clickhouse.v1.ClickHouse.ListInstruments:input_type -> trb.clickhouse.v1.ListInstrumentsRequest
-	4,  // 12: trb.clickhouse.v1.ClickHouse.ListInstrumentVersions:input_type -> trb.clickhouse.v1.ListInstrumentVersionsRequest
-	13, // 13: trb.clickhouse.v1.ClickHouse.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
-	8,  // 14: trb.clickhouse.v1.ClickHouse.ListLastDownloads:input_type -> trb.clickhouse.v1.ListLastDownloadsRequest
-	3,  // 15: trb.clickhouse.v1.ClickHouse.ListInstruments:output_type -> trb.clickhouse.v1.ListInstrumentsResponse
-	6,  // 16: trb.clickhouse.v1.ClickHouse.ListInstrumentVersions:output_type -> trb.clickhouse.v1.ListInstrumentVersionsResponse
-	7,  // 17: trb.clickhouse.v1.ClickHouse.UpsertInstruments:output_type -> trb.clickhouse.v1.UpsertInstrumentsResponse
-	9,  // 18: trb.clickhouse.v1.ClickHouse.ListLastDownloads:output_type -> trb.clickhouse.v1.ListLastDownloadsResponse
-	15, // [15:19] is the sub-list for method output_type
-	11, // [11:15] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	15, // 9: trb.clickhouse.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
+	15, // 10: trb.clickhouse.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
+	15, // 11: trb.clickhouse.v1.ListCandlesRequest.from:type_name -> google.protobuf.Timestamp
+	15, // 12: trb.clickhouse.v1.ListCandlesRequest.to:type_name -> google.protobuf.Timestamp
+	15, // 13: trb.clickhouse.v1.HistoricCandleRow.time:type_name -> google.protobuf.Timestamp
+	12, // 14: trb.clickhouse.v1.ListCandlesResponse.items:type_name -> trb.clickhouse.v1.HistoricCandleRow
+	1,  // 15: trb.clickhouse.v1.ClickHouse.ListInstruments:input_type -> trb.clickhouse.v1.ListInstrumentsRequest
+	4,  // 16: trb.clickhouse.v1.ClickHouse.ListInstrumentVersions:input_type -> trb.clickhouse.v1.ListInstrumentVersionsRequest
+	16, // 17: trb.clickhouse.v1.ClickHouse.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
+	8,  // 18: trb.clickhouse.v1.ClickHouse.ListLastDownloads:input_type -> trb.clickhouse.v1.ListLastDownloadsRequest
+	11, // 19: trb.clickhouse.v1.ClickHouse.ListCandles:input_type -> trb.clickhouse.v1.ListCandlesRequest
+	3,  // 20: trb.clickhouse.v1.ClickHouse.ListInstruments:output_type -> trb.clickhouse.v1.ListInstrumentsResponse
+	6,  // 21: trb.clickhouse.v1.ClickHouse.ListInstrumentVersions:output_type -> trb.clickhouse.v1.ListInstrumentVersionsResponse
+	7,  // 22: trb.clickhouse.v1.ClickHouse.UpsertInstruments:output_type -> trb.clickhouse.v1.UpsertInstrumentsResponse
+	9,  // 23: trb.clickhouse.v1.ClickHouse.ListLastDownloads:output_type -> trb.clickhouse.v1.ListLastDownloadsResponse
+	13, // 24: trb.clickhouse.v1.ClickHouse.ListCandles:output_type -> trb.clickhouse.v1.ListCandlesResponse
+	20, // [20:25] is the sub-list for method output_type
+	15, // [15:20] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_clickhouse_clickhouse_proto_init() }
@@ -757,7 +1026,7 @@ func file_clickhouse_clickhouse_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_clickhouse_clickhouse_proto_rawDesc), len(file_clickhouse_clickhouse_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
