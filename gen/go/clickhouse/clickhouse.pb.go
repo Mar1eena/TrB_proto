@@ -639,12 +639,14 @@ func (x *LastDownload) GetHasDownload() bool {
 }
 
 type ListCandlesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	Interval      int32                  `protobuf:"varint,2,opt,name=interval,proto3" json:"interval,omitempty"`
-	From          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
-	To            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
-	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	Uid      string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Interval int32                  `protobuf:"varint,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	From     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Limit    int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	// newest_first=true — вернуть самые новые limit свечей в диапазоне (догрузка влево).
+	NewestFirst   bool `protobuf:"varint,6,opt,name=newest_first,json=newestFirst,proto3" json:"newest_first,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -712,6 +714,13 @@ func (x *ListCandlesRequest) GetLimit() int32 {
 		return x.Limit
 	}
 	return 0
+}
+
+func (x *ListCandlesRequest) GetNewestFirst() bool {
+	if x != nil {
+		return x.NewestFirst
+	}
+	return false
 }
 
 type HistoricCandleRow struct {
@@ -918,13 +927,14 @@ const file_clickhouse_clickhouse_proto_rawDesc = "" +
 	"\n" +
 	"last_start\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tlastStart\x125\n" +
 	"\blast_end\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\alastEnd\x12!\n" +
-	"\fhas_download\x18\b \x01(\bR\vhasDownload\"\xb4\x01\n" +
+	"\fhas_download\x18\b \x01(\bR\vhasDownload\"\xd7\x01\n" +
 	"\x12ListCandlesRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
 	"\binterval\x18\x02 \x01(\x05R\binterval\x12.\n" +
 	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x14\n" +
-	"\x05limit\x18\x05 \x01(\x05R\x05limit\"\xb1\x02\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12!\n" +
+	"\fnewest_first\x18\x06 \x01(\bR\vnewestFirst\"\xb1\x02\n" +
 	"\x11HistoricCandleRow\x12.\n" +
 	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x12\n" +
 	"\x04open\x18\x02 \x01(\x01R\x04open\x12\x12\n" +

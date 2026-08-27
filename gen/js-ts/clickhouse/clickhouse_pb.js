@@ -2539,7 +2539,8 @@ uid: jspb.Message.getFieldWithDefault(msg, 1, ""),
 interval: jspb.Message.getFieldWithDefault(msg, 2, 0),
 from: (f = msg.getFrom()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
 to: (f = msg.getTo()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-limit: jspb.Message.getFieldWithDefault(msg, 5, 0)
+limit: jspb.Message.getFieldWithDefault(msg, 5, 0),
+newestFirst: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -2597,6 +2598,10 @@ proto.trb.clickhouse.v1.ListCandlesRequest.deserializeBinaryFromReader = functio
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setLimit(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNewestFirst(value);
       break;
     default:
       reader.skipField();
@@ -2661,6 +2666,13 @@ proto.trb.clickhouse.v1.ListCandlesRequest.serializeBinaryToWriter = function(me
   if (f !== 0) {
     writer.writeInt32(
       5,
+      f
+    );
+  }
+  f = message.getNewestFirst();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -2792,6 +2804,24 @@ proto.trb.clickhouse.v1.ListCandlesRequest.prototype.getLimit = function() {
  */
 proto.trb.clickhouse.v1.ListCandlesRequest.prototype.setLimit = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional bool newest_first = 6;
+ * @return {boolean}
+ */
+proto.trb.clickhouse.v1.ListCandlesRequest.prototype.getNewestFirst = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.trb.clickhouse.v1.ListCandlesRequest} returns this
+ */
+proto.trb.clickhouse.v1.ListCandlesRequest.prototype.setNewestFirst = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 

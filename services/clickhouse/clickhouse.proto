@@ -119,6 +119,8 @@ message ListCandlesRequest {
   google.protobuf.Timestamp from = 3;
   google.protobuf.Timestamp to = 4;
   int32 limit = 5;
+  // newest_first=true — вернуть самые новые limit свечей в диапазоне (догрузка влево).
+  bool newest_first = 6;
 }
 
 message HistoricCandleRow {

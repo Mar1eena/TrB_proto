@@ -309,6 +309,9 @@ export class ListCandlesRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): ListCandlesRequest;
 
+  getNewestFirst(): boolean;
+  setNewestFirst(value: boolean): ListCandlesRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListCandlesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListCandlesRequest): ListCandlesRequest.AsObject;
@@ -324,6 +327,7 @@ export namespace ListCandlesRequest {
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     limit: number,
+    newestFirst: boolean,
   }
 }
 
