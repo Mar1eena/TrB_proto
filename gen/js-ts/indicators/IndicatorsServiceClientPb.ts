@@ -125,5 +125,48 @@ export class IndicatorsClient {
     this.methodDescriptorListSupported);
   }
 
+  methodDescriptorComputeForInstrument = new grpcWeb.MethodDescriptor(
+    '/trb.indicators.v1.Indicators/ComputeForInstrument',
+    grpcWeb.MethodType.UNARY,
+    indicators_indicators_pb.ComputeForInstrumentRequest,
+    indicators_indicators_pb.ComputeResponse,
+    (request: indicators_indicators_pb.ComputeForInstrumentRequest) => {
+      return request.serializeBinary();
+    },
+    indicators_indicators_pb.ComputeResponse.deserializeBinary
+  );
+
+  computeForInstrument(
+    request: indicators_indicators_pb.ComputeForInstrumentRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.ComputeResponse>;
+
+  computeForInstrument(
+    request: indicators_indicators_pb.ComputeForInstrumentRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: indicators_indicators_pb.ComputeResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.ComputeResponse>;
+
+  computeForInstrument(
+    request: indicators_indicators_pb.ComputeForInstrumentRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: indicators_indicators_pb.ComputeResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.indicators.v1.Indicators/ComputeForInstrument',
+        request,
+        metadata || {},
+        this.methodDescriptorComputeForInstrument,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.indicators.v1.Indicators/ComputeForInstrument',
+    request,
+    metadata || {},
+    this.methodDescriptorComputeForInstrument);
+  }
+
 }
 

@@ -72,6 +72,52 @@ export namespace ComputeRequest {
   }
 }
 
+export class ComputeForInstrumentRequest extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): ComputeForInstrumentRequest;
+
+  getInterval(): number;
+  setInterval(value: number): ComputeForInstrumentRequest;
+
+  getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFrom(value?: google_protobuf_timestamp_pb.Timestamp): ComputeForInstrumentRequest;
+  hasFrom(): boolean;
+  clearFrom(): ComputeForInstrumentRequest;
+
+  getTo(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTo(value?: google_protobuf_timestamp_pb.Timestamp): ComputeForInstrumentRequest;
+  hasTo(): boolean;
+  clearTo(): ComputeForInstrumentRequest;
+
+  getType(): IndicatorType;
+  setType(value: IndicatorType): ComputeForInstrumentRequest;
+
+  getParamsMap(): jspb.Map<string, number>;
+  clearParamsMap(): ComputeForInstrumentRequest;
+
+  getPersist(): boolean;
+  setPersist(value: boolean): ComputeForInstrumentRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ComputeForInstrumentRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ComputeForInstrumentRequest): ComputeForInstrumentRequest.AsObject;
+  static serializeBinaryToWriter(message: ComputeForInstrumentRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ComputeForInstrumentRequest;
+  static deserializeBinaryFromReader(message: ComputeForInstrumentRequest, reader: jspb.BinaryReader): ComputeForInstrumentRequest;
+}
+
+export namespace ComputeForInstrumentRequest {
+  export type AsObject = {
+    uid: string,
+    interval: number,
+    from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: IndicatorType,
+    paramsMap: Array<[string, number]>,
+    persist: boolean,
+  }
+}
+
 export class IndicatorPoint extends jspb.Message {
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTime(value?: google_protobuf_timestamp_pb.Timestamp): IndicatorPoint;

@@ -227,6 +227,99 @@ func (x *ComputeRequest) GetParams() map[string]float64 {
 	return nil
 }
 
+type ComputeForInstrumentRequest struct {
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	Uid      string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Interval int32                  `protobuf:"varint,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	From     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Type     IndicatorType          `protobuf:"varint,5,opt,name=type,proto3,enum=trb.indicators.v1.IndicatorType" json:"type,omitempty"`
+	Params   map[string]float64     `protobuf:"bytes,6,rep,name=params,proto3" json:"params,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed64,2,opt,name=value"`
+	// persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values.
+	Persist       bool `protobuf:"varint,7,opt,name=persist,proto3" json:"persist,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ComputeForInstrumentRequest) Reset() {
+	*x = ComputeForInstrumentRequest{}
+	mi := &file_indicators_indicators_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ComputeForInstrumentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComputeForInstrumentRequest) ProtoMessage() {}
+
+func (x *ComputeForInstrumentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_indicators_indicators_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ComputeForInstrumentRequest.ProtoReflect.Descriptor instead.
+func (*ComputeForInstrumentRequest) Descriptor() ([]byte, []int) {
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ComputeForInstrumentRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *ComputeForInstrumentRequest) GetInterval() int32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
+}
+
+func (x *ComputeForInstrumentRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *ComputeForInstrumentRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+func (x *ComputeForInstrumentRequest) GetType() IndicatorType {
+	if x != nil {
+		return x.Type
+	}
+	return IndicatorType_INDICATOR_TYPE_UNSPECIFIED
+}
+
+func (x *ComputeForInstrumentRequest) GetParams() map[string]float64 {
+	if x != nil {
+		return x.Params
+	}
+	return nil
+}
+
+func (x *ComputeForInstrumentRequest) GetPersist() bool {
+	if x != nil {
+		return x.Persist
+	}
+	return false
+}
+
 type IndicatorPoint struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Time  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
@@ -238,7 +331,7 @@ type IndicatorPoint struct {
 
 func (x *IndicatorPoint) Reset() {
 	*x = IndicatorPoint{}
-	mi := &file_indicators_indicators_proto_msgTypes[2]
+	mi := &file_indicators_indicators_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -250,7 +343,7 @@ func (x *IndicatorPoint) String() string {
 func (*IndicatorPoint) ProtoMessage() {}
 
 func (x *IndicatorPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_indicators_proto_msgTypes[2]
+	mi := &file_indicators_indicators_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -263,7 +356,7 @@ func (x *IndicatorPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicatorPoint.ProtoReflect.Descriptor instead.
 func (*IndicatorPoint) Descriptor() ([]byte, []int) {
-	return file_indicators_indicators_proto_rawDescGZIP(), []int{2}
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *IndicatorPoint) GetTime() *timestamppb.Timestamp {
@@ -291,7 +384,7 @@ type ComputeResponse struct {
 
 func (x *ComputeResponse) Reset() {
 	*x = ComputeResponse{}
-	mi := &file_indicators_indicators_proto_msgTypes[3]
+	mi := &file_indicators_indicators_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -303,7 +396,7 @@ func (x *ComputeResponse) String() string {
 func (*ComputeResponse) ProtoMessage() {}
 
 func (x *ComputeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_indicators_proto_msgTypes[3]
+	mi := &file_indicators_indicators_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +409,7 @@ func (x *ComputeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ComputeResponse.ProtoReflect.Descriptor instead.
 func (*ComputeResponse) Descriptor() ([]byte, []int) {
-	return file_indicators_indicators_proto_rawDescGZIP(), []int{3}
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ComputeResponse) GetType() IndicatorType {
@@ -352,7 +445,7 @@ type IndicatorInfo struct {
 
 func (x *IndicatorInfo) Reset() {
 	*x = IndicatorInfo{}
-	mi := &file_indicators_indicators_proto_msgTypes[4]
+	mi := &file_indicators_indicators_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -364,7 +457,7 @@ func (x *IndicatorInfo) String() string {
 func (*IndicatorInfo) ProtoMessage() {}
 
 func (x *IndicatorInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_indicators_proto_msgTypes[4]
+	mi := &file_indicators_indicators_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -377,7 +470,7 @@ func (x *IndicatorInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicatorInfo.ProtoReflect.Descriptor instead.
 func (*IndicatorInfo) Descriptor() ([]byte, []int) {
-	return file_indicators_indicators_proto_rawDescGZIP(), []int{4}
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *IndicatorInfo) GetType() IndicatorType {
@@ -416,7 +509,7 @@ type ListSupportedRequest struct {
 
 func (x *ListSupportedRequest) Reset() {
 	*x = ListSupportedRequest{}
-	mi := &file_indicators_indicators_proto_msgTypes[5]
+	mi := &file_indicators_indicators_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -428,7 +521,7 @@ func (x *ListSupportedRequest) String() string {
 func (*ListSupportedRequest) ProtoMessage() {}
 
 func (x *ListSupportedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_indicators_proto_msgTypes[5]
+	mi := &file_indicators_indicators_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -441,7 +534,7 @@ func (x *ListSupportedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSupportedRequest.ProtoReflect.Descriptor instead.
 func (*ListSupportedRequest) Descriptor() ([]byte, []int) {
-	return file_indicators_indicators_proto_rawDescGZIP(), []int{5}
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{6}
 }
 
 type ListSupportedResponse struct {
@@ -453,7 +546,7 @@ type ListSupportedResponse struct {
 
 func (x *ListSupportedResponse) Reset() {
 	*x = ListSupportedResponse{}
-	mi := &file_indicators_indicators_proto_msgTypes[6]
+	mi := &file_indicators_indicators_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -465,7 +558,7 @@ func (x *ListSupportedResponse) String() string {
 func (*ListSupportedResponse) ProtoMessage() {}
 
 func (x *ListSupportedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_indicators_proto_msgTypes[6]
+	mi := &file_indicators_indicators_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -478,7 +571,7 @@ func (x *ListSupportedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSupportedResponse.ProtoReflect.Descriptor instead.
 func (*ListSupportedResponse) Descriptor() ([]byte, []int) {
-	return file_indicators_indicators_proto_rawDescGZIP(), []int{6}
+	return file_indicators_indicators_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListSupportedResponse) GetIndicators() []*IndicatorInfo {
@@ -504,6 +597,17 @@ const file_indicators_indicators_proto_rawDesc = "" +
 	"\x04type\x18\x01 \x01(\x0e2 .trb.indicators.v1.IndicatorTypeR\x04type\x123\n" +
 	"\acandles\x18\x02 \x03(\v2\x19.trb.indicators.v1.CandleR\acandles\x12E\n" +
 	"\x06params\x18\x03 \x03(\v2-.trb.indicators.v1.ComputeRequest.ParamsEntryR\x06params\x1a9\n" +
+	"\vParamsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\x86\x03\n" +
+	"\x1bComputeForInstrumentRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
+	"\binterval\x18\x02 \x01(\x05R\binterval\x12.\n" +
+	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
+	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x124\n" +
+	"\x04type\x18\x05 \x01(\x0e2 .trb.indicators.v1.IndicatorTypeR\x04type\x12R\n" +
+	"\x06params\x18\x06 \x03(\v2:.trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntryR\x06params\x12\x18\n" +
+	"\apersist\x18\a \x01(\bR\apersist\x1a9\n" +
 	"\vParamsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\xc2\x01\n" +
@@ -539,11 +643,12 @@ const file_indicators_indicators_proto_rawDesc = "" +
 	"\x12INDICATOR_TYPE_SMA\x10\x02\x12\x16\n" +
 	"\x12INDICATOR_TYPE_EMA\x10\x03\x12\x17\n" +
 	"\x13INDICATOR_TYPE_MACD\x10\x04\x12\x15\n" +
-	"\x11INDICATOR_TYPE_BB\x10\x052\xad\x02\n" +
+	"\x11INDICATOR_TYPE_BB\x10\x052\xe8\x03\n" +
 	"\n" +
 	"Indicators\x12\x82\x01\n" +
 	"\aCompute\x12!.trb.indicators.v1.ComputeRequest\x1a\".trb.indicators.v1.ComputeResponse\"0\x82\xd3\xe4\x93\x02*:\x01*Z\r:\x01*\"\b/Compute\"\x16/v1/indicators/compute\x12\x99\x01\n" +
-	"\rListSupported\x12'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/Z\x13:\x01*\"\x0e/ListSupported\x12\x18/v1/indicators/supportedB<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3"
+	"\rListSupported\x12'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/Z\x13:\x01*\"\x0e/ListSupported\x12\x18/v1/indicators/supported\x12\xb8\x01\n" +
+	"\x14ComputeForInstrument\x12..trb.indicators.v1.ComputeForInstrumentRequest\x1a\".trb.indicators.v1.ComputeResponse\"L\x82\xd3\xe4\x93\x02F:\x01*Z\x1a:\x01*\"\x15/ComputeForInstrument\"%/v1/indicators/compute-for-instrumentB<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3"
 
 var (
 	file_indicators_indicators_proto_rawDescOnce sync.Once
@@ -558,44 +663,52 @@ func file_indicators_indicators_proto_rawDescGZIP() []byte {
 }
 
 var file_indicators_indicators_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_indicators_indicators_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_indicators_indicators_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_indicators_indicators_proto_goTypes = []any{
-	(IndicatorType)(0),            // 0: trb.indicators.v1.IndicatorType
-	(*Candle)(nil),                // 1: trb.indicators.v1.Candle
-	(*ComputeRequest)(nil),        // 2: trb.indicators.v1.ComputeRequest
-	(*IndicatorPoint)(nil),        // 3: trb.indicators.v1.IndicatorPoint
-	(*ComputeResponse)(nil),       // 4: trb.indicators.v1.ComputeResponse
-	(*IndicatorInfo)(nil),         // 5: trb.indicators.v1.IndicatorInfo
-	(*ListSupportedRequest)(nil),  // 6: trb.indicators.v1.ListSupportedRequest
-	(*ListSupportedResponse)(nil), // 7: trb.indicators.v1.ListSupportedResponse
-	nil,                           // 8: trb.indicators.v1.ComputeRequest.ParamsEntry
-	nil,                           // 9: trb.indicators.v1.IndicatorPoint.ValuesEntry
-	nil,                           // 10: trb.indicators.v1.ComputeResponse.ParamsEntry
-	nil,                           // 11: trb.indicators.v1.IndicatorInfo.DefaultParamsEntry
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(IndicatorType)(0),                  // 0: trb.indicators.v1.IndicatorType
+	(*Candle)(nil),                      // 1: trb.indicators.v1.Candle
+	(*ComputeRequest)(nil),              // 2: trb.indicators.v1.ComputeRequest
+	(*ComputeForInstrumentRequest)(nil), // 3: trb.indicators.v1.ComputeForInstrumentRequest
+	(*IndicatorPoint)(nil),              // 4: trb.indicators.v1.IndicatorPoint
+	(*ComputeResponse)(nil),             // 5: trb.indicators.v1.ComputeResponse
+	(*IndicatorInfo)(nil),               // 6: trb.indicators.v1.IndicatorInfo
+	(*ListSupportedRequest)(nil),        // 7: trb.indicators.v1.ListSupportedRequest
+	(*ListSupportedResponse)(nil),       // 8: trb.indicators.v1.ListSupportedResponse
+	nil,                                 // 9: trb.indicators.v1.ComputeRequest.ParamsEntry
+	nil,                                 // 10: trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry
+	nil,                                 // 11: trb.indicators.v1.IndicatorPoint.ValuesEntry
+	nil,                                 // 12: trb.indicators.v1.ComputeResponse.ParamsEntry
+	nil,                                 // 13: trb.indicators.v1.IndicatorInfo.DefaultParamsEntry
+	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
 }
 var file_indicators_indicators_proto_depIdxs = []int32{
-	12, // 0: trb.indicators.v1.Candle.time:type_name -> google.protobuf.Timestamp
+	14, // 0: trb.indicators.v1.Candle.time:type_name -> google.protobuf.Timestamp
 	0,  // 1: trb.indicators.v1.ComputeRequest.type:type_name -> trb.indicators.v1.IndicatorType
 	1,  // 2: trb.indicators.v1.ComputeRequest.candles:type_name -> trb.indicators.v1.Candle
-	8,  // 3: trb.indicators.v1.ComputeRequest.params:type_name -> trb.indicators.v1.ComputeRequest.ParamsEntry
-	12, // 4: trb.indicators.v1.IndicatorPoint.time:type_name -> google.protobuf.Timestamp
-	9,  // 5: trb.indicators.v1.IndicatorPoint.values:type_name -> trb.indicators.v1.IndicatorPoint.ValuesEntry
-	0,  // 6: trb.indicators.v1.ComputeResponse.type:type_name -> trb.indicators.v1.IndicatorType
-	10, // 7: trb.indicators.v1.ComputeResponse.params:type_name -> trb.indicators.v1.ComputeResponse.ParamsEntry
-	3,  // 8: trb.indicators.v1.ComputeResponse.points:type_name -> trb.indicators.v1.IndicatorPoint
-	0,  // 9: trb.indicators.v1.IndicatorInfo.type:type_name -> trb.indicators.v1.IndicatorType
-	11, // 10: trb.indicators.v1.IndicatorInfo.default_params:type_name -> trb.indicators.v1.IndicatorInfo.DefaultParamsEntry
-	5,  // 11: trb.indicators.v1.ListSupportedResponse.indicators:type_name -> trb.indicators.v1.IndicatorInfo
-	2,  // 12: trb.indicators.v1.Indicators.Compute:input_type -> trb.indicators.v1.ComputeRequest
-	6,  // 13: trb.indicators.v1.Indicators.ListSupported:input_type -> trb.indicators.v1.ListSupportedRequest
-	4,  // 14: trb.indicators.v1.Indicators.Compute:output_type -> trb.indicators.v1.ComputeResponse
-	7,  // 15: trb.indicators.v1.Indicators.ListSupported:output_type -> trb.indicators.v1.ListSupportedResponse
-	14, // [14:16] is the sub-list for method output_type
-	12, // [12:14] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	9,  // 3: trb.indicators.v1.ComputeRequest.params:type_name -> trb.indicators.v1.ComputeRequest.ParamsEntry
+	14, // 4: trb.indicators.v1.ComputeForInstrumentRequest.from:type_name -> google.protobuf.Timestamp
+	14, // 5: trb.indicators.v1.ComputeForInstrumentRequest.to:type_name -> google.protobuf.Timestamp
+	0,  // 6: trb.indicators.v1.ComputeForInstrumentRequest.type:type_name -> trb.indicators.v1.IndicatorType
+	10, // 7: trb.indicators.v1.ComputeForInstrumentRequest.params:type_name -> trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry
+	14, // 8: trb.indicators.v1.IndicatorPoint.time:type_name -> google.protobuf.Timestamp
+	11, // 9: trb.indicators.v1.IndicatorPoint.values:type_name -> trb.indicators.v1.IndicatorPoint.ValuesEntry
+	0,  // 10: trb.indicators.v1.ComputeResponse.type:type_name -> trb.indicators.v1.IndicatorType
+	12, // 11: trb.indicators.v1.ComputeResponse.params:type_name -> trb.indicators.v1.ComputeResponse.ParamsEntry
+	4,  // 12: trb.indicators.v1.ComputeResponse.points:type_name -> trb.indicators.v1.IndicatorPoint
+	0,  // 13: trb.indicators.v1.IndicatorInfo.type:type_name -> trb.indicators.v1.IndicatorType
+	13, // 14: trb.indicators.v1.IndicatorInfo.default_params:type_name -> trb.indicators.v1.IndicatorInfo.DefaultParamsEntry
+	6,  // 15: trb.indicators.v1.ListSupportedResponse.indicators:type_name -> trb.indicators.v1.IndicatorInfo
+	2,  // 16: trb.indicators.v1.Indicators.Compute:input_type -> trb.indicators.v1.ComputeRequest
+	7,  // 17: trb.indicators.v1.Indicators.ListSupported:input_type -> trb.indicators.v1.ListSupportedRequest
+	3,  // 18: trb.indicators.v1.Indicators.ComputeForInstrument:input_type -> trb.indicators.v1.ComputeForInstrumentRequest
+	5,  // 19: trb.indicators.v1.Indicators.Compute:output_type -> trb.indicators.v1.ComputeResponse
+	8,  // 20: trb.indicators.v1.Indicators.ListSupported:output_type -> trb.indicators.v1.ListSupportedResponse
+	5,  // 21: trb.indicators.v1.Indicators.ComputeForInstrument:output_type -> trb.indicators.v1.ComputeResponse
+	19, // [19:22] is the sub-list for method output_type
+	16, // [16:19] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_indicators_indicators_proto_init() }
@@ -609,7 +722,7 @@ func file_indicators_indicators_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_indicators_indicators_proto_rawDesc), len(file_indicators_indicators_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

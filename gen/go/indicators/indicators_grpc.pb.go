@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Indicators_Compute_FullMethodName       = "/trb.indicators.v1.Indicators/Compute"
-	Indicators_ListSupported_FullMethodName = "/trb.indicators.v1.Indicators/ListSupported"
+	Indicators_Compute_FullMethodName              = "/trb.indicators.v1.Indicators/Compute"
+	Indicators_ListSupported_FullMethodName        = "/trb.indicators.v1.Indicators/ListSupported"
+	Indicators_ComputeForInstrument_FullMethodName = "/trb.indicators.v1.Indicators/ComputeForInstrument"
 )
 
 // IndicatorsClient is the client API for Indicators service.
@@ -33,6 +34,9 @@ type IndicatorsClient interface {
 	Compute(ctx context.Context, in *ComputeRequest, opts ...grpc.CallOption) (*ComputeResponse, error)
 	// ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
 	ListSupported(ctx context.Context, in *ListSupportedRequest, opts ...grpc.CallOption) (*ListSupportedResponse, error)
+	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
+	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
+	ComputeForInstrument(ctx context.Context, in *ComputeForInstrumentRequest, opts ...grpc.CallOption) (*ComputeResponse, error)
 }
 
 type indicatorsClient struct {
@@ -63,6 +67,16 @@ func (c *indicatorsClient) ListSupported(ctx context.Context, in *ListSupportedR
 	return out, nil
 }
 
+func (c *indicatorsClient) ComputeForInstrument(ctx context.Context, in *ComputeForInstrumentRequest, opts ...grpc.CallOption) (*ComputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ComputeResponse)
+	err := c.cc.Invoke(ctx, Indicators_ComputeForInstrument_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IndicatorsServer is the server API for Indicators service.
 // All implementations must embed UnimplementedIndicatorsServer
 // for forward compatibility.
@@ -73,6 +87,9 @@ type IndicatorsServer interface {
 	Compute(context.Context, *ComputeRequest) (*ComputeResponse, error)
 	// ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
 	ListSupported(context.Context, *ListSupportedRequest) (*ListSupportedResponse, error)
+	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
+	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
+	ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error)
 	mustEmbedUnimplementedIndicatorsServer()
 }
 
@@ -88,6 +105,9 @@ func (UnimplementedIndicatorsServer) Compute(context.Context, *ComputeRequest) (
 }
 func (UnimplementedIndicatorsServer) ListSupported(context.Context, *ListSupportedRequest) (*ListSupportedResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListSupported not implemented")
+}
+func (UnimplementedIndicatorsServer) ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ComputeForInstrument not implemented")
 }
 func (UnimplementedIndicatorsServer) mustEmbedUnimplementedIndicatorsServer() {}
 func (UnimplementedIndicatorsServer) testEmbeddedByValue()                    {}
@@ -146,6 +166,24 @@ func _Indicators_ListSupported_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Indicators_ComputeForInstrument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ComputeForInstrumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IndicatorsServer).ComputeForInstrument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Indicators_ComputeForInstrument_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IndicatorsServer).ComputeForInstrument(ctx, req.(*ComputeForInstrumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Indicators_ServiceDesc is the grpc.ServiceDesc for Indicators service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -160,6 +198,10 @@ var Indicators_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSupported",
 			Handler:    _Indicators_ListSupported_Handler,
+		},
+		{
+			MethodName: "ComputeForInstrument",
+			Handler:    _Indicators_ComputeForInstrument_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

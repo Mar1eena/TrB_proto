@@ -45,6 +45,11 @@ class IndicatorsStub(object):
                 request_serializer=indicators_dot_indicators__pb2.ListSupportedRequest.SerializeToString,
                 response_deserializer=indicators_dot_indicators__pb2.ListSupportedResponse.FromString,
                 _registered_method=True)
+        self.ComputeForInstrument = channel.unary_unary(
+                '/trb.indicators.v1.Indicators/ComputeForInstrument',
+                request_serializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.ComputeResponse.FromString,
+                _registered_method=True)
 
 
 class IndicatorsServicer(object):
@@ -65,6 +70,14 @@ class IndicatorsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ComputeForInstrument(self, request, context):
+        """ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
+        и при persist=true сохраняет настройки и значения в TrB.indicator_*.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_IndicatorsServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -77,6 +90,11 @@ def add_IndicatorsServicer_to_server(servicer, server):
                     servicer.ListSupported,
                     request_deserializer=indicators_dot_indicators__pb2.ListSupportedRequest.FromString,
                     response_serializer=indicators_dot_indicators__pb2.ListSupportedResponse.SerializeToString,
+            ),
+            'ComputeForInstrument': grpc.unary_unary_rpc_method_handler(
+                    servicer.ComputeForInstrument,
+                    request_deserializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.ComputeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -134,6 +152,33 @@ class Indicators(object):
             '/trb.indicators.v1.Indicators/ListSupported',
             indicators_dot_indicators__pb2.ListSupportedRequest.SerializeToString,
             indicators_dot_indicators__pb2.ListSupportedResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ComputeForInstrument(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.indicators.v1.Indicators/ComputeForInstrument',
+            indicators_dot_indicators__pb2.ComputeForInstrumentRequest.SerializeToString,
+            indicators_dot_indicators__pb2.ComputeResponse.FromString,
             options,
             channel_credentials,
             insecure,

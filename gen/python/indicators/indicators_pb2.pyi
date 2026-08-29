@@ -59,6 +59,30 @@ class ComputeRequest(_message.Message):
     params: _containers.ScalarMap[str, float]
     def __init__(self, type: _Optional[_Union[IndicatorType, str]] = ..., candles: _Optional[_Iterable[_Union[Candle, _Mapping]]] = ..., params: _Optional[_Mapping[str, float]] = ...) -> None: ...
 
+class ComputeForInstrumentRequest(_message.Message):
+    __slots__ = ("uid", "interval", "to", "type", "params", "persist")
+    class ParamsEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: float
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[float] = ...) -> None: ...
+    UID_FIELD_NUMBER: _ClassVar[int]
+    INTERVAL_FIELD_NUMBER: _ClassVar[int]
+    FROM_FIELD_NUMBER: _ClassVar[int]
+    TO_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
+    PARAMS_FIELD_NUMBER: _ClassVar[int]
+    PERSIST_FIELD_NUMBER: _ClassVar[int]
+    uid: str
+    interval: int
+    to: _timestamp_pb2.Timestamp
+    type: IndicatorType
+    params: _containers.ScalarMap[str, float]
+    persist: bool
+    def __init__(self, uid: _Optional[str] = ..., interval: _Optional[int] = ..., to: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., type: _Optional[_Union[IndicatorType, str]] = ..., params: _Optional[_Mapping[str, float]] = ..., persist: bool = ..., **kwargs) -> None: ...
+
 class IndicatorPoint(_message.Message):
     __slots__ = ("time", "values")
     class ValuesEntry(_message.Message):

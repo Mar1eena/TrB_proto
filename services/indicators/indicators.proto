@@ -25,6 +25,16 @@ service Indicators {
       additional_bindings { post: "/ListSupported" body: "*" }
     };
   }
+
+  // ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
+  // и при persist=true сохраняет настройки и значения в TrB.indicator_*.
+  rpc ComputeForInstrument(ComputeForInstrumentRequest) returns (ComputeResponse) {
+    option (google.api.http) = {
+      post: "/v1/indicators/compute-for-instrument"
+      body: "*"
+      additional_bindings { post: "/ComputeForInstrument" body: "*" }
+    };
+  }
 }
 
 enum IndicatorType {
@@ -51,6 +61,17 @@ message ComputeRequest {
   repeated Candle candles = 2;
   // Параметры индикатора: period, fastperiod, slowperiod, signalperiod, nbdevup, nbdevdn.
   map<string, double> params = 3;
+}
+
+message ComputeForInstrumentRequest {
+  string uid = 1;
+  int32 interval = 2;
+  google.protobuf.Timestamp from = 3;
+  google.protobuf.Timestamp to = 4;
+  IndicatorType type = 5;
+  map<string, double> params = 6;
+  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values.
+  bool persist = 7;
 }
 
 message IndicatorPoint {
