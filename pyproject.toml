@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trb-proto"
+version = "1.0.35"
+description = "Generated protobuf/gRPC Python stubs for TrB services"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Mar1eena" }]
+requires-python = ">=3.10"
+dependencies = [
+  "protobuf>=4.25.0",
+  "grpcio>=1.60.0",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mar1eena/TrB_proto"
+Repository = "https://github.com/Mar1eena/TrB_proto"
+
+[tool.setuptools.packages.find]
+where = ["gen/python"]
+include = ["indicators*", "google*"]

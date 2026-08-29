@@ -4,6 +4,7 @@
 
 - Go — `gen/go`
 - JavaScript / TypeScript (protobuf + gRPC-Web) — npm-пакет [`@marleena/trb-proto`](https://www.npmjs.com/package/@marleena/trb-proto)
+- Python (protobuf + gRPC) — PyPI-пакет [`trb-proto`](https://pypi.org/project/trb-proto/)
 
 ## Генерация
 
@@ -32,6 +33,20 @@ const req = new MessageRequest();
 req.setText('hello');
 ```
 
+## Python
+
+```bash
+pip install trb-proto
+```
+
+```python
+from indicators import indicators_pb2 as pb
+from indicators import indicators_pb2_grpc
+
+stub = indicators_pb2_grpc.IndicatorsStub(channel)
+stub.ListSupported(pb.ListSupportedRequest())
+```
+
 Сервисы:
 
 Внешние контракты в `api/`: `api/tinvest`.
@@ -52,9 +67,9 @@ req.setText('hello');
 
 ## CI/CD
 
-[Release](.github/workflows/release.yml) на коммит `v1.2.3` в `main`: npm (если версии ещё нет) и `POST /fetch/...` на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
+[Release](.github/workflows/release.yml) на коммит `v1.2.3` в `main`: npm (если версии ещё нет), PyPI `trb-proto` и `POST /fetch/...` на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
 
-Trusted Publisher на npm: GitHub `Mar1eena` / `TrB_proto` / `release.yml` / `npm publish`.
+Trusted Publisher: npm — GitHub `Mar1eena` / `TrB_proto` / `release.yml`; PyPI — trusted publisher для `trb-proto` (GitHub Actions OIDC).
 
 ## Релиз
 

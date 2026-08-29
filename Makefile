@@ -53,6 +53,7 @@ GIT       := git -c user.name="$(GIT_NAME)" -c user.email="$(GIT_EMAIL)"
 rel: gene
 	go mod tidy
 	npm version $(or $(PART),patch) --no-git-tag-version
+	node scripts/sync-py-version.cjs
 	git add -A
 	$(GIT) commit -m "$$(node -p "const v=require('./package.json').version; v.startsWith('v')?v:'v'+v")"
 	git push origin HEAD

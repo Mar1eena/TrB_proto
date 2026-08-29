@@ -1,3 +1,7 @@
 node_modules/
 *.tgz
 .npmrc
+dist/
+build/
+*.egg-info/
+gen/python/trb_proto.egg-info/
