@@ -69,7 +69,17 @@ stub.ListSupported(pb.ListSupportedRequest())
 
 [Release](.github/workflows/release.yml) на коммит `v1.2.3` в `main`: npm (если версии ещё нет), PyPI `trb-proto` и `POST /fetch/...` на [pkg.go.dev](https://pkg.go.dev/github.com/Mar1eena/trb_proto).
 
-Trusted Publisher: npm — GitHub `Mar1eena` / `TrB_proto` / `release.yml`; PyPI — trusted publisher для `trb-proto` (GitHub Actions OIDC).
+Trusted Publisher: npm — GitHub `Mar1eena` / `TrB_proto` / `release.yml`; PyPI — [Pending publisher](https://pypi.org/manage/account/publishing/) для `trb-proto`:
+
+| Поле | Значение |
+|---|---|
+| PyPI project name | `trb-proto` |
+| Owner | `Mar1eena` |
+| Repository | `TrB_proto` |
+| Workflow name | `release.yml` |
+| Environment name | *(оставить пустым)* |
+
+Pending publisher нужен **до первого** `make rel`, если проекта `trb-proto` на PyPI ещё нет.
 
 ## Релиз
 
