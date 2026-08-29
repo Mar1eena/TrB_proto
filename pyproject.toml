@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trb-proto"
-version = "1.0.35"
+version = "1.0.36"
 description = "Generated protobuf/gRPC Python stubs for TrB services"
 readme = "README.md"
 license = "MIT"
