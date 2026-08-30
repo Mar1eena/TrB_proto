@@ -98,6 +98,11 @@ export class ComputeForInstrumentRequest extends jspb.Message {
   getPersist(): boolean;
   setPersist(value: boolean): ComputeForInstrumentRequest;
 
+  getMaxResponsePoints(): number;
+  setMaxResponsePoints(value: number): ComputeForInstrumentRequest;
+  hasMaxResponsePoints(): boolean;
+  clearMaxResponsePoints(): ComputeForInstrumentRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComputeForInstrumentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ComputeForInstrumentRequest): ComputeForInstrumentRequest.AsObject;
@@ -115,6 +120,64 @@ export namespace ComputeForInstrumentRequest {
     type: IndicatorType,
     paramsMap: Array<[string, number]>,
     persist: boolean,
+    maxResponsePoints?: number,
+  }
+
+  export enum MaxResponsePointsCase { 
+    _MAX_RESPONSE_POINTS_NOT_SET = 0,
+    MAX_RESPONSE_POINTS = 8,
+  }
+}
+
+export class ListIndicatorValuesRequest extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): ListIndicatorValuesRequest;
+
+  getInterval(): number;
+  setInterval(value: number): ListIndicatorValuesRequest;
+
+  getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFrom(value?: google_protobuf_timestamp_pb.Timestamp): ListIndicatorValuesRequest;
+  hasFrom(): boolean;
+  clearFrom(): ListIndicatorValuesRequest;
+
+  getTo(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTo(value?: google_protobuf_timestamp_pb.Timestamp): ListIndicatorValuesRequest;
+  hasTo(): boolean;
+  clearTo(): ListIndicatorValuesRequest;
+
+  getType(): IndicatorType;
+  setType(value: IndicatorType): ListIndicatorValuesRequest;
+
+  getParamsMap(): jspb.Map<string, number>;
+  clearParamsMap(): ListIndicatorValuesRequest;
+
+  getLimit(): number;
+  setLimit(value: number): ListIndicatorValuesRequest;
+
+  getAfter(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setAfter(value?: google_protobuf_timestamp_pb.Timestamp): ListIndicatorValuesRequest;
+  hasAfter(): boolean;
+  clearAfter(): ListIndicatorValuesRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListIndicatorValuesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListIndicatorValuesRequest): ListIndicatorValuesRequest.AsObject;
+  static serializeBinaryToWriter(message: ListIndicatorValuesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListIndicatorValuesRequest;
+  static deserializeBinaryFromReader(message: ListIndicatorValuesRequest, reader: jspb.BinaryReader): ListIndicatorValuesRequest;
+}
+
+export namespace ListIndicatorValuesRequest {
+  export type AsObject = {
+    uid: string,
+    interval: number,
+    from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: IndicatorType,
+    paramsMap: Array<[string, number]>,
+    limit: number,
+    after?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -154,6 +217,9 @@ export class ComputeResponse extends jspb.Message {
   clearPointsList(): ComputeResponse;
   addPoints(value?: IndicatorPoint, index?: number): IndicatorPoint;
 
+  getTotalPoints(): number;
+  setTotalPoints(value: number): ComputeResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComputeResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ComputeResponse): ComputeResponse.AsObject;
@@ -167,6 +233,39 @@ export namespace ComputeResponse {
     type: IndicatorType,
     paramsMap: Array<[string, number]>,
     pointsList: Array<IndicatorPoint.AsObject>,
+    totalPoints: number,
+  }
+}
+
+export class ListIndicatorValuesResponse extends jspb.Message {
+  getType(): IndicatorType;
+  setType(value: IndicatorType): ListIndicatorValuesResponse;
+
+  getParamsMap(): jspb.Map<string, number>;
+  clearParamsMap(): ListIndicatorValuesResponse;
+
+  getPointsList(): Array<IndicatorPoint>;
+  setPointsList(value: Array<IndicatorPoint>): ListIndicatorValuesResponse;
+  clearPointsList(): ListIndicatorValuesResponse;
+  addPoints(value?: IndicatorPoint, index?: number): IndicatorPoint;
+
+  getHasMore(): boolean;
+  setHasMore(value: boolean): ListIndicatorValuesResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListIndicatorValuesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListIndicatorValuesResponse): ListIndicatorValuesResponse.AsObject;
+  static serializeBinaryToWriter(message: ListIndicatorValuesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListIndicatorValuesResponse;
+  static deserializeBinaryFromReader(message: ListIndicatorValuesResponse, reader: jspb.BinaryReader): ListIndicatorValuesResponse;
+}
+
+export namespace ListIndicatorValuesResponse {
+  export type AsObject = {
+    type: IndicatorType,
+    paramsMap: Array<[string, number]>,
+    pointsList: Array<IndicatorPoint.AsObject>,
+    hasMore: boolean,
   }
 }
 

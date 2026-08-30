@@ -24,6 +24,7 @@ const (
 	Indicators_ComputeForInstrument_FullMethodName = "/trb.indicators.v1.Indicators/ComputeForInstrument"
 	Indicators_ListSchedulerTargets_FullMethodName = "/trb.indicators.v1.Indicators/ListSchedulerTargets"
 	Indicators_SyncSchedulerTargets_FullMethodName = "/trb.indicators.v1.Indicators/SyncSchedulerTargets"
+	Indicators_ListIndicatorValues_FullMethodName  = "/trb.indicators.v1.Indicators/ListIndicatorValues"
 )
 
 // IndicatorsClient is the client API for Indicators service.
@@ -43,6 +44,8 @@ type IndicatorsClient interface {
 	ListSchedulerTargets(ctx context.Context, in *ListSchedulerTargetsRequest, opts ...grpc.CallOption) (*ListSchedulerTargetsResponse, error)
 	// SyncSchedulerTargets — полная замена TrB.indicator_settings.
 	SyncSchedulerTargets(ctx context.Context, in *SyncSchedulerTargetsRequest, opts ...grpc.CallOption) (*SyncSchedulerTargetsResponse, error)
+	// ListIndicatorValues — постраничное чтение значений из TrB.indicator_values_v2.
+	ListIndicatorValues(ctx context.Context, in *ListIndicatorValuesRequest, opts ...grpc.CallOption) (*ListIndicatorValuesResponse, error)
 }
 
 type indicatorsClient struct {
@@ -103,6 +106,16 @@ func (c *indicatorsClient) SyncSchedulerTargets(ctx context.Context, in *SyncSch
 	return out, nil
 }
 
+func (c *indicatorsClient) ListIndicatorValues(ctx context.Context, in *ListIndicatorValuesRequest, opts ...grpc.CallOption) (*ListIndicatorValuesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListIndicatorValuesResponse)
+	err := c.cc.Invoke(ctx, Indicators_ListIndicatorValues_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IndicatorsServer is the server API for Indicators service.
 // All implementations must embed UnimplementedIndicatorsServer
 // for forward compatibility.
@@ -120,6 +133,8 @@ type IndicatorsServer interface {
 	ListSchedulerTargets(context.Context, *ListSchedulerTargetsRequest) (*ListSchedulerTargetsResponse, error)
 	// SyncSchedulerTargets — полная замена TrB.indicator_settings.
 	SyncSchedulerTargets(context.Context, *SyncSchedulerTargetsRequest) (*SyncSchedulerTargetsResponse, error)
+	// ListIndicatorValues — постраничное чтение значений из TrB.indicator_values_v2.
+	ListIndicatorValues(context.Context, *ListIndicatorValuesRequest) (*ListIndicatorValuesResponse, error)
 	mustEmbedUnimplementedIndicatorsServer()
 }
 
@@ -144,6 +159,9 @@ func (UnimplementedIndicatorsServer) ListSchedulerTargets(context.Context, *List
 }
 func (UnimplementedIndicatorsServer) SyncSchedulerTargets(context.Context, *SyncSchedulerTargetsRequest) (*SyncSchedulerTargetsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SyncSchedulerTargets not implemented")
+}
+func (UnimplementedIndicatorsServer) ListIndicatorValues(context.Context, *ListIndicatorValuesRequest) (*ListIndicatorValuesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListIndicatorValues not implemented")
 }
 func (UnimplementedIndicatorsServer) mustEmbedUnimplementedIndicatorsServer() {}
 func (UnimplementedIndicatorsServer) testEmbeddedByValue()                    {}
@@ -256,6 +274,24 @@ func _Indicators_SyncSchedulerTargets_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Indicators_ListIndicatorValues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIndicatorValuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IndicatorsServer).ListIndicatorValues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Indicators_ListIndicatorValues_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IndicatorsServer).ListIndicatorValues(ctx, req.(*ListIndicatorValuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Indicators_ServiceDesc is the grpc.ServiceDesc for Indicators service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -282,6 +318,10 @@ var Indicators_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SyncSchedulerTargets",
 			Handler:    _Indicators_SyncSchedulerTargets_Handler,
+		},
+		{
+			MethodName: "ListIndicatorValues",
+			Handler:    _Indicators_ListIndicatorValues_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -52,6 +52,15 @@ service Indicators {
       additional_bindings { post: "/SyncSchedulerTargets" body: "*" }
     };
   }
+
+  // ListIndicatorValues — постраничное чтение значений из TrB.indicator_values_v2.
+  rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
+    option (google.api.http) = {
+      post: "/v1/indicators/values"
+      body: "*"
+      additional_bindings { post: "/ListIndicatorValues" body: "*" }
+    };
+  }
 }
 
 enum IndicatorType {
@@ -87,8 +96,22 @@ message ComputeForInstrumentRequest {
   google.protobuf.Timestamp to = 4;
   IndicatorType type = 5;
   map<string, double> params = 6;
-  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values.
+  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values_v2.
   bool persist = 7;
+  // 0 = не возвращать точки в ответе (только расчёт/persist). Не задано — лимит сервера.
+  optional int32 max_response_points = 8;
+}
+
+message ListIndicatorValuesRequest {
+  string uid = 1;
+  int32 interval = 2;
+  google.protobuf.Timestamp from = 3;
+  google.protobuf.Timestamp to = 4;
+  IndicatorType type = 5;
+  map<string, double> params = 6;
+  int32 limit = 7;
+  // Пагинация: вернуть точки с time > after.
+  google.protobuf.Timestamp after = 8;
 }
 
 message IndicatorPoint {
@@ -101,6 +124,15 @@ message ComputeResponse {
   IndicatorType type = 1;
   map<string, double> params = 2;
   repeated IndicatorPoint points = 3;
+  // Всего рассчитанных точек (может быть больше len(points)).
+  int32 total_points = 4;
+}
+
+message ListIndicatorValuesResponse {
+  IndicatorType type = 1;
+  map<string, double> params = 2;
+  repeated IndicatorPoint points = 3;
+  bool has_more = 4;
 }
 
 message IndicatorInfo {

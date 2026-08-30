@@ -254,5 +254,48 @@ export class IndicatorsClient {
     this.methodDescriptorSyncSchedulerTargets);
   }
 
+  methodDescriptorListIndicatorValues = new grpcWeb.MethodDescriptor(
+    '/trb.indicators.v1.Indicators/ListIndicatorValues',
+    grpcWeb.MethodType.UNARY,
+    indicators_indicators_pb.ListIndicatorValuesRequest,
+    indicators_indicators_pb.ListIndicatorValuesResponse,
+    (request: indicators_indicators_pb.ListIndicatorValuesRequest) => {
+      return request.serializeBinary();
+    },
+    indicators_indicators_pb.ListIndicatorValuesResponse.deserializeBinary
+  );
+
+  listIndicatorValues(
+    request: indicators_indicators_pb.ListIndicatorValuesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.ListIndicatorValuesResponse>;
+
+  listIndicatorValues(
+    request: indicators_indicators_pb.ListIndicatorValuesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: indicators_indicators_pb.ListIndicatorValuesResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.ListIndicatorValuesResponse>;
+
+  listIndicatorValues(
+    request: indicators_indicators_pb.ListIndicatorValuesRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: indicators_indicators_pb.ListIndicatorValuesResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.indicators.v1.Indicators/ListIndicatorValues',
+        request,
+        metadata || {},
+        this.methodDescriptorListIndicatorValues,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.indicators.v1.Indicators/ListIndicatorValues',
+    request,
+    metadata || {},
+    this.methodDescriptorListIndicatorValues);
+  }
+
 }
 

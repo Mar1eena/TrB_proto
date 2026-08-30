@@ -60,6 +60,11 @@ class IndicatorsStub(object):
                 request_serializer=indicators_dot_indicators__pb2.SyncSchedulerTargetsRequest.SerializeToString,
                 response_deserializer=indicators_dot_indicators__pb2.SyncSchedulerTargetsResponse.FromString,
                 _registered_method=True)
+        self.ListIndicatorValues = channel.unary_unary(
+                '/trb.indicators.v1.Indicators/ListIndicatorValues',
+                request_serializer=indicators_dot_indicators__pb2.ListIndicatorValuesRequest.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.ListIndicatorValuesResponse.FromString,
+                _registered_method=True)
 
 
 class IndicatorsServicer(object):
@@ -102,6 +107,13 @@ class IndicatorsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListIndicatorValues(self, request, context):
+        """ListIndicatorValues — постраничное чтение значений из TrB.indicator_values_v2.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_IndicatorsServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -129,6 +141,11 @@ def add_IndicatorsServicer_to_server(servicer, server):
                     servicer.SyncSchedulerTargets,
                     request_deserializer=indicators_dot_indicators__pb2.SyncSchedulerTargetsRequest.FromString,
                     response_serializer=indicators_dot_indicators__pb2.SyncSchedulerTargetsResponse.SerializeToString,
+            ),
+            'ListIndicatorValues': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListIndicatorValues,
+                    request_deserializer=indicators_dot_indicators__pb2.ListIndicatorValuesRequest.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.ListIndicatorValuesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -267,6 +284,33 @@ class Indicators(object):
             '/trb.indicators.v1.Indicators/SyncSchedulerTargets',
             indicators_dot_indicators__pb2.SyncSchedulerTargetsRequest.SerializeToString,
             indicators_dot_indicators__pb2.SyncSchedulerTargetsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListIndicatorValues(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.indicators.v1.Indicators/ListIndicatorValues',
+            indicators_dot_indicators__pb2.ListIndicatorValuesRequest.SerializeToString,
+            indicators_dot_indicators__pb2.ListIndicatorValuesResponse.FromString,
             options,
             channel_credentials,
             insecure,

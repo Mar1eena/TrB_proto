@@ -26,7 +26,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bindicators/indicators.proto\x12\x11trb.indicators.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"z\n\x06\x43\x61ndle\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04open\x18\x02 \x01(\x01\x12\x0c\n\x04high\x18\x03 \x01(\x01\x12\x0b\n\x03low\x18\x04 \x01(\x01\x12\r\n\x05\x63lose\x18\x05 \x01(\x01\x12\x0e\n\x06volume\x18\x06 \x01(\x01\"\xda\x01\n\x0e\x43omputeRequest\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12*\n\x07\x63\x61ndles\x18\x02 \x03(\x0b\x32\x19.trb.indicators.v1.Candle\x12=\n\x06params\x18\x03 \x03(\x0b\x32-.trb.indicators.v1.ComputeRequest.ParamsEntry\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xca\x02\n\x1b\x43omputeForInstrumentRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x06 \x03(\x0b\x32:.trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry\x12\x0f\n\x07persist\x18\x07 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xa8\x01\n\x0eIndicatorPoint\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06values\x18\x02 \x03(\x0b\x32-.trb.indicators.v1.IndicatorPoint.ValuesEntry\x1a-\n\x0bValuesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xe3\x01\n\x0f\x43omputeResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12>\n\x06params\x18\x02 \x03(\x0b\x32..trb.indicators.v1.ComputeResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xe2\x01\n\rIndicatorInfo\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08min_bars\x18\x03 \x01(\x05\x12K\n\x0e\x64\x65\x66\x61ult_params\x18\x04 \x03(\x0b\x32\x33.trb.indicators.v1.IndicatorInfo.DefaultParamsEntry\x1a\x34\n\x12\x44\x65\x66\x61ultParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x16\n\x14ListSupportedRequest\"M\n\x15ListSupportedResponse\x12\x34\n\nindicators\x18\x01 \x03(\x0b\x32 .trb.indicators.v1.IndicatorInfo\"\xc3\x01\n\x0fSchedulerTarget\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12\x11\n\tindicator\x18\x03 \x01(\t\x12>\n\x06params\x18\x04 \x03(\x0b\x32..trb.indicators.v1.SchedulerTarget.ParamsEntry\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x1d\n\x1bListSchedulerTargetsRequest\"Q\n\x1cListSchedulerTargetsResponse\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".trb.indicators.v1.SchedulerTarget\"e\n\x1bSyncSchedulerTargetsRequest\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".trb.indicators.v1.SchedulerTarget\x12\x13\n\x0b\x61llow_empty\x18\x02 \x01(\x08\"-\n\x1cSyncSchedulerTargetsResponse\x12\r\n\x05\x63ount\x18\x01 \x01(\x05*\xa7\x01\n\rIndicatorType\x12\x1e\n\x1aINDICATOR_TYPE_UNSPECIFIED\x10\x00\x12\x16\n\x12INDICATOR_TYPE_RSI\x10\x01\x12\x16\n\x12INDICATOR_TYPE_SMA\x10\x02\x12\x16\n\x12INDICATOR_TYPE_EMA\x10\x03\x12\x17\n\x13INDICATOR_TYPE_MACD\x10\x04\x12\x15\n\x11INDICATOR_TYPE_BB\x10\x05\x32\xeb\x06\n\nIndicators\x12\x82\x01\n\x07\x43ompute\x12!.trb.indicators.v1.ComputeRequest\x1a\".trb.indicators.v1.ComputeResponse\"0\x82\xd3\xe4\x93\x02*\"\x16/v1/indicators/compute:\x01*Z\r\"\x08/Compute:\x01*\x12\x99\x01\n\rListSupported\x12\'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/\x12\x18/v1/indicators/supportedZ\x13\"\x0e/ListSupported:\x01*\x12\xb8\x01\n\x14\x43omputeForInstrument\x12..trb.indicators.v1.ComputeForInstrumentRequest\x1a\".trb.indicators.v1.ComputeResponse\"L\x82\xd3\xe4\x93\x02\x46\"%/v1/indicators/compute-for-instrument:\x01*Z\x1a\"\x15/ComputeForInstrument:\x01*\x12\xbd\x01\n\x14ListSchedulerTargets\x12..trb.indicators.v1.ListSchedulerTargetsRequest\x1a/.trb.indicators.v1.ListSchedulerTargetsResponse\"D\x82\xd3\xe4\x93\x02>\x12 /v1/indicators/scheduler/targetsZ\x1a\"\x15/ListSchedulerTargets:\x01*\x12\xc0\x01\n\x14SyncSchedulerTargets\x12..trb.indicators.v1.SyncSchedulerTargetsRequest\x1a/.trb.indicators.v1.SyncSchedulerTargetsResponse\"G\x82\xd3\xe4\x93\x02\x41\x1a /v1/indicators/scheduler/targets:\x01*Z\x1a\"\x15/SyncSchedulerTargets:\x01*B<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bindicators/indicators.proto\x12\x11trb.indicators.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"z\n\x06\x43\x61ndle\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04open\x18\x02 \x01(\x01\x12\x0c\n\x04high\x18\x03 \x01(\x01\x12\x0b\n\x03low\x18\x04 \x01(\x01\x12\r\n\x05\x63lose\x18\x05 \x01(\x01\x12\x0e\n\x06volume\x18\x06 \x01(\x01\"\xda\x01\n\x0e\x43omputeRequest\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12*\n\x07\x63\x61ndles\x18\x02 \x03(\x0b\x32\x19.trb.indicators.v1.Candle\x12=\n\x06params\x18\x03 \x03(\x0b\x32-.trb.indicators.v1.ComputeRequest.ParamsEntry\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x84\x03\n\x1b\x43omputeForInstrumentRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x06 \x03(\x0b\x32:.trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry\x12\x0f\n\x07persist\x18\x07 \x01(\x08\x12 \n\x13max_response_points\x18\x08 \x01(\x05H\x00\x88\x01\x01\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x42\x16\n\x14_max_response_points\"\xf1\x02\n\x1aListIndicatorValuesRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12I\n\x06params\x18\x06 \x03(\x0b\x32\x39.trb.indicators.v1.ListIndicatorValuesRequest.ParamsEntry\x12\r\n\x05limit\x18\x07 \x01(\x05\x12)\n\x05\x61\x66ter\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xa8\x01\n\x0eIndicatorPoint\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06values\x18\x02 \x03(\x0b\x32-.trb.indicators.v1.IndicatorPoint.ValuesEntry\x1a-\n\x0bValuesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xf9\x01\n\x0f\x43omputeResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12>\n\x06params\x18\x02 \x03(\x0b\x32..trb.indicators.v1.ComputeResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x14\n\x0ctotal_points\x18\x04 \x01(\x05\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x8d\x02\n\x1bListIndicatorValuesResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x02 \x03(\x0b\x32:.trb.indicators.v1.ListIndicatorValuesResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x10\n\x08has_more\x18\x04 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xe2\x01\n\rIndicatorInfo\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08min_bars\x18\x03 \x01(\x05\x12K\n\x0e\x64\x65\x66\x61ult_params\x18\x04 \x03(\x0b\x32\x33.trb.indicators.v1.IndicatorInfo.DefaultParamsEntry\x1a\x34\n\x12\x44\x65\x66\x61ultParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x16\n\x14ListSupportedRequest\"M\n\x15ListSupportedResponse\x12\x34\n\nindicators\x18\x01 \x03(\x0b\x32 .trb.indicators.v1.IndicatorInfo\"\xc3\x01\n\x0fSchedulerTarget\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12\x11\n\tindicator\x18\x03 \x01(\t\x12>\n\x06params\x18\x04 \x03(\x0b\x32..trb.indicators.v1.SchedulerTarget.ParamsEntry\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x1d\n\x1bListSchedulerTargetsRequest\"Q\n\x1cListSchedulerTargetsResponse\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".trb.indicators.v1.SchedulerTarget\"e\n\x1bSyncSchedulerTargetsRequest\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".trb.indicators.v1.SchedulerTarget\x12\x13\n\x0b\x61llow_empty\x18\x02 \x01(\x08\"-\n\x1cSyncSchedulerTargetsResponse\x12\r\n\x05\x63ount\x18\x01 \x01(\x05*\xa7\x01\n\rIndicatorType\x12\x1e\n\x1aINDICATOR_TYPE_UNSPECIFIED\x10\x00\x12\x16\n\x12INDICATOR_TYPE_RSI\x10\x01\x12\x16\n\x12INDICATOR_TYPE_SMA\x10\x02\x12\x16\n\x12INDICATOR_TYPE_EMA\x10\x03\x12\x17\n\x13INDICATOR_TYPE_MACD\x10\x04\x12\x15\n\x11INDICATOR_TYPE_BB\x10\x05\x32\x9f\x08\n\nIndicators\x12\x82\x01\n\x07\x43ompute\x12!.trb.indicators.v1.ComputeRequest\x1a\".trb.indicators.v1.ComputeResponse\"0\x82\xd3\xe4\x93\x02*\"\x16/v1/indicators/compute:\x01*Z\r\"\x08/Compute:\x01*\x12\x99\x01\n\rListSupported\x12\'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/\x12\x18/v1/indicators/supportedZ\x13\"\x0e/ListSupported:\x01*\x12\xb8\x01\n\x14\x43omputeForInstrument\x12..trb.indicators.v1.ComputeForInstrumentRequest\x1a\".trb.indicators.v1.ComputeResponse\"L\x82\xd3\xe4\x93\x02\x46\"%/v1/indicators/compute-for-instrument:\x01*Z\x1a\"\x15/ComputeForInstrument:\x01*\x12\xbd\x01\n\x14ListSchedulerTargets\x12..trb.indicators.v1.ListSchedulerTargetsRequest\x1a/.trb.indicators.v1.ListSchedulerTargetsResponse\"D\x82\xd3\xe4\x93\x02>\x12 /v1/indicators/scheduler/targetsZ\x1a\"\x15/ListSchedulerTargets:\x01*\x12\xc0\x01\n\x14SyncSchedulerTargets\x12..trb.indicators.v1.SyncSchedulerTargetsRequest\x1a/.trb.indicators.v1.SyncSchedulerTargetsResponse\"G\x82\xd3\xe4\x93\x02\x41\x1a /v1/indicators/scheduler/targets:\x01*Z\x1a\"\x15/SyncSchedulerTargets:\x01*\x12\xb1\x01\n\x13ListIndicatorValues\x12-.trb.indicators.v1.ListIndicatorValuesRequest\x1a..trb.indicators.v1.ListIndicatorValuesResponse\";\x82\xd3\xe4\x93\x02\x35\"\x15/v1/indicators/values:\x01*Z\x19\"\x14/ListIndicatorValues:\x01*B<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -38,10 +38,14 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_options = b'8\001'
   _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._loaded_options = None
   _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_options = b'8\001'
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._loaded_options = None
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_options = b'8\001'
   _globals['_INDICATORPOINT_VALUESENTRY']._loaded_options = None
   _globals['_INDICATORPOINT_VALUESENTRY']._serialized_options = b'8\001'
   _globals['_COMPUTERESPONSE_PARAMSENTRY']._loaded_options = None
   _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_options = b'8\001'
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._loaded_options = None
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_options = b'8\001'
   _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._loaded_options = None
   _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_options = b'8\001'
   _globals['_SCHEDULERTARGET_PARAMSENTRY']._loaded_options = None
@@ -56,8 +60,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_INDICATORS'].methods_by_name['ListSchedulerTargets']._serialized_options = b'\202\323\344\223\002>\022 /v1/indicators/scheduler/targetsZ\032\"\025/ListSchedulerTargets:\001*'
   _globals['_INDICATORS'].methods_by_name['SyncSchedulerTargets']._loaded_options = None
   _globals['_INDICATORS'].methods_by_name['SyncSchedulerTargets']._serialized_options = b'\202\323\344\223\002A\032 /v1/indicators/scheduler/targets:\001*Z\032\"\025/SyncSchedulerTargets:\001*'
-  _globals['_INDICATORTYPE']._serialized_start=1987
-  _globals['_INDICATORTYPE']._serialized_end=2154
+  _globals['_INDICATORS'].methods_by_name['ListIndicatorValues']._loaded_options = None
+  _globals['_INDICATORS'].methods_by_name['ListIndicatorValues']._serialized_options = b'\202\323\344\223\0025\"\025/v1/indicators/values:\001*Z\031\"\024/ListIndicatorValues:\001*'
+  _globals['_INDICATORTYPE']._serialized_start=2711
+  _globals['_INDICATORTYPE']._serialized_end=2878
   _globals['_CANDLE']._serialized_start=113
   _globals['_CANDLE']._serialized_end=235
   _globals['_COMPUTEREQUEST']._serialized_start=238
@@ -65,37 +71,45 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_start=411
   _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_end=456
   _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_start=459
-  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_end=789
+  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_end=847
   _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_start=411
   _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_end=456
-  _globals['_INDICATORPOINT']._serialized_start=792
-  _globals['_INDICATORPOINT']._serialized_end=960
-  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_start=915
-  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_end=960
-  _globals['_COMPUTERESPONSE']._serialized_start=963
-  _globals['_COMPUTERESPONSE']._serialized_end=1190
+  _globals['_LISTINDICATORVALUESREQUEST']._serialized_start=850
+  _globals['_LISTINDICATORVALUESREQUEST']._serialized_end=1219
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_start=411
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_end=456
+  _globals['_INDICATORPOINT']._serialized_start=1222
+  _globals['_INDICATORPOINT']._serialized_end=1390
+  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_start=1345
+  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_end=1390
+  _globals['_COMPUTERESPONSE']._serialized_start=1393
+  _globals['_COMPUTERESPONSE']._serialized_end=1642
   _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_start=411
   _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_end=456
-  _globals['_INDICATORINFO']._serialized_start=1193
-  _globals['_INDICATORINFO']._serialized_end=1419
-  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_start=1367
-  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_end=1419
-  _globals['_LISTSUPPORTEDREQUEST']._serialized_start=1421
-  _globals['_LISTSUPPORTEDREQUEST']._serialized_end=1443
-  _globals['_LISTSUPPORTEDRESPONSE']._serialized_start=1445
-  _globals['_LISTSUPPORTEDRESPONSE']._serialized_end=1522
-  _globals['_SCHEDULERTARGET']._serialized_start=1525
-  _globals['_SCHEDULERTARGET']._serialized_end=1720
+  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_start=1645
+  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_end=1914
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_start=411
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_end=456
+  _globals['_INDICATORINFO']._serialized_start=1917
+  _globals['_INDICATORINFO']._serialized_end=2143
+  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_start=2091
+  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_end=2143
+  _globals['_LISTSUPPORTEDREQUEST']._serialized_start=2145
+  _globals['_LISTSUPPORTEDREQUEST']._serialized_end=2167
+  _globals['_LISTSUPPORTEDRESPONSE']._serialized_start=2169
+  _globals['_LISTSUPPORTEDRESPONSE']._serialized_end=2246
+  _globals['_SCHEDULERTARGET']._serialized_start=2249
+  _globals['_SCHEDULERTARGET']._serialized_end=2444
   _globals['_SCHEDULERTARGET_PARAMSENTRY']._serialized_start=411
   _globals['_SCHEDULERTARGET_PARAMSENTRY']._serialized_end=456
-  _globals['_LISTSCHEDULERTARGETSREQUEST']._serialized_start=1722
-  _globals['_LISTSCHEDULERTARGETSREQUEST']._serialized_end=1751
-  _globals['_LISTSCHEDULERTARGETSRESPONSE']._serialized_start=1753
-  _globals['_LISTSCHEDULERTARGETSRESPONSE']._serialized_end=1834
-  _globals['_SYNCSCHEDULERTARGETSREQUEST']._serialized_start=1836
-  _globals['_SYNCSCHEDULERTARGETSREQUEST']._serialized_end=1937
-  _globals['_SYNCSCHEDULERTARGETSRESPONSE']._serialized_start=1939
-  _globals['_SYNCSCHEDULERTARGETSRESPONSE']._serialized_end=1984
-  _globals['_INDICATORS']._serialized_start=2157
-  _globals['_INDICATORS']._serialized_end=3032
+  _globals['_LISTSCHEDULERTARGETSREQUEST']._serialized_start=2446
+  _globals['_LISTSCHEDULERTARGETSREQUEST']._serialized_end=2475
+  _globals['_LISTSCHEDULERTARGETSRESPONSE']._serialized_start=2477
+  _globals['_LISTSCHEDULERTARGETSRESPONSE']._serialized_end=2558
+  _globals['_SYNCSCHEDULERTARGETSREQUEST']._serialized_start=2560
+  _globals['_SYNCSCHEDULERTARGETSREQUEST']._serialized_end=2661
+  _globals['_SYNCSCHEDULERTARGETSRESPONSE']._serialized_start=2663
+  _globals['_SYNCSCHEDULERTARGETSRESPONSE']._serialized_end=2708
+  _globals['_INDICATORS']._serialized_start=2881
+  _globals['_INDICATORS']._serialized_end=3936
 # @@protoc_insertion_point(module_scope)
