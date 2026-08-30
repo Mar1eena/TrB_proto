@@ -36,24 +36,7 @@ service Indicators {
     };
   }
 
-  // ListSchedulerTargets — цели планировщика из TrB.indicator_settings.
-  rpc ListSchedulerTargets(ListSchedulerTargetsRequest) returns (ListSchedulerTargetsResponse) {
-    option (google.api.http) = {
-      get: "/v1/indicators/scheduler/targets"
-      additional_bindings { post: "/ListSchedulerTargets" body: "*" }
-    };
-  }
-
-  // SyncSchedulerTargets — полная замена TrB.indicator_settings.
-  rpc SyncSchedulerTargets(SyncSchedulerTargetsRequest) returns (SyncSchedulerTargetsResponse) {
-    option (google.api.http) = {
-      put: "/v1/indicators/scheduler/targets"
-      body: "*"
-      additional_bindings { post: "/SyncSchedulerTargets" body: "*" }
-    };
-  }
-
-  // ListIndicatorValues — постраничное чтение значений из TrB.indicator_values_v2.
+  // ListIndicatorValues — постраничное чтение значений из TrB.indicator_values.
   rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
     option (google.api.http) = {
       post: "/v1/indicators/values"
@@ -96,7 +79,7 @@ message ComputeForInstrumentRequest {
   google.protobuf.Timestamp to = 4;
   IndicatorType type = 5;
   map<string, double> params = 6;
-  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values_v2.
+  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values.
   bool persist = 7;
   // 0 = не возвращать точки в ответе (только расчёт/persist). Не задано — лимит сервера.
   optional int32 max_response_points = 8;
@@ -146,27 +129,4 @@ message ListSupportedRequest {}
 
 message ListSupportedResponse {
   repeated IndicatorInfo indicators = 1;
-}
-
-message SchedulerTarget {
-  string uid = 1;
-  int32 interval = 2;
-  string indicator = 3;
-  map<string, double> params = 4;
-  bool enabled = 5;
-}
-
-message ListSchedulerTargetsRequest {}
-
-message ListSchedulerTargetsResponse {
-  repeated SchedulerTarget items = 1;
-}
-
-message SyncSchedulerTargetsRequest {
-  repeated SchedulerTarget items = 1;
-  bool allow_empty = 2;
-}
-
-message SyncSchedulerTargetsResponse {
-  int32 count = 1;
 }
