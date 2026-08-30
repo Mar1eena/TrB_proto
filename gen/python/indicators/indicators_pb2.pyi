@@ -143,3 +143,48 @@ class ListSupportedResponse(_message.Message):
     INDICATORS_FIELD_NUMBER: _ClassVar[int]
     indicators: _containers.RepeatedCompositeFieldContainer[IndicatorInfo]
     def __init__(self, indicators: _Optional[_Iterable[_Union[IndicatorInfo, _Mapping]]] = ...) -> None: ...
+
+class SchedulerTarget(_message.Message):
+    __slots__ = ("uid", "interval", "indicator", "params", "enabled")
+    class ParamsEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: float
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[float] = ...) -> None: ...
+    UID_FIELD_NUMBER: _ClassVar[int]
+    INTERVAL_FIELD_NUMBER: _ClassVar[int]
+    INDICATOR_FIELD_NUMBER: _ClassVar[int]
+    PARAMS_FIELD_NUMBER: _ClassVar[int]
+    ENABLED_FIELD_NUMBER: _ClassVar[int]
+    uid: str
+    interval: int
+    indicator: str
+    params: _containers.ScalarMap[str, float]
+    enabled: bool
+    def __init__(self, uid: _Optional[str] = ..., interval: _Optional[int] = ..., indicator: _Optional[str] = ..., params: _Optional[_Mapping[str, float]] = ..., enabled: bool = ...) -> None: ...
+
+class ListSchedulerTargetsRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class ListSchedulerTargetsResponse(_message.Message):
+    __slots__ = ("items",)
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    items: _containers.RepeatedCompositeFieldContainer[SchedulerTarget]
+    def __init__(self, items: _Optional[_Iterable[_Union[SchedulerTarget, _Mapping]]] = ...) -> None: ...
+
+class SyncSchedulerTargetsRequest(_message.Message):
+    __slots__ = ("items", "allow_empty")
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    ALLOW_EMPTY_FIELD_NUMBER: _ClassVar[int]
+    items: _containers.RepeatedCompositeFieldContainer[SchedulerTarget]
+    allow_empty: bool
+    def __init__(self, items: _Optional[_Iterable[_Union[SchedulerTarget, _Mapping]]] = ..., allow_empty: bool = ...) -> None: ...
+
+class SyncSchedulerTargetsResponse(_message.Message):
+    __slots__ = ("count",)
+    COUNT_FIELD_NUMBER: _ClassVar[int]
+    count: int
+    def __init__(self, count: _Optional[int] = ...) -> None: ...

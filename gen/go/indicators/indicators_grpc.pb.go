@@ -22,6 +22,8 @@ const (
 	Indicators_Compute_FullMethodName              = "/trb.indicators.v1.Indicators/Compute"
 	Indicators_ListSupported_FullMethodName        = "/trb.indicators.v1.Indicators/ListSupported"
 	Indicators_ComputeForInstrument_FullMethodName = "/trb.indicators.v1.Indicators/ComputeForInstrument"
+	Indicators_ListSchedulerTargets_FullMethodName = "/trb.indicators.v1.Indicators/ListSchedulerTargets"
+	Indicators_SyncSchedulerTargets_FullMethodName = "/trb.indicators.v1.Indicators/SyncSchedulerTargets"
 )
 
 // IndicatorsClient is the client API for Indicators service.
@@ -37,6 +39,10 @@ type IndicatorsClient interface {
 	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
 	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
 	ComputeForInstrument(ctx context.Context, in *ComputeForInstrumentRequest, opts ...grpc.CallOption) (*ComputeResponse, error)
+	// ListSchedulerTargets — цели планировщика из TrB.indicator_settings.
+	ListSchedulerTargets(ctx context.Context, in *ListSchedulerTargetsRequest, opts ...grpc.CallOption) (*ListSchedulerTargetsResponse, error)
+	// SyncSchedulerTargets — полная замена TrB.indicator_settings.
+	SyncSchedulerTargets(ctx context.Context, in *SyncSchedulerTargetsRequest, opts ...grpc.CallOption) (*SyncSchedulerTargetsResponse, error)
 }
 
 type indicatorsClient struct {
@@ -77,6 +83,26 @@ func (c *indicatorsClient) ComputeForInstrument(ctx context.Context, in *Compute
 	return out, nil
 }
 
+func (c *indicatorsClient) ListSchedulerTargets(ctx context.Context, in *ListSchedulerTargetsRequest, opts ...grpc.CallOption) (*ListSchedulerTargetsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSchedulerTargetsResponse)
+	err := c.cc.Invoke(ctx, Indicators_ListSchedulerTargets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *indicatorsClient) SyncSchedulerTargets(ctx context.Context, in *SyncSchedulerTargetsRequest, opts ...grpc.CallOption) (*SyncSchedulerTargetsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SyncSchedulerTargetsResponse)
+	err := c.cc.Invoke(ctx, Indicators_SyncSchedulerTargets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IndicatorsServer is the server API for Indicators service.
 // All implementations must embed UnimplementedIndicatorsServer
 // for forward compatibility.
@@ -90,6 +116,10 @@ type IndicatorsServer interface {
 	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
 	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
 	ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error)
+	// ListSchedulerTargets — цели планировщика из TrB.indicator_settings.
+	ListSchedulerTargets(context.Context, *ListSchedulerTargetsRequest) (*ListSchedulerTargetsResponse, error)
+	// SyncSchedulerTargets — полная замена TrB.indicator_settings.
+	SyncSchedulerTargets(context.Context, *SyncSchedulerTargetsRequest) (*SyncSchedulerTargetsResponse, error)
 	mustEmbedUnimplementedIndicatorsServer()
 }
 
@@ -108,6 +138,12 @@ func (UnimplementedIndicatorsServer) ListSupported(context.Context, *ListSupport
 }
 func (UnimplementedIndicatorsServer) ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ComputeForInstrument not implemented")
+}
+func (UnimplementedIndicatorsServer) ListSchedulerTargets(context.Context, *ListSchedulerTargetsRequest) (*ListSchedulerTargetsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSchedulerTargets not implemented")
+}
+func (UnimplementedIndicatorsServer) SyncSchedulerTargets(context.Context, *SyncSchedulerTargetsRequest) (*SyncSchedulerTargetsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SyncSchedulerTargets not implemented")
 }
 func (UnimplementedIndicatorsServer) mustEmbedUnimplementedIndicatorsServer() {}
 func (UnimplementedIndicatorsServer) testEmbeddedByValue()                    {}
@@ -184,6 +220,42 @@ func _Indicators_ComputeForInstrument_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Indicators_ListSchedulerTargets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSchedulerTargetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IndicatorsServer).ListSchedulerTargets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Indicators_ListSchedulerTargets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IndicatorsServer).ListSchedulerTargets(ctx, req.(*ListSchedulerTargetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Indicators_SyncSchedulerTargets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncSchedulerTargetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IndicatorsServer).SyncSchedulerTargets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Indicators_SyncSchedulerTargets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IndicatorsServer).SyncSchedulerTargets(ctx, req.(*SyncSchedulerTargetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Indicators_ServiceDesc is the grpc.ServiceDesc for Indicators service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -202,6 +274,14 @@ var Indicators_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ComputeForInstrument",
 			Handler:    _Indicators_ComputeForInstrument_Handler,
+		},
+		{
+			MethodName: "ListSchedulerTargets",
+			Handler:    _Indicators_ListSchedulerTargets_Handler,
+		},
+		{
+			MethodName: "SyncSchedulerTargets",
+			Handler:    _Indicators_SyncSchedulerTargets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

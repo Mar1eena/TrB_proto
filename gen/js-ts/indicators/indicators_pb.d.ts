@@ -234,6 +234,116 @@ export namespace ListSupportedResponse {
   }
 }
 
+export class SchedulerTarget extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): SchedulerTarget;
+
+  getInterval(): number;
+  setInterval(value: number): SchedulerTarget;
+
+  getIndicator(): string;
+  setIndicator(value: string): SchedulerTarget;
+
+  getParamsMap(): jspb.Map<string, number>;
+  clearParamsMap(): SchedulerTarget;
+
+  getEnabled(): boolean;
+  setEnabled(value: boolean): SchedulerTarget;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SchedulerTarget.AsObject;
+  static toObject(includeInstance: boolean, msg: SchedulerTarget): SchedulerTarget.AsObject;
+  static serializeBinaryToWriter(message: SchedulerTarget, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SchedulerTarget;
+  static deserializeBinaryFromReader(message: SchedulerTarget, reader: jspb.BinaryReader): SchedulerTarget;
+}
+
+export namespace SchedulerTarget {
+  export type AsObject = {
+    uid: string,
+    interval: number,
+    indicator: string,
+    paramsMap: Array<[string, number]>,
+    enabled: boolean,
+  }
+}
+
+export class ListSchedulerTargetsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSchedulerTargetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSchedulerTargetsRequest): ListSchedulerTargetsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListSchedulerTargetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSchedulerTargetsRequest;
+  static deserializeBinaryFromReader(message: ListSchedulerTargetsRequest, reader: jspb.BinaryReader): ListSchedulerTargetsRequest;
+}
+
+export namespace ListSchedulerTargetsRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListSchedulerTargetsResponse extends jspb.Message {
+  getItemsList(): Array<SchedulerTarget>;
+  setItemsList(value: Array<SchedulerTarget>): ListSchedulerTargetsResponse;
+  clearItemsList(): ListSchedulerTargetsResponse;
+  addItems(value?: SchedulerTarget, index?: number): SchedulerTarget;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSchedulerTargetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSchedulerTargetsResponse): ListSchedulerTargetsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListSchedulerTargetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSchedulerTargetsResponse;
+  static deserializeBinaryFromReader(message: ListSchedulerTargetsResponse, reader: jspb.BinaryReader): ListSchedulerTargetsResponse;
+}
+
+export namespace ListSchedulerTargetsResponse {
+  export type AsObject = {
+    itemsList: Array<SchedulerTarget.AsObject>,
+  }
+}
+
+export class SyncSchedulerTargetsRequest extends jspb.Message {
+  getItemsList(): Array<SchedulerTarget>;
+  setItemsList(value: Array<SchedulerTarget>): SyncSchedulerTargetsRequest;
+  clearItemsList(): SyncSchedulerTargetsRequest;
+  addItems(value?: SchedulerTarget, index?: number): SchedulerTarget;
+
+  getAllowEmpty(): boolean;
+  setAllowEmpty(value: boolean): SyncSchedulerTargetsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SyncSchedulerTargetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SyncSchedulerTargetsRequest): SyncSchedulerTargetsRequest.AsObject;
+  static serializeBinaryToWriter(message: SyncSchedulerTargetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SyncSchedulerTargetsRequest;
+  static deserializeBinaryFromReader(message: SyncSchedulerTargetsRequest, reader: jspb.BinaryReader): SyncSchedulerTargetsRequest;
+}
+
+export namespace SyncSchedulerTargetsRequest {
+  export type AsObject = {
+    itemsList: Array<SchedulerTarget.AsObject>,
+    allowEmpty: boolean,
+  }
+}
+
+export class SyncSchedulerTargetsResponse extends jspb.Message {
+  getCount(): number;
+  setCount(value: number): SyncSchedulerTargetsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SyncSchedulerTargetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SyncSchedulerTargetsResponse): SyncSchedulerTargetsResponse.AsObject;
+  static serializeBinaryToWriter(message: SyncSchedulerTargetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SyncSchedulerTargetsResponse;
+  static deserializeBinaryFromReader(message: SyncSchedulerTargetsResponse, reader: jspb.BinaryReader): SyncSchedulerTargetsResponse;
+}
+
+export namespace SyncSchedulerTargetsResponse {
+  export type AsObject = {
+    count: number,
+  }
+}
+
 export enum IndicatorType { 
   INDICATOR_TYPE_UNSPECIFIED = 0,
   INDICATOR_TYPE_RSI = 1,
