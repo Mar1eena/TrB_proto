@@ -7,156 +7,54 @@ option go_package = "github.com/Mar1eena/trb_proto/gen/go/indicators;indicators"
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "indicators/params.proto";
-import "indicators/values.proto";
 
-// Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
-service Indicators {
-  // Compute считает индикатор по переданным свечам (от старых к новым).
-  rpc Compute(ComputeRequest) returns (ComputeResponse) {
+// Settings — хранение настроек индикаторов (TrB.indicator_settings).
+// HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
+service Indicator_Settings {
+  // GetSettings возвращает сохранённые настройки (по hash и/или uid+interval).
+  rpc GetSettingsHash(Settings) returns (SettingsHash) {
     option (google.api.http) = {
-      post: "/v1/indicators/compute"
-      body: "*"
-      additional_bindings { post: "/Compute" body: "*" }
+      get: "/v1/indicators/settings"
+      additional_bindings { post: "/GetSettings" body: "*" }
     };
   }
 
-  // ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
-  rpc ListSupported(ListSupportedRequest) returns (ListSupportedResponse) {
+  // UpdateSettings upsert настроек по uid+interval+params; в ответе — актуальный hash.
+  rpc UpdateSettings(Settings) returns (UpdateSettingsResponse) {
     option (google.api.http) = {
-      get: "/v1/indicators/supported"
-      additional_bindings { post: "/ListSupported" body: "*" }
+      put: "/v1/indicators/settings"
+      body: "*"
+      additional_bindings { post: "/UpdateSettings" body: "*" }
     };
   }
 
-  // ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
-  // и при persist=true сохраняет настройки и значения в TrB.indicator_*.
-  rpc ComputeForInstrument(ComputeForInstrumentRequest) returns (ComputeResponse) {
+  // DeleteSettings удаляет настройки по hash.
+  rpc DeleteSettings(Settings) returns (DeleteSettingsResponse) {
     option (google.api.http) = {
-      post: "/v1/indicators/compute-for-instrument"
-      body: "*"
-      additional_bindings { post: "/ComputeForInstrument" body: "*" }
-    };
-  }
-
-  // ListIndicatorValues — постраничное чтение значений из TrB.indicator_values.
-//   rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
-//     option (google.api.http) = {
-//       post: "/v1/indicators/values"
-//       body: "*"
-//       additional_bindings { post: "/ListIndicatorValues" body: "*" }
-//     };
-//   }
-
-  rpc IndicatorValues(SettingsRequest) returns (IndicatorValuesResponse) {
-    option (google.api.http) = {
-      post: "/v1/indicators/values"
-      body: "*"
-      additional_bindings { post: "/ListIndicatorValues" body: "*" }
-    };
-  }
-
-  rpc SettingsHash(SettingsRequest) returns (SettingsHashResponse){
-    option (google.api.http) = {
-      post: "/v1/indicators/settings"
-      body: "*"
-      additional_bindings { post: "/settings" body: "*" }
+      delete: "/v1/indicators/settings"
+      additional_bindings { post: "/DeleteSettings" body: "*" }
     };
   }
 }
 
-message SettingsRequest {
+message Settings {
     uint32 interval = 1;
     string uid = 2;
-    IndicatorSettings settings = 3; 
+    IndicatorSettings settings = 3;
     google.protobuf.Timestamp start = 4;
     google.protobuf.Timestamp end = 5;
 }
 
-message SettingsHashResponse{
+message SettingsHash{
     uint64 hash = 1;
 }
 
-enum IndicatorType {
-  INDICATOR_TYPE_UNSPECIFIED = 0;
-  INDICATOR_TYPE_RSI = 1;
-  INDICATOR_TYPE_SMA = 2;
-  INDICATOR_TYPE_EMA = 3;
-  INDICATOR_TYPE_MACD = 4;
-  INDICATOR_TYPE_BB = 5;
+message DeleteSettingsResponse {
+    uint64 hash = 1;
+    bool delete = 2;
 }
 
-message Candle {
-  google.protobuf.Timestamp time = 1;
-  double open = 2;
-  double high = 3;
-  double low = 4;
-  double close = 5;
-  double volume = 6;
-}
-
-message ComputeRequest {
-  IndicatorType type = 1;
-  // Свечи в хронологическом порядке (ASC). Минимум зависит от индикатора и params.
-  repeated Candle candles = 2;
-  // Параметры индикатора: period, fastperiod, slowperiod, signalperiod, nbdevup, nbdevdn.
-  map<string, double> params = 3;
-}
-
-message ComputeForInstrumentRequest {
-  string uid = 1;
-  int32 interval = 2;
-  google.protobuf.Timestamp from = 3;
-  google.protobuf.Timestamp to = 4;
-  IndicatorType type = 5;
-  map<string, double> params = 6;
-  // persist=true: upsert TrB.indicator_settings и INSERT в TrB.indicator_values.
-  bool persist = 7;
-  // 0 = не возвращать точки в ответе (только расчёт/persist). Не задано — лимит сервера.
-  optional int32 max_response_points = 8;
-}
-
-message ListIndicatorValuesRequest {
-  string uid = 1;
-  int32 interval = 2;
-  google.protobuf.Timestamp from = 3;
-  google.protobuf.Timestamp to = 4;
-  IndicatorType type = 5;
-  map<string, double> params = 6;
-  int32 limit = 7;
-  // Пагинация: вернуть точки с time > after.
-  google.protobuf.Timestamp after = 8;
-}
-
-message IndicatorPoint {
-  google.protobuf.Timestamp time = 1;
-  // Ключи: value, signal, hist, upper, middle, lower — в зависимости от индикатора.
-  map<string, double> values = 2;
-}
-
-message ComputeResponse {
-  IndicatorType type = 1;
-  map<string, double> params = 2;
-  repeated IndicatorPoint points = 3;
-  // Всего рассчитанных точек (может быть больше len(points)).
-  int32 total_points = 4;
-}
-
-message ListIndicatorValuesResponse {
-  IndicatorType type = 1;
-  map<string, double> params = 2;
-  repeated IndicatorPoint points = 3;
-  bool has_more = 4;
-}
-
-message IndicatorInfo {
-  IndicatorType type = 1;
-  string name = 2;
-  int32 min_bars = 3;
-  map<string, double> default_params = 4;
-}
-
-message ListSupportedRequest {}
-
-message ListSupportedResponse {
-  repeated IndicatorInfo indicators = 1;
+message UpdateSettingsResponse {
+    uint64 hash = 1;
+    bool update = 2;
 }

@@ -33,7 +33,7 @@ make gene
 | `clickhouse` | `ClickHouse_Admin`, `ClickHouse` |
 | `postgresql` | `PostgreSQL_Admin`, `PostgreSQL` |
 | `nats` | `Nats_Admin` |
-| `indicators` | `Indicators` |
+| `indicators` | `Indicators`, `Settings` |
 | `test` | `Test` |
 
 `clickhouse` — `admin.proto` и `clickhouse.proto`.  

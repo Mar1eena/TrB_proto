@@ -4,7 +4,6 @@ import grpc
 import warnings
 
 from indicators import indicators_pb2 as indicators_dot_indicators__pb2
-from indicators import values_pb2 as indicators_dot_values__pb2
 
 GRPC_GENERATED_VERSION = '1.80.0'
 GRPC_VERSION = grpc.__version__
@@ -26,8 +25,9 @@ if _version_not_supported:
     )
 
 
-class IndicatorsStub(object):
-    """Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
+class Indicator_SettingsStub(object):
+    """Settings — хранение настроек индикаторов (TrB.indicator_settings).
+    HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
     """
 
     def __init__(self, channel):
@@ -36,122 +36,82 @@ class IndicatorsStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Compute = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/Compute',
-                request_serializer=indicators_dot_indicators__pb2.ComputeRequest.SerializeToString,
-                response_deserializer=indicators_dot_indicators__pb2.ComputeResponse.FromString,
+        self.GetSettingsHash = channel.unary_unary(
+                '/trb.indicators.v1.Indicator_Settings/GetSettingsHash',
+                request_serializer=indicators_dot_indicators__pb2.Settings.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.SettingsHash.FromString,
                 _registered_method=True)
-        self.ListSupported = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/ListSupported',
-                request_serializer=indicators_dot_indicators__pb2.ListSupportedRequest.SerializeToString,
-                response_deserializer=indicators_dot_indicators__pb2.ListSupportedResponse.FromString,
+        self.UpdateSettings = channel.unary_unary(
+                '/trb.indicators.v1.Indicator_Settings/UpdateSettings',
+                request_serializer=indicators_dot_indicators__pb2.Settings.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.UpdateSettingsResponse.FromString,
                 _registered_method=True)
-        self.ComputeForInstrument = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/ComputeForInstrument',
-                request_serializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.SerializeToString,
-                response_deserializer=indicators_dot_indicators__pb2.ComputeResponse.FromString,
-                _registered_method=True)
-        self.IndicatorValues = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/IndicatorValues',
-                request_serializer=indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
-                response_deserializer=indicators_dot_values__pb2.IndicatorValuesResponse.FromString,
-                _registered_method=True)
-        self.SettingsHash = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/SettingsHash',
-                request_serializer=indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
-                response_deserializer=indicators_dot_indicators__pb2.SettingsHashResponse.FromString,
+        self.DeleteSettings = channel.unary_unary(
+                '/trb.indicators.v1.Indicator_Settings/DeleteSettings',
+                request_serializer=indicators_dot_indicators__pb2.Settings.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.DeleteSettingsResponse.FromString,
                 _registered_method=True)
 
 
-class IndicatorsServicer(object):
-    """Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
+class Indicator_SettingsServicer(object):
+    """Settings — хранение настроек индикаторов (TrB.indicator_settings).
+    HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
     """
 
-    def Compute(self, request, context):
-        """Compute считает индикатор по переданным свечам (от старых к новым).
+    def GetSettingsHash(self, request, context):
+        """GetSettings возвращает сохранённые настройки (по hash и/или uid+interval).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListSupported(self, request, context):
-        """ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
+    def UpdateSettings(self, request, context):
+        """UpdateSettings upsert настроек по uid+interval+params; в ответе — актуальный hash.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ComputeForInstrument(self, request, context):
-        """ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
-        и при persist=true сохраняет настройки и значения в TrB.indicator_*.
+    def DeleteSettings(self, request, context):
+        """DeleteSettings удаляет настройки по hash.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def IndicatorValues(self, request, context):
-        """ListIndicatorValues — постраничное чтение значений из TrB.indicator_values.
-        rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
-        option (google.api.http) = {
-        post: "/v1/indicators/values"
-        body: "*"
-        additional_bindings { post: "/ListIndicatorValues" body: "*" }
-        };
-        }
 
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SettingsHash(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_IndicatorsServicer_to_server(servicer, server):
+def add_Indicator_SettingsServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Compute': grpc.unary_unary_rpc_method_handler(
-                    servicer.Compute,
-                    request_deserializer=indicators_dot_indicators__pb2.ComputeRequest.FromString,
-                    response_serializer=indicators_dot_indicators__pb2.ComputeResponse.SerializeToString,
+            'GetSettingsHash': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSettingsHash,
+                    request_deserializer=indicators_dot_indicators__pb2.Settings.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.SettingsHash.SerializeToString,
             ),
-            'ListSupported': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListSupported,
-                    request_deserializer=indicators_dot_indicators__pb2.ListSupportedRequest.FromString,
-                    response_serializer=indicators_dot_indicators__pb2.ListSupportedResponse.SerializeToString,
+            'UpdateSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateSettings,
+                    request_deserializer=indicators_dot_indicators__pb2.Settings.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.UpdateSettingsResponse.SerializeToString,
             ),
-            'ComputeForInstrument': grpc.unary_unary_rpc_method_handler(
-                    servicer.ComputeForInstrument,
-                    request_deserializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.FromString,
-                    response_serializer=indicators_dot_indicators__pb2.ComputeResponse.SerializeToString,
-            ),
-            'IndicatorValues': grpc.unary_unary_rpc_method_handler(
-                    servicer.IndicatorValues,
-                    request_deserializer=indicators_dot_indicators__pb2.SettingsRequest.FromString,
-                    response_serializer=indicators_dot_values__pb2.IndicatorValuesResponse.SerializeToString,
-            ),
-            'SettingsHash': grpc.unary_unary_rpc_method_handler(
-                    servicer.SettingsHash,
-                    request_deserializer=indicators_dot_indicators__pb2.SettingsRequest.FromString,
-                    response_serializer=indicators_dot_indicators__pb2.SettingsHashResponse.SerializeToString,
+            'DeleteSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSettings,
+                    request_deserializer=indicators_dot_indicators__pb2.Settings.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.DeleteSettingsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'trb.indicators.v1.Indicators', rpc_method_handlers)
+            'trb.indicators.v1.Indicator_Settings', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('trb.indicators.v1.Indicators', rpc_method_handlers)
+    server.add_registered_method_handlers('trb.indicators.v1.Indicator_Settings', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Indicators(object):
-    """Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
+class Indicator_Settings(object):
+    """Settings — хранение настроек индикаторов (TrB.indicator_settings).
+    HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
     """
 
     @staticmethod
-    def Compute(request,
+    def GetSettingsHash(request,
             target,
             options=(),
             channel_credentials=None,
@@ -164,9 +124,9 @@ class Indicators(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/trb.indicators.v1.Indicators/Compute',
-            indicators_dot_indicators__pb2.ComputeRequest.SerializeToString,
-            indicators_dot_indicators__pb2.ComputeResponse.FromString,
+            '/trb.indicators.v1.Indicator_Settings/GetSettingsHash',
+            indicators_dot_indicators__pb2.Settings.SerializeToString,
+            indicators_dot_indicators__pb2.SettingsHash.FromString,
             options,
             channel_credentials,
             insecure,
@@ -178,7 +138,7 @@ class Indicators(object):
             _registered_method=True)
 
     @staticmethod
-    def ListSupported(request,
+    def UpdateSettings(request,
             target,
             options=(),
             channel_credentials=None,
@@ -191,9 +151,9 @@ class Indicators(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/trb.indicators.v1.Indicators/ListSupported',
-            indicators_dot_indicators__pb2.ListSupportedRequest.SerializeToString,
-            indicators_dot_indicators__pb2.ListSupportedResponse.FromString,
+            '/trb.indicators.v1.Indicator_Settings/UpdateSettings',
+            indicators_dot_indicators__pb2.Settings.SerializeToString,
+            indicators_dot_indicators__pb2.UpdateSettingsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -205,7 +165,7 @@ class Indicators(object):
             _registered_method=True)
 
     @staticmethod
-    def ComputeForInstrument(request,
+    def DeleteSettings(request,
             target,
             options=(),
             channel_credentials=None,
@@ -218,63 +178,9 @@ class Indicators(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/trb.indicators.v1.Indicators/ComputeForInstrument',
-            indicators_dot_indicators__pb2.ComputeForInstrumentRequest.SerializeToString,
-            indicators_dot_indicators__pb2.ComputeResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def IndicatorValues(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/trb.indicators.v1.Indicators/IndicatorValues',
-            indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
-            indicators_dot_values__pb2.IndicatorValuesResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def SettingsHash(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/trb.indicators.v1.Indicators/SettingsHash',
-            indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
-            indicators_dot_indicators__pb2.SettingsHashResponse.FromString,
+            '/trb.indicators.v1.Indicator_Settings/DeleteSettings',
+            indicators_dot_indicators__pb2.Settings.SerializeToString,
+            indicators_dot_indicators__pb2.DeleteSettingsResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -18,10 +18,9 @@
 import * as grpcWeb from 'grpc-web';
 
 import * as indicators_indicators_pb from '../indicators/indicators_pb'; // proto import: "indicators/indicators.proto"
-import * as indicators_values_pb from '../indicators/values_pb'; // proto import: "indicators/values.proto"
 
 
-export class IndicatorsClient {
+export class Indicator_SettingsClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -40,219 +39,133 @@ export class IndicatorsClient {
     this.options_ = options;
   }
 
-  methodDescriptorCompute = new grpcWeb.MethodDescriptor(
-    '/trb.indicators.v1.Indicators/Compute',
+  methodDescriptorGetSettingsHash = new grpcWeb.MethodDescriptor(
+    '/trb.indicators.v1.Indicator_Settings/GetSettingsHash',
     grpcWeb.MethodType.UNARY,
-    indicators_indicators_pb.ComputeRequest,
-    indicators_indicators_pb.ComputeResponse,
-    (request: indicators_indicators_pb.ComputeRequest) => {
+    indicators_indicators_pb.Settings,
+    indicators_indicators_pb.SettingsHash,
+    (request: indicators_indicators_pb.Settings) => {
       return request.serializeBinary();
     },
-    indicators_indicators_pb.ComputeResponse.deserializeBinary
+    indicators_indicators_pb.SettingsHash.deserializeBinary
   );
 
-  compute(
-    request: indicators_indicators_pb.ComputeRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.ComputeResponse>;
+  getSettingsHash(
+    request: indicators_indicators_pb.Settings,
+    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.SettingsHash>;
 
-  compute(
-    request: indicators_indicators_pb.ComputeRequest,
+  getSettingsHash(
+    request: indicators_indicators_pb.Settings,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ComputeResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.ComputeResponse>;
+               response: indicators_indicators_pb.SettingsHash) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.SettingsHash>;
 
-  compute(
-    request: indicators_indicators_pb.ComputeRequest,
+  getSettingsHash(
+    request: indicators_indicators_pb.Settings,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ComputeResponse) => void) {
+               response: indicators_indicators_pb.SettingsHash) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/trb.indicators.v1.Indicators/Compute',
+          '/trb.indicators.v1.Indicator_Settings/GetSettingsHash',
         request,
         metadata || {},
-        this.methodDescriptorCompute,
+        this.methodDescriptorGetSettingsHash,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/trb.indicators.v1.Indicators/Compute',
+      '/trb.indicators.v1.Indicator_Settings/GetSettingsHash',
     request,
     metadata || {},
-    this.methodDescriptorCompute);
+    this.methodDescriptorGetSettingsHash);
   }
 
-  methodDescriptorListSupported = new grpcWeb.MethodDescriptor(
-    '/trb.indicators.v1.Indicators/ListSupported',
+  methodDescriptorUpdateSettings = new grpcWeb.MethodDescriptor(
+    '/trb.indicators.v1.Indicator_Settings/UpdateSettings',
     grpcWeb.MethodType.UNARY,
-    indicators_indicators_pb.ListSupportedRequest,
-    indicators_indicators_pb.ListSupportedResponse,
-    (request: indicators_indicators_pb.ListSupportedRequest) => {
+    indicators_indicators_pb.Settings,
+    indicators_indicators_pb.UpdateSettingsResponse,
+    (request: indicators_indicators_pb.Settings) => {
       return request.serializeBinary();
     },
-    indicators_indicators_pb.ListSupportedResponse.deserializeBinary
+    indicators_indicators_pb.UpdateSettingsResponse.deserializeBinary
   );
 
-  listSupported(
-    request: indicators_indicators_pb.ListSupportedRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.ListSupportedResponse>;
+  updateSettings(
+    request: indicators_indicators_pb.Settings,
+    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.UpdateSettingsResponse>;
 
-  listSupported(
-    request: indicators_indicators_pb.ListSupportedRequest,
+  updateSettings(
+    request: indicators_indicators_pb.Settings,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ListSupportedResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.ListSupportedResponse>;
+               response: indicators_indicators_pb.UpdateSettingsResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.UpdateSettingsResponse>;
 
-  listSupported(
-    request: indicators_indicators_pb.ListSupportedRequest,
+  updateSettings(
+    request: indicators_indicators_pb.Settings,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ListSupportedResponse) => void) {
+               response: indicators_indicators_pb.UpdateSettingsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/trb.indicators.v1.Indicators/ListSupported',
+          '/trb.indicators.v1.Indicator_Settings/UpdateSettings',
         request,
         metadata || {},
-        this.methodDescriptorListSupported,
+        this.methodDescriptorUpdateSettings,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/trb.indicators.v1.Indicators/ListSupported',
+      '/trb.indicators.v1.Indicator_Settings/UpdateSettings',
     request,
     metadata || {},
-    this.methodDescriptorListSupported);
+    this.methodDescriptorUpdateSettings);
   }
 
-  methodDescriptorComputeForInstrument = new grpcWeb.MethodDescriptor(
-    '/trb.indicators.v1.Indicators/ComputeForInstrument',
+  methodDescriptorDeleteSettings = new grpcWeb.MethodDescriptor(
+    '/trb.indicators.v1.Indicator_Settings/DeleteSettings',
     grpcWeb.MethodType.UNARY,
-    indicators_indicators_pb.ComputeForInstrumentRequest,
-    indicators_indicators_pb.ComputeResponse,
-    (request: indicators_indicators_pb.ComputeForInstrumentRequest) => {
+    indicators_indicators_pb.Settings,
+    indicators_indicators_pb.DeleteSettingsResponse,
+    (request: indicators_indicators_pb.Settings) => {
       return request.serializeBinary();
     },
-    indicators_indicators_pb.ComputeResponse.deserializeBinary
+    indicators_indicators_pb.DeleteSettingsResponse.deserializeBinary
   );
 
-  computeForInstrument(
-    request: indicators_indicators_pb.ComputeForInstrumentRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.ComputeResponse>;
+  deleteSettings(
+    request: indicators_indicators_pb.Settings,
+    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.DeleteSettingsResponse>;
 
-  computeForInstrument(
-    request: indicators_indicators_pb.ComputeForInstrumentRequest,
+  deleteSettings(
+    request: indicators_indicators_pb.Settings,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ComputeResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.ComputeResponse>;
+               response: indicators_indicators_pb.DeleteSettingsResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.DeleteSettingsResponse>;
 
-  computeForInstrument(
-    request: indicators_indicators_pb.ComputeForInstrumentRequest,
+  deleteSettings(
+    request: indicators_indicators_pb.Settings,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.ComputeResponse) => void) {
+               response: indicators_indicators_pb.DeleteSettingsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/trb.indicators.v1.Indicators/ComputeForInstrument',
+          '/trb.indicators.v1.Indicator_Settings/DeleteSettings',
         request,
         metadata || {},
-        this.methodDescriptorComputeForInstrument,
+        this.methodDescriptorDeleteSettings,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/trb.indicators.v1.Indicators/ComputeForInstrument',
+      '/trb.indicators.v1.Indicator_Settings/DeleteSettings',
     request,
     metadata || {},
-    this.methodDescriptorComputeForInstrument);
-  }
-
-  methodDescriptorIndicatorValues = new grpcWeb.MethodDescriptor(
-    '/trb.indicators.v1.Indicators/IndicatorValues',
-    grpcWeb.MethodType.UNARY,
-    indicators_indicators_pb.SettingsRequest,
-    indicators_values_pb.IndicatorValuesResponse,
-    (request: indicators_indicators_pb.SettingsRequest) => {
-      return request.serializeBinary();
-    },
-    indicators_values_pb.IndicatorValuesResponse.deserializeBinary
-  );
-
-  indicatorValues(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<indicators_values_pb.IndicatorValuesResponse>;
-
-  indicatorValues(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: indicators_values_pb.IndicatorValuesResponse) => void): grpcWeb.ClientReadableStream<indicators_values_pb.IndicatorValuesResponse>;
-
-  indicatorValues(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata?: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: indicators_values_pb.IndicatorValuesResponse) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/trb.indicators.v1.Indicators/IndicatorValues',
-        request,
-        metadata || {},
-        this.methodDescriptorIndicatorValues,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/trb.indicators.v1.Indicators/IndicatorValues',
-    request,
-    metadata || {},
-    this.methodDescriptorIndicatorValues);
-  }
-
-  methodDescriptorSettingsHash = new grpcWeb.MethodDescriptor(
-    '/trb.indicators.v1.Indicators/SettingsHash',
-    grpcWeb.MethodType.UNARY,
-    indicators_indicators_pb.SettingsRequest,
-    indicators_indicators_pb.SettingsHashResponse,
-    (request: indicators_indicators_pb.SettingsRequest) => {
-      return request.serializeBinary();
-    },
-    indicators_indicators_pb.SettingsHashResponse.deserializeBinary
-  );
-
-  settingsHash(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<indicators_indicators_pb.SettingsHashResponse>;
-
-  settingsHash(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.SettingsHashResponse) => void): grpcWeb.ClientReadableStream<indicators_indicators_pb.SettingsHashResponse>;
-
-  settingsHash(
-    request: indicators_indicators_pb.SettingsRequest,
-    metadata?: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: indicators_indicators_pb.SettingsHashResponse) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/trb.indicators.v1.Indicators/SettingsHash',
-        request,
-        metadata || {},
-        this.methodDescriptorSettingsHash,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/trb.indicators.v1.Indicators/SettingsHash',
-    request,
-    metadata || {},
-    this.methodDescriptorSettingsHash);
+    this.methodDescriptorDeleteSettings);
   }
 
 }

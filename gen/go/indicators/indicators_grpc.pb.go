@@ -19,265 +19,189 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Indicators_Compute_FullMethodName              = "/trb.indicators.v1.Indicators/Compute"
-	Indicators_ListSupported_FullMethodName        = "/trb.indicators.v1.Indicators/ListSupported"
-	Indicators_ComputeForInstrument_FullMethodName = "/trb.indicators.v1.Indicators/ComputeForInstrument"
-	Indicators_IndicatorValues_FullMethodName      = "/trb.indicators.v1.Indicators/IndicatorValues"
-	Indicators_SettingsHash_FullMethodName         = "/trb.indicators.v1.Indicators/SettingsHash"
+	Indicator_Settings_GetSettingsHash_FullMethodName = "/trb.indicators.v1.Indicator_Settings/GetSettingsHash"
+	Indicator_Settings_UpdateSettings_FullMethodName  = "/trb.indicators.v1.Indicator_Settings/UpdateSettings"
+	Indicator_Settings_DeleteSettings_FullMethodName  = "/trb.indicators.v1.Indicator_Settings/DeleteSettings"
 )
 
-// IndicatorsClient is the client API for Indicators service.
+// Indicator_SettingsClient is the client API for Indicator_Settings service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
-type IndicatorsClient interface {
-	// Compute считает индикатор по переданным свечам (от старых к новым).
-	Compute(ctx context.Context, in *ComputeRequest, opts ...grpc.CallOption) (*ComputeResponse, error)
-	// ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
-	ListSupported(ctx context.Context, in *ListSupportedRequest, opts ...grpc.CallOption) (*ListSupportedResponse, error)
-	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
-	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
-	ComputeForInstrument(ctx context.Context, in *ComputeForInstrumentRequest, opts ...grpc.CallOption) (*ComputeResponse, error)
-	IndicatorValues(ctx context.Context, in *SettingsRequest, opts ...grpc.CallOption) (*IndicatorValuesResponse, error)
-	SettingsHash(ctx context.Context, in *SettingsRequest, opts ...grpc.CallOption) (*SettingsHashResponse, error)
+// Settings — хранение настроек индикаторов (TrB.indicator_settings).
+// HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
+type Indicator_SettingsClient interface {
+	// GetSettings возвращает сохранённые настройки (по hash и/или uid+interval).
+	GetSettingsHash(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*SettingsHash, error)
+	// UpdateSettings upsert настроек по uid+interval+params; в ответе — актуальный hash.
+	UpdateSettings(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*UpdateSettingsResponse, error)
+	// DeleteSettings удаляет настройки по hash.
+	DeleteSettings(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*DeleteSettingsResponse, error)
 }
 
-type indicatorsClient struct {
+type indicator_SettingsClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewIndicatorsClient(cc grpc.ClientConnInterface) IndicatorsClient {
-	return &indicatorsClient{cc}
+func NewIndicator_SettingsClient(cc grpc.ClientConnInterface) Indicator_SettingsClient {
+	return &indicator_SettingsClient{cc}
 }
 
-func (c *indicatorsClient) Compute(ctx context.Context, in *ComputeRequest, opts ...grpc.CallOption) (*ComputeResponse, error) {
+func (c *indicator_SettingsClient) GetSettingsHash(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*SettingsHash, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComputeResponse)
-	err := c.cc.Invoke(ctx, Indicators_Compute_FullMethodName, in, out, cOpts...)
+	out := new(SettingsHash)
+	err := c.cc.Invoke(ctx, Indicator_Settings_GetSettingsHash_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *indicatorsClient) ListSupported(ctx context.Context, in *ListSupportedRequest, opts ...grpc.CallOption) (*ListSupportedResponse, error) {
+func (c *indicator_SettingsClient) UpdateSettings(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*UpdateSettingsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSupportedResponse)
-	err := c.cc.Invoke(ctx, Indicators_ListSupported_FullMethodName, in, out, cOpts...)
+	out := new(UpdateSettingsResponse)
+	err := c.cc.Invoke(ctx, Indicator_Settings_UpdateSettings_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *indicatorsClient) ComputeForInstrument(ctx context.Context, in *ComputeForInstrumentRequest, opts ...grpc.CallOption) (*ComputeResponse, error) {
+func (c *indicator_SettingsClient) DeleteSettings(ctx context.Context, in *Settings, opts ...grpc.CallOption) (*DeleteSettingsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComputeResponse)
-	err := c.cc.Invoke(ctx, Indicators_ComputeForInstrument_FullMethodName, in, out, cOpts...)
+	out := new(DeleteSettingsResponse)
+	err := c.cc.Invoke(ctx, Indicator_Settings_DeleteSettings_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *indicatorsClient) IndicatorValues(ctx context.Context, in *SettingsRequest, opts ...grpc.CallOption) (*IndicatorValuesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IndicatorValuesResponse)
-	err := c.cc.Invoke(ctx, Indicators_IndicatorValues_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *indicatorsClient) SettingsHash(ctx context.Context, in *SettingsRequest, opts ...grpc.CallOption) (*SettingsHashResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SettingsHashResponse)
-	err := c.cc.Invoke(ctx, Indicators_SettingsHash_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// IndicatorsServer is the server API for Indicators service.
-// All implementations must embed UnimplementedIndicatorsServer
+// Indicator_SettingsServer is the server API for Indicator_Settings service.
+// All implementations must embed UnimplementedIndicator_SettingsServer
 // for forward compatibility.
 //
-// Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
-type IndicatorsServer interface {
-	// Compute считает индикатор по переданным свечам (от старых к новым).
-	Compute(context.Context, *ComputeRequest) (*ComputeResponse, error)
-	// ListSupported возвращает список поддерживаемых индикаторов и параметров по умолчанию.
-	ListSupported(context.Context, *ListSupportedRequest) (*ListSupportedResponse, error)
-	// ComputeForInstrument загружает свечи из ClickHouse (TrB.hct), считает индикатор
-	// и при persist=true сохраняет настройки и значения в TrB.indicator_*.
-	ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error)
-	IndicatorValues(context.Context, *SettingsRequest) (*IndicatorValuesResponse, error)
-	SettingsHash(context.Context, *SettingsRequest) (*SettingsHashResponse, error)
-	mustEmbedUnimplementedIndicatorsServer()
+// Settings — хранение настроек индикаторов (TrB.indicator_settings).
+// HTTP-методы различают операции на одном ресурсе /v1/indicators/settings.
+type Indicator_SettingsServer interface {
+	// GetSettings возвращает сохранённые настройки (по hash и/или uid+interval).
+	GetSettingsHash(context.Context, *Settings) (*SettingsHash, error)
+	// UpdateSettings upsert настроек по uid+interval+params; в ответе — актуальный hash.
+	UpdateSettings(context.Context, *Settings) (*UpdateSettingsResponse, error)
+	// DeleteSettings удаляет настройки по hash.
+	DeleteSettings(context.Context, *Settings) (*DeleteSettingsResponse, error)
+	mustEmbedUnimplementedIndicator_SettingsServer()
 }
 
-// UnimplementedIndicatorsServer must be embedded to have
+// UnimplementedIndicator_SettingsServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedIndicatorsServer struct{}
+type UnimplementedIndicator_SettingsServer struct{}
 
-func (UnimplementedIndicatorsServer) Compute(context.Context, *ComputeRequest) (*ComputeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Compute not implemented")
+func (UnimplementedIndicator_SettingsServer) GetSettingsHash(context.Context, *Settings) (*SettingsHash, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSettingsHash not implemented")
 }
-func (UnimplementedIndicatorsServer) ListSupported(context.Context, *ListSupportedRequest) (*ListSupportedResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListSupported not implemented")
+func (UnimplementedIndicator_SettingsServer) UpdateSettings(context.Context, *Settings) (*UpdateSettingsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateSettings not implemented")
 }
-func (UnimplementedIndicatorsServer) ComputeForInstrument(context.Context, *ComputeForInstrumentRequest) (*ComputeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ComputeForInstrument not implemented")
+func (UnimplementedIndicator_SettingsServer) DeleteSettings(context.Context, *Settings) (*DeleteSettingsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteSettings not implemented")
 }
-func (UnimplementedIndicatorsServer) IndicatorValues(context.Context, *SettingsRequest) (*IndicatorValuesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method IndicatorValues not implemented")
-}
-func (UnimplementedIndicatorsServer) SettingsHash(context.Context, *SettingsRequest) (*SettingsHashResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SettingsHash not implemented")
-}
-func (UnimplementedIndicatorsServer) mustEmbedUnimplementedIndicatorsServer() {}
-func (UnimplementedIndicatorsServer) testEmbeddedByValue()                    {}
+func (UnimplementedIndicator_SettingsServer) mustEmbedUnimplementedIndicator_SettingsServer() {}
+func (UnimplementedIndicator_SettingsServer) testEmbeddedByValue()                            {}
 
-// UnsafeIndicatorsServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to IndicatorsServer will
+// UnsafeIndicator_SettingsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to Indicator_SettingsServer will
 // result in compilation errors.
-type UnsafeIndicatorsServer interface {
-	mustEmbedUnimplementedIndicatorsServer()
+type UnsafeIndicator_SettingsServer interface {
+	mustEmbedUnimplementedIndicator_SettingsServer()
 }
 
-func RegisterIndicatorsServer(s grpc.ServiceRegistrar, srv IndicatorsServer) {
-	// If the following call panics, it indicates UnimplementedIndicatorsServer was
+func RegisterIndicator_SettingsServer(s grpc.ServiceRegistrar, srv Indicator_SettingsServer) {
+	// If the following call panics, it indicates UnimplementedIndicator_SettingsServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Indicators_ServiceDesc, srv)
+	s.RegisterService(&Indicator_Settings_ServiceDesc, srv)
 }
 
-func _Indicators_Compute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComputeRequest)
+func _Indicator_Settings_GetSettingsHash_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Settings)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IndicatorsServer).Compute(ctx, in)
+		return srv.(Indicator_SettingsServer).GetSettingsHash(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Indicators_Compute_FullMethodName,
+		FullMethod: Indicator_Settings_GetSettingsHash_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IndicatorsServer).Compute(ctx, req.(*ComputeRequest))
+		return srv.(Indicator_SettingsServer).GetSettingsHash(ctx, req.(*Settings))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Indicators_ListSupported_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSupportedRequest)
+func _Indicator_Settings_UpdateSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Settings)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IndicatorsServer).ListSupported(ctx, in)
+		return srv.(Indicator_SettingsServer).UpdateSettings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Indicators_ListSupported_FullMethodName,
+		FullMethod: Indicator_Settings_UpdateSettings_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IndicatorsServer).ListSupported(ctx, req.(*ListSupportedRequest))
+		return srv.(Indicator_SettingsServer).UpdateSettings(ctx, req.(*Settings))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Indicators_ComputeForInstrument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComputeForInstrumentRequest)
+func _Indicator_Settings_DeleteSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Settings)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IndicatorsServer).ComputeForInstrument(ctx, in)
+		return srv.(Indicator_SettingsServer).DeleteSettings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Indicators_ComputeForInstrument_FullMethodName,
+		FullMethod: Indicator_Settings_DeleteSettings_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IndicatorsServer).ComputeForInstrument(ctx, req.(*ComputeForInstrumentRequest))
+		return srv.(Indicator_SettingsServer).DeleteSettings(ctx, req.(*Settings))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Indicators_IndicatorValues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SettingsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(IndicatorsServer).IndicatorValues(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Indicators_IndicatorValues_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IndicatorsServer).IndicatorValues(ctx, req.(*SettingsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Indicators_SettingsHash_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SettingsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(IndicatorsServer).SettingsHash(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Indicators_SettingsHash_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IndicatorsServer).SettingsHash(ctx, req.(*SettingsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Indicators_ServiceDesc is the grpc.ServiceDesc for Indicators service.
+// Indicator_Settings_ServiceDesc is the grpc.ServiceDesc for Indicator_Settings service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Indicators_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trb.indicators.v1.Indicators",
-	HandlerType: (*IndicatorsServer)(nil),
+var Indicator_Settings_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "trb.indicators.v1.Indicator_Settings",
+	HandlerType: (*Indicator_SettingsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Compute",
-			Handler:    _Indicators_Compute_Handler,
+			MethodName: "GetSettingsHash",
+			Handler:    _Indicator_Settings_GetSettingsHash_Handler,
 		},
 		{
-			MethodName: "ListSupported",
-			Handler:    _Indicators_ListSupported_Handler,
+			MethodName: "UpdateSettings",
+			Handler:    _Indicator_Settings_UpdateSettings_Handler,
 		},
 		{
-			MethodName: "ComputeForInstrument",
-			Handler:    _Indicators_ComputeForInstrument_Handler,
-		},
-		{
-			MethodName: "IndicatorValues",
-			Handler:    _Indicators_IndicatorValues_Handler,
-		},
-		{
-			MethodName: "SettingsHash",
-			Handler:    _Indicators_SettingsHash_Handler,
+			MethodName: "DeleteSettings",
+			Handler:    _Indicator_Settings_DeleteSettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
