@@ -191,9 +191,9 @@ func local_request_Indicators_ComputeForInstrument_1(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
-func request_Indicators_ListIndicatorValues_0(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Indicators_IndicatorValues_0(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListIndicatorValuesRequest
+		protoReq SettingsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -202,25 +202,25 @@ func request_Indicators_ListIndicatorValues_0(ctx context.Context, marshaler run
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.ListIndicatorValues(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.IndicatorValues(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_Indicators_ListIndicatorValues_0(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Indicators_IndicatorValues_0(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListIndicatorValuesRequest
+		protoReq SettingsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ListIndicatorValues(ctx, &protoReq)
+	msg, err := server.IndicatorValues(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_Indicators_ListIndicatorValues_1(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Indicators_IndicatorValues_1(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListIndicatorValuesRequest
+		protoReq SettingsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -229,19 +229,73 @@ func request_Indicators_ListIndicatorValues_1(ctx context.Context, marshaler run
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.ListIndicatorValues(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.IndicatorValues(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_Indicators_ListIndicatorValues_1(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Indicators_IndicatorValues_1(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListIndicatorValuesRequest
+		protoReq SettingsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ListIndicatorValues(ctx, &protoReq)
+	msg, err := server.IndicatorValues(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Indicators_SettingsHash_0(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SettingsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.SettingsHash(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Indicators_SettingsHash_0(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SettingsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SettingsHash(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Indicators_SettingsHash_1(ctx context.Context, marshaler runtime.Marshaler, client IndicatorsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SettingsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.SettingsHash(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Indicators_SettingsHash_1(ctx context.Context, marshaler runtime.Marshaler, server IndicatorsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SettingsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SettingsHash(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -371,45 +425,85 @@ func RegisterIndicatorsHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		}
 		forward_Indicators_ComputeForInstrument_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Indicators_ListIndicatorValues_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Indicators_IndicatorValues_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/ListIndicatorValues", runtime.WithHTTPPathPattern("/v1/indicators/values"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/IndicatorValues", runtime.WithHTTPPathPattern("/v1/indicators/values"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Indicators_ListIndicatorValues_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Indicators_IndicatorValues_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Indicators_ListIndicatorValues_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Indicators_IndicatorValues_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Indicators_ListIndicatorValues_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Indicators_IndicatorValues_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/ListIndicatorValues", runtime.WithHTTPPathPattern("/ListIndicatorValues"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/IndicatorValues", runtime.WithHTTPPathPattern("/ListIndicatorValues"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Indicators_ListIndicatorValues_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Indicators_IndicatorValues_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Indicators_ListIndicatorValues_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Indicators_IndicatorValues_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Indicators_SettingsHash_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/SettingsHash", runtime.WithHTTPPathPattern("/v1/indicators/settings"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Indicators_SettingsHash_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Indicators_SettingsHash_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Indicators_SettingsHash_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.indicators.v1.Indicators/SettingsHash", runtime.WithHTTPPathPattern("/settings"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Indicators_SettingsHash_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Indicators_SettingsHash_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -553,39 +647,73 @@ func RegisterIndicatorsHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		}
 		forward_Indicators_ComputeForInstrument_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Indicators_ListIndicatorValues_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Indicators_IndicatorValues_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/ListIndicatorValues", runtime.WithHTTPPathPattern("/v1/indicators/values"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/IndicatorValues", runtime.WithHTTPPathPattern("/v1/indicators/values"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Indicators_ListIndicatorValues_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Indicators_IndicatorValues_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Indicators_ListIndicatorValues_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Indicators_IndicatorValues_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Indicators_ListIndicatorValues_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Indicators_IndicatorValues_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/ListIndicatorValues", runtime.WithHTTPPathPattern("/ListIndicatorValues"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/IndicatorValues", runtime.WithHTTPPathPattern("/ListIndicatorValues"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Indicators_ListIndicatorValues_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Indicators_IndicatorValues_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Indicators_ListIndicatorValues_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Indicators_IndicatorValues_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Indicators_SettingsHash_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/SettingsHash", runtime.WithHTTPPathPattern("/v1/indicators/settings"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Indicators_SettingsHash_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Indicators_SettingsHash_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Indicators_SettingsHash_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.indicators.v1.Indicators/SettingsHash", runtime.WithHTTPPathPattern("/settings"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Indicators_SettingsHash_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Indicators_SettingsHash_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
@@ -597,8 +725,10 @@ var (
 	pattern_Indicators_ListSupported_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSupported"}, ""))
 	pattern_Indicators_ComputeForInstrument_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "indicators", "compute-for-instrument"}, ""))
 	pattern_Indicators_ComputeForInstrument_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ComputeForInstrument"}, ""))
-	pattern_Indicators_ListIndicatorValues_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "indicators", "values"}, ""))
-	pattern_Indicators_ListIndicatorValues_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListIndicatorValues"}, ""))
+	pattern_Indicators_IndicatorValues_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "indicators", "values"}, ""))
+	pattern_Indicators_IndicatorValues_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListIndicatorValues"}, ""))
+	pattern_Indicators_SettingsHash_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "indicators", "settings"}, ""))
+	pattern_Indicators_SettingsHash_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"settings"}, ""))
 )
 
 var (
@@ -608,6 +738,8 @@ var (
 	forward_Indicators_ListSupported_1        = runtime.ForwardResponseMessage
 	forward_Indicators_ComputeForInstrument_0 = runtime.ForwardResponseMessage
 	forward_Indicators_ComputeForInstrument_1 = runtime.ForwardResponseMessage
-	forward_Indicators_ListIndicatorValues_0  = runtime.ForwardResponseMessage
-	forward_Indicators_ListIndicatorValues_1  = runtime.ForwardResponseMessage
+	forward_Indicators_IndicatorValues_0      = runtime.ForwardResponseMessage
+	forward_Indicators_IndicatorValues_1      = runtime.ForwardResponseMessage
+	forward_Indicators_SettingsHash_0         = runtime.ForwardResponseMessage
+	forward_Indicators_SettingsHash_1         = runtime.ForwardResponseMessage
 )

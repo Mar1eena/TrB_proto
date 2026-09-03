@@ -6,6 +6,8 @@ option go_package = "github.com/Mar1eena/trb_proto/gen/go/indicators;indicators"
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "indicators/params.proto";
+import "indicators/values.proto";
 
 // Indicators — расчёт технических индикаторов по OHLCV-свечам (TA-Lib).
 service Indicators {
@@ -37,13 +39,41 @@ service Indicators {
   }
 
   // ListIndicatorValues — постраничное чтение значений из TrB.indicator_values.
-  rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
+//   rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
+//     option (google.api.http) = {
+//       post: "/v1/indicators/values"
+//       body: "*"
+//       additional_bindings { post: "/ListIndicatorValues" body: "*" }
+//     };
+//   }
+
+  rpc IndicatorValues(SettingsRequest) returns (IndicatorValuesResponse) {
     option (google.api.http) = {
       post: "/v1/indicators/values"
       body: "*"
       additional_bindings { post: "/ListIndicatorValues" body: "*" }
     };
   }
+
+  rpc SettingsHash(SettingsRequest) returns (SettingsHashResponse){
+    option (google.api.http) = {
+      post: "/v1/indicators/settings"
+      body: "*"
+      additional_bindings { post: "/settings" body: "*" }
+    };
+  }
+}
+
+message SettingsRequest {
+    uint32 interval = 1;
+    string uid = 2;
+    IndicatorSettings settings = 3; 
+    google.protobuf.Timestamp start = 4;
+    google.protobuf.Timestamp end = 5;
+}
+
+message SettingsHashResponse{
+    uint64 hash = 1;
 }
 
 enum IndicatorType {

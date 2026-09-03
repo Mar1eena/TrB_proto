@@ -24,9 +24,11 @@ _sym_db = _symbol_database.Default()
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
+from indicators import params_pb2 as indicators_dot_params__pb2
+from indicators import values_pb2 as indicators_dot_values__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bindicators/indicators.proto\x12\x11trb.indicators.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"z\n\x06\x43\x61ndle\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04open\x18\x02 \x01(\x01\x12\x0c\n\x04high\x18\x03 \x01(\x01\x12\x0b\n\x03low\x18\x04 \x01(\x01\x12\r\n\x05\x63lose\x18\x05 \x01(\x01\x12\x0e\n\x06volume\x18\x06 \x01(\x01\"\xda\x01\n\x0e\x43omputeRequest\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12*\n\x07\x63\x61ndles\x18\x02 \x03(\x0b\x32\x19.trb.indicators.v1.Candle\x12=\n\x06params\x18\x03 \x03(\x0b\x32-.trb.indicators.v1.ComputeRequest.ParamsEntry\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x84\x03\n\x1b\x43omputeForInstrumentRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x06 \x03(\x0b\x32:.trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry\x12\x0f\n\x07persist\x18\x07 \x01(\x08\x12 \n\x13max_response_points\x18\x08 \x01(\x05H\x00\x88\x01\x01\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x42\x16\n\x14_max_response_points\"\xf1\x02\n\x1aListIndicatorValuesRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12I\n\x06params\x18\x06 \x03(\x0b\x32\x39.trb.indicators.v1.ListIndicatorValuesRequest.ParamsEntry\x12\r\n\x05limit\x18\x07 \x01(\x05\x12)\n\x05\x61\x66ter\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xa8\x01\n\x0eIndicatorPoint\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06values\x18\x02 \x03(\x0b\x32-.trb.indicators.v1.IndicatorPoint.ValuesEntry\x1a-\n\x0bValuesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xf9\x01\n\x0f\x43omputeResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12>\n\x06params\x18\x02 \x03(\x0b\x32..trb.indicators.v1.ComputeResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x14\n\x0ctotal_points\x18\x04 \x01(\x05\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x8d\x02\n\x1bListIndicatorValuesResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x02 \x03(\x0b\x32:.trb.indicators.v1.ListIndicatorValuesResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x10\n\x08has_more\x18\x04 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xe2\x01\n\rIndicatorInfo\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08min_bars\x18\x03 \x01(\x05\x12K\n\x0e\x64\x65\x66\x61ult_params\x18\x04 \x03(\x0b\x32\x33.trb.indicators.v1.IndicatorInfo.DefaultParamsEntry\x1a\x34\n\x12\x44\x65\x66\x61ultParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x16\n\x14ListSupportedRequest\"M\n\x15ListSupportedResponse\x12\x34\n\nindicators\x18\x01 \x03(\x0b\x32 .trb.indicators.v1.IndicatorInfo*\xa7\x01\n\rIndicatorType\x12\x1e\n\x1aINDICATOR_TYPE_UNSPECIFIED\x10\x00\x12\x16\n\x12INDICATOR_TYPE_RSI\x10\x01\x12\x16\n\x12INDICATOR_TYPE_SMA\x10\x02\x12\x16\n\x12INDICATOR_TYPE_EMA\x10\x03\x12\x17\n\x13INDICATOR_TYPE_MACD\x10\x04\x12\x15\n\x11INDICATOR_TYPE_BB\x10\x05\x32\x9c\x05\n\nIndicators\x12\x82\x01\n\x07\x43ompute\x12!.trb.indicators.v1.ComputeRequest\x1a\".trb.indicators.v1.ComputeResponse\"0\x82\xd3\xe4\x93\x02*\"\x16/v1/indicators/compute:\x01*Z\r\"\x08/Compute:\x01*\x12\x99\x01\n\rListSupported\x12\'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/\x12\x18/v1/indicators/supportedZ\x13\"\x0e/ListSupported:\x01*\x12\xb8\x01\n\x14\x43omputeForInstrument\x12..trb.indicators.v1.ComputeForInstrumentRequest\x1a\".trb.indicators.v1.ComputeResponse\"L\x82\xd3\xe4\x93\x02\x46\"%/v1/indicators/compute-for-instrument:\x01*Z\x1a\"\x15/ComputeForInstrument:\x01*\x12\xb1\x01\n\x13ListIndicatorValues\x12-.trb.indicators.v1.ListIndicatorValuesRequest\x1a..trb.indicators.v1.ListIndicatorValuesResponse\";\x82\xd3\xe4\x93\x02\x35\"\x15/v1/indicators/values:\x01*Z\x19\"\x14/ListIndicatorValues:\x01*B<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bindicators/indicators.proto\x12\x11trb.indicators.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17indicators/params.proto\x1a\x17indicators/values.proto\"\xbc\x01\n\x0fSettingsRequest\x12\x10\n\x08interval\x18\x01 \x01(\r\x12\x0b\n\x03uid\x18\x02 \x01(\t\x12\x36\n\x08settings\x18\x03 \x01(\x0b\x32$.trb.indicators.v1.IndicatorSettings\x12)\n\x05start\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03\x65nd\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"$\n\x14SettingsHashResponse\x12\x0c\n\x04hash\x18\x01 \x01(\x04\"z\n\x06\x43\x61ndle\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04open\x18\x02 \x01(\x01\x12\x0c\n\x04high\x18\x03 \x01(\x01\x12\x0b\n\x03low\x18\x04 \x01(\x01\x12\r\n\x05\x63lose\x18\x05 \x01(\x01\x12\x0e\n\x06volume\x18\x06 \x01(\x01\"\xda\x01\n\x0e\x43omputeRequest\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12*\n\x07\x63\x61ndles\x18\x02 \x03(\x0b\x32\x19.trb.indicators.v1.Candle\x12=\n\x06params\x18\x03 \x03(\x0b\x32-.trb.indicators.v1.ComputeRequest.ParamsEntry\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x84\x03\n\x1b\x43omputeForInstrumentRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x06 \x03(\x0b\x32:.trb.indicators.v1.ComputeForInstrumentRequest.ParamsEntry\x12\x0f\n\x07persist\x18\x07 \x01(\x08\x12 \n\x13max_response_points\x18\x08 \x01(\x05H\x00\x88\x01\x01\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x42\x16\n\x14_max_response_points\"\xf1\x02\n\x1aListIndicatorValuesRequest\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x10\n\x08interval\x18\x02 \x01(\x05\x12(\n\x04\x66rom\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\x04type\x18\x05 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12I\n\x06params\x18\x06 \x03(\x0b\x32\x39.trb.indicators.v1.ListIndicatorValuesRequest.ParamsEntry\x12\r\n\x05limit\x18\x07 \x01(\x05\x12)\n\x05\x61\x66ter\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xa8\x01\n\x0eIndicatorPoint\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06values\x18\x02 \x03(\x0b\x32-.trb.indicators.v1.IndicatorPoint.ValuesEntry\x1a-\n\x0bValuesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xf9\x01\n\x0f\x43omputeResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12>\n\x06params\x18\x02 \x03(\x0b\x32..trb.indicators.v1.ComputeResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x14\n\x0ctotal_points\x18\x04 \x01(\x05\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x8d\x02\n\x1bListIndicatorValuesResponse\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12J\n\x06params\x18\x02 \x03(\x0b\x32:.trb.indicators.v1.ListIndicatorValuesResponse.ParamsEntry\x12\x31\n\x06points\x18\x03 \x03(\x0b\x32!.trb.indicators.v1.IndicatorPoint\x12\x10\n\x08has_more\x18\x04 \x01(\x08\x1a-\n\x0bParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\xe2\x01\n\rIndicatorInfo\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .trb.indicators.v1.IndicatorType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08min_bars\x18\x03 \x01(\x05\x12K\n\x0e\x64\x65\x66\x61ult_params\x18\x04 \x03(\x0b\x32\x33.trb.indicators.v1.IndicatorInfo.DefaultParamsEntry\x1a\x34\n\x12\x44\x65\x66\x61ultParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\"\x16\n\x14ListSupportedRequest\"M\n\x15ListSupportedResponse\x12\x34\n\nindicators\x18\x01 \x03(\x0b\x32 .trb.indicators.v1.IndicatorInfo*\xa7\x01\n\rIndicatorType\x12\x1e\n\x1aINDICATOR_TYPE_UNSPECIFIED\x10\x00\x12\x16\n\x12INDICATOR_TYPE_RSI\x10\x01\x12\x16\n\x12INDICATOR_TYPE_SMA\x10\x02\x12\x16\n\x12INDICATOR_TYPE_EMA\x10\x03\x12\x17\n\x13INDICATOR_TYPE_MACD\x10\x04\x12\x15\n\x11INDICATOR_TYPE_BB\x10\x05\x32\x9b\x06\n\nIndicators\x12\x82\x01\n\x07\x43ompute\x12!.trb.indicators.v1.ComputeRequest\x1a\".trb.indicators.v1.ComputeResponse\"0\x82\xd3\xe4\x93\x02*\"\x16/v1/indicators/compute:\x01*Z\r\"\x08/Compute:\x01*\x12\x99\x01\n\rListSupported\x12\'.trb.indicators.v1.ListSupportedRequest\x1a(.trb.indicators.v1.ListSupportedResponse\"5\x82\xd3\xe4\x93\x02/\x12\x18/v1/indicators/supportedZ\x13\"\x0e/ListSupported:\x01*\x12\xb8\x01\n\x14\x43omputeForInstrument\x12..trb.indicators.v1.ComputeForInstrumentRequest\x1a\".trb.indicators.v1.ComputeResponse\"L\x82\xd3\xe4\x93\x02\x46\"%/v1/indicators/compute-for-instrument:\x01*Z\x1a\"\x15/ComputeForInstrument:\x01*\x12\x9e\x01\n\x0fIndicatorValues\x12\".trb.indicators.v1.SettingsRequest\x1a*.trb.indicators.v1.IndicatorValuesResponse\";\x82\xd3\xe4\x93\x02\x35\"\x15/v1/indicators/values:\x01*Z\x19\"\x14/ListIndicatorValues:\x01*\x12\x8f\x01\n\x0cSettingsHash\x12\".trb.indicators.v1.SettingsRequest\x1a\'.trb.indicators.v1.SettingsHashResponse\"2\x82\xd3\xe4\x93\x02,\"\x17/v1/indicators/settings:\x01*Z\x0e\"\t/settings:\x01*B<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -54,44 +56,50 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_INDICATORS'].methods_by_name['ListSupported']._serialized_options = b'\202\323\344\223\002/\022\030/v1/indicators/supportedZ\023\"\016/ListSupported:\001*'
   _globals['_INDICATORS'].methods_by_name['ComputeForInstrument']._loaded_options = None
   _globals['_INDICATORS'].methods_by_name['ComputeForInstrument']._serialized_options = b'\202\323\344\223\002F\"%/v1/indicators/compute-for-instrument:\001*Z\032\"\025/ComputeForInstrument:\001*'
-  _globals['_INDICATORS'].methods_by_name['ListIndicatorValues']._loaded_options = None
-  _globals['_INDICATORS'].methods_by_name['ListIndicatorValues']._serialized_options = b'\202\323\344\223\0025\"\025/v1/indicators/values:\001*Z\031\"\024/ListIndicatorValues:\001*'
-  _globals['_INDICATORTYPE']._serialized_start=2249
-  _globals['_INDICATORTYPE']._serialized_end=2416
-  _globals['_CANDLE']._serialized_start=113
-  _globals['_CANDLE']._serialized_end=235
-  _globals['_COMPUTEREQUEST']._serialized_start=238
-  _globals['_COMPUTEREQUEST']._serialized_end=456
-  _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_start=411
-  _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_end=456
-  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_start=459
-  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_end=847
-  _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_start=411
-  _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_end=456
-  _globals['_LISTINDICATORVALUESREQUEST']._serialized_start=850
-  _globals['_LISTINDICATORVALUESREQUEST']._serialized_end=1219
-  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_start=411
-  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_end=456
-  _globals['_INDICATORPOINT']._serialized_start=1222
-  _globals['_INDICATORPOINT']._serialized_end=1390
-  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_start=1345
-  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_end=1390
-  _globals['_COMPUTERESPONSE']._serialized_start=1393
-  _globals['_COMPUTERESPONSE']._serialized_end=1642
-  _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_start=411
-  _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_end=456
-  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_start=1645
-  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_end=1914
-  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_start=411
-  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_end=456
-  _globals['_INDICATORINFO']._serialized_start=1917
-  _globals['_INDICATORINFO']._serialized_end=2143
-  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_start=2091
-  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_end=2143
-  _globals['_LISTSUPPORTEDREQUEST']._serialized_start=2145
-  _globals['_LISTSUPPORTEDREQUEST']._serialized_end=2167
-  _globals['_LISTSUPPORTEDRESPONSE']._serialized_start=2169
-  _globals['_LISTSUPPORTEDRESPONSE']._serialized_end=2246
-  _globals['_INDICATORS']._serialized_start=2419
-  _globals['_INDICATORS']._serialized_end=3087
+  _globals['_INDICATORS'].methods_by_name['IndicatorValues']._loaded_options = None
+  _globals['_INDICATORS'].methods_by_name['IndicatorValues']._serialized_options = b'\202\323\344\223\0025\"\025/v1/indicators/values:\001*Z\031\"\024/ListIndicatorValues:\001*'
+  _globals['_INDICATORS'].methods_by_name['SettingsHash']._loaded_options = None
+  _globals['_INDICATORS'].methods_by_name['SettingsHash']._serialized_options = b'\202\323\344\223\002,\"\027/v1/indicators/settings:\001*Z\016\"\t/settings:\001*'
+  _globals['_INDICATORTYPE']._serialized_start=2528
+  _globals['_INDICATORTYPE']._serialized_end=2695
+  _globals['_SETTINGSREQUEST']._serialized_start=164
+  _globals['_SETTINGSREQUEST']._serialized_end=352
+  _globals['_SETTINGSHASHRESPONSE']._serialized_start=354
+  _globals['_SETTINGSHASHRESPONSE']._serialized_end=390
+  _globals['_CANDLE']._serialized_start=392
+  _globals['_CANDLE']._serialized_end=514
+  _globals['_COMPUTEREQUEST']._serialized_start=517
+  _globals['_COMPUTEREQUEST']._serialized_end=735
+  _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_start=690
+  _globals['_COMPUTEREQUEST_PARAMSENTRY']._serialized_end=735
+  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_start=738
+  _globals['_COMPUTEFORINSTRUMENTREQUEST']._serialized_end=1126
+  _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_start=690
+  _globals['_COMPUTEFORINSTRUMENTREQUEST_PARAMSENTRY']._serialized_end=735
+  _globals['_LISTINDICATORVALUESREQUEST']._serialized_start=1129
+  _globals['_LISTINDICATORVALUESREQUEST']._serialized_end=1498
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_start=690
+  _globals['_LISTINDICATORVALUESREQUEST_PARAMSENTRY']._serialized_end=735
+  _globals['_INDICATORPOINT']._serialized_start=1501
+  _globals['_INDICATORPOINT']._serialized_end=1669
+  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_start=1624
+  _globals['_INDICATORPOINT_VALUESENTRY']._serialized_end=1669
+  _globals['_COMPUTERESPONSE']._serialized_start=1672
+  _globals['_COMPUTERESPONSE']._serialized_end=1921
+  _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_start=690
+  _globals['_COMPUTERESPONSE_PARAMSENTRY']._serialized_end=735
+  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_start=1924
+  _globals['_LISTINDICATORVALUESRESPONSE']._serialized_end=2193
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_start=690
+  _globals['_LISTINDICATORVALUESRESPONSE_PARAMSENTRY']._serialized_end=735
+  _globals['_INDICATORINFO']._serialized_start=2196
+  _globals['_INDICATORINFO']._serialized_end=2422
+  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_start=2370
+  _globals['_INDICATORINFO_DEFAULTPARAMSENTRY']._serialized_end=2422
+  _globals['_LISTSUPPORTEDREQUEST']._serialized_start=2424
+  _globals['_LISTSUPPORTEDREQUEST']._serialized_end=2446
+  _globals['_LISTSUPPORTEDRESPONSE']._serialized_start=2448
+  _globals['_LISTSUPPORTEDRESPONSE']._serialized_end=2525
+  _globals['_INDICATORS']._serialized_start=2698
+  _globals['_INDICATORS']._serialized_end=3493
 # @@protoc_insertion_point(module_scope)

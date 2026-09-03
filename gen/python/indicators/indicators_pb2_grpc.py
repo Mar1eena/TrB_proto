@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from indicators import indicators_pb2 as indicators_dot_indicators__pb2
+from indicators import values_pb2 as indicators_dot_values__pb2
 
 GRPC_GENERATED_VERSION = '1.80.0'
 GRPC_VERSION = grpc.__version__
@@ -50,10 +51,15 @@ class IndicatorsStub(object):
                 request_serializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.SerializeToString,
                 response_deserializer=indicators_dot_indicators__pb2.ComputeResponse.FromString,
                 _registered_method=True)
-        self.ListIndicatorValues = channel.unary_unary(
-                '/trb.indicators.v1.Indicators/ListIndicatorValues',
-                request_serializer=indicators_dot_indicators__pb2.ListIndicatorValuesRequest.SerializeToString,
-                response_deserializer=indicators_dot_indicators__pb2.ListIndicatorValuesResponse.FromString,
+        self.IndicatorValues = channel.unary_unary(
+                '/trb.indicators.v1.Indicators/IndicatorValues',
+                request_serializer=indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
+                response_deserializer=indicators_dot_values__pb2.IndicatorValuesResponse.FromString,
+                _registered_method=True)
+        self.SettingsHash = channel.unary_unary(
+                '/trb.indicators.v1.Indicators/SettingsHash',
+                request_serializer=indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
+                response_deserializer=indicators_dot_indicators__pb2.SettingsHashResponse.FromString,
                 _registered_method=True)
 
 
@@ -83,9 +89,23 @@ class IndicatorsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListIndicatorValues(self, request, context):
+    def IndicatorValues(self, request, context):
         """ListIndicatorValues — постраничное чтение значений из TrB.indicator_values.
+        rpc ListIndicatorValues(ListIndicatorValuesRequest) returns (ListIndicatorValuesResponse) {
+        option (google.api.http) = {
+        post: "/v1/indicators/values"
+        body: "*"
+        additional_bindings { post: "/ListIndicatorValues" body: "*" }
+        };
+        }
+
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SettingsHash(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -108,10 +128,15 @@ def add_IndicatorsServicer_to_server(servicer, server):
                     request_deserializer=indicators_dot_indicators__pb2.ComputeForInstrumentRequest.FromString,
                     response_serializer=indicators_dot_indicators__pb2.ComputeResponse.SerializeToString,
             ),
-            'ListIndicatorValues': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListIndicatorValues,
-                    request_deserializer=indicators_dot_indicators__pb2.ListIndicatorValuesRequest.FromString,
-                    response_serializer=indicators_dot_indicators__pb2.ListIndicatorValuesResponse.SerializeToString,
+            'IndicatorValues': grpc.unary_unary_rpc_method_handler(
+                    servicer.IndicatorValues,
+                    request_deserializer=indicators_dot_indicators__pb2.SettingsRequest.FromString,
+                    response_serializer=indicators_dot_values__pb2.IndicatorValuesResponse.SerializeToString,
+            ),
+            'SettingsHash': grpc.unary_unary_rpc_method_handler(
+                    servicer.SettingsHash,
+                    request_deserializer=indicators_dot_indicators__pb2.SettingsRequest.FromString,
+                    response_serializer=indicators_dot_indicators__pb2.SettingsHashResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -207,7 +232,7 @@ class Indicators(object):
             _registered_method=True)
 
     @staticmethod
-    def ListIndicatorValues(request,
+    def IndicatorValues(request,
             target,
             options=(),
             channel_credentials=None,
@@ -220,9 +245,36 @@ class Indicators(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/trb.indicators.v1.Indicators/ListIndicatorValues',
-            indicators_dot_indicators__pb2.ListIndicatorValuesRequest.SerializeToString,
-            indicators_dot_indicators__pb2.ListIndicatorValuesResponse.FromString,
+            '/trb.indicators.v1.Indicators/IndicatorValues',
+            indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
+            indicators_dot_values__pb2.IndicatorValuesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SettingsHash(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.indicators.v1.Indicators/SettingsHash',
+            indicators_dot_indicators__pb2.SettingsRequest.SerializeToString,
+            indicators_dot_indicators__pb2.SettingsHashResponse.FromString,
             options,
             channel_credentials,
             insecure,

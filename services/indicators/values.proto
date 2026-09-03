@@ -1,0 +1,355 @@
+syntax = "proto3";
+
+package trb.indicators.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/indicators;indicators";
+
+import "google/protobuf/timestamp.proto";
+
+// Выходы функций TA-Lib (https://ta-lib.org/functions/).
+// Форма точки совпадает с out* массивами C API; вариант oneof = функция.
+// Номера полей совпадают с IndicatorSettings.
+
+message RealPoint {
+  google.protobuf.Timestamp time = 1;
+  double value = 2;
+}
+
+message RealSeries {
+  repeated RealPoint points = 1;
+}
+
+message IntegerPoint {
+  google.protobuf.Timestamp time = 1;
+  int32 value = 2;
+}
+
+message IntegerSeries {
+  repeated IntegerPoint points = 1;
+}
+
+message AroonPoint {
+  google.protobuf.Timestamp time = 1;
+  double down = 2;
+  double up = 3;
+}
+
+message AroonSeries {
+  repeated AroonPoint points = 1;
+}
+
+message BandsPoint {
+  google.protobuf.Timestamp time = 1;
+  double upper = 2;
+  double middle = 3;
+  double lower = 4;
+}
+
+message BandsSeries {
+  repeated BandsPoint points = 1;
+}
+
+message MacdPoint {
+  google.protobuf.Timestamp time = 1;
+  double macd = 2;
+  double signal = 3;
+  double hist = 4;
+}
+
+message MacdSeries {
+  repeated MacdPoint points = 1;
+}
+
+message MamaPoint {
+  google.protobuf.Timestamp time = 1;
+  double mama = 2;
+  double fama = 3;
+}
+
+message MamaSeries {
+  repeated MamaPoint points = 1;
+}
+
+message HtPhasorPoint {
+  google.protobuf.Timestamp time = 1;
+  double in_phase = 2;
+  double quadrature = 3;
+}
+
+message HtPhasorSeries {
+  repeated HtPhasorPoint points = 1;
+}
+
+message HtSinePoint {
+  google.protobuf.Timestamp time = 1;
+  double sine = 2;
+  double lead_sine = 3;
+}
+
+message HtSineSeries {
+  repeated HtSinePoint points = 1;
+}
+
+message StochPoint {
+  google.protobuf.Timestamp time = 1;
+  double slow_k = 2;
+  double slow_d = 3;
+}
+
+message StochSeries {
+  repeated StochPoint points = 1;
+}
+
+message StochFPoint {
+  google.protobuf.Timestamp time = 1;
+  double fast_k = 2;
+  double fast_d = 3;
+}
+
+message StochFSeries {
+  repeated StochFPoint points = 1;
+}
+
+message SmiPoint {
+  google.protobuf.Timestamp time = 1;
+  double smi = 2;
+  double signal = 3;
+}
+
+message SmiSeries {
+  repeated SmiPoint points = 1;
+}
+
+message MinMaxPoint {
+  google.protobuf.Timestamp time = 1;
+  double min = 2;
+  double max = 3;
+}
+
+message MinMaxSeries {
+  repeated MinMaxPoint points = 1;
+}
+
+message MinMaxIndexPoint {
+  google.protobuf.Timestamp time = 1;
+  int32 min_index = 2;
+  int32 max_index = 3;
+}
+
+message MinMaxIndexSeries {
+  repeated MinMaxIndexPoint points = 1;
+}
+
+message SuperTrendPoint {
+  google.protobuf.Timestamp time = 1;
+  double value = 2;
+  int32 trend = 3;
+}
+
+message SuperTrendSeries {
+  repeated SuperTrendPoint points = 1;
+}
+
+// Значения индикатора: вариант oneof совпадает с IndicatorSettings.
+message IndicatorValuesResponse {
+  oneof values {
+    RealSeries rsi = 1;
+
+    // Cycle Indicators (10–19)
+    RealSeries ht_dcperiod = 10;
+    RealSeries ht_dcphase = 11;
+    HtPhasorSeries ht_phasor = 12;
+    HtSineSeries ht_sine = 13;
+    IntegerSeries ht_trendmode = 14;
+
+    // Math Operators (20–39)
+    RealSeries add = 20;
+    RealSeries div = 21;
+    RealSeries max = 22;
+    IntegerSeries maxindex = 23;
+    RealSeries min = 24;
+    IntegerSeries minindex = 25;
+    MinMaxSeries minmax = 26;
+    MinMaxIndexSeries minmaxindex = 27;
+    RealSeries mult = 28;
+    RealSeries sub = 29;
+    RealSeries sum = 30;
+
+    // Math Transform (40–59)
+    RealSeries acos = 40;
+    RealSeries asin = 41;
+    RealSeries atan = 42;
+    RealSeries ceil = 43;
+    RealSeries cos = 44;
+    RealSeries cosh = 45;
+    RealSeries exp = 46;
+    RealSeries floor = 47;
+    RealSeries ln = 48;
+    RealSeries log10 = 49;
+    RealSeries sin = 50;
+    RealSeries sinh = 51;
+    RealSeries sqrt = 52;
+    RealSeries tan = 53;
+    RealSeries tanh = 54;
+
+    // Momentum Indicators (60–99), кроме rsi=1
+    RealSeries ac = 60;
+    RealSeries adx = 61;
+    RealSeries adxr = 62;
+    RealSeries ao = 63;
+    RealSeries apo = 64;
+    AroonSeries aroon = 65;
+    RealSeries aroonosc = 66;
+    RealSeries bop = 67;
+    RealSeries cci = 68;
+    RealSeries cmo = 69;
+    RealSeries cmou = 70;
+    RealSeries dx = 71;
+    RealSeries imi = 72;
+    MacdSeries macd = 73;
+    MacdSeries macdext = 74;
+    MacdSeries macdfix = 75;
+    RealSeries mfi = 76;
+    RealSeries minus_di = 77;
+    RealSeries minus_dm = 78;
+    RealSeries mom = 79;
+    RealSeries plus_di = 80;
+    RealSeries plus_dm = 81;
+    RealSeries ppo = 82;
+    RealSeries qstick = 83;
+    RealSeries roc = 84;
+    RealSeries rocp = 85;
+    RealSeries rocr = 86;
+    RealSeries rocr100 = 87;
+    SmiSeries smi = 88;
+    StochSeries stoch = 89;
+    StochFSeries stochf = 90;
+    StochFSeries stochrsi = 91;
+    RealSeries trix = 92;
+    RealSeries ultosc = 93;
+    RealSeries wad = 94;
+    RealSeries willr = 95;
+
+    // Overlap Studies (100–129)
+    BandsSeries accbands = 100;
+    BandsSeries bbands = 101;
+    RealSeries dema = 102;
+    RealSeries ema = 103;
+    RealSeries hma = 104;
+    RealSeries ht_trendline = 105;
+    RealSeries kama = 106;
+    BandsSeries kc = 107;
+    RealSeries ma = 108;
+    MamaSeries mama = 109;
+    RealSeries mavp = 110;
+    RealSeries midpoint = 111;
+    RealSeries midprice = 112;
+    RealSeries sar = 113;
+    RealSeries sarext = 114;
+    RealSeries sma = 115;
+    SuperTrendSeries supertrend = 116;
+    RealSeries t3 = 117;
+    RealSeries tema = 118;
+    RealSeries trima = 119;
+    RealSeries vwma = 120;
+    RealSeries wma = 121;
+
+    // Pattern Recognition (130–199)
+    IntegerSeries cdl2crows = 130;
+    IntegerSeries cdl3blackcrows = 131;
+    IntegerSeries cdl3inside = 132;
+    IntegerSeries cdl3linestrike = 133;
+    IntegerSeries cdl3outside = 134;
+    IntegerSeries cdl3starsinsouth = 135;
+    IntegerSeries cdl3whitesoldiers = 136;
+    IntegerSeries cdlabandonedbaby = 137;
+    IntegerSeries cdladvanceblock = 138;
+    IntegerSeries cdlbelthold = 139;
+    IntegerSeries cdlbreakaway = 140;
+    IntegerSeries cdlclosingmarubozu = 141;
+    IntegerSeries cdlconcealbabyswall = 142;
+    IntegerSeries cdlcounterattack = 143;
+    IntegerSeries cdldarkcloudcover = 144;
+    IntegerSeries cdldoji = 145;
+    IntegerSeries cdldojistar = 146;
+    IntegerSeries cdldragonflydoji = 147;
+    IntegerSeries cdlengulfing = 148;
+    IntegerSeries cdleveningdojistar = 149;
+    IntegerSeries cdleveningstar = 150;
+    IntegerSeries cdlgapsidesidewhite = 151;
+    IntegerSeries cdlgravestonedoji = 152;
+    IntegerSeries cdlhammer = 153;
+    IntegerSeries cdlhangingman = 154;
+    IntegerSeries cdlharami = 155;
+    IntegerSeries cdlharamicross = 156;
+    IntegerSeries cdlhighwave = 157;
+    IntegerSeries cdlhikkake = 158;
+    IntegerSeries cdlhikkakemod = 159;
+    IntegerSeries cdlhomingpigeon = 160;
+    IntegerSeries cdlidentical3crows = 161;
+    IntegerSeries cdlinneck = 162;
+    IntegerSeries cdlinvertedhammer = 163;
+    IntegerSeries cdlkicking = 164;
+    IntegerSeries cdlkickingbylength = 165;
+    IntegerSeries cdlladderbottom = 166;
+    IntegerSeries cdllongleggeddoji = 167;
+    IntegerSeries cdllongline = 168;
+    IntegerSeries cdlmarubozu = 169;
+    IntegerSeries cdlmatchinglow = 170;
+    IntegerSeries cdlmathold = 171;
+    IntegerSeries cdlmorningdojistar = 172;
+    IntegerSeries cdlmorningstar = 173;
+    IntegerSeries cdlonneck = 174;
+    IntegerSeries cdlpiercing = 175;
+    IntegerSeries cdlrickshawman = 176;
+    IntegerSeries cdlrisefall3methods = 177;
+    IntegerSeries cdlseparatinglines = 178;
+    IntegerSeries cdlshootingstar = 179;
+    IntegerSeries cdlshortline = 180;
+    IntegerSeries cdlspinningtop = 181;
+    IntegerSeries cdlstalledpattern = 182;
+    IntegerSeries cdlsticksandwich = 183;
+    IntegerSeries cdltakuri = 184;
+    IntegerSeries cdltasukigap = 185;
+    IntegerSeries cdlthrusting = 186;
+    IntegerSeries cdltristar = 187;
+    IntegerSeries cdlunique3river = 188;
+    IntegerSeries cdlupsidegap2crows = 189;
+    IntegerSeries cdlxsidegap3methods = 190;
+
+    // Price Transform (200–209)
+    RealSeries avgdev = 200;
+    RealSeries avgprice = 201;
+    RealSeries medprice = 202;
+    RealSeries typprice = 203;
+    RealSeries wclprice = 204;
+
+    // Statistic Functions (210–219)
+    RealSeries beta = 210;
+    RealSeries correl = 211;
+    RealSeries linearreg = 212;
+    RealSeries linearreg_angle = 213;
+    RealSeries linearreg_intercept = 214;
+    RealSeries linearreg_slope = 215;
+    RealSeries stddev = 216;
+    RealSeries tsf = 217;
+    RealSeries var = 218;
+
+    // Volatility Indicators (220–229)
+    RealSeries atr = 220;
+    RealSeries natr = 221;
+    RealSeries trange = 222;
+
+    // Volume Indicators (230–249)
+    RealSeries ad = 230;
+    RealSeries adosc = 231;
+    RealSeries cmf = 232;
+    RealSeries efi = 233;
+    RealSeries marketfi = 234;
+    RealSeries nvi = 235;
+    RealSeries obv = 236;
+    RealSeries pvi = 237;
+    RealSeries pvo = 238;
+    RealSeries vwap = 239;
+  }
+}

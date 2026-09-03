@@ -2,7 +2,67 @@ import * as jspb from 'google-protobuf'
 
 import * as google_api_annotations_pb from '../google/api/annotations_pb'; // proto import: "google/api/annotations.proto"
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
+import * as indicators_params_pb from '../indicators/params_pb'; // proto import: "indicators/params.proto"
+import * as indicators_values_pb from '../indicators/values_pb'; // proto import: "indicators/values.proto"
 
+
+export class SettingsRequest extends jspb.Message {
+  getInterval(): number;
+  setInterval(value: number): SettingsRequest;
+
+  getUid(): string;
+  setUid(value: string): SettingsRequest;
+
+  getSettings(): indicators_params_pb.IndicatorSettings | undefined;
+  setSettings(value?: indicators_params_pb.IndicatorSettings): SettingsRequest;
+  hasSettings(): boolean;
+  clearSettings(): SettingsRequest;
+
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): SettingsRequest;
+  hasStart(): boolean;
+  clearStart(): SettingsRequest;
+
+  getEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEnd(value?: google_protobuf_timestamp_pb.Timestamp): SettingsRequest;
+  hasEnd(): boolean;
+  clearEnd(): SettingsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SettingsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SettingsRequest): SettingsRequest.AsObject;
+  static serializeBinaryToWriter(message: SettingsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SettingsRequest;
+  static deserializeBinaryFromReader(message: SettingsRequest, reader: jspb.BinaryReader): SettingsRequest;
+}
+
+export namespace SettingsRequest {
+  export type AsObject = {
+    interval: number,
+    uid: string,
+    settings?: indicators_params_pb.IndicatorSettings.AsObject,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class SettingsHashResponse extends jspb.Message {
+  getHash(): number;
+  setHash(value: number): SettingsHashResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SettingsHashResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SettingsHashResponse): SettingsHashResponse.AsObject;
+  static serializeBinaryToWriter(message: SettingsHashResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SettingsHashResponse;
+  static deserializeBinaryFromReader(message: SettingsHashResponse, reader: jspb.BinaryReader): SettingsHashResponse;
+}
+
+export namespace SettingsHashResponse {
+  export type AsObject = {
+    hash: number,
+  }
+}
 
 export class Candle extends jspb.Message {
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;

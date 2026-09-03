@@ -1,0 +1,1024 @@
+syntax = "proto3";
+
+package trb.indicators.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/indicators;indicators";
+
+// Optional-параметры функций TA-Lib (https://ta-lib.org/functions/).
+// Сообщения без полей — у функции нет optIn*; вариант oneof всё равно задаёт тип.
+
+// Тип скользящей средней (значения совпадают с TA_MAType).
+enum MAType {
+  MA_TYPE_SMA = 0;
+  MA_TYPE_EMA = 1;
+  MA_TYPE_WMA = 2;
+  MA_TYPE_DEMA = 3;
+  MA_TYPE_TEMA = 4;
+  MA_TYPE_TRIMA = 5;
+  MA_TYPE_KAMA = 6;
+  MA_TYPE_MAMA = 7;
+  MA_TYPE_T3 = 8;
+}
+
+// ---------------------------------------------------------------------------
+// Cycle Indicators
+// ---------------------------------------------------------------------------
+
+// HT_DCPERIOD — Hilbert Transform - Dominant Cycle Period.
+message HtDcPeriodParams {}
+
+// HT_DCPHASE — Hilbert Transform - Dominant Cycle Phase.
+message HtDcPhaseParams {}
+
+// HT_PHASOR — Hilbert Transform - Phasor Components.
+message HtPhasorParams {}
+
+// HT_SINE — Hilbert Transform - SineWave.
+message HtSineParams {}
+
+// HT_TRENDMODE — Hilbert Transform - Trend vs Cycle Mode.
+message HtTrendModeParams {}
+
+// ---------------------------------------------------------------------------
+// Math Operators
+// ---------------------------------------------------------------------------
+
+// ADD — Vector Arithmetic Add.
+message AddParams {}
+
+// DIV — Vector Arithmetic Div.
+message DivParams {}
+
+// MAX — Highest value over a specified period.
+message MaxParams {
+  uint32 period = 1;
+}
+
+// MAXINDEX — Index of highest value over a specified period.
+message MaxIndexParams {
+  uint32 period = 1;
+}
+
+// MIN — Lowest value over a specified period.
+message MinParams {
+  uint32 period = 1;
+}
+
+// MININDEX — Index of lowest value over a specified period.
+message MinIndexParams {
+  uint32 period = 1;
+}
+
+// MINMAX — Lowest and highest values over a specified period.
+message MinMaxParams {
+  uint32 period = 1;
+}
+
+// MINMAXINDEX — Indexes of lowest and highest values over a specified period.
+message MinMaxIndexParams {
+  uint32 period = 1;
+}
+
+// MULT — Vector Arithmetic Mult.
+message MultParams {}
+
+// SUB — Vector Arithmetic Subtraction.
+message SubParams {}
+
+// SUM — Summation.
+message SumParams {
+  uint32 period = 1;
+}
+
+// ---------------------------------------------------------------------------
+// Math Transform
+// ---------------------------------------------------------------------------
+
+// ACOS — Vector Trigonometric ACos.
+message AcosParams {}
+
+// ASIN — Vector Trigonometric ASin.
+message AsinParams {}
+
+// ATAN — Vector Trigonometric ATan.
+message AtanParams {}
+
+// CEIL — Vector Ceil.
+message CeilParams {}
+
+// COS — Vector Trigonometric Cos.
+message CosParams {}
+
+// COSH — Vector Trigonometric Cosh.
+message CoshParams {}
+
+// EXP — Vector Arithmetic Exp.
+message ExpParams {}
+
+// FLOOR — Vector Floor.
+message FloorParams {}
+
+// LN — Vector Log Natural.
+message LnParams {}
+
+// LOG10 — Vector Log10.
+message Log10Params {}
+
+// SIN — Vector Trigonometric Sin.
+message SinParams {}
+
+// SINH — Vector Trigonometric Sinh.
+message SinhParams {}
+
+// SQRT — Vector Square Root.
+message SqrtParams {}
+
+// TAN — Vector Trigonometric Tan.
+message TanParams {}
+
+// TANH — Vector Trigonometric Tanh.
+message TanhParams {}
+
+// ---------------------------------------------------------------------------
+// Momentum Indicators
+// ---------------------------------------------------------------------------
+
+// AC — Accelerator/Decelerator Oscillator.
+message AcParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+  uint32 signal_period = 3;
+}
+
+// ADX — Average Directional Movement Index.
+message AdxParams {
+  uint32 period = 1;
+}
+
+// ADXR — Average Directional Movement Index Rating.
+message AdxrParams {
+  uint32 period = 1;
+}
+
+// AO — Awesome Oscillator.
+message AoParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+}
+
+// APO — Absolute Price Oscillator.
+message ApoParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+  MAType ma_type = 3;
+}
+
+// AROON — Aroon.
+message AroonParams {
+  uint32 period = 1;
+}
+
+// AROONOSC — Aroon Oscillator.
+message AroonOscParams {
+  uint32 period = 1;
+}
+
+// BOP — Balance Of Power.
+message BopParams {}
+
+// CCI — Commodity Channel Index.
+message CciParams {
+  uint32 period = 1;
+}
+
+// CMO — Chande Momentum Oscillator.
+message CmoParams {
+  uint32 period = 1;
+}
+
+// CMOU — Chande Momentum Oscillator (Unsmoothed).
+message CmouParams {
+  uint32 period = 1;
+}
+
+// DX — Directional Movement Index.
+message DxParams {
+  uint32 period = 1;
+}
+
+// IMI — Intraday Momentum Index.
+message ImiParams {
+  uint32 period = 1;
+}
+
+// MACD — Moving Average Convergence/Divergence.
+message MacdParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+  uint32 signal_period = 3;
+}
+
+// MACDEXT — MACD with controllable MA type.
+message MacdExtParams {
+  uint32 fast_period = 1;
+  MAType fast_ma_type = 2;
+  uint32 slow_period = 3;
+  MAType slow_ma_type = 4;
+  uint32 signal_period = 5;
+  MAType signal_ma_type = 6;
+}
+
+// MACDFIX — Moving Average Convergence/Divergence Fix 12/26.
+message MacdFixParams {
+  uint32 signal_period = 1;
+}
+
+// MFI — Money Flow Index.
+message MfiParams {
+  uint32 period = 1;
+}
+
+// MINUS_DI — Minus Directional Indicator.
+message MinusDiParams {
+  uint32 period = 1;
+}
+
+// MINUS_DM — Minus Directional Movement.
+message MinusDmParams {
+  uint32 period = 1;
+}
+
+// MOM — Momentum.
+message MomParams {
+  uint32 period = 1;
+}
+
+// PLUS_DI — Plus Directional Indicator.
+message PlusDiParams {
+  uint32 period = 1;
+}
+
+// PLUS_DM — Plus Directional Movement.
+message PlusDmParams {
+  uint32 period = 1;
+}
+
+// PPO — Percentage Price Oscillator.
+message PpoParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+  MAType ma_type = 3;
+}
+
+// QSTICK — Qstick.
+message QstickParams {
+  uint32 period = 1;
+}
+
+// ROC — Rate of change : ((price/prevPrice)-1)*100.
+message RocParams {
+  uint32 period = 1;
+}
+
+// ROCP — Rate of change Percentage: (price-prevPrice)/prevPrice.
+message RocpParams {
+  uint32 period = 1;
+}
+
+// ROCR — Rate of change ratio: (price/prevPrice).
+message RocrParams {
+  uint32 period = 1;
+}
+
+// ROCR100 — Rate of change ratio 100 scale: (price/prevPrice)*100.
+message Rocr100Params {
+  uint32 period = 1;
+}
+
+// RSI — Relative Strength Index.
+message RsiParams {
+  uint32 period = 1;
+}
+
+// SMI — Stochastic Momentum Index.
+message SmiParams {
+  uint32 period = 1;
+  uint32 fast_period = 2;
+  uint32 slow_period = 3;
+  uint32 signal_period = 4;
+}
+
+// STOCH — Stochastic.
+message StochParams {
+  uint32 fast_k_period = 1;
+  uint32 slow_k_period = 2;
+  MAType slow_k_ma_type = 3;
+  uint32 slow_d_period = 4;
+  MAType slow_d_ma_type = 5;
+}
+
+// STOCHF — Stochastic Fast.
+message StochFParams {
+  uint32 fast_k_period = 1;
+  uint32 fast_d_period = 2;
+  MAType fast_d_ma_type = 3;
+}
+
+// STOCHRSI — Stochastic Relative Strength Index.
+message StochRsiParams {
+  uint32 period = 1;
+  uint32 fast_k_period = 2;
+  uint32 fast_d_period = 3;
+  MAType fast_d_ma_type = 4;
+}
+
+// TRIX — 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA.
+message TrixParams {
+  uint32 period = 1;
+}
+
+// ULTOSC — Ultimate Oscillator.
+message UltOscParams {
+  uint32 period1 = 1;
+  uint32 period2 = 2;
+  uint32 period3 = 3;
+}
+
+// WAD — Williams' Accumulation/Distribution.
+message WadParams {}
+
+// WILLR — Williams' %R.
+message WillRParams {
+  uint32 period = 1;
+}
+
+// ---------------------------------------------------------------------------
+// Overlap Studies
+// ---------------------------------------------------------------------------
+
+// ACCBANDS — Acceleration Bands.
+message AccBandsParams {
+  uint32 period = 1;
+}
+
+// BBANDS — Bollinger Bands.
+message BbandsParams {
+  uint32 period = 1;
+  double nb_dev_up = 2;
+  double nb_dev_dn = 3;
+  MAType ma_type = 4;
+}
+
+// DEMA — Double Exponential Moving Average.
+message DemaParams {
+  uint32 period = 1;
+}
+
+// EMA — Exponential Moving Average.
+message EmaParams {
+  uint32 period = 1;
+}
+
+// HMA — Hull Moving Average.
+message HmaParams {
+  uint32 period = 1;
+}
+
+// HT_TRENDLINE — Hilbert Transform - Instantaneous Trendline.
+message HtTrendlineParams {}
+
+// KAMA — Kaufman Adaptive Moving Average.
+message KamaParams {
+  uint32 period = 1;
+}
+
+// KC — Keltner Channels.
+message KcParams {
+  uint32 period = 1;
+  uint32 atr_period = 2;
+  double nb_dev = 3;
+}
+
+// MA — Moving average.
+message MaParams {
+  uint32 period = 1;
+  MAType ma_type = 2;
+}
+
+// MAMA — MESA Adaptive Moving Average.
+message MamaParams {
+  double fast_limit = 1;
+  double slow_limit = 2;
+}
+
+// MAVP — Moving average with variable period.
+message MavpParams {
+  uint32 min_period = 1;
+  uint32 max_period = 2;
+  MAType ma_type = 3;
+}
+
+// MIDPOINT — MidPoint over period.
+message MidPointParams {
+  uint32 period = 1;
+}
+
+// MIDPRICE — Midpoint Price over period.
+message MidPriceParams {
+  uint32 period = 1;
+}
+
+// SAR — Parabolic SAR.
+message SarParams {
+  double acceleration = 1;
+  double maximum = 2;
+}
+
+// SAREXT — Parabolic SAR - Extended.
+message SarExtParams {
+  double start_value = 1;
+  double offset_on_reverse = 2;
+  double acceleration_init_long = 3;
+  double acceleration_long = 4;
+  double acceleration_max_long = 5;
+  double acceleration_init_short = 6;
+  double acceleration_short = 7;
+  double acceleration_max_short = 8;
+}
+
+// SMA — Simple Moving Average.
+message SmaParams {
+  uint32 period = 1;
+}
+
+// SUPERTREND — SuperTrend.
+message SuperTrendParams {
+  uint32 period = 1;
+  double multiplier = 2;
+}
+
+// T3 — Triple Exponential Moving Average (T3).
+message T3Params {
+  uint32 period = 1;
+  double v_factor = 2;
+}
+
+// TEMA — Triple Exponential Moving Average.
+message TemaParams {
+  uint32 period = 1;
+}
+
+// TRIMA — Triangular Moving Average.
+message TrimaParams {
+  uint32 period = 1;
+}
+
+// VWMA — Volume Weighted Moving Average.
+message VwmaParams {
+  uint32 period = 1;
+}
+
+// WMA — Weighted Moving Average.
+message WmaParams {
+  uint32 period = 1;
+}
+
+// ---------------------------------------------------------------------------
+// Pattern Recognition
+// ---------------------------------------------------------------------------
+
+// CDL2CROWS — Two Crows.
+message Cdl2CrowsParams {}
+
+// CDL3BLACKCROWS — Three Black Crows.
+message Cdl3BlackCrowsParams {}
+
+// CDL3INSIDE — Three Inside Up/Down.
+message Cdl3InsideParams {}
+
+// CDL3LINESTRIKE — Three-Line Strike.
+message Cdl3LineStrikeParams {}
+
+// CDL3OUTSIDE — Three Outside Up/Down.
+message Cdl3OutsideParams {}
+
+// CDL3STARSINSOUTH — Three Stars In The South.
+message Cdl3StarsInSouthParams {}
+
+// CDL3WHITESOLDIERS — Three Advancing White Soldiers.
+message Cdl3WhiteSoldiersParams {}
+
+// CDLABANDONEDBABY — Abandoned Baby.
+message CdlAbandonedBabyParams {
+  double penetration = 1;
+}
+
+// CDLADVANCEBLOCK — Advance Block.
+message CdlAdvanceBlockParams {}
+
+// CDLBELTHOLD — Belt-hold.
+message CdlBeltHoldParams {}
+
+// CDLBREAKAWAY — Breakaway.
+message CdlBreakawayParams {}
+
+// CDLCLOSINGMARUBOZU — Closing Marubozu.
+message CdlClosingMarubozuParams {}
+
+// CDLCONCEALBABYSWALL — Concealing Baby Swallow.
+message CdlConcealBabysWallParams {}
+
+// CDLCOUNTERATTACK — Counterattack.
+message CdlCounterAttackParams {}
+
+// CDLDARKCLOUDCOVER — Dark Cloud Cover.
+message CdlDarkCloudCoverParams {
+  double penetration = 1;
+}
+
+// CDLDOJI — Doji.
+message CdlDojiParams {}
+
+// CDLDOJISTAR — Doji Star.
+message CdlDojiStarParams {}
+
+// CDLDRAGONFLYDOJI — Dragonfly Doji.
+message CdlDragonflyDojiParams {}
+
+// CDLENGULFING — Engulfing Pattern.
+message CdlEngulfingParams {}
+
+// CDLEVENINGDOJISTAR — Evening Doji Star.
+message CdlEveningDojiStarParams {
+  double penetration = 1;
+}
+
+// CDLEVENINGSTAR — Evening Star.
+message CdlEveningStarParams {
+  double penetration = 1;
+}
+
+// CDLGAPSIDESIDEWHITE — Up/Down-gap side-by-side white lines.
+message CdlGapSideSideWhiteParams {}
+
+// CDLGRAVESTONEDOJI — Gravestone Doji.
+message CdlGravestoneDojiParams {}
+
+// CDLHAMMER — Hammer.
+message CdlHammerParams {}
+
+// CDLHANGINGMAN — Hanging Man.
+message CdlHangingManParams {}
+
+// CDLHARAMI — Harami Pattern.
+message CdlHaramiParams {}
+
+// CDLHARAMICROSS — Harami Cross Pattern.
+message CdlHaramiCrossParams {}
+
+// CDLHIGHWAVE — High-Wave Candle.
+message CdlHighWaveParams {}
+
+// CDLHIKKAKE — Hikkake Pattern.
+message CdlHikkakeParams {}
+
+// CDLHIKKAKEMOD — Modified Hikkake Pattern.
+message CdlHikkakeModParams {}
+
+// CDLHOMINGPIGEON — Homing Pigeon.
+message CdlHomingPigeonParams {}
+
+// CDLIDENTICAL3CROWS — Identical Three Crows.
+message CdlIdentical3CrowsParams {}
+
+// CDLINNECK — In-Neck Pattern.
+message CdlInNeckParams {}
+
+// CDLINVERTEDHAMMER — Inverted Hammer.
+message CdlInvertedHammerParams {}
+
+// CDLKICKING — Kicking.
+message CdlKickingParams {}
+
+// CDLKICKINGBYLENGTH — Kicking - bull/bear determined by the longer marubozu.
+message CdlKickingByLengthParams {}
+
+// CDLLADDERBOTTOM — Ladder Bottom.
+message CdlLadderBottomParams {}
+
+// CDLLONGLEGGEDDOJI — Long Legged Doji.
+message CdlLongLeggedDojiParams {}
+
+// CDLLONGLINE — Long Line Candle.
+message CdlLongLineParams {}
+
+// CDLMARUBOZU — Marubozu.
+message CdlMarubozuParams {}
+
+// CDLMATCHINGLOW — Matching Low.
+message CdlMatchingLowParams {}
+
+// CDLMATHOLD — Mat Hold.
+message CdlMatHoldParams {
+  double penetration = 1;
+}
+
+// CDLMORNINGDOJISTAR — Morning Doji Star.
+message CdlMorningDojiStarParams {
+  double penetration = 1;
+}
+
+// CDLMORNINGSTAR — Morning Star.
+message CdlMorningStarParams {
+  double penetration = 1;
+}
+
+// CDLONNECK — On-Neck Pattern.
+message CdlOnNeckParams {}
+
+// CDLPIERCING — Piercing Pattern.
+message CdlPiercingParams {}
+
+// CDLRICKSHAWMAN — Rickshaw Man.
+message CdlRickshawManParams {}
+
+// CDLRISEFALL3METHODS — Rising/Falling Three Methods.
+message CdlRiseFall3MethodsParams {}
+
+// CDLSEPARATINGLINES — Separating Lines.
+message CdlSeparatingLinesParams {}
+
+// CDLSHOOTINGSTAR — Shooting Star.
+message CdlShootingStarParams {}
+
+// CDLSHORTLINE — Short Line Candle.
+message CdlShortLineParams {}
+
+// CDLSPINNINGTOP — Spinning Top.
+message CdlSpinningTopParams {}
+
+// CDLSTALLEDPATTERN — Stalled Pattern.
+message CdlStalledPatternParams {}
+
+// CDLSTICKSANDWICH — Stick Sandwich.
+message CdlStickSandwichParams {}
+
+// CDLTAKURI — Takuri (Dragonfly Doji with very long lower shadow).
+message CdlTakuriParams {}
+
+// CDLTASUKIGAP — Tasuki Gap.
+message CdlTasukiGapParams {}
+
+// CDLTHRUSTING — Thrusting Pattern.
+message CdlThrustingParams {}
+
+// CDLTRISTAR — Tristar Pattern.
+message CdlTristarParams {}
+
+// CDLUNIQUE3RIVER — Unique 3 River.
+message CdlUnique3RiverParams {}
+
+// CDLUPSIDEGAP2CROWS — Upside Gap Two Crows.
+message CdlUpsideGap2CrowsParams {}
+
+// CDLXSIDEGAP3METHODS — Upside/Downside Gap Three Methods.
+message CdlXsideGap3MethodsParams {}
+
+// ---------------------------------------------------------------------------
+// Price Transform
+// ---------------------------------------------------------------------------
+
+// AVGDEV — Average Deviation.
+message AvgDevParams {
+  uint32 period = 1;
+}
+
+// AVGPRICE — Average Price.
+message AvgPriceParams {}
+
+// MEDPRICE — Median Price.
+message MedPriceParams {}
+
+// TYPPRICE — Typical Price.
+message TypPriceParams {}
+
+// WCLPRICE — Weighted Close Price.
+message WclPriceParams {}
+
+// ---------------------------------------------------------------------------
+// Statistic Functions
+// ---------------------------------------------------------------------------
+
+// BETA — Beta.
+message BetaParams {
+  uint32 period = 1;
+}
+
+// CORREL — Pearson's Correlation Coefficient (r).
+message CorrelParams {
+  uint32 period = 1;
+}
+
+// LINEARREG — Linear Regression.
+message LinearRegParams {
+  uint32 period = 1;
+}
+
+// LINEARREG_ANGLE — Linear Regression Angle.
+message LinearRegAngleParams {
+  uint32 period = 1;
+}
+
+// LINEARREG_INTERCEPT — Linear Regression Intercept.
+message LinearRegInterceptParams {
+  uint32 period = 1;
+}
+
+// LINEARREG_SLOPE — Linear Regression Slope.
+message LinearRegSlopeParams {
+  uint32 period = 1;
+}
+
+// STDDEV — Standard Deviation.
+message StdDevParams {
+  uint32 period = 1;
+  double nb_dev = 2;
+}
+
+// TSF — Time Series Forecast.
+message TsfParams {
+  uint32 period = 1;
+}
+
+// VAR — Variance.
+message VarParams {
+  uint32 period = 1;
+  double nb_dev = 2;
+}
+
+// ---------------------------------------------------------------------------
+// Volatility Indicators
+// ---------------------------------------------------------------------------
+
+// ATR — Average True Range.
+message AtrParams {
+  uint32 period = 1;
+}
+
+// NATR — Normalized Average True Range.
+message NatrParams {
+  uint32 period = 1;
+}
+
+// TRANGE — True Range.
+message TrangeParams {}
+
+// ---------------------------------------------------------------------------
+// Volume Indicators
+// ---------------------------------------------------------------------------
+
+// AD — Chaikin A/D Line.
+message AdParams {}
+
+// ADOSC — Chaikin A/D Oscillator.
+message AdOscParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+}
+
+// CMF — Chaikin Money Flow.
+message CmfParams {
+  uint32 period = 1;
+}
+
+// EFI — Elder's Force Index.
+message EfiParams {
+  uint32 period = 1;
+}
+
+// MARKETFI — Market Facilitation Index.
+message MarketFiParams {}
+
+// NVI — Negative Volume Index.
+message NviParams {}
+
+// OBV — On Balance Volume.
+message ObvParams {}
+
+// PVI — Positive Volume Index.
+message PviParams {}
+
+// PVO — Percentage Volume Oscillator.
+message PvoParams {
+  uint32 fast_period = 1;
+  uint32 slow_period = 2;
+  MAType ma_type = 3;
+}
+
+// VWAP — Volume Weighted Average Price.
+message VwapParams {}
+
+// Настройки индикатора для SettingsHash: вариант oneof = функция TA-Lib.
+message IndicatorSettings {
+  oneof indicator_type {
+    // Momentum: RSI остаётся на номере 1 (совместимость).
+    RsiParams rsi = 1;
+
+    // Cycle Indicators (10–19)
+    HtDcPeriodParams ht_dcperiod = 10;
+    HtDcPhaseParams ht_dcphase = 11;
+    HtPhasorParams ht_phasor = 12;
+    HtSineParams ht_sine = 13;
+    HtTrendModeParams ht_trendmode = 14;
+
+    // Math Operators (20–39)
+    AddParams add = 20;
+    DivParams div = 21;
+    MaxParams max = 22;
+    MaxIndexParams maxindex = 23;
+    MinParams min = 24;
+    MinIndexParams minindex = 25;
+    MinMaxParams minmax = 26;
+    MinMaxIndexParams minmaxindex = 27;
+    MultParams mult = 28;
+    SubParams sub = 29;
+    SumParams sum = 30;
+
+    // Math Transform (40–59)
+    AcosParams acos = 40;
+    AsinParams asin = 41;
+    AtanParams atan = 42;
+    CeilParams ceil = 43;
+    CosParams cos = 44;
+    CoshParams cosh = 45;
+    ExpParams exp = 46;
+    FloorParams floor = 47;
+    LnParams ln = 48;
+    Log10Params log10 = 49;
+    SinParams sin = 50;
+    SinhParams sinh = 51;
+    SqrtParams sqrt = 52;
+    TanParams tan = 53;
+    TanhParams tanh = 54;
+
+    // Momentum Indicators (60–99), кроме rsi=1
+    AcParams ac = 60;
+    AdxParams adx = 61;
+    AdxrParams adxr = 62;
+    AoParams ao = 63;
+    ApoParams apo = 64;
+    AroonParams aroon = 65;
+    AroonOscParams aroonosc = 66;
+    BopParams bop = 67;
+    CciParams cci = 68;
+    CmoParams cmo = 69;
+    CmouParams cmou = 70;
+    DxParams dx = 71;
+    ImiParams imi = 72;
+    MacdParams macd = 73;
+    MacdExtParams macdext = 74;
+    MacdFixParams macdfix = 75;
+    MfiParams mfi = 76;
+    MinusDiParams minus_di = 77;
+    MinusDmParams minus_dm = 78;
+    MomParams mom = 79;
+    PlusDiParams plus_di = 80;
+    PlusDmParams plus_dm = 81;
+    PpoParams ppo = 82;
+    QstickParams qstick = 83;
+    RocParams roc = 84;
+    RocpParams rocp = 85;
+    RocrParams rocr = 86;
+    Rocr100Params rocr100 = 87;
+    SmiParams smi = 88;
+    StochParams stoch = 89;
+    StochFParams stochf = 90;
+    StochRsiParams stochrsi = 91;
+    TrixParams trix = 92;
+    UltOscParams ultosc = 93;
+    WadParams wad = 94;
+    WillRParams willr = 95;
+
+    // Overlap Studies (100–129)
+    AccBandsParams accbands = 100;
+    BbandsParams bbands = 101;
+    DemaParams dema = 102;
+    EmaParams ema = 103;
+    HmaParams hma = 104;
+    HtTrendlineParams ht_trendline = 105;
+    KamaParams kama = 106;
+    KcParams kc = 107;
+    MaParams ma = 108;
+    MamaParams mama = 109;
+    MavpParams mavp = 110;
+    MidPointParams midpoint = 111;
+    MidPriceParams midprice = 112;
+    SarParams sar = 113;
+    SarExtParams sarext = 114;
+    SmaParams sma = 115;
+    SuperTrendParams supertrend = 116;
+    T3Params t3 = 117;
+    TemaParams tema = 118;
+    TrimaParams trima = 119;
+    VwmaParams vwma = 120;
+    WmaParams wma = 121;
+
+    // Pattern Recognition (130–199)
+    Cdl2CrowsParams cdl2crows = 130;
+    Cdl3BlackCrowsParams cdl3blackcrows = 131;
+    Cdl3InsideParams cdl3inside = 132;
+    Cdl3LineStrikeParams cdl3linestrike = 133;
+    Cdl3OutsideParams cdl3outside = 134;
+    Cdl3StarsInSouthParams cdl3starsinsouth = 135;
+    Cdl3WhiteSoldiersParams cdl3whitesoldiers = 136;
+    CdlAbandonedBabyParams cdlabandonedbaby = 137;
+    CdlAdvanceBlockParams cdladvanceblock = 138;
+    CdlBeltHoldParams cdlbelthold = 139;
+    CdlBreakawayParams cdlbreakaway = 140;
+    CdlClosingMarubozuParams cdlclosingmarubozu = 141;
+    CdlConcealBabysWallParams cdlconcealbabyswall = 142;
+    CdlCounterAttackParams cdlcounterattack = 143;
+    CdlDarkCloudCoverParams cdldarkcloudcover = 144;
+    CdlDojiParams cdldoji = 145;
+    CdlDojiStarParams cdldojistar = 146;
+    CdlDragonflyDojiParams cdldragonflydoji = 147;
+    CdlEngulfingParams cdlengulfing = 148;
+    CdlEveningDojiStarParams cdleveningdojistar = 149;
+    CdlEveningStarParams cdleveningstar = 150;
+    CdlGapSideSideWhiteParams cdlgapsidesidewhite = 151;
+    CdlGravestoneDojiParams cdlgravestonedoji = 152;
+    CdlHammerParams cdlhammer = 153;
+    CdlHangingManParams cdlhangingman = 154;
+    CdlHaramiParams cdlharami = 155;
+    CdlHaramiCrossParams cdlharamicross = 156;
+    CdlHighWaveParams cdlhighwave = 157;
+    CdlHikkakeParams cdlhikkake = 158;
+    CdlHikkakeModParams cdlhikkakemod = 159;
+    CdlHomingPigeonParams cdlhomingpigeon = 160;
+    CdlIdentical3CrowsParams cdlidentical3crows = 161;
+    CdlInNeckParams cdlinneck = 162;
+    CdlInvertedHammerParams cdlinvertedhammer = 163;
+    CdlKickingParams cdlkicking = 164;
+    CdlKickingByLengthParams cdlkickingbylength = 165;
+    CdlLadderBottomParams cdlladderbottom = 166;
+    CdlLongLeggedDojiParams cdllongleggeddoji = 167;
+    CdlLongLineParams cdllongline = 168;
+    CdlMarubozuParams cdlmarubozu = 169;
+    CdlMatchingLowParams cdlmatchinglow = 170;
+    CdlMatHoldParams cdlmathold = 171;
+    CdlMorningDojiStarParams cdlmorningdojistar = 172;
+    CdlMorningStarParams cdlmorningstar = 173;
+    CdlOnNeckParams cdlonneck = 174;
+    CdlPiercingParams cdlpiercing = 175;
+    CdlRickshawManParams cdlrickshawman = 176;
+    CdlRiseFall3MethodsParams cdlrisefall3methods = 177;
+    CdlSeparatingLinesParams cdlseparatinglines = 178;
+    CdlShootingStarParams cdlshootingstar = 179;
+    CdlShortLineParams cdlshortline = 180;
+    CdlSpinningTopParams cdlspinningtop = 181;
+    CdlStalledPatternParams cdlstalledpattern = 182;
+    CdlStickSandwichParams cdlsticksandwich = 183;
+    CdlTakuriParams cdltakuri = 184;
+    CdlTasukiGapParams cdltasukigap = 185;
+    CdlThrustingParams cdlthrusting = 186;
+    CdlTristarParams cdltristar = 187;
+    CdlUnique3RiverParams cdlunique3river = 188;
+    CdlUpsideGap2CrowsParams cdlupsidegap2crows = 189;
+    CdlXsideGap3MethodsParams cdlxsidegap3methods = 190;
+
+    // Price Transform (200–209)
+    AvgDevParams avgdev = 200;
+    AvgPriceParams avgprice = 201;
+    MedPriceParams medprice = 202;
+    TypPriceParams typprice = 203;
+    WclPriceParams wclprice = 204;
+
+    // Statistic Functions (210–219)
+    BetaParams beta = 210;
+    CorrelParams correl = 211;
+    LinearRegParams linearreg = 212;
+    LinearRegAngleParams linearreg_angle = 213;
+    LinearRegInterceptParams linearreg_intercept = 214;
+    LinearRegSlopeParams linearreg_slope = 215;
+    StdDevParams stddev = 216;
+    TsfParams tsf = 217;
+    VarParams var = 218;
+
+    // Volatility Indicators (220–229)
+    AtrParams atr = 220;
+    NatrParams natr = 221;
+    TrangeParams trange = 222;
+
+    // Volume Indicators (230–249)
+    AdParams ad = 230;
+    AdOscParams adosc = 231;
+    CmfParams cmf = 232;
+    EfiParams efi = 233;
+    MarketFiParams marketfi = 234;
+    NviParams nvi = 235;
+    ObvParams obv = 236;
+    PviParams pvi = 237;
+    PvoParams pvo = 238;
+    VwapParams vwap = 239;
+  }
+}
