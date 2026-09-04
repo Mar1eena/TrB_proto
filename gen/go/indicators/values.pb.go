@@ -1062,110 +1062,6 @@ func (x *StochFSeries) GetPoints() []*StochFPoint {
 	return nil
 }
 
-type SmiPoint struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Time          *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
-	Smi           float64                `protobuf:"fixed64,2,opt,name=smi,proto3" json:"smi,omitempty"`
-	Signal        float64                `protobuf:"fixed64,3,opt,name=signal,proto3" json:"signal,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SmiPoint) Reset() {
-	*x = SmiPoint{}
-	mi := &file_indicators_values_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SmiPoint) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SmiPoint) ProtoMessage() {}
-
-func (x *SmiPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SmiPoint.ProtoReflect.Descriptor instead.
-func (*SmiPoint) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *SmiPoint) GetTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Time
-	}
-	return nil
-}
-
-func (x *SmiPoint) GetSmi() float64 {
-	if x != nil {
-		return x.Smi
-	}
-	return 0
-}
-
-func (x *SmiPoint) GetSignal() float64 {
-	if x != nil {
-		return x.Signal
-	}
-	return 0
-}
-
-type SmiSeries struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Points        []*SmiPoint            `protobuf:"bytes,1,rep,name=points,proto3" json:"points,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SmiSeries) Reset() {
-	*x = SmiSeries{}
-	mi := &file_indicators_values_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SmiSeries) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SmiSeries) ProtoMessage() {}
-
-func (x *SmiSeries) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SmiSeries.ProtoReflect.Descriptor instead.
-func (*SmiSeries) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *SmiSeries) GetPoints() []*SmiPoint {
-	if x != nil {
-		return x.Points
-	}
-	return nil
-}
-
 type MinMaxPoint struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Time          *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
@@ -1177,7 +1073,7 @@ type MinMaxPoint struct {
 
 func (x *MinMaxPoint) Reset() {
 	*x = MinMaxPoint{}
-	mi := &file_indicators_values_proto_msgTypes[22]
+	mi := &file_indicators_values_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1189,7 +1085,7 @@ func (x *MinMaxPoint) String() string {
 func (*MinMaxPoint) ProtoMessage() {}
 
 func (x *MinMaxPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[22]
+	mi := &file_indicators_values_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1202,7 +1098,7 @@ func (x *MinMaxPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinMaxPoint.ProtoReflect.Descriptor instead.
 func (*MinMaxPoint) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{22}
+	return file_indicators_values_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *MinMaxPoint) GetTime() *timestamppb.Timestamp {
@@ -1235,7 +1131,7 @@ type MinMaxSeries struct {
 
 func (x *MinMaxSeries) Reset() {
 	*x = MinMaxSeries{}
-	mi := &file_indicators_values_proto_msgTypes[23]
+	mi := &file_indicators_values_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1247,7 +1143,7 @@ func (x *MinMaxSeries) String() string {
 func (*MinMaxSeries) ProtoMessage() {}
 
 func (x *MinMaxSeries) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[23]
+	mi := &file_indicators_values_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1260,7 +1156,7 @@ func (x *MinMaxSeries) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinMaxSeries.ProtoReflect.Descriptor instead.
 func (*MinMaxSeries) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{23}
+	return file_indicators_values_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *MinMaxSeries) GetPoints() []*MinMaxPoint {
@@ -1281,7 +1177,7 @@ type MinMaxIndexPoint struct {
 
 func (x *MinMaxIndexPoint) Reset() {
 	*x = MinMaxIndexPoint{}
-	mi := &file_indicators_values_proto_msgTypes[24]
+	mi := &file_indicators_values_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1293,7 +1189,7 @@ func (x *MinMaxIndexPoint) String() string {
 func (*MinMaxIndexPoint) ProtoMessage() {}
 
 func (x *MinMaxIndexPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[24]
+	mi := &file_indicators_values_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1306,7 +1202,7 @@ func (x *MinMaxIndexPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinMaxIndexPoint.ProtoReflect.Descriptor instead.
 func (*MinMaxIndexPoint) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{24}
+	return file_indicators_values_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *MinMaxIndexPoint) GetTime() *timestamppb.Timestamp {
@@ -1339,7 +1235,7 @@ type MinMaxIndexSeries struct {
 
 func (x *MinMaxIndexSeries) Reset() {
 	*x = MinMaxIndexSeries{}
-	mi := &file_indicators_values_proto_msgTypes[25]
+	mi := &file_indicators_values_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1351,7 +1247,7 @@ func (x *MinMaxIndexSeries) String() string {
 func (*MinMaxIndexSeries) ProtoMessage() {}
 
 func (x *MinMaxIndexSeries) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[25]
+	mi := &file_indicators_values_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1364,114 +1260,10 @@ func (x *MinMaxIndexSeries) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinMaxIndexSeries.ProtoReflect.Descriptor instead.
 func (*MinMaxIndexSeries) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{25}
+	return file_indicators_values_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *MinMaxIndexSeries) GetPoints() []*MinMaxIndexPoint {
-	if x != nil {
-		return x.Points
-	}
-	return nil
-}
-
-type SuperTrendPoint struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Time          *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
-	Value         float64                `protobuf:"fixed64,2,opt,name=value,proto3" json:"value,omitempty"`
-	Trend         int32                  `protobuf:"varint,3,opt,name=trend,proto3" json:"trend,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SuperTrendPoint) Reset() {
-	*x = SuperTrendPoint{}
-	mi := &file_indicators_values_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SuperTrendPoint) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SuperTrendPoint) ProtoMessage() {}
-
-func (x *SuperTrendPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SuperTrendPoint.ProtoReflect.Descriptor instead.
-func (*SuperTrendPoint) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *SuperTrendPoint) GetTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Time
-	}
-	return nil
-}
-
-func (x *SuperTrendPoint) GetValue() float64 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
-func (x *SuperTrendPoint) GetTrend() int32 {
-	if x != nil {
-		return x.Trend
-	}
-	return 0
-}
-
-type SuperTrendSeries struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Points        []*SuperTrendPoint     `protobuf:"bytes,1,rep,name=points,proto3" json:"points,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SuperTrendSeries) Reset() {
-	*x = SuperTrendSeries{}
-	mi := &file_indicators_values_proto_msgTypes[27]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SuperTrendSeries) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SuperTrendSeries) ProtoMessage() {}
-
-func (x *SuperTrendSeries) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[27]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SuperTrendSeries.ProtoReflect.Descriptor instead.
-func (*SuperTrendSeries) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *SuperTrendSeries) GetPoints() []*SuperTrendPoint {
 	if x != nil {
 		return x.Points
 	}
@@ -1515,19 +1307,15 @@ type IndicatorValuesResponse struct {
 	//	*IndicatorValuesResponse_Sqrt
 	//	*IndicatorValuesResponse_Tan
 	//	*IndicatorValuesResponse_Tanh
-	//	*IndicatorValuesResponse_Ac
 	//	*IndicatorValuesResponse_Adx
 	//	*IndicatorValuesResponse_Adxr
-	//	*IndicatorValuesResponse_Ao
 	//	*IndicatorValuesResponse_Apo
 	//	*IndicatorValuesResponse_Aroon
 	//	*IndicatorValuesResponse_Aroonosc
 	//	*IndicatorValuesResponse_Bop
 	//	*IndicatorValuesResponse_Cci
 	//	*IndicatorValuesResponse_Cmo
-	//	*IndicatorValuesResponse_Cmou
 	//	*IndicatorValuesResponse_Dx
-	//	*IndicatorValuesResponse_Imi
 	//	*IndicatorValuesResponse_Macd
 	//	*IndicatorValuesResponse_Macdext
 	//	*IndicatorValuesResponse_Macdfix
@@ -1538,27 +1326,21 @@ type IndicatorValuesResponse struct {
 	//	*IndicatorValuesResponse_PlusDi
 	//	*IndicatorValuesResponse_PlusDm
 	//	*IndicatorValuesResponse_Ppo
-	//	*IndicatorValuesResponse_Qstick
 	//	*IndicatorValuesResponse_Roc
 	//	*IndicatorValuesResponse_Rocp
 	//	*IndicatorValuesResponse_Rocr
 	//	*IndicatorValuesResponse_Rocr100
-	//	*IndicatorValuesResponse_Smi
 	//	*IndicatorValuesResponse_Stoch
 	//	*IndicatorValuesResponse_Stochf
 	//	*IndicatorValuesResponse_Stochrsi
 	//	*IndicatorValuesResponse_Trix
 	//	*IndicatorValuesResponse_Ultosc
-	//	*IndicatorValuesResponse_Wad
 	//	*IndicatorValuesResponse_Willr
-	//	*IndicatorValuesResponse_Accbands
 	//	*IndicatorValuesResponse_Bbands
 	//	*IndicatorValuesResponse_Dema
 	//	*IndicatorValuesResponse_Ema
-	//	*IndicatorValuesResponse_Hma
 	//	*IndicatorValuesResponse_HtTrendline
 	//	*IndicatorValuesResponse_Kama
-	//	*IndicatorValuesResponse_Kc
 	//	*IndicatorValuesResponse_Ma
 	//	*IndicatorValuesResponse_Mama
 	//	*IndicatorValuesResponse_Mavp
@@ -1567,11 +1349,9 @@ type IndicatorValuesResponse struct {
 	//	*IndicatorValuesResponse_Sar
 	//	*IndicatorValuesResponse_Sarext
 	//	*IndicatorValuesResponse_Sma
-	//	*IndicatorValuesResponse_Supertrend
 	//	*IndicatorValuesResponse_T3
 	//	*IndicatorValuesResponse_Tema
 	//	*IndicatorValuesResponse_Trima
-	//	*IndicatorValuesResponse_Vwma
 	//	*IndicatorValuesResponse_Wma
 	//	*IndicatorValuesResponse_Cdl2Crows
 	//	*IndicatorValuesResponse_Cdl3Blackcrows
@@ -1634,7 +1414,6 @@ type IndicatorValuesResponse struct {
 	//	*IndicatorValuesResponse_Cdlunique3River
 	//	*IndicatorValuesResponse_Cdlupsidegap2Crows
 	//	*IndicatorValuesResponse_Cdlxsidegap3Methods
-	//	*IndicatorValuesResponse_Avgdev
 	//	*IndicatorValuesResponse_Avgprice
 	//	*IndicatorValuesResponse_Medprice
 	//	*IndicatorValuesResponse_Typprice
@@ -1653,14 +1432,7 @@ type IndicatorValuesResponse struct {
 	//	*IndicatorValuesResponse_Trange
 	//	*IndicatorValuesResponse_Ad
 	//	*IndicatorValuesResponse_Adosc
-	//	*IndicatorValuesResponse_Cmf
-	//	*IndicatorValuesResponse_Efi
-	//	*IndicatorValuesResponse_Marketfi
-	//	*IndicatorValuesResponse_Nvi
 	//	*IndicatorValuesResponse_Obv
-	//	*IndicatorValuesResponse_Pvi
-	//	*IndicatorValuesResponse_Pvo
-	//	*IndicatorValuesResponse_Vwap
 	Values        isIndicatorValuesResponse_Values `protobuf_oneof:"values"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1668,7 +1440,7 @@ type IndicatorValuesResponse struct {
 
 func (x *IndicatorValuesResponse) Reset() {
 	*x = IndicatorValuesResponse{}
-	mi := &file_indicators_values_proto_msgTypes[28]
+	mi := &file_indicators_values_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1680,7 +1452,7 @@ func (x *IndicatorValuesResponse) String() string {
 func (*IndicatorValuesResponse) ProtoMessage() {}
 
 func (x *IndicatorValuesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_values_proto_msgTypes[28]
+	mi := &file_indicators_values_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1693,7 +1465,7 @@ func (x *IndicatorValuesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicatorValuesResponse.ProtoReflect.Descriptor instead.
 func (*IndicatorValuesResponse) Descriptor() ([]byte, []int) {
-	return file_indicators_values_proto_rawDescGZIP(), []int{28}
+	return file_indicators_values_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *IndicatorValuesResponse) GetValues() isIndicatorValuesResponse_Values {
@@ -1991,15 +1763,6 @@ func (x *IndicatorValuesResponse) GetTanh() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetAc() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Ac); ok {
-			return x.Ac
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetAdx() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Adx); ok {
@@ -2013,15 +1776,6 @@ func (x *IndicatorValuesResponse) GetAdxr() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Adxr); ok {
 			return x.Adxr
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetAo() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Ao); ok {
-			return x.Ao
 		}
 	}
 	return nil
@@ -2081,28 +1835,10 @@ func (x *IndicatorValuesResponse) GetCmo() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetCmou() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Cmou); ok {
-			return x.Cmou
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetDx() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Dx); ok {
 			return x.Dx
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetImi() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Imi); ok {
-			return x.Imi
 		}
 	}
 	return nil
@@ -2198,15 +1934,6 @@ func (x *IndicatorValuesResponse) GetPpo() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetQstick() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Qstick); ok {
-			return x.Qstick
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetRoc() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Roc); ok {
@@ -2238,15 +1965,6 @@ func (x *IndicatorValuesResponse) GetRocr100() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Rocr100); ok {
 			return x.Rocr100
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetSmi() *SmiSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Smi); ok {
-			return x.Smi
 		}
 	}
 	return nil
@@ -2297,28 +2015,10 @@ func (x *IndicatorValuesResponse) GetUltosc() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetWad() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Wad); ok {
-			return x.Wad
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetWillr() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Willr); ok {
 			return x.Willr
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetAccbands() *BandsSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Accbands); ok {
-			return x.Accbands
 		}
 	}
 	return nil
@@ -2351,15 +2051,6 @@ func (x *IndicatorValuesResponse) GetEma() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetHma() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Hma); ok {
-			return x.Hma
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetHtTrendline() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_HtTrendline); ok {
@@ -2373,15 +2064,6 @@ func (x *IndicatorValuesResponse) GetKama() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Kama); ok {
 			return x.Kama
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetKc() *BandsSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Kc); ok {
-			return x.Kc
 		}
 	}
 	return nil
@@ -2459,15 +2141,6 @@ func (x *IndicatorValuesResponse) GetSma() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetSupertrend() *SuperTrendSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Supertrend); ok {
-			return x.Supertrend
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetT3() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_T3); ok {
@@ -2490,15 +2163,6 @@ func (x *IndicatorValuesResponse) GetTrima() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Trima); ok {
 			return x.Trima
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetVwma() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Vwma); ok {
-			return x.Vwma
 		}
 	}
 	return nil
@@ -3062,15 +2726,6 @@ func (x *IndicatorValuesResponse) GetCdlxsidegap3Methods() *IntegerSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetAvgdev() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Avgdev); ok {
-			return x.Avgdev
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetAvgprice() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Avgprice); ok {
@@ -3233,73 +2888,10 @@ func (x *IndicatorValuesResponse) GetAdosc() *RealSeries {
 	return nil
 }
 
-func (x *IndicatorValuesResponse) GetCmf() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Cmf); ok {
-			return x.Cmf
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetEfi() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Efi); ok {
-			return x.Efi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetMarketfi() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Marketfi); ok {
-			return x.Marketfi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetNvi() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Nvi); ok {
-			return x.Nvi
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorValuesResponse) GetObv() *RealSeries {
 	if x != nil {
 		if x, ok := x.Values.(*IndicatorValuesResponse_Obv); ok {
 			return x.Obv
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetPvi() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Pvi); ok {
-			return x.Pvi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetPvo() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Pvo); ok {
-			return x.Pvo
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorValuesResponse) GetVwap() *RealSeries {
-	if x != nil {
-		if x, ok := x.Values.(*IndicatorValuesResponse_Vwap); ok {
-			return x.Vwap
 		}
 	}
 	return nil
@@ -3440,21 +3032,13 @@ type IndicatorValuesResponse_Tanh struct {
 	Tanh *RealSeries `protobuf:"bytes,54,opt,name=tanh,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Ac struct {
-	// Momentum Indicators (60–99), кроме rsi=1
-	Ac *RealSeries `protobuf:"bytes,60,opt,name=ac,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Adx struct {
+	// Momentum Indicators (61–95), кроме rsi=1
 	Adx *RealSeries `protobuf:"bytes,61,opt,name=adx,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Adxr struct {
 	Adxr *RealSeries `protobuf:"bytes,62,opt,name=adxr,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Ao struct {
-	Ao *RealSeries `protobuf:"bytes,63,opt,name=ao,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Apo struct {
@@ -3481,16 +3065,8 @@ type IndicatorValuesResponse_Cmo struct {
 	Cmo *RealSeries `protobuf:"bytes,69,opt,name=cmo,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Cmou struct {
-	Cmou *RealSeries `protobuf:"bytes,70,opt,name=cmou,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Dx struct {
 	Dx *RealSeries `protobuf:"bytes,71,opt,name=dx,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Imi struct {
-	Imi *RealSeries `protobuf:"bytes,72,opt,name=imi,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Macd struct {
@@ -3533,10 +3109,6 @@ type IndicatorValuesResponse_Ppo struct {
 	Ppo *RealSeries `protobuf:"bytes,82,opt,name=ppo,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Qstick struct {
-	Qstick *RealSeries `protobuf:"bytes,83,opt,name=qstick,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Roc struct {
 	Roc *RealSeries `protobuf:"bytes,84,opt,name=roc,proto3,oneof"`
 }
@@ -3551,10 +3123,6 @@ type IndicatorValuesResponse_Rocr struct {
 
 type IndicatorValuesResponse_Rocr100 struct {
 	Rocr100 *RealSeries `protobuf:"bytes,87,opt,name=rocr100,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Smi struct {
-	Smi *SmiSeries `protobuf:"bytes,88,opt,name=smi,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Stoch struct {
@@ -3577,20 +3145,12 @@ type IndicatorValuesResponse_Ultosc struct {
 	Ultosc *RealSeries `protobuf:"bytes,93,opt,name=ultosc,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Wad struct {
-	Wad *RealSeries `protobuf:"bytes,94,opt,name=wad,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Willr struct {
 	Willr *RealSeries `protobuf:"bytes,95,opt,name=willr,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Accbands struct {
-	// Overlap Studies (100–129)
-	Accbands *BandsSeries `protobuf:"bytes,100,opt,name=accbands,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Bbands struct {
+	// Overlap Studies (101–121)
 	Bbands *BandsSeries `protobuf:"bytes,101,opt,name=bbands,proto3,oneof"`
 }
 
@@ -3602,20 +3162,12 @@ type IndicatorValuesResponse_Ema struct {
 	Ema *RealSeries `protobuf:"bytes,103,opt,name=ema,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Hma struct {
-	Hma *RealSeries `protobuf:"bytes,104,opt,name=hma,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_HtTrendline struct {
 	HtTrendline *RealSeries `protobuf:"bytes,105,opt,name=ht_trendline,json=htTrendline,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Kama struct {
 	Kama *RealSeries `protobuf:"bytes,106,opt,name=kama,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Kc struct {
-	Kc *BandsSeries `protobuf:"bytes,107,opt,name=kc,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Ma struct {
@@ -3650,10 +3202,6 @@ type IndicatorValuesResponse_Sma struct {
 	Sma *RealSeries `protobuf:"bytes,115,opt,name=sma,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Supertrend struct {
-	Supertrend *SuperTrendSeries `protobuf:"bytes,116,opt,name=supertrend,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_T3 struct {
 	T3 *RealSeries `protobuf:"bytes,117,opt,name=t3,proto3,oneof"`
 }
@@ -3666,16 +3214,12 @@ type IndicatorValuesResponse_Trima struct {
 	Trima *RealSeries `protobuf:"bytes,119,opt,name=trima,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Vwma struct {
-	Vwma *RealSeries `protobuf:"bytes,120,opt,name=vwma,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Wma struct {
 	Wma *RealSeries `protobuf:"bytes,121,opt,name=wma,proto3,oneof"`
 }
 
 type IndicatorValuesResponse_Cdl2Crows struct {
-	// Pattern Recognition (130–199)
+	// Pattern Recognition (130–190)
 	Cdl2Crows *IntegerSeries `protobuf:"bytes,130,opt,name=cdl2crows,proto3,oneof"`
 }
 
@@ -3919,12 +3463,8 @@ type IndicatorValuesResponse_Cdlxsidegap3Methods struct {
 	Cdlxsidegap3Methods *IntegerSeries `protobuf:"bytes,190,opt,name=cdlxsidegap3methods,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Avgdev struct {
-	// Price Transform (200–209)
-	Avgdev *RealSeries `protobuf:"bytes,200,opt,name=avgdev,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Avgprice struct {
+	// Price Transform (201–204)
 	Avgprice *RealSeries `protobuf:"bytes,201,opt,name=avgprice,proto3,oneof"`
 }
 
@@ -3941,7 +3481,7 @@ type IndicatorValuesResponse_Wclprice struct {
 }
 
 type IndicatorValuesResponse_Beta struct {
-	// Statistic Functions (210–219)
+	// Statistic Functions (210–218)
 	Beta *RealSeries `protobuf:"bytes,210,opt,name=beta,proto3,oneof"`
 }
 
@@ -3978,7 +3518,7 @@ type IndicatorValuesResponse_Var struct {
 }
 
 type IndicatorValuesResponse_Atr struct {
-	// Volatility Indicators (220–229)
+	// Volatility Indicators (220–222)
 	Atr *RealSeries `protobuf:"bytes,220,opt,name=atr,proto3,oneof"`
 }
 
@@ -3991,7 +3531,7 @@ type IndicatorValuesResponse_Trange struct {
 }
 
 type IndicatorValuesResponse_Ad struct {
-	// Volume Indicators (230–249)
+	// Volume Indicators (230–236)
 	Ad *RealSeries `protobuf:"bytes,230,opt,name=ad,proto3,oneof"`
 }
 
@@ -3999,36 +3539,8 @@ type IndicatorValuesResponse_Adosc struct {
 	Adosc *RealSeries `protobuf:"bytes,231,opt,name=adosc,proto3,oneof"`
 }
 
-type IndicatorValuesResponse_Cmf struct {
-	Cmf *RealSeries `protobuf:"bytes,232,opt,name=cmf,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Efi struct {
-	Efi *RealSeries `protobuf:"bytes,233,opt,name=efi,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Marketfi struct {
-	Marketfi *RealSeries `protobuf:"bytes,234,opt,name=marketfi,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Nvi struct {
-	Nvi *RealSeries `protobuf:"bytes,235,opt,name=nvi,proto3,oneof"`
-}
-
 type IndicatorValuesResponse_Obv struct {
 	Obv *RealSeries `protobuf:"bytes,236,opt,name=obv,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Pvi struct {
-	Pvi *RealSeries `protobuf:"bytes,237,opt,name=pvi,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Pvo struct {
-	Pvo *RealSeries `protobuf:"bytes,238,opt,name=pvo,proto3,oneof"`
-}
-
-type IndicatorValuesResponse_Vwap struct {
-	Vwap *RealSeries `protobuf:"bytes,239,opt,name=vwap,proto3,oneof"`
 }
 
 func (*IndicatorValuesResponse_Rsi) isIndicatorValuesResponse_Values() {}
@@ -4095,13 +3607,9 @@ func (*IndicatorValuesResponse_Tan) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Tanh) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Ac) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Adx) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Adxr) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Ao) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Apo) isIndicatorValuesResponse_Values() {}
 
@@ -4115,11 +3623,7 @@ func (*IndicatorValuesResponse_Cci) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Cmo) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Cmou) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Dx) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Imi) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Macd) isIndicatorValuesResponse_Values() {}
 
@@ -4141,8 +3645,6 @@ func (*IndicatorValuesResponse_PlusDm) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Ppo) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Qstick) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Roc) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Rocp) isIndicatorValuesResponse_Values() {}
@@ -4150,8 +3652,6 @@ func (*IndicatorValuesResponse_Rocp) isIndicatorValuesResponse_Values() {}
 func (*IndicatorValuesResponse_Rocr) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Rocr100) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Smi) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Stoch) isIndicatorValuesResponse_Values() {}
 
@@ -4163,11 +3663,7 @@ func (*IndicatorValuesResponse_Trix) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Ultosc) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Wad) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Willr) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Accbands) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Bbands) isIndicatorValuesResponse_Values() {}
 
@@ -4175,13 +3671,9 @@ func (*IndicatorValuesResponse_Dema) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Ema) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Hma) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_HtTrendline) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Kama) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Kc) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Ma) isIndicatorValuesResponse_Values() {}
 
@@ -4199,15 +3691,11 @@ func (*IndicatorValuesResponse_Sarext) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Sma) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Supertrend) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_T3) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Tema) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Trima) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Vwma) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Wma) isIndicatorValuesResponse_Values() {}
 
@@ -4333,8 +3821,6 @@ func (*IndicatorValuesResponse_Cdlupsidegap2Crows) isIndicatorValuesResponse_Val
 
 func (*IndicatorValuesResponse_Cdlxsidegap3Methods) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Avgdev) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Avgprice) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Medprice) isIndicatorValuesResponse_Values() {}
@@ -4371,21 +3857,7 @@ func (*IndicatorValuesResponse_Ad) isIndicatorValuesResponse_Values() {}
 
 func (*IndicatorValuesResponse_Adosc) isIndicatorValuesResponse_Values() {}
 
-func (*IndicatorValuesResponse_Cmf) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Efi) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Marketfi) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Nvi) isIndicatorValuesResponse_Values() {}
-
 func (*IndicatorValuesResponse_Obv) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Pvi) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Pvo) isIndicatorValuesResponse_Values() {}
-
-func (*IndicatorValuesResponse_Vwap) isIndicatorValuesResponse_Values() {}
 
 var File_indicators_values_proto protoreflect.FileDescriptor
 
@@ -4459,13 +3931,7 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\x06fast_k\x18\x02 \x01(\x01R\x05fastK\x12\x15\n" +
 	"\x06fast_d\x18\x03 \x01(\x01R\x05fastD\"F\n" +
 	"\fStochFSeries\x126\n" +
-	"\x06points\x18\x01 \x03(\v2\x1e.trb.indicators.v1.StochFPointR\x06points\"d\n" +
-	"\bSmiPoint\x12.\n" +
-	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x10\n" +
-	"\x03smi\x18\x02 \x01(\x01R\x03smi\x12\x16\n" +
-	"\x06signal\x18\x03 \x01(\x01R\x06signal\"@\n" +
-	"\tSmiSeries\x123\n" +
-	"\x06points\x18\x01 \x03(\v2\x1b.trb.indicators.v1.SmiPointR\x06points\"a\n" +
+	"\x06points\x18\x01 \x03(\v2\x1e.trb.indicators.v1.StochFPointR\x06points\"a\n" +
 	"\vMinMaxPoint\x12.\n" +
 	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x10\n" +
 	"\x03min\x18\x02 \x01(\x01R\x03min\x12\x10\n" +
@@ -4477,13 +3943,7 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\tmin_index\x18\x02 \x01(\x05R\bminIndex\x12\x1b\n" +
 	"\tmax_index\x18\x03 \x01(\x05R\bmaxIndex\"P\n" +
 	"\x11MinMaxIndexSeries\x12;\n" +
-	"\x06points\x18\x01 \x03(\v2#.trb.indicators.v1.MinMaxIndexPointR\x06points\"m\n" +
-	"\x0fSuperTrendPoint\x12.\n" +
-	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05trend\x18\x03 \x01(\x05R\x05trend\"N\n" +
-	"\x10SuperTrendSeries\x12:\n" +
-	"\x06points\x18\x01 \x03(\v2\".trb.indicators.v1.SuperTrendPointR\x06points\"\xe9W\n" +
+	"\x06points\x18\x01 \x03(\v2#.trb.indicators.v1.MinMaxIndexPointR\x06points\"\xb0O\n" +
 	"\x17IndicatorValuesResponse\x121\n" +
 	"\x03rsi\x18\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03rsi\x12@\n" +
 	"\vht_dcperiod\x18\n" +
@@ -4519,20 +3979,16 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\x04sinh\x183 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04sinh\x123\n" +
 	"\x04sqrt\x184 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04sqrt\x121\n" +
 	"\x03tan\x185 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03tan\x123\n" +
-	"\x04tanh\x186 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04tanh\x12/\n" +
-	"\x02ac\x18< \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02ac\x121\n" +
+	"\x04tanh\x186 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04tanh\x121\n" +
 	"\x03adx\x18= \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03adx\x123\n" +
-	"\x04adxr\x18> \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04adxr\x12/\n" +
-	"\x02ao\x18? \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02ao\x121\n" +
+	"\x04adxr\x18> \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04adxr\x121\n" +
 	"\x03apo\x18@ \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03apo\x126\n" +
 	"\x05aroon\x18A \x01(\v2\x1e.trb.indicators.v1.AroonSeriesH\x00R\x05aroon\x12;\n" +
 	"\baroonosc\x18B \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\baroonosc\x121\n" +
 	"\x03bop\x18C \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03bop\x121\n" +
 	"\x03cci\x18D \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03cci\x121\n" +
-	"\x03cmo\x18E \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03cmo\x123\n" +
-	"\x04cmou\x18F \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04cmou\x12/\n" +
-	"\x02dx\x18G \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02dx\x121\n" +
-	"\x03imi\x18H \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03imi\x123\n" +
+	"\x03cmo\x18E \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03cmo\x12/\n" +
+	"\x02dx\x18G \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02dx\x123\n" +
 	"\x04macd\x18I \x01(\v2\x1d.trb.indicators.v1.MacdSeriesH\x00R\x04macd\x129\n" +
 	"\amacdext\x18J \x01(\v2\x1d.trb.indicators.v1.MacdSeriesH\x00R\amacdext\x129\n" +
 	"\amacdfix\x18K \x01(\v2\x1d.trb.indicators.v1.MacdSeriesH\x00R\amacdfix\x121\n" +
@@ -4542,28 +3998,22 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\x03mom\x18O \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03mom\x128\n" +
 	"\aplus_di\x18P \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06plusDi\x128\n" +
 	"\aplus_dm\x18Q \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06plusDm\x121\n" +
-	"\x03ppo\x18R \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03ppo\x127\n" +
-	"\x06qstick\x18S \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06qstick\x121\n" +
+	"\x03ppo\x18R \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03ppo\x121\n" +
 	"\x03roc\x18T \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03roc\x123\n" +
 	"\x04rocp\x18U \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04rocp\x123\n" +
 	"\x04rocr\x18V \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04rocr\x129\n" +
-	"\arocr100\x18W \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\arocr100\x120\n" +
-	"\x03smi\x18X \x01(\v2\x1c.trb.indicators.v1.SmiSeriesH\x00R\x03smi\x126\n" +
+	"\arocr100\x18W \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\arocr100\x126\n" +
 	"\x05stoch\x18Y \x01(\v2\x1e.trb.indicators.v1.StochSeriesH\x00R\x05stoch\x129\n" +
 	"\x06stochf\x18Z \x01(\v2\x1f.trb.indicators.v1.StochFSeriesH\x00R\x06stochf\x12=\n" +
 	"\bstochrsi\x18[ \x01(\v2\x1f.trb.indicators.v1.StochFSeriesH\x00R\bstochrsi\x123\n" +
 	"\x04trix\x18\\ \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04trix\x127\n" +
-	"\x06ultosc\x18] \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06ultosc\x121\n" +
-	"\x03wad\x18^ \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03wad\x125\n" +
-	"\x05willr\x18_ \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x05willr\x12<\n" +
-	"\baccbands\x18d \x01(\v2\x1e.trb.indicators.v1.BandsSeriesH\x00R\baccbands\x128\n" +
+	"\x06ultosc\x18] \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06ultosc\x125\n" +
+	"\x05willr\x18_ \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x05willr\x128\n" +
 	"\x06bbands\x18e \x01(\v2\x1e.trb.indicators.v1.BandsSeriesH\x00R\x06bbands\x123\n" +
 	"\x04dema\x18f \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04dema\x121\n" +
-	"\x03ema\x18g \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03ema\x121\n" +
-	"\x03hma\x18h \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03hma\x12B\n" +
+	"\x03ema\x18g \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03ema\x12B\n" +
 	"\fht_trendline\x18i \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\vhtTrendline\x123\n" +
-	"\x04kama\x18j \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04kama\x120\n" +
-	"\x02kc\x18k \x01(\v2\x1e.trb.indicators.v1.BandsSeriesH\x00R\x02kc\x12/\n" +
+	"\x04kama\x18j \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04kama\x12/\n" +
 	"\x02ma\x18l \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02ma\x123\n" +
 	"\x04mama\x18m \x01(\v2\x1d.trb.indicators.v1.MamaSeriesH\x00R\x04mama\x123\n" +
 	"\x04mavp\x18n \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04mavp\x12;\n" +
@@ -4571,14 +4021,10 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\bmidprice\x18p \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\bmidprice\x121\n" +
 	"\x03sar\x18q \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03sar\x127\n" +
 	"\x06sarext\x18r \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06sarext\x121\n" +
-	"\x03sma\x18s \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03sma\x12E\n" +
-	"\n" +
-	"supertrend\x18t \x01(\v2#.trb.indicators.v1.SuperTrendSeriesH\x00R\n" +
-	"supertrend\x12/\n" +
+	"\x03sma\x18s \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03sma\x12/\n" +
 	"\x02t3\x18u \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02t3\x123\n" +
 	"\x04tema\x18v \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04tema\x125\n" +
-	"\x05trima\x18w \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x05trima\x123\n" +
-	"\x04vwma\x18x \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04vwma\x121\n" +
+	"\x05trima\x18w \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x05trima\x121\n" +
 	"\x03wma\x18y \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03wma\x12A\n" +
 	"\tcdl2crows\x18\x82\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\tcdl2crows\x12K\n" +
 	"\x0ecdl3blackcrows\x18\x83\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\x0ecdl3blackcrows\x12C\n" +
@@ -4650,8 +4096,7 @@ const file_indicators_values_proto_rawDesc = "" +
 	"cdltristar\x12M\n" +
 	"\x0fcdlunique3river\x18\xbc\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\x0fcdlunique3river\x12S\n" +
 	"\x12cdlupsidegap2crows\x18\xbd\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\x12cdlupsidegap2crows\x12U\n" +
-	"\x13cdlxsidegap3methods\x18\xbe\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\x13cdlxsidegap3methods\x128\n" +
-	"\x06avgdev\x18\xc8\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06avgdev\x12<\n" +
+	"\x13cdlxsidegap3methods\x18\xbe\x01 \x01(\v2 .trb.indicators.v1.IntegerSeriesH\x00R\x13cdlxsidegap3methods\x12<\n" +
 	"\bavgprice\x18\xc9\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\bavgprice\x12<\n" +
 	"\bmedprice\x18\xca\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\bmedprice\x12<\n" +
 	"\btypprice\x18\xcb\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\btypprice\x12<\n" +
@@ -4670,14 +4115,7 @@ const file_indicators_values_proto_rawDesc = "" +
 	"\x06trange\x18\xde\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x06trange\x120\n" +
 	"\x02ad\x18\xe6\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x02ad\x126\n" +
 	"\x05adosc\x18\xe7\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x05adosc\x122\n" +
-	"\x03cmf\x18\xe8\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03cmf\x122\n" +
-	"\x03efi\x18\xe9\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03efi\x12<\n" +
-	"\bmarketfi\x18\xea\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\bmarketfi\x122\n" +
-	"\x03nvi\x18\xeb\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03nvi\x122\n" +
-	"\x03obv\x18\xec\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03obv\x122\n" +
-	"\x03pvi\x18\xed\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03pvi\x122\n" +
-	"\x03pvo\x18\xee\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03pvo\x124\n" +
-	"\x04vwap\x18\xef\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x04vwapB\b\n" +
+	"\x03obv\x18\xec\x01 \x01(\v2\x1d.trb.indicators.v1.RealSeriesH\x00R\x03obvB\b\n" +
 	"\x06valuesB<Z:github.com/Mar1eena/trb_proto/gen/go/indicators;indicatorsb\x06proto3"
 
 var (
@@ -4692,7 +4130,7 @@ func file_indicators_values_proto_rawDescGZIP() []byte {
 	return file_indicators_values_proto_rawDescData
 }
 
-var file_indicators_values_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_indicators_values_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_indicators_values_proto_goTypes = []any{
 	(*RealPoint)(nil),               // 0: trb.indicators.v1.RealPoint
 	(*RealSeries)(nil),              // 1: trb.indicators.v1.RealSeries
@@ -4714,229 +4152,201 @@ var file_indicators_values_proto_goTypes = []any{
 	(*StochSeries)(nil),             // 17: trb.indicators.v1.StochSeries
 	(*StochFPoint)(nil),             // 18: trb.indicators.v1.StochFPoint
 	(*StochFSeries)(nil),            // 19: trb.indicators.v1.StochFSeries
-	(*SmiPoint)(nil),                // 20: trb.indicators.v1.SmiPoint
-	(*SmiSeries)(nil),               // 21: trb.indicators.v1.SmiSeries
-	(*MinMaxPoint)(nil),             // 22: trb.indicators.v1.MinMaxPoint
-	(*MinMaxSeries)(nil),            // 23: trb.indicators.v1.MinMaxSeries
-	(*MinMaxIndexPoint)(nil),        // 24: trb.indicators.v1.MinMaxIndexPoint
-	(*MinMaxIndexSeries)(nil),       // 25: trb.indicators.v1.MinMaxIndexSeries
-	(*SuperTrendPoint)(nil),         // 26: trb.indicators.v1.SuperTrendPoint
-	(*SuperTrendSeries)(nil),        // 27: trb.indicators.v1.SuperTrendSeries
-	(*IndicatorValuesResponse)(nil), // 28: trb.indicators.v1.IndicatorValuesResponse
-	(*timestamppb.Timestamp)(nil),   // 29: google.protobuf.Timestamp
+	(*MinMaxPoint)(nil),             // 20: trb.indicators.v1.MinMaxPoint
+	(*MinMaxSeries)(nil),            // 21: trb.indicators.v1.MinMaxSeries
+	(*MinMaxIndexPoint)(nil),        // 22: trb.indicators.v1.MinMaxIndexPoint
+	(*MinMaxIndexSeries)(nil),       // 23: trb.indicators.v1.MinMaxIndexSeries
+	(*IndicatorValuesResponse)(nil), // 24: trb.indicators.v1.IndicatorValuesResponse
+	(*timestamppb.Timestamp)(nil),   // 25: google.protobuf.Timestamp
 }
 var file_indicators_values_proto_depIdxs = []int32{
-	29,  // 0: trb.indicators.v1.RealPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 0: trb.indicators.v1.RealPoint.time:type_name -> google.protobuf.Timestamp
 	0,   // 1: trb.indicators.v1.RealSeries.points:type_name -> trb.indicators.v1.RealPoint
-	29,  // 2: trb.indicators.v1.IntegerPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 2: trb.indicators.v1.IntegerPoint.time:type_name -> google.protobuf.Timestamp
 	2,   // 3: trb.indicators.v1.IntegerSeries.points:type_name -> trb.indicators.v1.IntegerPoint
-	29,  // 4: trb.indicators.v1.AroonPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 4: trb.indicators.v1.AroonPoint.time:type_name -> google.protobuf.Timestamp
 	4,   // 5: trb.indicators.v1.AroonSeries.points:type_name -> trb.indicators.v1.AroonPoint
-	29,  // 6: trb.indicators.v1.BandsPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 6: trb.indicators.v1.BandsPoint.time:type_name -> google.protobuf.Timestamp
 	6,   // 7: trb.indicators.v1.BandsSeries.points:type_name -> trb.indicators.v1.BandsPoint
-	29,  // 8: trb.indicators.v1.MacdPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 8: trb.indicators.v1.MacdPoint.time:type_name -> google.protobuf.Timestamp
 	8,   // 9: trb.indicators.v1.MacdSeries.points:type_name -> trb.indicators.v1.MacdPoint
-	29,  // 10: trb.indicators.v1.MamaPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 10: trb.indicators.v1.MamaPoint.time:type_name -> google.protobuf.Timestamp
 	10,  // 11: trb.indicators.v1.MamaSeries.points:type_name -> trb.indicators.v1.MamaPoint
-	29,  // 12: trb.indicators.v1.HtPhasorPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 12: trb.indicators.v1.HtPhasorPoint.time:type_name -> google.protobuf.Timestamp
 	12,  // 13: trb.indicators.v1.HtPhasorSeries.points:type_name -> trb.indicators.v1.HtPhasorPoint
-	29,  // 14: trb.indicators.v1.HtSinePoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 14: trb.indicators.v1.HtSinePoint.time:type_name -> google.protobuf.Timestamp
 	14,  // 15: trb.indicators.v1.HtSineSeries.points:type_name -> trb.indicators.v1.HtSinePoint
-	29,  // 16: trb.indicators.v1.StochPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 16: trb.indicators.v1.StochPoint.time:type_name -> google.protobuf.Timestamp
 	16,  // 17: trb.indicators.v1.StochSeries.points:type_name -> trb.indicators.v1.StochPoint
-	29,  // 18: trb.indicators.v1.StochFPoint.time:type_name -> google.protobuf.Timestamp
+	25,  // 18: trb.indicators.v1.StochFPoint.time:type_name -> google.protobuf.Timestamp
 	18,  // 19: trb.indicators.v1.StochFSeries.points:type_name -> trb.indicators.v1.StochFPoint
-	29,  // 20: trb.indicators.v1.SmiPoint.time:type_name -> google.protobuf.Timestamp
-	20,  // 21: trb.indicators.v1.SmiSeries.points:type_name -> trb.indicators.v1.SmiPoint
-	29,  // 22: trb.indicators.v1.MinMaxPoint.time:type_name -> google.protobuf.Timestamp
-	22,  // 23: trb.indicators.v1.MinMaxSeries.points:type_name -> trb.indicators.v1.MinMaxPoint
-	29,  // 24: trb.indicators.v1.MinMaxIndexPoint.time:type_name -> google.protobuf.Timestamp
-	24,  // 25: trb.indicators.v1.MinMaxIndexSeries.points:type_name -> trb.indicators.v1.MinMaxIndexPoint
-	29,  // 26: trb.indicators.v1.SuperTrendPoint.time:type_name -> google.protobuf.Timestamp
-	26,  // 27: trb.indicators.v1.SuperTrendSeries.points:type_name -> trb.indicators.v1.SuperTrendPoint
-	1,   // 28: trb.indicators.v1.IndicatorValuesResponse.rsi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 29: trb.indicators.v1.IndicatorValuesResponse.ht_dcperiod:type_name -> trb.indicators.v1.RealSeries
-	1,   // 30: trb.indicators.v1.IndicatorValuesResponse.ht_dcphase:type_name -> trb.indicators.v1.RealSeries
-	13,  // 31: trb.indicators.v1.IndicatorValuesResponse.ht_phasor:type_name -> trb.indicators.v1.HtPhasorSeries
-	15,  // 32: trb.indicators.v1.IndicatorValuesResponse.ht_sine:type_name -> trb.indicators.v1.HtSineSeries
-	3,   // 33: trb.indicators.v1.IndicatorValuesResponse.ht_trendmode:type_name -> trb.indicators.v1.IntegerSeries
-	1,   // 34: trb.indicators.v1.IndicatorValuesResponse.add:type_name -> trb.indicators.v1.RealSeries
-	1,   // 35: trb.indicators.v1.IndicatorValuesResponse.div:type_name -> trb.indicators.v1.RealSeries
-	1,   // 36: trb.indicators.v1.IndicatorValuesResponse.max:type_name -> trb.indicators.v1.RealSeries
-	3,   // 37: trb.indicators.v1.IndicatorValuesResponse.maxindex:type_name -> trb.indicators.v1.IntegerSeries
-	1,   // 38: trb.indicators.v1.IndicatorValuesResponse.min:type_name -> trb.indicators.v1.RealSeries
-	3,   // 39: trb.indicators.v1.IndicatorValuesResponse.minindex:type_name -> trb.indicators.v1.IntegerSeries
-	23,  // 40: trb.indicators.v1.IndicatorValuesResponse.minmax:type_name -> trb.indicators.v1.MinMaxSeries
-	25,  // 41: trb.indicators.v1.IndicatorValuesResponse.minmaxindex:type_name -> trb.indicators.v1.MinMaxIndexSeries
-	1,   // 42: trb.indicators.v1.IndicatorValuesResponse.mult:type_name -> trb.indicators.v1.RealSeries
-	1,   // 43: trb.indicators.v1.IndicatorValuesResponse.sub:type_name -> trb.indicators.v1.RealSeries
-	1,   // 44: trb.indicators.v1.IndicatorValuesResponse.sum:type_name -> trb.indicators.v1.RealSeries
-	1,   // 45: trb.indicators.v1.IndicatorValuesResponse.acos:type_name -> trb.indicators.v1.RealSeries
-	1,   // 46: trb.indicators.v1.IndicatorValuesResponse.asin:type_name -> trb.indicators.v1.RealSeries
-	1,   // 47: trb.indicators.v1.IndicatorValuesResponse.atan:type_name -> trb.indicators.v1.RealSeries
-	1,   // 48: trb.indicators.v1.IndicatorValuesResponse.ceil:type_name -> trb.indicators.v1.RealSeries
-	1,   // 49: trb.indicators.v1.IndicatorValuesResponse.cos:type_name -> trb.indicators.v1.RealSeries
-	1,   // 50: trb.indicators.v1.IndicatorValuesResponse.cosh:type_name -> trb.indicators.v1.RealSeries
-	1,   // 51: trb.indicators.v1.IndicatorValuesResponse.exp:type_name -> trb.indicators.v1.RealSeries
-	1,   // 52: trb.indicators.v1.IndicatorValuesResponse.floor:type_name -> trb.indicators.v1.RealSeries
-	1,   // 53: trb.indicators.v1.IndicatorValuesResponse.ln:type_name -> trb.indicators.v1.RealSeries
-	1,   // 54: trb.indicators.v1.IndicatorValuesResponse.log10:type_name -> trb.indicators.v1.RealSeries
-	1,   // 55: trb.indicators.v1.IndicatorValuesResponse.sin:type_name -> trb.indicators.v1.RealSeries
-	1,   // 56: trb.indicators.v1.IndicatorValuesResponse.sinh:type_name -> trb.indicators.v1.RealSeries
-	1,   // 57: trb.indicators.v1.IndicatorValuesResponse.sqrt:type_name -> trb.indicators.v1.RealSeries
-	1,   // 58: trb.indicators.v1.IndicatorValuesResponse.tan:type_name -> trb.indicators.v1.RealSeries
-	1,   // 59: trb.indicators.v1.IndicatorValuesResponse.tanh:type_name -> trb.indicators.v1.RealSeries
-	1,   // 60: trb.indicators.v1.IndicatorValuesResponse.ac:type_name -> trb.indicators.v1.RealSeries
-	1,   // 61: trb.indicators.v1.IndicatorValuesResponse.adx:type_name -> trb.indicators.v1.RealSeries
-	1,   // 62: trb.indicators.v1.IndicatorValuesResponse.adxr:type_name -> trb.indicators.v1.RealSeries
-	1,   // 63: trb.indicators.v1.IndicatorValuesResponse.ao:type_name -> trb.indicators.v1.RealSeries
-	1,   // 64: trb.indicators.v1.IndicatorValuesResponse.apo:type_name -> trb.indicators.v1.RealSeries
-	5,   // 65: trb.indicators.v1.IndicatorValuesResponse.aroon:type_name -> trb.indicators.v1.AroonSeries
-	1,   // 66: trb.indicators.v1.IndicatorValuesResponse.aroonosc:type_name -> trb.indicators.v1.RealSeries
-	1,   // 67: trb.indicators.v1.IndicatorValuesResponse.bop:type_name -> trb.indicators.v1.RealSeries
-	1,   // 68: trb.indicators.v1.IndicatorValuesResponse.cci:type_name -> trb.indicators.v1.RealSeries
-	1,   // 69: trb.indicators.v1.IndicatorValuesResponse.cmo:type_name -> trb.indicators.v1.RealSeries
-	1,   // 70: trb.indicators.v1.IndicatorValuesResponse.cmou:type_name -> trb.indicators.v1.RealSeries
-	1,   // 71: trb.indicators.v1.IndicatorValuesResponse.dx:type_name -> trb.indicators.v1.RealSeries
-	1,   // 72: trb.indicators.v1.IndicatorValuesResponse.imi:type_name -> trb.indicators.v1.RealSeries
-	9,   // 73: trb.indicators.v1.IndicatorValuesResponse.macd:type_name -> trb.indicators.v1.MacdSeries
-	9,   // 74: trb.indicators.v1.IndicatorValuesResponse.macdext:type_name -> trb.indicators.v1.MacdSeries
-	9,   // 75: trb.indicators.v1.IndicatorValuesResponse.macdfix:type_name -> trb.indicators.v1.MacdSeries
-	1,   // 76: trb.indicators.v1.IndicatorValuesResponse.mfi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 77: trb.indicators.v1.IndicatorValuesResponse.minus_di:type_name -> trb.indicators.v1.RealSeries
-	1,   // 78: trb.indicators.v1.IndicatorValuesResponse.minus_dm:type_name -> trb.indicators.v1.RealSeries
-	1,   // 79: trb.indicators.v1.IndicatorValuesResponse.mom:type_name -> trb.indicators.v1.RealSeries
-	1,   // 80: trb.indicators.v1.IndicatorValuesResponse.plus_di:type_name -> trb.indicators.v1.RealSeries
-	1,   // 81: trb.indicators.v1.IndicatorValuesResponse.plus_dm:type_name -> trb.indicators.v1.RealSeries
-	1,   // 82: trb.indicators.v1.IndicatorValuesResponse.ppo:type_name -> trb.indicators.v1.RealSeries
-	1,   // 83: trb.indicators.v1.IndicatorValuesResponse.qstick:type_name -> trb.indicators.v1.RealSeries
-	1,   // 84: trb.indicators.v1.IndicatorValuesResponse.roc:type_name -> trb.indicators.v1.RealSeries
-	1,   // 85: trb.indicators.v1.IndicatorValuesResponse.rocp:type_name -> trb.indicators.v1.RealSeries
-	1,   // 86: trb.indicators.v1.IndicatorValuesResponse.rocr:type_name -> trb.indicators.v1.RealSeries
-	1,   // 87: trb.indicators.v1.IndicatorValuesResponse.rocr100:type_name -> trb.indicators.v1.RealSeries
-	21,  // 88: trb.indicators.v1.IndicatorValuesResponse.smi:type_name -> trb.indicators.v1.SmiSeries
-	17,  // 89: trb.indicators.v1.IndicatorValuesResponse.stoch:type_name -> trb.indicators.v1.StochSeries
-	19,  // 90: trb.indicators.v1.IndicatorValuesResponse.stochf:type_name -> trb.indicators.v1.StochFSeries
-	19,  // 91: trb.indicators.v1.IndicatorValuesResponse.stochrsi:type_name -> trb.indicators.v1.StochFSeries
-	1,   // 92: trb.indicators.v1.IndicatorValuesResponse.trix:type_name -> trb.indicators.v1.RealSeries
-	1,   // 93: trb.indicators.v1.IndicatorValuesResponse.ultosc:type_name -> trb.indicators.v1.RealSeries
-	1,   // 94: trb.indicators.v1.IndicatorValuesResponse.wad:type_name -> trb.indicators.v1.RealSeries
-	1,   // 95: trb.indicators.v1.IndicatorValuesResponse.willr:type_name -> trb.indicators.v1.RealSeries
-	7,   // 96: trb.indicators.v1.IndicatorValuesResponse.accbands:type_name -> trb.indicators.v1.BandsSeries
-	7,   // 97: trb.indicators.v1.IndicatorValuesResponse.bbands:type_name -> trb.indicators.v1.BandsSeries
-	1,   // 98: trb.indicators.v1.IndicatorValuesResponse.dema:type_name -> trb.indicators.v1.RealSeries
-	1,   // 99: trb.indicators.v1.IndicatorValuesResponse.ema:type_name -> trb.indicators.v1.RealSeries
-	1,   // 100: trb.indicators.v1.IndicatorValuesResponse.hma:type_name -> trb.indicators.v1.RealSeries
-	1,   // 101: trb.indicators.v1.IndicatorValuesResponse.ht_trendline:type_name -> trb.indicators.v1.RealSeries
-	1,   // 102: trb.indicators.v1.IndicatorValuesResponse.kama:type_name -> trb.indicators.v1.RealSeries
-	7,   // 103: trb.indicators.v1.IndicatorValuesResponse.kc:type_name -> trb.indicators.v1.BandsSeries
-	1,   // 104: trb.indicators.v1.IndicatorValuesResponse.ma:type_name -> trb.indicators.v1.RealSeries
-	11,  // 105: trb.indicators.v1.IndicatorValuesResponse.mama:type_name -> trb.indicators.v1.MamaSeries
-	1,   // 106: trb.indicators.v1.IndicatorValuesResponse.mavp:type_name -> trb.indicators.v1.RealSeries
-	1,   // 107: trb.indicators.v1.IndicatorValuesResponse.midpoint:type_name -> trb.indicators.v1.RealSeries
-	1,   // 108: trb.indicators.v1.IndicatorValuesResponse.midprice:type_name -> trb.indicators.v1.RealSeries
-	1,   // 109: trb.indicators.v1.IndicatorValuesResponse.sar:type_name -> trb.indicators.v1.RealSeries
-	1,   // 110: trb.indicators.v1.IndicatorValuesResponse.sarext:type_name -> trb.indicators.v1.RealSeries
-	1,   // 111: trb.indicators.v1.IndicatorValuesResponse.sma:type_name -> trb.indicators.v1.RealSeries
-	27,  // 112: trb.indicators.v1.IndicatorValuesResponse.supertrend:type_name -> trb.indicators.v1.SuperTrendSeries
-	1,   // 113: trb.indicators.v1.IndicatorValuesResponse.t3:type_name -> trb.indicators.v1.RealSeries
-	1,   // 114: trb.indicators.v1.IndicatorValuesResponse.tema:type_name -> trb.indicators.v1.RealSeries
-	1,   // 115: trb.indicators.v1.IndicatorValuesResponse.trima:type_name -> trb.indicators.v1.RealSeries
-	1,   // 116: trb.indicators.v1.IndicatorValuesResponse.vwma:type_name -> trb.indicators.v1.RealSeries
-	1,   // 117: trb.indicators.v1.IndicatorValuesResponse.wma:type_name -> trb.indicators.v1.RealSeries
-	3,   // 118: trb.indicators.v1.IndicatorValuesResponse.cdl2crows:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 119: trb.indicators.v1.IndicatorValuesResponse.cdl3blackcrows:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 120: trb.indicators.v1.IndicatorValuesResponse.cdl3inside:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 121: trb.indicators.v1.IndicatorValuesResponse.cdl3linestrike:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 122: trb.indicators.v1.IndicatorValuesResponse.cdl3outside:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 123: trb.indicators.v1.IndicatorValuesResponse.cdl3starsinsouth:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 124: trb.indicators.v1.IndicatorValuesResponse.cdl3whitesoldiers:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 125: trb.indicators.v1.IndicatorValuesResponse.cdlabandonedbaby:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 126: trb.indicators.v1.IndicatorValuesResponse.cdladvanceblock:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 127: trb.indicators.v1.IndicatorValuesResponse.cdlbelthold:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 128: trb.indicators.v1.IndicatorValuesResponse.cdlbreakaway:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 129: trb.indicators.v1.IndicatorValuesResponse.cdlclosingmarubozu:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 130: trb.indicators.v1.IndicatorValuesResponse.cdlconcealbabyswall:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 131: trb.indicators.v1.IndicatorValuesResponse.cdlcounterattack:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 132: trb.indicators.v1.IndicatorValuesResponse.cdldarkcloudcover:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 133: trb.indicators.v1.IndicatorValuesResponse.cdldoji:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 134: trb.indicators.v1.IndicatorValuesResponse.cdldojistar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 135: trb.indicators.v1.IndicatorValuesResponse.cdldragonflydoji:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 136: trb.indicators.v1.IndicatorValuesResponse.cdlengulfing:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 137: trb.indicators.v1.IndicatorValuesResponse.cdleveningdojistar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 138: trb.indicators.v1.IndicatorValuesResponse.cdleveningstar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 139: trb.indicators.v1.IndicatorValuesResponse.cdlgapsidesidewhite:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 140: trb.indicators.v1.IndicatorValuesResponse.cdlgravestonedoji:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 141: trb.indicators.v1.IndicatorValuesResponse.cdlhammer:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 142: trb.indicators.v1.IndicatorValuesResponse.cdlhangingman:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 143: trb.indicators.v1.IndicatorValuesResponse.cdlharami:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 144: trb.indicators.v1.IndicatorValuesResponse.cdlharamicross:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 145: trb.indicators.v1.IndicatorValuesResponse.cdlhighwave:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 146: trb.indicators.v1.IndicatorValuesResponse.cdlhikkake:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 147: trb.indicators.v1.IndicatorValuesResponse.cdlhikkakemod:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 148: trb.indicators.v1.IndicatorValuesResponse.cdlhomingpigeon:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 149: trb.indicators.v1.IndicatorValuesResponse.cdlidentical3crows:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 150: trb.indicators.v1.IndicatorValuesResponse.cdlinneck:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 151: trb.indicators.v1.IndicatorValuesResponse.cdlinvertedhammer:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 152: trb.indicators.v1.IndicatorValuesResponse.cdlkicking:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 153: trb.indicators.v1.IndicatorValuesResponse.cdlkickingbylength:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 154: trb.indicators.v1.IndicatorValuesResponse.cdlladderbottom:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 155: trb.indicators.v1.IndicatorValuesResponse.cdllongleggeddoji:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 156: trb.indicators.v1.IndicatorValuesResponse.cdllongline:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 157: trb.indicators.v1.IndicatorValuesResponse.cdlmarubozu:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 158: trb.indicators.v1.IndicatorValuesResponse.cdlmatchinglow:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 159: trb.indicators.v1.IndicatorValuesResponse.cdlmathold:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 160: trb.indicators.v1.IndicatorValuesResponse.cdlmorningdojistar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 161: trb.indicators.v1.IndicatorValuesResponse.cdlmorningstar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 162: trb.indicators.v1.IndicatorValuesResponse.cdlonneck:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 163: trb.indicators.v1.IndicatorValuesResponse.cdlpiercing:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 164: trb.indicators.v1.IndicatorValuesResponse.cdlrickshawman:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 165: trb.indicators.v1.IndicatorValuesResponse.cdlrisefall3methods:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 166: trb.indicators.v1.IndicatorValuesResponse.cdlseparatinglines:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 167: trb.indicators.v1.IndicatorValuesResponse.cdlshootingstar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 168: trb.indicators.v1.IndicatorValuesResponse.cdlshortline:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 169: trb.indicators.v1.IndicatorValuesResponse.cdlspinningtop:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 170: trb.indicators.v1.IndicatorValuesResponse.cdlstalledpattern:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 171: trb.indicators.v1.IndicatorValuesResponse.cdlsticksandwich:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 172: trb.indicators.v1.IndicatorValuesResponse.cdltakuri:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 173: trb.indicators.v1.IndicatorValuesResponse.cdltasukigap:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 174: trb.indicators.v1.IndicatorValuesResponse.cdlthrusting:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 175: trb.indicators.v1.IndicatorValuesResponse.cdltristar:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 176: trb.indicators.v1.IndicatorValuesResponse.cdlunique3river:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 177: trb.indicators.v1.IndicatorValuesResponse.cdlupsidegap2crows:type_name -> trb.indicators.v1.IntegerSeries
-	3,   // 178: trb.indicators.v1.IndicatorValuesResponse.cdlxsidegap3methods:type_name -> trb.indicators.v1.IntegerSeries
-	1,   // 179: trb.indicators.v1.IndicatorValuesResponse.avgdev:type_name -> trb.indicators.v1.RealSeries
-	1,   // 180: trb.indicators.v1.IndicatorValuesResponse.avgprice:type_name -> trb.indicators.v1.RealSeries
-	1,   // 181: trb.indicators.v1.IndicatorValuesResponse.medprice:type_name -> trb.indicators.v1.RealSeries
-	1,   // 182: trb.indicators.v1.IndicatorValuesResponse.typprice:type_name -> trb.indicators.v1.RealSeries
-	1,   // 183: trb.indicators.v1.IndicatorValuesResponse.wclprice:type_name -> trb.indicators.v1.RealSeries
-	1,   // 184: trb.indicators.v1.IndicatorValuesResponse.beta:type_name -> trb.indicators.v1.RealSeries
-	1,   // 185: trb.indicators.v1.IndicatorValuesResponse.correl:type_name -> trb.indicators.v1.RealSeries
-	1,   // 186: trb.indicators.v1.IndicatorValuesResponse.linearreg:type_name -> trb.indicators.v1.RealSeries
-	1,   // 187: trb.indicators.v1.IndicatorValuesResponse.linearreg_angle:type_name -> trb.indicators.v1.RealSeries
-	1,   // 188: trb.indicators.v1.IndicatorValuesResponse.linearreg_intercept:type_name -> trb.indicators.v1.RealSeries
-	1,   // 189: trb.indicators.v1.IndicatorValuesResponse.linearreg_slope:type_name -> trb.indicators.v1.RealSeries
-	1,   // 190: trb.indicators.v1.IndicatorValuesResponse.stddev:type_name -> trb.indicators.v1.RealSeries
-	1,   // 191: trb.indicators.v1.IndicatorValuesResponse.tsf:type_name -> trb.indicators.v1.RealSeries
-	1,   // 192: trb.indicators.v1.IndicatorValuesResponse.var:type_name -> trb.indicators.v1.RealSeries
-	1,   // 193: trb.indicators.v1.IndicatorValuesResponse.atr:type_name -> trb.indicators.v1.RealSeries
-	1,   // 194: trb.indicators.v1.IndicatorValuesResponse.natr:type_name -> trb.indicators.v1.RealSeries
-	1,   // 195: trb.indicators.v1.IndicatorValuesResponse.trange:type_name -> trb.indicators.v1.RealSeries
-	1,   // 196: trb.indicators.v1.IndicatorValuesResponse.ad:type_name -> trb.indicators.v1.RealSeries
-	1,   // 197: trb.indicators.v1.IndicatorValuesResponse.adosc:type_name -> trb.indicators.v1.RealSeries
-	1,   // 198: trb.indicators.v1.IndicatorValuesResponse.cmf:type_name -> trb.indicators.v1.RealSeries
-	1,   // 199: trb.indicators.v1.IndicatorValuesResponse.efi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 200: trb.indicators.v1.IndicatorValuesResponse.marketfi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 201: trb.indicators.v1.IndicatorValuesResponse.nvi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 202: trb.indicators.v1.IndicatorValuesResponse.obv:type_name -> trb.indicators.v1.RealSeries
-	1,   // 203: trb.indicators.v1.IndicatorValuesResponse.pvi:type_name -> trb.indicators.v1.RealSeries
-	1,   // 204: trb.indicators.v1.IndicatorValuesResponse.pvo:type_name -> trb.indicators.v1.RealSeries
-	1,   // 205: trb.indicators.v1.IndicatorValuesResponse.vwap:type_name -> trb.indicators.v1.RealSeries
-	206, // [206:206] is the sub-list for method output_type
-	206, // [206:206] is the sub-list for method input_type
-	206, // [206:206] is the sub-list for extension type_name
-	206, // [206:206] is the sub-list for extension extendee
-	0,   // [0:206] is the sub-list for field type_name
+	25,  // 20: trb.indicators.v1.MinMaxPoint.time:type_name -> google.protobuf.Timestamp
+	20,  // 21: trb.indicators.v1.MinMaxSeries.points:type_name -> trb.indicators.v1.MinMaxPoint
+	25,  // 22: trb.indicators.v1.MinMaxIndexPoint.time:type_name -> google.protobuf.Timestamp
+	22,  // 23: trb.indicators.v1.MinMaxIndexSeries.points:type_name -> trb.indicators.v1.MinMaxIndexPoint
+	1,   // 24: trb.indicators.v1.IndicatorValuesResponse.rsi:type_name -> trb.indicators.v1.RealSeries
+	1,   // 25: trb.indicators.v1.IndicatorValuesResponse.ht_dcperiod:type_name -> trb.indicators.v1.RealSeries
+	1,   // 26: trb.indicators.v1.IndicatorValuesResponse.ht_dcphase:type_name -> trb.indicators.v1.RealSeries
+	13,  // 27: trb.indicators.v1.IndicatorValuesResponse.ht_phasor:type_name -> trb.indicators.v1.HtPhasorSeries
+	15,  // 28: trb.indicators.v1.IndicatorValuesResponse.ht_sine:type_name -> trb.indicators.v1.HtSineSeries
+	3,   // 29: trb.indicators.v1.IndicatorValuesResponse.ht_trendmode:type_name -> trb.indicators.v1.IntegerSeries
+	1,   // 30: trb.indicators.v1.IndicatorValuesResponse.add:type_name -> trb.indicators.v1.RealSeries
+	1,   // 31: trb.indicators.v1.IndicatorValuesResponse.div:type_name -> trb.indicators.v1.RealSeries
+	1,   // 32: trb.indicators.v1.IndicatorValuesResponse.max:type_name -> trb.indicators.v1.RealSeries
+	3,   // 33: trb.indicators.v1.IndicatorValuesResponse.maxindex:type_name -> trb.indicators.v1.IntegerSeries
+	1,   // 34: trb.indicators.v1.IndicatorValuesResponse.min:type_name -> trb.indicators.v1.RealSeries
+	3,   // 35: trb.indicators.v1.IndicatorValuesResponse.minindex:type_name -> trb.indicators.v1.IntegerSeries
+	21,  // 36: trb.indicators.v1.IndicatorValuesResponse.minmax:type_name -> trb.indicators.v1.MinMaxSeries
+	23,  // 37: trb.indicators.v1.IndicatorValuesResponse.minmaxindex:type_name -> trb.indicators.v1.MinMaxIndexSeries
+	1,   // 38: trb.indicators.v1.IndicatorValuesResponse.mult:type_name -> trb.indicators.v1.RealSeries
+	1,   // 39: trb.indicators.v1.IndicatorValuesResponse.sub:type_name -> trb.indicators.v1.RealSeries
+	1,   // 40: trb.indicators.v1.IndicatorValuesResponse.sum:type_name -> trb.indicators.v1.RealSeries
+	1,   // 41: trb.indicators.v1.IndicatorValuesResponse.acos:type_name -> trb.indicators.v1.RealSeries
+	1,   // 42: trb.indicators.v1.IndicatorValuesResponse.asin:type_name -> trb.indicators.v1.RealSeries
+	1,   // 43: trb.indicators.v1.IndicatorValuesResponse.atan:type_name -> trb.indicators.v1.RealSeries
+	1,   // 44: trb.indicators.v1.IndicatorValuesResponse.ceil:type_name -> trb.indicators.v1.RealSeries
+	1,   // 45: trb.indicators.v1.IndicatorValuesResponse.cos:type_name -> trb.indicators.v1.RealSeries
+	1,   // 46: trb.indicators.v1.IndicatorValuesResponse.cosh:type_name -> trb.indicators.v1.RealSeries
+	1,   // 47: trb.indicators.v1.IndicatorValuesResponse.exp:type_name -> trb.indicators.v1.RealSeries
+	1,   // 48: trb.indicators.v1.IndicatorValuesResponse.floor:type_name -> trb.indicators.v1.RealSeries
+	1,   // 49: trb.indicators.v1.IndicatorValuesResponse.ln:type_name -> trb.indicators.v1.RealSeries
+	1,   // 50: trb.indicators.v1.IndicatorValuesResponse.log10:type_name -> trb.indicators.v1.RealSeries
+	1,   // 51: trb.indicators.v1.IndicatorValuesResponse.sin:type_name -> trb.indicators.v1.RealSeries
+	1,   // 52: trb.indicators.v1.IndicatorValuesResponse.sinh:type_name -> trb.indicators.v1.RealSeries
+	1,   // 53: trb.indicators.v1.IndicatorValuesResponse.sqrt:type_name -> trb.indicators.v1.RealSeries
+	1,   // 54: trb.indicators.v1.IndicatorValuesResponse.tan:type_name -> trb.indicators.v1.RealSeries
+	1,   // 55: trb.indicators.v1.IndicatorValuesResponse.tanh:type_name -> trb.indicators.v1.RealSeries
+	1,   // 56: trb.indicators.v1.IndicatorValuesResponse.adx:type_name -> trb.indicators.v1.RealSeries
+	1,   // 57: trb.indicators.v1.IndicatorValuesResponse.adxr:type_name -> trb.indicators.v1.RealSeries
+	1,   // 58: trb.indicators.v1.IndicatorValuesResponse.apo:type_name -> trb.indicators.v1.RealSeries
+	5,   // 59: trb.indicators.v1.IndicatorValuesResponse.aroon:type_name -> trb.indicators.v1.AroonSeries
+	1,   // 60: trb.indicators.v1.IndicatorValuesResponse.aroonosc:type_name -> trb.indicators.v1.RealSeries
+	1,   // 61: trb.indicators.v1.IndicatorValuesResponse.bop:type_name -> trb.indicators.v1.RealSeries
+	1,   // 62: trb.indicators.v1.IndicatorValuesResponse.cci:type_name -> trb.indicators.v1.RealSeries
+	1,   // 63: trb.indicators.v1.IndicatorValuesResponse.cmo:type_name -> trb.indicators.v1.RealSeries
+	1,   // 64: trb.indicators.v1.IndicatorValuesResponse.dx:type_name -> trb.indicators.v1.RealSeries
+	9,   // 65: trb.indicators.v1.IndicatorValuesResponse.macd:type_name -> trb.indicators.v1.MacdSeries
+	9,   // 66: trb.indicators.v1.IndicatorValuesResponse.macdext:type_name -> trb.indicators.v1.MacdSeries
+	9,   // 67: trb.indicators.v1.IndicatorValuesResponse.macdfix:type_name -> trb.indicators.v1.MacdSeries
+	1,   // 68: trb.indicators.v1.IndicatorValuesResponse.mfi:type_name -> trb.indicators.v1.RealSeries
+	1,   // 69: trb.indicators.v1.IndicatorValuesResponse.minus_di:type_name -> trb.indicators.v1.RealSeries
+	1,   // 70: trb.indicators.v1.IndicatorValuesResponse.minus_dm:type_name -> trb.indicators.v1.RealSeries
+	1,   // 71: trb.indicators.v1.IndicatorValuesResponse.mom:type_name -> trb.indicators.v1.RealSeries
+	1,   // 72: trb.indicators.v1.IndicatorValuesResponse.plus_di:type_name -> trb.indicators.v1.RealSeries
+	1,   // 73: trb.indicators.v1.IndicatorValuesResponse.plus_dm:type_name -> trb.indicators.v1.RealSeries
+	1,   // 74: trb.indicators.v1.IndicatorValuesResponse.ppo:type_name -> trb.indicators.v1.RealSeries
+	1,   // 75: trb.indicators.v1.IndicatorValuesResponse.roc:type_name -> trb.indicators.v1.RealSeries
+	1,   // 76: trb.indicators.v1.IndicatorValuesResponse.rocp:type_name -> trb.indicators.v1.RealSeries
+	1,   // 77: trb.indicators.v1.IndicatorValuesResponse.rocr:type_name -> trb.indicators.v1.RealSeries
+	1,   // 78: trb.indicators.v1.IndicatorValuesResponse.rocr100:type_name -> trb.indicators.v1.RealSeries
+	17,  // 79: trb.indicators.v1.IndicatorValuesResponse.stoch:type_name -> trb.indicators.v1.StochSeries
+	19,  // 80: trb.indicators.v1.IndicatorValuesResponse.stochf:type_name -> trb.indicators.v1.StochFSeries
+	19,  // 81: trb.indicators.v1.IndicatorValuesResponse.stochrsi:type_name -> trb.indicators.v1.StochFSeries
+	1,   // 82: trb.indicators.v1.IndicatorValuesResponse.trix:type_name -> trb.indicators.v1.RealSeries
+	1,   // 83: trb.indicators.v1.IndicatorValuesResponse.ultosc:type_name -> trb.indicators.v1.RealSeries
+	1,   // 84: trb.indicators.v1.IndicatorValuesResponse.willr:type_name -> trb.indicators.v1.RealSeries
+	7,   // 85: trb.indicators.v1.IndicatorValuesResponse.bbands:type_name -> trb.indicators.v1.BandsSeries
+	1,   // 86: trb.indicators.v1.IndicatorValuesResponse.dema:type_name -> trb.indicators.v1.RealSeries
+	1,   // 87: trb.indicators.v1.IndicatorValuesResponse.ema:type_name -> trb.indicators.v1.RealSeries
+	1,   // 88: trb.indicators.v1.IndicatorValuesResponse.ht_trendline:type_name -> trb.indicators.v1.RealSeries
+	1,   // 89: trb.indicators.v1.IndicatorValuesResponse.kama:type_name -> trb.indicators.v1.RealSeries
+	1,   // 90: trb.indicators.v1.IndicatorValuesResponse.ma:type_name -> trb.indicators.v1.RealSeries
+	11,  // 91: trb.indicators.v1.IndicatorValuesResponse.mama:type_name -> trb.indicators.v1.MamaSeries
+	1,   // 92: trb.indicators.v1.IndicatorValuesResponse.mavp:type_name -> trb.indicators.v1.RealSeries
+	1,   // 93: trb.indicators.v1.IndicatorValuesResponse.midpoint:type_name -> trb.indicators.v1.RealSeries
+	1,   // 94: trb.indicators.v1.IndicatorValuesResponse.midprice:type_name -> trb.indicators.v1.RealSeries
+	1,   // 95: trb.indicators.v1.IndicatorValuesResponse.sar:type_name -> trb.indicators.v1.RealSeries
+	1,   // 96: trb.indicators.v1.IndicatorValuesResponse.sarext:type_name -> trb.indicators.v1.RealSeries
+	1,   // 97: trb.indicators.v1.IndicatorValuesResponse.sma:type_name -> trb.indicators.v1.RealSeries
+	1,   // 98: trb.indicators.v1.IndicatorValuesResponse.t3:type_name -> trb.indicators.v1.RealSeries
+	1,   // 99: trb.indicators.v1.IndicatorValuesResponse.tema:type_name -> trb.indicators.v1.RealSeries
+	1,   // 100: trb.indicators.v1.IndicatorValuesResponse.trima:type_name -> trb.indicators.v1.RealSeries
+	1,   // 101: trb.indicators.v1.IndicatorValuesResponse.wma:type_name -> trb.indicators.v1.RealSeries
+	3,   // 102: trb.indicators.v1.IndicatorValuesResponse.cdl2crows:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 103: trb.indicators.v1.IndicatorValuesResponse.cdl3blackcrows:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 104: trb.indicators.v1.IndicatorValuesResponse.cdl3inside:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 105: trb.indicators.v1.IndicatorValuesResponse.cdl3linestrike:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 106: trb.indicators.v1.IndicatorValuesResponse.cdl3outside:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 107: trb.indicators.v1.IndicatorValuesResponse.cdl3starsinsouth:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 108: trb.indicators.v1.IndicatorValuesResponse.cdl3whitesoldiers:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 109: trb.indicators.v1.IndicatorValuesResponse.cdlabandonedbaby:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 110: trb.indicators.v1.IndicatorValuesResponse.cdladvanceblock:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 111: trb.indicators.v1.IndicatorValuesResponse.cdlbelthold:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 112: trb.indicators.v1.IndicatorValuesResponse.cdlbreakaway:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 113: trb.indicators.v1.IndicatorValuesResponse.cdlclosingmarubozu:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 114: trb.indicators.v1.IndicatorValuesResponse.cdlconcealbabyswall:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 115: trb.indicators.v1.IndicatorValuesResponse.cdlcounterattack:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 116: trb.indicators.v1.IndicatorValuesResponse.cdldarkcloudcover:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 117: trb.indicators.v1.IndicatorValuesResponse.cdldoji:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 118: trb.indicators.v1.IndicatorValuesResponse.cdldojistar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 119: trb.indicators.v1.IndicatorValuesResponse.cdldragonflydoji:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 120: trb.indicators.v1.IndicatorValuesResponse.cdlengulfing:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 121: trb.indicators.v1.IndicatorValuesResponse.cdleveningdojistar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 122: trb.indicators.v1.IndicatorValuesResponse.cdleveningstar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 123: trb.indicators.v1.IndicatorValuesResponse.cdlgapsidesidewhite:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 124: trb.indicators.v1.IndicatorValuesResponse.cdlgravestonedoji:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 125: trb.indicators.v1.IndicatorValuesResponse.cdlhammer:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 126: trb.indicators.v1.IndicatorValuesResponse.cdlhangingman:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 127: trb.indicators.v1.IndicatorValuesResponse.cdlharami:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 128: trb.indicators.v1.IndicatorValuesResponse.cdlharamicross:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 129: trb.indicators.v1.IndicatorValuesResponse.cdlhighwave:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 130: trb.indicators.v1.IndicatorValuesResponse.cdlhikkake:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 131: trb.indicators.v1.IndicatorValuesResponse.cdlhikkakemod:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 132: trb.indicators.v1.IndicatorValuesResponse.cdlhomingpigeon:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 133: trb.indicators.v1.IndicatorValuesResponse.cdlidentical3crows:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 134: trb.indicators.v1.IndicatorValuesResponse.cdlinneck:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 135: trb.indicators.v1.IndicatorValuesResponse.cdlinvertedhammer:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 136: trb.indicators.v1.IndicatorValuesResponse.cdlkicking:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 137: trb.indicators.v1.IndicatorValuesResponse.cdlkickingbylength:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 138: trb.indicators.v1.IndicatorValuesResponse.cdlladderbottom:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 139: trb.indicators.v1.IndicatorValuesResponse.cdllongleggeddoji:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 140: trb.indicators.v1.IndicatorValuesResponse.cdllongline:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 141: trb.indicators.v1.IndicatorValuesResponse.cdlmarubozu:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 142: trb.indicators.v1.IndicatorValuesResponse.cdlmatchinglow:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 143: trb.indicators.v1.IndicatorValuesResponse.cdlmathold:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 144: trb.indicators.v1.IndicatorValuesResponse.cdlmorningdojistar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 145: trb.indicators.v1.IndicatorValuesResponse.cdlmorningstar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 146: trb.indicators.v1.IndicatorValuesResponse.cdlonneck:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 147: trb.indicators.v1.IndicatorValuesResponse.cdlpiercing:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 148: trb.indicators.v1.IndicatorValuesResponse.cdlrickshawman:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 149: trb.indicators.v1.IndicatorValuesResponse.cdlrisefall3methods:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 150: trb.indicators.v1.IndicatorValuesResponse.cdlseparatinglines:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 151: trb.indicators.v1.IndicatorValuesResponse.cdlshootingstar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 152: trb.indicators.v1.IndicatorValuesResponse.cdlshortline:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 153: trb.indicators.v1.IndicatorValuesResponse.cdlspinningtop:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 154: trb.indicators.v1.IndicatorValuesResponse.cdlstalledpattern:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 155: trb.indicators.v1.IndicatorValuesResponse.cdlsticksandwich:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 156: trb.indicators.v1.IndicatorValuesResponse.cdltakuri:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 157: trb.indicators.v1.IndicatorValuesResponse.cdltasukigap:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 158: trb.indicators.v1.IndicatorValuesResponse.cdlthrusting:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 159: trb.indicators.v1.IndicatorValuesResponse.cdltristar:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 160: trb.indicators.v1.IndicatorValuesResponse.cdlunique3river:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 161: trb.indicators.v1.IndicatorValuesResponse.cdlupsidegap2crows:type_name -> trb.indicators.v1.IntegerSeries
+	3,   // 162: trb.indicators.v1.IndicatorValuesResponse.cdlxsidegap3methods:type_name -> trb.indicators.v1.IntegerSeries
+	1,   // 163: trb.indicators.v1.IndicatorValuesResponse.avgprice:type_name -> trb.indicators.v1.RealSeries
+	1,   // 164: trb.indicators.v1.IndicatorValuesResponse.medprice:type_name -> trb.indicators.v1.RealSeries
+	1,   // 165: trb.indicators.v1.IndicatorValuesResponse.typprice:type_name -> trb.indicators.v1.RealSeries
+	1,   // 166: trb.indicators.v1.IndicatorValuesResponse.wclprice:type_name -> trb.indicators.v1.RealSeries
+	1,   // 167: trb.indicators.v1.IndicatorValuesResponse.beta:type_name -> trb.indicators.v1.RealSeries
+	1,   // 168: trb.indicators.v1.IndicatorValuesResponse.correl:type_name -> trb.indicators.v1.RealSeries
+	1,   // 169: trb.indicators.v1.IndicatorValuesResponse.linearreg:type_name -> trb.indicators.v1.RealSeries
+	1,   // 170: trb.indicators.v1.IndicatorValuesResponse.linearreg_angle:type_name -> trb.indicators.v1.RealSeries
+	1,   // 171: trb.indicators.v1.IndicatorValuesResponse.linearreg_intercept:type_name -> trb.indicators.v1.RealSeries
+	1,   // 172: trb.indicators.v1.IndicatorValuesResponse.linearreg_slope:type_name -> trb.indicators.v1.RealSeries
+	1,   // 173: trb.indicators.v1.IndicatorValuesResponse.stddev:type_name -> trb.indicators.v1.RealSeries
+	1,   // 174: trb.indicators.v1.IndicatorValuesResponse.tsf:type_name -> trb.indicators.v1.RealSeries
+	1,   // 175: trb.indicators.v1.IndicatorValuesResponse.var:type_name -> trb.indicators.v1.RealSeries
+	1,   // 176: trb.indicators.v1.IndicatorValuesResponse.atr:type_name -> trb.indicators.v1.RealSeries
+	1,   // 177: trb.indicators.v1.IndicatorValuesResponse.natr:type_name -> trb.indicators.v1.RealSeries
+	1,   // 178: trb.indicators.v1.IndicatorValuesResponse.trange:type_name -> trb.indicators.v1.RealSeries
+	1,   // 179: trb.indicators.v1.IndicatorValuesResponse.ad:type_name -> trb.indicators.v1.RealSeries
+	1,   // 180: trb.indicators.v1.IndicatorValuesResponse.adosc:type_name -> trb.indicators.v1.RealSeries
+	1,   // 181: trb.indicators.v1.IndicatorValuesResponse.obv:type_name -> trb.indicators.v1.RealSeries
+	182, // [182:182] is the sub-list for method output_type
+	182, // [182:182] is the sub-list for method input_type
+	182, // [182:182] is the sub-list for extension type_name
+	182, // [182:182] is the sub-list for extension extendee
+	0,   // [0:182] is the sub-list for field type_name
 }
 
 func init() { file_indicators_values_proto_init() }
@@ -4944,7 +4354,7 @@ func file_indicators_values_proto_init() {
 	if File_indicators_values_proto != nil {
 		return
 	}
-	file_indicators_values_proto_msgTypes[28].OneofWrappers = []any{
+	file_indicators_values_proto_msgTypes[24].OneofWrappers = []any{
 		(*IndicatorValuesResponse_Rsi)(nil),
 		(*IndicatorValuesResponse_HtDcperiod)(nil),
 		(*IndicatorValuesResponse_HtDcphase)(nil),
@@ -4977,19 +4387,15 @@ func file_indicators_values_proto_init() {
 		(*IndicatorValuesResponse_Sqrt)(nil),
 		(*IndicatorValuesResponse_Tan)(nil),
 		(*IndicatorValuesResponse_Tanh)(nil),
-		(*IndicatorValuesResponse_Ac)(nil),
 		(*IndicatorValuesResponse_Adx)(nil),
 		(*IndicatorValuesResponse_Adxr)(nil),
-		(*IndicatorValuesResponse_Ao)(nil),
 		(*IndicatorValuesResponse_Apo)(nil),
 		(*IndicatorValuesResponse_Aroon)(nil),
 		(*IndicatorValuesResponse_Aroonosc)(nil),
 		(*IndicatorValuesResponse_Bop)(nil),
 		(*IndicatorValuesResponse_Cci)(nil),
 		(*IndicatorValuesResponse_Cmo)(nil),
-		(*IndicatorValuesResponse_Cmou)(nil),
 		(*IndicatorValuesResponse_Dx)(nil),
-		(*IndicatorValuesResponse_Imi)(nil),
 		(*IndicatorValuesResponse_Macd)(nil),
 		(*IndicatorValuesResponse_Macdext)(nil),
 		(*IndicatorValuesResponse_Macdfix)(nil),
@@ -5000,27 +4406,21 @@ func file_indicators_values_proto_init() {
 		(*IndicatorValuesResponse_PlusDi)(nil),
 		(*IndicatorValuesResponse_PlusDm)(nil),
 		(*IndicatorValuesResponse_Ppo)(nil),
-		(*IndicatorValuesResponse_Qstick)(nil),
 		(*IndicatorValuesResponse_Roc)(nil),
 		(*IndicatorValuesResponse_Rocp)(nil),
 		(*IndicatorValuesResponse_Rocr)(nil),
 		(*IndicatorValuesResponse_Rocr100)(nil),
-		(*IndicatorValuesResponse_Smi)(nil),
 		(*IndicatorValuesResponse_Stoch)(nil),
 		(*IndicatorValuesResponse_Stochf)(nil),
 		(*IndicatorValuesResponse_Stochrsi)(nil),
 		(*IndicatorValuesResponse_Trix)(nil),
 		(*IndicatorValuesResponse_Ultosc)(nil),
-		(*IndicatorValuesResponse_Wad)(nil),
 		(*IndicatorValuesResponse_Willr)(nil),
-		(*IndicatorValuesResponse_Accbands)(nil),
 		(*IndicatorValuesResponse_Bbands)(nil),
 		(*IndicatorValuesResponse_Dema)(nil),
 		(*IndicatorValuesResponse_Ema)(nil),
-		(*IndicatorValuesResponse_Hma)(nil),
 		(*IndicatorValuesResponse_HtTrendline)(nil),
 		(*IndicatorValuesResponse_Kama)(nil),
-		(*IndicatorValuesResponse_Kc)(nil),
 		(*IndicatorValuesResponse_Ma)(nil),
 		(*IndicatorValuesResponse_Mama)(nil),
 		(*IndicatorValuesResponse_Mavp)(nil),
@@ -5029,11 +4429,9 @@ func file_indicators_values_proto_init() {
 		(*IndicatorValuesResponse_Sar)(nil),
 		(*IndicatorValuesResponse_Sarext)(nil),
 		(*IndicatorValuesResponse_Sma)(nil),
-		(*IndicatorValuesResponse_Supertrend)(nil),
 		(*IndicatorValuesResponse_T3)(nil),
 		(*IndicatorValuesResponse_Tema)(nil),
 		(*IndicatorValuesResponse_Trima)(nil),
-		(*IndicatorValuesResponse_Vwma)(nil),
 		(*IndicatorValuesResponse_Wma)(nil),
 		(*IndicatorValuesResponse_Cdl2Crows)(nil),
 		(*IndicatorValuesResponse_Cdl3Blackcrows)(nil),
@@ -5096,7 +4494,6 @@ func file_indicators_values_proto_init() {
 		(*IndicatorValuesResponse_Cdlunique3River)(nil),
 		(*IndicatorValuesResponse_Cdlupsidegap2Crows)(nil),
 		(*IndicatorValuesResponse_Cdlxsidegap3Methods)(nil),
-		(*IndicatorValuesResponse_Avgdev)(nil),
 		(*IndicatorValuesResponse_Avgprice)(nil),
 		(*IndicatorValuesResponse_Medprice)(nil),
 		(*IndicatorValuesResponse_Typprice)(nil),
@@ -5115,14 +4512,7 @@ func file_indicators_values_proto_init() {
 		(*IndicatorValuesResponse_Trange)(nil),
 		(*IndicatorValuesResponse_Ad)(nil),
 		(*IndicatorValuesResponse_Adosc)(nil),
-		(*IndicatorValuesResponse_Cmf)(nil),
-		(*IndicatorValuesResponse_Efi)(nil),
-		(*IndicatorValuesResponse_Marketfi)(nil),
-		(*IndicatorValuesResponse_Nvi)(nil),
 		(*IndicatorValuesResponse_Obv)(nil),
-		(*IndicatorValuesResponse_Pvi)(nil),
-		(*IndicatorValuesResponse_Pvo)(nil),
-		(*IndicatorValuesResponse_Vwap)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -5130,7 +4520,7 @@ func file_indicators_values_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_indicators_values_proto_rawDesc), len(file_indicators_values_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   29,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

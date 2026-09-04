@@ -1292,67 +1292,6 @@ func (*TanhParams) Descriptor() ([]byte, []int) {
 	return file_indicators_params_proto_rawDescGZIP(), []int{30}
 }
 
-// AC — Accelerator/Decelerator Oscillator.
-type AcParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FastPeriod    uint32                 `protobuf:"varint,1,opt,name=fast_period,json=fastPeriod,proto3" json:"fast_period,omitempty"`
-	SlowPeriod    uint32                 `protobuf:"varint,2,opt,name=slow_period,json=slowPeriod,proto3" json:"slow_period,omitempty"`
-	SignalPeriod  uint32                 `protobuf:"varint,3,opt,name=signal_period,json=signalPeriod,proto3" json:"signal_period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AcParams) Reset() {
-	*x = AcParams{}
-	mi := &file_indicators_params_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AcParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AcParams) ProtoMessage() {}
-
-func (x *AcParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AcParams.ProtoReflect.Descriptor instead.
-func (*AcParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *AcParams) GetFastPeriod() uint32 {
-	if x != nil {
-		return x.FastPeriod
-	}
-	return 0
-}
-
-func (x *AcParams) GetSlowPeriod() uint32 {
-	if x != nil {
-		return x.SlowPeriod
-	}
-	return 0
-}
-
-func (x *AcParams) GetSignalPeriod() uint32 {
-	if x != nil {
-		return x.SignalPeriod
-	}
-	return 0
-}
-
 // ADX — Average Directional Movement Index.
 type AdxParams struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1363,7 +1302,7 @@ type AdxParams struct {
 
 func (x *AdxParams) Reset() {
 	*x = AdxParams{}
-	mi := &file_indicators_params_proto_msgTypes[32]
+	mi := &file_indicators_params_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1375,7 +1314,7 @@ func (x *AdxParams) String() string {
 func (*AdxParams) ProtoMessage() {}
 
 func (x *AdxParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[32]
+	mi := &file_indicators_params_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1388,7 +1327,7 @@ func (x *AdxParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdxParams.ProtoReflect.Descriptor instead.
 func (*AdxParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{32}
+	return file_indicators_params_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *AdxParams) GetPeriod() uint32 {
@@ -1408,7 +1347,7 @@ type AdxrParams struct {
 
 func (x *AdxrParams) Reset() {
 	*x = AdxrParams{}
-	mi := &file_indicators_params_proto_msgTypes[33]
+	mi := &file_indicators_params_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1420,7 +1359,7 @@ func (x *AdxrParams) String() string {
 func (*AdxrParams) ProtoMessage() {}
 
 func (x *AdxrParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[33]
+	mi := &file_indicators_params_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1433,65 +1372,12 @@ func (x *AdxrParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdxrParams.ProtoReflect.Descriptor instead.
 func (*AdxrParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{33}
+	return file_indicators_params_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *AdxrParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
-	}
-	return 0
-}
-
-// AO — Awesome Oscillator.
-type AoParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FastPeriod    uint32                 `protobuf:"varint,1,opt,name=fast_period,json=fastPeriod,proto3" json:"fast_period,omitempty"`
-	SlowPeriod    uint32                 `protobuf:"varint,2,opt,name=slow_period,json=slowPeriod,proto3" json:"slow_period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AoParams) Reset() {
-	*x = AoParams{}
-	mi := &file_indicators_params_proto_msgTypes[34]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AoParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AoParams) ProtoMessage() {}
-
-func (x *AoParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[34]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AoParams.ProtoReflect.Descriptor instead.
-func (*AoParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{34}
-}
-
-func (x *AoParams) GetFastPeriod() uint32 {
-	if x != nil {
-		return x.FastPeriod
-	}
-	return 0
-}
-
-func (x *AoParams) GetSlowPeriod() uint32 {
-	if x != nil {
-		return x.SlowPeriod
 	}
 	return 0
 }
@@ -1508,7 +1394,7 @@ type ApoParams struct {
 
 func (x *ApoParams) Reset() {
 	*x = ApoParams{}
-	mi := &file_indicators_params_proto_msgTypes[35]
+	mi := &file_indicators_params_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1520,7 +1406,7 @@ func (x *ApoParams) String() string {
 func (*ApoParams) ProtoMessage() {}
 
 func (x *ApoParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[35]
+	mi := &file_indicators_params_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1533,7 +1419,7 @@ func (x *ApoParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApoParams.ProtoReflect.Descriptor instead.
 func (*ApoParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{35}
+	return file_indicators_params_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ApoParams) GetFastPeriod() uint32 {
@@ -1567,7 +1453,7 @@ type AroonParams struct {
 
 func (x *AroonParams) Reset() {
 	*x = AroonParams{}
-	mi := &file_indicators_params_proto_msgTypes[36]
+	mi := &file_indicators_params_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1579,7 +1465,7 @@ func (x *AroonParams) String() string {
 func (*AroonParams) ProtoMessage() {}
 
 func (x *AroonParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[36]
+	mi := &file_indicators_params_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1592,7 +1478,7 @@ func (x *AroonParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AroonParams.ProtoReflect.Descriptor instead.
 func (*AroonParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{36}
+	return file_indicators_params_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *AroonParams) GetPeriod() uint32 {
@@ -1612,7 +1498,7 @@ type AroonOscParams struct {
 
 func (x *AroonOscParams) Reset() {
 	*x = AroonOscParams{}
-	mi := &file_indicators_params_proto_msgTypes[37]
+	mi := &file_indicators_params_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1624,7 +1510,7 @@ func (x *AroonOscParams) String() string {
 func (*AroonOscParams) ProtoMessage() {}
 
 func (x *AroonOscParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[37]
+	mi := &file_indicators_params_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1637,7 +1523,7 @@ func (x *AroonOscParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AroonOscParams.ProtoReflect.Descriptor instead.
 func (*AroonOscParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{37}
+	return file_indicators_params_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *AroonOscParams) GetPeriod() uint32 {
@@ -1656,7 +1542,7 @@ type BopParams struct {
 
 func (x *BopParams) Reset() {
 	*x = BopParams{}
-	mi := &file_indicators_params_proto_msgTypes[38]
+	mi := &file_indicators_params_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1668,7 +1554,7 @@ func (x *BopParams) String() string {
 func (*BopParams) ProtoMessage() {}
 
 func (x *BopParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[38]
+	mi := &file_indicators_params_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1681,7 +1567,7 @@ func (x *BopParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BopParams.ProtoReflect.Descriptor instead.
 func (*BopParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{38}
+	return file_indicators_params_proto_rawDescGZIP(), []int{36}
 }
 
 // CCI — Commodity Channel Index.
@@ -1694,7 +1580,7 @@ type CciParams struct {
 
 func (x *CciParams) Reset() {
 	*x = CciParams{}
-	mi := &file_indicators_params_proto_msgTypes[39]
+	mi := &file_indicators_params_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1706,7 +1592,7 @@ func (x *CciParams) String() string {
 func (*CciParams) ProtoMessage() {}
 
 func (x *CciParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[39]
+	mi := &file_indicators_params_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1719,7 +1605,7 @@ func (x *CciParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CciParams.ProtoReflect.Descriptor instead.
 func (*CciParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{39}
+	return file_indicators_params_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *CciParams) GetPeriod() uint32 {
@@ -1739,7 +1625,7 @@ type CmoParams struct {
 
 func (x *CmoParams) Reset() {
 	*x = CmoParams{}
-	mi := &file_indicators_params_proto_msgTypes[40]
+	mi := &file_indicators_params_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1751,7 +1637,7 @@ func (x *CmoParams) String() string {
 func (*CmoParams) ProtoMessage() {}
 
 func (x *CmoParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[40]
+	mi := &file_indicators_params_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1764,55 +1650,10 @@ func (x *CmoParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmoParams.ProtoReflect.Descriptor instead.
 func (*CmoParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{40}
+	return file_indicators_params_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *CmoParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// CMOU — Chande Momentum Oscillator (Unsmoothed).
-type CmouParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CmouParams) Reset() {
-	*x = CmouParams{}
-	mi := &file_indicators_params_proto_msgTypes[41]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CmouParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CmouParams) ProtoMessage() {}
-
-func (x *CmouParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[41]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CmouParams.ProtoReflect.Descriptor instead.
-func (*CmouParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{41}
-}
-
-func (x *CmouParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
 	}
@@ -1829,7 +1670,7 @@ type DxParams struct {
 
 func (x *DxParams) Reset() {
 	*x = DxParams{}
-	mi := &file_indicators_params_proto_msgTypes[42]
+	mi := &file_indicators_params_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1841,7 +1682,7 @@ func (x *DxParams) String() string {
 func (*DxParams) ProtoMessage() {}
 
 func (x *DxParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[42]
+	mi := &file_indicators_params_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1854,55 +1695,10 @@ func (x *DxParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DxParams.ProtoReflect.Descriptor instead.
 func (*DxParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{42}
+	return file_indicators_params_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *DxParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// IMI — Intraday Momentum Index.
-type ImiParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ImiParams) Reset() {
-	*x = ImiParams{}
-	mi := &file_indicators_params_proto_msgTypes[43]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ImiParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ImiParams) ProtoMessage() {}
-
-func (x *ImiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[43]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ImiParams.ProtoReflect.Descriptor instead.
-func (*ImiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{43}
-}
-
-func (x *ImiParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
 	}
@@ -1921,7 +1717,7 @@ type MacdParams struct {
 
 func (x *MacdParams) Reset() {
 	*x = MacdParams{}
-	mi := &file_indicators_params_proto_msgTypes[44]
+	mi := &file_indicators_params_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1933,7 +1729,7 @@ func (x *MacdParams) String() string {
 func (*MacdParams) ProtoMessage() {}
 
 func (x *MacdParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[44]
+	mi := &file_indicators_params_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1946,7 +1742,7 @@ func (x *MacdParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MacdParams.ProtoReflect.Descriptor instead.
 func (*MacdParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{44}
+	return file_indicators_params_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *MacdParams) GetFastPeriod() uint32 {
@@ -1985,7 +1781,7 @@ type MacdExtParams struct {
 
 func (x *MacdExtParams) Reset() {
 	*x = MacdExtParams{}
-	mi := &file_indicators_params_proto_msgTypes[45]
+	mi := &file_indicators_params_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1997,7 +1793,7 @@ func (x *MacdExtParams) String() string {
 func (*MacdExtParams) ProtoMessage() {}
 
 func (x *MacdExtParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[45]
+	mi := &file_indicators_params_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2010,7 +1806,7 @@ func (x *MacdExtParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MacdExtParams.ProtoReflect.Descriptor instead.
 func (*MacdExtParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{45}
+	return file_indicators_params_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *MacdExtParams) GetFastPeriod() uint32 {
@@ -2065,7 +1861,7 @@ type MacdFixParams struct {
 
 func (x *MacdFixParams) Reset() {
 	*x = MacdFixParams{}
-	mi := &file_indicators_params_proto_msgTypes[46]
+	mi := &file_indicators_params_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2077,7 +1873,7 @@ func (x *MacdFixParams) String() string {
 func (*MacdFixParams) ProtoMessage() {}
 
 func (x *MacdFixParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[46]
+	mi := &file_indicators_params_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2090,7 +1886,7 @@ func (x *MacdFixParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MacdFixParams.ProtoReflect.Descriptor instead.
 func (*MacdFixParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{46}
+	return file_indicators_params_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *MacdFixParams) GetSignalPeriod() uint32 {
@@ -2110,7 +1906,7 @@ type MfiParams struct {
 
 func (x *MfiParams) Reset() {
 	*x = MfiParams{}
-	mi := &file_indicators_params_proto_msgTypes[47]
+	mi := &file_indicators_params_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2122,7 +1918,7 @@ func (x *MfiParams) String() string {
 func (*MfiParams) ProtoMessage() {}
 
 func (x *MfiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[47]
+	mi := &file_indicators_params_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2135,7 +1931,7 @@ func (x *MfiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MfiParams.ProtoReflect.Descriptor instead.
 func (*MfiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{47}
+	return file_indicators_params_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *MfiParams) GetPeriod() uint32 {
@@ -2155,7 +1951,7 @@ type MinusDiParams struct {
 
 func (x *MinusDiParams) Reset() {
 	*x = MinusDiParams{}
-	mi := &file_indicators_params_proto_msgTypes[48]
+	mi := &file_indicators_params_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2167,7 +1963,7 @@ func (x *MinusDiParams) String() string {
 func (*MinusDiParams) ProtoMessage() {}
 
 func (x *MinusDiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[48]
+	mi := &file_indicators_params_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2180,7 +1976,7 @@ func (x *MinusDiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinusDiParams.ProtoReflect.Descriptor instead.
 func (*MinusDiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{48}
+	return file_indicators_params_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *MinusDiParams) GetPeriod() uint32 {
@@ -2200,7 +1996,7 @@ type MinusDmParams struct {
 
 func (x *MinusDmParams) Reset() {
 	*x = MinusDmParams{}
-	mi := &file_indicators_params_proto_msgTypes[49]
+	mi := &file_indicators_params_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2212,7 +2008,7 @@ func (x *MinusDmParams) String() string {
 func (*MinusDmParams) ProtoMessage() {}
 
 func (x *MinusDmParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[49]
+	mi := &file_indicators_params_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2225,7 +2021,7 @@ func (x *MinusDmParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinusDmParams.ProtoReflect.Descriptor instead.
 func (*MinusDmParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{49}
+	return file_indicators_params_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *MinusDmParams) GetPeriod() uint32 {
@@ -2245,7 +2041,7 @@ type MomParams struct {
 
 func (x *MomParams) Reset() {
 	*x = MomParams{}
-	mi := &file_indicators_params_proto_msgTypes[50]
+	mi := &file_indicators_params_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2257,7 +2053,7 @@ func (x *MomParams) String() string {
 func (*MomParams) ProtoMessage() {}
 
 func (x *MomParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[50]
+	mi := &file_indicators_params_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2270,7 +2066,7 @@ func (x *MomParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MomParams.ProtoReflect.Descriptor instead.
 func (*MomParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{50}
+	return file_indicators_params_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *MomParams) GetPeriod() uint32 {
@@ -2290,7 +2086,7 @@ type PlusDiParams struct {
 
 func (x *PlusDiParams) Reset() {
 	*x = PlusDiParams{}
-	mi := &file_indicators_params_proto_msgTypes[51]
+	mi := &file_indicators_params_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2302,7 +2098,7 @@ func (x *PlusDiParams) String() string {
 func (*PlusDiParams) ProtoMessage() {}
 
 func (x *PlusDiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[51]
+	mi := &file_indicators_params_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2315,7 +2111,7 @@ func (x *PlusDiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlusDiParams.ProtoReflect.Descriptor instead.
 func (*PlusDiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{51}
+	return file_indicators_params_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *PlusDiParams) GetPeriod() uint32 {
@@ -2335,7 +2131,7 @@ type PlusDmParams struct {
 
 func (x *PlusDmParams) Reset() {
 	*x = PlusDmParams{}
-	mi := &file_indicators_params_proto_msgTypes[52]
+	mi := &file_indicators_params_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2347,7 +2143,7 @@ func (x *PlusDmParams) String() string {
 func (*PlusDmParams) ProtoMessage() {}
 
 func (x *PlusDmParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[52]
+	mi := &file_indicators_params_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2360,7 +2156,7 @@ func (x *PlusDmParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlusDmParams.ProtoReflect.Descriptor instead.
 func (*PlusDmParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{52}
+	return file_indicators_params_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *PlusDmParams) GetPeriod() uint32 {
@@ -2382,7 +2178,7 @@ type PpoParams struct {
 
 func (x *PpoParams) Reset() {
 	*x = PpoParams{}
-	mi := &file_indicators_params_proto_msgTypes[53]
+	mi := &file_indicators_params_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2394,7 +2190,7 @@ func (x *PpoParams) String() string {
 func (*PpoParams) ProtoMessage() {}
 
 func (x *PpoParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[53]
+	mi := &file_indicators_params_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2407,7 +2203,7 @@ func (x *PpoParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PpoParams.ProtoReflect.Descriptor instead.
 func (*PpoParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{53}
+	return file_indicators_params_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *PpoParams) GetFastPeriod() uint32 {
@@ -2431,51 +2227,6 @@ func (x *PpoParams) GetMaType() MAType {
 	return MAType_MA_TYPE_SMA
 }
 
-// QSTICK — Qstick.
-type QstickParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QstickParams) Reset() {
-	*x = QstickParams{}
-	mi := &file_indicators_params_proto_msgTypes[54]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QstickParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QstickParams) ProtoMessage() {}
-
-func (x *QstickParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[54]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QstickParams.ProtoReflect.Descriptor instead.
-func (*QstickParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{54}
-}
-
-func (x *QstickParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
 // ROC — Rate of change : ((price/prevPrice)-1)*100.
 type RocParams struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2486,7 +2237,7 @@ type RocParams struct {
 
 func (x *RocParams) Reset() {
 	*x = RocParams{}
-	mi := &file_indicators_params_proto_msgTypes[55]
+	mi := &file_indicators_params_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2498,7 +2249,7 @@ func (x *RocParams) String() string {
 func (*RocParams) ProtoMessage() {}
 
 func (x *RocParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[55]
+	mi := &file_indicators_params_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2511,7 +2262,7 @@ func (x *RocParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RocParams.ProtoReflect.Descriptor instead.
 func (*RocParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{55}
+	return file_indicators_params_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *RocParams) GetPeriod() uint32 {
@@ -2531,7 +2282,7 @@ type RocpParams struct {
 
 func (x *RocpParams) Reset() {
 	*x = RocpParams{}
-	mi := &file_indicators_params_proto_msgTypes[56]
+	mi := &file_indicators_params_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2543,7 +2294,7 @@ func (x *RocpParams) String() string {
 func (*RocpParams) ProtoMessage() {}
 
 func (x *RocpParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[56]
+	mi := &file_indicators_params_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2556,7 +2307,7 @@ func (x *RocpParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RocpParams.ProtoReflect.Descriptor instead.
 func (*RocpParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{56}
+	return file_indicators_params_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *RocpParams) GetPeriod() uint32 {
@@ -2576,7 +2327,7 @@ type RocrParams struct {
 
 func (x *RocrParams) Reset() {
 	*x = RocrParams{}
-	mi := &file_indicators_params_proto_msgTypes[57]
+	mi := &file_indicators_params_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2588,7 +2339,7 @@ func (x *RocrParams) String() string {
 func (*RocrParams) ProtoMessage() {}
 
 func (x *RocrParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[57]
+	mi := &file_indicators_params_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2601,7 +2352,7 @@ func (x *RocrParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RocrParams.ProtoReflect.Descriptor instead.
 func (*RocrParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{57}
+	return file_indicators_params_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *RocrParams) GetPeriod() uint32 {
@@ -2621,7 +2372,7 @@ type Rocr100Params struct {
 
 func (x *Rocr100Params) Reset() {
 	*x = Rocr100Params{}
-	mi := &file_indicators_params_proto_msgTypes[58]
+	mi := &file_indicators_params_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2633,7 +2384,7 @@ func (x *Rocr100Params) String() string {
 func (*Rocr100Params) ProtoMessage() {}
 
 func (x *Rocr100Params) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[58]
+	mi := &file_indicators_params_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2646,7 +2397,7 @@ func (x *Rocr100Params) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rocr100Params.ProtoReflect.Descriptor instead.
 func (*Rocr100Params) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{58}
+	return file_indicators_params_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *Rocr100Params) GetPeriod() uint32 {
@@ -2666,7 +2417,7 @@ type RsiParams struct {
 
 func (x *RsiParams) Reset() {
 	*x = RsiParams{}
-	mi := &file_indicators_params_proto_msgTypes[59]
+	mi := &file_indicators_params_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2678,7 +2429,7 @@ func (x *RsiParams) String() string {
 func (*RsiParams) ProtoMessage() {}
 
 func (x *RsiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[59]
+	mi := &file_indicators_params_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2691,81 +2442,12 @@ func (x *RsiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RsiParams.ProtoReflect.Descriptor instead.
 func (*RsiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{59}
+	return file_indicators_params_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *RsiParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
-	}
-	return 0
-}
-
-// SMI — Stochastic Momentum Index.
-type SmiParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	FastPeriod    uint32                 `protobuf:"varint,2,opt,name=fast_period,json=fastPeriod,proto3" json:"fast_period,omitempty"`
-	SlowPeriod    uint32                 `protobuf:"varint,3,opt,name=slow_period,json=slowPeriod,proto3" json:"slow_period,omitempty"`
-	SignalPeriod  uint32                 `protobuf:"varint,4,opt,name=signal_period,json=signalPeriod,proto3" json:"signal_period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SmiParams) Reset() {
-	*x = SmiParams{}
-	mi := &file_indicators_params_proto_msgTypes[60]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SmiParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SmiParams) ProtoMessage() {}
-
-func (x *SmiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[60]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SmiParams.ProtoReflect.Descriptor instead.
-func (*SmiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{60}
-}
-
-func (x *SmiParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-func (x *SmiParams) GetFastPeriod() uint32 {
-	if x != nil {
-		return x.FastPeriod
-	}
-	return 0
-}
-
-func (x *SmiParams) GetSlowPeriod() uint32 {
-	if x != nil {
-		return x.SlowPeriod
-	}
-	return 0
-}
-
-func (x *SmiParams) GetSignalPeriod() uint32 {
-	if x != nil {
-		return x.SignalPeriod
 	}
 	return 0
 }
@@ -2784,7 +2466,7 @@ type StochParams struct {
 
 func (x *StochParams) Reset() {
 	*x = StochParams{}
-	mi := &file_indicators_params_proto_msgTypes[61]
+	mi := &file_indicators_params_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2796,7 +2478,7 @@ func (x *StochParams) String() string {
 func (*StochParams) ProtoMessage() {}
 
 func (x *StochParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[61]
+	mi := &file_indicators_params_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2809,7 +2491,7 @@ func (x *StochParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StochParams.ProtoReflect.Descriptor instead.
 func (*StochParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{61}
+	return file_indicators_params_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *StochParams) GetFastKPeriod() uint32 {
@@ -2859,7 +2541,7 @@ type StochFParams struct {
 
 func (x *StochFParams) Reset() {
 	*x = StochFParams{}
-	mi := &file_indicators_params_proto_msgTypes[62]
+	mi := &file_indicators_params_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2871,7 +2553,7 @@ func (x *StochFParams) String() string {
 func (*StochFParams) ProtoMessage() {}
 
 func (x *StochFParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[62]
+	mi := &file_indicators_params_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2884,7 +2566,7 @@ func (x *StochFParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StochFParams.ProtoReflect.Descriptor instead.
 func (*StochFParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{62}
+	return file_indicators_params_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *StochFParams) GetFastKPeriod() uint32 {
@@ -2921,7 +2603,7 @@ type StochRsiParams struct {
 
 func (x *StochRsiParams) Reset() {
 	*x = StochRsiParams{}
-	mi := &file_indicators_params_proto_msgTypes[63]
+	mi := &file_indicators_params_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2933,7 +2615,7 @@ func (x *StochRsiParams) String() string {
 func (*StochRsiParams) ProtoMessage() {}
 
 func (x *StochRsiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[63]
+	mi := &file_indicators_params_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2946,7 +2628,7 @@ func (x *StochRsiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StochRsiParams.ProtoReflect.Descriptor instead.
 func (*StochRsiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{63}
+	return file_indicators_params_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *StochRsiParams) GetPeriod() uint32 {
@@ -2987,7 +2669,7 @@ type TrixParams struct {
 
 func (x *TrixParams) Reset() {
 	*x = TrixParams{}
-	mi := &file_indicators_params_proto_msgTypes[64]
+	mi := &file_indicators_params_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2999,7 +2681,7 @@ func (x *TrixParams) String() string {
 func (*TrixParams) ProtoMessage() {}
 
 func (x *TrixParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[64]
+	mi := &file_indicators_params_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3012,7 +2694,7 @@ func (x *TrixParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrixParams.ProtoReflect.Descriptor instead.
 func (*TrixParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{64}
+	return file_indicators_params_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *TrixParams) GetPeriod() uint32 {
@@ -3034,7 +2716,7 @@ type UltOscParams struct {
 
 func (x *UltOscParams) Reset() {
 	*x = UltOscParams{}
-	mi := &file_indicators_params_proto_msgTypes[65]
+	mi := &file_indicators_params_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3046,7 +2728,7 @@ func (x *UltOscParams) String() string {
 func (*UltOscParams) ProtoMessage() {}
 
 func (x *UltOscParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[65]
+	mi := &file_indicators_params_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3059,7 +2741,7 @@ func (x *UltOscParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UltOscParams.ProtoReflect.Descriptor instead.
 func (*UltOscParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{65}
+	return file_indicators_params_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UltOscParams) GetPeriod1() uint32 {
@@ -3083,43 +2765,6 @@ func (x *UltOscParams) GetPeriod3() uint32 {
 	return 0
 }
 
-// WAD — Williams' Accumulation/Distribution.
-type WadParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WadParams) Reset() {
-	*x = WadParams{}
-	mi := &file_indicators_params_proto_msgTypes[66]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WadParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WadParams) ProtoMessage() {}
-
-func (x *WadParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[66]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WadParams.ProtoReflect.Descriptor instead.
-func (*WadParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{66}
-}
-
 // WILLR — Williams' %R.
 type WillRParams struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -3130,7 +2775,7 @@ type WillRParams struct {
 
 func (x *WillRParams) Reset() {
 	*x = WillRParams{}
-	mi := &file_indicators_params_proto_msgTypes[67]
+	mi := &file_indicators_params_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3142,7 +2787,7 @@ func (x *WillRParams) String() string {
 func (*WillRParams) ProtoMessage() {}
 
 func (x *WillRParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[67]
+	mi := &file_indicators_params_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3155,55 +2800,10 @@ func (x *WillRParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WillRParams.ProtoReflect.Descriptor instead.
 func (*WillRParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{67}
+	return file_indicators_params_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *WillRParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// ACCBANDS — Acceleration Bands.
-type AccBandsParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AccBandsParams) Reset() {
-	*x = AccBandsParams{}
-	mi := &file_indicators_params_proto_msgTypes[68]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AccBandsParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AccBandsParams) ProtoMessage() {}
-
-func (x *AccBandsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[68]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AccBandsParams.ProtoReflect.Descriptor instead.
-func (*AccBandsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{68}
-}
-
-func (x *AccBandsParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
 	}
@@ -3223,7 +2823,7 @@ type BbandsParams struct {
 
 func (x *BbandsParams) Reset() {
 	*x = BbandsParams{}
-	mi := &file_indicators_params_proto_msgTypes[69]
+	mi := &file_indicators_params_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3235,7 +2835,7 @@ func (x *BbandsParams) String() string {
 func (*BbandsParams) ProtoMessage() {}
 
 func (x *BbandsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[69]
+	mi := &file_indicators_params_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3248,7 +2848,7 @@ func (x *BbandsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BbandsParams.ProtoReflect.Descriptor instead.
 func (*BbandsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{69}
+	return file_indicators_params_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *BbandsParams) GetPeriod() uint32 {
@@ -3289,7 +2889,7 @@ type DemaParams struct {
 
 func (x *DemaParams) Reset() {
 	*x = DemaParams{}
-	mi := &file_indicators_params_proto_msgTypes[70]
+	mi := &file_indicators_params_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3301,7 +2901,7 @@ func (x *DemaParams) String() string {
 func (*DemaParams) ProtoMessage() {}
 
 func (x *DemaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[70]
+	mi := &file_indicators_params_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3314,7 +2914,7 @@ func (x *DemaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DemaParams.ProtoReflect.Descriptor instead.
 func (*DemaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{70}
+	return file_indicators_params_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *DemaParams) GetPeriod() uint32 {
@@ -3334,7 +2934,7 @@ type EmaParams struct {
 
 func (x *EmaParams) Reset() {
 	*x = EmaParams{}
-	mi := &file_indicators_params_proto_msgTypes[71]
+	mi := &file_indicators_params_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3346,7 +2946,7 @@ func (x *EmaParams) String() string {
 func (*EmaParams) ProtoMessage() {}
 
 func (x *EmaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[71]
+	mi := &file_indicators_params_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3359,55 +2959,10 @@ func (x *EmaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmaParams.ProtoReflect.Descriptor instead.
 func (*EmaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{71}
+	return file_indicators_params_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *EmaParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// HMA — Hull Moving Average.
-type HmaParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HmaParams) Reset() {
-	*x = HmaParams{}
-	mi := &file_indicators_params_proto_msgTypes[72]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HmaParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HmaParams) ProtoMessage() {}
-
-func (x *HmaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[72]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HmaParams.ProtoReflect.Descriptor instead.
-func (*HmaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{72}
-}
-
-func (x *HmaParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
 	}
@@ -3423,7 +2978,7 @@ type HtTrendlineParams struct {
 
 func (x *HtTrendlineParams) Reset() {
 	*x = HtTrendlineParams{}
-	mi := &file_indicators_params_proto_msgTypes[73]
+	mi := &file_indicators_params_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3435,7 +2990,7 @@ func (x *HtTrendlineParams) String() string {
 func (*HtTrendlineParams) ProtoMessage() {}
 
 func (x *HtTrendlineParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[73]
+	mi := &file_indicators_params_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3448,7 +3003,7 @@ func (x *HtTrendlineParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HtTrendlineParams.ProtoReflect.Descriptor instead.
 func (*HtTrendlineParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{73}
+	return file_indicators_params_proto_rawDescGZIP(), []int{64}
 }
 
 // KAMA — Kaufman Adaptive Moving Average.
@@ -3461,7 +3016,7 @@ type KamaParams struct {
 
 func (x *KamaParams) Reset() {
 	*x = KamaParams{}
-	mi := &file_indicators_params_proto_msgTypes[74]
+	mi := &file_indicators_params_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3473,7 +3028,7 @@ func (x *KamaParams) String() string {
 func (*KamaParams) ProtoMessage() {}
 
 func (x *KamaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[74]
+	mi := &file_indicators_params_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3486,73 +3041,12 @@ func (x *KamaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KamaParams.ProtoReflect.Descriptor instead.
 func (*KamaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{74}
+	return file_indicators_params_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *KamaParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
-	}
-	return 0
-}
-
-// KC — Keltner Channels.
-type KcParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	AtrPeriod     uint32                 `protobuf:"varint,2,opt,name=atr_period,json=atrPeriod,proto3" json:"atr_period,omitempty"`
-	NbDev         float64                `protobuf:"fixed64,3,opt,name=nb_dev,json=nbDev,proto3" json:"nb_dev,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *KcParams) Reset() {
-	*x = KcParams{}
-	mi := &file_indicators_params_proto_msgTypes[75]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *KcParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*KcParams) ProtoMessage() {}
-
-func (x *KcParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[75]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use KcParams.ProtoReflect.Descriptor instead.
-func (*KcParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{75}
-}
-
-func (x *KcParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-func (x *KcParams) GetAtrPeriod() uint32 {
-	if x != nil {
-		return x.AtrPeriod
-	}
-	return 0
-}
-
-func (x *KcParams) GetNbDev() float64 {
-	if x != nil {
-		return x.NbDev
 	}
 	return 0
 }
@@ -3568,7 +3062,7 @@ type MaParams struct {
 
 func (x *MaParams) Reset() {
 	*x = MaParams{}
-	mi := &file_indicators_params_proto_msgTypes[76]
+	mi := &file_indicators_params_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3580,7 +3074,7 @@ func (x *MaParams) String() string {
 func (*MaParams) ProtoMessage() {}
 
 func (x *MaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[76]
+	mi := &file_indicators_params_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3593,7 +3087,7 @@ func (x *MaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaParams.ProtoReflect.Descriptor instead.
 func (*MaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{76}
+	return file_indicators_params_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *MaParams) GetPeriod() uint32 {
@@ -3621,7 +3115,7 @@ type MamaParams struct {
 
 func (x *MamaParams) Reset() {
 	*x = MamaParams{}
-	mi := &file_indicators_params_proto_msgTypes[77]
+	mi := &file_indicators_params_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3633,7 +3127,7 @@ func (x *MamaParams) String() string {
 func (*MamaParams) ProtoMessage() {}
 
 func (x *MamaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[77]
+	mi := &file_indicators_params_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3646,7 +3140,7 @@ func (x *MamaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MamaParams.ProtoReflect.Descriptor instead.
 func (*MamaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{77}
+	return file_indicators_params_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *MamaParams) GetFastLimit() float64 {
@@ -3675,7 +3169,7 @@ type MavpParams struct {
 
 func (x *MavpParams) Reset() {
 	*x = MavpParams{}
-	mi := &file_indicators_params_proto_msgTypes[78]
+	mi := &file_indicators_params_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3687,7 +3181,7 @@ func (x *MavpParams) String() string {
 func (*MavpParams) ProtoMessage() {}
 
 func (x *MavpParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[78]
+	mi := &file_indicators_params_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3700,7 +3194,7 @@ func (x *MavpParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MavpParams.ProtoReflect.Descriptor instead.
 func (*MavpParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{78}
+	return file_indicators_params_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *MavpParams) GetMinPeriod() uint32 {
@@ -3734,7 +3228,7 @@ type MidPointParams struct {
 
 func (x *MidPointParams) Reset() {
 	*x = MidPointParams{}
-	mi := &file_indicators_params_proto_msgTypes[79]
+	mi := &file_indicators_params_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3746,7 +3240,7 @@ func (x *MidPointParams) String() string {
 func (*MidPointParams) ProtoMessage() {}
 
 func (x *MidPointParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[79]
+	mi := &file_indicators_params_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3759,7 +3253,7 @@ func (x *MidPointParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MidPointParams.ProtoReflect.Descriptor instead.
 func (*MidPointParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{79}
+	return file_indicators_params_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *MidPointParams) GetPeriod() uint32 {
@@ -3779,7 +3273,7 @@ type MidPriceParams struct {
 
 func (x *MidPriceParams) Reset() {
 	*x = MidPriceParams{}
-	mi := &file_indicators_params_proto_msgTypes[80]
+	mi := &file_indicators_params_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3791,7 +3285,7 @@ func (x *MidPriceParams) String() string {
 func (*MidPriceParams) ProtoMessage() {}
 
 func (x *MidPriceParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[80]
+	mi := &file_indicators_params_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3804,7 +3298,7 @@ func (x *MidPriceParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MidPriceParams.ProtoReflect.Descriptor instead.
 func (*MidPriceParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{80}
+	return file_indicators_params_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *MidPriceParams) GetPeriod() uint32 {
@@ -3825,7 +3319,7 @@ type SarParams struct {
 
 func (x *SarParams) Reset() {
 	*x = SarParams{}
-	mi := &file_indicators_params_proto_msgTypes[81]
+	mi := &file_indicators_params_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3837,7 +3331,7 @@ func (x *SarParams) String() string {
 func (*SarParams) ProtoMessage() {}
 
 func (x *SarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[81]
+	mi := &file_indicators_params_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3850,7 +3344,7 @@ func (x *SarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SarParams.ProtoReflect.Descriptor instead.
 func (*SarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{81}
+	return file_indicators_params_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *SarParams) GetAcceleration() float64 {
@@ -3884,7 +3378,7 @@ type SarExtParams struct {
 
 func (x *SarExtParams) Reset() {
 	*x = SarExtParams{}
-	mi := &file_indicators_params_proto_msgTypes[82]
+	mi := &file_indicators_params_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3896,7 +3390,7 @@ func (x *SarExtParams) String() string {
 func (*SarExtParams) ProtoMessage() {}
 
 func (x *SarExtParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[82]
+	mi := &file_indicators_params_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3909,7 +3403,7 @@ func (x *SarExtParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SarExtParams.ProtoReflect.Descriptor instead.
 func (*SarExtParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{82}
+	return file_indicators_params_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *SarExtParams) GetStartValue() float64 {
@@ -3978,7 +3472,7 @@ type SmaParams struct {
 
 func (x *SmaParams) Reset() {
 	*x = SmaParams{}
-	mi := &file_indicators_params_proto_msgTypes[83]
+	mi := &file_indicators_params_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3990,7 +3484,7 @@ func (x *SmaParams) String() string {
 func (*SmaParams) ProtoMessage() {}
 
 func (x *SmaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[83]
+	mi := &file_indicators_params_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4003,65 +3497,12 @@ func (x *SmaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SmaParams.ProtoReflect.Descriptor instead.
 func (*SmaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{83}
+	return file_indicators_params_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *SmaParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
-	}
-	return 0
-}
-
-// SUPERTREND — SuperTrend.
-type SuperTrendParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	Multiplier    float64                `protobuf:"fixed64,2,opt,name=multiplier,proto3" json:"multiplier,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SuperTrendParams) Reset() {
-	*x = SuperTrendParams{}
-	mi := &file_indicators_params_proto_msgTypes[84]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SuperTrendParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SuperTrendParams) ProtoMessage() {}
-
-func (x *SuperTrendParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[84]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SuperTrendParams.ProtoReflect.Descriptor instead.
-func (*SuperTrendParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{84}
-}
-
-func (x *SuperTrendParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-func (x *SuperTrendParams) GetMultiplier() float64 {
-	if x != nil {
-		return x.Multiplier
 	}
 	return 0
 }
@@ -4077,7 +3518,7 @@ type T3Params struct {
 
 func (x *T3Params) Reset() {
 	*x = T3Params{}
-	mi := &file_indicators_params_proto_msgTypes[85]
+	mi := &file_indicators_params_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4089,7 +3530,7 @@ func (x *T3Params) String() string {
 func (*T3Params) ProtoMessage() {}
 
 func (x *T3Params) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[85]
+	mi := &file_indicators_params_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4102,7 +3543,7 @@ func (x *T3Params) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use T3Params.ProtoReflect.Descriptor instead.
 func (*T3Params) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{85}
+	return file_indicators_params_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *T3Params) GetPeriod() uint32 {
@@ -4129,7 +3570,7 @@ type TemaParams struct {
 
 func (x *TemaParams) Reset() {
 	*x = TemaParams{}
-	mi := &file_indicators_params_proto_msgTypes[86]
+	mi := &file_indicators_params_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4141,7 +3582,7 @@ func (x *TemaParams) String() string {
 func (*TemaParams) ProtoMessage() {}
 
 func (x *TemaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[86]
+	mi := &file_indicators_params_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4154,7 +3595,7 @@ func (x *TemaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TemaParams.ProtoReflect.Descriptor instead.
 func (*TemaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{86}
+	return file_indicators_params_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *TemaParams) GetPeriod() uint32 {
@@ -4174,7 +3615,7 @@ type TrimaParams struct {
 
 func (x *TrimaParams) Reset() {
 	*x = TrimaParams{}
-	mi := &file_indicators_params_proto_msgTypes[87]
+	mi := &file_indicators_params_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4186,7 +3627,7 @@ func (x *TrimaParams) String() string {
 func (*TrimaParams) ProtoMessage() {}
 
 func (x *TrimaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[87]
+	mi := &file_indicators_params_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4199,55 +3640,10 @@ func (x *TrimaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrimaParams.ProtoReflect.Descriptor instead.
 func (*TrimaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{87}
+	return file_indicators_params_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *TrimaParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// VWMA — Volume Weighted Moving Average.
-type VwmaParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VwmaParams) Reset() {
-	*x = VwmaParams{}
-	mi := &file_indicators_params_proto_msgTypes[88]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VwmaParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VwmaParams) ProtoMessage() {}
-
-func (x *VwmaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[88]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VwmaParams.ProtoReflect.Descriptor instead.
-func (*VwmaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{88}
-}
-
-func (x *VwmaParams) GetPeriod() uint32 {
 	if x != nil {
 		return x.Period
 	}
@@ -4264,7 +3660,7 @@ type WmaParams struct {
 
 func (x *WmaParams) Reset() {
 	*x = WmaParams{}
-	mi := &file_indicators_params_proto_msgTypes[89]
+	mi := &file_indicators_params_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4276,7 +3672,7 @@ func (x *WmaParams) String() string {
 func (*WmaParams) ProtoMessage() {}
 
 func (x *WmaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[89]
+	mi := &file_indicators_params_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4289,7 +3685,7 @@ func (x *WmaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WmaParams.ProtoReflect.Descriptor instead.
 func (*WmaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{89}
+	return file_indicators_params_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *WmaParams) GetPeriod() uint32 {
@@ -4308,7 +3704,7 @@ type Cdl2CrowsParams struct {
 
 func (x *Cdl2CrowsParams) Reset() {
 	*x = Cdl2CrowsParams{}
-	mi := &file_indicators_params_proto_msgTypes[90]
+	mi := &file_indicators_params_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4320,7 +3716,7 @@ func (x *Cdl2CrowsParams) String() string {
 func (*Cdl2CrowsParams) ProtoMessage() {}
 
 func (x *Cdl2CrowsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[90]
+	mi := &file_indicators_params_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4333,7 +3729,7 @@ func (x *Cdl2CrowsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl2CrowsParams.ProtoReflect.Descriptor instead.
 func (*Cdl2CrowsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{90}
+	return file_indicators_params_proto_rawDescGZIP(), []int{78}
 }
 
 // CDL3BLACKCROWS — Three Black Crows.
@@ -4345,7 +3741,7 @@ type Cdl3BlackCrowsParams struct {
 
 func (x *Cdl3BlackCrowsParams) Reset() {
 	*x = Cdl3BlackCrowsParams{}
-	mi := &file_indicators_params_proto_msgTypes[91]
+	mi := &file_indicators_params_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4357,7 +3753,7 @@ func (x *Cdl3BlackCrowsParams) String() string {
 func (*Cdl3BlackCrowsParams) ProtoMessage() {}
 
 func (x *Cdl3BlackCrowsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[91]
+	mi := &file_indicators_params_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4370,7 +3766,7 @@ func (x *Cdl3BlackCrowsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3BlackCrowsParams.ProtoReflect.Descriptor instead.
 func (*Cdl3BlackCrowsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{91}
+	return file_indicators_params_proto_rawDescGZIP(), []int{79}
 }
 
 // CDL3INSIDE — Three Inside Up/Down.
@@ -4382,7 +3778,7 @@ type Cdl3InsideParams struct {
 
 func (x *Cdl3InsideParams) Reset() {
 	*x = Cdl3InsideParams{}
-	mi := &file_indicators_params_proto_msgTypes[92]
+	mi := &file_indicators_params_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4394,7 +3790,7 @@ func (x *Cdl3InsideParams) String() string {
 func (*Cdl3InsideParams) ProtoMessage() {}
 
 func (x *Cdl3InsideParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[92]
+	mi := &file_indicators_params_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4407,7 +3803,7 @@ func (x *Cdl3InsideParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3InsideParams.ProtoReflect.Descriptor instead.
 func (*Cdl3InsideParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{92}
+	return file_indicators_params_proto_rawDescGZIP(), []int{80}
 }
 
 // CDL3LINESTRIKE — Three-Line Strike.
@@ -4419,7 +3815,7 @@ type Cdl3LineStrikeParams struct {
 
 func (x *Cdl3LineStrikeParams) Reset() {
 	*x = Cdl3LineStrikeParams{}
-	mi := &file_indicators_params_proto_msgTypes[93]
+	mi := &file_indicators_params_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4431,7 +3827,7 @@ func (x *Cdl3LineStrikeParams) String() string {
 func (*Cdl3LineStrikeParams) ProtoMessage() {}
 
 func (x *Cdl3LineStrikeParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[93]
+	mi := &file_indicators_params_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4444,7 +3840,7 @@ func (x *Cdl3LineStrikeParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3LineStrikeParams.ProtoReflect.Descriptor instead.
 func (*Cdl3LineStrikeParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{93}
+	return file_indicators_params_proto_rawDescGZIP(), []int{81}
 }
 
 // CDL3OUTSIDE — Three Outside Up/Down.
@@ -4456,7 +3852,7 @@ type Cdl3OutsideParams struct {
 
 func (x *Cdl3OutsideParams) Reset() {
 	*x = Cdl3OutsideParams{}
-	mi := &file_indicators_params_proto_msgTypes[94]
+	mi := &file_indicators_params_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4468,7 +3864,7 @@ func (x *Cdl3OutsideParams) String() string {
 func (*Cdl3OutsideParams) ProtoMessage() {}
 
 func (x *Cdl3OutsideParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[94]
+	mi := &file_indicators_params_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4481,7 +3877,7 @@ func (x *Cdl3OutsideParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3OutsideParams.ProtoReflect.Descriptor instead.
 func (*Cdl3OutsideParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{94}
+	return file_indicators_params_proto_rawDescGZIP(), []int{82}
 }
 
 // CDL3STARSINSOUTH — Three Stars In The South.
@@ -4493,7 +3889,7 @@ type Cdl3StarsInSouthParams struct {
 
 func (x *Cdl3StarsInSouthParams) Reset() {
 	*x = Cdl3StarsInSouthParams{}
-	mi := &file_indicators_params_proto_msgTypes[95]
+	mi := &file_indicators_params_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4505,7 +3901,7 @@ func (x *Cdl3StarsInSouthParams) String() string {
 func (*Cdl3StarsInSouthParams) ProtoMessage() {}
 
 func (x *Cdl3StarsInSouthParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[95]
+	mi := &file_indicators_params_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4518,7 +3914,7 @@ func (x *Cdl3StarsInSouthParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3StarsInSouthParams.ProtoReflect.Descriptor instead.
 func (*Cdl3StarsInSouthParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{95}
+	return file_indicators_params_proto_rawDescGZIP(), []int{83}
 }
 
 // CDL3WHITESOLDIERS — Three Advancing White Soldiers.
@@ -4530,7 +3926,7 @@ type Cdl3WhiteSoldiersParams struct {
 
 func (x *Cdl3WhiteSoldiersParams) Reset() {
 	*x = Cdl3WhiteSoldiersParams{}
-	mi := &file_indicators_params_proto_msgTypes[96]
+	mi := &file_indicators_params_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4542,7 +3938,7 @@ func (x *Cdl3WhiteSoldiersParams) String() string {
 func (*Cdl3WhiteSoldiersParams) ProtoMessage() {}
 
 func (x *Cdl3WhiteSoldiersParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[96]
+	mi := &file_indicators_params_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4555,7 +3951,7 @@ func (x *Cdl3WhiteSoldiersParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cdl3WhiteSoldiersParams.ProtoReflect.Descriptor instead.
 func (*Cdl3WhiteSoldiersParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{96}
+	return file_indicators_params_proto_rawDescGZIP(), []int{84}
 }
 
 // CDLABANDONEDBABY — Abandoned Baby.
@@ -4568,7 +3964,7 @@ type CdlAbandonedBabyParams struct {
 
 func (x *CdlAbandonedBabyParams) Reset() {
 	*x = CdlAbandonedBabyParams{}
-	mi := &file_indicators_params_proto_msgTypes[97]
+	mi := &file_indicators_params_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4580,7 +3976,7 @@ func (x *CdlAbandonedBabyParams) String() string {
 func (*CdlAbandonedBabyParams) ProtoMessage() {}
 
 func (x *CdlAbandonedBabyParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[97]
+	mi := &file_indicators_params_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4593,7 +3989,7 @@ func (x *CdlAbandonedBabyParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlAbandonedBabyParams.ProtoReflect.Descriptor instead.
 func (*CdlAbandonedBabyParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{97}
+	return file_indicators_params_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *CdlAbandonedBabyParams) GetPenetration() float64 {
@@ -4612,7 +4008,7 @@ type CdlAdvanceBlockParams struct {
 
 func (x *CdlAdvanceBlockParams) Reset() {
 	*x = CdlAdvanceBlockParams{}
-	mi := &file_indicators_params_proto_msgTypes[98]
+	mi := &file_indicators_params_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4624,7 +4020,7 @@ func (x *CdlAdvanceBlockParams) String() string {
 func (*CdlAdvanceBlockParams) ProtoMessage() {}
 
 func (x *CdlAdvanceBlockParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[98]
+	mi := &file_indicators_params_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4637,7 +4033,7 @@ func (x *CdlAdvanceBlockParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlAdvanceBlockParams.ProtoReflect.Descriptor instead.
 func (*CdlAdvanceBlockParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{98}
+	return file_indicators_params_proto_rawDescGZIP(), []int{86}
 }
 
 // CDLBELTHOLD — Belt-hold.
@@ -4649,7 +4045,7 @@ type CdlBeltHoldParams struct {
 
 func (x *CdlBeltHoldParams) Reset() {
 	*x = CdlBeltHoldParams{}
-	mi := &file_indicators_params_proto_msgTypes[99]
+	mi := &file_indicators_params_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4661,7 +4057,7 @@ func (x *CdlBeltHoldParams) String() string {
 func (*CdlBeltHoldParams) ProtoMessage() {}
 
 func (x *CdlBeltHoldParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[99]
+	mi := &file_indicators_params_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4674,7 +4070,7 @@ func (x *CdlBeltHoldParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlBeltHoldParams.ProtoReflect.Descriptor instead.
 func (*CdlBeltHoldParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{99}
+	return file_indicators_params_proto_rawDescGZIP(), []int{87}
 }
 
 // CDLBREAKAWAY — Breakaway.
@@ -4686,7 +4082,7 @@ type CdlBreakawayParams struct {
 
 func (x *CdlBreakawayParams) Reset() {
 	*x = CdlBreakawayParams{}
-	mi := &file_indicators_params_proto_msgTypes[100]
+	mi := &file_indicators_params_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4698,7 +4094,7 @@ func (x *CdlBreakawayParams) String() string {
 func (*CdlBreakawayParams) ProtoMessage() {}
 
 func (x *CdlBreakawayParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[100]
+	mi := &file_indicators_params_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4711,7 +4107,7 @@ func (x *CdlBreakawayParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlBreakawayParams.ProtoReflect.Descriptor instead.
 func (*CdlBreakawayParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{100}
+	return file_indicators_params_proto_rawDescGZIP(), []int{88}
 }
 
 // CDLCLOSINGMARUBOZU — Closing Marubozu.
@@ -4723,7 +4119,7 @@ type CdlClosingMarubozuParams struct {
 
 func (x *CdlClosingMarubozuParams) Reset() {
 	*x = CdlClosingMarubozuParams{}
-	mi := &file_indicators_params_proto_msgTypes[101]
+	mi := &file_indicators_params_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4735,7 +4131,7 @@ func (x *CdlClosingMarubozuParams) String() string {
 func (*CdlClosingMarubozuParams) ProtoMessage() {}
 
 func (x *CdlClosingMarubozuParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[101]
+	mi := &file_indicators_params_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4748,7 +4144,7 @@ func (x *CdlClosingMarubozuParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlClosingMarubozuParams.ProtoReflect.Descriptor instead.
 func (*CdlClosingMarubozuParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{101}
+	return file_indicators_params_proto_rawDescGZIP(), []int{89}
 }
 
 // CDLCONCEALBABYSWALL — Concealing Baby Swallow.
@@ -4760,7 +4156,7 @@ type CdlConcealBabysWallParams struct {
 
 func (x *CdlConcealBabysWallParams) Reset() {
 	*x = CdlConcealBabysWallParams{}
-	mi := &file_indicators_params_proto_msgTypes[102]
+	mi := &file_indicators_params_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4772,7 +4168,7 @@ func (x *CdlConcealBabysWallParams) String() string {
 func (*CdlConcealBabysWallParams) ProtoMessage() {}
 
 func (x *CdlConcealBabysWallParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[102]
+	mi := &file_indicators_params_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4785,7 +4181,7 @@ func (x *CdlConcealBabysWallParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlConcealBabysWallParams.ProtoReflect.Descriptor instead.
 func (*CdlConcealBabysWallParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{102}
+	return file_indicators_params_proto_rawDescGZIP(), []int{90}
 }
 
 // CDLCOUNTERATTACK — Counterattack.
@@ -4797,7 +4193,7 @@ type CdlCounterAttackParams struct {
 
 func (x *CdlCounterAttackParams) Reset() {
 	*x = CdlCounterAttackParams{}
-	mi := &file_indicators_params_proto_msgTypes[103]
+	mi := &file_indicators_params_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4809,7 +4205,7 @@ func (x *CdlCounterAttackParams) String() string {
 func (*CdlCounterAttackParams) ProtoMessage() {}
 
 func (x *CdlCounterAttackParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[103]
+	mi := &file_indicators_params_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4822,7 +4218,7 @@ func (x *CdlCounterAttackParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlCounterAttackParams.ProtoReflect.Descriptor instead.
 func (*CdlCounterAttackParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{103}
+	return file_indicators_params_proto_rawDescGZIP(), []int{91}
 }
 
 // CDLDARKCLOUDCOVER — Dark Cloud Cover.
@@ -4835,7 +4231,7 @@ type CdlDarkCloudCoverParams struct {
 
 func (x *CdlDarkCloudCoverParams) Reset() {
 	*x = CdlDarkCloudCoverParams{}
-	mi := &file_indicators_params_proto_msgTypes[104]
+	mi := &file_indicators_params_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4847,7 +4243,7 @@ func (x *CdlDarkCloudCoverParams) String() string {
 func (*CdlDarkCloudCoverParams) ProtoMessage() {}
 
 func (x *CdlDarkCloudCoverParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[104]
+	mi := &file_indicators_params_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4860,7 +4256,7 @@ func (x *CdlDarkCloudCoverParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlDarkCloudCoverParams.ProtoReflect.Descriptor instead.
 func (*CdlDarkCloudCoverParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{104}
+	return file_indicators_params_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *CdlDarkCloudCoverParams) GetPenetration() float64 {
@@ -4879,7 +4275,7 @@ type CdlDojiParams struct {
 
 func (x *CdlDojiParams) Reset() {
 	*x = CdlDojiParams{}
-	mi := &file_indicators_params_proto_msgTypes[105]
+	mi := &file_indicators_params_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4891,7 +4287,7 @@ func (x *CdlDojiParams) String() string {
 func (*CdlDojiParams) ProtoMessage() {}
 
 func (x *CdlDojiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[105]
+	mi := &file_indicators_params_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4904,7 +4300,7 @@ func (x *CdlDojiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlDojiParams.ProtoReflect.Descriptor instead.
 func (*CdlDojiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{105}
+	return file_indicators_params_proto_rawDescGZIP(), []int{93}
 }
 
 // CDLDOJISTAR — Doji Star.
@@ -4916,7 +4312,7 @@ type CdlDojiStarParams struct {
 
 func (x *CdlDojiStarParams) Reset() {
 	*x = CdlDojiStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[106]
+	mi := &file_indicators_params_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4928,7 +4324,7 @@ func (x *CdlDojiStarParams) String() string {
 func (*CdlDojiStarParams) ProtoMessage() {}
 
 func (x *CdlDojiStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[106]
+	mi := &file_indicators_params_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4941,7 +4337,7 @@ func (x *CdlDojiStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlDojiStarParams.ProtoReflect.Descriptor instead.
 func (*CdlDojiStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{106}
+	return file_indicators_params_proto_rawDescGZIP(), []int{94}
 }
 
 // CDLDRAGONFLYDOJI — Dragonfly Doji.
@@ -4953,7 +4349,7 @@ type CdlDragonflyDojiParams struct {
 
 func (x *CdlDragonflyDojiParams) Reset() {
 	*x = CdlDragonflyDojiParams{}
-	mi := &file_indicators_params_proto_msgTypes[107]
+	mi := &file_indicators_params_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4965,7 +4361,7 @@ func (x *CdlDragonflyDojiParams) String() string {
 func (*CdlDragonflyDojiParams) ProtoMessage() {}
 
 func (x *CdlDragonflyDojiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[107]
+	mi := &file_indicators_params_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4978,7 +4374,7 @@ func (x *CdlDragonflyDojiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlDragonflyDojiParams.ProtoReflect.Descriptor instead.
 func (*CdlDragonflyDojiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{107}
+	return file_indicators_params_proto_rawDescGZIP(), []int{95}
 }
 
 // CDLENGULFING — Engulfing Pattern.
@@ -4990,7 +4386,7 @@ type CdlEngulfingParams struct {
 
 func (x *CdlEngulfingParams) Reset() {
 	*x = CdlEngulfingParams{}
-	mi := &file_indicators_params_proto_msgTypes[108]
+	mi := &file_indicators_params_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5002,7 +4398,7 @@ func (x *CdlEngulfingParams) String() string {
 func (*CdlEngulfingParams) ProtoMessage() {}
 
 func (x *CdlEngulfingParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[108]
+	mi := &file_indicators_params_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5015,7 +4411,7 @@ func (x *CdlEngulfingParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlEngulfingParams.ProtoReflect.Descriptor instead.
 func (*CdlEngulfingParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{108}
+	return file_indicators_params_proto_rawDescGZIP(), []int{96}
 }
 
 // CDLEVENINGDOJISTAR — Evening Doji Star.
@@ -5028,7 +4424,7 @@ type CdlEveningDojiStarParams struct {
 
 func (x *CdlEveningDojiStarParams) Reset() {
 	*x = CdlEveningDojiStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[109]
+	mi := &file_indicators_params_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5040,7 +4436,7 @@ func (x *CdlEveningDojiStarParams) String() string {
 func (*CdlEveningDojiStarParams) ProtoMessage() {}
 
 func (x *CdlEveningDojiStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[109]
+	mi := &file_indicators_params_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5053,7 +4449,7 @@ func (x *CdlEveningDojiStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlEveningDojiStarParams.ProtoReflect.Descriptor instead.
 func (*CdlEveningDojiStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{109}
+	return file_indicators_params_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *CdlEveningDojiStarParams) GetPenetration() float64 {
@@ -5073,7 +4469,7 @@ type CdlEveningStarParams struct {
 
 func (x *CdlEveningStarParams) Reset() {
 	*x = CdlEveningStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[110]
+	mi := &file_indicators_params_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5085,7 +4481,7 @@ func (x *CdlEveningStarParams) String() string {
 func (*CdlEveningStarParams) ProtoMessage() {}
 
 func (x *CdlEveningStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[110]
+	mi := &file_indicators_params_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5098,7 +4494,7 @@ func (x *CdlEveningStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlEveningStarParams.ProtoReflect.Descriptor instead.
 func (*CdlEveningStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{110}
+	return file_indicators_params_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *CdlEveningStarParams) GetPenetration() float64 {
@@ -5117,7 +4513,7 @@ type CdlGapSideSideWhiteParams struct {
 
 func (x *CdlGapSideSideWhiteParams) Reset() {
 	*x = CdlGapSideSideWhiteParams{}
-	mi := &file_indicators_params_proto_msgTypes[111]
+	mi := &file_indicators_params_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5129,7 +4525,7 @@ func (x *CdlGapSideSideWhiteParams) String() string {
 func (*CdlGapSideSideWhiteParams) ProtoMessage() {}
 
 func (x *CdlGapSideSideWhiteParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[111]
+	mi := &file_indicators_params_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5142,7 +4538,7 @@ func (x *CdlGapSideSideWhiteParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlGapSideSideWhiteParams.ProtoReflect.Descriptor instead.
 func (*CdlGapSideSideWhiteParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{111}
+	return file_indicators_params_proto_rawDescGZIP(), []int{99}
 }
 
 // CDLGRAVESTONEDOJI — Gravestone Doji.
@@ -5154,7 +4550,7 @@ type CdlGravestoneDojiParams struct {
 
 func (x *CdlGravestoneDojiParams) Reset() {
 	*x = CdlGravestoneDojiParams{}
-	mi := &file_indicators_params_proto_msgTypes[112]
+	mi := &file_indicators_params_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5166,7 +4562,7 @@ func (x *CdlGravestoneDojiParams) String() string {
 func (*CdlGravestoneDojiParams) ProtoMessage() {}
 
 func (x *CdlGravestoneDojiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[112]
+	mi := &file_indicators_params_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5179,7 +4575,7 @@ func (x *CdlGravestoneDojiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlGravestoneDojiParams.ProtoReflect.Descriptor instead.
 func (*CdlGravestoneDojiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{112}
+	return file_indicators_params_proto_rawDescGZIP(), []int{100}
 }
 
 // CDLHAMMER — Hammer.
@@ -5191,7 +4587,7 @@ type CdlHammerParams struct {
 
 func (x *CdlHammerParams) Reset() {
 	*x = CdlHammerParams{}
-	mi := &file_indicators_params_proto_msgTypes[113]
+	mi := &file_indicators_params_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5203,7 +4599,7 @@ func (x *CdlHammerParams) String() string {
 func (*CdlHammerParams) ProtoMessage() {}
 
 func (x *CdlHammerParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[113]
+	mi := &file_indicators_params_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5216,7 +4612,7 @@ func (x *CdlHammerParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHammerParams.ProtoReflect.Descriptor instead.
 func (*CdlHammerParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{113}
+	return file_indicators_params_proto_rawDescGZIP(), []int{101}
 }
 
 // CDLHANGINGMAN — Hanging Man.
@@ -5228,7 +4624,7 @@ type CdlHangingManParams struct {
 
 func (x *CdlHangingManParams) Reset() {
 	*x = CdlHangingManParams{}
-	mi := &file_indicators_params_proto_msgTypes[114]
+	mi := &file_indicators_params_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5240,7 +4636,7 @@ func (x *CdlHangingManParams) String() string {
 func (*CdlHangingManParams) ProtoMessage() {}
 
 func (x *CdlHangingManParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[114]
+	mi := &file_indicators_params_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5253,7 +4649,7 @@ func (x *CdlHangingManParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHangingManParams.ProtoReflect.Descriptor instead.
 func (*CdlHangingManParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{114}
+	return file_indicators_params_proto_rawDescGZIP(), []int{102}
 }
 
 // CDLHARAMI — Harami Pattern.
@@ -5265,7 +4661,7 @@ type CdlHaramiParams struct {
 
 func (x *CdlHaramiParams) Reset() {
 	*x = CdlHaramiParams{}
-	mi := &file_indicators_params_proto_msgTypes[115]
+	mi := &file_indicators_params_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5277,7 +4673,7 @@ func (x *CdlHaramiParams) String() string {
 func (*CdlHaramiParams) ProtoMessage() {}
 
 func (x *CdlHaramiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[115]
+	mi := &file_indicators_params_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5290,7 +4686,7 @@ func (x *CdlHaramiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHaramiParams.ProtoReflect.Descriptor instead.
 func (*CdlHaramiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{115}
+	return file_indicators_params_proto_rawDescGZIP(), []int{103}
 }
 
 // CDLHARAMICROSS — Harami Cross Pattern.
@@ -5302,7 +4698,7 @@ type CdlHaramiCrossParams struct {
 
 func (x *CdlHaramiCrossParams) Reset() {
 	*x = CdlHaramiCrossParams{}
-	mi := &file_indicators_params_proto_msgTypes[116]
+	mi := &file_indicators_params_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5314,7 +4710,7 @@ func (x *CdlHaramiCrossParams) String() string {
 func (*CdlHaramiCrossParams) ProtoMessage() {}
 
 func (x *CdlHaramiCrossParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[116]
+	mi := &file_indicators_params_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5327,7 +4723,7 @@ func (x *CdlHaramiCrossParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHaramiCrossParams.ProtoReflect.Descriptor instead.
 func (*CdlHaramiCrossParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{116}
+	return file_indicators_params_proto_rawDescGZIP(), []int{104}
 }
 
 // CDLHIGHWAVE — High-Wave Candle.
@@ -5339,7 +4735,7 @@ type CdlHighWaveParams struct {
 
 func (x *CdlHighWaveParams) Reset() {
 	*x = CdlHighWaveParams{}
-	mi := &file_indicators_params_proto_msgTypes[117]
+	mi := &file_indicators_params_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5351,7 +4747,7 @@ func (x *CdlHighWaveParams) String() string {
 func (*CdlHighWaveParams) ProtoMessage() {}
 
 func (x *CdlHighWaveParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[117]
+	mi := &file_indicators_params_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5364,7 +4760,7 @@ func (x *CdlHighWaveParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHighWaveParams.ProtoReflect.Descriptor instead.
 func (*CdlHighWaveParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{117}
+	return file_indicators_params_proto_rawDescGZIP(), []int{105}
 }
 
 // CDLHIKKAKE — Hikkake Pattern.
@@ -5376,7 +4772,7 @@ type CdlHikkakeParams struct {
 
 func (x *CdlHikkakeParams) Reset() {
 	*x = CdlHikkakeParams{}
-	mi := &file_indicators_params_proto_msgTypes[118]
+	mi := &file_indicators_params_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5388,7 +4784,7 @@ func (x *CdlHikkakeParams) String() string {
 func (*CdlHikkakeParams) ProtoMessage() {}
 
 func (x *CdlHikkakeParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[118]
+	mi := &file_indicators_params_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5401,7 +4797,7 @@ func (x *CdlHikkakeParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHikkakeParams.ProtoReflect.Descriptor instead.
 func (*CdlHikkakeParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{118}
+	return file_indicators_params_proto_rawDescGZIP(), []int{106}
 }
 
 // CDLHIKKAKEMOD — Modified Hikkake Pattern.
@@ -5413,7 +4809,7 @@ type CdlHikkakeModParams struct {
 
 func (x *CdlHikkakeModParams) Reset() {
 	*x = CdlHikkakeModParams{}
-	mi := &file_indicators_params_proto_msgTypes[119]
+	mi := &file_indicators_params_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5425,7 +4821,7 @@ func (x *CdlHikkakeModParams) String() string {
 func (*CdlHikkakeModParams) ProtoMessage() {}
 
 func (x *CdlHikkakeModParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[119]
+	mi := &file_indicators_params_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5438,7 +4834,7 @@ func (x *CdlHikkakeModParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHikkakeModParams.ProtoReflect.Descriptor instead.
 func (*CdlHikkakeModParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{119}
+	return file_indicators_params_proto_rawDescGZIP(), []int{107}
 }
 
 // CDLHOMINGPIGEON — Homing Pigeon.
@@ -5450,7 +4846,7 @@ type CdlHomingPigeonParams struct {
 
 func (x *CdlHomingPigeonParams) Reset() {
 	*x = CdlHomingPigeonParams{}
-	mi := &file_indicators_params_proto_msgTypes[120]
+	mi := &file_indicators_params_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5462,7 +4858,7 @@ func (x *CdlHomingPigeonParams) String() string {
 func (*CdlHomingPigeonParams) ProtoMessage() {}
 
 func (x *CdlHomingPigeonParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[120]
+	mi := &file_indicators_params_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5475,7 +4871,7 @@ func (x *CdlHomingPigeonParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlHomingPigeonParams.ProtoReflect.Descriptor instead.
 func (*CdlHomingPigeonParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{120}
+	return file_indicators_params_proto_rawDescGZIP(), []int{108}
 }
 
 // CDLIDENTICAL3CROWS — Identical Three Crows.
@@ -5487,7 +4883,7 @@ type CdlIdentical3CrowsParams struct {
 
 func (x *CdlIdentical3CrowsParams) Reset() {
 	*x = CdlIdentical3CrowsParams{}
-	mi := &file_indicators_params_proto_msgTypes[121]
+	mi := &file_indicators_params_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5499,7 +4895,7 @@ func (x *CdlIdentical3CrowsParams) String() string {
 func (*CdlIdentical3CrowsParams) ProtoMessage() {}
 
 func (x *CdlIdentical3CrowsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[121]
+	mi := &file_indicators_params_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5512,7 +4908,7 @@ func (x *CdlIdentical3CrowsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlIdentical3CrowsParams.ProtoReflect.Descriptor instead.
 func (*CdlIdentical3CrowsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{121}
+	return file_indicators_params_proto_rawDescGZIP(), []int{109}
 }
 
 // CDLINNECK — In-Neck Pattern.
@@ -5524,7 +4920,7 @@ type CdlInNeckParams struct {
 
 func (x *CdlInNeckParams) Reset() {
 	*x = CdlInNeckParams{}
-	mi := &file_indicators_params_proto_msgTypes[122]
+	mi := &file_indicators_params_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5536,7 +4932,7 @@ func (x *CdlInNeckParams) String() string {
 func (*CdlInNeckParams) ProtoMessage() {}
 
 func (x *CdlInNeckParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[122]
+	mi := &file_indicators_params_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5549,7 +4945,7 @@ func (x *CdlInNeckParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlInNeckParams.ProtoReflect.Descriptor instead.
 func (*CdlInNeckParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{122}
+	return file_indicators_params_proto_rawDescGZIP(), []int{110}
 }
 
 // CDLINVERTEDHAMMER — Inverted Hammer.
@@ -5561,7 +4957,7 @@ type CdlInvertedHammerParams struct {
 
 func (x *CdlInvertedHammerParams) Reset() {
 	*x = CdlInvertedHammerParams{}
-	mi := &file_indicators_params_proto_msgTypes[123]
+	mi := &file_indicators_params_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5573,7 +4969,7 @@ func (x *CdlInvertedHammerParams) String() string {
 func (*CdlInvertedHammerParams) ProtoMessage() {}
 
 func (x *CdlInvertedHammerParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[123]
+	mi := &file_indicators_params_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5586,7 +4982,7 @@ func (x *CdlInvertedHammerParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlInvertedHammerParams.ProtoReflect.Descriptor instead.
 func (*CdlInvertedHammerParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{123}
+	return file_indicators_params_proto_rawDescGZIP(), []int{111}
 }
 
 // CDLKICKING — Kicking.
@@ -5598,7 +4994,7 @@ type CdlKickingParams struct {
 
 func (x *CdlKickingParams) Reset() {
 	*x = CdlKickingParams{}
-	mi := &file_indicators_params_proto_msgTypes[124]
+	mi := &file_indicators_params_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5610,7 +5006,7 @@ func (x *CdlKickingParams) String() string {
 func (*CdlKickingParams) ProtoMessage() {}
 
 func (x *CdlKickingParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[124]
+	mi := &file_indicators_params_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5623,7 +5019,7 @@ func (x *CdlKickingParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlKickingParams.ProtoReflect.Descriptor instead.
 func (*CdlKickingParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{124}
+	return file_indicators_params_proto_rawDescGZIP(), []int{112}
 }
 
 // CDLKICKINGBYLENGTH — Kicking - bull/bear determined by the longer marubozu.
@@ -5635,7 +5031,7 @@ type CdlKickingByLengthParams struct {
 
 func (x *CdlKickingByLengthParams) Reset() {
 	*x = CdlKickingByLengthParams{}
-	mi := &file_indicators_params_proto_msgTypes[125]
+	mi := &file_indicators_params_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5647,7 +5043,7 @@ func (x *CdlKickingByLengthParams) String() string {
 func (*CdlKickingByLengthParams) ProtoMessage() {}
 
 func (x *CdlKickingByLengthParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[125]
+	mi := &file_indicators_params_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5660,7 +5056,7 @@ func (x *CdlKickingByLengthParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlKickingByLengthParams.ProtoReflect.Descriptor instead.
 func (*CdlKickingByLengthParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{125}
+	return file_indicators_params_proto_rawDescGZIP(), []int{113}
 }
 
 // CDLLADDERBOTTOM — Ladder Bottom.
@@ -5672,7 +5068,7 @@ type CdlLadderBottomParams struct {
 
 func (x *CdlLadderBottomParams) Reset() {
 	*x = CdlLadderBottomParams{}
-	mi := &file_indicators_params_proto_msgTypes[126]
+	mi := &file_indicators_params_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5684,7 +5080,7 @@ func (x *CdlLadderBottomParams) String() string {
 func (*CdlLadderBottomParams) ProtoMessage() {}
 
 func (x *CdlLadderBottomParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[126]
+	mi := &file_indicators_params_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5697,7 +5093,7 @@ func (x *CdlLadderBottomParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlLadderBottomParams.ProtoReflect.Descriptor instead.
 func (*CdlLadderBottomParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{126}
+	return file_indicators_params_proto_rawDescGZIP(), []int{114}
 }
 
 // CDLLONGLEGGEDDOJI — Long Legged Doji.
@@ -5709,7 +5105,7 @@ type CdlLongLeggedDojiParams struct {
 
 func (x *CdlLongLeggedDojiParams) Reset() {
 	*x = CdlLongLeggedDojiParams{}
-	mi := &file_indicators_params_proto_msgTypes[127]
+	mi := &file_indicators_params_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5721,7 +5117,7 @@ func (x *CdlLongLeggedDojiParams) String() string {
 func (*CdlLongLeggedDojiParams) ProtoMessage() {}
 
 func (x *CdlLongLeggedDojiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[127]
+	mi := &file_indicators_params_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5734,7 +5130,7 @@ func (x *CdlLongLeggedDojiParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlLongLeggedDojiParams.ProtoReflect.Descriptor instead.
 func (*CdlLongLeggedDojiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{127}
+	return file_indicators_params_proto_rawDescGZIP(), []int{115}
 }
 
 // CDLLONGLINE — Long Line Candle.
@@ -5746,7 +5142,7 @@ type CdlLongLineParams struct {
 
 func (x *CdlLongLineParams) Reset() {
 	*x = CdlLongLineParams{}
-	mi := &file_indicators_params_proto_msgTypes[128]
+	mi := &file_indicators_params_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5758,7 +5154,7 @@ func (x *CdlLongLineParams) String() string {
 func (*CdlLongLineParams) ProtoMessage() {}
 
 func (x *CdlLongLineParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[128]
+	mi := &file_indicators_params_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5771,7 +5167,7 @@ func (x *CdlLongLineParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlLongLineParams.ProtoReflect.Descriptor instead.
 func (*CdlLongLineParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{128}
+	return file_indicators_params_proto_rawDescGZIP(), []int{116}
 }
 
 // CDLMARUBOZU — Marubozu.
@@ -5783,7 +5179,7 @@ type CdlMarubozuParams struct {
 
 func (x *CdlMarubozuParams) Reset() {
 	*x = CdlMarubozuParams{}
-	mi := &file_indicators_params_proto_msgTypes[129]
+	mi := &file_indicators_params_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5795,7 +5191,7 @@ func (x *CdlMarubozuParams) String() string {
 func (*CdlMarubozuParams) ProtoMessage() {}
 
 func (x *CdlMarubozuParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[129]
+	mi := &file_indicators_params_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5808,7 +5204,7 @@ func (x *CdlMarubozuParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlMarubozuParams.ProtoReflect.Descriptor instead.
 func (*CdlMarubozuParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{129}
+	return file_indicators_params_proto_rawDescGZIP(), []int{117}
 }
 
 // CDLMATCHINGLOW — Matching Low.
@@ -5820,7 +5216,7 @@ type CdlMatchingLowParams struct {
 
 func (x *CdlMatchingLowParams) Reset() {
 	*x = CdlMatchingLowParams{}
-	mi := &file_indicators_params_proto_msgTypes[130]
+	mi := &file_indicators_params_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5832,7 +5228,7 @@ func (x *CdlMatchingLowParams) String() string {
 func (*CdlMatchingLowParams) ProtoMessage() {}
 
 func (x *CdlMatchingLowParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[130]
+	mi := &file_indicators_params_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5845,7 +5241,7 @@ func (x *CdlMatchingLowParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlMatchingLowParams.ProtoReflect.Descriptor instead.
 func (*CdlMatchingLowParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{130}
+	return file_indicators_params_proto_rawDescGZIP(), []int{118}
 }
 
 // CDLMATHOLD — Mat Hold.
@@ -5858,7 +5254,7 @@ type CdlMatHoldParams struct {
 
 func (x *CdlMatHoldParams) Reset() {
 	*x = CdlMatHoldParams{}
-	mi := &file_indicators_params_proto_msgTypes[131]
+	mi := &file_indicators_params_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5870,7 +5266,7 @@ func (x *CdlMatHoldParams) String() string {
 func (*CdlMatHoldParams) ProtoMessage() {}
 
 func (x *CdlMatHoldParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[131]
+	mi := &file_indicators_params_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5883,7 +5279,7 @@ func (x *CdlMatHoldParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlMatHoldParams.ProtoReflect.Descriptor instead.
 func (*CdlMatHoldParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{131}
+	return file_indicators_params_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *CdlMatHoldParams) GetPenetration() float64 {
@@ -5903,7 +5299,7 @@ type CdlMorningDojiStarParams struct {
 
 func (x *CdlMorningDojiStarParams) Reset() {
 	*x = CdlMorningDojiStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[132]
+	mi := &file_indicators_params_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5915,7 +5311,7 @@ func (x *CdlMorningDojiStarParams) String() string {
 func (*CdlMorningDojiStarParams) ProtoMessage() {}
 
 func (x *CdlMorningDojiStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[132]
+	mi := &file_indicators_params_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5928,7 +5324,7 @@ func (x *CdlMorningDojiStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlMorningDojiStarParams.ProtoReflect.Descriptor instead.
 func (*CdlMorningDojiStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{132}
+	return file_indicators_params_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *CdlMorningDojiStarParams) GetPenetration() float64 {
@@ -5948,7 +5344,7 @@ type CdlMorningStarParams struct {
 
 func (x *CdlMorningStarParams) Reset() {
 	*x = CdlMorningStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[133]
+	mi := &file_indicators_params_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5960,7 +5356,7 @@ func (x *CdlMorningStarParams) String() string {
 func (*CdlMorningStarParams) ProtoMessage() {}
 
 func (x *CdlMorningStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[133]
+	mi := &file_indicators_params_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5973,7 +5369,7 @@ func (x *CdlMorningStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlMorningStarParams.ProtoReflect.Descriptor instead.
 func (*CdlMorningStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{133}
+	return file_indicators_params_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *CdlMorningStarParams) GetPenetration() float64 {
@@ -5992,7 +5388,7 @@ type CdlOnNeckParams struct {
 
 func (x *CdlOnNeckParams) Reset() {
 	*x = CdlOnNeckParams{}
-	mi := &file_indicators_params_proto_msgTypes[134]
+	mi := &file_indicators_params_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6004,7 +5400,7 @@ func (x *CdlOnNeckParams) String() string {
 func (*CdlOnNeckParams) ProtoMessage() {}
 
 func (x *CdlOnNeckParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[134]
+	mi := &file_indicators_params_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6017,7 +5413,7 @@ func (x *CdlOnNeckParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlOnNeckParams.ProtoReflect.Descriptor instead.
 func (*CdlOnNeckParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{134}
+	return file_indicators_params_proto_rawDescGZIP(), []int{122}
 }
 
 // CDLPIERCING — Piercing Pattern.
@@ -6029,7 +5425,7 @@ type CdlPiercingParams struct {
 
 func (x *CdlPiercingParams) Reset() {
 	*x = CdlPiercingParams{}
-	mi := &file_indicators_params_proto_msgTypes[135]
+	mi := &file_indicators_params_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6041,7 +5437,7 @@ func (x *CdlPiercingParams) String() string {
 func (*CdlPiercingParams) ProtoMessage() {}
 
 func (x *CdlPiercingParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[135]
+	mi := &file_indicators_params_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6054,7 +5450,7 @@ func (x *CdlPiercingParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlPiercingParams.ProtoReflect.Descriptor instead.
 func (*CdlPiercingParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{135}
+	return file_indicators_params_proto_rawDescGZIP(), []int{123}
 }
 
 // CDLRICKSHAWMAN — Rickshaw Man.
@@ -6066,7 +5462,7 @@ type CdlRickshawManParams struct {
 
 func (x *CdlRickshawManParams) Reset() {
 	*x = CdlRickshawManParams{}
-	mi := &file_indicators_params_proto_msgTypes[136]
+	mi := &file_indicators_params_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6078,7 +5474,7 @@ func (x *CdlRickshawManParams) String() string {
 func (*CdlRickshawManParams) ProtoMessage() {}
 
 func (x *CdlRickshawManParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[136]
+	mi := &file_indicators_params_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6091,7 +5487,7 @@ func (x *CdlRickshawManParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlRickshawManParams.ProtoReflect.Descriptor instead.
 func (*CdlRickshawManParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{136}
+	return file_indicators_params_proto_rawDescGZIP(), []int{124}
 }
 
 // CDLRISEFALL3METHODS — Rising/Falling Three Methods.
@@ -6103,7 +5499,7 @@ type CdlRiseFall3MethodsParams struct {
 
 func (x *CdlRiseFall3MethodsParams) Reset() {
 	*x = CdlRiseFall3MethodsParams{}
-	mi := &file_indicators_params_proto_msgTypes[137]
+	mi := &file_indicators_params_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6115,7 +5511,7 @@ func (x *CdlRiseFall3MethodsParams) String() string {
 func (*CdlRiseFall3MethodsParams) ProtoMessage() {}
 
 func (x *CdlRiseFall3MethodsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[137]
+	mi := &file_indicators_params_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6128,7 +5524,7 @@ func (x *CdlRiseFall3MethodsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlRiseFall3MethodsParams.ProtoReflect.Descriptor instead.
 func (*CdlRiseFall3MethodsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{137}
+	return file_indicators_params_proto_rawDescGZIP(), []int{125}
 }
 
 // CDLSEPARATINGLINES — Separating Lines.
@@ -6140,7 +5536,7 @@ type CdlSeparatingLinesParams struct {
 
 func (x *CdlSeparatingLinesParams) Reset() {
 	*x = CdlSeparatingLinesParams{}
-	mi := &file_indicators_params_proto_msgTypes[138]
+	mi := &file_indicators_params_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6152,7 +5548,7 @@ func (x *CdlSeparatingLinesParams) String() string {
 func (*CdlSeparatingLinesParams) ProtoMessage() {}
 
 func (x *CdlSeparatingLinesParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[138]
+	mi := &file_indicators_params_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6165,7 +5561,7 @@ func (x *CdlSeparatingLinesParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlSeparatingLinesParams.ProtoReflect.Descriptor instead.
 func (*CdlSeparatingLinesParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{138}
+	return file_indicators_params_proto_rawDescGZIP(), []int{126}
 }
 
 // CDLSHOOTINGSTAR — Shooting Star.
@@ -6177,7 +5573,7 @@ type CdlShootingStarParams struct {
 
 func (x *CdlShootingStarParams) Reset() {
 	*x = CdlShootingStarParams{}
-	mi := &file_indicators_params_proto_msgTypes[139]
+	mi := &file_indicators_params_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6189,7 +5585,7 @@ func (x *CdlShootingStarParams) String() string {
 func (*CdlShootingStarParams) ProtoMessage() {}
 
 func (x *CdlShootingStarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[139]
+	mi := &file_indicators_params_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6202,7 +5598,7 @@ func (x *CdlShootingStarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlShootingStarParams.ProtoReflect.Descriptor instead.
 func (*CdlShootingStarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{139}
+	return file_indicators_params_proto_rawDescGZIP(), []int{127}
 }
 
 // CDLSHORTLINE — Short Line Candle.
@@ -6214,7 +5610,7 @@ type CdlShortLineParams struct {
 
 func (x *CdlShortLineParams) Reset() {
 	*x = CdlShortLineParams{}
-	mi := &file_indicators_params_proto_msgTypes[140]
+	mi := &file_indicators_params_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6226,7 +5622,7 @@ func (x *CdlShortLineParams) String() string {
 func (*CdlShortLineParams) ProtoMessage() {}
 
 func (x *CdlShortLineParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[140]
+	mi := &file_indicators_params_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6239,7 +5635,7 @@ func (x *CdlShortLineParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlShortLineParams.ProtoReflect.Descriptor instead.
 func (*CdlShortLineParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{140}
+	return file_indicators_params_proto_rawDescGZIP(), []int{128}
 }
 
 // CDLSPINNINGTOP — Spinning Top.
@@ -6251,7 +5647,7 @@ type CdlSpinningTopParams struct {
 
 func (x *CdlSpinningTopParams) Reset() {
 	*x = CdlSpinningTopParams{}
-	mi := &file_indicators_params_proto_msgTypes[141]
+	mi := &file_indicators_params_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6263,7 +5659,7 @@ func (x *CdlSpinningTopParams) String() string {
 func (*CdlSpinningTopParams) ProtoMessage() {}
 
 func (x *CdlSpinningTopParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[141]
+	mi := &file_indicators_params_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6276,7 +5672,7 @@ func (x *CdlSpinningTopParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlSpinningTopParams.ProtoReflect.Descriptor instead.
 func (*CdlSpinningTopParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{141}
+	return file_indicators_params_proto_rawDescGZIP(), []int{129}
 }
 
 // CDLSTALLEDPATTERN — Stalled Pattern.
@@ -6288,7 +5684,7 @@ type CdlStalledPatternParams struct {
 
 func (x *CdlStalledPatternParams) Reset() {
 	*x = CdlStalledPatternParams{}
-	mi := &file_indicators_params_proto_msgTypes[142]
+	mi := &file_indicators_params_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6300,7 +5696,7 @@ func (x *CdlStalledPatternParams) String() string {
 func (*CdlStalledPatternParams) ProtoMessage() {}
 
 func (x *CdlStalledPatternParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[142]
+	mi := &file_indicators_params_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6313,7 +5709,7 @@ func (x *CdlStalledPatternParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlStalledPatternParams.ProtoReflect.Descriptor instead.
 func (*CdlStalledPatternParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{142}
+	return file_indicators_params_proto_rawDescGZIP(), []int{130}
 }
 
 // CDLSTICKSANDWICH — Stick Sandwich.
@@ -6325,7 +5721,7 @@ type CdlStickSandwichParams struct {
 
 func (x *CdlStickSandwichParams) Reset() {
 	*x = CdlStickSandwichParams{}
-	mi := &file_indicators_params_proto_msgTypes[143]
+	mi := &file_indicators_params_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6337,7 +5733,7 @@ func (x *CdlStickSandwichParams) String() string {
 func (*CdlStickSandwichParams) ProtoMessage() {}
 
 func (x *CdlStickSandwichParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[143]
+	mi := &file_indicators_params_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6350,7 +5746,7 @@ func (x *CdlStickSandwichParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlStickSandwichParams.ProtoReflect.Descriptor instead.
 func (*CdlStickSandwichParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{143}
+	return file_indicators_params_proto_rawDescGZIP(), []int{131}
 }
 
 // CDLTAKURI — Takuri (Dragonfly Doji with very long lower shadow).
@@ -6362,7 +5758,7 @@ type CdlTakuriParams struct {
 
 func (x *CdlTakuriParams) Reset() {
 	*x = CdlTakuriParams{}
-	mi := &file_indicators_params_proto_msgTypes[144]
+	mi := &file_indicators_params_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6374,7 +5770,7 @@ func (x *CdlTakuriParams) String() string {
 func (*CdlTakuriParams) ProtoMessage() {}
 
 func (x *CdlTakuriParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[144]
+	mi := &file_indicators_params_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6387,7 +5783,7 @@ func (x *CdlTakuriParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlTakuriParams.ProtoReflect.Descriptor instead.
 func (*CdlTakuriParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{144}
+	return file_indicators_params_proto_rawDescGZIP(), []int{132}
 }
 
 // CDLTASUKIGAP — Tasuki Gap.
@@ -6399,7 +5795,7 @@ type CdlTasukiGapParams struct {
 
 func (x *CdlTasukiGapParams) Reset() {
 	*x = CdlTasukiGapParams{}
-	mi := &file_indicators_params_proto_msgTypes[145]
+	mi := &file_indicators_params_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6411,7 +5807,7 @@ func (x *CdlTasukiGapParams) String() string {
 func (*CdlTasukiGapParams) ProtoMessage() {}
 
 func (x *CdlTasukiGapParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[145]
+	mi := &file_indicators_params_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6424,7 +5820,7 @@ func (x *CdlTasukiGapParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlTasukiGapParams.ProtoReflect.Descriptor instead.
 func (*CdlTasukiGapParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{145}
+	return file_indicators_params_proto_rawDescGZIP(), []int{133}
 }
 
 // CDLTHRUSTING — Thrusting Pattern.
@@ -6436,7 +5832,7 @@ type CdlThrustingParams struct {
 
 func (x *CdlThrustingParams) Reset() {
 	*x = CdlThrustingParams{}
-	mi := &file_indicators_params_proto_msgTypes[146]
+	mi := &file_indicators_params_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6448,7 +5844,7 @@ func (x *CdlThrustingParams) String() string {
 func (*CdlThrustingParams) ProtoMessage() {}
 
 func (x *CdlThrustingParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[146]
+	mi := &file_indicators_params_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6461,7 +5857,7 @@ func (x *CdlThrustingParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlThrustingParams.ProtoReflect.Descriptor instead.
 func (*CdlThrustingParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{146}
+	return file_indicators_params_proto_rawDescGZIP(), []int{134}
 }
 
 // CDLTRISTAR — Tristar Pattern.
@@ -6473,7 +5869,7 @@ type CdlTristarParams struct {
 
 func (x *CdlTristarParams) Reset() {
 	*x = CdlTristarParams{}
-	mi := &file_indicators_params_proto_msgTypes[147]
+	mi := &file_indicators_params_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6485,7 +5881,7 @@ func (x *CdlTristarParams) String() string {
 func (*CdlTristarParams) ProtoMessage() {}
 
 func (x *CdlTristarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[147]
+	mi := &file_indicators_params_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6498,7 +5894,7 @@ func (x *CdlTristarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlTristarParams.ProtoReflect.Descriptor instead.
 func (*CdlTristarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{147}
+	return file_indicators_params_proto_rawDescGZIP(), []int{135}
 }
 
 // CDLUNIQUE3RIVER — Unique 3 River.
@@ -6510,7 +5906,7 @@ type CdlUnique3RiverParams struct {
 
 func (x *CdlUnique3RiverParams) Reset() {
 	*x = CdlUnique3RiverParams{}
-	mi := &file_indicators_params_proto_msgTypes[148]
+	mi := &file_indicators_params_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6522,7 +5918,7 @@ func (x *CdlUnique3RiverParams) String() string {
 func (*CdlUnique3RiverParams) ProtoMessage() {}
 
 func (x *CdlUnique3RiverParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[148]
+	mi := &file_indicators_params_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6535,7 +5931,7 @@ func (x *CdlUnique3RiverParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlUnique3RiverParams.ProtoReflect.Descriptor instead.
 func (*CdlUnique3RiverParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{148}
+	return file_indicators_params_proto_rawDescGZIP(), []int{136}
 }
 
 // CDLUPSIDEGAP2CROWS — Upside Gap Two Crows.
@@ -6547,7 +5943,7 @@ type CdlUpsideGap2CrowsParams struct {
 
 func (x *CdlUpsideGap2CrowsParams) Reset() {
 	*x = CdlUpsideGap2CrowsParams{}
-	mi := &file_indicators_params_proto_msgTypes[149]
+	mi := &file_indicators_params_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6559,7 +5955,7 @@ func (x *CdlUpsideGap2CrowsParams) String() string {
 func (*CdlUpsideGap2CrowsParams) ProtoMessage() {}
 
 func (x *CdlUpsideGap2CrowsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[149]
+	mi := &file_indicators_params_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6572,7 +5968,7 @@ func (x *CdlUpsideGap2CrowsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlUpsideGap2CrowsParams.ProtoReflect.Descriptor instead.
 func (*CdlUpsideGap2CrowsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{149}
+	return file_indicators_params_proto_rawDescGZIP(), []int{137}
 }
 
 // CDLXSIDEGAP3METHODS — Upside/Downside Gap Three Methods.
@@ -6584,7 +5980,7 @@ type CdlXsideGap3MethodsParams struct {
 
 func (x *CdlXsideGap3MethodsParams) Reset() {
 	*x = CdlXsideGap3MethodsParams{}
-	mi := &file_indicators_params_proto_msgTypes[150]
+	mi := &file_indicators_params_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6596,7 +5992,7 @@ func (x *CdlXsideGap3MethodsParams) String() string {
 func (*CdlXsideGap3MethodsParams) ProtoMessage() {}
 
 func (x *CdlXsideGap3MethodsParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[150]
+	mi := &file_indicators_params_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6609,52 +6005,7 @@ func (x *CdlXsideGap3MethodsParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CdlXsideGap3MethodsParams.ProtoReflect.Descriptor instead.
 func (*CdlXsideGap3MethodsParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{150}
-}
-
-// AVGDEV — Average Deviation.
-type AvgDevParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AvgDevParams) Reset() {
-	*x = AvgDevParams{}
-	mi := &file_indicators_params_proto_msgTypes[151]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AvgDevParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AvgDevParams) ProtoMessage() {}
-
-func (x *AvgDevParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[151]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AvgDevParams.ProtoReflect.Descriptor instead.
-func (*AvgDevParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{151}
-}
-
-func (x *AvgDevParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
+	return file_indicators_params_proto_rawDescGZIP(), []int{138}
 }
 
 // AVGPRICE — Average Price.
@@ -6666,7 +6017,7 @@ type AvgPriceParams struct {
 
 func (x *AvgPriceParams) Reset() {
 	*x = AvgPriceParams{}
-	mi := &file_indicators_params_proto_msgTypes[152]
+	mi := &file_indicators_params_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6678,7 +6029,7 @@ func (x *AvgPriceParams) String() string {
 func (*AvgPriceParams) ProtoMessage() {}
 
 func (x *AvgPriceParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[152]
+	mi := &file_indicators_params_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6691,7 +6042,7 @@ func (x *AvgPriceParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AvgPriceParams.ProtoReflect.Descriptor instead.
 func (*AvgPriceParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{152}
+	return file_indicators_params_proto_rawDescGZIP(), []int{139}
 }
 
 // MEDPRICE — Median Price.
@@ -6703,7 +6054,7 @@ type MedPriceParams struct {
 
 func (x *MedPriceParams) Reset() {
 	*x = MedPriceParams{}
-	mi := &file_indicators_params_proto_msgTypes[153]
+	mi := &file_indicators_params_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6715,7 +6066,7 @@ func (x *MedPriceParams) String() string {
 func (*MedPriceParams) ProtoMessage() {}
 
 func (x *MedPriceParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[153]
+	mi := &file_indicators_params_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6728,7 +6079,7 @@ func (x *MedPriceParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MedPriceParams.ProtoReflect.Descriptor instead.
 func (*MedPriceParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{153}
+	return file_indicators_params_proto_rawDescGZIP(), []int{140}
 }
 
 // TYPPRICE — Typical Price.
@@ -6740,7 +6091,7 @@ type TypPriceParams struct {
 
 func (x *TypPriceParams) Reset() {
 	*x = TypPriceParams{}
-	mi := &file_indicators_params_proto_msgTypes[154]
+	mi := &file_indicators_params_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6752,7 +6103,7 @@ func (x *TypPriceParams) String() string {
 func (*TypPriceParams) ProtoMessage() {}
 
 func (x *TypPriceParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[154]
+	mi := &file_indicators_params_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6765,7 +6116,7 @@ func (x *TypPriceParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypPriceParams.ProtoReflect.Descriptor instead.
 func (*TypPriceParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{154}
+	return file_indicators_params_proto_rawDescGZIP(), []int{141}
 }
 
 // WCLPRICE — Weighted Close Price.
@@ -6777,7 +6128,7 @@ type WclPriceParams struct {
 
 func (x *WclPriceParams) Reset() {
 	*x = WclPriceParams{}
-	mi := &file_indicators_params_proto_msgTypes[155]
+	mi := &file_indicators_params_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6789,7 +6140,7 @@ func (x *WclPriceParams) String() string {
 func (*WclPriceParams) ProtoMessage() {}
 
 func (x *WclPriceParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[155]
+	mi := &file_indicators_params_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6802,7 +6153,7 @@ func (x *WclPriceParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WclPriceParams.ProtoReflect.Descriptor instead.
 func (*WclPriceParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{155}
+	return file_indicators_params_proto_rawDescGZIP(), []int{142}
 }
 
 // BETA — Beta.
@@ -6815,7 +6166,7 @@ type BetaParams struct {
 
 func (x *BetaParams) Reset() {
 	*x = BetaParams{}
-	mi := &file_indicators_params_proto_msgTypes[156]
+	mi := &file_indicators_params_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6827,7 +6178,7 @@ func (x *BetaParams) String() string {
 func (*BetaParams) ProtoMessage() {}
 
 func (x *BetaParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[156]
+	mi := &file_indicators_params_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6840,7 +6191,7 @@ func (x *BetaParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BetaParams.ProtoReflect.Descriptor instead.
 func (*BetaParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{156}
+	return file_indicators_params_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *BetaParams) GetPeriod() uint32 {
@@ -6860,7 +6211,7 @@ type CorrelParams struct {
 
 func (x *CorrelParams) Reset() {
 	*x = CorrelParams{}
-	mi := &file_indicators_params_proto_msgTypes[157]
+	mi := &file_indicators_params_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6872,7 +6223,7 @@ func (x *CorrelParams) String() string {
 func (*CorrelParams) ProtoMessage() {}
 
 func (x *CorrelParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[157]
+	mi := &file_indicators_params_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6885,7 +6236,7 @@ func (x *CorrelParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CorrelParams.ProtoReflect.Descriptor instead.
 func (*CorrelParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{157}
+	return file_indicators_params_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *CorrelParams) GetPeriod() uint32 {
@@ -6905,7 +6256,7 @@ type LinearRegParams struct {
 
 func (x *LinearRegParams) Reset() {
 	*x = LinearRegParams{}
-	mi := &file_indicators_params_proto_msgTypes[158]
+	mi := &file_indicators_params_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6917,7 +6268,7 @@ func (x *LinearRegParams) String() string {
 func (*LinearRegParams) ProtoMessage() {}
 
 func (x *LinearRegParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[158]
+	mi := &file_indicators_params_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6930,7 +6281,7 @@ func (x *LinearRegParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinearRegParams.ProtoReflect.Descriptor instead.
 func (*LinearRegParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{158}
+	return file_indicators_params_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *LinearRegParams) GetPeriod() uint32 {
@@ -6950,7 +6301,7 @@ type LinearRegAngleParams struct {
 
 func (x *LinearRegAngleParams) Reset() {
 	*x = LinearRegAngleParams{}
-	mi := &file_indicators_params_proto_msgTypes[159]
+	mi := &file_indicators_params_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6962,7 +6313,7 @@ func (x *LinearRegAngleParams) String() string {
 func (*LinearRegAngleParams) ProtoMessage() {}
 
 func (x *LinearRegAngleParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[159]
+	mi := &file_indicators_params_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6975,7 +6326,7 @@ func (x *LinearRegAngleParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinearRegAngleParams.ProtoReflect.Descriptor instead.
 func (*LinearRegAngleParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{159}
+	return file_indicators_params_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *LinearRegAngleParams) GetPeriod() uint32 {
@@ -6995,7 +6346,7 @@ type LinearRegInterceptParams struct {
 
 func (x *LinearRegInterceptParams) Reset() {
 	*x = LinearRegInterceptParams{}
-	mi := &file_indicators_params_proto_msgTypes[160]
+	mi := &file_indicators_params_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7007,7 +6358,7 @@ func (x *LinearRegInterceptParams) String() string {
 func (*LinearRegInterceptParams) ProtoMessage() {}
 
 func (x *LinearRegInterceptParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[160]
+	mi := &file_indicators_params_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7020,7 +6371,7 @@ func (x *LinearRegInterceptParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinearRegInterceptParams.ProtoReflect.Descriptor instead.
 func (*LinearRegInterceptParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{160}
+	return file_indicators_params_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *LinearRegInterceptParams) GetPeriod() uint32 {
@@ -7040,7 +6391,7 @@ type LinearRegSlopeParams struct {
 
 func (x *LinearRegSlopeParams) Reset() {
 	*x = LinearRegSlopeParams{}
-	mi := &file_indicators_params_proto_msgTypes[161]
+	mi := &file_indicators_params_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7052,7 +6403,7 @@ func (x *LinearRegSlopeParams) String() string {
 func (*LinearRegSlopeParams) ProtoMessage() {}
 
 func (x *LinearRegSlopeParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[161]
+	mi := &file_indicators_params_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7065,7 +6416,7 @@ func (x *LinearRegSlopeParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinearRegSlopeParams.ProtoReflect.Descriptor instead.
 func (*LinearRegSlopeParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{161}
+	return file_indicators_params_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *LinearRegSlopeParams) GetPeriod() uint32 {
@@ -7086,7 +6437,7 @@ type StdDevParams struct {
 
 func (x *StdDevParams) Reset() {
 	*x = StdDevParams{}
-	mi := &file_indicators_params_proto_msgTypes[162]
+	mi := &file_indicators_params_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7098,7 +6449,7 @@ func (x *StdDevParams) String() string {
 func (*StdDevParams) ProtoMessage() {}
 
 func (x *StdDevParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[162]
+	mi := &file_indicators_params_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7111,7 +6462,7 @@ func (x *StdDevParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StdDevParams.ProtoReflect.Descriptor instead.
 func (*StdDevParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{162}
+	return file_indicators_params_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *StdDevParams) GetPeriod() uint32 {
@@ -7138,7 +6489,7 @@ type TsfParams struct {
 
 func (x *TsfParams) Reset() {
 	*x = TsfParams{}
-	mi := &file_indicators_params_proto_msgTypes[163]
+	mi := &file_indicators_params_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7150,7 +6501,7 @@ func (x *TsfParams) String() string {
 func (*TsfParams) ProtoMessage() {}
 
 func (x *TsfParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[163]
+	mi := &file_indicators_params_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7163,7 +6514,7 @@ func (x *TsfParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TsfParams.ProtoReflect.Descriptor instead.
 func (*TsfParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{163}
+	return file_indicators_params_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *TsfParams) GetPeriod() uint32 {
@@ -7184,7 +6535,7 @@ type VarParams struct {
 
 func (x *VarParams) Reset() {
 	*x = VarParams{}
-	mi := &file_indicators_params_proto_msgTypes[164]
+	mi := &file_indicators_params_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7196,7 +6547,7 @@ func (x *VarParams) String() string {
 func (*VarParams) ProtoMessage() {}
 
 func (x *VarParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[164]
+	mi := &file_indicators_params_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7209,7 +6560,7 @@ func (x *VarParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VarParams.ProtoReflect.Descriptor instead.
 func (*VarParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{164}
+	return file_indicators_params_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *VarParams) GetPeriod() uint32 {
@@ -7236,7 +6587,7 @@ type AtrParams struct {
 
 func (x *AtrParams) Reset() {
 	*x = AtrParams{}
-	mi := &file_indicators_params_proto_msgTypes[165]
+	mi := &file_indicators_params_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7248,7 +6599,7 @@ func (x *AtrParams) String() string {
 func (*AtrParams) ProtoMessage() {}
 
 func (x *AtrParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[165]
+	mi := &file_indicators_params_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7261,7 +6612,7 @@ func (x *AtrParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AtrParams.ProtoReflect.Descriptor instead.
 func (*AtrParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{165}
+	return file_indicators_params_proto_rawDescGZIP(), []int{152}
 }
 
 func (x *AtrParams) GetPeriod() uint32 {
@@ -7281,7 +6632,7 @@ type NatrParams struct {
 
 func (x *NatrParams) Reset() {
 	*x = NatrParams{}
-	mi := &file_indicators_params_proto_msgTypes[166]
+	mi := &file_indicators_params_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7293,7 +6644,7 @@ func (x *NatrParams) String() string {
 func (*NatrParams) ProtoMessage() {}
 
 func (x *NatrParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[166]
+	mi := &file_indicators_params_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7306,7 +6657,7 @@ func (x *NatrParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NatrParams.ProtoReflect.Descriptor instead.
 func (*NatrParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{166}
+	return file_indicators_params_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *NatrParams) GetPeriod() uint32 {
@@ -7325,7 +6676,7 @@ type TrangeParams struct {
 
 func (x *TrangeParams) Reset() {
 	*x = TrangeParams{}
-	mi := &file_indicators_params_proto_msgTypes[167]
+	mi := &file_indicators_params_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7337,7 +6688,7 @@ func (x *TrangeParams) String() string {
 func (*TrangeParams) ProtoMessage() {}
 
 func (x *TrangeParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[167]
+	mi := &file_indicators_params_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7350,7 +6701,7 @@ func (x *TrangeParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrangeParams.ProtoReflect.Descriptor instead.
 func (*TrangeParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{167}
+	return file_indicators_params_proto_rawDescGZIP(), []int{154}
 }
 
 // AD — Chaikin A/D Line.
@@ -7362,7 +6713,7 @@ type AdParams struct {
 
 func (x *AdParams) Reset() {
 	*x = AdParams{}
-	mi := &file_indicators_params_proto_msgTypes[168]
+	mi := &file_indicators_params_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7374,7 +6725,7 @@ func (x *AdParams) String() string {
 func (*AdParams) ProtoMessage() {}
 
 func (x *AdParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[168]
+	mi := &file_indicators_params_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7387,7 +6738,7 @@ func (x *AdParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdParams.ProtoReflect.Descriptor instead.
 func (*AdParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{168}
+	return file_indicators_params_proto_rawDescGZIP(), []int{155}
 }
 
 // ADOSC — Chaikin A/D Oscillator.
@@ -7401,7 +6752,7 @@ type AdOscParams struct {
 
 func (x *AdOscParams) Reset() {
 	*x = AdOscParams{}
-	mi := &file_indicators_params_proto_msgTypes[169]
+	mi := &file_indicators_params_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7413,7 +6764,7 @@ func (x *AdOscParams) String() string {
 func (*AdOscParams) ProtoMessage() {}
 
 func (x *AdOscParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[169]
+	mi := &file_indicators_params_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7426,7 +6777,7 @@ func (x *AdOscParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdOscParams.ProtoReflect.Descriptor instead.
 func (*AdOscParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{169}
+	return file_indicators_params_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *AdOscParams) GetFastPeriod() uint32 {
@@ -7443,170 +6794,6 @@ func (x *AdOscParams) GetSlowPeriod() uint32 {
 	return 0
 }
 
-// CMF — Chaikin Money Flow.
-type CmfParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CmfParams) Reset() {
-	*x = CmfParams{}
-	mi := &file_indicators_params_proto_msgTypes[170]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CmfParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CmfParams) ProtoMessage() {}
-
-func (x *CmfParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[170]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CmfParams.ProtoReflect.Descriptor instead.
-func (*CmfParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{170}
-}
-
-func (x *CmfParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// EFI — Elder's Force Index.
-type EfiParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Period        uint32                 `protobuf:"varint,1,opt,name=period,proto3" json:"period,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EfiParams) Reset() {
-	*x = EfiParams{}
-	mi := &file_indicators_params_proto_msgTypes[171]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EfiParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EfiParams) ProtoMessage() {}
-
-func (x *EfiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[171]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EfiParams.ProtoReflect.Descriptor instead.
-func (*EfiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{171}
-}
-
-func (x *EfiParams) GetPeriod() uint32 {
-	if x != nil {
-		return x.Period
-	}
-	return 0
-}
-
-// MARKETFI — Market Facilitation Index.
-type MarketFiParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MarketFiParams) Reset() {
-	*x = MarketFiParams{}
-	mi := &file_indicators_params_proto_msgTypes[172]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MarketFiParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MarketFiParams) ProtoMessage() {}
-
-func (x *MarketFiParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[172]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MarketFiParams.ProtoReflect.Descriptor instead.
-func (*MarketFiParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{172}
-}
-
-// NVI — Negative Volume Index.
-type NviParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NviParams) Reset() {
-	*x = NviParams{}
-	mi := &file_indicators_params_proto_msgTypes[173]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NviParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NviParams) ProtoMessage() {}
-
-func (x *NviParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[173]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NviParams.ProtoReflect.Descriptor instead.
-func (*NviParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{173}
-}
-
 // OBV — On Balance Volume.
 type ObvParams struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -7616,7 +6803,7 @@ type ObvParams struct {
 
 func (x *ObvParams) Reset() {
 	*x = ObvParams{}
-	mi := &file_indicators_params_proto_msgTypes[174]
+	mi := &file_indicators_params_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7628,7 +6815,7 @@ func (x *ObvParams) String() string {
 func (*ObvParams) ProtoMessage() {}
 
 func (x *ObvParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[174]
+	mi := &file_indicators_params_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7641,142 +6828,7 @@ func (x *ObvParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObvParams.ProtoReflect.Descriptor instead.
 func (*ObvParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{174}
-}
-
-// PVI — Positive Volume Index.
-type PviParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PviParams) Reset() {
-	*x = PviParams{}
-	mi := &file_indicators_params_proto_msgTypes[175]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PviParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PviParams) ProtoMessage() {}
-
-func (x *PviParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[175]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PviParams.ProtoReflect.Descriptor instead.
-func (*PviParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{175}
-}
-
-// PVO — Percentage Volume Oscillator.
-type PvoParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FastPeriod    uint32                 `protobuf:"varint,1,opt,name=fast_period,json=fastPeriod,proto3" json:"fast_period,omitempty"`
-	SlowPeriod    uint32                 `protobuf:"varint,2,opt,name=slow_period,json=slowPeriod,proto3" json:"slow_period,omitempty"`
-	MaType        MAType                 `protobuf:"varint,3,opt,name=ma_type,json=maType,proto3,enum=trb.indicators.v1.MAType" json:"ma_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PvoParams) Reset() {
-	*x = PvoParams{}
-	mi := &file_indicators_params_proto_msgTypes[176]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PvoParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PvoParams) ProtoMessage() {}
-
-func (x *PvoParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[176]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PvoParams.ProtoReflect.Descriptor instead.
-func (*PvoParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{176}
-}
-
-func (x *PvoParams) GetFastPeriod() uint32 {
-	if x != nil {
-		return x.FastPeriod
-	}
-	return 0
-}
-
-func (x *PvoParams) GetSlowPeriod() uint32 {
-	if x != nil {
-		return x.SlowPeriod
-	}
-	return 0
-}
-
-func (x *PvoParams) GetMaType() MAType {
-	if x != nil {
-		return x.MaType
-	}
-	return MAType_MA_TYPE_SMA
-}
-
-// VWAP — Volume Weighted Average Price.
-type VwapParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VwapParams) Reset() {
-	*x = VwapParams{}
-	mi := &file_indicators_params_proto_msgTypes[177]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VwapParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VwapParams) ProtoMessage() {}
-
-func (x *VwapParams) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[177]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VwapParams.ProtoReflect.Descriptor instead.
-func (*VwapParams) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{177}
+	return file_indicators_params_proto_rawDescGZIP(), []int{157}
 }
 
 // Настройки индикатора для SettingsHash: вариант oneof = функция TA-Lib.
@@ -7816,19 +6868,15 @@ type IndicatorSettings struct {
 	//	*IndicatorSettings_Sqrt
 	//	*IndicatorSettings_Tan
 	//	*IndicatorSettings_Tanh
-	//	*IndicatorSettings_Ac
 	//	*IndicatorSettings_Adx
 	//	*IndicatorSettings_Adxr
-	//	*IndicatorSettings_Ao
 	//	*IndicatorSettings_Apo
 	//	*IndicatorSettings_Aroon
 	//	*IndicatorSettings_Aroonosc
 	//	*IndicatorSettings_Bop
 	//	*IndicatorSettings_Cci
 	//	*IndicatorSettings_Cmo
-	//	*IndicatorSettings_Cmou
 	//	*IndicatorSettings_Dx
-	//	*IndicatorSettings_Imi
 	//	*IndicatorSettings_Macd
 	//	*IndicatorSettings_Macdext
 	//	*IndicatorSettings_Macdfix
@@ -7839,27 +6887,21 @@ type IndicatorSettings struct {
 	//	*IndicatorSettings_PlusDi
 	//	*IndicatorSettings_PlusDm
 	//	*IndicatorSettings_Ppo
-	//	*IndicatorSettings_Qstick
 	//	*IndicatorSettings_Roc
 	//	*IndicatorSettings_Rocp
 	//	*IndicatorSettings_Rocr
 	//	*IndicatorSettings_Rocr100
-	//	*IndicatorSettings_Smi
 	//	*IndicatorSettings_Stoch
 	//	*IndicatorSettings_Stochf
 	//	*IndicatorSettings_Stochrsi
 	//	*IndicatorSettings_Trix
 	//	*IndicatorSettings_Ultosc
-	//	*IndicatorSettings_Wad
 	//	*IndicatorSettings_Willr
-	//	*IndicatorSettings_Accbands
 	//	*IndicatorSettings_Bbands
 	//	*IndicatorSettings_Dema
 	//	*IndicatorSettings_Ema
-	//	*IndicatorSettings_Hma
 	//	*IndicatorSettings_HtTrendline
 	//	*IndicatorSettings_Kama
-	//	*IndicatorSettings_Kc
 	//	*IndicatorSettings_Ma
 	//	*IndicatorSettings_Mama
 	//	*IndicatorSettings_Mavp
@@ -7868,11 +6910,9 @@ type IndicatorSettings struct {
 	//	*IndicatorSettings_Sar
 	//	*IndicatorSettings_Sarext
 	//	*IndicatorSettings_Sma
-	//	*IndicatorSettings_Supertrend
 	//	*IndicatorSettings_T3
 	//	*IndicatorSettings_Tema
 	//	*IndicatorSettings_Trima
-	//	*IndicatorSettings_Vwma
 	//	*IndicatorSettings_Wma
 	//	*IndicatorSettings_Cdl2Crows
 	//	*IndicatorSettings_Cdl3Blackcrows
@@ -7935,7 +6975,6 @@ type IndicatorSettings struct {
 	//	*IndicatorSettings_Cdlunique3River
 	//	*IndicatorSettings_Cdlupsidegap2Crows
 	//	*IndicatorSettings_Cdlxsidegap3Methods
-	//	*IndicatorSettings_Avgdev
 	//	*IndicatorSettings_Avgprice
 	//	*IndicatorSettings_Medprice
 	//	*IndicatorSettings_Typprice
@@ -7954,14 +6993,7 @@ type IndicatorSettings struct {
 	//	*IndicatorSettings_Trange
 	//	*IndicatorSettings_Ad
 	//	*IndicatorSettings_Adosc
-	//	*IndicatorSettings_Cmf
-	//	*IndicatorSettings_Efi
-	//	*IndicatorSettings_Marketfi
-	//	*IndicatorSettings_Nvi
 	//	*IndicatorSettings_Obv
-	//	*IndicatorSettings_Pvi
-	//	*IndicatorSettings_Pvo
-	//	*IndicatorSettings_Vwap
 	IndicatorType isIndicatorSettings_IndicatorType `protobuf_oneof:"indicator_type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -7969,7 +7001,7 @@ type IndicatorSettings struct {
 
 func (x *IndicatorSettings) Reset() {
 	*x = IndicatorSettings{}
-	mi := &file_indicators_params_proto_msgTypes[178]
+	mi := &file_indicators_params_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7981,7 +7013,7 @@ func (x *IndicatorSettings) String() string {
 func (*IndicatorSettings) ProtoMessage() {}
 
 func (x *IndicatorSettings) ProtoReflect() protoreflect.Message {
-	mi := &file_indicators_params_proto_msgTypes[178]
+	mi := &file_indicators_params_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7994,7 +7026,7 @@ func (x *IndicatorSettings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IndicatorSettings.ProtoReflect.Descriptor instead.
 func (*IndicatorSettings) Descriptor() ([]byte, []int) {
-	return file_indicators_params_proto_rawDescGZIP(), []int{178}
+	return file_indicators_params_proto_rawDescGZIP(), []int{158}
 }
 
 func (x *IndicatorSettings) GetIndicatorType() isIndicatorSettings_IndicatorType {
@@ -8292,15 +7324,6 @@ func (x *IndicatorSettings) GetTanh() *TanhParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetAc() *AcParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Ac); ok {
-			return x.Ac
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetAdx() *AdxParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Adx); ok {
@@ -8314,15 +7337,6 @@ func (x *IndicatorSettings) GetAdxr() *AdxrParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Adxr); ok {
 			return x.Adxr
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetAo() *AoParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Ao); ok {
-			return x.Ao
 		}
 	}
 	return nil
@@ -8382,28 +7396,10 @@ func (x *IndicatorSettings) GetCmo() *CmoParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetCmou() *CmouParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Cmou); ok {
-			return x.Cmou
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetDx() *DxParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Dx); ok {
 			return x.Dx
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetImi() *ImiParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Imi); ok {
-			return x.Imi
 		}
 	}
 	return nil
@@ -8499,15 +7495,6 @@ func (x *IndicatorSettings) GetPpo() *PpoParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetQstick() *QstickParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Qstick); ok {
-			return x.Qstick
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetRoc() *RocParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Roc); ok {
@@ -8539,15 +7526,6 @@ func (x *IndicatorSettings) GetRocr100() *Rocr100Params {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Rocr100); ok {
 			return x.Rocr100
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetSmi() *SmiParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Smi); ok {
-			return x.Smi
 		}
 	}
 	return nil
@@ -8598,28 +7576,10 @@ func (x *IndicatorSettings) GetUltosc() *UltOscParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetWad() *WadParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Wad); ok {
-			return x.Wad
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetWillr() *WillRParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Willr); ok {
 			return x.Willr
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetAccbands() *AccBandsParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Accbands); ok {
-			return x.Accbands
 		}
 	}
 	return nil
@@ -8652,15 +7612,6 @@ func (x *IndicatorSettings) GetEma() *EmaParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetHma() *HmaParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Hma); ok {
-			return x.Hma
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetHtTrendline() *HtTrendlineParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_HtTrendline); ok {
@@ -8674,15 +7625,6 @@ func (x *IndicatorSettings) GetKama() *KamaParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Kama); ok {
 			return x.Kama
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetKc() *KcParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Kc); ok {
-			return x.Kc
 		}
 	}
 	return nil
@@ -8760,15 +7702,6 @@ func (x *IndicatorSettings) GetSma() *SmaParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetSupertrend() *SuperTrendParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Supertrend); ok {
-			return x.Supertrend
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetT3() *T3Params {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_T3); ok {
@@ -8791,15 +7724,6 @@ func (x *IndicatorSettings) GetTrima() *TrimaParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Trima); ok {
 			return x.Trima
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetVwma() *VwmaParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Vwma); ok {
-			return x.Vwma
 		}
 	}
 	return nil
@@ -9363,15 +8287,6 @@ func (x *IndicatorSettings) GetCdlxsidegap3Methods() *CdlXsideGap3MethodsParams 
 	return nil
 }
 
-func (x *IndicatorSettings) GetAvgdev() *AvgDevParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Avgdev); ok {
-			return x.Avgdev
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetAvgprice() *AvgPriceParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Avgprice); ok {
@@ -9534,73 +8449,10 @@ func (x *IndicatorSettings) GetAdosc() *AdOscParams {
 	return nil
 }
 
-func (x *IndicatorSettings) GetCmf() *CmfParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Cmf); ok {
-			return x.Cmf
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetEfi() *EfiParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Efi); ok {
-			return x.Efi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetMarketfi() *MarketFiParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Marketfi); ok {
-			return x.Marketfi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetNvi() *NviParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Nvi); ok {
-			return x.Nvi
-		}
-	}
-	return nil
-}
-
 func (x *IndicatorSettings) GetObv() *ObvParams {
 	if x != nil {
 		if x, ok := x.IndicatorType.(*IndicatorSettings_Obv); ok {
 			return x.Obv
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetPvi() *PviParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Pvi); ok {
-			return x.Pvi
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetPvo() *PvoParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Pvo); ok {
-			return x.Pvo
-		}
-	}
-	return nil
-}
-
-func (x *IndicatorSettings) GetVwap() *VwapParams {
-	if x != nil {
-		if x, ok := x.IndicatorType.(*IndicatorSettings_Vwap); ok {
-			return x.Vwap
 		}
 	}
 	return nil
@@ -9742,21 +8594,13 @@ type IndicatorSettings_Tanh struct {
 	Tanh *TanhParams `protobuf:"bytes,54,opt,name=tanh,proto3,oneof"`
 }
 
-type IndicatorSettings_Ac struct {
-	// Momentum Indicators (60–99), кроме rsi=1
-	Ac *AcParams `protobuf:"bytes,60,opt,name=ac,proto3,oneof"`
-}
-
 type IndicatorSettings_Adx struct {
+	// Momentum Indicators (61–95), кроме rsi=1
 	Adx *AdxParams `protobuf:"bytes,61,opt,name=adx,proto3,oneof"`
 }
 
 type IndicatorSettings_Adxr struct {
 	Adxr *AdxrParams `protobuf:"bytes,62,opt,name=adxr,proto3,oneof"`
-}
-
-type IndicatorSettings_Ao struct {
-	Ao *AoParams `protobuf:"bytes,63,opt,name=ao,proto3,oneof"`
 }
 
 type IndicatorSettings_Apo struct {
@@ -9783,16 +8627,8 @@ type IndicatorSettings_Cmo struct {
 	Cmo *CmoParams `protobuf:"bytes,69,opt,name=cmo,proto3,oneof"`
 }
 
-type IndicatorSettings_Cmou struct {
-	Cmou *CmouParams `protobuf:"bytes,70,opt,name=cmou,proto3,oneof"`
-}
-
 type IndicatorSettings_Dx struct {
 	Dx *DxParams `protobuf:"bytes,71,opt,name=dx,proto3,oneof"`
-}
-
-type IndicatorSettings_Imi struct {
-	Imi *ImiParams `protobuf:"bytes,72,opt,name=imi,proto3,oneof"`
 }
 
 type IndicatorSettings_Macd struct {
@@ -9835,10 +8671,6 @@ type IndicatorSettings_Ppo struct {
 	Ppo *PpoParams `protobuf:"bytes,82,opt,name=ppo,proto3,oneof"`
 }
 
-type IndicatorSettings_Qstick struct {
-	Qstick *QstickParams `protobuf:"bytes,83,opt,name=qstick,proto3,oneof"`
-}
-
 type IndicatorSettings_Roc struct {
 	Roc *RocParams `protobuf:"bytes,84,opt,name=roc,proto3,oneof"`
 }
@@ -9853,10 +8685,6 @@ type IndicatorSettings_Rocr struct {
 
 type IndicatorSettings_Rocr100 struct {
 	Rocr100 *Rocr100Params `protobuf:"bytes,87,opt,name=rocr100,proto3,oneof"`
-}
-
-type IndicatorSettings_Smi struct {
-	Smi *SmiParams `protobuf:"bytes,88,opt,name=smi,proto3,oneof"`
 }
 
 type IndicatorSettings_Stoch struct {
@@ -9879,20 +8707,12 @@ type IndicatorSettings_Ultosc struct {
 	Ultosc *UltOscParams `protobuf:"bytes,93,opt,name=ultosc,proto3,oneof"`
 }
 
-type IndicatorSettings_Wad struct {
-	Wad *WadParams `protobuf:"bytes,94,opt,name=wad,proto3,oneof"`
-}
-
 type IndicatorSettings_Willr struct {
 	Willr *WillRParams `protobuf:"bytes,95,opt,name=willr,proto3,oneof"`
 }
 
-type IndicatorSettings_Accbands struct {
-	// Overlap Studies (100–129)
-	Accbands *AccBandsParams `protobuf:"bytes,100,opt,name=accbands,proto3,oneof"`
-}
-
 type IndicatorSettings_Bbands struct {
+	// Overlap Studies (101–121)
 	Bbands *BbandsParams `protobuf:"bytes,101,opt,name=bbands,proto3,oneof"`
 }
 
@@ -9904,20 +8724,12 @@ type IndicatorSettings_Ema struct {
 	Ema *EmaParams `protobuf:"bytes,103,opt,name=ema,proto3,oneof"`
 }
 
-type IndicatorSettings_Hma struct {
-	Hma *HmaParams `protobuf:"bytes,104,opt,name=hma,proto3,oneof"`
-}
-
 type IndicatorSettings_HtTrendline struct {
 	HtTrendline *HtTrendlineParams `protobuf:"bytes,105,opt,name=ht_trendline,json=htTrendline,proto3,oneof"`
 }
 
 type IndicatorSettings_Kama struct {
 	Kama *KamaParams `protobuf:"bytes,106,opt,name=kama,proto3,oneof"`
-}
-
-type IndicatorSettings_Kc struct {
-	Kc *KcParams `protobuf:"bytes,107,opt,name=kc,proto3,oneof"`
 }
 
 type IndicatorSettings_Ma struct {
@@ -9952,10 +8764,6 @@ type IndicatorSettings_Sma struct {
 	Sma *SmaParams `protobuf:"bytes,115,opt,name=sma,proto3,oneof"`
 }
 
-type IndicatorSettings_Supertrend struct {
-	Supertrend *SuperTrendParams `protobuf:"bytes,116,opt,name=supertrend,proto3,oneof"`
-}
-
 type IndicatorSettings_T3 struct {
 	T3 *T3Params `protobuf:"bytes,117,opt,name=t3,proto3,oneof"`
 }
@@ -9968,16 +8776,12 @@ type IndicatorSettings_Trima struct {
 	Trima *TrimaParams `protobuf:"bytes,119,opt,name=trima,proto3,oneof"`
 }
 
-type IndicatorSettings_Vwma struct {
-	Vwma *VwmaParams `protobuf:"bytes,120,opt,name=vwma,proto3,oneof"`
-}
-
 type IndicatorSettings_Wma struct {
 	Wma *WmaParams `protobuf:"bytes,121,opt,name=wma,proto3,oneof"`
 }
 
 type IndicatorSettings_Cdl2Crows struct {
-	// Pattern Recognition (130–199)
+	// Pattern Recognition (130–190)
 	Cdl2Crows *Cdl2CrowsParams `protobuf:"bytes,130,opt,name=cdl2crows,proto3,oneof"`
 }
 
@@ -10221,12 +9025,8 @@ type IndicatorSettings_Cdlxsidegap3Methods struct {
 	Cdlxsidegap3Methods *CdlXsideGap3MethodsParams `protobuf:"bytes,190,opt,name=cdlxsidegap3methods,proto3,oneof"`
 }
 
-type IndicatorSettings_Avgdev struct {
-	// Price Transform (200–209)
-	Avgdev *AvgDevParams `protobuf:"bytes,200,opt,name=avgdev,proto3,oneof"`
-}
-
 type IndicatorSettings_Avgprice struct {
+	// Price Transform (201–204)
 	Avgprice *AvgPriceParams `protobuf:"bytes,201,opt,name=avgprice,proto3,oneof"`
 }
 
@@ -10243,7 +9043,7 @@ type IndicatorSettings_Wclprice struct {
 }
 
 type IndicatorSettings_Beta struct {
-	// Statistic Functions (210–219)
+	// Statistic Functions (210–218)
 	Beta *BetaParams `protobuf:"bytes,210,opt,name=beta,proto3,oneof"`
 }
 
@@ -10280,7 +9080,7 @@ type IndicatorSettings_Var struct {
 }
 
 type IndicatorSettings_Atr struct {
-	// Volatility Indicators (220–229)
+	// Volatility Indicators (220–222)
 	Atr *AtrParams `protobuf:"bytes,220,opt,name=atr,proto3,oneof"`
 }
 
@@ -10293,7 +9093,7 @@ type IndicatorSettings_Trange struct {
 }
 
 type IndicatorSettings_Ad struct {
-	// Volume Indicators (230–249)
+	// Volume Indicators (230–236)
 	Ad *AdParams `protobuf:"bytes,230,opt,name=ad,proto3,oneof"`
 }
 
@@ -10301,36 +9101,8 @@ type IndicatorSettings_Adosc struct {
 	Adosc *AdOscParams `protobuf:"bytes,231,opt,name=adosc,proto3,oneof"`
 }
 
-type IndicatorSettings_Cmf struct {
-	Cmf *CmfParams `protobuf:"bytes,232,opt,name=cmf,proto3,oneof"`
-}
-
-type IndicatorSettings_Efi struct {
-	Efi *EfiParams `protobuf:"bytes,233,opt,name=efi,proto3,oneof"`
-}
-
-type IndicatorSettings_Marketfi struct {
-	Marketfi *MarketFiParams `protobuf:"bytes,234,opt,name=marketfi,proto3,oneof"`
-}
-
-type IndicatorSettings_Nvi struct {
-	Nvi *NviParams `protobuf:"bytes,235,opt,name=nvi,proto3,oneof"`
-}
-
 type IndicatorSettings_Obv struct {
 	Obv *ObvParams `protobuf:"bytes,236,opt,name=obv,proto3,oneof"`
-}
-
-type IndicatorSettings_Pvi struct {
-	Pvi *PviParams `protobuf:"bytes,237,opt,name=pvi,proto3,oneof"`
-}
-
-type IndicatorSettings_Pvo struct {
-	Pvo *PvoParams `protobuf:"bytes,238,opt,name=pvo,proto3,oneof"`
-}
-
-type IndicatorSettings_Vwap struct {
-	Vwap *VwapParams `protobuf:"bytes,239,opt,name=vwap,proto3,oneof"`
 }
 
 func (*IndicatorSettings_Rsi) isIndicatorSettings_IndicatorType() {}
@@ -10397,13 +9169,9 @@ func (*IndicatorSettings_Tan) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Tanh) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Ac) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Adx) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Adxr) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Ao) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Apo) isIndicatorSettings_IndicatorType() {}
 
@@ -10417,11 +9185,7 @@ func (*IndicatorSettings_Cci) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Cmo) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Cmou) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Dx) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Imi) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Macd) isIndicatorSettings_IndicatorType() {}
 
@@ -10443,8 +9207,6 @@ func (*IndicatorSettings_PlusDm) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Ppo) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Qstick) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Roc) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Rocp) isIndicatorSettings_IndicatorType() {}
@@ -10452,8 +9214,6 @@ func (*IndicatorSettings_Rocp) isIndicatorSettings_IndicatorType() {}
 func (*IndicatorSettings_Rocr) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Rocr100) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Smi) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Stoch) isIndicatorSettings_IndicatorType() {}
 
@@ -10465,11 +9225,7 @@ func (*IndicatorSettings_Trix) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Ultosc) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Wad) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Willr) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Accbands) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Bbands) isIndicatorSettings_IndicatorType() {}
 
@@ -10477,13 +9233,9 @@ func (*IndicatorSettings_Dema) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Ema) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Hma) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_HtTrendline) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Kama) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Kc) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Ma) isIndicatorSettings_IndicatorType() {}
 
@@ -10501,15 +9253,11 @@ func (*IndicatorSettings_Sarext) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Sma) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Supertrend) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_T3) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Tema) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Trima) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Vwma) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Wma) isIndicatorSettings_IndicatorType() {}
 
@@ -10635,8 +9383,6 @@ func (*IndicatorSettings_Cdlupsidegap2Crows) isIndicatorSettings_IndicatorType()
 
 func (*IndicatorSettings_Cdlxsidegap3Methods) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Avgdev) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Avgprice) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Medprice) isIndicatorSettings_IndicatorType() {}
@@ -10673,21 +9419,7 @@ func (*IndicatorSettings_Ad) isIndicatorSettings_IndicatorType() {}
 
 func (*IndicatorSettings_Adosc) isIndicatorSettings_IndicatorType() {}
 
-func (*IndicatorSettings_Cmf) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Efi) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Marketfi) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Nvi) isIndicatorSettings_IndicatorType() {}
-
 func (*IndicatorSettings_Obv) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Pvi) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Pvo) isIndicatorSettings_IndicatorType() {}
-
-func (*IndicatorSettings_Vwap) isIndicatorSettings_IndicatorType() {}
 
 var File_indicators_params_proto protoreflect.FileDescriptor
 
@@ -10741,23 +9473,12 @@ const file_indicators_params_proto_rawDesc = "" +
 	"SqrtParams\"\v\n" +
 	"\tTanParams\"\f\n" +
 	"\n" +
-	"TanhParams\"q\n" +
-	"\bAcParams\x12\x1f\n" +
-	"\vfast_period\x18\x01 \x01(\rR\n" +
-	"fastPeriod\x12\x1f\n" +
-	"\vslow_period\x18\x02 \x01(\rR\n" +
-	"slowPeriod\x12#\n" +
-	"\rsignal_period\x18\x03 \x01(\rR\fsignalPeriod\"#\n" +
+	"TanhParams\"#\n" +
 	"\tAdxParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"$\n" +
 	"\n" +
 	"AdxrParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"L\n" +
-	"\bAoParams\x12\x1f\n" +
-	"\vfast_period\x18\x01 \x01(\rR\n" +
-	"fastPeriod\x12\x1f\n" +
-	"\vslow_period\x18\x02 \x01(\rR\n" +
-	"slowPeriod\"\x81\x01\n" +
+	"\x06period\x18\x01 \x01(\rR\x06period\"\x81\x01\n" +
 	"\tApoParams\x12\x1f\n" +
 	"\vfast_period\x18\x01 \x01(\rR\n" +
 	"fastPeriod\x12\x1f\n" +
@@ -10772,13 +9493,8 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\tCciParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
 	"\tCmoParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"$\n" +
-	"\n" +
-	"CmouParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"\"\n" +
 	"\bDxParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
-	"\tImiParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"s\n" +
 	"\n" +
 	"MacdParams\x12\x1f\n" +
@@ -10817,9 +9533,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"fastPeriod\x12\x1f\n" +
 	"\vslow_period\x18\x02 \x01(\rR\n" +
 	"slowPeriod\x122\n" +
-	"\ama_type\x18\x03 \x01(\x0e2\x19.trb.indicators.v1.MATypeR\x06maType\"&\n" +
-	"\fQstickParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
+	"\ama_type\x18\x03 \x01(\x0e2\x19.trb.indicators.v1.MATypeR\x06maType\"#\n" +
 	"\tRocParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"$\n" +
 	"\n" +
@@ -10831,14 +9545,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\rRocr100Params\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
 	"\tRsiParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"\x8a\x01\n" +
-	"\tSmiParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\x12\x1f\n" +
-	"\vfast_period\x18\x02 \x01(\rR\n" +
-	"fastPeriod\x12\x1f\n" +
-	"\vslow_period\x18\x03 \x01(\rR\n" +
-	"slowPeriod\x12#\n" +
-	"\rsignal_period\x18\x04 \x01(\rR\fsignalPeriod\"\xf9\x01\n" +
+	"\x06period\x18\x01 \x01(\rR\x06period\"\xf9\x01\n" +
 	"\vStochParams\x12\"\n" +
 	"\rfast_k_period\x18\x01 \x01(\rR\vfastKPeriod\x12\"\n" +
 	"\rslow_k_period\x18\x02 \x01(\rR\vslowKPeriod\x12>\n" +
@@ -10860,11 +9567,8 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\fUltOscParams\x12\x18\n" +
 	"\aperiod1\x18\x01 \x01(\rR\aperiod1\x12\x18\n" +
 	"\aperiod2\x18\x02 \x01(\rR\aperiod2\x12\x18\n" +
-	"\aperiod3\x18\x03 \x01(\rR\aperiod3\"\v\n" +
-	"\tWadParams\"%\n" +
+	"\aperiod3\x18\x03 \x01(\rR\aperiod3\"%\n" +
 	"\vWillRParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"(\n" +
-	"\x0eAccBandsParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"\x92\x01\n" +
 	"\fBbandsParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\x12\x1a\n" +
@@ -10875,18 +9579,11 @@ const file_indicators_params_proto_rawDesc = "" +
 	"DemaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
 	"\tEmaParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
-	"\tHmaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"\x13\n" +
 	"\x11HtTrendlineParams\"$\n" +
 	"\n" +
 	"KamaParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"X\n" +
-	"\bKcParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\x12\x1d\n" +
-	"\n" +
-	"atr_period\x18\x02 \x01(\rR\tatrPeriod\x12\x15\n" +
-	"\x06nb_dev\x18\x03 \x01(\x01R\x05nbDev\"V\n" +
+	"\x06period\x18\x01 \x01(\rR\x06period\"V\n" +
 	"\bMaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\x122\n" +
 	"\ama_type\x18\x02 \x01(\x0e2\x19.trb.indicators.v1.MATypeR\x06maType\"J\n" +
@@ -10921,12 +9618,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\x12acceleration_short\x18\a \x01(\x01R\x11accelerationShort\x124\n" +
 	"\x16acceleration_max_short\x18\b \x01(\x01R\x14accelerationMaxShort\"#\n" +
 	"\tSmaParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"J\n" +
-	"\x10SuperTrendParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\x12\x1e\n" +
-	"\n" +
-	"multiplier\x18\x02 \x01(\x01R\n" +
-	"multiplier\"=\n" +
+	"\x06period\x18\x01 \x01(\rR\x06period\"=\n" +
 	"\bT3Params\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\x12\x19\n" +
 	"\bv_factor\x18\x02 \x01(\x01R\avFactor\"$\n" +
@@ -10934,9 +9626,6 @@ const file_indicators_params_proto_rawDesc = "" +
 	"TemaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"%\n" +
 	"\vTrimaParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"$\n" +
-	"\n" +
-	"VwmaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
 	"\tWmaParams\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\rR\x06period\"\x11\n" +
@@ -11007,9 +9696,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\x10CdlTristarParams\"\x17\n" +
 	"\x15CdlUnique3RiverParams\"\x1a\n" +
 	"\x18CdlUpsideGap2CrowsParams\"\x1b\n" +
-	"\x19CdlXsideGap3MethodsParams\"&\n" +
-	"\fAvgDevParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"\x10\n" +
+	"\x19CdlXsideGap3MethodsParams\"\x10\n" +
 	"\x0eAvgPriceParams\"\x10\n" +
 	"\x0eMedPriceParams\"\x10\n" +
 	"\x0eTypPriceParams\"\x10\n" +
@@ -11047,23 +9734,8 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\vfast_period\x18\x01 \x01(\rR\n" +
 	"fastPeriod\x12\x1f\n" +
 	"\vslow_period\x18\x02 \x01(\rR\n" +
-	"slowPeriod\"#\n" +
-	"\tCmfParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"#\n" +
-	"\tEfiParams\x12\x16\n" +
-	"\x06period\x18\x01 \x01(\rR\x06period\"\x10\n" +
-	"\x0eMarketFiParams\"\v\n" +
-	"\tNviParams\"\v\n" +
-	"\tObvParams\"\v\n" +
-	"\tPviParams\"\x81\x01\n" +
-	"\tPvoParams\x12\x1f\n" +
-	"\vfast_period\x18\x01 \x01(\rR\n" +
-	"fastPeriod\x12\x1f\n" +
-	"\vslow_period\x18\x02 \x01(\rR\n" +
-	"slowPeriod\x122\n" +
-	"\ama_type\x18\x03 \x01(\x0e2\x19.trb.indicators.v1.MATypeR\x06maType\"\f\n" +
-	"\n" +
-	"VwapParams\"\xe3[\n" +
+	"slowPeriod\"\v\n" +
+	"\tObvParams\"\xaeS\n" +
 	"\x11IndicatorSettings\x120\n" +
 	"\x03rsi\x18\x01 \x01(\v2\x1c.trb.indicators.v1.RsiParamsH\x00R\x03rsi\x12F\n" +
 	"\vht_dcperiod\x18\n" +
@@ -11099,20 +9771,16 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\x04sinh\x183 \x01(\v2\x1d.trb.indicators.v1.SinhParamsH\x00R\x04sinh\x123\n" +
 	"\x04sqrt\x184 \x01(\v2\x1d.trb.indicators.v1.SqrtParamsH\x00R\x04sqrt\x120\n" +
 	"\x03tan\x185 \x01(\v2\x1c.trb.indicators.v1.TanParamsH\x00R\x03tan\x123\n" +
-	"\x04tanh\x186 \x01(\v2\x1d.trb.indicators.v1.TanhParamsH\x00R\x04tanh\x12-\n" +
-	"\x02ac\x18< \x01(\v2\x1b.trb.indicators.v1.AcParamsH\x00R\x02ac\x120\n" +
+	"\x04tanh\x186 \x01(\v2\x1d.trb.indicators.v1.TanhParamsH\x00R\x04tanh\x120\n" +
 	"\x03adx\x18= \x01(\v2\x1c.trb.indicators.v1.AdxParamsH\x00R\x03adx\x123\n" +
-	"\x04adxr\x18> \x01(\v2\x1d.trb.indicators.v1.AdxrParamsH\x00R\x04adxr\x12-\n" +
-	"\x02ao\x18? \x01(\v2\x1b.trb.indicators.v1.AoParamsH\x00R\x02ao\x120\n" +
+	"\x04adxr\x18> \x01(\v2\x1d.trb.indicators.v1.AdxrParamsH\x00R\x04adxr\x120\n" +
 	"\x03apo\x18@ \x01(\v2\x1c.trb.indicators.v1.ApoParamsH\x00R\x03apo\x126\n" +
 	"\x05aroon\x18A \x01(\v2\x1e.trb.indicators.v1.AroonParamsH\x00R\x05aroon\x12?\n" +
 	"\baroonosc\x18B \x01(\v2!.trb.indicators.v1.AroonOscParamsH\x00R\baroonosc\x120\n" +
 	"\x03bop\x18C \x01(\v2\x1c.trb.indicators.v1.BopParamsH\x00R\x03bop\x120\n" +
 	"\x03cci\x18D \x01(\v2\x1c.trb.indicators.v1.CciParamsH\x00R\x03cci\x120\n" +
-	"\x03cmo\x18E \x01(\v2\x1c.trb.indicators.v1.CmoParamsH\x00R\x03cmo\x123\n" +
-	"\x04cmou\x18F \x01(\v2\x1d.trb.indicators.v1.CmouParamsH\x00R\x04cmou\x12-\n" +
-	"\x02dx\x18G \x01(\v2\x1b.trb.indicators.v1.DxParamsH\x00R\x02dx\x120\n" +
-	"\x03imi\x18H \x01(\v2\x1c.trb.indicators.v1.ImiParamsH\x00R\x03imi\x123\n" +
+	"\x03cmo\x18E \x01(\v2\x1c.trb.indicators.v1.CmoParamsH\x00R\x03cmo\x12-\n" +
+	"\x02dx\x18G \x01(\v2\x1b.trb.indicators.v1.DxParamsH\x00R\x02dx\x123\n" +
 	"\x04macd\x18I \x01(\v2\x1d.trb.indicators.v1.MacdParamsH\x00R\x04macd\x12<\n" +
 	"\amacdext\x18J \x01(\v2 .trb.indicators.v1.MacdExtParamsH\x00R\amacdext\x12<\n" +
 	"\amacdfix\x18K \x01(\v2 .trb.indicators.v1.MacdFixParamsH\x00R\amacdfix\x120\n" +
@@ -11122,28 +9790,22 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\x03mom\x18O \x01(\v2\x1c.trb.indicators.v1.MomParamsH\x00R\x03mom\x12:\n" +
 	"\aplus_di\x18P \x01(\v2\x1f.trb.indicators.v1.PlusDiParamsH\x00R\x06plusDi\x12:\n" +
 	"\aplus_dm\x18Q \x01(\v2\x1f.trb.indicators.v1.PlusDmParamsH\x00R\x06plusDm\x120\n" +
-	"\x03ppo\x18R \x01(\v2\x1c.trb.indicators.v1.PpoParamsH\x00R\x03ppo\x129\n" +
-	"\x06qstick\x18S \x01(\v2\x1f.trb.indicators.v1.QstickParamsH\x00R\x06qstick\x120\n" +
+	"\x03ppo\x18R \x01(\v2\x1c.trb.indicators.v1.PpoParamsH\x00R\x03ppo\x120\n" +
 	"\x03roc\x18T \x01(\v2\x1c.trb.indicators.v1.RocParamsH\x00R\x03roc\x123\n" +
 	"\x04rocp\x18U \x01(\v2\x1d.trb.indicators.v1.RocpParamsH\x00R\x04rocp\x123\n" +
 	"\x04rocr\x18V \x01(\v2\x1d.trb.indicators.v1.RocrParamsH\x00R\x04rocr\x12<\n" +
-	"\arocr100\x18W \x01(\v2 .trb.indicators.v1.Rocr100ParamsH\x00R\arocr100\x120\n" +
-	"\x03smi\x18X \x01(\v2\x1c.trb.indicators.v1.SmiParamsH\x00R\x03smi\x126\n" +
+	"\arocr100\x18W \x01(\v2 .trb.indicators.v1.Rocr100ParamsH\x00R\arocr100\x126\n" +
 	"\x05stoch\x18Y \x01(\v2\x1e.trb.indicators.v1.StochParamsH\x00R\x05stoch\x129\n" +
 	"\x06stochf\x18Z \x01(\v2\x1f.trb.indicators.v1.StochFParamsH\x00R\x06stochf\x12?\n" +
 	"\bstochrsi\x18[ \x01(\v2!.trb.indicators.v1.StochRsiParamsH\x00R\bstochrsi\x123\n" +
 	"\x04trix\x18\\ \x01(\v2\x1d.trb.indicators.v1.TrixParamsH\x00R\x04trix\x129\n" +
-	"\x06ultosc\x18] \x01(\v2\x1f.trb.indicators.v1.UltOscParamsH\x00R\x06ultosc\x120\n" +
-	"\x03wad\x18^ \x01(\v2\x1c.trb.indicators.v1.WadParamsH\x00R\x03wad\x126\n" +
-	"\x05willr\x18_ \x01(\v2\x1e.trb.indicators.v1.WillRParamsH\x00R\x05willr\x12?\n" +
-	"\baccbands\x18d \x01(\v2!.trb.indicators.v1.AccBandsParamsH\x00R\baccbands\x129\n" +
+	"\x06ultosc\x18] \x01(\v2\x1f.trb.indicators.v1.UltOscParamsH\x00R\x06ultosc\x126\n" +
+	"\x05willr\x18_ \x01(\v2\x1e.trb.indicators.v1.WillRParamsH\x00R\x05willr\x129\n" +
 	"\x06bbands\x18e \x01(\v2\x1f.trb.indicators.v1.BbandsParamsH\x00R\x06bbands\x123\n" +
 	"\x04dema\x18f \x01(\v2\x1d.trb.indicators.v1.DemaParamsH\x00R\x04dema\x120\n" +
-	"\x03ema\x18g \x01(\v2\x1c.trb.indicators.v1.EmaParamsH\x00R\x03ema\x120\n" +
-	"\x03hma\x18h \x01(\v2\x1c.trb.indicators.v1.HmaParamsH\x00R\x03hma\x12I\n" +
+	"\x03ema\x18g \x01(\v2\x1c.trb.indicators.v1.EmaParamsH\x00R\x03ema\x12I\n" +
 	"\fht_trendline\x18i \x01(\v2$.trb.indicators.v1.HtTrendlineParamsH\x00R\vhtTrendline\x123\n" +
 	"\x04kama\x18j \x01(\v2\x1d.trb.indicators.v1.KamaParamsH\x00R\x04kama\x12-\n" +
-	"\x02kc\x18k \x01(\v2\x1b.trb.indicators.v1.KcParamsH\x00R\x02kc\x12-\n" +
 	"\x02ma\x18l \x01(\v2\x1b.trb.indicators.v1.MaParamsH\x00R\x02ma\x123\n" +
 	"\x04mama\x18m \x01(\v2\x1d.trb.indicators.v1.MamaParamsH\x00R\x04mama\x123\n" +
 	"\x04mavp\x18n \x01(\v2\x1d.trb.indicators.v1.MavpParamsH\x00R\x04mavp\x12?\n" +
@@ -11151,14 +9813,10 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\bmidprice\x18p \x01(\v2!.trb.indicators.v1.MidPriceParamsH\x00R\bmidprice\x120\n" +
 	"\x03sar\x18q \x01(\v2\x1c.trb.indicators.v1.SarParamsH\x00R\x03sar\x129\n" +
 	"\x06sarext\x18r \x01(\v2\x1f.trb.indicators.v1.SarExtParamsH\x00R\x06sarext\x120\n" +
-	"\x03sma\x18s \x01(\v2\x1c.trb.indicators.v1.SmaParamsH\x00R\x03sma\x12E\n" +
-	"\n" +
-	"supertrend\x18t \x01(\v2#.trb.indicators.v1.SuperTrendParamsH\x00R\n" +
-	"supertrend\x12-\n" +
+	"\x03sma\x18s \x01(\v2\x1c.trb.indicators.v1.SmaParamsH\x00R\x03sma\x12-\n" +
 	"\x02t3\x18u \x01(\v2\x1b.trb.indicators.v1.T3ParamsH\x00R\x02t3\x123\n" +
 	"\x04tema\x18v \x01(\v2\x1d.trb.indicators.v1.TemaParamsH\x00R\x04tema\x126\n" +
-	"\x05trima\x18w \x01(\v2\x1e.trb.indicators.v1.TrimaParamsH\x00R\x05trima\x123\n" +
-	"\x04vwma\x18x \x01(\v2\x1d.trb.indicators.v1.VwmaParamsH\x00R\x04vwma\x120\n" +
+	"\x05trima\x18w \x01(\v2\x1e.trb.indicators.v1.TrimaParamsH\x00R\x05trima\x120\n" +
 	"\x03wma\x18y \x01(\v2\x1c.trb.indicators.v1.WmaParamsH\x00R\x03wma\x12C\n" +
 	"\tcdl2crows\x18\x82\x01 \x01(\v2\".trb.indicators.v1.Cdl2CrowsParamsH\x00R\tcdl2crows\x12R\n" +
 	"\x0ecdl3blackcrows\x18\x83\x01 \x01(\v2'.trb.indicators.v1.Cdl3BlackCrowsParamsH\x00R\x0ecdl3blackcrows\x12F\n" +
@@ -11230,8 +9888,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"cdltristar\x12U\n" +
 	"\x0fcdlunique3river\x18\xbc\x01 \x01(\v2(.trb.indicators.v1.CdlUnique3RiverParamsH\x00R\x0fcdlunique3river\x12^\n" +
 	"\x12cdlupsidegap2crows\x18\xbd\x01 \x01(\v2+.trb.indicators.v1.CdlUpsideGap2CrowsParamsH\x00R\x12cdlupsidegap2crows\x12a\n" +
-	"\x13cdlxsidegap3methods\x18\xbe\x01 \x01(\v2,.trb.indicators.v1.CdlXsideGap3MethodsParamsH\x00R\x13cdlxsidegap3methods\x12:\n" +
-	"\x06avgdev\x18\xc8\x01 \x01(\v2\x1f.trb.indicators.v1.AvgDevParamsH\x00R\x06avgdev\x12@\n" +
+	"\x13cdlxsidegap3methods\x18\xbe\x01 \x01(\v2,.trb.indicators.v1.CdlXsideGap3MethodsParamsH\x00R\x13cdlxsidegap3methods\x12@\n" +
 	"\bavgprice\x18\xc9\x01 \x01(\v2!.trb.indicators.v1.AvgPriceParamsH\x00R\bavgprice\x12@\n" +
 	"\bmedprice\x18\xca\x01 \x01(\v2!.trb.indicators.v1.MedPriceParamsH\x00R\bmedprice\x12@\n" +
 	"\btypprice\x18\xcb\x01 \x01(\v2!.trb.indicators.v1.TypPriceParamsH\x00R\btypprice\x12@\n" +
@@ -11250,14 +9907,7 @@ const file_indicators_params_proto_rawDesc = "" +
 	"\x06trange\x18\xde\x01 \x01(\v2\x1f.trb.indicators.v1.TrangeParamsH\x00R\x06trange\x12.\n" +
 	"\x02ad\x18\xe6\x01 \x01(\v2\x1b.trb.indicators.v1.AdParamsH\x00R\x02ad\x127\n" +
 	"\x05adosc\x18\xe7\x01 \x01(\v2\x1e.trb.indicators.v1.AdOscParamsH\x00R\x05adosc\x121\n" +
-	"\x03cmf\x18\xe8\x01 \x01(\v2\x1c.trb.indicators.v1.CmfParamsH\x00R\x03cmf\x121\n" +
-	"\x03efi\x18\xe9\x01 \x01(\v2\x1c.trb.indicators.v1.EfiParamsH\x00R\x03efi\x12@\n" +
-	"\bmarketfi\x18\xea\x01 \x01(\v2!.trb.indicators.v1.MarketFiParamsH\x00R\bmarketfi\x121\n" +
-	"\x03nvi\x18\xeb\x01 \x01(\v2\x1c.trb.indicators.v1.NviParamsH\x00R\x03nvi\x121\n" +
-	"\x03obv\x18\xec\x01 \x01(\v2\x1c.trb.indicators.v1.ObvParamsH\x00R\x03obv\x121\n" +
-	"\x03pvi\x18\xed\x01 \x01(\v2\x1c.trb.indicators.v1.PviParamsH\x00R\x03pvi\x121\n" +
-	"\x03pvo\x18\xee\x01 \x01(\v2\x1c.trb.indicators.v1.PvoParamsH\x00R\x03pvo\x124\n" +
-	"\x04vwap\x18\xef\x01 \x01(\v2\x1d.trb.indicators.v1.VwapParamsH\x00R\x04vwapB\x10\n" +
+	"\x03obv\x18\xec\x01 \x01(\v2\x1c.trb.indicators.v1.ObvParamsH\x00R\x03obvB\x10\n" +
 	"\x0eindicator_type*\xa6\x01\n" +
 	"\x06MAType\x12\x0f\n" +
 	"\vMA_TYPE_SMA\x10\x00\x12\x0f\n" +
@@ -11284,7 +9934,7 @@ func file_indicators_params_proto_rawDescGZIP() []byte {
 }
 
 var file_indicators_params_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_indicators_params_proto_msgTypes = make([]protoimpl.MessageInfo, 179)
+var file_indicators_params_proto_msgTypes = make([]protoimpl.MessageInfo, 159)
 var file_indicators_params_proto_goTypes = []any{
 	(MAType)(0),                       // 0: trb.indicators.v1.MAType
 	(*HtDcPeriodParams)(nil),          // 1: trb.indicators.v1.HtDcPeriodParams
@@ -11318,154 +9968,134 @@ var file_indicators_params_proto_goTypes = []any{
 	(*SqrtParams)(nil),                // 29: trb.indicators.v1.SqrtParams
 	(*TanParams)(nil),                 // 30: trb.indicators.v1.TanParams
 	(*TanhParams)(nil),                // 31: trb.indicators.v1.TanhParams
-	(*AcParams)(nil),                  // 32: trb.indicators.v1.AcParams
-	(*AdxParams)(nil),                 // 33: trb.indicators.v1.AdxParams
-	(*AdxrParams)(nil),                // 34: trb.indicators.v1.AdxrParams
-	(*AoParams)(nil),                  // 35: trb.indicators.v1.AoParams
-	(*ApoParams)(nil),                 // 36: trb.indicators.v1.ApoParams
-	(*AroonParams)(nil),               // 37: trb.indicators.v1.AroonParams
-	(*AroonOscParams)(nil),            // 38: trb.indicators.v1.AroonOscParams
-	(*BopParams)(nil),                 // 39: trb.indicators.v1.BopParams
-	(*CciParams)(nil),                 // 40: trb.indicators.v1.CciParams
-	(*CmoParams)(nil),                 // 41: trb.indicators.v1.CmoParams
-	(*CmouParams)(nil),                // 42: trb.indicators.v1.CmouParams
-	(*DxParams)(nil),                  // 43: trb.indicators.v1.DxParams
-	(*ImiParams)(nil),                 // 44: trb.indicators.v1.ImiParams
-	(*MacdParams)(nil),                // 45: trb.indicators.v1.MacdParams
-	(*MacdExtParams)(nil),             // 46: trb.indicators.v1.MacdExtParams
-	(*MacdFixParams)(nil),             // 47: trb.indicators.v1.MacdFixParams
-	(*MfiParams)(nil),                 // 48: trb.indicators.v1.MfiParams
-	(*MinusDiParams)(nil),             // 49: trb.indicators.v1.MinusDiParams
-	(*MinusDmParams)(nil),             // 50: trb.indicators.v1.MinusDmParams
-	(*MomParams)(nil),                 // 51: trb.indicators.v1.MomParams
-	(*PlusDiParams)(nil),              // 52: trb.indicators.v1.PlusDiParams
-	(*PlusDmParams)(nil),              // 53: trb.indicators.v1.PlusDmParams
-	(*PpoParams)(nil),                 // 54: trb.indicators.v1.PpoParams
-	(*QstickParams)(nil),              // 55: trb.indicators.v1.QstickParams
-	(*RocParams)(nil),                 // 56: trb.indicators.v1.RocParams
-	(*RocpParams)(nil),                // 57: trb.indicators.v1.RocpParams
-	(*RocrParams)(nil),                // 58: trb.indicators.v1.RocrParams
-	(*Rocr100Params)(nil),             // 59: trb.indicators.v1.Rocr100Params
-	(*RsiParams)(nil),                 // 60: trb.indicators.v1.RsiParams
-	(*SmiParams)(nil),                 // 61: trb.indicators.v1.SmiParams
-	(*StochParams)(nil),               // 62: trb.indicators.v1.StochParams
-	(*StochFParams)(nil),              // 63: trb.indicators.v1.StochFParams
-	(*StochRsiParams)(nil),            // 64: trb.indicators.v1.StochRsiParams
-	(*TrixParams)(nil),                // 65: trb.indicators.v1.TrixParams
-	(*UltOscParams)(nil),              // 66: trb.indicators.v1.UltOscParams
-	(*WadParams)(nil),                 // 67: trb.indicators.v1.WadParams
-	(*WillRParams)(nil),               // 68: trb.indicators.v1.WillRParams
-	(*AccBandsParams)(nil),            // 69: trb.indicators.v1.AccBandsParams
-	(*BbandsParams)(nil),              // 70: trb.indicators.v1.BbandsParams
-	(*DemaParams)(nil),                // 71: trb.indicators.v1.DemaParams
-	(*EmaParams)(nil),                 // 72: trb.indicators.v1.EmaParams
-	(*HmaParams)(nil),                 // 73: trb.indicators.v1.HmaParams
-	(*HtTrendlineParams)(nil),         // 74: trb.indicators.v1.HtTrendlineParams
-	(*KamaParams)(nil),                // 75: trb.indicators.v1.KamaParams
-	(*KcParams)(nil),                  // 76: trb.indicators.v1.KcParams
-	(*MaParams)(nil),                  // 77: trb.indicators.v1.MaParams
-	(*MamaParams)(nil),                // 78: trb.indicators.v1.MamaParams
-	(*MavpParams)(nil),                // 79: trb.indicators.v1.MavpParams
-	(*MidPointParams)(nil),            // 80: trb.indicators.v1.MidPointParams
-	(*MidPriceParams)(nil),            // 81: trb.indicators.v1.MidPriceParams
-	(*SarParams)(nil),                 // 82: trb.indicators.v1.SarParams
-	(*SarExtParams)(nil),              // 83: trb.indicators.v1.SarExtParams
-	(*SmaParams)(nil),                 // 84: trb.indicators.v1.SmaParams
-	(*SuperTrendParams)(nil),          // 85: trb.indicators.v1.SuperTrendParams
-	(*T3Params)(nil),                  // 86: trb.indicators.v1.T3Params
-	(*TemaParams)(nil),                // 87: trb.indicators.v1.TemaParams
-	(*TrimaParams)(nil),               // 88: trb.indicators.v1.TrimaParams
-	(*VwmaParams)(nil),                // 89: trb.indicators.v1.VwmaParams
-	(*WmaParams)(nil),                 // 90: trb.indicators.v1.WmaParams
-	(*Cdl2CrowsParams)(nil),           // 91: trb.indicators.v1.Cdl2CrowsParams
-	(*Cdl3BlackCrowsParams)(nil),      // 92: trb.indicators.v1.Cdl3BlackCrowsParams
-	(*Cdl3InsideParams)(nil),          // 93: trb.indicators.v1.Cdl3InsideParams
-	(*Cdl3LineStrikeParams)(nil),      // 94: trb.indicators.v1.Cdl3LineStrikeParams
-	(*Cdl3OutsideParams)(nil),         // 95: trb.indicators.v1.Cdl3OutsideParams
-	(*Cdl3StarsInSouthParams)(nil),    // 96: trb.indicators.v1.Cdl3StarsInSouthParams
-	(*Cdl3WhiteSoldiersParams)(nil),   // 97: trb.indicators.v1.Cdl3WhiteSoldiersParams
-	(*CdlAbandonedBabyParams)(nil),    // 98: trb.indicators.v1.CdlAbandonedBabyParams
-	(*CdlAdvanceBlockParams)(nil),     // 99: trb.indicators.v1.CdlAdvanceBlockParams
-	(*CdlBeltHoldParams)(nil),         // 100: trb.indicators.v1.CdlBeltHoldParams
-	(*CdlBreakawayParams)(nil),        // 101: trb.indicators.v1.CdlBreakawayParams
-	(*CdlClosingMarubozuParams)(nil),  // 102: trb.indicators.v1.CdlClosingMarubozuParams
-	(*CdlConcealBabysWallParams)(nil), // 103: trb.indicators.v1.CdlConcealBabysWallParams
-	(*CdlCounterAttackParams)(nil),    // 104: trb.indicators.v1.CdlCounterAttackParams
-	(*CdlDarkCloudCoverParams)(nil),   // 105: trb.indicators.v1.CdlDarkCloudCoverParams
-	(*CdlDojiParams)(nil),             // 106: trb.indicators.v1.CdlDojiParams
-	(*CdlDojiStarParams)(nil),         // 107: trb.indicators.v1.CdlDojiStarParams
-	(*CdlDragonflyDojiParams)(nil),    // 108: trb.indicators.v1.CdlDragonflyDojiParams
-	(*CdlEngulfingParams)(nil),        // 109: trb.indicators.v1.CdlEngulfingParams
-	(*CdlEveningDojiStarParams)(nil),  // 110: trb.indicators.v1.CdlEveningDojiStarParams
-	(*CdlEveningStarParams)(nil),      // 111: trb.indicators.v1.CdlEveningStarParams
-	(*CdlGapSideSideWhiteParams)(nil), // 112: trb.indicators.v1.CdlGapSideSideWhiteParams
-	(*CdlGravestoneDojiParams)(nil),   // 113: trb.indicators.v1.CdlGravestoneDojiParams
-	(*CdlHammerParams)(nil),           // 114: trb.indicators.v1.CdlHammerParams
-	(*CdlHangingManParams)(nil),       // 115: trb.indicators.v1.CdlHangingManParams
-	(*CdlHaramiParams)(nil),           // 116: trb.indicators.v1.CdlHaramiParams
-	(*CdlHaramiCrossParams)(nil),      // 117: trb.indicators.v1.CdlHaramiCrossParams
-	(*CdlHighWaveParams)(nil),         // 118: trb.indicators.v1.CdlHighWaveParams
-	(*CdlHikkakeParams)(nil),          // 119: trb.indicators.v1.CdlHikkakeParams
-	(*CdlHikkakeModParams)(nil),       // 120: trb.indicators.v1.CdlHikkakeModParams
-	(*CdlHomingPigeonParams)(nil),     // 121: trb.indicators.v1.CdlHomingPigeonParams
-	(*CdlIdentical3CrowsParams)(nil),  // 122: trb.indicators.v1.CdlIdentical3CrowsParams
-	(*CdlInNeckParams)(nil),           // 123: trb.indicators.v1.CdlInNeckParams
-	(*CdlInvertedHammerParams)(nil),   // 124: trb.indicators.v1.CdlInvertedHammerParams
-	(*CdlKickingParams)(nil),          // 125: trb.indicators.v1.CdlKickingParams
-	(*CdlKickingByLengthParams)(nil),  // 126: trb.indicators.v1.CdlKickingByLengthParams
-	(*CdlLadderBottomParams)(nil),     // 127: trb.indicators.v1.CdlLadderBottomParams
-	(*CdlLongLeggedDojiParams)(nil),   // 128: trb.indicators.v1.CdlLongLeggedDojiParams
-	(*CdlLongLineParams)(nil),         // 129: trb.indicators.v1.CdlLongLineParams
-	(*CdlMarubozuParams)(nil),         // 130: trb.indicators.v1.CdlMarubozuParams
-	(*CdlMatchingLowParams)(nil),      // 131: trb.indicators.v1.CdlMatchingLowParams
-	(*CdlMatHoldParams)(nil),          // 132: trb.indicators.v1.CdlMatHoldParams
-	(*CdlMorningDojiStarParams)(nil),  // 133: trb.indicators.v1.CdlMorningDojiStarParams
-	(*CdlMorningStarParams)(nil),      // 134: trb.indicators.v1.CdlMorningStarParams
-	(*CdlOnNeckParams)(nil),           // 135: trb.indicators.v1.CdlOnNeckParams
-	(*CdlPiercingParams)(nil),         // 136: trb.indicators.v1.CdlPiercingParams
-	(*CdlRickshawManParams)(nil),      // 137: trb.indicators.v1.CdlRickshawManParams
-	(*CdlRiseFall3MethodsParams)(nil), // 138: trb.indicators.v1.CdlRiseFall3MethodsParams
-	(*CdlSeparatingLinesParams)(nil),  // 139: trb.indicators.v1.CdlSeparatingLinesParams
-	(*CdlShootingStarParams)(nil),     // 140: trb.indicators.v1.CdlShootingStarParams
-	(*CdlShortLineParams)(nil),        // 141: trb.indicators.v1.CdlShortLineParams
-	(*CdlSpinningTopParams)(nil),      // 142: trb.indicators.v1.CdlSpinningTopParams
-	(*CdlStalledPatternParams)(nil),   // 143: trb.indicators.v1.CdlStalledPatternParams
-	(*CdlStickSandwichParams)(nil),    // 144: trb.indicators.v1.CdlStickSandwichParams
-	(*CdlTakuriParams)(nil),           // 145: trb.indicators.v1.CdlTakuriParams
-	(*CdlTasukiGapParams)(nil),        // 146: trb.indicators.v1.CdlTasukiGapParams
-	(*CdlThrustingParams)(nil),        // 147: trb.indicators.v1.CdlThrustingParams
-	(*CdlTristarParams)(nil),          // 148: trb.indicators.v1.CdlTristarParams
-	(*CdlUnique3RiverParams)(nil),     // 149: trb.indicators.v1.CdlUnique3RiverParams
-	(*CdlUpsideGap2CrowsParams)(nil),  // 150: trb.indicators.v1.CdlUpsideGap2CrowsParams
-	(*CdlXsideGap3MethodsParams)(nil), // 151: trb.indicators.v1.CdlXsideGap3MethodsParams
-	(*AvgDevParams)(nil),              // 152: trb.indicators.v1.AvgDevParams
-	(*AvgPriceParams)(nil),            // 153: trb.indicators.v1.AvgPriceParams
-	(*MedPriceParams)(nil),            // 154: trb.indicators.v1.MedPriceParams
-	(*TypPriceParams)(nil),            // 155: trb.indicators.v1.TypPriceParams
-	(*WclPriceParams)(nil),            // 156: trb.indicators.v1.WclPriceParams
-	(*BetaParams)(nil),                // 157: trb.indicators.v1.BetaParams
-	(*CorrelParams)(nil),              // 158: trb.indicators.v1.CorrelParams
-	(*LinearRegParams)(nil),           // 159: trb.indicators.v1.LinearRegParams
-	(*LinearRegAngleParams)(nil),      // 160: trb.indicators.v1.LinearRegAngleParams
-	(*LinearRegInterceptParams)(nil),  // 161: trb.indicators.v1.LinearRegInterceptParams
-	(*LinearRegSlopeParams)(nil),      // 162: trb.indicators.v1.LinearRegSlopeParams
-	(*StdDevParams)(nil),              // 163: trb.indicators.v1.StdDevParams
-	(*TsfParams)(nil),                 // 164: trb.indicators.v1.TsfParams
-	(*VarParams)(nil),                 // 165: trb.indicators.v1.VarParams
-	(*AtrParams)(nil),                 // 166: trb.indicators.v1.AtrParams
-	(*NatrParams)(nil),                // 167: trb.indicators.v1.NatrParams
-	(*TrangeParams)(nil),              // 168: trb.indicators.v1.TrangeParams
-	(*AdParams)(nil),                  // 169: trb.indicators.v1.AdParams
-	(*AdOscParams)(nil),               // 170: trb.indicators.v1.AdOscParams
-	(*CmfParams)(nil),                 // 171: trb.indicators.v1.CmfParams
-	(*EfiParams)(nil),                 // 172: trb.indicators.v1.EfiParams
-	(*MarketFiParams)(nil),            // 173: trb.indicators.v1.MarketFiParams
-	(*NviParams)(nil),                 // 174: trb.indicators.v1.NviParams
-	(*ObvParams)(nil),                 // 175: trb.indicators.v1.ObvParams
-	(*PviParams)(nil),                 // 176: trb.indicators.v1.PviParams
-	(*PvoParams)(nil),                 // 177: trb.indicators.v1.PvoParams
-	(*VwapParams)(nil),                // 178: trb.indicators.v1.VwapParams
-	(*IndicatorSettings)(nil),         // 179: trb.indicators.v1.IndicatorSettings
+	(*AdxParams)(nil),                 // 32: trb.indicators.v1.AdxParams
+	(*AdxrParams)(nil),                // 33: trb.indicators.v1.AdxrParams
+	(*ApoParams)(nil),                 // 34: trb.indicators.v1.ApoParams
+	(*AroonParams)(nil),               // 35: trb.indicators.v1.AroonParams
+	(*AroonOscParams)(nil),            // 36: trb.indicators.v1.AroonOscParams
+	(*BopParams)(nil),                 // 37: trb.indicators.v1.BopParams
+	(*CciParams)(nil),                 // 38: trb.indicators.v1.CciParams
+	(*CmoParams)(nil),                 // 39: trb.indicators.v1.CmoParams
+	(*DxParams)(nil),                  // 40: trb.indicators.v1.DxParams
+	(*MacdParams)(nil),                // 41: trb.indicators.v1.MacdParams
+	(*MacdExtParams)(nil),             // 42: trb.indicators.v1.MacdExtParams
+	(*MacdFixParams)(nil),             // 43: trb.indicators.v1.MacdFixParams
+	(*MfiParams)(nil),                 // 44: trb.indicators.v1.MfiParams
+	(*MinusDiParams)(nil),             // 45: trb.indicators.v1.MinusDiParams
+	(*MinusDmParams)(nil),             // 46: trb.indicators.v1.MinusDmParams
+	(*MomParams)(nil),                 // 47: trb.indicators.v1.MomParams
+	(*PlusDiParams)(nil),              // 48: trb.indicators.v1.PlusDiParams
+	(*PlusDmParams)(nil),              // 49: trb.indicators.v1.PlusDmParams
+	(*PpoParams)(nil),                 // 50: trb.indicators.v1.PpoParams
+	(*RocParams)(nil),                 // 51: trb.indicators.v1.RocParams
+	(*RocpParams)(nil),                // 52: trb.indicators.v1.RocpParams
+	(*RocrParams)(nil),                // 53: trb.indicators.v1.RocrParams
+	(*Rocr100Params)(nil),             // 54: trb.indicators.v1.Rocr100Params
+	(*RsiParams)(nil),                 // 55: trb.indicators.v1.RsiParams
+	(*StochParams)(nil),               // 56: trb.indicators.v1.StochParams
+	(*StochFParams)(nil),              // 57: trb.indicators.v1.StochFParams
+	(*StochRsiParams)(nil),            // 58: trb.indicators.v1.StochRsiParams
+	(*TrixParams)(nil),                // 59: trb.indicators.v1.TrixParams
+	(*UltOscParams)(nil),              // 60: trb.indicators.v1.UltOscParams
+	(*WillRParams)(nil),               // 61: trb.indicators.v1.WillRParams
+	(*BbandsParams)(nil),              // 62: trb.indicators.v1.BbandsParams
+	(*DemaParams)(nil),                // 63: trb.indicators.v1.DemaParams
+	(*EmaParams)(nil),                 // 64: trb.indicators.v1.EmaParams
+	(*HtTrendlineParams)(nil),         // 65: trb.indicators.v1.HtTrendlineParams
+	(*KamaParams)(nil),                // 66: trb.indicators.v1.KamaParams
+	(*MaParams)(nil),                  // 67: trb.indicators.v1.MaParams
+	(*MamaParams)(nil),                // 68: trb.indicators.v1.MamaParams
+	(*MavpParams)(nil),                // 69: trb.indicators.v1.MavpParams
+	(*MidPointParams)(nil),            // 70: trb.indicators.v1.MidPointParams
+	(*MidPriceParams)(nil),            // 71: trb.indicators.v1.MidPriceParams
+	(*SarParams)(nil),                 // 72: trb.indicators.v1.SarParams
+	(*SarExtParams)(nil),              // 73: trb.indicators.v1.SarExtParams
+	(*SmaParams)(nil),                 // 74: trb.indicators.v1.SmaParams
+	(*T3Params)(nil),                  // 75: trb.indicators.v1.T3Params
+	(*TemaParams)(nil),                // 76: trb.indicators.v1.TemaParams
+	(*TrimaParams)(nil),               // 77: trb.indicators.v1.TrimaParams
+	(*WmaParams)(nil),                 // 78: trb.indicators.v1.WmaParams
+	(*Cdl2CrowsParams)(nil),           // 79: trb.indicators.v1.Cdl2CrowsParams
+	(*Cdl3BlackCrowsParams)(nil),      // 80: trb.indicators.v1.Cdl3BlackCrowsParams
+	(*Cdl3InsideParams)(nil),          // 81: trb.indicators.v1.Cdl3InsideParams
+	(*Cdl3LineStrikeParams)(nil),      // 82: trb.indicators.v1.Cdl3LineStrikeParams
+	(*Cdl3OutsideParams)(nil),         // 83: trb.indicators.v1.Cdl3OutsideParams
+	(*Cdl3StarsInSouthParams)(nil),    // 84: trb.indicators.v1.Cdl3StarsInSouthParams
+	(*Cdl3WhiteSoldiersParams)(nil),   // 85: trb.indicators.v1.Cdl3WhiteSoldiersParams
+	(*CdlAbandonedBabyParams)(nil),    // 86: trb.indicators.v1.CdlAbandonedBabyParams
+	(*CdlAdvanceBlockParams)(nil),     // 87: trb.indicators.v1.CdlAdvanceBlockParams
+	(*CdlBeltHoldParams)(nil),         // 88: trb.indicators.v1.CdlBeltHoldParams
+	(*CdlBreakawayParams)(nil),        // 89: trb.indicators.v1.CdlBreakawayParams
+	(*CdlClosingMarubozuParams)(nil),  // 90: trb.indicators.v1.CdlClosingMarubozuParams
+	(*CdlConcealBabysWallParams)(nil), // 91: trb.indicators.v1.CdlConcealBabysWallParams
+	(*CdlCounterAttackParams)(nil),    // 92: trb.indicators.v1.CdlCounterAttackParams
+	(*CdlDarkCloudCoverParams)(nil),   // 93: trb.indicators.v1.CdlDarkCloudCoverParams
+	(*CdlDojiParams)(nil),             // 94: trb.indicators.v1.CdlDojiParams
+	(*CdlDojiStarParams)(nil),         // 95: trb.indicators.v1.CdlDojiStarParams
+	(*CdlDragonflyDojiParams)(nil),    // 96: trb.indicators.v1.CdlDragonflyDojiParams
+	(*CdlEngulfingParams)(nil),        // 97: trb.indicators.v1.CdlEngulfingParams
+	(*CdlEveningDojiStarParams)(nil),  // 98: trb.indicators.v1.CdlEveningDojiStarParams
+	(*CdlEveningStarParams)(nil),      // 99: trb.indicators.v1.CdlEveningStarParams
+	(*CdlGapSideSideWhiteParams)(nil), // 100: trb.indicators.v1.CdlGapSideSideWhiteParams
+	(*CdlGravestoneDojiParams)(nil),   // 101: trb.indicators.v1.CdlGravestoneDojiParams
+	(*CdlHammerParams)(nil),           // 102: trb.indicators.v1.CdlHammerParams
+	(*CdlHangingManParams)(nil),       // 103: trb.indicators.v1.CdlHangingManParams
+	(*CdlHaramiParams)(nil),           // 104: trb.indicators.v1.CdlHaramiParams
+	(*CdlHaramiCrossParams)(nil),      // 105: trb.indicators.v1.CdlHaramiCrossParams
+	(*CdlHighWaveParams)(nil),         // 106: trb.indicators.v1.CdlHighWaveParams
+	(*CdlHikkakeParams)(nil),          // 107: trb.indicators.v1.CdlHikkakeParams
+	(*CdlHikkakeModParams)(nil),       // 108: trb.indicators.v1.CdlHikkakeModParams
+	(*CdlHomingPigeonParams)(nil),     // 109: trb.indicators.v1.CdlHomingPigeonParams
+	(*CdlIdentical3CrowsParams)(nil),  // 110: trb.indicators.v1.CdlIdentical3CrowsParams
+	(*CdlInNeckParams)(nil),           // 111: trb.indicators.v1.CdlInNeckParams
+	(*CdlInvertedHammerParams)(nil),   // 112: trb.indicators.v1.CdlInvertedHammerParams
+	(*CdlKickingParams)(nil),          // 113: trb.indicators.v1.CdlKickingParams
+	(*CdlKickingByLengthParams)(nil),  // 114: trb.indicators.v1.CdlKickingByLengthParams
+	(*CdlLadderBottomParams)(nil),     // 115: trb.indicators.v1.CdlLadderBottomParams
+	(*CdlLongLeggedDojiParams)(nil),   // 116: trb.indicators.v1.CdlLongLeggedDojiParams
+	(*CdlLongLineParams)(nil),         // 117: trb.indicators.v1.CdlLongLineParams
+	(*CdlMarubozuParams)(nil),         // 118: trb.indicators.v1.CdlMarubozuParams
+	(*CdlMatchingLowParams)(nil),      // 119: trb.indicators.v1.CdlMatchingLowParams
+	(*CdlMatHoldParams)(nil),          // 120: trb.indicators.v1.CdlMatHoldParams
+	(*CdlMorningDojiStarParams)(nil),  // 121: trb.indicators.v1.CdlMorningDojiStarParams
+	(*CdlMorningStarParams)(nil),      // 122: trb.indicators.v1.CdlMorningStarParams
+	(*CdlOnNeckParams)(nil),           // 123: trb.indicators.v1.CdlOnNeckParams
+	(*CdlPiercingParams)(nil),         // 124: trb.indicators.v1.CdlPiercingParams
+	(*CdlRickshawManParams)(nil),      // 125: trb.indicators.v1.CdlRickshawManParams
+	(*CdlRiseFall3MethodsParams)(nil), // 126: trb.indicators.v1.CdlRiseFall3MethodsParams
+	(*CdlSeparatingLinesParams)(nil),  // 127: trb.indicators.v1.CdlSeparatingLinesParams
+	(*CdlShootingStarParams)(nil),     // 128: trb.indicators.v1.CdlShootingStarParams
+	(*CdlShortLineParams)(nil),        // 129: trb.indicators.v1.CdlShortLineParams
+	(*CdlSpinningTopParams)(nil),      // 130: trb.indicators.v1.CdlSpinningTopParams
+	(*CdlStalledPatternParams)(nil),   // 131: trb.indicators.v1.CdlStalledPatternParams
+	(*CdlStickSandwichParams)(nil),    // 132: trb.indicators.v1.CdlStickSandwichParams
+	(*CdlTakuriParams)(nil),           // 133: trb.indicators.v1.CdlTakuriParams
+	(*CdlTasukiGapParams)(nil),        // 134: trb.indicators.v1.CdlTasukiGapParams
+	(*CdlThrustingParams)(nil),        // 135: trb.indicators.v1.CdlThrustingParams
+	(*CdlTristarParams)(nil),          // 136: trb.indicators.v1.CdlTristarParams
+	(*CdlUnique3RiverParams)(nil),     // 137: trb.indicators.v1.CdlUnique3RiverParams
+	(*CdlUpsideGap2CrowsParams)(nil),  // 138: trb.indicators.v1.CdlUpsideGap2CrowsParams
+	(*CdlXsideGap3MethodsParams)(nil), // 139: trb.indicators.v1.CdlXsideGap3MethodsParams
+	(*AvgPriceParams)(nil),            // 140: trb.indicators.v1.AvgPriceParams
+	(*MedPriceParams)(nil),            // 141: trb.indicators.v1.MedPriceParams
+	(*TypPriceParams)(nil),            // 142: trb.indicators.v1.TypPriceParams
+	(*WclPriceParams)(nil),            // 143: trb.indicators.v1.WclPriceParams
+	(*BetaParams)(nil),                // 144: trb.indicators.v1.BetaParams
+	(*CorrelParams)(nil),              // 145: trb.indicators.v1.CorrelParams
+	(*LinearRegParams)(nil),           // 146: trb.indicators.v1.LinearRegParams
+	(*LinearRegAngleParams)(nil),      // 147: trb.indicators.v1.LinearRegAngleParams
+	(*LinearRegInterceptParams)(nil),  // 148: trb.indicators.v1.LinearRegInterceptParams
+	(*LinearRegSlopeParams)(nil),      // 149: trb.indicators.v1.LinearRegSlopeParams
+	(*StdDevParams)(nil),              // 150: trb.indicators.v1.StdDevParams
+	(*TsfParams)(nil),                 // 151: trb.indicators.v1.TsfParams
+	(*VarParams)(nil),                 // 152: trb.indicators.v1.VarParams
+	(*AtrParams)(nil),                 // 153: trb.indicators.v1.AtrParams
+	(*NatrParams)(nil),                // 154: trb.indicators.v1.NatrParams
+	(*TrangeParams)(nil),              // 155: trb.indicators.v1.TrangeParams
+	(*AdParams)(nil),                  // 156: trb.indicators.v1.AdParams
+	(*AdOscParams)(nil),               // 157: trb.indicators.v1.AdOscParams
+	(*ObvParams)(nil),                 // 158: trb.indicators.v1.ObvParams
+	(*IndicatorSettings)(nil),         // 159: trb.indicators.v1.IndicatorSettings
 }
 var file_indicators_params_proto_depIdxs = []int32{
 	0,   // 0: trb.indicators.v1.ApoParams.ma_type:type_name -> trb.indicators.v1.MAType
@@ -11480,190 +10110,169 @@ var file_indicators_params_proto_depIdxs = []int32{
 	0,   // 9: trb.indicators.v1.BbandsParams.ma_type:type_name -> trb.indicators.v1.MAType
 	0,   // 10: trb.indicators.v1.MaParams.ma_type:type_name -> trb.indicators.v1.MAType
 	0,   // 11: trb.indicators.v1.MavpParams.ma_type:type_name -> trb.indicators.v1.MAType
-	0,   // 12: trb.indicators.v1.PvoParams.ma_type:type_name -> trb.indicators.v1.MAType
-	60,  // 13: trb.indicators.v1.IndicatorSettings.rsi:type_name -> trb.indicators.v1.RsiParams
-	1,   // 14: trb.indicators.v1.IndicatorSettings.ht_dcperiod:type_name -> trb.indicators.v1.HtDcPeriodParams
-	2,   // 15: trb.indicators.v1.IndicatorSettings.ht_dcphase:type_name -> trb.indicators.v1.HtDcPhaseParams
-	3,   // 16: trb.indicators.v1.IndicatorSettings.ht_phasor:type_name -> trb.indicators.v1.HtPhasorParams
-	4,   // 17: trb.indicators.v1.IndicatorSettings.ht_sine:type_name -> trb.indicators.v1.HtSineParams
-	5,   // 18: trb.indicators.v1.IndicatorSettings.ht_trendmode:type_name -> trb.indicators.v1.HtTrendModeParams
-	6,   // 19: trb.indicators.v1.IndicatorSettings.add:type_name -> trb.indicators.v1.AddParams
-	7,   // 20: trb.indicators.v1.IndicatorSettings.div:type_name -> trb.indicators.v1.DivParams
-	8,   // 21: trb.indicators.v1.IndicatorSettings.max:type_name -> trb.indicators.v1.MaxParams
-	9,   // 22: trb.indicators.v1.IndicatorSettings.maxindex:type_name -> trb.indicators.v1.MaxIndexParams
-	10,  // 23: trb.indicators.v1.IndicatorSettings.min:type_name -> trb.indicators.v1.MinParams
-	11,  // 24: trb.indicators.v1.IndicatorSettings.minindex:type_name -> trb.indicators.v1.MinIndexParams
-	12,  // 25: trb.indicators.v1.IndicatorSettings.minmax:type_name -> trb.indicators.v1.MinMaxParams
-	13,  // 26: trb.indicators.v1.IndicatorSettings.minmaxindex:type_name -> trb.indicators.v1.MinMaxIndexParams
-	14,  // 27: trb.indicators.v1.IndicatorSettings.mult:type_name -> trb.indicators.v1.MultParams
-	15,  // 28: trb.indicators.v1.IndicatorSettings.sub:type_name -> trb.indicators.v1.SubParams
-	16,  // 29: trb.indicators.v1.IndicatorSettings.sum:type_name -> trb.indicators.v1.SumParams
-	17,  // 30: trb.indicators.v1.IndicatorSettings.acos:type_name -> trb.indicators.v1.AcosParams
-	18,  // 31: trb.indicators.v1.IndicatorSettings.asin:type_name -> trb.indicators.v1.AsinParams
-	19,  // 32: trb.indicators.v1.IndicatorSettings.atan:type_name -> trb.indicators.v1.AtanParams
-	20,  // 33: trb.indicators.v1.IndicatorSettings.ceil:type_name -> trb.indicators.v1.CeilParams
-	21,  // 34: trb.indicators.v1.IndicatorSettings.cos:type_name -> trb.indicators.v1.CosParams
-	22,  // 35: trb.indicators.v1.IndicatorSettings.cosh:type_name -> trb.indicators.v1.CoshParams
-	23,  // 36: trb.indicators.v1.IndicatorSettings.exp:type_name -> trb.indicators.v1.ExpParams
-	24,  // 37: trb.indicators.v1.IndicatorSettings.floor:type_name -> trb.indicators.v1.FloorParams
-	25,  // 38: trb.indicators.v1.IndicatorSettings.ln:type_name -> trb.indicators.v1.LnParams
-	26,  // 39: trb.indicators.v1.IndicatorSettings.log10:type_name -> trb.indicators.v1.Log10Params
-	27,  // 40: trb.indicators.v1.IndicatorSettings.sin:type_name -> trb.indicators.v1.SinParams
-	28,  // 41: trb.indicators.v1.IndicatorSettings.sinh:type_name -> trb.indicators.v1.SinhParams
-	29,  // 42: trb.indicators.v1.IndicatorSettings.sqrt:type_name -> trb.indicators.v1.SqrtParams
-	30,  // 43: trb.indicators.v1.IndicatorSettings.tan:type_name -> trb.indicators.v1.TanParams
-	31,  // 44: trb.indicators.v1.IndicatorSettings.tanh:type_name -> trb.indicators.v1.TanhParams
-	32,  // 45: trb.indicators.v1.IndicatorSettings.ac:type_name -> trb.indicators.v1.AcParams
-	33,  // 46: trb.indicators.v1.IndicatorSettings.adx:type_name -> trb.indicators.v1.AdxParams
-	34,  // 47: trb.indicators.v1.IndicatorSettings.adxr:type_name -> trb.indicators.v1.AdxrParams
-	35,  // 48: trb.indicators.v1.IndicatorSettings.ao:type_name -> trb.indicators.v1.AoParams
-	36,  // 49: trb.indicators.v1.IndicatorSettings.apo:type_name -> trb.indicators.v1.ApoParams
-	37,  // 50: trb.indicators.v1.IndicatorSettings.aroon:type_name -> trb.indicators.v1.AroonParams
-	38,  // 51: trb.indicators.v1.IndicatorSettings.aroonosc:type_name -> trb.indicators.v1.AroonOscParams
-	39,  // 52: trb.indicators.v1.IndicatorSettings.bop:type_name -> trb.indicators.v1.BopParams
-	40,  // 53: trb.indicators.v1.IndicatorSettings.cci:type_name -> trb.indicators.v1.CciParams
-	41,  // 54: trb.indicators.v1.IndicatorSettings.cmo:type_name -> trb.indicators.v1.CmoParams
-	42,  // 55: trb.indicators.v1.IndicatorSettings.cmou:type_name -> trb.indicators.v1.CmouParams
-	43,  // 56: trb.indicators.v1.IndicatorSettings.dx:type_name -> trb.indicators.v1.DxParams
-	44,  // 57: trb.indicators.v1.IndicatorSettings.imi:type_name -> trb.indicators.v1.ImiParams
-	45,  // 58: trb.indicators.v1.IndicatorSettings.macd:type_name -> trb.indicators.v1.MacdParams
-	46,  // 59: trb.indicators.v1.IndicatorSettings.macdext:type_name -> trb.indicators.v1.MacdExtParams
-	47,  // 60: trb.indicators.v1.IndicatorSettings.macdfix:type_name -> trb.indicators.v1.MacdFixParams
-	48,  // 61: trb.indicators.v1.IndicatorSettings.mfi:type_name -> trb.indicators.v1.MfiParams
-	49,  // 62: trb.indicators.v1.IndicatorSettings.minus_di:type_name -> trb.indicators.v1.MinusDiParams
-	50,  // 63: trb.indicators.v1.IndicatorSettings.minus_dm:type_name -> trb.indicators.v1.MinusDmParams
-	51,  // 64: trb.indicators.v1.IndicatorSettings.mom:type_name -> trb.indicators.v1.MomParams
-	52,  // 65: trb.indicators.v1.IndicatorSettings.plus_di:type_name -> trb.indicators.v1.PlusDiParams
-	53,  // 66: trb.indicators.v1.IndicatorSettings.plus_dm:type_name -> trb.indicators.v1.PlusDmParams
-	54,  // 67: trb.indicators.v1.IndicatorSettings.ppo:type_name -> trb.indicators.v1.PpoParams
-	55,  // 68: trb.indicators.v1.IndicatorSettings.qstick:type_name -> trb.indicators.v1.QstickParams
-	56,  // 69: trb.indicators.v1.IndicatorSettings.roc:type_name -> trb.indicators.v1.RocParams
-	57,  // 70: trb.indicators.v1.IndicatorSettings.rocp:type_name -> trb.indicators.v1.RocpParams
-	58,  // 71: trb.indicators.v1.IndicatorSettings.rocr:type_name -> trb.indicators.v1.RocrParams
-	59,  // 72: trb.indicators.v1.IndicatorSettings.rocr100:type_name -> trb.indicators.v1.Rocr100Params
-	61,  // 73: trb.indicators.v1.IndicatorSettings.smi:type_name -> trb.indicators.v1.SmiParams
-	62,  // 74: trb.indicators.v1.IndicatorSettings.stoch:type_name -> trb.indicators.v1.StochParams
-	63,  // 75: trb.indicators.v1.IndicatorSettings.stochf:type_name -> trb.indicators.v1.StochFParams
-	64,  // 76: trb.indicators.v1.IndicatorSettings.stochrsi:type_name -> trb.indicators.v1.StochRsiParams
-	65,  // 77: trb.indicators.v1.IndicatorSettings.trix:type_name -> trb.indicators.v1.TrixParams
-	66,  // 78: trb.indicators.v1.IndicatorSettings.ultosc:type_name -> trb.indicators.v1.UltOscParams
-	67,  // 79: trb.indicators.v1.IndicatorSettings.wad:type_name -> trb.indicators.v1.WadParams
-	68,  // 80: trb.indicators.v1.IndicatorSettings.willr:type_name -> trb.indicators.v1.WillRParams
-	69,  // 81: trb.indicators.v1.IndicatorSettings.accbands:type_name -> trb.indicators.v1.AccBandsParams
-	70,  // 82: trb.indicators.v1.IndicatorSettings.bbands:type_name -> trb.indicators.v1.BbandsParams
-	71,  // 83: trb.indicators.v1.IndicatorSettings.dema:type_name -> trb.indicators.v1.DemaParams
-	72,  // 84: trb.indicators.v1.IndicatorSettings.ema:type_name -> trb.indicators.v1.EmaParams
-	73,  // 85: trb.indicators.v1.IndicatorSettings.hma:type_name -> trb.indicators.v1.HmaParams
-	74,  // 86: trb.indicators.v1.IndicatorSettings.ht_trendline:type_name -> trb.indicators.v1.HtTrendlineParams
-	75,  // 87: trb.indicators.v1.IndicatorSettings.kama:type_name -> trb.indicators.v1.KamaParams
-	76,  // 88: trb.indicators.v1.IndicatorSettings.kc:type_name -> trb.indicators.v1.KcParams
-	77,  // 89: trb.indicators.v1.IndicatorSettings.ma:type_name -> trb.indicators.v1.MaParams
-	78,  // 90: trb.indicators.v1.IndicatorSettings.mama:type_name -> trb.indicators.v1.MamaParams
-	79,  // 91: trb.indicators.v1.IndicatorSettings.mavp:type_name -> trb.indicators.v1.MavpParams
-	80,  // 92: trb.indicators.v1.IndicatorSettings.midpoint:type_name -> trb.indicators.v1.MidPointParams
-	81,  // 93: trb.indicators.v1.IndicatorSettings.midprice:type_name -> trb.indicators.v1.MidPriceParams
-	82,  // 94: trb.indicators.v1.IndicatorSettings.sar:type_name -> trb.indicators.v1.SarParams
-	83,  // 95: trb.indicators.v1.IndicatorSettings.sarext:type_name -> trb.indicators.v1.SarExtParams
-	84,  // 96: trb.indicators.v1.IndicatorSettings.sma:type_name -> trb.indicators.v1.SmaParams
-	85,  // 97: trb.indicators.v1.IndicatorSettings.supertrend:type_name -> trb.indicators.v1.SuperTrendParams
-	86,  // 98: trb.indicators.v1.IndicatorSettings.t3:type_name -> trb.indicators.v1.T3Params
-	87,  // 99: trb.indicators.v1.IndicatorSettings.tema:type_name -> trb.indicators.v1.TemaParams
-	88,  // 100: trb.indicators.v1.IndicatorSettings.trima:type_name -> trb.indicators.v1.TrimaParams
-	89,  // 101: trb.indicators.v1.IndicatorSettings.vwma:type_name -> trb.indicators.v1.VwmaParams
-	90,  // 102: trb.indicators.v1.IndicatorSettings.wma:type_name -> trb.indicators.v1.WmaParams
-	91,  // 103: trb.indicators.v1.IndicatorSettings.cdl2crows:type_name -> trb.indicators.v1.Cdl2CrowsParams
-	92,  // 104: trb.indicators.v1.IndicatorSettings.cdl3blackcrows:type_name -> trb.indicators.v1.Cdl3BlackCrowsParams
-	93,  // 105: trb.indicators.v1.IndicatorSettings.cdl3inside:type_name -> trb.indicators.v1.Cdl3InsideParams
-	94,  // 106: trb.indicators.v1.IndicatorSettings.cdl3linestrike:type_name -> trb.indicators.v1.Cdl3LineStrikeParams
-	95,  // 107: trb.indicators.v1.IndicatorSettings.cdl3outside:type_name -> trb.indicators.v1.Cdl3OutsideParams
-	96,  // 108: trb.indicators.v1.IndicatorSettings.cdl3starsinsouth:type_name -> trb.indicators.v1.Cdl3StarsInSouthParams
-	97,  // 109: trb.indicators.v1.IndicatorSettings.cdl3whitesoldiers:type_name -> trb.indicators.v1.Cdl3WhiteSoldiersParams
-	98,  // 110: trb.indicators.v1.IndicatorSettings.cdlabandonedbaby:type_name -> trb.indicators.v1.CdlAbandonedBabyParams
-	99,  // 111: trb.indicators.v1.IndicatorSettings.cdladvanceblock:type_name -> trb.indicators.v1.CdlAdvanceBlockParams
-	100, // 112: trb.indicators.v1.IndicatorSettings.cdlbelthold:type_name -> trb.indicators.v1.CdlBeltHoldParams
-	101, // 113: trb.indicators.v1.IndicatorSettings.cdlbreakaway:type_name -> trb.indicators.v1.CdlBreakawayParams
-	102, // 114: trb.indicators.v1.IndicatorSettings.cdlclosingmarubozu:type_name -> trb.indicators.v1.CdlClosingMarubozuParams
-	103, // 115: trb.indicators.v1.IndicatorSettings.cdlconcealbabyswall:type_name -> trb.indicators.v1.CdlConcealBabysWallParams
-	104, // 116: trb.indicators.v1.IndicatorSettings.cdlcounterattack:type_name -> trb.indicators.v1.CdlCounterAttackParams
-	105, // 117: trb.indicators.v1.IndicatorSettings.cdldarkcloudcover:type_name -> trb.indicators.v1.CdlDarkCloudCoverParams
-	106, // 118: trb.indicators.v1.IndicatorSettings.cdldoji:type_name -> trb.indicators.v1.CdlDojiParams
-	107, // 119: trb.indicators.v1.IndicatorSettings.cdldojistar:type_name -> trb.indicators.v1.CdlDojiStarParams
-	108, // 120: trb.indicators.v1.IndicatorSettings.cdldragonflydoji:type_name -> trb.indicators.v1.CdlDragonflyDojiParams
-	109, // 121: trb.indicators.v1.IndicatorSettings.cdlengulfing:type_name -> trb.indicators.v1.CdlEngulfingParams
-	110, // 122: trb.indicators.v1.IndicatorSettings.cdleveningdojistar:type_name -> trb.indicators.v1.CdlEveningDojiStarParams
-	111, // 123: trb.indicators.v1.IndicatorSettings.cdleveningstar:type_name -> trb.indicators.v1.CdlEveningStarParams
-	112, // 124: trb.indicators.v1.IndicatorSettings.cdlgapsidesidewhite:type_name -> trb.indicators.v1.CdlGapSideSideWhiteParams
-	113, // 125: trb.indicators.v1.IndicatorSettings.cdlgravestonedoji:type_name -> trb.indicators.v1.CdlGravestoneDojiParams
-	114, // 126: trb.indicators.v1.IndicatorSettings.cdlhammer:type_name -> trb.indicators.v1.CdlHammerParams
-	115, // 127: trb.indicators.v1.IndicatorSettings.cdlhangingman:type_name -> trb.indicators.v1.CdlHangingManParams
-	116, // 128: trb.indicators.v1.IndicatorSettings.cdlharami:type_name -> trb.indicators.v1.CdlHaramiParams
-	117, // 129: trb.indicators.v1.IndicatorSettings.cdlharamicross:type_name -> trb.indicators.v1.CdlHaramiCrossParams
-	118, // 130: trb.indicators.v1.IndicatorSettings.cdlhighwave:type_name -> trb.indicators.v1.CdlHighWaveParams
-	119, // 131: trb.indicators.v1.IndicatorSettings.cdlhikkake:type_name -> trb.indicators.v1.CdlHikkakeParams
-	120, // 132: trb.indicators.v1.IndicatorSettings.cdlhikkakemod:type_name -> trb.indicators.v1.CdlHikkakeModParams
-	121, // 133: trb.indicators.v1.IndicatorSettings.cdlhomingpigeon:type_name -> trb.indicators.v1.CdlHomingPigeonParams
-	122, // 134: trb.indicators.v1.IndicatorSettings.cdlidentical3crows:type_name -> trb.indicators.v1.CdlIdentical3CrowsParams
-	123, // 135: trb.indicators.v1.IndicatorSettings.cdlinneck:type_name -> trb.indicators.v1.CdlInNeckParams
-	124, // 136: trb.indicators.v1.IndicatorSettings.cdlinvertedhammer:type_name -> trb.indicators.v1.CdlInvertedHammerParams
-	125, // 137: trb.indicators.v1.IndicatorSettings.cdlkicking:type_name -> trb.indicators.v1.CdlKickingParams
-	126, // 138: trb.indicators.v1.IndicatorSettings.cdlkickingbylength:type_name -> trb.indicators.v1.CdlKickingByLengthParams
-	127, // 139: trb.indicators.v1.IndicatorSettings.cdlladderbottom:type_name -> trb.indicators.v1.CdlLadderBottomParams
-	128, // 140: trb.indicators.v1.IndicatorSettings.cdllongleggeddoji:type_name -> trb.indicators.v1.CdlLongLeggedDojiParams
-	129, // 141: trb.indicators.v1.IndicatorSettings.cdllongline:type_name -> trb.indicators.v1.CdlLongLineParams
-	130, // 142: trb.indicators.v1.IndicatorSettings.cdlmarubozu:type_name -> trb.indicators.v1.CdlMarubozuParams
-	131, // 143: trb.indicators.v1.IndicatorSettings.cdlmatchinglow:type_name -> trb.indicators.v1.CdlMatchingLowParams
-	132, // 144: trb.indicators.v1.IndicatorSettings.cdlmathold:type_name -> trb.indicators.v1.CdlMatHoldParams
-	133, // 145: trb.indicators.v1.IndicatorSettings.cdlmorningdojistar:type_name -> trb.indicators.v1.CdlMorningDojiStarParams
-	134, // 146: trb.indicators.v1.IndicatorSettings.cdlmorningstar:type_name -> trb.indicators.v1.CdlMorningStarParams
-	135, // 147: trb.indicators.v1.IndicatorSettings.cdlonneck:type_name -> trb.indicators.v1.CdlOnNeckParams
-	136, // 148: trb.indicators.v1.IndicatorSettings.cdlpiercing:type_name -> trb.indicators.v1.CdlPiercingParams
-	137, // 149: trb.indicators.v1.IndicatorSettings.cdlrickshawman:type_name -> trb.indicators.v1.CdlRickshawManParams
-	138, // 150: trb.indicators.v1.IndicatorSettings.cdlrisefall3methods:type_name -> trb.indicators.v1.CdlRiseFall3MethodsParams
-	139, // 151: trb.indicators.v1.IndicatorSettings.cdlseparatinglines:type_name -> trb.indicators.v1.CdlSeparatingLinesParams
-	140, // 152: trb.indicators.v1.IndicatorSettings.cdlshootingstar:type_name -> trb.indicators.v1.CdlShootingStarParams
-	141, // 153: trb.indicators.v1.IndicatorSettings.cdlshortline:type_name -> trb.indicators.v1.CdlShortLineParams
-	142, // 154: trb.indicators.v1.IndicatorSettings.cdlspinningtop:type_name -> trb.indicators.v1.CdlSpinningTopParams
-	143, // 155: trb.indicators.v1.IndicatorSettings.cdlstalledpattern:type_name -> trb.indicators.v1.CdlStalledPatternParams
-	144, // 156: trb.indicators.v1.IndicatorSettings.cdlsticksandwich:type_name -> trb.indicators.v1.CdlStickSandwichParams
-	145, // 157: trb.indicators.v1.IndicatorSettings.cdltakuri:type_name -> trb.indicators.v1.CdlTakuriParams
-	146, // 158: trb.indicators.v1.IndicatorSettings.cdltasukigap:type_name -> trb.indicators.v1.CdlTasukiGapParams
-	147, // 159: trb.indicators.v1.IndicatorSettings.cdlthrusting:type_name -> trb.indicators.v1.CdlThrustingParams
-	148, // 160: trb.indicators.v1.IndicatorSettings.cdltristar:type_name -> trb.indicators.v1.CdlTristarParams
-	149, // 161: trb.indicators.v1.IndicatorSettings.cdlunique3river:type_name -> trb.indicators.v1.CdlUnique3RiverParams
-	150, // 162: trb.indicators.v1.IndicatorSettings.cdlupsidegap2crows:type_name -> trb.indicators.v1.CdlUpsideGap2CrowsParams
-	151, // 163: trb.indicators.v1.IndicatorSettings.cdlxsidegap3methods:type_name -> trb.indicators.v1.CdlXsideGap3MethodsParams
-	152, // 164: trb.indicators.v1.IndicatorSettings.avgdev:type_name -> trb.indicators.v1.AvgDevParams
-	153, // 165: trb.indicators.v1.IndicatorSettings.avgprice:type_name -> trb.indicators.v1.AvgPriceParams
-	154, // 166: trb.indicators.v1.IndicatorSettings.medprice:type_name -> trb.indicators.v1.MedPriceParams
-	155, // 167: trb.indicators.v1.IndicatorSettings.typprice:type_name -> trb.indicators.v1.TypPriceParams
-	156, // 168: trb.indicators.v1.IndicatorSettings.wclprice:type_name -> trb.indicators.v1.WclPriceParams
-	157, // 169: trb.indicators.v1.IndicatorSettings.beta:type_name -> trb.indicators.v1.BetaParams
-	158, // 170: trb.indicators.v1.IndicatorSettings.correl:type_name -> trb.indicators.v1.CorrelParams
-	159, // 171: trb.indicators.v1.IndicatorSettings.linearreg:type_name -> trb.indicators.v1.LinearRegParams
-	160, // 172: trb.indicators.v1.IndicatorSettings.linearreg_angle:type_name -> trb.indicators.v1.LinearRegAngleParams
-	161, // 173: trb.indicators.v1.IndicatorSettings.linearreg_intercept:type_name -> trb.indicators.v1.LinearRegInterceptParams
-	162, // 174: trb.indicators.v1.IndicatorSettings.linearreg_slope:type_name -> trb.indicators.v1.LinearRegSlopeParams
-	163, // 175: trb.indicators.v1.IndicatorSettings.stddev:type_name -> trb.indicators.v1.StdDevParams
-	164, // 176: trb.indicators.v1.IndicatorSettings.tsf:type_name -> trb.indicators.v1.TsfParams
-	165, // 177: trb.indicators.v1.IndicatorSettings.var:type_name -> trb.indicators.v1.VarParams
-	166, // 178: trb.indicators.v1.IndicatorSettings.atr:type_name -> trb.indicators.v1.AtrParams
-	167, // 179: trb.indicators.v1.IndicatorSettings.natr:type_name -> trb.indicators.v1.NatrParams
-	168, // 180: trb.indicators.v1.IndicatorSettings.trange:type_name -> trb.indicators.v1.TrangeParams
-	169, // 181: trb.indicators.v1.IndicatorSettings.ad:type_name -> trb.indicators.v1.AdParams
-	170, // 182: trb.indicators.v1.IndicatorSettings.adosc:type_name -> trb.indicators.v1.AdOscParams
-	171, // 183: trb.indicators.v1.IndicatorSettings.cmf:type_name -> trb.indicators.v1.CmfParams
-	172, // 184: trb.indicators.v1.IndicatorSettings.efi:type_name -> trb.indicators.v1.EfiParams
-	173, // 185: trb.indicators.v1.IndicatorSettings.marketfi:type_name -> trb.indicators.v1.MarketFiParams
-	174, // 186: trb.indicators.v1.IndicatorSettings.nvi:type_name -> trb.indicators.v1.NviParams
-	175, // 187: trb.indicators.v1.IndicatorSettings.obv:type_name -> trb.indicators.v1.ObvParams
-	176, // 188: trb.indicators.v1.IndicatorSettings.pvi:type_name -> trb.indicators.v1.PviParams
-	177, // 189: trb.indicators.v1.IndicatorSettings.pvo:type_name -> trb.indicators.v1.PvoParams
-	178, // 190: trb.indicators.v1.IndicatorSettings.vwap:type_name -> trb.indicators.v1.VwapParams
-	191, // [191:191] is the sub-list for method output_type
-	191, // [191:191] is the sub-list for method input_type
-	191, // [191:191] is the sub-list for extension type_name
-	191, // [191:191] is the sub-list for extension extendee
-	0,   // [0:191] is the sub-list for field type_name
+	55,  // 12: trb.indicators.v1.IndicatorSettings.rsi:type_name -> trb.indicators.v1.RsiParams
+	1,   // 13: trb.indicators.v1.IndicatorSettings.ht_dcperiod:type_name -> trb.indicators.v1.HtDcPeriodParams
+	2,   // 14: trb.indicators.v1.IndicatorSettings.ht_dcphase:type_name -> trb.indicators.v1.HtDcPhaseParams
+	3,   // 15: trb.indicators.v1.IndicatorSettings.ht_phasor:type_name -> trb.indicators.v1.HtPhasorParams
+	4,   // 16: trb.indicators.v1.IndicatorSettings.ht_sine:type_name -> trb.indicators.v1.HtSineParams
+	5,   // 17: trb.indicators.v1.IndicatorSettings.ht_trendmode:type_name -> trb.indicators.v1.HtTrendModeParams
+	6,   // 18: trb.indicators.v1.IndicatorSettings.add:type_name -> trb.indicators.v1.AddParams
+	7,   // 19: trb.indicators.v1.IndicatorSettings.div:type_name -> trb.indicators.v1.DivParams
+	8,   // 20: trb.indicators.v1.IndicatorSettings.max:type_name -> trb.indicators.v1.MaxParams
+	9,   // 21: trb.indicators.v1.IndicatorSettings.maxindex:type_name -> trb.indicators.v1.MaxIndexParams
+	10,  // 22: trb.indicators.v1.IndicatorSettings.min:type_name -> trb.indicators.v1.MinParams
+	11,  // 23: trb.indicators.v1.IndicatorSettings.minindex:type_name -> trb.indicators.v1.MinIndexParams
+	12,  // 24: trb.indicators.v1.IndicatorSettings.minmax:type_name -> trb.indicators.v1.MinMaxParams
+	13,  // 25: trb.indicators.v1.IndicatorSettings.minmaxindex:type_name -> trb.indicators.v1.MinMaxIndexParams
+	14,  // 26: trb.indicators.v1.IndicatorSettings.mult:type_name -> trb.indicators.v1.MultParams
+	15,  // 27: trb.indicators.v1.IndicatorSettings.sub:type_name -> trb.indicators.v1.SubParams
+	16,  // 28: trb.indicators.v1.IndicatorSettings.sum:type_name -> trb.indicators.v1.SumParams
+	17,  // 29: trb.indicators.v1.IndicatorSettings.acos:type_name -> trb.indicators.v1.AcosParams
+	18,  // 30: trb.indicators.v1.IndicatorSettings.asin:type_name -> trb.indicators.v1.AsinParams
+	19,  // 31: trb.indicators.v1.IndicatorSettings.atan:type_name -> trb.indicators.v1.AtanParams
+	20,  // 32: trb.indicators.v1.IndicatorSettings.ceil:type_name -> trb.indicators.v1.CeilParams
+	21,  // 33: trb.indicators.v1.IndicatorSettings.cos:type_name -> trb.indicators.v1.CosParams
+	22,  // 34: trb.indicators.v1.IndicatorSettings.cosh:type_name -> trb.indicators.v1.CoshParams
+	23,  // 35: trb.indicators.v1.IndicatorSettings.exp:type_name -> trb.indicators.v1.ExpParams
+	24,  // 36: trb.indicators.v1.IndicatorSettings.floor:type_name -> trb.indicators.v1.FloorParams
+	25,  // 37: trb.indicators.v1.IndicatorSettings.ln:type_name -> trb.indicators.v1.LnParams
+	26,  // 38: trb.indicators.v1.IndicatorSettings.log10:type_name -> trb.indicators.v1.Log10Params
+	27,  // 39: trb.indicators.v1.IndicatorSettings.sin:type_name -> trb.indicators.v1.SinParams
+	28,  // 40: trb.indicators.v1.IndicatorSettings.sinh:type_name -> trb.indicators.v1.SinhParams
+	29,  // 41: trb.indicators.v1.IndicatorSettings.sqrt:type_name -> trb.indicators.v1.SqrtParams
+	30,  // 42: trb.indicators.v1.IndicatorSettings.tan:type_name -> trb.indicators.v1.TanParams
+	31,  // 43: trb.indicators.v1.IndicatorSettings.tanh:type_name -> trb.indicators.v1.TanhParams
+	32,  // 44: trb.indicators.v1.IndicatorSettings.adx:type_name -> trb.indicators.v1.AdxParams
+	33,  // 45: trb.indicators.v1.IndicatorSettings.adxr:type_name -> trb.indicators.v1.AdxrParams
+	34,  // 46: trb.indicators.v1.IndicatorSettings.apo:type_name -> trb.indicators.v1.ApoParams
+	35,  // 47: trb.indicators.v1.IndicatorSettings.aroon:type_name -> trb.indicators.v1.AroonParams
+	36,  // 48: trb.indicators.v1.IndicatorSettings.aroonosc:type_name -> trb.indicators.v1.AroonOscParams
+	37,  // 49: trb.indicators.v1.IndicatorSettings.bop:type_name -> trb.indicators.v1.BopParams
+	38,  // 50: trb.indicators.v1.IndicatorSettings.cci:type_name -> trb.indicators.v1.CciParams
+	39,  // 51: trb.indicators.v1.IndicatorSettings.cmo:type_name -> trb.indicators.v1.CmoParams
+	40,  // 52: trb.indicators.v1.IndicatorSettings.dx:type_name -> trb.indicators.v1.DxParams
+	41,  // 53: trb.indicators.v1.IndicatorSettings.macd:type_name -> trb.indicators.v1.MacdParams
+	42,  // 54: trb.indicators.v1.IndicatorSettings.macdext:type_name -> trb.indicators.v1.MacdExtParams
+	43,  // 55: trb.indicators.v1.IndicatorSettings.macdfix:type_name -> trb.indicators.v1.MacdFixParams
+	44,  // 56: trb.indicators.v1.IndicatorSettings.mfi:type_name -> trb.indicators.v1.MfiParams
+	45,  // 57: trb.indicators.v1.IndicatorSettings.minus_di:type_name -> trb.indicators.v1.MinusDiParams
+	46,  // 58: trb.indicators.v1.IndicatorSettings.minus_dm:type_name -> trb.indicators.v1.MinusDmParams
+	47,  // 59: trb.indicators.v1.IndicatorSettings.mom:type_name -> trb.indicators.v1.MomParams
+	48,  // 60: trb.indicators.v1.IndicatorSettings.plus_di:type_name -> trb.indicators.v1.PlusDiParams
+	49,  // 61: trb.indicators.v1.IndicatorSettings.plus_dm:type_name -> trb.indicators.v1.PlusDmParams
+	50,  // 62: trb.indicators.v1.IndicatorSettings.ppo:type_name -> trb.indicators.v1.PpoParams
+	51,  // 63: trb.indicators.v1.IndicatorSettings.roc:type_name -> trb.indicators.v1.RocParams
+	52,  // 64: trb.indicators.v1.IndicatorSettings.rocp:type_name -> trb.indicators.v1.RocpParams
+	53,  // 65: trb.indicators.v1.IndicatorSettings.rocr:type_name -> trb.indicators.v1.RocrParams
+	54,  // 66: trb.indicators.v1.IndicatorSettings.rocr100:type_name -> trb.indicators.v1.Rocr100Params
+	56,  // 67: trb.indicators.v1.IndicatorSettings.stoch:type_name -> trb.indicators.v1.StochParams
+	57,  // 68: trb.indicators.v1.IndicatorSettings.stochf:type_name -> trb.indicators.v1.StochFParams
+	58,  // 69: trb.indicators.v1.IndicatorSettings.stochrsi:type_name -> trb.indicators.v1.StochRsiParams
+	59,  // 70: trb.indicators.v1.IndicatorSettings.trix:type_name -> trb.indicators.v1.TrixParams
+	60,  // 71: trb.indicators.v1.IndicatorSettings.ultosc:type_name -> trb.indicators.v1.UltOscParams
+	61,  // 72: trb.indicators.v1.IndicatorSettings.willr:type_name -> trb.indicators.v1.WillRParams
+	62,  // 73: trb.indicators.v1.IndicatorSettings.bbands:type_name -> trb.indicators.v1.BbandsParams
+	63,  // 74: trb.indicators.v1.IndicatorSettings.dema:type_name -> trb.indicators.v1.DemaParams
+	64,  // 75: trb.indicators.v1.IndicatorSettings.ema:type_name -> trb.indicators.v1.EmaParams
+	65,  // 76: trb.indicators.v1.IndicatorSettings.ht_trendline:type_name -> trb.indicators.v1.HtTrendlineParams
+	66,  // 77: trb.indicators.v1.IndicatorSettings.kama:type_name -> trb.indicators.v1.KamaParams
+	67,  // 78: trb.indicators.v1.IndicatorSettings.ma:type_name -> trb.indicators.v1.MaParams
+	68,  // 79: trb.indicators.v1.IndicatorSettings.mama:type_name -> trb.indicators.v1.MamaParams
+	69,  // 80: trb.indicators.v1.IndicatorSettings.mavp:type_name -> trb.indicators.v1.MavpParams
+	70,  // 81: trb.indicators.v1.IndicatorSettings.midpoint:type_name -> trb.indicators.v1.MidPointParams
+	71,  // 82: trb.indicators.v1.IndicatorSettings.midprice:type_name -> trb.indicators.v1.MidPriceParams
+	72,  // 83: trb.indicators.v1.IndicatorSettings.sar:type_name -> trb.indicators.v1.SarParams
+	73,  // 84: trb.indicators.v1.IndicatorSettings.sarext:type_name -> trb.indicators.v1.SarExtParams
+	74,  // 85: trb.indicators.v1.IndicatorSettings.sma:type_name -> trb.indicators.v1.SmaParams
+	75,  // 86: trb.indicators.v1.IndicatorSettings.t3:type_name -> trb.indicators.v1.T3Params
+	76,  // 87: trb.indicators.v1.IndicatorSettings.tema:type_name -> trb.indicators.v1.TemaParams
+	77,  // 88: trb.indicators.v1.IndicatorSettings.trima:type_name -> trb.indicators.v1.TrimaParams
+	78,  // 89: trb.indicators.v1.IndicatorSettings.wma:type_name -> trb.indicators.v1.WmaParams
+	79,  // 90: trb.indicators.v1.IndicatorSettings.cdl2crows:type_name -> trb.indicators.v1.Cdl2CrowsParams
+	80,  // 91: trb.indicators.v1.IndicatorSettings.cdl3blackcrows:type_name -> trb.indicators.v1.Cdl3BlackCrowsParams
+	81,  // 92: trb.indicators.v1.IndicatorSettings.cdl3inside:type_name -> trb.indicators.v1.Cdl3InsideParams
+	82,  // 93: trb.indicators.v1.IndicatorSettings.cdl3linestrike:type_name -> trb.indicators.v1.Cdl3LineStrikeParams
+	83,  // 94: trb.indicators.v1.IndicatorSettings.cdl3outside:type_name -> trb.indicators.v1.Cdl3OutsideParams
+	84,  // 95: trb.indicators.v1.IndicatorSettings.cdl3starsinsouth:type_name -> trb.indicators.v1.Cdl3StarsInSouthParams
+	85,  // 96: trb.indicators.v1.IndicatorSettings.cdl3whitesoldiers:type_name -> trb.indicators.v1.Cdl3WhiteSoldiersParams
+	86,  // 97: trb.indicators.v1.IndicatorSettings.cdlabandonedbaby:type_name -> trb.indicators.v1.CdlAbandonedBabyParams
+	87,  // 98: trb.indicators.v1.IndicatorSettings.cdladvanceblock:type_name -> trb.indicators.v1.CdlAdvanceBlockParams
+	88,  // 99: trb.indicators.v1.IndicatorSettings.cdlbelthold:type_name -> trb.indicators.v1.CdlBeltHoldParams
+	89,  // 100: trb.indicators.v1.IndicatorSettings.cdlbreakaway:type_name -> trb.indicators.v1.CdlBreakawayParams
+	90,  // 101: trb.indicators.v1.IndicatorSettings.cdlclosingmarubozu:type_name -> trb.indicators.v1.CdlClosingMarubozuParams
+	91,  // 102: trb.indicators.v1.IndicatorSettings.cdlconcealbabyswall:type_name -> trb.indicators.v1.CdlConcealBabysWallParams
+	92,  // 103: trb.indicators.v1.IndicatorSettings.cdlcounterattack:type_name -> trb.indicators.v1.CdlCounterAttackParams
+	93,  // 104: trb.indicators.v1.IndicatorSettings.cdldarkcloudcover:type_name -> trb.indicators.v1.CdlDarkCloudCoverParams
+	94,  // 105: trb.indicators.v1.IndicatorSettings.cdldoji:type_name -> trb.indicators.v1.CdlDojiParams
+	95,  // 106: trb.indicators.v1.IndicatorSettings.cdldojistar:type_name -> trb.indicators.v1.CdlDojiStarParams
+	96,  // 107: trb.indicators.v1.IndicatorSettings.cdldragonflydoji:type_name -> trb.indicators.v1.CdlDragonflyDojiParams
+	97,  // 108: trb.indicators.v1.IndicatorSettings.cdlengulfing:type_name -> trb.indicators.v1.CdlEngulfingParams
+	98,  // 109: trb.indicators.v1.IndicatorSettings.cdleveningdojistar:type_name -> trb.indicators.v1.CdlEveningDojiStarParams
+	99,  // 110: trb.indicators.v1.IndicatorSettings.cdleveningstar:type_name -> trb.indicators.v1.CdlEveningStarParams
+	100, // 111: trb.indicators.v1.IndicatorSettings.cdlgapsidesidewhite:type_name -> trb.indicators.v1.CdlGapSideSideWhiteParams
+	101, // 112: trb.indicators.v1.IndicatorSettings.cdlgravestonedoji:type_name -> trb.indicators.v1.CdlGravestoneDojiParams
+	102, // 113: trb.indicators.v1.IndicatorSettings.cdlhammer:type_name -> trb.indicators.v1.CdlHammerParams
+	103, // 114: trb.indicators.v1.IndicatorSettings.cdlhangingman:type_name -> trb.indicators.v1.CdlHangingManParams
+	104, // 115: trb.indicators.v1.IndicatorSettings.cdlharami:type_name -> trb.indicators.v1.CdlHaramiParams
+	105, // 116: trb.indicators.v1.IndicatorSettings.cdlharamicross:type_name -> trb.indicators.v1.CdlHaramiCrossParams
+	106, // 117: trb.indicators.v1.IndicatorSettings.cdlhighwave:type_name -> trb.indicators.v1.CdlHighWaveParams
+	107, // 118: trb.indicators.v1.IndicatorSettings.cdlhikkake:type_name -> trb.indicators.v1.CdlHikkakeParams
+	108, // 119: trb.indicators.v1.IndicatorSettings.cdlhikkakemod:type_name -> trb.indicators.v1.CdlHikkakeModParams
+	109, // 120: trb.indicators.v1.IndicatorSettings.cdlhomingpigeon:type_name -> trb.indicators.v1.CdlHomingPigeonParams
+	110, // 121: trb.indicators.v1.IndicatorSettings.cdlidentical3crows:type_name -> trb.indicators.v1.CdlIdentical3CrowsParams
+	111, // 122: trb.indicators.v1.IndicatorSettings.cdlinneck:type_name -> trb.indicators.v1.CdlInNeckParams
+	112, // 123: trb.indicators.v1.IndicatorSettings.cdlinvertedhammer:type_name -> trb.indicators.v1.CdlInvertedHammerParams
+	113, // 124: trb.indicators.v1.IndicatorSettings.cdlkicking:type_name -> trb.indicators.v1.CdlKickingParams
+	114, // 125: trb.indicators.v1.IndicatorSettings.cdlkickingbylength:type_name -> trb.indicators.v1.CdlKickingByLengthParams
+	115, // 126: trb.indicators.v1.IndicatorSettings.cdlladderbottom:type_name -> trb.indicators.v1.CdlLadderBottomParams
+	116, // 127: trb.indicators.v1.IndicatorSettings.cdllongleggeddoji:type_name -> trb.indicators.v1.CdlLongLeggedDojiParams
+	117, // 128: trb.indicators.v1.IndicatorSettings.cdllongline:type_name -> trb.indicators.v1.CdlLongLineParams
+	118, // 129: trb.indicators.v1.IndicatorSettings.cdlmarubozu:type_name -> trb.indicators.v1.CdlMarubozuParams
+	119, // 130: trb.indicators.v1.IndicatorSettings.cdlmatchinglow:type_name -> trb.indicators.v1.CdlMatchingLowParams
+	120, // 131: trb.indicators.v1.IndicatorSettings.cdlmathold:type_name -> trb.indicators.v1.CdlMatHoldParams
+	121, // 132: trb.indicators.v1.IndicatorSettings.cdlmorningdojistar:type_name -> trb.indicators.v1.CdlMorningDojiStarParams
+	122, // 133: trb.indicators.v1.IndicatorSettings.cdlmorningstar:type_name -> trb.indicators.v1.CdlMorningStarParams
+	123, // 134: trb.indicators.v1.IndicatorSettings.cdlonneck:type_name -> trb.indicators.v1.CdlOnNeckParams
+	124, // 135: trb.indicators.v1.IndicatorSettings.cdlpiercing:type_name -> trb.indicators.v1.CdlPiercingParams
+	125, // 136: trb.indicators.v1.IndicatorSettings.cdlrickshawman:type_name -> trb.indicators.v1.CdlRickshawManParams
+	126, // 137: trb.indicators.v1.IndicatorSettings.cdlrisefall3methods:type_name -> trb.indicators.v1.CdlRiseFall3MethodsParams
+	127, // 138: trb.indicators.v1.IndicatorSettings.cdlseparatinglines:type_name -> trb.indicators.v1.CdlSeparatingLinesParams
+	128, // 139: trb.indicators.v1.IndicatorSettings.cdlshootingstar:type_name -> trb.indicators.v1.CdlShootingStarParams
+	129, // 140: trb.indicators.v1.IndicatorSettings.cdlshortline:type_name -> trb.indicators.v1.CdlShortLineParams
+	130, // 141: trb.indicators.v1.IndicatorSettings.cdlspinningtop:type_name -> trb.indicators.v1.CdlSpinningTopParams
+	131, // 142: trb.indicators.v1.IndicatorSettings.cdlstalledpattern:type_name -> trb.indicators.v1.CdlStalledPatternParams
+	132, // 143: trb.indicators.v1.IndicatorSettings.cdlsticksandwich:type_name -> trb.indicators.v1.CdlStickSandwichParams
+	133, // 144: trb.indicators.v1.IndicatorSettings.cdltakuri:type_name -> trb.indicators.v1.CdlTakuriParams
+	134, // 145: trb.indicators.v1.IndicatorSettings.cdltasukigap:type_name -> trb.indicators.v1.CdlTasukiGapParams
+	135, // 146: trb.indicators.v1.IndicatorSettings.cdlthrusting:type_name -> trb.indicators.v1.CdlThrustingParams
+	136, // 147: trb.indicators.v1.IndicatorSettings.cdltristar:type_name -> trb.indicators.v1.CdlTristarParams
+	137, // 148: trb.indicators.v1.IndicatorSettings.cdlunique3river:type_name -> trb.indicators.v1.CdlUnique3RiverParams
+	138, // 149: trb.indicators.v1.IndicatorSettings.cdlupsidegap2crows:type_name -> trb.indicators.v1.CdlUpsideGap2CrowsParams
+	139, // 150: trb.indicators.v1.IndicatorSettings.cdlxsidegap3methods:type_name -> trb.indicators.v1.CdlXsideGap3MethodsParams
+	140, // 151: trb.indicators.v1.IndicatorSettings.avgprice:type_name -> trb.indicators.v1.AvgPriceParams
+	141, // 152: trb.indicators.v1.IndicatorSettings.medprice:type_name -> trb.indicators.v1.MedPriceParams
+	142, // 153: trb.indicators.v1.IndicatorSettings.typprice:type_name -> trb.indicators.v1.TypPriceParams
+	143, // 154: trb.indicators.v1.IndicatorSettings.wclprice:type_name -> trb.indicators.v1.WclPriceParams
+	144, // 155: trb.indicators.v1.IndicatorSettings.beta:type_name -> trb.indicators.v1.BetaParams
+	145, // 156: trb.indicators.v1.IndicatorSettings.correl:type_name -> trb.indicators.v1.CorrelParams
+	146, // 157: trb.indicators.v1.IndicatorSettings.linearreg:type_name -> trb.indicators.v1.LinearRegParams
+	147, // 158: trb.indicators.v1.IndicatorSettings.linearreg_angle:type_name -> trb.indicators.v1.LinearRegAngleParams
+	148, // 159: trb.indicators.v1.IndicatorSettings.linearreg_intercept:type_name -> trb.indicators.v1.LinearRegInterceptParams
+	149, // 160: trb.indicators.v1.IndicatorSettings.linearreg_slope:type_name -> trb.indicators.v1.LinearRegSlopeParams
+	150, // 161: trb.indicators.v1.IndicatorSettings.stddev:type_name -> trb.indicators.v1.StdDevParams
+	151, // 162: trb.indicators.v1.IndicatorSettings.tsf:type_name -> trb.indicators.v1.TsfParams
+	152, // 163: trb.indicators.v1.IndicatorSettings.var:type_name -> trb.indicators.v1.VarParams
+	153, // 164: trb.indicators.v1.IndicatorSettings.atr:type_name -> trb.indicators.v1.AtrParams
+	154, // 165: trb.indicators.v1.IndicatorSettings.natr:type_name -> trb.indicators.v1.NatrParams
+	155, // 166: trb.indicators.v1.IndicatorSettings.trange:type_name -> trb.indicators.v1.TrangeParams
+	156, // 167: trb.indicators.v1.IndicatorSettings.ad:type_name -> trb.indicators.v1.AdParams
+	157, // 168: trb.indicators.v1.IndicatorSettings.adosc:type_name -> trb.indicators.v1.AdOscParams
+	158, // 169: trb.indicators.v1.IndicatorSettings.obv:type_name -> trb.indicators.v1.ObvParams
+	170, // [170:170] is the sub-list for method output_type
+	170, // [170:170] is the sub-list for method input_type
+	170, // [170:170] is the sub-list for extension type_name
+	170, // [170:170] is the sub-list for extension extendee
+	0,   // [0:170] is the sub-list for field type_name
 }
 
 func init() { file_indicators_params_proto_init() }
@@ -11671,7 +10280,7 @@ func file_indicators_params_proto_init() {
 	if File_indicators_params_proto != nil {
 		return
 	}
-	file_indicators_params_proto_msgTypes[178].OneofWrappers = []any{
+	file_indicators_params_proto_msgTypes[158].OneofWrappers = []any{
 		(*IndicatorSettings_Rsi)(nil),
 		(*IndicatorSettings_HtDcperiod)(nil),
 		(*IndicatorSettings_HtDcphase)(nil),
@@ -11704,19 +10313,15 @@ func file_indicators_params_proto_init() {
 		(*IndicatorSettings_Sqrt)(nil),
 		(*IndicatorSettings_Tan)(nil),
 		(*IndicatorSettings_Tanh)(nil),
-		(*IndicatorSettings_Ac)(nil),
 		(*IndicatorSettings_Adx)(nil),
 		(*IndicatorSettings_Adxr)(nil),
-		(*IndicatorSettings_Ao)(nil),
 		(*IndicatorSettings_Apo)(nil),
 		(*IndicatorSettings_Aroon)(nil),
 		(*IndicatorSettings_Aroonosc)(nil),
 		(*IndicatorSettings_Bop)(nil),
 		(*IndicatorSettings_Cci)(nil),
 		(*IndicatorSettings_Cmo)(nil),
-		(*IndicatorSettings_Cmou)(nil),
 		(*IndicatorSettings_Dx)(nil),
-		(*IndicatorSettings_Imi)(nil),
 		(*IndicatorSettings_Macd)(nil),
 		(*IndicatorSettings_Macdext)(nil),
 		(*IndicatorSettings_Macdfix)(nil),
@@ -11727,27 +10332,21 @@ func file_indicators_params_proto_init() {
 		(*IndicatorSettings_PlusDi)(nil),
 		(*IndicatorSettings_PlusDm)(nil),
 		(*IndicatorSettings_Ppo)(nil),
-		(*IndicatorSettings_Qstick)(nil),
 		(*IndicatorSettings_Roc)(nil),
 		(*IndicatorSettings_Rocp)(nil),
 		(*IndicatorSettings_Rocr)(nil),
 		(*IndicatorSettings_Rocr100)(nil),
-		(*IndicatorSettings_Smi)(nil),
 		(*IndicatorSettings_Stoch)(nil),
 		(*IndicatorSettings_Stochf)(nil),
 		(*IndicatorSettings_Stochrsi)(nil),
 		(*IndicatorSettings_Trix)(nil),
 		(*IndicatorSettings_Ultosc)(nil),
-		(*IndicatorSettings_Wad)(nil),
 		(*IndicatorSettings_Willr)(nil),
-		(*IndicatorSettings_Accbands)(nil),
 		(*IndicatorSettings_Bbands)(nil),
 		(*IndicatorSettings_Dema)(nil),
 		(*IndicatorSettings_Ema)(nil),
-		(*IndicatorSettings_Hma)(nil),
 		(*IndicatorSettings_HtTrendline)(nil),
 		(*IndicatorSettings_Kama)(nil),
-		(*IndicatorSettings_Kc)(nil),
 		(*IndicatorSettings_Ma)(nil),
 		(*IndicatorSettings_Mama)(nil),
 		(*IndicatorSettings_Mavp)(nil),
@@ -11756,11 +10355,9 @@ func file_indicators_params_proto_init() {
 		(*IndicatorSettings_Sar)(nil),
 		(*IndicatorSettings_Sarext)(nil),
 		(*IndicatorSettings_Sma)(nil),
-		(*IndicatorSettings_Supertrend)(nil),
 		(*IndicatorSettings_T3)(nil),
 		(*IndicatorSettings_Tema)(nil),
 		(*IndicatorSettings_Trima)(nil),
-		(*IndicatorSettings_Vwma)(nil),
 		(*IndicatorSettings_Wma)(nil),
 		(*IndicatorSettings_Cdl2Crows)(nil),
 		(*IndicatorSettings_Cdl3Blackcrows)(nil),
@@ -11823,7 +10420,6 @@ func file_indicators_params_proto_init() {
 		(*IndicatorSettings_Cdlunique3River)(nil),
 		(*IndicatorSettings_Cdlupsidegap2Crows)(nil),
 		(*IndicatorSettings_Cdlxsidegap3Methods)(nil),
-		(*IndicatorSettings_Avgdev)(nil),
 		(*IndicatorSettings_Avgprice)(nil),
 		(*IndicatorSettings_Medprice)(nil),
 		(*IndicatorSettings_Typprice)(nil),
@@ -11842,14 +10438,7 @@ func file_indicators_params_proto_init() {
 		(*IndicatorSettings_Trange)(nil),
 		(*IndicatorSettings_Ad)(nil),
 		(*IndicatorSettings_Adosc)(nil),
-		(*IndicatorSettings_Cmf)(nil),
-		(*IndicatorSettings_Efi)(nil),
-		(*IndicatorSettings_Marketfi)(nil),
-		(*IndicatorSettings_Nvi)(nil),
 		(*IndicatorSettings_Obv)(nil),
-		(*IndicatorSettings_Pvi)(nil),
-		(*IndicatorSettings_Pvo)(nil),
-		(*IndicatorSettings_Vwap)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -11857,7 +10446,7 @@ func file_indicators_params_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_indicators_params_proto_rawDesc), len(file_indicators_params_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   179,
+			NumMessages:   159,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

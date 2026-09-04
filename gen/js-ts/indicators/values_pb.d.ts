@@ -483,54 +483,6 @@ export namespace StochFSeries {
   }
 }
 
-export class SmiPoint extends jspb.Message {
-  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTime(value?: google_protobuf_timestamp_pb.Timestamp): SmiPoint;
-  hasTime(): boolean;
-  clearTime(): SmiPoint;
-
-  getSmi(): number;
-  setSmi(value: number): SmiPoint;
-
-  getSignal(): number;
-  setSignal(value: number): SmiPoint;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SmiPoint.AsObject;
-  static toObject(includeInstance: boolean, msg: SmiPoint): SmiPoint.AsObject;
-  static serializeBinaryToWriter(message: SmiPoint, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SmiPoint;
-  static deserializeBinaryFromReader(message: SmiPoint, reader: jspb.BinaryReader): SmiPoint;
-}
-
-export namespace SmiPoint {
-  export type AsObject = {
-    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    smi: number,
-    signal: number,
-  }
-}
-
-export class SmiSeries extends jspb.Message {
-  getPointsList(): Array<SmiPoint>;
-  setPointsList(value: Array<SmiPoint>): SmiSeries;
-  clearPointsList(): SmiSeries;
-  addPoints(value?: SmiPoint, index?: number): SmiPoint;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SmiSeries.AsObject;
-  static toObject(includeInstance: boolean, msg: SmiSeries): SmiSeries.AsObject;
-  static serializeBinaryToWriter(message: SmiSeries, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SmiSeries;
-  static deserializeBinaryFromReader(message: SmiSeries, reader: jspb.BinaryReader): SmiSeries;
-}
-
-export namespace SmiSeries {
-  export type AsObject = {
-    pointsList: Array<SmiPoint.AsObject>,
-  }
-}
-
 export class MinMaxPoint extends jspb.Message {
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTime(value?: google_protobuf_timestamp_pb.Timestamp): MinMaxPoint;
@@ -624,54 +576,6 @@ export class MinMaxIndexSeries extends jspb.Message {
 export namespace MinMaxIndexSeries {
   export type AsObject = {
     pointsList: Array<MinMaxIndexPoint.AsObject>,
-  }
-}
-
-export class SuperTrendPoint extends jspb.Message {
-  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTime(value?: google_protobuf_timestamp_pb.Timestamp): SuperTrendPoint;
-  hasTime(): boolean;
-  clearTime(): SuperTrendPoint;
-
-  getValue(): number;
-  setValue(value: number): SuperTrendPoint;
-
-  getTrend(): number;
-  setTrend(value: number): SuperTrendPoint;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SuperTrendPoint.AsObject;
-  static toObject(includeInstance: boolean, msg: SuperTrendPoint): SuperTrendPoint.AsObject;
-  static serializeBinaryToWriter(message: SuperTrendPoint, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SuperTrendPoint;
-  static deserializeBinaryFromReader(message: SuperTrendPoint, reader: jspb.BinaryReader): SuperTrendPoint;
-}
-
-export namespace SuperTrendPoint {
-  export type AsObject = {
-    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    value: number,
-    trend: number,
-  }
-}
-
-export class SuperTrendSeries extends jspb.Message {
-  getPointsList(): Array<SuperTrendPoint>;
-  setPointsList(value: Array<SuperTrendPoint>): SuperTrendSeries;
-  clearPointsList(): SuperTrendSeries;
-  addPoints(value?: SuperTrendPoint, index?: number): SuperTrendPoint;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SuperTrendSeries.AsObject;
-  static toObject(includeInstance: boolean, msg: SuperTrendSeries): SuperTrendSeries.AsObject;
-  static serializeBinaryToWriter(message: SuperTrendSeries, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SuperTrendSeries;
-  static deserializeBinaryFromReader(message: SuperTrendSeries, reader: jspb.BinaryReader): SuperTrendSeries;
-}
-
-export namespace SuperTrendSeries {
-  export type AsObject = {
-    pointsList: Array<SuperTrendPoint.AsObject>,
   }
 }
 
@@ -836,11 +740,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasTanh(): boolean;
   clearTanh(): IndicatorValuesResponse;
 
-  getAc(): RealSeries | undefined;
-  setAc(value?: RealSeries): IndicatorValuesResponse;
-  hasAc(): boolean;
-  clearAc(): IndicatorValuesResponse;
-
   getAdx(): RealSeries | undefined;
   setAdx(value?: RealSeries): IndicatorValuesResponse;
   hasAdx(): boolean;
@@ -850,11 +749,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   setAdxr(value?: RealSeries): IndicatorValuesResponse;
   hasAdxr(): boolean;
   clearAdxr(): IndicatorValuesResponse;
-
-  getAo(): RealSeries | undefined;
-  setAo(value?: RealSeries): IndicatorValuesResponse;
-  hasAo(): boolean;
-  clearAo(): IndicatorValuesResponse;
 
   getApo(): RealSeries | undefined;
   setApo(value?: RealSeries): IndicatorValuesResponse;
@@ -886,20 +780,10 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasCmo(): boolean;
   clearCmo(): IndicatorValuesResponse;
 
-  getCmou(): RealSeries | undefined;
-  setCmou(value?: RealSeries): IndicatorValuesResponse;
-  hasCmou(): boolean;
-  clearCmou(): IndicatorValuesResponse;
-
   getDx(): RealSeries | undefined;
   setDx(value?: RealSeries): IndicatorValuesResponse;
   hasDx(): boolean;
   clearDx(): IndicatorValuesResponse;
-
-  getImi(): RealSeries | undefined;
-  setImi(value?: RealSeries): IndicatorValuesResponse;
-  hasImi(): boolean;
-  clearImi(): IndicatorValuesResponse;
 
   getMacd(): MacdSeries | undefined;
   setMacd(value?: MacdSeries): IndicatorValuesResponse;
@@ -951,11 +835,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasPpo(): boolean;
   clearPpo(): IndicatorValuesResponse;
 
-  getQstick(): RealSeries | undefined;
-  setQstick(value?: RealSeries): IndicatorValuesResponse;
-  hasQstick(): boolean;
-  clearQstick(): IndicatorValuesResponse;
-
   getRoc(): RealSeries | undefined;
   setRoc(value?: RealSeries): IndicatorValuesResponse;
   hasRoc(): boolean;
@@ -975,11 +854,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   setRocr100(value?: RealSeries): IndicatorValuesResponse;
   hasRocr100(): boolean;
   clearRocr100(): IndicatorValuesResponse;
-
-  getSmi(): SmiSeries | undefined;
-  setSmi(value?: SmiSeries): IndicatorValuesResponse;
-  hasSmi(): boolean;
-  clearSmi(): IndicatorValuesResponse;
 
   getStoch(): StochSeries | undefined;
   setStoch(value?: StochSeries): IndicatorValuesResponse;
@@ -1006,20 +880,10 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasUltosc(): boolean;
   clearUltosc(): IndicatorValuesResponse;
 
-  getWad(): RealSeries | undefined;
-  setWad(value?: RealSeries): IndicatorValuesResponse;
-  hasWad(): boolean;
-  clearWad(): IndicatorValuesResponse;
-
   getWillr(): RealSeries | undefined;
   setWillr(value?: RealSeries): IndicatorValuesResponse;
   hasWillr(): boolean;
   clearWillr(): IndicatorValuesResponse;
-
-  getAccbands(): BandsSeries | undefined;
-  setAccbands(value?: BandsSeries): IndicatorValuesResponse;
-  hasAccbands(): boolean;
-  clearAccbands(): IndicatorValuesResponse;
 
   getBbands(): BandsSeries | undefined;
   setBbands(value?: BandsSeries): IndicatorValuesResponse;
@@ -1036,11 +900,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasEma(): boolean;
   clearEma(): IndicatorValuesResponse;
 
-  getHma(): RealSeries | undefined;
-  setHma(value?: RealSeries): IndicatorValuesResponse;
-  hasHma(): boolean;
-  clearHma(): IndicatorValuesResponse;
-
   getHtTrendline(): RealSeries | undefined;
   setHtTrendline(value?: RealSeries): IndicatorValuesResponse;
   hasHtTrendline(): boolean;
@@ -1050,11 +909,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   setKama(value?: RealSeries): IndicatorValuesResponse;
   hasKama(): boolean;
   clearKama(): IndicatorValuesResponse;
-
-  getKc(): BandsSeries | undefined;
-  setKc(value?: BandsSeries): IndicatorValuesResponse;
-  hasKc(): boolean;
-  clearKc(): IndicatorValuesResponse;
 
   getMa(): RealSeries | undefined;
   setMa(value?: RealSeries): IndicatorValuesResponse;
@@ -1096,11 +950,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasSma(): boolean;
   clearSma(): IndicatorValuesResponse;
 
-  getSupertrend(): SuperTrendSeries | undefined;
-  setSupertrend(value?: SuperTrendSeries): IndicatorValuesResponse;
-  hasSupertrend(): boolean;
-  clearSupertrend(): IndicatorValuesResponse;
-
   getT3(): RealSeries | undefined;
   setT3(value?: RealSeries): IndicatorValuesResponse;
   hasT3(): boolean;
@@ -1115,11 +964,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   setTrima(value?: RealSeries): IndicatorValuesResponse;
   hasTrima(): boolean;
   clearTrima(): IndicatorValuesResponse;
-
-  getVwma(): RealSeries | undefined;
-  setVwma(value?: RealSeries): IndicatorValuesResponse;
-  hasVwma(): boolean;
-  clearVwma(): IndicatorValuesResponse;
 
   getWma(): RealSeries | undefined;
   setWma(value?: RealSeries): IndicatorValuesResponse;
@@ -1431,11 +1275,6 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasCdlxsidegap3methods(): boolean;
   clearCdlxsidegap3methods(): IndicatorValuesResponse;
 
-  getAvgdev(): RealSeries | undefined;
-  setAvgdev(value?: RealSeries): IndicatorValuesResponse;
-  hasAvgdev(): boolean;
-  clearAvgdev(): IndicatorValuesResponse;
-
   getAvgprice(): RealSeries | undefined;
   setAvgprice(value?: RealSeries): IndicatorValuesResponse;
   hasAvgprice(): boolean;
@@ -1526,45 +1365,10 @@ export class IndicatorValuesResponse extends jspb.Message {
   hasAdosc(): boolean;
   clearAdosc(): IndicatorValuesResponse;
 
-  getCmf(): RealSeries | undefined;
-  setCmf(value?: RealSeries): IndicatorValuesResponse;
-  hasCmf(): boolean;
-  clearCmf(): IndicatorValuesResponse;
-
-  getEfi(): RealSeries | undefined;
-  setEfi(value?: RealSeries): IndicatorValuesResponse;
-  hasEfi(): boolean;
-  clearEfi(): IndicatorValuesResponse;
-
-  getMarketfi(): RealSeries | undefined;
-  setMarketfi(value?: RealSeries): IndicatorValuesResponse;
-  hasMarketfi(): boolean;
-  clearMarketfi(): IndicatorValuesResponse;
-
-  getNvi(): RealSeries | undefined;
-  setNvi(value?: RealSeries): IndicatorValuesResponse;
-  hasNvi(): boolean;
-  clearNvi(): IndicatorValuesResponse;
-
   getObv(): RealSeries | undefined;
   setObv(value?: RealSeries): IndicatorValuesResponse;
   hasObv(): boolean;
   clearObv(): IndicatorValuesResponse;
-
-  getPvi(): RealSeries | undefined;
-  setPvi(value?: RealSeries): IndicatorValuesResponse;
-  hasPvi(): boolean;
-  clearPvi(): IndicatorValuesResponse;
-
-  getPvo(): RealSeries | undefined;
-  setPvo(value?: RealSeries): IndicatorValuesResponse;
-  hasPvo(): boolean;
-  clearPvo(): IndicatorValuesResponse;
-
-  getVwap(): RealSeries | undefined;
-  setVwap(value?: RealSeries): IndicatorValuesResponse;
-  hasVwap(): boolean;
-  clearVwap(): IndicatorValuesResponse;
 
   getValuesCase(): IndicatorValuesResponse.ValuesCase;
 
@@ -1610,19 +1414,15 @@ export namespace IndicatorValuesResponse {
     sqrt?: RealSeries.AsObject,
     tan?: RealSeries.AsObject,
     tanh?: RealSeries.AsObject,
-    ac?: RealSeries.AsObject,
     adx?: RealSeries.AsObject,
     adxr?: RealSeries.AsObject,
-    ao?: RealSeries.AsObject,
     apo?: RealSeries.AsObject,
     aroon?: AroonSeries.AsObject,
     aroonosc?: RealSeries.AsObject,
     bop?: RealSeries.AsObject,
     cci?: RealSeries.AsObject,
     cmo?: RealSeries.AsObject,
-    cmou?: RealSeries.AsObject,
     dx?: RealSeries.AsObject,
-    imi?: RealSeries.AsObject,
     macd?: MacdSeries.AsObject,
     macdext?: MacdSeries.AsObject,
     macdfix?: MacdSeries.AsObject,
@@ -1633,27 +1433,21 @@ export namespace IndicatorValuesResponse {
     plusDi?: RealSeries.AsObject,
     plusDm?: RealSeries.AsObject,
     ppo?: RealSeries.AsObject,
-    qstick?: RealSeries.AsObject,
     roc?: RealSeries.AsObject,
     rocp?: RealSeries.AsObject,
     rocr?: RealSeries.AsObject,
     rocr100?: RealSeries.AsObject,
-    smi?: SmiSeries.AsObject,
     stoch?: StochSeries.AsObject,
     stochf?: StochFSeries.AsObject,
     stochrsi?: StochFSeries.AsObject,
     trix?: RealSeries.AsObject,
     ultosc?: RealSeries.AsObject,
-    wad?: RealSeries.AsObject,
     willr?: RealSeries.AsObject,
-    accbands?: BandsSeries.AsObject,
     bbands?: BandsSeries.AsObject,
     dema?: RealSeries.AsObject,
     ema?: RealSeries.AsObject,
-    hma?: RealSeries.AsObject,
     htTrendline?: RealSeries.AsObject,
     kama?: RealSeries.AsObject,
-    kc?: BandsSeries.AsObject,
     ma?: RealSeries.AsObject,
     mama?: MamaSeries.AsObject,
     mavp?: RealSeries.AsObject,
@@ -1662,11 +1456,9 @@ export namespace IndicatorValuesResponse {
     sar?: RealSeries.AsObject,
     sarext?: RealSeries.AsObject,
     sma?: RealSeries.AsObject,
-    supertrend?: SuperTrendSeries.AsObject,
     t3?: RealSeries.AsObject,
     tema?: RealSeries.AsObject,
     trima?: RealSeries.AsObject,
-    vwma?: RealSeries.AsObject,
     wma?: RealSeries.AsObject,
     cdl2crows?: IntegerSeries.AsObject,
     cdl3blackcrows?: IntegerSeries.AsObject,
@@ -1729,7 +1521,6 @@ export namespace IndicatorValuesResponse {
     cdlunique3river?: IntegerSeries.AsObject,
     cdlupsidegap2crows?: IntegerSeries.AsObject,
     cdlxsidegap3methods?: IntegerSeries.AsObject,
-    avgdev?: RealSeries.AsObject,
     avgprice?: RealSeries.AsObject,
     medprice?: RealSeries.AsObject,
     typprice?: RealSeries.AsObject,
@@ -1748,14 +1539,7 @@ export namespace IndicatorValuesResponse {
     trange?: RealSeries.AsObject,
     ad?: RealSeries.AsObject,
     adosc?: RealSeries.AsObject,
-    cmf?: RealSeries.AsObject,
-    efi?: RealSeries.AsObject,
-    marketfi?: RealSeries.AsObject,
-    nvi?: RealSeries.AsObject,
     obv?: RealSeries.AsObject,
-    pvi?: RealSeries.AsObject,
-    pvo?: RealSeries.AsObject,
-    vwap?: RealSeries.AsObject,
   }
 
   export enum ValuesCase { 
@@ -1792,19 +1576,15 @@ export namespace IndicatorValuesResponse {
     SQRT = 52,
     TAN = 53,
     TANH = 54,
-    AC = 60,
     ADX = 61,
     ADXR = 62,
-    AO = 63,
     APO = 64,
     AROON = 65,
     AROONOSC = 66,
     BOP = 67,
     CCI = 68,
     CMO = 69,
-    CMOU = 70,
     DX = 71,
-    IMI = 72,
     MACD = 73,
     MACDEXT = 74,
     MACDFIX = 75,
@@ -1815,27 +1595,21 @@ export namespace IndicatorValuesResponse {
     PLUS_DI = 80,
     PLUS_DM = 81,
     PPO = 82,
-    QSTICK = 83,
     ROC = 84,
     ROCP = 85,
     ROCR = 86,
     ROCR100 = 87,
-    SMI = 88,
     STOCH = 89,
     STOCHF = 90,
     STOCHRSI = 91,
     TRIX = 92,
     ULTOSC = 93,
-    WAD = 94,
     WILLR = 95,
-    ACCBANDS = 100,
     BBANDS = 101,
     DEMA = 102,
     EMA = 103,
-    HMA = 104,
     HT_TRENDLINE = 105,
     KAMA = 106,
-    KC = 107,
     MA = 108,
     MAMA = 109,
     MAVP = 110,
@@ -1844,11 +1618,9 @@ export namespace IndicatorValuesResponse {
     SAR = 113,
     SAREXT = 114,
     SMA = 115,
-    SUPERTREND = 116,
     T3 = 117,
     TEMA = 118,
     TRIMA = 119,
-    VWMA = 120,
     WMA = 121,
     CDL2CROWS = 130,
     CDL3BLACKCROWS = 131,
@@ -1911,7 +1683,6 @@ export namespace IndicatorValuesResponse {
     CDLUNIQUE3RIVER = 188,
     CDLUPSIDEGAP2CROWS = 189,
     CDLXSIDEGAP3METHODS = 190,
-    AVGDEV = 200,
     AVGPRICE = 201,
     MEDPRICE = 202,
     TYPPRICE = 203,
@@ -1930,14 +1701,7 @@ export namespace IndicatorValuesResponse {
     TRANGE = 222,
     AD = 230,
     ADOSC = 231,
-    CMF = 232,
-    EFI = 233,
-    MARKETFI = 234,
-    NVI = 235,
     OBV = 236,
-    PVI = 237,
-    PVO = 238,
-    VWAP = 239,
   }
 }
 

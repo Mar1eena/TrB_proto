@@ -21,22 +21,18 @@ var global =
     (function () { return this; }).call(null) ||
     Function('return this')();
 
-goog.exportSymbol('proto.trb.indicators.v1.AcParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.AccBandsParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AcosParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AdOscParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AdParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AddParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AdxParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AdxrParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.AoParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.ApoParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AroonOscParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AroonParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AsinParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AtanParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AtrParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.AvgDevParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.AvgPriceParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.BbandsParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.BetaParams', null, global);
@@ -104,31 +100,25 @@ goog.exportSymbol('proto.trb.indicators.v1.CdlUnique3RiverParams', null, global)
 goog.exportSymbol('proto.trb.indicators.v1.CdlUpsideGap2CrowsParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CdlXsideGap3MethodsParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CeilParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.CmfParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CmoParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.CmouParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CorrelParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CosParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.CoshParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.DemaParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.DivParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.DxParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.EfiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.EmaParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.ExpParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.FloorParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.HmaParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtDcPeriodParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtDcPhaseParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtPhasorParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtSineParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtTrendModeParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.HtTrendlineParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.ImiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.IndicatorSettings', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.KamaParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.KcParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.LinearRegAngleParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.LinearRegInterceptParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.LinearRegParams', null, global);
@@ -141,7 +131,6 @@ goog.exportSymbol('proto.trb.indicators.v1.MacdExtParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MacdFixParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MacdParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MamaParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.MarketFiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MavpParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MaxIndexParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MaxParams', null, global);
@@ -158,14 +147,10 @@ goog.exportSymbol('proto.trb.indicators.v1.MinusDmParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MomParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.MultParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.NatrParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.NviParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.ObvParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.PlusDiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.PlusDmParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.PpoParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.PviParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.PvoParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.QstickParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.RocParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.RocpParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.Rocr100Params', null, global);
@@ -176,7 +161,6 @@ goog.exportSymbol('proto.trb.indicators.v1.SarParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SinParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SinhParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SmaParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.SmiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SqrtParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.StdDevParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.StochFParams', null, global);
@@ -184,7 +168,6 @@ goog.exportSymbol('proto.trb.indicators.v1.StochParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.StochRsiParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SubParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.SumParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.SuperTrendParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.T3Params', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.TanParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.TanhParams', null, global);
@@ -196,9 +179,6 @@ goog.exportSymbol('proto.trb.indicators.v1.TsfParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.TypPriceParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.UltOscParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.VarParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.VwapParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.VwmaParams', null, global);
-goog.exportSymbol('proto.trb.indicators.v1.WadParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.WclPriceParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.WillRParams', null, global);
 goog.exportSymbol('proto.trb.indicators.v1.WmaParams', null, global);
@@ -863,27 +843,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.AcParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.AcParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.AcParams.displayName = 'proto.trb.indicators.v1.AcParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.AdxParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -915,27 +874,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.AdxrParams.displayName = 'proto.trb.indicators.v1.AdxrParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.AoParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.AoParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.AoParams.displayName = 'proto.trb.indicators.v1.AoParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1073,27 +1011,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.CmouParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.CmouParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.CmouParams.displayName = 'proto.trb.indicators.v1.CmouParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.DxParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1104,27 +1021,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.DxParams.displayName = 'proto.trb.indicators.v1.DxParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.ImiParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.ImiParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.ImiParams.displayName = 'proto.trb.indicators.v1.ImiParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1346,27 +1242,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.QstickParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.QstickParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.QstickParams.displayName = 'proto.trb.indicators.v1.QstickParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.RocParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1461,27 +1336,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.RsiParams.displayName = 'proto.trb.indicators.v1.RsiParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.SmiParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.SmiParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.SmiParams.displayName = 'proto.trb.indicators.v1.SmiParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1598,27 +1452,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.WadParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.WadParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.WadParams.displayName = 'proto.trb.indicators.v1.WadParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.WillRParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1629,27 +1462,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.WillRParams.displayName = 'proto.trb.indicators.v1.WillRParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.AccBandsParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.AccBandsParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.AccBandsParams.displayName = 'proto.trb.indicators.v1.AccBandsParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1724,27 +1536,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.HmaParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.HmaParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.HmaParams.displayName = 'proto.trb.indicators.v1.HmaParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.HtTrendlineParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1776,27 +1567,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.KamaParams.displayName = 'proto.trb.indicators.v1.KamaParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.KcParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.KcParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.KcParams.displayName = 'proto.trb.indicators.v1.KcParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1976,27 +1746,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.SuperTrendParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.SuperTrendParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.SuperTrendParams.displayName = 'proto.trb.indicators.v1.SuperTrendParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.T3Params = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -2049,27 +1798,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.TrimaParams.displayName = 'proto.trb.indicators.v1.TrimaParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.VwmaParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.VwmaParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.VwmaParams.displayName = 'proto.trb.indicators.v1.VwmaParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -3383,27 +3111,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.AvgDevParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.AvgDevParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.AvgDevParams.displayName = 'proto.trb.indicators.v1.AvgDevParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.AvgPriceParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -3782,90 +3489,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.trb.indicators.v1.CmfParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.CmfParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.CmfParams.displayName = 'proto.trb.indicators.v1.CmfParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.EfiParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.EfiParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.EfiParams.displayName = 'proto.trb.indicators.v1.EfiParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.MarketFiParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.MarketFiParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.MarketFiParams.displayName = 'proto.trb.indicators.v1.MarketFiParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.NviParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.NviParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.NviParams.displayName = 'proto.trb.indicators.v1.NviParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.trb.indicators.v1.ObvParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -3876,69 +3499,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.trb.indicators.v1.ObvParams.displayName = 'proto.trb.indicators.v1.ObvParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.PviParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.PviParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.PviParams.displayName = 'proto.trb.indicators.v1.PviParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.PvoParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.PvoParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.PvoParams.displayName = 'proto.trb.indicators.v1.PvoParams';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.trb.indicators.v1.VwapParams = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.trb.indicators.v1.VwapParams, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.trb.indicators.v1.VwapParams.displayName = 'proto.trb.indicators.v1.VwapParams';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -7311,196 +6871,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.AcParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.AcParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.AcParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AcParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-fastPeriod: jspb.Message.getFieldWithDefault(msg, 1, 0),
-slowPeriod: jspb.Message.getFieldWithDefault(msg, 2, 0),
-signalPeriod: jspb.Message.getFieldWithDefault(msg, 3, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.AcParams}
- */
-proto.trb.indicators.v1.AcParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.AcParams;
-  return proto.trb.indicators.v1.AcParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.AcParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.AcParams}
- */
-proto.trb.indicators.v1.AcParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setFastPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSlowPeriod(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSignalPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.AcParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.AcParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.AcParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AcParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFastPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getSlowPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-  f = message.getSignalPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 fast_period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.AcParams.prototype.getFastPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AcParams} returns this
- */
-proto.trb.indicators.v1.AcParams.prototype.setFastPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint32 slow_period = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.AcParams.prototype.getSlowPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AcParams} returns this
- */
-proto.trb.indicators.v1.AcParams.prototype.setSlowPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional uint32 signal_period = 3;
- * @return {number}
- */
-proto.trb.indicators.v1.AcParams.prototype.getSignalPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AcParams} returns this
- */
-proto.trb.indicators.v1.AcParams.prototype.setSignalPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.AdxParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.AdxParams.toObject(opt_includeInstance, this);
 };
@@ -7742,166 +7112,6 @@ proto.trb.indicators.v1.AdxrParams.prototype.getPeriod = function() {
  */
 proto.trb.indicators.v1.AdxrParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.AoParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.AoParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.AoParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AoParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-fastPeriod: jspb.Message.getFieldWithDefault(msg, 1, 0),
-slowPeriod: jspb.Message.getFieldWithDefault(msg, 2, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.AoParams}
- */
-proto.trb.indicators.v1.AoParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.AoParams;
-  return proto.trb.indicators.v1.AoParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.AoParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.AoParams}
- */
-proto.trb.indicators.v1.AoParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setFastPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSlowPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.AoParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.AoParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.AoParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AoParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFastPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getSlowPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 fast_period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.AoParams.prototype.getFastPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AoParams} returns this
- */
-proto.trb.indicators.v1.AoParams.prototype.setFastPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint32 slow_period = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.AoParams.prototype.getSlowPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AoParams} returns this
- */
-proto.trb.indicators.v1.AoParams.prototype.setSlowPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -8732,136 +7942,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.CmouParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.CmouParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.CmouParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.CmouParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.CmouParams}
- */
-proto.trb.indicators.v1.CmouParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.CmouParams;
-  return proto.trb.indicators.v1.CmouParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.CmouParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.CmouParams}
- */
-proto.trb.indicators.v1.CmouParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.CmouParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.CmouParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.CmouParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.CmouParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.CmouParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.CmouParams} returns this
- */
-proto.trb.indicators.v1.CmouParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.DxParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.DxParams.toObject(opt_includeInstance, this);
 };
@@ -8972,136 +8052,6 @@ proto.trb.indicators.v1.DxParams.prototype.getPeriod = function() {
  * @return {!proto.trb.indicators.v1.DxParams} returns this
  */
 proto.trb.indicators.v1.DxParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.ImiParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.ImiParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.ImiParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.ImiParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.ImiParams}
- */
-proto.trb.indicators.v1.ImiParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.ImiParams;
-  return proto.trb.indicators.v1.ImiParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.ImiParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.ImiParams}
- */
-proto.trb.indicators.v1.ImiParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.ImiParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.ImiParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.ImiParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.ImiParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.ImiParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.ImiParams} returns this
- */
-proto.trb.indicators.v1.ImiParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -10692,136 +9642,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.QstickParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.QstickParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.QstickParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.QstickParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.QstickParams}
- */
-proto.trb.indicators.v1.QstickParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.QstickParams;
-  return proto.trb.indicators.v1.QstickParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.QstickParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.QstickParams}
- */
-proto.trb.indicators.v1.QstickParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.QstickParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.QstickParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.QstickParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.QstickParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.QstickParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.QstickParams} returns this
- */
-proto.trb.indicators.v1.QstickParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.RocParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.RocParams.toObject(opt_includeInstance, this);
 };
@@ -11453,226 +10273,6 @@ proto.trb.indicators.v1.RsiParams.prototype.getPeriod = function() {
  */
 proto.trb.indicators.v1.RsiParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.SmiParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.SmiParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.SmiParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.SmiParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0),
-fastPeriod: jspb.Message.getFieldWithDefault(msg, 2, 0),
-slowPeriod: jspb.Message.getFieldWithDefault(msg, 3, 0),
-signalPeriod: jspb.Message.getFieldWithDefault(msg, 4, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.SmiParams}
- */
-proto.trb.indicators.v1.SmiParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.SmiParams;
-  return proto.trb.indicators.v1.SmiParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.SmiParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.SmiParams}
- */
-proto.trb.indicators.v1.SmiParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setFastPeriod(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSlowPeriod(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSignalPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.SmiParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.SmiParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.SmiParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.SmiParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getFastPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-  f = message.getSlowPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      3,
-      f
-    );
-  }
-  f = message.getSignalPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      4,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.SmiParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SmiParams} returns this
- */
-proto.trb.indicators.v1.SmiParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint32 fast_period = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.SmiParams.prototype.getFastPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SmiParams} returns this
- */
-proto.trb.indicators.v1.SmiParams.prototype.setFastPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional uint32 slow_period = 3;
- * @return {number}
- */
-proto.trb.indicators.v1.SmiParams.prototype.getSlowPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SmiParams} returns this
- */
-proto.trb.indicators.v1.SmiParams.prototype.setSlowPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional uint32 signal_period = 4;
- * @return {number}
- */
-proto.trb.indicators.v1.SmiParams.prototype.getSignalPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SmiParams} returns this
- */
-proto.trb.indicators.v1.SmiParams.prototype.setSignalPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -12672,107 +11272,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.WadParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.WadParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.WadParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.WadParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.WadParams}
- */
-proto.trb.indicators.v1.WadParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.WadParams;
-  return proto.trb.indicators.v1.WadParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.WadParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.WadParams}
- */
-proto.trb.indicators.v1.WadParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.WadParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.WadParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.WadParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.WadParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.WillRParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.WillRParams.toObject(opt_includeInstance, this);
 };
@@ -12883,136 +11382,6 @@ proto.trb.indicators.v1.WillRParams.prototype.getPeriod = function() {
  * @return {!proto.trb.indicators.v1.WillRParams} returns this
  */
 proto.trb.indicators.v1.WillRParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.AccBandsParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.AccBandsParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.AccBandsParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AccBandsParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.AccBandsParams}
- */
-proto.trb.indicators.v1.AccBandsParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.AccBandsParams;
-  return proto.trb.indicators.v1.AccBandsParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.AccBandsParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.AccBandsParams}
- */
-proto.trb.indicators.v1.AccBandsParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.AccBandsParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.AccBandsParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.AccBandsParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AccBandsParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.AccBandsParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AccBandsParams} returns this
- */
-proto.trb.indicators.v1.AccBandsParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -13513,136 +11882,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.HmaParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.HmaParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.HmaParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.HmaParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.HmaParams}
- */
-proto.trb.indicators.v1.HmaParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.HmaParams;
-  return proto.trb.indicators.v1.HmaParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.HmaParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.HmaParams}
- */
-proto.trb.indicators.v1.HmaParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.HmaParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.HmaParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.HmaParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.HmaParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.HmaParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.HmaParams} returns this
- */
-proto.trb.indicators.v1.HmaParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.HtTrendlineParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.HtTrendlineParams.toObject(opt_includeInstance, this);
 };
@@ -13855,196 +12094,6 @@ proto.trb.indicators.v1.KamaParams.prototype.getPeriod = function() {
  */
 proto.trb.indicators.v1.KamaParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.KcParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.KcParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.KcParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.KcParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0),
-atrPeriod: jspb.Message.getFieldWithDefault(msg, 2, 0),
-nbDev: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.KcParams}
- */
-proto.trb.indicators.v1.KcParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.KcParams;
-  return proto.trb.indicators.v1.KcParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.KcParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.KcParams}
- */
-proto.trb.indicators.v1.KcParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAtrPeriod(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setNbDev(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.KcParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.KcParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.KcParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.KcParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getAtrPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-  f = message.getNbDev();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.KcParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.KcParams} returns this
- */
-proto.trb.indicators.v1.KcParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint32 atr_period = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.KcParams.prototype.getAtrPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.KcParams} returns this
- */
-proto.trb.indicators.v1.KcParams.prototype.setAtrPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional double nb_dev = 3;
- * @return {number}
- */
-proto.trb.indicators.v1.KcParams.prototype.getNbDev = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.KcParams} returns this
- */
-proto.trb.indicators.v1.KcParams.prototype.setNbDev = function(value) {
-  return jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
@@ -15464,166 +13513,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.SuperTrendParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.SuperTrendParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.SuperTrendParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.SuperTrendParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0),
-multiplier: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.SuperTrendParams}
- */
-proto.trb.indicators.v1.SuperTrendParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.SuperTrendParams;
-  return proto.trb.indicators.v1.SuperTrendParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.SuperTrendParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.SuperTrendParams}
- */
-proto.trb.indicators.v1.SuperTrendParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setMultiplier(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.SuperTrendParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.SuperTrendParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.SuperTrendParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.SuperTrendParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getMultiplier();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.SuperTrendParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SuperTrendParams} returns this
- */
-proto.trb.indicators.v1.SuperTrendParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional double multiplier = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.SuperTrendParams.prototype.getMultiplier = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.SuperTrendParams} returns this
- */
-proto.trb.indicators.v1.SuperTrendParams.prototype.setMultiplier = function(value) {
-  return jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.T3Params.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.T3Params.toObject(opt_includeInstance, this);
 };
@@ -16024,136 +13913,6 @@ proto.trb.indicators.v1.TrimaParams.prototype.getPeriod = function() {
  * @return {!proto.trb.indicators.v1.TrimaParams} returns this
  */
 proto.trb.indicators.v1.TrimaParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.VwmaParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.VwmaParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.VwmaParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.VwmaParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.VwmaParams}
- */
-proto.trb.indicators.v1.VwmaParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.VwmaParams;
-  return proto.trb.indicators.v1.VwmaParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.VwmaParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.VwmaParams}
- */
-proto.trb.indicators.v1.VwmaParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.VwmaParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.VwmaParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.VwmaParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.VwmaParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.VwmaParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.VwmaParams} returns this
- */
-proto.trb.indicators.v1.VwmaParams.prototype.setPeriod = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -22668,136 +20427,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.AvgDevParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.AvgDevParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.AvgDevParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AvgDevParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.AvgDevParams}
- */
-proto.trb.indicators.v1.AvgDevParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.AvgDevParams;
-  return proto.trb.indicators.v1.AvgDevParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.AvgDevParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.AvgDevParams}
- */
-proto.trb.indicators.v1.AvgDevParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.AvgDevParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.AvgDevParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.AvgDevParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.AvgDevParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.AvgDevParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.AvgDevParams} returns this
- */
-proto.trb.indicators.v1.AvgDevParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.AvgPriceParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.AvgPriceParams.toObject(opt_includeInstance, this);
 };
@@ -25054,468 +22683,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.trb.indicators.v1.CmfParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.CmfParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.CmfParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.CmfParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.CmfParams}
- */
-proto.trb.indicators.v1.CmfParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.CmfParams;
-  return proto.trb.indicators.v1.CmfParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.CmfParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.CmfParams}
- */
-proto.trb.indicators.v1.CmfParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.CmfParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.CmfParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.CmfParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.CmfParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.CmfParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.CmfParams} returns this
- */
-proto.trb.indicators.v1.CmfParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.EfiParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.EfiParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.EfiParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.EfiParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-period: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.EfiParams}
- */
-proto.trb.indicators.v1.EfiParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.EfiParams;
-  return proto.trb.indicators.v1.EfiParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.EfiParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.EfiParams}
- */
-proto.trb.indicators.v1.EfiParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPeriod(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.EfiParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.EfiParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.EfiParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.EfiParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.EfiParams.prototype.getPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.EfiParams} returns this
- */
-proto.trb.indicators.v1.EfiParams.prototype.setPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.MarketFiParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.MarketFiParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.MarketFiParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.MarketFiParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.MarketFiParams}
- */
-proto.trb.indicators.v1.MarketFiParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.MarketFiParams;
-  return proto.trb.indicators.v1.MarketFiParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.MarketFiParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.MarketFiParams}
- */
-proto.trb.indicators.v1.MarketFiParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.MarketFiParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.MarketFiParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.MarketFiParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.MarketFiParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.NviParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.NviParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.NviParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.NviParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.NviParams}
- */
-proto.trb.indicators.v1.NviParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.NviParams;
-  return proto.trb.indicators.v1.NviParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.NviParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.NviParams}
- */
-proto.trb.indicators.v1.NviParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.NviParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.NviParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.NviParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.NviParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.trb.indicators.v1.ObvParams.prototype.toObject = function(opt_includeInstance) {
   return proto.trb.indicators.v1.ObvParams.toObject(opt_includeInstance, this);
 };
@@ -25602,398 +22769,6 @@ proto.trb.indicators.v1.ObvParams.serializeBinaryToWriter = function(message, wr
 
 
 
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.PviParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.PviParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.PviParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.PviParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.PviParams}
- */
-proto.trb.indicators.v1.PviParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.PviParams;
-  return proto.trb.indicators.v1.PviParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.PviParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.PviParams}
- */
-proto.trb.indicators.v1.PviParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.PviParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.PviParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.PviParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.PviParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.PvoParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.PvoParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.PvoParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.PvoParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-fastPeriod: jspb.Message.getFieldWithDefault(msg, 1, 0),
-slowPeriod: jspb.Message.getFieldWithDefault(msg, 2, 0),
-maType: jspb.Message.getFieldWithDefault(msg, 3, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.PvoParams}
- */
-proto.trb.indicators.v1.PvoParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.PvoParams;
-  return proto.trb.indicators.v1.PvoParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.PvoParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.PvoParams}
- */
-proto.trb.indicators.v1.PvoParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setFastPeriod(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setSlowPeriod(value);
-      break;
-    case 3:
-      var value = /** @type {!proto.trb.indicators.v1.MAType} */ (reader.readEnum());
-      msg.setMaType(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.PvoParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.PvoParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.PvoParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.PvoParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFastPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      1,
-      f
-    );
-  }
-  f = message.getSlowPeriod();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-  f = message.getMaType();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint32 fast_period = 1;
- * @return {number}
- */
-proto.trb.indicators.v1.PvoParams.prototype.getFastPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.PvoParams} returns this
- */
-proto.trb.indicators.v1.PvoParams.prototype.setFastPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint32 slow_period = 2;
- * @return {number}
- */
-proto.trb.indicators.v1.PvoParams.prototype.getSlowPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.trb.indicators.v1.PvoParams} returns this
- */
-proto.trb.indicators.v1.PvoParams.prototype.setSlowPeriod = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional MAType ma_type = 3;
- * @return {!proto.trb.indicators.v1.MAType}
- */
-proto.trb.indicators.v1.PvoParams.prototype.getMaType = function() {
-  return /** @type {!proto.trb.indicators.v1.MAType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {!proto.trb.indicators.v1.MAType} value
- * @return {!proto.trb.indicators.v1.PvoParams} returns this
- */
-proto.trb.indicators.v1.PvoParams.prototype.setMaType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 3, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.trb.indicators.v1.VwapParams.prototype.toObject = function(opt_includeInstance) {
-  return proto.trb.indicators.v1.VwapParams.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.trb.indicators.v1.VwapParams} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.VwapParams.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.trb.indicators.v1.VwapParams}
- */
-proto.trb.indicators.v1.VwapParams.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.trb.indicators.v1.VwapParams;
-  return proto.trb.indicators.v1.VwapParams.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.trb.indicators.v1.VwapParams} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.trb.indicators.v1.VwapParams}
- */
-proto.trb.indicators.v1.VwapParams.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.trb.indicators.v1.VwapParams.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.trb.indicators.v1.VwapParams.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.trb.indicators.v1.VwapParams} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.trb.indicators.v1.VwapParams.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
 /**
  * Oneof group definitions for this message. Each group defines the field
  * numbers belonging to that group. When of these fields' value is set, all
@@ -26002,7 +22777,7 @@ proto.trb.indicators.v1.VwapParams.serializeBinaryToWriter = function(message, w
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.trb.indicators.v1.IndicatorSettings.oneofGroups_ = [[1,10,11,12,13,14,20,21,22,23,24,25,26,27,28,29,30,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,200,201,202,203,204,210,211,212,213,214,215,216,217,218,220,221,222,230,231,232,233,234,235,236,237,238,239]];
+proto.trb.indicators.v1.IndicatorSettings.oneofGroups_ = [[1,10,11,12,13,14,20,21,22,23,24,25,26,27,28,29,30,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,61,62,64,65,66,67,68,69,71,73,74,75,76,77,78,79,80,81,82,84,85,86,87,89,90,91,92,93,95,101,102,103,105,106,108,109,110,111,112,113,114,115,117,118,119,121,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,201,202,203,204,210,211,212,213,214,215,216,217,218,220,221,222,230,231,236]];
 
 /**
  * @enum {number}
@@ -26041,19 +22816,15 @@ proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase = {
   SQRT: 52,
   TAN: 53,
   TANH: 54,
-  AC: 60,
   ADX: 61,
   ADXR: 62,
-  AO: 63,
   APO: 64,
   AROON: 65,
   AROONOSC: 66,
   BOP: 67,
   CCI: 68,
   CMO: 69,
-  CMOU: 70,
   DX: 71,
-  IMI: 72,
   MACD: 73,
   MACDEXT: 74,
   MACDFIX: 75,
@@ -26064,27 +22835,21 @@ proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase = {
   PLUS_DI: 80,
   PLUS_DM: 81,
   PPO: 82,
-  QSTICK: 83,
   ROC: 84,
   ROCP: 85,
   ROCR: 86,
   ROCR100: 87,
-  SMI: 88,
   STOCH: 89,
   STOCHF: 90,
   STOCHRSI: 91,
   TRIX: 92,
   ULTOSC: 93,
-  WAD: 94,
   WILLR: 95,
-  ACCBANDS: 100,
   BBANDS: 101,
   DEMA: 102,
   EMA: 103,
-  HMA: 104,
   HT_TRENDLINE: 105,
   KAMA: 106,
-  KC: 107,
   MA: 108,
   MAMA: 109,
   MAVP: 110,
@@ -26093,11 +22858,9 @@ proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase = {
   SAR: 113,
   SAREXT: 114,
   SMA: 115,
-  SUPERTREND: 116,
   T3: 117,
   TEMA: 118,
   TRIMA: 119,
-  VWMA: 120,
   WMA: 121,
   CDL2CROWS: 130,
   CDL3BLACKCROWS: 131,
@@ -26160,7 +22923,6 @@ proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase = {
   CDLUNIQUE3RIVER: 188,
   CDLUPSIDEGAP2CROWS: 189,
   CDLXSIDEGAP3METHODS: 190,
-  AVGDEV: 200,
   AVGPRICE: 201,
   MEDPRICE: 202,
   TYPPRICE: 203,
@@ -26179,14 +22941,7 @@ proto.trb.indicators.v1.IndicatorSettings.IndicatorTypeCase = {
   TRANGE: 222,
   AD: 230,
   ADOSC: 231,
-  CMF: 232,
-  EFI: 233,
-  MARKETFI: 234,
-  NVI: 235,
-  OBV: 236,
-  PVI: 237,
-  PVO: 238,
-  VWAP: 239
+  OBV: 236
 };
 
 /**
@@ -26259,19 +23014,15 @@ sinh: (f = msg.getSinh()) && proto.trb.indicators.v1.SinhParams.toObject(include
 sqrt: (f = msg.getSqrt()) && proto.trb.indicators.v1.SqrtParams.toObject(includeInstance, f),
 tan: (f = msg.getTan()) && proto.trb.indicators.v1.TanParams.toObject(includeInstance, f),
 tanh: (f = msg.getTanh()) && proto.trb.indicators.v1.TanhParams.toObject(includeInstance, f),
-ac: (f = msg.getAc()) && proto.trb.indicators.v1.AcParams.toObject(includeInstance, f),
 adx: (f = msg.getAdx()) && proto.trb.indicators.v1.AdxParams.toObject(includeInstance, f),
 adxr: (f = msg.getAdxr()) && proto.trb.indicators.v1.AdxrParams.toObject(includeInstance, f),
-ao: (f = msg.getAo()) && proto.trb.indicators.v1.AoParams.toObject(includeInstance, f),
 apo: (f = msg.getApo()) && proto.trb.indicators.v1.ApoParams.toObject(includeInstance, f),
 aroon: (f = msg.getAroon()) && proto.trb.indicators.v1.AroonParams.toObject(includeInstance, f),
 aroonosc: (f = msg.getAroonosc()) && proto.trb.indicators.v1.AroonOscParams.toObject(includeInstance, f),
 bop: (f = msg.getBop()) && proto.trb.indicators.v1.BopParams.toObject(includeInstance, f),
 cci: (f = msg.getCci()) && proto.trb.indicators.v1.CciParams.toObject(includeInstance, f),
 cmo: (f = msg.getCmo()) && proto.trb.indicators.v1.CmoParams.toObject(includeInstance, f),
-cmou: (f = msg.getCmou()) && proto.trb.indicators.v1.CmouParams.toObject(includeInstance, f),
 dx: (f = msg.getDx()) && proto.trb.indicators.v1.DxParams.toObject(includeInstance, f),
-imi: (f = msg.getImi()) && proto.trb.indicators.v1.ImiParams.toObject(includeInstance, f),
 macd: (f = msg.getMacd()) && proto.trb.indicators.v1.MacdParams.toObject(includeInstance, f),
 macdext: (f = msg.getMacdext()) && proto.trb.indicators.v1.MacdExtParams.toObject(includeInstance, f),
 macdfix: (f = msg.getMacdfix()) && proto.trb.indicators.v1.MacdFixParams.toObject(includeInstance, f),
@@ -26282,27 +23033,21 @@ mom: (f = msg.getMom()) && proto.trb.indicators.v1.MomParams.toObject(includeIns
 plusDi: (f = msg.getPlusDi()) && proto.trb.indicators.v1.PlusDiParams.toObject(includeInstance, f),
 plusDm: (f = msg.getPlusDm()) && proto.trb.indicators.v1.PlusDmParams.toObject(includeInstance, f),
 ppo: (f = msg.getPpo()) && proto.trb.indicators.v1.PpoParams.toObject(includeInstance, f),
-qstick: (f = msg.getQstick()) && proto.trb.indicators.v1.QstickParams.toObject(includeInstance, f),
 roc: (f = msg.getRoc()) && proto.trb.indicators.v1.RocParams.toObject(includeInstance, f),
 rocp: (f = msg.getRocp()) && proto.trb.indicators.v1.RocpParams.toObject(includeInstance, f),
 rocr: (f = msg.getRocr()) && proto.trb.indicators.v1.RocrParams.toObject(includeInstance, f),
 rocr100: (f = msg.getRocr100()) && proto.trb.indicators.v1.Rocr100Params.toObject(includeInstance, f),
-smi: (f = msg.getSmi()) && proto.trb.indicators.v1.SmiParams.toObject(includeInstance, f),
 stoch: (f = msg.getStoch()) && proto.trb.indicators.v1.StochParams.toObject(includeInstance, f),
 stochf: (f = msg.getStochf()) && proto.trb.indicators.v1.StochFParams.toObject(includeInstance, f),
 stochrsi: (f = msg.getStochrsi()) && proto.trb.indicators.v1.StochRsiParams.toObject(includeInstance, f),
 trix: (f = msg.getTrix()) && proto.trb.indicators.v1.TrixParams.toObject(includeInstance, f),
 ultosc: (f = msg.getUltosc()) && proto.trb.indicators.v1.UltOscParams.toObject(includeInstance, f),
-wad: (f = msg.getWad()) && proto.trb.indicators.v1.WadParams.toObject(includeInstance, f),
 willr: (f = msg.getWillr()) && proto.trb.indicators.v1.WillRParams.toObject(includeInstance, f),
-accbands: (f = msg.getAccbands()) && proto.trb.indicators.v1.AccBandsParams.toObject(includeInstance, f),
 bbands: (f = msg.getBbands()) && proto.trb.indicators.v1.BbandsParams.toObject(includeInstance, f),
 dema: (f = msg.getDema()) && proto.trb.indicators.v1.DemaParams.toObject(includeInstance, f),
 ema: (f = msg.getEma()) && proto.trb.indicators.v1.EmaParams.toObject(includeInstance, f),
-hma: (f = msg.getHma()) && proto.trb.indicators.v1.HmaParams.toObject(includeInstance, f),
 htTrendline: (f = msg.getHtTrendline()) && proto.trb.indicators.v1.HtTrendlineParams.toObject(includeInstance, f),
 kama: (f = msg.getKama()) && proto.trb.indicators.v1.KamaParams.toObject(includeInstance, f),
-kc: (f = msg.getKc()) && proto.trb.indicators.v1.KcParams.toObject(includeInstance, f),
 ma: (f = msg.getMa()) && proto.trb.indicators.v1.MaParams.toObject(includeInstance, f),
 mama: (f = msg.getMama()) && proto.trb.indicators.v1.MamaParams.toObject(includeInstance, f),
 mavp: (f = msg.getMavp()) && proto.trb.indicators.v1.MavpParams.toObject(includeInstance, f),
@@ -26311,11 +23056,9 @@ midprice: (f = msg.getMidprice()) && proto.trb.indicators.v1.MidPriceParams.toOb
 sar: (f = msg.getSar()) && proto.trb.indicators.v1.SarParams.toObject(includeInstance, f),
 sarext: (f = msg.getSarext()) && proto.trb.indicators.v1.SarExtParams.toObject(includeInstance, f),
 sma: (f = msg.getSma()) && proto.trb.indicators.v1.SmaParams.toObject(includeInstance, f),
-supertrend: (f = msg.getSupertrend()) && proto.trb.indicators.v1.SuperTrendParams.toObject(includeInstance, f),
 t3: (f = msg.getT3()) && proto.trb.indicators.v1.T3Params.toObject(includeInstance, f),
 tema: (f = msg.getTema()) && proto.trb.indicators.v1.TemaParams.toObject(includeInstance, f),
 trima: (f = msg.getTrima()) && proto.trb.indicators.v1.TrimaParams.toObject(includeInstance, f),
-vwma: (f = msg.getVwma()) && proto.trb.indicators.v1.VwmaParams.toObject(includeInstance, f),
 wma: (f = msg.getWma()) && proto.trb.indicators.v1.WmaParams.toObject(includeInstance, f),
 cdl2crows: (f = msg.getCdl2crows()) && proto.trb.indicators.v1.Cdl2CrowsParams.toObject(includeInstance, f),
 cdl3blackcrows: (f = msg.getCdl3blackcrows()) && proto.trb.indicators.v1.Cdl3BlackCrowsParams.toObject(includeInstance, f),
@@ -26378,7 +23121,6 @@ cdltristar: (f = msg.getCdltristar()) && proto.trb.indicators.v1.CdlTristarParam
 cdlunique3river: (f = msg.getCdlunique3river()) && proto.trb.indicators.v1.CdlUnique3RiverParams.toObject(includeInstance, f),
 cdlupsidegap2crows: (f = msg.getCdlupsidegap2crows()) && proto.trb.indicators.v1.CdlUpsideGap2CrowsParams.toObject(includeInstance, f),
 cdlxsidegap3methods: (f = msg.getCdlxsidegap3methods()) && proto.trb.indicators.v1.CdlXsideGap3MethodsParams.toObject(includeInstance, f),
-avgdev: (f = msg.getAvgdev()) && proto.trb.indicators.v1.AvgDevParams.toObject(includeInstance, f),
 avgprice: (f = msg.getAvgprice()) && proto.trb.indicators.v1.AvgPriceParams.toObject(includeInstance, f),
 medprice: (f = msg.getMedprice()) && proto.trb.indicators.v1.MedPriceParams.toObject(includeInstance, f),
 typprice: (f = msg.getTypprice()) && proto.trb.indicators.v1.TypPriceParams.toObject(includeInstance, f),
@@ -26397,14 +23139,7 @@ natr: (f = msg.getNatr()) && proto.trb.indicators.v1.NatrParams.toObject(include
 trange: (f = msg.getTrange()) && proto.trb.indicators.v1.TrangeParams.toObject(includeInstance, f),
 ad: (f = msg.getAd()) && proto.trb.indicators.v1.AdParams.toObject(includeInstance, f),
 adosc: (f = msg.getAdosc()) && proto.trb.indicators.v1.AdOscParams.toObject(includeInstance, f),
-cmf: (f = msg.getCmf()) && proto.trb.indicators.v1.CmfParams.toObject(includeInstance, f),
-efi: (f = msg.getEfi()) && proto.trb.indicators.v1.EfiParams.toObject(includeInstance, f),
-marketfi: (f = msg.getMarketfi()) && proto.trb.indicators.v1.MarketFiParams.toObject(includeInstance, f),
-nvi: (f = msg.getNvi()) && proto.trb.indicators.v1.NviParams.toObject(includeInstance, f),
-obv: (f = msg.getObv()) && proto.trb.indicators.v1.ObvParams.toObject(includeInstance, f),
-pvi: (f = msg.getPvi()) && proto.trb.indicators.v1.PviParams.toObject(includeInstance, f),
-pvo: (f = msg.getPvo()) && proto.trb.indicators.v1.PvoParams.toObject(includeInstance, f),
-vwap: (f = msg.getVwap()) && proto.trb.indicators.v1.VwapParams.toObject(includeInstance, f)
+obv: (f = msg.getObv()) && proto.trb.indicators.v1.ObvParams.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -26601,11 +23336,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.TanhParams.deserializeBinaryFromReader);
       msg.setTanh(value);
       break;
-    case 60:
-      var value = new proto.trb.indicators.v1.AcParams;
-      reader.readMessage(value,proto.trb.indicators.v1.AcParams.deserializeBinaryFromReader);
-      msg.setAc(value);
-      break;
     case 61:
       var value = new proto.trb.indicators.v1.AdxParams;
       reader.readMessage(value,proto.trb.indicators.v1.AdxParams.deserializeBinaryFromReader);
@@ -26615,11 +23345,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       var value = new proto.trb.indicators.v1.AdxrParams;
       reader.readMessage(value,proto.trb.indicators.v1.AdxrParams.deserializeBinaryFromReader);
       msg.setAdxr(value);
-      break;
-    case 63:
-      var value = new proto.trb.indicators.v1.AoParams;
-      reader.readMessage(value,proto.trb.indicators.v1.AoParams.deserializeBinaryFromReader);
-      msg.setAo(value);
       break;
     case 64:
       var value = new proto.trb.indicators.v1.ApoParams;
@@ -26651,20 +23376,10 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.CmoParams.deserializeBinaryFromReader);
       msg.setCmo(value);
       break;
-    case 70:
-      var value = new proto.trb.indicators.v1.CmouParams;
-      reader.readMessage(value,proto.trb.indicators.v1.CmouParams.deserializeBinaryFromReader);
-      msg.setCmou(value);
-      break;
     case 71:
       var value = new proto.trb.indicators.v1.DxParams;
       reader.readMessage(value,proto.trb.indicators.v1.DxParams.deserializeBinaryFromReader);
       msg.setDx(value);
-      break;
-    case 72:
-      var value = new proto.trb.indicators.v1.ImiParams;
-      reader.readMessage(value,proto.trb.indicators.v1.ImiParams.deserializeBinaryFromReader);
-      msg.setImi(value);
       break;
     case 73:
       var value = new proto.trb.indicators.v1.MacdParams;
@@ -26716,11 +23431,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.PpoParams.deserializeBinaryFromReader);
       msg.setPpo(value);
       break;
-    case 83:
-      var value = new proto.trb.indicators.v1.QstickParams;
-      reader.readMessage(value,proto.trb.indicators.v1.QstickParams.deserializeBinaryFromReader);
-      msg.setQstick(value);
-      break;
     case 84:
       var value = new proto.trb.indicators.v1.RocParams;
       reader.readMessage(value,proto.trb.indicators.v1.RocParams.deserializeBinaryFromReader);
@@ -26740,11 +23450,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       var value = new proto.trb.indicators.v1.Rocr100Params;
       reader.readMessage(value,proto.trb.indicators.v1.Rocr100Params.deserializeBinaryFromReader);
       msg.setRocr100(value);
-      break;
-    case 88:
-      var value = new proto.trb.indicators.v1.SmiParams;
-      reader.readMessage(value,proto.trb.indicators.v1.SmiParams.deserializeBinaryFromReader);
-      msg.setSmi(value);
       break;
     case 89:
       var value = new proto.trb.indicators.v1.StochParams;
@@ -26771,20 +23476,10 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.UltOscParams.deserializeBinaryFromReader);
       msg.setUltosc(value);
       break;
-    case 94:
-      var value = new proto.trb.indicators.v1.WadParams;
-      reader.readMessage(value,proto.trb.indicators.v1.WadParams.deserializeBinaryFromReader);
-      msg.setWad(value);
-      break;
     case 95:
       var value = new proto.trb.indicators.v1.WillRParams;
       reader.readMessage(value,proto.trb.indicators.v1.WillRParams.deserializeBinaryFromReader);
       msg.setWillr(value);
-      break;
-    case 100:
-      var value = new proto.trb.indicators.v1.AccBandsParams;
-      reader.readMessage(value,proto.trb.indicators.v1.AccBandsParams.deserializeBinaryFromReader);
-      msg.setAccbands(value);
       break;
     case 101:
       var value = new proto.trb.indicators.v1.BbandsParams;
@@ -26801,11 +23496,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.EmaParams.deserializeBinaryFromReader);
       msg.setEma(value);
       break;
-    case 104:
-      var value = new proto.trb.indicators.v1.HmaParams;
-      reader.readMessage(value,proto.trb.indicators.v1.HmaParams.deserializeBinaryFromReader);
-      msg.setHma(value);
-      break;
     case 105:
       var value = new proto.trb.indicators.v1.HtTrendlineParams;
       reader.readMessage(value,proto.trb.indicators.v1.HtTrendlineParams.deserializeBinaryFromReader);
@@ -26815,11 +23505,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       var value = new proto.trb.indicators.v1.KamaParams;
       reader.readMessage(value,proto.trb.indicators.v1.KamaParams.deserializeBinaryFromReader);
       msg.setKama(value);
-      break;
-    case 107:
-      var value = new proto.trb.indicators.v1.KcParams;
-      reader.readMessage(value,proto.trb.indicators.v1.KcParams.deserializeBinaryFromReader);
-      msg.setKc(value);
       break;
     case 108:
       var value = new proto.trb.indicators.v1.MaParams;
@@ -26861,11 +23546,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.SmaParams.deserializeBinaryFromReader);
       msg.setSma(value);
       break;
-    case 116:
-      var value = new proto.trb.indicators.v1.SuperTrendParams;
-      reader.readMessage(value,proto.trb.indicators.v1.SuperTrendParams.deserializeBinaryFromReader);
-      msg.setSupertrend(value);
-      break;
     case 117:
       var value = new proto.trb.indicators.v1.T3Params;
       reader.readMessage(value,proto.trb.indicators.v1.T3Params.deserializeBinaryFromReader);
@@ -26880,11 +23560,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       var value = new proto.trb.indicators.v1.TrimaParams;
       reader.readMessage(value,proto.trb.indicators.v1.TrimaParams.deserializeBinaryFromReader);
       msg.setTrima(value);
-      break;
-    case 120:
-      var value = new proto.trb.indicators.v1.VwmaParams;
-      reader.readMessage(value,proto.trb.indicators.v1.VwmaParams.deserializeBinaryFromReader);
-      msg.setVwma(value);
       break;
     case 121:
       var value = new proto.trb.indicators.v1.WmaParams;
@@ -27196,11 +23871,6 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.CdlXsideGap3MethodsParams.deserializeBinaryFromReader);
       msg.setCdlxsidegap3methods(value);
       break;
-    case 200:
-      var value = new proto.trb.indicators.v1.AvgDevParams;
-      reader.readMessage(value,proto.trb.indicators.v1.AvgDevParams.deserializeBinaryFromReader);
-      msg.setAvgdev(value);
-      break;
     case 201:
       var value = new proto.trb.indicators.v1.AvgPriceParams;
       reader.readMessage(value,proto.trb.indicators.v1.AvgPriceParams.deserializeBinaryFromReader);
@@ -27291,45 +23961,10 @@ proto.trb.indicators.v1.IndicatorSettings.deserializeBinaryFromReader = function
       reader.readMessage(value,proto.trb.indicators.v1.AdOscParams.deserializeBinaryFromReader);
       msg.setAdosc(value);
       break;
-    case 232:
-      var value = new proto.trb.indicators.v1.CmfParams;
-      reader.readMessage(value,proto.trb.indicators.v1.CmfParams.deserializeBinaryFromReader);
-      msg.setCmf(value);
-      break;
-    case 233:
-      var value = new proto.trb.indicators.v1.EfiParams;
-      reader.readMessage(value,proto.trb.indicators.v1.EfiParams.deserializeBinaryFromReader);
-      msg.setEfi(value);
-      break;
-    case 234:
-      var value = new proto.trb.indicators.v1.MarketFiParams;
-      reader.readMessage(value,proto.trb.indicators.v1.MarketFiParams.deserializeBinaryFromReader);
-      msg.setMarketfi(value);
-      break;
-    case 235:
-      var value = new proto.trb.indicators.v1.NviParams;
-      reader.readMessage(value,proto.trb.indicators.v1.NviParams.deserializeBinaryFromReader);
-      msg.setNvi(value);
-      break;
     case 236:
       var value = new proto.trb.indicators.v1.ObvParams;
       reader.readMessage(value,proto.trb.indicators.v1.ObvParams.deserializeBinaryFromReader);
       msg.setObv(value);
-      break;
-    case 237:
-      var value = new proto.trb.indicators.v1.PviParams;
-      reader.readMessage(value,proto.trb.indicators.v1.PviParams.deserializeBinaryFromReader);
-      msg.setPvi(value);
-      break;
-    case 238:
-      var value = new proto.trb.indicators.v1.PvoParams;
-      reader.readMessage(value,proto.trb.indicators.v1.PvoParams.deserializeBinaryFromReader);
-      msg.setPvo(value);
-      break;
-    case 239:
-      var value = new proto.trb.indicators.v1.VwapParams;
-      reader.readMessage(value,proto.trb.indicators.v1.VwapParams.deserializeBinaryFromReader);
-      msg.setVwap(value);
       break;
     default:
       reader.skipField();
@@ -27616,14 +24251,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.TanhParams.serializeBinaryToWriter
     );
   }
-  f = message.getAc();
-  if (f != null) {
-    writer.writeMessage(
-      60,
-      f,
-      proto.trb.indicators.v1.AcParams.serializeBinaryToWriter
-    );
-  }
   f = message.getAdx();
   if (f != null) {
     writer.writeMessage(
@@ -27638,14 +24265,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       62,
       f,
       proto.trb.indicators.v1.AdxrParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getAo();
-  if (f != null) {
-    writer.writeMessage(
-      63,
-      f,
-      proto.trb.indicators.v1.AoParams.serializeBinaryToWriter
     );
   }
   f = message.getApo();
@@ -27696,28 +24315,12 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.CmoParams.serializeBinaryToWriter
     );
   }
-  f = message.getCmou();
-  if (f != null) {
-    writer.writeMessage(
-      70,
-      f,
-      proto.trb.indicators.v1.CmouParams.serializeBinaryToWriter
-    );
-  }
   f = message.getDx();
   if (f != null) {
     writer.writeMessage(
       71,
       f,
       proto.trb.indicators.v1.DxParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getImi();
-  if (f != null) {
-    writer.writeMessage(
-      72,
-      f,
-      proto.trb.indicators.v1.ImiParams.serializeBinaryToWriter
     );
   }
   f = message.getMacd();
@@ -27800,14 +24403,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.PpoParams.serializeBinaryToWriter
     );
   }
-  f = message.getQstick();
-  if (f != null) {
-    writer.writeMessage(
-      83,
-      f,
-      proto.trb.indicators.v1.QstickParams.serializeBinaryToWriter
-    );
-  }
   f = message.getRoc();
   if (f != null) {
     writer.writeMessage(
@@ -27838,14 +24433,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       87,
       f,
       proto.trb.indicators.v1.Rocr100Params.serializeBinaryToWriter
-    );
-  }
-  f = message.getSmi();
-  if (f != null) {
-    writer.writeMessage(
-      88,
-      f,
-      proto.trb.indicators.v1.SmiParams.serializeBinaryToWriter
     );
   }
   f = message.getStoch();
@@ -27888,28 +24475,12 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.UltOscParams.serializeBinaryToWriter
     );
   }
-  f = message.getWad();
-  if (f != null) {
-    writer.writeMessage(
-      94,
-      f,
-      proto.trb.indicators.v1.WadParams.serializeBinaryToWriter
-    );
-  }
   f = message.getWillr();
   if (f != null) {
     writer.writeMessage(
       95,
       f,
       proto.trb.indicators.v1.WillRParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getAccbands();
-  if (f != null) {
-    writer.writeMessage(
-      100,
-      f,
-      proto.trb.indicators.v1.AccBandsParams.serializeBinaryToWriter
     );
   }
   f = message.getBbands();
@@ -27936,14 +24507,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.EmaParams.serializeBinaryToWriter
     );
   }
-  f = message.getHma();
-  if (f != null) {
-    writer.writeMessage(
-      104,
-      f,
-      proto.trb.indicators.v1.HmaParams.serializeBinaryToWriter
-    );
-  }
   f = message.getHtTrendline();
   if (f != null) {
     writer.writeMessage(
@@ -27958,14 +24521,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       106,
       f,
       proto.trb.indicators.v1.KamaParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getKc();
-  if (f != null) {
-    writer.writeMessage(
-      107,
-      f,
-      proto.trb.indicators.v1.KcParams.serializeBinaryToWriter
     );
   }
   f = message.getMa();
@@ -28032,14 +24587,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.SmaParams.serializeBinaryToWriter
     );
   }
-  f = message.getSupertrend();
-  if (f != null) {
-    writer.writeMessage(
-      116,
-      f,
-      proto.trb.indicators.v1.SuperTrendParams.serializeBinaryToWriter
-    );
-  }
   f = message.getT3();
   if (f != null) {
     writer.writeMessage(
@@ -28062,14 +24609,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       119,
       f,
       proto.trb.indicators.v1.TrimaParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getVwma();
-  if (f != null) {
-    writer.writeMessage(
-      120,
-      f,
-      proto.trb.indicators.v1.VwmaParams.serializeBinaryToWriter
     );
   }
   f = message.getWma();
@@ -28568,14 +25107,6 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.CdlXsideGap3MethodsParams.serializeBinaryToWriter
     );
   }
-  f = message.getAvgdev();
-  if (f != null) {
-    writer.writeMessage(
-      200,
-      f,
-      proto.trb.indicators.v1.AvgDevParams.serializeBinaryToWriter
-    );
-  }
   f = message.getAvgprice();
   if (f != null) {
     writer.writeMessage(
@@ -28720,68 +25251,12 @@ proto.trb.indicators.v1.IndicatorSettings.serializeBinaryToWriter = function(mes
       proto.trb.indicators.v1.AdOscParams.serializeBinaryToWriter
     );
   }
-  f = message.getCmf();
-  if (f != null) {
-    writer.writeMessage(
-      232,
-      f,
-      proto.trb.indicators.v1.CmfParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getEfi();
-  if (f != null) {
-    writer.writeMessage(
-      233,
-      f,
-      proto.trb.indicators.v1.EfiParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getMarketfi();
-  if (f != null) {
-    writer.writeMessage(
-      234,
-      f,
-      proto.trb.indicators.v1.MarketFiParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getNvi();
-  if (f != null) {
-    writer.writeMessage(
-      235,
-      f,
-      proto.trb.indicators.v1.NviParams.serializeBinaryToWriter
-    );
-  }
   f = message.getObv();
   if (f != null) {
     writer.writeMessage(
       236,
       f,
       proto.trb.indicators.v1.ObvParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getPvi();
-  if (f != null) {
-    writer.writeMessage(
-      237,
-      f,
-      proto.trb.indicators.v1.PviParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getPvo();
-  if (f != null) {
-    writer.writeMessage(
-      238,
-      f,
-      proto.trb.indicators.v1.PvoParams.serializeBinaryToWriter
-    );
-  }
-  f = message.getVwap();
-  if (f != null) {
-    writer.writeMessage(
-      239,
-      f,
-      proto.trb.indicators.v1.VwapParams.serializeBinaryToWriter
     );
   }
 };
@@ -29972,43 +26447,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasTanh = function() {
 
 
 /**
- * optional AcParams ac = 60;
- * @return {?proto.trb.indicators.v1.AcParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getAc = function() {
-  return /** @type{?proto.trb.indicators.v1.AcParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.AcParams, 60));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.AcParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setAc = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 60, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearAc = function() {
-  return this.setAc(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasAc = function() {
-  return jspb.Message.getField(this, 60) != null;
-};
-
-
-/**
  * optional AdxParams adx = 61;
  * @return {?proto.trb.indicators.v1.AdxParams}
  */
@@ -30079,43 +26517,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearAdxr = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasAdxr = function() {
   return jspb.Message.getField(this, 62) != null;
-};
-
-
-/**
- * optional AoParams ao = 63;
- * @return {?proto.trb.indicators.v1.AoParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getAo = function() {
-  return /** @type{?proto.trb.indicators.v1.AoParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.AoParams, 63));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.AoParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setAo = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 63, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearAo = function() {
-  return this.setAo(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasAo = function() {
-  return jspb.Message.getField(this, 63) != null;
 };
 
 
@@ -30342,43 +26743,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasCmo = function() {
 
 
 /**
- * optional CmouParams cmou = 70;
- * @return {?proto.trb.indicators.v1.CmouParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getCmou = function() {
-  return /** @type{?proto.trb.indicators.v1.CmouParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.CmouParams, 70));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.CmouParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setCmou = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 70, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearCmou = function() {
-  return this.setCmou(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasCmou = function() {
-  return jspb.Message.getField(this, 70) != null;
-};
-
-
-/**
  * optional DxParams dx = 71;
  * @return {?proto.trb.indicators.v1.DxParams}
  */
@@ -30412,43 +26776,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearDx = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasDx = function() {
   return jspb.Message.getField(this, 71) != null;
-};
-
-
-/**
- * optional ImiParams imi = 72;
- * @return {?proto.trb.indicators.v1.ImiParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getImi = function() {
-  return /** @type{?proto.trb.indicators.v1.ImiParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.ImiParams, 72));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.ImiParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setImi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 72, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearImi = function() {
-  return this.setImi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasImi = function() {
-  return jspb.Message.getField(this, 72) != null;
 };
 
 
@@ -30823,43 +27150,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasPpo = function() {
 
 
 /**
- * optional QstickParams qstick = 83;
- * @return {?proto.trb.indicators.v1.QstickParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getQstick = function() {
-  return /** @type{?proto.trb.indicators.v1.QstickParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.QstickParams, 83));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.QstickParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setQstick = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 83, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearQstick = function() {
-  return this.setQstick(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasQstick = function() {
-  return jspb.Message.getField(this, 83) != null;
-};
-
-
-/**
  * optional RocParams roc = 84;
  * @return {?proto.trb.indicators.v1.RocParams}
  */
@@ -31004,43 +27294,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearRocr100 = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasRocr100 = function() {
   return jspb.Message.getField(this, 87) != null;
-};
-
-
-/**
- * optional SmiParams smi = 88;
- * @return {?proto.trb.indicators.v1.SmiParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getSmi = function() {
-  return /** @type{?proto.trb.indicators.v1.SmiParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.SmiParams, 88));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.SmiParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setSmi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 88, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearSmi = function() {
-  return this.setSmi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasSmi = function() {
-  return jspb.Message.getField(this, 88) != null;
 };
 
 
@@ -31230,43 +27483,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasUltosc = function() {
 
 
 /**
- * optional WadParams wad = 94;
- * @return {?proto.trb.indicators.v1.WadParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getWad = function() {
-  return /** @type{?proto.trb.indicators.v1.WadParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.WadParams, 94));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.WadParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setWad = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 94, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearWad = function() {
-  return this.setWad(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasWad = function() {
-  return jspb.Message.getField(this, 94) != null;
-};
-
-
-/**
  * optional WillRParams willr = 95;
  * @return {?proto.trb.indicators.v1.WillRParams}
  */
@@ -31300,43 +27516,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearWillr = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasWillr = function() {
   return jspb.Message.getField(this, 95) != null;
-};
-
-
-/**
- * optional AccBandsParams accbands = 100;
- * @return {?proto.trb.indicators.v1.AccBandsParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getAccbands = function() {
-  return /** @type{?proto.trb.indicators.v1.AccBandsParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.AccBandsParams, 100));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.AccBandsParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setAccbands = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 100, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearAccbands = function() {
-  return this.setAccbands(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasAccbands = function() {
-  return jspb.Message.getField(this, 100) != null;
 };
 
 
@@ -31452,43 +27631,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasEma = function() {
 
 
 /**
- * optional HmaParams hma = 104;
- * @return {?proto.trb.indicators.v1.HmaParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getHma = function() {
-  return /** @type{?proto.trb.indicators.v1.HmaParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.HmaParams, 104));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.HmaParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setHma = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 104, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearHma = function() {
-  return this.setHma(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasHma = function() {
-  return jspb.Message.getField(this, 104) != null;
-};
-
-
-/**
  * optional HtTrendlineParams ht_trendline = 105;
  * @return {?proto.trb.indicators.v1.HtTrendlineParams}
  */
@@ -31559,43 +27701,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearKama = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasKama = function() {
   return jspb.Message.getField(this, 106) != null;
-};
-
-
-/**
- * optional KcParams kc = 107;
- * @return {?proto.trb.indicators.v1.KcParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getKc = function() {
-  return /** @type{?proto.trb.indicators.v1.KcParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.KcParams, 107));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.KcParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setKc = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 107, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearKc = function() {
-  return this.setKc(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasKc = function() {
-  return jspb.Message.getField(this, 107) != null;
 };
 
 
@@ -31896,43 +28001,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasSma = function() {
 
 
 /**
- * optional SuperTrendParams supertrend = 116;
- * @return {?proto.trb.indicators.v1.SuperTrendParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getSupertrend = function() {
-  return /** @type{?proto.trb.indicators.v1.SuperTrendParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.SuperTrendParams, 116));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.SuperTrendParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setSupertrend = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 116, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearSupertrend = function() {
-  return this.setSupertrend(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasSupertrend = function() {
-  return jspb.Message.getField(this, 116) != null;
-};
-
-
-/**
  * optional T3Params t3 = 117;
  * @return {?proto.trb.indicators.v1.T3Params}
  */
@@ -32040,43 +28108,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearTrima = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasTrima = function() {
   return jspb.Message.getField(this, 119) != null;
-};
-
-
-/**
- * optional VwmaParams vwma = 120;
- * @return {?proto.trb.indicators.v1.VwmaParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getVwma = function() {
-  return /** @type{?proto.trb.indicators.v1.VwmaParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.VwmaParams, 120));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.VwmaParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setVwma = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 120, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearVwma = function() {
-  return this.setVwma(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasVwma = function() {
-  return jspb.Message.getField(this, 120) != null;
 };
 
 
@@ -34375,43 +30406,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasCdlxsidegap3methods = fun
 
 
 /**
- * optional AvgDevParams avgdev = 200;
- * @return {?proto.trb.indicators.v1.AvgDevParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getAvgdev = function() {
-  return /** @type{?proto.trb.indicators.v1.AvgDevParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.AvgDevParams, 200));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.AvgDevParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setAvgdev = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 200, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearAvgdev = function() {
-  return this.setAvgdev(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasAvgdev = function() {
-  return jspb.Message.getField(this, 200) != null;
-};
-
-
-/**
  * optional AvgPriceParams avgprice = 201;
  * @return {?proto.trb.indicators.v1.AvgPriceParams}
  */
@@ -35078,154 +31072,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.hasAdosc = function() {
 
 
 /**
- * optional CmfParams cmf = 232;
- * @return {?proto.trb.indicators.v1.CmfParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getCmf = function() {
-  return /** @type{?proto.trb.indicators.v1.CmfParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.CmfParams, 232));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.CmfParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setCmf = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 232, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearCmf = function() {
-  return this.setCmf(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasCmf = function() {
-  return jspb.Message.getField(this, 232) != null;
-};
-
-
-/**
- * optional EfiParams efi = 233;
- * @return {?proto.trb.indicators.v1.EfiParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getEfi = function() {
-  return /** @type{?proto.trb.indicators.v1.EfiParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.EfiParams, 233));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.EfiParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setEfi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 233, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearEfi = function() {
-  return this.setEfi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasEfi = function() {
-  return jspb.Message.getField(this, 233) != null;
-};
-
-
-/**
- * optional MarketFiParams marketfi = 234;
- * @return {?proto.trb.indicators.v1.MarketFiParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getMarketfi = function() {
-  return /** @type{?proto.trb.indicators.v1.MarketFiParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.MarketFiParams, 234));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.MarketFiParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setMarketfi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 234, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearMarketfi = function() {
-  return this.setMarketfi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasMarketfi = function() {
-  return jspb.Message.getField(this, 234) != null;
-};
-
-
-/**
- * optional NviParams nvi = 235;
- * @return {?proto.trb.indicators.v1.NviParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getNvi = function() {
-  return /** @type{?proto.trb.indicators.v1.NviParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.NviParams, 235));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.NviParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setNvi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 235, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearNvi = function() {
-  return this.setNvi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasNvi = function() {
-  return jspb.Message.getField(this, 235) != null;
-};
-
-
-/**
  * optional ObvParams obv = 236;
  * @return {?proto.trb.indicators.v1.ObvParams}
  */
@@ -35259,117 +31105,6 @@ proto.trb.indicators.v1.IndicatorSettings.prototype.clearObv = function() {
  */
 proto.trb.indicators.v1.IndicatorSettings.prototype.hasObv = function() {
   return jspb.Message.getField(this, 236) != null;
-};
-
-
-/**
- * optional PviParams pvi = 237;
- * @return {?proto.trb.indicators.v1.PviParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getPvi = function() {
-  return /** @type{?proto.trb.indicators.v1.PviParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.PviParams, 237));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.PviParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setPvi = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 237, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearPvi = function() {
-  return this.setPvi(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasPvi = function() {
-  return jspb.Message.getField(this, 237) != null;
-};
-
-
-/**
- * optional PvoParams pvo = 238;
- * @return {?proto.trb.indicators.v1.PvoParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getPvo = function() {
-  return /** @type{?proto.trb.indicators.v1.PvoParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.PvoParams, 238));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.PvoParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setPvo = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 238, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearPvo = function() {
-  return this.setPvo(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasPvo = function() {
-  return jspb.Message.getField(this, 238) != null;
-};
-
-
-/**
- * optional VwapParams vwap = 239;
- * @return {?proto.trb.indicators.v1.VwapParams}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.getVwap = function() {
-  return /** @type{?proto.trb.indicators.v1.VwapParams} */ (
-    jspb.Message.getWrapperField(this, proto.trb.indicators.v1.VwapParams, 239));
-};
-
-
-/**
- * @param {?proto.trb.indicators.v1.VwapParams|undefined} value
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
-*/
-proto.trb.indicators.v1.IndicatorSettings.prototype.setVwap = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 239, proto.trb.indicators.v1.IndicatorSettings.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.trb.indicators.v1.IndicatorSettings} returns this
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.clearVwap = function() {
-  return this.setVwap(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.trb.indicators.v1.IndicatorSettings.prototype.hasVwap = function() {
-  return jspb.Message.getField(this, 239) != null;
 };
 
 

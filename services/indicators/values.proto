@@ -110,16 +110,6 @@ message StochFSeries {
   repeated StochFPoint points = 1;
 }
 
-message SmiPoint {
-  google.protobuf.Timestamp time = 1;
-  double smi = 2;
-  double signal = 3;
-}
-
-message SmiSeries {
-  repeated SmiPoint points = 1;
-}
-
 message MinMaxPoint {
   google.protobuf.Timestamp time = 1;
   double min = 2;
@@ -138,16 +128,6 @@ message MinMaxIndexPoint {
 
 message MinMaxIndexSeries {
   repeated MinMaxIndexPoint points = 1;
-}
-
-message SuperTrendPoint {
-  google.protobuf.Timestamp time = 1;
-  double value = 2;
-  int32 trend = 3;
-}
-
-message SuperTrendSeries {
-  repeated SuperTrendPoint points = 1;
 }
 
 // Значения индикатора: вариант oneof совпадает с IndicatorSettings.
@@ -192,20 +172,16 @@ message IndicatorValuesResponse {
     RealSeries tan = 53;
     RealSeries tanh = 54;
 
-    // Momentum Indicators (60–99), кроме rsi=1
-    RealSeries ac = 60;
+    // Momentum Indicators (61–95), кроме rsi=1
     RealSeries adx = 61;
     RealSeries adxr = 62;
-    RealSeries ao = 63;
     RealSeries apo = 64;
     AroonSeries aroon = 65;
     RealSeries aroonosc = 66;
     RealSeries bop = 67;
     RealSeries cci = 68;
     RealSeries cmo = 69;
-    RealSeries cmou = 70;
     RealSeries dx = 71;
-    RealSeries imi = 72;
     MacdSeries macd = 73;
     MacdSeries macdext = 74;
     MacdSeries macdfix = 75;
@@ -216,29 +192,23 @@ message IndicatorValuesResponse {
     RealSeries plus_di = 80;
     RealSeries plus_dm = 81;
     RealSeries ppo = 82;
-    RealSeries qstick = 83;
     RealSeries roc = 84;
     RealSeries rocp = 85;
     RealSeries rocr = 86;
     RealSeries rocr100 = 87;
-    SmiSeries smi = 88;
     StochSeries stoch = 89;
     StochFSeries stochf = 90;
     StochFSeries stochrsi = 91;
     RealSeries trix = 92;
     RealSeries ultosc = 93;
-    RealSeries wad = 94;
     RealSeries willr = 95;
 
-    // Overlap Studies (100–129)
-    BandsSeries accbands = 100;
+    // Overlap Studies (101–121)
     BandsSeries bbands = 101;
     RealSeries dema = 102;
     RealSeries ema = 103;
-    RealSeries hma = 104;
     RealSeries ht_trendline = 105;
     RealSeries kama = 106;
-    BandsSeries kc = 107;
     RealSeries ma = 108;
     MamaSeries mama = 109;
     RealSeries mavp = 110;
@@ -247,14 +217,12 @@ message IndicatorValuesResponse {
     RealSeries sar = 113;
     RealSeries sarext = 114;
     RealSeries sma = 115;
-    SuperTrendSeries supertrend = 116;
     RealSeries t3 = 117;
     RealSeries tema = 118;
     RealSeries trima = 119;
-    RealSeries vwma = 120;
     RealSeries wma = 121;
 
-    // Pattern Recognition (130–199)
+    // Pattern Recognition (130–190)
     IntegerSeries cdl2crows = 130;
     IntegerSeries cdl3blackcrows = 131;
     IntegerSeries cdl3inside = 132;
@@ -317,14 +285,13 @@ message IndicatorValuesResponse {
     IntegerSeries cdlupsidegap2crows = 189;
     IntegerSeries cdlxsidegap3methods = 190;
 
-    // Price Transform (200–209)
-    RealSeries avgdev = 200;
+    // Price Transform (201–204)
     RealSeries avgprice = 201;
     RealSeries medprice = 202;
     RealSeries typprice = 203;
     RealSeries wclprice = 204;
 
-    // Statistic Functions (210–219)
+    // Statistic Functions (210–218)
     RealSeries beta = 210;
     RealSeries correl = 211;
     RealSeries linearreg = 212;
@@ -335,21 +302,14 @@ message IndicatorValuesResponse {
     RealSeries tsf = 217;
     RealSeries var = 218;
 
-    // Volatility Indicators (220–229)
+    // Volatility Indicators (220–222)
     RealSeries atr = 220;
     RealSeries natr = 221;
     RealSeries trange = 222;
 
-    // Volume Indicators (230–249)
+    // Volume Indicators (230–236)
     RealSeries ad = 230;
     RealSeries adosc = 231;
-    RealSeries cmf = 232;
-    RealSeries efi = 233;
-    RealSeries marketfi = 234;
-    RealSeries nvi = 235;
     RealSeries obv = 236;
-    RealSeries pvi = 237;
-    RealSeries pvo = 238;
-    RealSeries vwap = 239;
   }
 }

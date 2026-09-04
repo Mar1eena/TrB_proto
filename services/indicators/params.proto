@@ -143,13 +143,6 @@ message TanhParams {}
 // Momentum Indicators
 // ---------------------------------------------------------------------------
 
-// AC — Accelerator/Decelerator Oscillator.
-message AcParams {
-  uint32 fast_period = 1;
-  uint32 slow_period = 2;
-  uint32 signal_period = 3;
-}
-
 // ADX — Average Directional Movement Index.
 message AdxParams {
   uint32 period = 1;
@@ -158,12 +151,6 @@ message AdxParams {
 // ADXR — Average Directional Movement Index Rating.
 message AdxrParams {
   uint32 period = 1;
-}
-
-// AO — Awesome Oscillator.
-message AoParams {
-  uint32 fast_period = 1;
-  uint32 slow_period = 2;
 }
 
 // APO — Absolute Price Oscillator.
@@ -196,18 +183,8 @@ message CmoParams {
   uint32 period = 1;
 }
 
-// CMOU — Chande Momentum Oscillator (Unsmoothed).
-message CmouParams {
-  uint32 period = 1;
-}
-
 // DX — Directional Movement Index.
 message DxParams {
-  uint32 period = 1;
-}
-
-// IMI — Intraday Momentum Index.
-message ImiParams {
   uint32 period = 1;
 }
 
@@ -270,11 +247,6 @@ message PpoParams {
   MAType ma_type = 3;
 }
 
-// QSTICK — Qstick.
-message QstickParams {
-  uint32 period = 1;
-}
-
 // ROC — Rate of change : ((price/prevPrice)-1)*100.
 message RocParams {
   uint32 period = 1;
@@ -298,14 +270,6 @@ message Rocr100Params {
 // RSI — Relative Strength Index.
 message RsiParams {
   uint32 period = 1;
-}
-
-// SMI — Stochastic Momentum Index.
-message SmiParams {
-  uint32 period = 1;
-  uint32 fast_period = 2;
-  uint32 slow_period = 3;
-  uint32 signal_period = 4;
 }
 
 // STOCH — Stochastic.
@@ -344,9 +308,6 @@ message UltOscParams {
   uint32 period3 = 3;
 }
 
-// WAD — Williams' Accumulation/Distribution.
-message WadParams {}
-
 // WILLR — Williams' %R.
 message WillRParams {
   uint32 period = 1;
@@ -355,11 +316,6 @@ message WillRParams {
 // ---------------------------------------------------------------------------
 // Overlap Studies
 // ---------------------------------------------------------------------------
-
-// ACCBANDS — Acceleration Bands.
-message AccBandsParams {
-  uint32 period = 1;
-}
 
 // BBANDS — Bollinger Bands.
 message BbandsParams {
@@ -379,24 +335,12 @@ message EmaParams {
   uint32 period = 1;
 }
 
-// HMA — Hull Moving Average.
-message HmaParams {
-  uint32 period = 1;
-}
-
 // HT_TRENDLINE — Hilbert Transform - Instantaneous Trendline.
 message HtTrendlineParams {}
 
 // KAMA — Kaufman Adaptive Moving Average.
 message KamaParams {
   uint32 period = 1;
-}
-
-// KC — Keltner Channels.
-message KcParams {
-  uint32 period = 1;
-  uint32 atr_period = 2;
-  double nb_dev = 3;
 }
 
 // MA — Moving average.
@@ -451,12 +395,6 @@ message SmaParams {
   uint32 period = 1;
 }
 
-// SUPERTREND — SuperTrend.
-message SuperTrendParams {
-  uint32 period = 1;
-  double multiplier = 2;
-}
-
 // T3 — Triple Exponential Moving Average (T3).
 message T3Params {
   uint32 period = 1;
@@ -470,11 +408,6 @@ message TemaParams {
 
 // TRIMA — Triangular Moving Average.
 message TrimaParams {
-  uint32 period = 1;
-}
-
-// VWMA — Volume Weighted Moving Average.
-message VwmaParams {
   uint32 period = 1;
 }
 
@@ -688,11 +621,6 @@ message CdlXsideGap3MethodsParams {}
 // Price Transform
 // ---------------------------------------------------------------------------
 
-// AVGDEV — Average Deviation.
-message AvgDevParams {
-  uint32 period = 1;
-}
-
 // AVGPRICE — Average Price.
 message AvgPriceParams {}
 
@@ -786,37 +714,8 @@ message AdOscParams {
   uint32 slow_period = 2;
 }
 
-// CMF — Chaikin Money Flow.
-message CmfParams {
-  uint32 period = 1;
-}
-
-// EFI — Elder's Force Index.
-message EfiParams {
-  uint32 period = 1;
-}
-
-// MARKETFI — Market Facilitation Index.
-message MarketFiParams {}
-
-// NVI — Negative Volume Index.
-message NviParams {}
-
 // OBV — On Balance Volume.
 message ObvParams {}
-
-// PVI — Positive Volume Index.
-message PviParams {}
-
-// PVO — Percentage Volume Oscillator.
-message PvoParams {
-  uint32 fast_period = 1;
-  uint32 slow_period = 2;
-  MAType ma_type = 3;
-}
-
-// VWAP — Volume Weighted Average Price.
-message VwapParams {}
 
 // Настройки индикатора для SettingsHash: вариант oneof = функция TA-Lib.
 message IndicatorSettings {
@@ -861,20 +760,16 @@ message IndicatorSettings {
     TanParams tan = 53;
     TanhParams tanh = 54;
 
-    // Momentum Indicators (60–99), кроме rsi=1
-    AcParams ac = 60;
+    // Momentum Indicators (61–95), кроме rsi=1
     AdxParams adx = 61;
     AdxrParams adxr = 62;
-    AoParams ao = 63;
     ApoParams apo = 64;
     AroonParams aroon = 65;
     AroonOscParams aroonosc = 66;
     BopParams bop = 67;
     CciParams cci = 68;
     CmoParams cmo = 69;
-    CmouParams cmou = 70;
     DxParams dx = 71;
-    ImiParams imi = 72;
     MacdParams macd = 73;
     MacdExtParams macdext = 74;
     MacdFixParams macdfix = 75;
@@ -885,29 +780,23 @@ message IndicatorSettings {
     PlusDiParams plus_di = 80;
     PlusDmParams plus_dm = 81;
     PpoParams ppo = 82;
-    QstickParams qstick = 83;
     RocParams roc = 84;
     RocpParams rocp = 85;
     RocrParams rocr = 86;
     Rocr100Params rocr100 = 87;
-    SmiParams smi = 88;
     StochParams stoch = 89;
     StochFParams stochf = 90;
     StochRsiParams stochrsi = 91;
     TrixParams trix = 92;
     UltOscParams ultosc = 93;
-    WadParams wad = 94;
     WillRParams willr = 95;
 
-    // Overlap Studies (100–129)
-    AccBandsParams accbands = 100;
+    // Overlap Studies (101–121)
     BbandsParams bbands = 101;
     DemaParams dema = 102;
     EmaParams ema = 103;
-    HmaParams hma = 104;
     HtTrendlineParams ht_trendline = 105;
     KamaParams kama = 106;
-    KcParams kc = 107;
     MaParams ma = 108;
     MamaParams mama = 109;
     MavpParams mavp = 110;
@@ -916,14 +805,12 @@ message IndicatorSettings {
     SarParams sar = 113;
     SarExtParams sarext = 114;
     SmaParams sma = 115;
-    SuperTrendParams supertrend = 116;
     T3Params t3 = 117;
     TemaParams tema = 118;
     TrimaParams trima = 119;
-    VwmaParams vwma = 120;
     WmaParams wma = 121;
 
-    // Pattern Recognition (130–199)
+    // Pattern Recognition (130–190)
     Cdl2CrowsParams cdl2crows = 130;
     Cdl3BlackCrowsParams cdl3blackcrows = 131;
     Cdl3InsideParams cdl3inside = 132;
@@ -986,14 +873,13 @@ message IndicatorSettings {
     CdlUpsideGap2CrowsParams cdlupsidegap2crows = 189;
     CdlXsideGap3MethodsParams cdlxsidegap3methods = 190;
 
-    // Price Transform (200–209)
-    AvgDevParams avgdev = 200;
+    // Price Transform (201–204)
     AvgPriceParams avgprice = 201;
     MedPriceParams medprice = 202;
     TypPriceParams typprice = 203;
     WclPriceParams wclprice = 204;
 
-    // Statistic Functions (210–219)
+    // Statistic Functions (210–218)
     BetaParams beta = 210;
     CorrelParams correl = 211;
     LinearRegParams linearreg = 212;
@@ -1004,21 +890,14 @@ message IndicatorSettings {
     TsfParams tsf = 217;
     VarParams var = 218;
 
-    // Volatility Indicators (220–229)
+    // Volatility Indicators (220–222)
     AtrParams atr = 220;
     NatrParams natr = 221;
     TrangeParams trange = 222;
 
-    // Volume Indicators (230–249)
+    // Volume Indicators (230–236)
     AdParams ad = 230;
     AdOscParams adosc = 231;
-    CmfParams cmf = 232;
-    EfiParams efi = 233;
-    MarketFiParams marketfi = 234;
-    NviParams nvi = 235;
     ObvParams obv = 236;
-    PviParams pvi = 237;
-    PvoParams pvo = 238;
-    VwapParams vwap = 239;
   }
 }

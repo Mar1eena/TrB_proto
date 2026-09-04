@@ -464,32 +464,6 @@ export namespace TanhParams {
   }
 }
 
-export class AcParams extends jspb.Message {
-  getFastPeriod(): number;
-  setFastPeriod(value: number): AcParams;
-
-  getSlowPeriod(): number;
-  setSlowPeriod(value: number): AcParams;
-
-  getSignalPeriod(): number;
-  setSignalPeriod(value: number): AcParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AcParams.AsObject;
-  static toObject(includeInstance: boolean, msg: AcParams): AcParams.AsObject;
-  static serializeBinaryToWriter(message: AcParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AcParams;
-  static deserializeBinaryFromReader(message: AcParams, reader: jspb.BinaryReader): AcParams;
-}
-
-export namespace AcParams {
-  export type AsObject = {
-    fastPeriod: number,
-    slowPeriod: number,
-    signalPeriod: number,
-  }
-}
-
 export class AdxParams extends jspb.Message {
   getPeriod(): number;
   setPeriod(value: number): AdxParams;
@@ -523,28 +497,6 @@ export class AdxrParams extends jspb.Message {
 export namespace AdxrParams {
   export type AsObject = {
     period: number,
-  }
-}
-
-export class AoParams extends jspb.Message {
-  getFastPeriod(): number;
-  setFastPeriod(value: number): AoParams;
-
-  getSlowPeriod(): number;
-  setSlowPeriod(value: number): AoParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AoParams.AsObject;
-  static toObject(includeInstance: boolean, msg: AoParams): AoParams.AsObject;
-  static serializeBinaryToWriter(message: AoParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AoParams;
-  static deserializeBinaryFromReader(message: AoParams, reader: jspb.BinaryReader): AoParams;
-}
-
-export namespace AoParams {
-  export type AsObject = {
-    fastPeriod: number,
-    slowPeriod: number,
   }
 }
 
@@ -660,24 +612,6 @@ export namespace CmoParams {
   }
 }
 
-export class CmouParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): CmouParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CmouParams.AsObject;
-  static toObject(includeInstance: boolean, msg: CmouParams): CmouParams.AsObject;
-  static serializeBinaryToWriter(message: CmouParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CmouParams;
-  static deserializeBinaryFromReader(message: CmouParams, reader: jspb.BinaryReader): CmouParams;
-}
-
-export namespace CmouParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
 export class DxParams extends jspb.Message {
   getPeriod(): number;
   setPeriod(value: number): DxParams;
@@ -691,24 +625,6 @@ export class DxParams extends jspb.Message {
 }
 
 export namespace DxParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
-export class ImiParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): ImiParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ImiParams.AsObject;
-  static toObject(includeInstance: boolean, msg: ImiParams): ImiParams.AsObject;
-  static serializeBinaryToWriter(message: ImiParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ImiParams;
-  static deserializeBinaryFromReader(message: ImiParams, reader: jspb.BinaryReader): ImiParams;
-}
-
-export namespace ImiParams {
   export type AsObject = {
     period: number,
   }
@@ -930,24 +846,6 @@ export namespace PpoParams {
   }
 }
 
-export class QstickParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): QstickParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): QstickParams.AsObject;
-  static toObject(includeInstance: boolean, msg: QstickParams): QstickParams.AsObject;
-  static serializeBinaryToWriter(message: QstickParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): QstickParams;
-  static deserializeBinaryFromReader(message: QstickParams, reader: jspb.BinaryReader): QstickParams;
-}
-
-export namespace QstickParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
 export class RocParams extends jspb.Message {
   getPeriod(): number;
   setPeriod(value: number): RocParams;
@@ -1035,36 +933,6 @@ export class RsiParams extends jspb.Message {
 export namespace RsiParams {
   export type AsObject = {
     period: number,
-  }
-}
-
-export class SmiParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): SmiParams;
-
-  getFastPeriod(): number;
-  setFastPeriod(value: number): SmiParams;
-
-  getSlowPeriod(): number;
-  setSlowPeriod(value: number): SmiParams;
-
-  getSignalPeriod(): number;
-  setSignalPeriod(value: number): SmiParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SmiParams.AsObject;
-  static toObject(includeInstance: boolean, msg: SmiParams): SmiParams.AsObject;
-  static serializeBinaryToWriter(message: SmiParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SmiParams;
-  static deserializeBinaryFromReader(message: SmiParams, reader: jspb.BinaryReader): SmiParams;
-}
-
-export namespace SmiParams {
-  export type AsObject = {
-    period: number,
-    fastPeriod: number,
-    slowPeriod: number,
-    signalPeriod: number,
   }
 }
 
@@ -1202,20 +1070,6 @@ export namespace UltOscParams {
   }
 }
 
-export class WadParams extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): WadParams.AsObject;
-  static toObject(includeInstance: boolean, msg: WadParams): WadParams.AsObject;
-  static serializeBinaryToWriter(message: WadParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): WadParams;
-  static deserializeBinaryFromReader(message: WadParams, reader: jspb.BinaryReader): WadParams;
-}
-
-export namespace WadParams {
-  export type AsObject = {
-  }
-}
-
 export class WillRParams extends jspb.Message {
   getPeriod(): number;
   setPeriod(value: number): WillRParams;
@@ -1229,24 +1083,6 @@ export class WillRParams extends jspb.Message {
 }
 
 export namespace WillRParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
-export class AccBandsParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): AccBandsParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AccBandsParams.AsObject;
-  static toObject(includeInstance: boolean, msg: AccBandsParams): AccBandsParams.AsObject;
-  static serializeBinaryToWriter(message: AccBandsParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AccBandsParams;
-  static deserializeBinaryFromReader(message: AccBandsParams, reader: jspb.BinaryReader): AccBandsParams;
-}
-
-export namespace AccBandsParams {
   export type AsObject = {
     period: number,
   }
@@ -1318,24 +1154,6 @@ export namespace EmaParams {
   }
 }
 
-export class HmaParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): HmaParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): HmaParams.AsObject;
-  static toObject(includeInstance: boolean, msg: HmaParams): HmaParams.AsObject;
-  static serializeBinaryToWriter(message: HmaParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): HmaParams;
-  static deserializeBinaryFromReader(message: HmaParams, reader: jspb.BinaryReader): HmaParams;
-}
-
-export namespace HmaParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
 export class HtTrendlineParams extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HtTrendlineParams.AsObject;
@@ -1365,32 +1183,6 @@ export class KamaParams extends jspb.Message {
 export namespace KamaParams {
   export type AsObject = {
     period: number,
-  }
-}
-
-export class KcParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): KcParams;
-
-  getAtrPeriod(): number;
-  setAtrPeriod(value: number): KcParams;
-
-  getNbDev(): number;
-  setNbDev(value: number): KcParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KcParams.AsObject;
-  static toObject(includeInstance: boolean, msg: KcParams): KcParams.AsObject;
-  static serializeBinaryToWriter(message: KcParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KcParams;
-  static deserializeBinaryFromReader(message: KcParams, reader: jspb.BinaryReader): KcParams;
-}
-
-export namespace KcParams {
-  export type AsObject = {
-    period: number,
-    atrPeriod: number,
-    nbDev: number,
   }
 }
 
@@ -1586,28 +1378,6 @@ export namespace SmaParams {
   }
 }
 
-export class SuperTrendParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): SuperTrendParams;
-
-  getMultiplier(): number;
-  setMultiplier(value: number): SuperTrendParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SuperTrendParams.AsObject;
-  static toObject(includeInstance: boolean, msg: SuperTrendParams): SuperTrendParams.AsObject;
-  static serializeBinaryToWriter(message: SuperTrendParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SuperTrendParams;
-  static deserializeBinaryFromReader(message: SuperTrendParams, reader: jspb.BinaryReader): SuperTrendParams;
-}
-
-export namespace SuperTrendParams {
-  export type AsObject = {
-    period: number,
-    multiplier: number,
-  }
-}
-
 export class T3Params extends jspb.Message {
   getPeriod(): number;
   setPeriod(value: number): T3Params;
@@ -1661,24 +1431,6 @@ export class TrimaParams extends jspb.Message {
 }
 
 export namespace TrimaParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
-export class VwmaParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): VwmaParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): VwmaParams.AsObject;
-  static toObject(includeInstance: boolean, msg: VwmaParams): VwmaParams.AsObject;
-  static serializeBinaryToWriter(message: VwmaParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): VwmaParams;
-  static deserializeBinaryFromReader(message: VwmaParams, reader: jspb.BinaryReader): VwmaParams;
-}
-
-export namespace VwmaParams {
   export type AsObject = {
     period: number,
   }
@@ -2584,24 +2336,6 @@ export namespace CdlXsideGap3MethodsParams {
   }
 }
 
-export class AvgDevParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): AvgDevParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AvgDevParams.AsObject;
-  static toObject(includeInstance: boolean, msg: AvgDevParams): AvgDevParams.AsObject;
-  static serializeBinaryToWriter(message: AvgDevParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AvgDevParams;
-  static deserializeBinaryFromReader(message: AvgDevParams, reader: jspb.BinaryReader): AvgDevParams;
-}
-
-export namespace AvgDevParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
 export class AvgPriceParams extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AvgPriceParams.AsObject;
@@ -2914,70 +2648,6 @@ export namespace AdOscParams {
   }
 }
 
-export class CmfParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): CmfParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CmfParams.AsObject;
-  static toObject(includeInstance: boolean, msg: CmfParams): CmfParams.AsObject;
-  static serializeBinaryToWriter(message: CmfParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CmfParams;
-  static deserializeBinaryFromReader(message: CmfParams, reader: jspb.BinaryReader): CmfParams;
-}
-
-export namespace CmfParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
-export class EfiParams extends jspb.Message {
-  getPeriod(): number;
-  setPeriod(value: number): EfiParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EfiParams.AsObject;
-  static toObject(includeInstance: boolean, msg: EfiParams): EfiParams.AsObject;
-  static serializeBinaryToWriter(message: EfiParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EfiParams;
-  static deserializeBinaryFromReader(message: EfiParams, reader: jspb.BinaryReader): EfiParams;
-}
-
-export namespace EfiParams {
-  export type AsObject = {
-    period: number,
-  }
-}
-
-export class MarketFiParams extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MarketFiParams.AsObject;
-  static toObject(includeInstance: boolean, msg: MarketFiParams): MarketFiParams.AsObject;
-  static serializeBinaryToWriter(message: MarketFiParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MarketFiParams;
-  static deserializeBinaryFromReader(message: MarketFiParams, reader: jspb.BinaryReader): MarketFiParams;
-}
-
-export namespace MarketFiParams {
-  export type AsObject = {
-  }
-}
-
-export class NviParams extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NviParams.AsObject;
-  static toObject(includeInstance: boolean, msg: NviParams): NviParams.AsObject;
-  static serializeBinaryToWriter(message: NviParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NviParams;
-  static deserializeBinaryFromReader(message: NviParams, reader: jspb.BinaryReader): NviParams;
-}
-
-export namespace NviParams {
-  export type AsObject = {
-  }
-}
-
 export class ObvParams extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ObvParams.AsObject;
@@ -2988,60 +2658,6 @@ export class ObvParams extends jspb.Message {
 }
 
 export namespace ObvParams {
-  export type AsObject = {
-  }
-}
-
-export class PviParams extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PviParams.AsObject;
-  static toObject(includeInstance: boolean, msg: PviParams): PviParams.AsObject;
-  static serializeBinaryToWriter(message: PviParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PviParams;
-  static deserializeBinaryFromReader(message: PviParams, reader: jspb.BinaryReader): PviParams;
-}
-
-export namespace PviParams {
-  export type AsObject = {
-  }
-}
-
-export class PvoParams extends jspb.Message {
-  getFastPeriod(): number;
-  setFastPeriod(value: number): PvoParams;
-
-  getSlowPeriod(): number;
-  setSlowPeriod(value: number): PvoParams;
-
-  getMaType(): MAType;
-  setMaType(value: MAType): PvoParams;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PvoParams.AsObject;
-  static toObject(includeInstance: boolean, msg: PvoParams): PvoParams.AsObject;
-  static serializeBinaryToWriter(message: PvoParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PvoParams;
-  static deserializeBinaryFromReader(message: PvoParams, reader: jspb.BinaryReader): PvoParams;
-}
-
-export namespace PvoParams {
-  export type AsObject = {
-    fastPeriod: number,
-    slowPeriod: number,
-    maType: MAType,
-  }
-}
-
-export class VwapParams extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): VwapParams.AsObject;
-  static toObject(includeInstance: boolean, msg: VwapParams): VwapParams.AsObject;
-  static serializeBinaryToWriter(message: VwapParams, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): VwapParams;
-  static deserializeBinaryFromReader(message: VwapParams, reader: jspb.BinaryReader): VwapParams;
-}
-
-export namespace VwapParams {
   export type AsObject = {
   }
 }
@@ -3207,11 +2823,6 @@ export class IndicatorSettings extends jspb.Message {
   hasTanh(): boolean;
   clearTanh(): IndicatorSettings;
 
-  getAc(): AcParams | undefined;
-  setAc(value?: AcParams): IndicatorSettings;
-  hasAc(): boolean;
-  clearAc(): IndicatorSettings;
-
   getAdx(): AdxParams | undefined;
   setAdx(value?: AdxParams): IndicatorSettings;
   hasAdx(): boolean;
@@ -3221,11 +2832,6 @@ export class IndicatorSettings extends jspb.Message {
   setAdxr(value?: AdxrParams): IndicatorSettings;
   hasAdxr(): boolean;
   clearAdxr(): IndicatorSettings;
-
-  getAo(): AoParams | undefined;
-  setAo(value?: AoParams): IndicatorSettings;
-  hasAo(): boolean;
-  clearAo(): IndicatorSettings;
 
   getApo(): ApoParams | undefined;
   setApo(value?: ApoParams): IndicatorSettings;
@@ -3257,20 +2863,10 @@ export class IndicatorSettings extends jspb.Message {
   hasCmo(): boolean;
   clearCmo(): IndicatorSettings;
 
-  getCmou(): CmouParams | undefined;
-  setCmou(value?: CmouParams): IndicatorSettings;
-  hasCmou(): boolean;
-  clearCmou(): IndicatorSettings;
-
   getDx(): DxParams | undefined;
   setDx(value?: DxParams): IndicatorSettings;
   hasDx(): boolean;
   clearDx(): IndicatorSettings;
-
-  getImi(): ImiParams | undefined;
-  setImi(value?: ImiParams): IndicatorSettings;
-  hasImi(): boolean;
-  clearImi(): IndicatorSettings;
 
   getMacd(): MacdParams | undefined;
   setMacd(value?: MacdParams): IndicatorSettings;
@@ -3322,11 +2918,6 @@ export class IndicatorSettings extends jspb.Message {
   hasPpo(): boolean;
   clearPpo(): IndicatorSettings;
 
-  getQstick(): QstickParams | undefined;
-  setQstick(value?: QstickParams): IndicatorSettings;
-  hasQstick(): boolean;
-  clearQstick(): IndicatorSettings;
-
   getRoc(): RocParams | undefined;
   setRoc(value?: RocParams): IndicatorSettings;
   hasRoc(): boolean;
@@ -3346,11 +2937,6 @@ export class IndicatorSettings extends jspb.Message {
   setRocr100(value?: Rocr100Params): IndicatorSettings;
   hasRocr100(): boolean;
   clearRocr100(): IndicatorSettings;
-
-  getSmi(): SmiParams | undefined;
-  setSmi(value?: SmiParams): IndicatorSettings;
-  hasSmi(): boolean;
-  clearSmi(): IndicatorSettings;
 
   getStoch(): StochParams | undefined;
   setStoch(value?: StochParams): IndicatorSettings;
@@ -3377,20 +2963,10 @@ export class IndicatorSettings extends jspb.Message {
   hasUltosc(): boolean;
   clearUltosc(): IndicatorSettings;
 
-  getWad(): WadParams | undefined;
-  setWad(value?: WadParams): IndicatorSettings;
-  hasWad(): boolean;
-  clearWad(): IndicatorSettings;
-
   getWillr(): WillRParams | undefined;
   setWillr(value?: WillRParams): IndicatorSettings;
   hasWillr(): boolean;
   clearWillr(): IndicatorSettings;
-
-  getAccbands(): AccBandsParams | undefined;
-  setAccbands(value?: AccBandsParams): IndicatorSettings;
-  hasAccbands(): boolean;
-  clearAccbands(): IndicatorSettings;
 
   getBbands(): BbandsParams | undefined;
   setBbands(value?: BbandsParams): IndicatorSettings;
@@ -3407,11 +2983,6 @@ export class IndicatorSettings extends jspb.Message {
   hasEma(): boolean;
   clearEma(): IndicatorSettings;
 
-  getHma(): HmaParams | undefined;
-  setHma(value?: HmaParams): IndicatorSettings;
-  hasHma(): boolean;
-  clearHma(): IndicatorSettings;
-
   getHtTrendline(): HtTrendlineParams | undefined;
   setHtTrendline(value?: HtTrendlineParams): IndicatorSettings;
   hasHtTrendline(): boolean;
@@ -3421,11 +2992,6 @@ export class IndicatorSettings extends jspb.Message {
   setKama(value?: KamaParams): IndicatorSettings;
   hasKama(): boolean;
   clearKama(): IndicatorSettings;
-
-  getKc(): KcParams | undefined;
-  setKc(value?: KcParams): IndicatorSettings;
-  hasKc(): boolean;
-  clearKc(): IndicatorSettings;
 
   getMa(): MaParams | undefined;
   setMa(value?: MaParams): IndicatorSettings;
@@ -3467,11 +3033,6 @@ export class IndicatorSettings extends jspb.Message {
   hasSma(): boolean;
   clearSma(): IndicatorSettings;
 
-  getSupertrend(): SuperTrendParams | undefined;
-  setSupertrend(value?: SuperTrendParams): IndicatorSettings;
-  hasSupertrend(): boolean;
-  clearSupertrend(): IndicatorSettings;
-
   getT3(): T3Params | undefined;
   setT3(value?: T3Params): IndicatorSettings;
   hasT3(): boolean;
@@ -3486,11 +3047,6 @@ export class IndicatorSettings extends jspb.Message {
   setTrima(value?: TrimaParams): IndicatorSettings;
   hasTrima(): boolean;
   clearTrima(): IndicatorSettings;
-
-  getVwma(): VwmaParams | undefined;
-  setVwma(value?: VwmaParams): IndicatorSettings;
-  hasVwma(): boolean;
-  clearVwma(): IndicatorSettings;
 
   getWma(): WmaParams | undefined;
   setWma(value?: WmaParams): IndicatorSettings;
@@ -3802,11 +3358,6 @@ export class IndicatorSettings extends jspb.Message {
   hasCdlxsidegap3methods(): boolean;
   clearCdlxsidegap3methods(): IndicatorSettings;
 
-  getAvgdev(): AvgDevParams | undefined;
-  setAvgdev(value?: AvgDevParams): IndicatorSettings;
-  hasAvgdev(): boolean;
-  clearAvgdev(): IndicatorSettings;
-
   getAvgprice(): AvgPriceParams | undefined;
   setAvgprice(value?: AvgPriceParams): IndicatorSettings;
   hasAvgprice(): boolean;
@@ -3897,45 +3448,10 @@ export class IndicatorSettings extends jspb.Message {
   hasAdosc(): boolean;
   clearAdosc(): IndicatorSettings;
 
-  getCmf(): CmfParams | undefined;
-  setCmf(value?: CmfParams): IndicatorSettings;
-  hasCmf(): boolean;
-  clearCmf(): IndicatorSettings;
-
-  getEfi(): EfiParams | undefined;
-  setEfi(value?: EfiParams): IndicatorSettings;
-  hasEfi(): boolean;
-  clearEfi(): IndicatorSettings;
-
-  getMarketfi(): MarketFiParams | undefined;
-  setMarketfi(value?: MarketFiParams): IndicatorSettings;
-  hasMarketfi(): boolean;
-  clearMarketfi(): IndicatorSettings;
-
-  getNvi(): NviParams | undefined;
-  setNvi(value?: NviParams): IndicatorSettings;
-  hasNvi(): boolean;
-  clearNvi(): IndicatorSettings;
-
   getObv(): ObvParams | undefined;
   setObv(value?: ObvParams): IndicatorSettings;
   hasObv(): boolean;
   clearObv(): IndicatorSettings;
-
-  getPvi(): PviParams | undefined;
-  setPvi(value?: PviParams): IndicatorSettings;
-  hasPvi(): boolean;
-  clearPvi(): IndicatorSettings;
-
-  getPvo(): PvoParams | undefined;
-  setPvo(value?: PvoParams): IndicatorSettings;
-  hasPvo(): boolean;
-  clearPvo(): IndicatorSettings;
-
-  getVwap(): VwapParams | undefined;
-  setVwap(value?: VwapParams): IndicatorSettings;
-  hasVwap(): boolean;
-  clearVwap(): IndicatorSettings;
 
   getIndicatorTypeCase(): IndicatorSettings.IndicatorTypeCase;
 
@@ -3981,19 +3497,15 @@ export namespace IndicatorSettings {
     sqrt?: SqrtParams.AsObject,
     tan?: TanParams.AsObject,
     tanh?: TanhParams.AsObject,
-    ac?: AcParams.AsObject,
     adx?: AdxParams.AsObject,
     adxr?: AdxrParams.AsObject,
-    ao?: AoParams.AsObject,
     apo?: ApoParams.AsObject,
     aroon?: AroonParams.AsObject,
     aroonosc?: AroonOscParams.AsObject,
     bop?: BopParams.AsObject,
     cci?: CciParams.AsObject,
     cmo?: CmoParams.AsObject,
-    cmou?: CmouParams.AsObject,
     dx?: DxParams.AsObject,
-    imi?: ImiParams.AsObject,
     macd?: MacdParams.AsObject,
     macdext?: MacdExtParams.AsObject,
     macdfix?: MacdFixParams.AsObject,
@@ -4004,27 +3516,21 @@ export namespace IndicatorSettings {
     plusDi?: PlusDiParams.AsObject,
     plusDm?: PlusDmParams.AsObject,
     ppo?: PpoParams.AsObject,
-    qstick?: QstickParams.AsObject,
     roc?: RocParams.AsObject,
     rocp?: RocpParams.AsObject,
     rocr?: RocrParams.AsObject,
     rocr100?: Rocr100Params.AsObject,
-    smi?: SmiParams.AsObject,
     stoch?: StochParams.AsObject,
     stochf?: StochFParams.AsObject,
     stochrsi?: StochRsiParams.AsObject,
     trix?: TrixParams.AsObject,
     ultosc?: UltOscParams.AsObject,
-    wad?: WadParams.AsObject,
     willr?: WillRParams.AsObject,
-    accbands?: AccBandsParams.AsObject,
     bbands?: BbandsParams.AsObject,
     dema?: DemaParams.AsObject,
     ema?: EmaParams.AsObject,
-    hma?: HmaParams.AsObject,
     htTrendline?: HtTrendlineParams.AsObject,
     kama?: KamaParams.AsObject,
-    kc?: KcParams.AsObject,
     ma?: MaParams.AsObject,
     mama?: MamaParams.AsObject,
     mavp?: MavpParams.AsObject,
@@ -4033,11 +3539,9 @@ export namespace IndicatorSettings {
     sar?: SarParams.AsObject,
     sarext?: SarExtParams.AsObject,
     sma?: SmaParams.AsObject,
-    supertrend?: SuperTrendParams.AsObject,
     t3?: T3Params.AsObject,
     tema?: TemaParams.AsObject,
     trima?: TrimaParams.AsObject,
-    vwma?: VwmaParams.AsObject,
     wma?: WmaParams.AsObject,
     cdl2crows?: Cdl2CrowsParams.AsObject,
     cdl3blackcrows?: Cdl3BlackCrowsParams.AsObject,
@@ -4100,7 +3604,6 @@ export namespace IndicatorSettings {
     cdlunique3river?: CdlUnique3RiverParams.AsObject,
     cdlupsidegap2crows?: CdlUpsideGap2CrowsParams.AsObject,
     cdlxsidegap3methods?: CdlXsideGap3MethodsParams.AsObject,
-    avgdev?: AvgDevParams.AsObject,
     avgprice?: AvgPriceParams.AsObject,
     medprice?: MedPriceParams.AsObject,
     typprice?: TypPriceParams.AsObject,
@@ -4119,14 +3622,7 @@ export namespace IndicatorSettings {
     trange?: TrangeParams.AsObject,
     ad?: AdParams.AsObject,
     adosc?: AdOscParams.AsObject,
-    cmf?: CmfParams.AsObject,
-    efi?: EfiParams.AsObject,
-    marketfi?: MarketFiParams.AsObject,
-    nvi?: NviParams.AsObject,
     obv?: ObvParams.AsObject,
-    pvi?: PviParams.AsObject,
-    pvo?: PvoParams.AsObject,
-    vwap?: VwapParams.AsObject,
   }
 
   export enum IndicatorTypeCase { 
@@ -4163,19 +3659,15 @@ export namespace IndicatorSettings {
     SQRT = 52,
     TAN = 53,
     TANH = 54,
-    AC = 60,
     ADX = 61,
     ADXR = 62,
-    AO = 63,
     APO = 64,
     AROON = 65,
     AROONOSC = 66,
     BOP = 67,
     CCI = 68,
     CMO = 69,
-    CMOU = 70,
     DX = 71,
-    IMI = 72,
     MACD = 73,
     MACDEXT = 74,
     MACDFIX = 75,
@@ -4186,27 +3678,21 @@ export namespace IndicatorSettings {
     PLUS_DI = 80,
     PLUS_DM = 81,
     PPO = 82,
-    QSTICK = 83,
     ROC = 84,
     ROCP = 85,
     ROCR = 86,
     ROCR100 = 87,
-    SMI = 88,
     STOCH = 89,
     STOCHF = 90,
     STOCHRSI = 91,
     TRIX = 92,
     ULTOSC = 93,
-    WAD = 94,
     WILLR = 95,
-    ACCBANDS = 100,
     BBANDS = 101,
     DEMA = 102,
     EMA = 103,
-    HMA = 104,
     HT_TRENDLINE = 105,
     KAMA = 106,
-    KC = 107,
     MA = 108,
     MAMA = 109,
     MAVP = 110,
@@ -4215,11 +3701,9 @@ export namespace IndicatorSettings {
     SAR = 113,
     SAREXT = 114,
     SMA = 115,
-    SUPERTREND = 116,
     T3 = 117,
     TEMA = 118,
     TRIMA = 119,
-    VWMA = 120,
     WMA = 121,
     CDL2CROWS = 130,
     CDL3BLACKCROWS = 131,
@@ -4282,7 +3766,6 @@ export namespace IndicatorSettings {
     CDLUNIQUE3RIVER = 188,
     CDLUPSIDEGAP2CROWS = 189,
     CDLXSIDEGAP3METHODS = 190,
-    AVGDEV = 200,
     AVGPRICE = 201,
     MEDPRICE = 202,
     TYPPRICE = 203,
@@ -4301,14 +3784,7 @@ export namespace IndicatorSettings {
     TRANGE = 222,
     AD = 230,
     ADOSC = 231,
-    CMF = 232,
-    EFI = 233,
-    MARKETFI = 234,
-    NVI = 235,
     OBV = 236,
-    PVI = 237,
-    PVO = 238,
-    VWAP = 239,
   }
 }
 
