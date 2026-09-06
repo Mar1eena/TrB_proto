@@ -56,5 +56,6 @@ rel: gene
 	npm version $(or $(PART),patch) --no-git-tag-version
 	node scripts/sync-py-version.cjs
 	git add -A
-	$(GIT) commit -m "$$(node -p 'const v=require('\''./package.json'\'').version; v.startsWith('\''v'\'')?v:'\''v'\''+v')"
+	$(eval VERSION := $(shell node -p "const v=require('./package.json').version; v.startsWith('v')?v:'v'+v"))
+	$(GIT) commit -m "$(VERSION)"
 	git push origin HEAD
