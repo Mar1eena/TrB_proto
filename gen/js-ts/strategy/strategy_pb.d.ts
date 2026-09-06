@@ -392,6 +392,9 @@ export class GetBacktestResultRequest extends jspb.Message {
   getEquityMaxPoints(): number;
   setEquityMaxPoints(value: number): GetBacktestResultRequest;
 
+  getIncludeIndicators(): boolean;
+  setIncludeIndicators(value: boolean): GetBacktestResultRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBacktestResultRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetBacktestResultRequest): GetBacktestResultRequest.AsObject;
@@ -406,6 +409,7 @@ export namespace GetBacktestResultRequest {
     includeEquity: boolean,
     includeTrades: boolean,
     equityMaxPoints: number,
+    includeIndicators: boolean,
   }
 }
 
@@ -430,6 +434,11 @@ export class GetBacktestResultResponse extends jspb.Message {
   clearTradesList(): GetBacktestResultResponse;
   addTrades(value?: strategy_backtest_pb.TradeRecord, index?: number): strategy_backtest_pb.TradeRecord;
 
+  getIndicatorsList(): Array<strategy_backtest_pb.BacktestIndicatorSeries>;
+  setIndicatorsList(value: Array<strategy_backtest_pb.BacktestIndicatorSeries>): GetBacktestResultResponse;
+  clearIndicatorsList(): GetBacktestResultResponse;
+  addIndicators(value?: strategy_backtest_pb.BacktestIndicatorSeries, index?: number): strategy_backtest_pb.BacktestIndicatorSeries;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBacktestResultResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetBacktestResultResponse): GetBacktestResultResponse.AsObject;
@@ -444,6 +453,7 @@ export namespace GetBacktestResultResponse {
     metrics?: strategy_backtest_pb.BacktestMetrics.AsObject,
     equityList: Array<strategy_backtest_pb.EquityPoint.AsObject>,
     tradesList: Array<strategy_backtest_pb.TradeRecord.AsObject>,
+    indicatorsList: Array<strategy_backtest_pb.BacktestIndicatorSeries.AsObject>,
   }
 }
 

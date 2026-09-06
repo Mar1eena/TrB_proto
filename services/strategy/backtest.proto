@@ -65,6 +65,23 @@ message TradeRecord {
   string exit_reason = 14;
 }
 
+// Значение индикатора на одном баре бэктеста.
+message BacktestIndicatorPoint {
+  google.protobuf.Timestamp time = 1;
+  // output_key -> значение: {"value": 55.3} для линейных,
+  // {"macd": .., "signal": .., "hist": ..} / {"upper": .., "middle": .., "lower": ..}.
+  map<string, double> values = 2;
+}
+
+// Ряд индикатора, использованного стратегией, выровненный по барам прогона.
+message BacktestIndicatorSeries {
+  string indicator_id = 1;   // ref.id из StrategySpec.indicators
+  string indicator = 2;      // ключ oneof: rsi / sma / macd / bbands ...
+  string output_key = 3;     // выбранный выход (если несколько)
+  bool overlay = 4;          // true — рисовать поверх свечей; false — отдельной панелью
+  repeated BacktestIndicatorPoint points = 5;
+}
+
 // Статус прогона бэктеста / поиска.
 enum RunStatus {
   RUN_STATUS_UNSPECIFIED = 0;

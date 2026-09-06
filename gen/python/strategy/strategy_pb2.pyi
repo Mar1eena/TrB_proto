@@ -148,28 +148,32 @@ class GetBacktestStatusRequest(_message.Message):
     def __init__(self, run_id: _Optional[str] = ...) -> None: ...
 
 class GetBacktestResultRequest(_message.Message):
-    __slots__ = ("run_id", "include_equity", "include_trades", "equity_max_points")
+    __slots__ = ("run_id", "include_equity", "include_trades", "equity_max_points", "include_indicators")
     RUN_ID_FIELD_NUMBER: _ClassVar[int]
     INCLUDE_EQUITY_FIELD_NUMBER: _ClassVar[int]
     INCLUDE_TRADES_FIELD_NUMBER: _ClassVar[int]
     EQUITY_MAX_POINTS_FIELD_NUMBER: _ClassVar[int]
+    INCLUDE_INDICATORS_FIELD_NUMBER: _ClassVar[int]
     run_id: str
     include_equity: bool
     include_trades: bool
     equity_max_points: int
-    def __init__(self, run_id: _Optional[str] = ..., include_equity: bool = ..., include_trades: bool = ..., equity_max_points: _Optional[int] = ...) -> None: ...
+    include_indicators: bool
+    def __init__(self, run_id: _Optional[str] = ..., include_equity: bool = ..., include_trades: bool = ..., equity_max_points: _Optional[int] = ..., include_indicators: bool = ...) -> None: ...
 
 class GetBacktestResultResponse(_message.Message):
-    __slots__ = ("run", "metrics", "equity", "trades")
+    __slots__ = ("run", "metrics", "equity", "trades", "indicators")
     RUN_FIELD_NUMBER: _ClassVar[int]
     METRICS_FIELD_NUMBER: _ClassVar[int]
     EQUITY_FIELD_NUMBER: _ClassVar[int]
     TRADES_FIELD_NUMBER: _ClassVar[int]
+    INDICATORS_FIELD_NUMBER: _ClassVar[int]
     run: _backtest_pb2.BacktestRun
     metrics: _backtest_pb2.BacktestMetrics
     equity: _containers.RepeatedCompositeFieldContainer[_backtest_pb2.EquityPoint]
     trades: _containers.RepeatedCompositeFieldContainer[_backtest_pb2.TradeRecord]
-    def __init__(self, run: _Optional[_Union[_backtest_pb2.BacktestRun, _Mapping]] = ..., metrics: _Optional[_Union[_backtest_pb2.BacktestMetrics, _Mapping]] = ..., equity: _Optional[_Iterable[_Union[_backtest_pb2.EquityPoint, _Mapping]]] = ..., trades: _Optional[_Iterable[_Union[_backtest_pb2.TradeRecord, _Mapping]]] = ...) -> None: ...
+    indicators: _containers.RepeatedCompositeFieldContainer[_backtest_pb2.BacktestIndicatorSeries]
+    def __init__(self, run: _Optional[_Union[_backtest_pb2.BacktestRun, _Mapping]] = ..., metrics: _Optional[_Union[_backtest_pb2.BacktestMetrics, _Mapping]] = ..., equity: _Optional[_Iterable[_Union[_backtest_pb2.EquityPoint, _Mapping]]] = ..., trades: _Optional[_Iterable[_Union[_backtest_pb2.TradeRecord, _Mapping]]] = ..., indicators: _Optional[_Iterable[_Union[_backtest_pb2.BacktestIndicatorSeries, _Mapping]]] = ...) -> None: ...
 
 class ListBacktestRunsRequest(_message.Message):
     __slots__ = ("strategy_id", "uid", "status", "search_run_id", "sort_by", "sort_desc", "limit", "offset")

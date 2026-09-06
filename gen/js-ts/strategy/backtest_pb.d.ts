@@ -238,6 +238,66 @@ export namespace TradeRecord {
   }
 }
 
+export class BacktestIndicatorPoint extends jspb.Message {
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): BacktestIndicatorPoint;
+  hasTime(): boolean;
+  clearTime(): BacktestIndicatorPoint;
+
+  getValuesMap(): jspb.Map<string, number>;
+  clearValuesMap(): BacktestIndicatorPoint;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BacktestIndicatorPoint.AsObject;
+  static toObject(includeInstance: boolean, msg: BacktestIndicatorPoint): BacktestIndicatorPoint.AsObject;
+  static serializeBinaryToWriter(message: BacktestIndicatorPoint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BacktestIndicatorPoint;
+  static deserializeBinaryFromReader(message: BacktestIndicatorPoint, reader: jspb.BinaryReader): BacktestIndicatorPoint;
+}
+
+export namespace BacktestIndicatorPoint {
+  export type AsObject = {
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    valuesMap: Array<[string, number]>,
+  }
+}
+
+export class BacktestIndicatorSeries extends jspb.Message {
+  getIndicatorId(): string;
+  setIndicatorId(value: string): BacktestIndicatorSeries;
+
+  getIndicator(): string;
+  setIndicator(value: string): BacktestIndicatorSeries;
+
+  getOutputKey(): string;
+  setOutputKey(value: string): BacktestIndicatorSeries;
+
+  getOverlay(): boolean;
+  setOverlay(value: boolean): BacktestIndicatorSeries;
+
+  getPointsList(): Array<BacktestIndicatorPoint>;
+  setPointsList(value: Array<BacktestIndicatorPoint>): BacktestIndicatorSeries;
+  clearPointsList(): BacktestIndicatorSeries;
+  addPoints(value?: BacktestIndicatorPoint, index?: number): BacktestIndicatorPoint;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BacktestIndicatorSeries.AsObject;
+  static toObject(includeInstance: boolean, msg: BacktestIndicatorSeries): BacktestIndicatorSeries.AsObject;
+  static serializeBinaryToWriter(message: BacktestIndicatorSeries, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BacktestIndicatorSeries;
+  static deserializeBinaryFromReader(message: BacktestIndicatorSeries, reader: jspb.BinaryReader): BacktestIndicatorSeries;
+}
+
+export namespace BacktestIndicatorSeries {
+  export type AsObject = {
+    indicatorId: string,
+    indicator: string,
+    outputKey: string,
+    overlay: boolean,
+    pointsList: Array<BacktestIndicatorPoint.AsObject>,
+  }
+}
+
 export class BacktestRun extends jspb.Message {
   getRunId(): string;
   setRunId(value: string): BacktestRun;

@@ -216,6 +216,7 @@ message GetBacktestResultRequest {
   bool include_equity = 2;
   bool include_trades = 3;
   int32 equity_max_points = 4;  // даунсэмплинг; 0 => дефолт (~5000)
+  bool include_indicators = 5;  // ряды индикаторов стратегии, выровненные по барам
 }
 
 message GetBacktestResultResponse {
@@ -223,6 +224,7 @@ message GetBacktestResultResponse {
   BacktestMetrics metrics = 2;
   repeated EquityPoint equity = 3;
   repeated TradeRecord trades = 4;
+  repeated BacktestIndicatorSeries indicators = 5;
 }
 
 message ListBacktestRunsRequest {

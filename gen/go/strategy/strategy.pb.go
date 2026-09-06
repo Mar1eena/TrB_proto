@@ -841,13 +841,14 @@ func (x *GetBacktestStatusRequest) GetRunId() string {
 }
 
 type GetBacktestResultRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	RunId           string                 `protobuf:"bytes,1,opt,name=run_id,json=runId,proto3" json:"run_id,omitempty"`
-	IncludeEquity   bool                   `protobuf:"varint,2,opt,name=include_equity,json=includeEquity,proto3" json:"include_equity,omitempty"`
-	IncludeTrades   bool                   `protobuf:"varint,3,opt,name=include_trades,json=includeTrades,proto3" json:"include_trades,omitempty"`
-	EquityMaxPoints int32                  `protobuf:"varint,4,opt,name=equity_max_points,json=equityMaxPoints,proto3" json:"equity_max_points,omitempty"` // даунсэмплинг; 0 => дефолт (~5000)
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	RunId             string                 `protobuf:"bytes,1,opt,name=run_id,json=runId,proto3" json:"run_id,omitempty"`
+	IncludeEquity     bool                   `protobuf:"varint,2,opt,name=include_equity,json=includeEquity,proto3" json:"include_equity,omitempty"`
+	IncludeTrades     bool                   `protobuf:"varint,3,opt,name=include_trades,json=includeTrades,proto3" json:"include_trades,omitempty"`
+	EquityMaxPoints   int32                  `protobuf:"varint,4,opt,name=equity_max_points,json=equityMaxPoints,proto3" json:"equity_max_points,omitempty"`     // даунсэмплинг; 0 => дефолт (~5000)
+	IncludeIndicators bool                   `protobuf:"varint,5,opt,name=include_indicators,json=includeIndicators,proto3" json:"include_indicators,omitempty"` // ряды индикаторов стратегии, выровненные по барам
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *GetBacktestResultRequest) Reset() {
@@ -908,12 +909,20 @@ func (x *GetBacktestResultRequest) GetEquityMaxPoints() int32 {
 	return 0
 }
 
+func (x *GetBacktestResultRequest) GetIncludeIndicators() bool {
+	if x != nil {
+		return x.IncludeIndicators
+	}
+	return false
+}
+
 type GetBacktestResultResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Run           *BacktestRun           `protobuf:"bytes,1,opt,name=run,proto3" json:"run,omitempty"`
-	Metrics       *BacktestMetrics       `protobuf:"bytes,2,opt,name=metrics,proto3" json:"metrics,omitempty"`
-	Equity        []*EquityPoint         `protobuf:"bytes,3,rep,name=equity,proto3" json:"equity,omitempty"`
-	Trades        []*TradeRecord         `protobuf:"bytes,4,rep,name=trades,proto3" json:"trades,omitempty"`
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Run           *BacktestRun               `protobuf:"bytes,1,opt,name=run,proto3" json:"run,omitempty"`
+	Metrics       *BacktestMetrics           `protobuf:"bytes,2,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	Equity        []*EquityPoint             `protobuf:"bytes,3,rep,name=equity,proto3" json:"equity,omitempty"`
+	Trades        []*TradeRecord             `protobuf:"bytes,4,rep,name=trades,proto3" json:"trades,omitempty"`
+	Indicators    []*BacktestIndicatorSeries `protobuf:"bytes,5,rep,name=indicators,proto3" json:"indicators,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -972,6 +981,13 @@ func (x *GetBacktestResultResponse) GetEquity() []*EquityPoint {
 func (x *GetBacktestResultResponse) GetTrades() []*TradeRecord {
 	if x != nil {
 		return x.Trades
+	}
+	return nil
+}
+
+func (x *GetBacktestResultResponse) GetIndicators() []*BacktestIndicatorSeries {
+	if x != nil {
+		return x.Indicators
 	}
 	return nil
 }
@@ -1742,17 +1758,21 @@ const file_strategy_strategy_proto_rawDesc = "" +
 	"\x06status\x18\x02 \x01(\x0e2\x1a.trb.strategy.v1.RunStatusR\x06status\x12\x16\n" +
 	"\x06reused\x18\x03 \x01(\bR\x06reused\"1\n" +
 	"\x18GetBacktestStatusRequest\x12\x15\n" +
-	"\x06run_id\x18\x01 \x01(\tR\x05runId\"\xab\x01\n" +
+	"\x06run_id\x18\x01 \x01(\tR\x05runId\"\xda\x01\n" +
 	"\x18GetBacktestResultRequest\x12\x15\n" +
 	"\x06run_id\x18\x01 \x01(\tR\x05runId\x12%\n" +
 	"\x0einclude_equity\x18\x02 \x01(\bR\rincludeEquity\x12%\n" +
 	"\x0einclude_trades\x18\x03 \x01(\bR\rincludeTrades\x12*\n" +
-	"\x11equity_max_points\x18\x04 \x01(\x05R\x0fequityMaxPoints\"\xf3\x01\n" +
+	"\x11equity_max_points\x18\x04 \x01(\x05R\x0fequityMaxPoints\x12-\n" +
+	"\x12include_indicators\x18\x05 \x01(\bR\x11includeIndicators\"\xbd\x02\n" +
 	"\x19GetBacktestResultResponse\x12.\n" +
 	"\x03run\x18\x01 \x01(\v2\x1c.trb.strategy.v1.BacktestRunR\x03run\x12:\n" +
 	"\ametrics\x18\x02 \x01(\v2 .trb.strategy.v1.BacktestMetricsR\ametrics\x124\n" +
 	"\x06equity\x18\x03 \x03(\v2\x1c.trb.strategy.v1.EquityPointR\x06equity\x124\n" +
-	"\x06trades\x18\x04 \x03(\v2\x1c.trb.strategy.v1.TradeRecordR\x06trades\"\x88\x02\n" +
+	"\x06trades\x18\x04 \x03(\v2\x1c.trb.strategy.v1.TradeRecordR\x06trades\x12H\n" +
+	"\n" +
+	"indicators\x18\x05 \x03(\v2(.trb.strategy.v1.BacktestIndicatorSeriesR\n" +
+	"indicators\"\x88\x02\n" +
 	"\x17ListBacktestRunsRequest\x12\x1f\n" +
 	"\vstrategy_id\x18\x01 \x01(\tR\n" +
 	"strategyId\x12\x10\n" +
@@ -1868,13 +1888,14 @@ var file_strategy_strategy_proto_goTypes = []any{
 	(*BacktestMetrics)(nil),           // 33: trb.strategy.v1.BacktestMetrics
 	(*EquityPoint)(nil),               // 34: trb.strategy.v1.EquityPoint
 	(*TradeRecord)(nil),               // 35: trb.strategy.v1.TradeRecord
-	(SearchMethod)(0),                 // 36: trb.strategy.v1.SearchMethod
-	(*ParamRange)(nil),                // 37: trb.strategy.v1.ParamRange
-	(*StructureSpace)(nil),            // 38: trb.strategy.v1.StructureSpace
-	(*Objective)(nil),                 // 39: trb.strategy.v1.Objective
-	(*SearchBudget)(nil),              // 40: trb.strategy.v1.SearchBudget
-	(*SearchCandidate)(nil),           // 41: trb.strategy.v1.SearchCandidate
-	(*SearchRun)(nil),                 // 42: trb.strategy.v1.SearchRun
+	(*BacktestIndicatorSeries)(nil),   // 36: trb.strategy.v1.BacktestIndicatorSeries
+	(SearchMethod)(0),                 // 37: trb.strategy.v1.SearchMethod
+	(*ParamRange)(nil),                // 38: trb.strategy.v1.ParamRange
+	(*StructureSpace)(nil),            // 39: trb.strategy.v1.StructureSpace
+	(*Objective)(nil),                 // 40: trb.strategy.v1.Objective
+	(*SearchBudget)(nil),              // 41: trb.strategy.v1.SearchBudget
+	(*SearchCandidate)(nil),           // 42: trb.strategy.v1.SearchCandidate
+	(*SearchRun)(nil),                 // 43: trb.strategy.v1.SearchRun
 }
 var file_strategy_strategy_proto_depIdxs = []int32{
 	28, // 0: trb.strategy.v1.Strategy.spec:type_name -> trb.strategy.v1.StrategySpec
@@ -1892,58 +1913,59 @@ var file_strategy_strategy_proto_depIdxs = []int32{
 	33, // 12: trb.strategy.v1.GetBacktestResultResponse.metrics:type_name -> trb.strategy.v1.BacktestMetrics
 	34, // 13: trb.strategy.v1.GetBacktestResultResponse.equity:type_name -> trb.strategy.v1.EquityPoint
 	35, // 14: trb.strategy.v1.GetBacktestResultResponse.trades:type_name -> trb.strategy.v1.TradeRecord
-	31, // 15: trb.strategy.v1.ListBacktestRunsRequest.status:type_name -> trb.strategy.v1.RunStatus
-	32, // 16: trb.strategy.v1.BacktestRunListItem.run:type_name -> trb.strategy.v1.BacktestRun
-	33, // 17: trb.strategy.v1.BacktestRunListItem.metrics:type_name -> trb.strategy.v1.BacktestMetrics
-	17, // 18: trb.strategy.v1.ListBacktestRunsResponse.items:type_name -> trb.strategy.v1.BacktestRunListItem
-	28, // 19: trb.strategy.v1.SubmitSearchRequest.base_spec:type_name -> trb.strategy.v1.StrategySpec
-	36, // 20: trb.strategy.v1.SubmitSearchRequest.method:type_name -> trb.strategy.v1.SearchMethod
-	37, // 21: trb.strategy.v1.SubmitSearchRequest.search_space:type_name -> trb.strategy.v1.ParamRange
-	38, // 22: trb.strategy.v1.SubmitSearchRequest.structure:type_name -> trb.strategy.v1.StructureSpace
-	39, // 23: trb.strategy.v1.SubmitSearchRequest.objective:type_name -> trb.strategy.v1.Objective
-	40, // 24: trb.strategy.v1.SubmitSearchRequest.budget:type_name -> trb.strategy.v1.SearchBudget
-	30, // 25: trb.strategy.v1.SubmitSearchRequest.config:type_name -> trb.strategy.v1.BacktestConfig
-	31, // 26: trb.strategy.v1.SubmitSearchResponse.status:type_name -> trb.strategy.v1.RunStatus
-	41, // 27: trb.strategy.v1.GetBestStrategiesResponse.items:type_name -> trb.strategy.v1.SearchCandidate
-	31, // 28: trb.strategy.v1.ListSearchesRequest.status:type_name -> trb.strategy.v1.RunStatus
-	42, // 29: trb.strategy.v1.ListSearchesResponse.items:type_name -> trb.strategy.v1.SearchRun
-	1,  // 30: trb.strategy.v1.StrategyService.CreateStrategy:input_type -> trb.strategy.v1.CreateStrategyRequest
-	2,  // 31: trb.strategy.v1.StrategyService.GetStrategy:input_type -> trb.strategy.v1.GetStrategyRequest
-	3,  // 32: trb.strategy.v1.StrategyService.ListStrategies:input_type -> trb.strategy.v1.ListStrategiesRequest
-	5,  // 33: trb.strategy.v1.StrategyService.UpdateStrategy:input_type -> trb.strategy.v1.UpdateStrategyRequest
-	6,  // 34: trb.strategy.v1.StrategyService.DeleteStrategy:input_type -> trb.strategy.v1.DeleteStrategyRequest
-	9,  // 35: trb.strategy.v1.StrategyService.ValidateStrategy:input_type -> trb.strategy.v1.ValidateStrategyRequest
-	11, // 36: trb.strategy.v1.StrategyService.SubmitBacktest:input_type -> trb.strategy.v1.SubmitBacktestRequest
-	13, // 37: trb.strategy.v1.StrategyService.GetBacktestStatus:input_type -> trb.strategy.v1.GetBacktestStatusRequest
-	14, // 38: trb.strategy.v1.StrategyService.GetBacktestResult:input_type -> trb.strategy.v1.GetBacktestResultRequest
-	16, // 39: trb.strategy.v1.StrategyService.ListBacktestRuns:input_type -> trb.strategy.v1.ListBacktestRunsRequest
-	19, // 40: trb.strategy.v1.StrategyService.CancelBacktest:input_type -> trb.strategy.v1.CancelBacktestRequest
-	20, // 41: trb.strategy.v1.StrategyService.SubmitSearch:input_type -> trb.strategy.v1.SubmitSearchRequest
-	22, // 42: trb.strategy.v1.StrategyService.GetSearchProgress:input_type -> trb.strategy.v1.GetSearchProgressRequest
-	23, // 43: trb.strategy.v1.StrategyService.GetBestStrategies:input_type -> trb.strategy.v1.GetBestStrategiesRequest
-	25, // 44: trb.strategy.v1.StrategyService.ListSearches:input_type -> trb.strategy.v1.ListSearchesRequest
-	27, // 45: trb.strategy.v1.StrategyService.CancelSearch:input_type -> trb.strategy.v1.CancelSearchRequest
-	0,  // 46: trb.strategy.v1.StrategyService.CreateStrategy:output_type -> trb.strategy.v1.Strategy
-	0,  // 47: trb.strategy.v1.StrategyService.GetStrategy:output_type -> trb.strategy.v1.Strategy
-	4,  // 48: trb.strategy.v1.StrategyService.ListStrategies:output_type -> trb.strategy.v1.ListStrategiesResponse
-	0,  // 49: trb.strategy.v1.StrategyService.UpdateStrategy:output_type -> trb.strategy.v1.Strategy
-	7,  // 50: trb.strategy.v1.StrategyService.DeleteStrategy:output_type -> trb.strategy.v1.DeleteStrategyResponse
-	10, // 51: trb.strategy.v1.StrategyService.ValidateStrategy:output_type -> trb.strategy.v1.ValidateStrategyResponse
-	12, // 52: trb.strategy.v1.StrategyService.SubmitBacktest:output_type -> trb.strategy.v1.SubmitBacktestResponse
-	32, // 53: trb.strategy.v1.StrategyService.GetBacktestStatus:output_type -> trb.strategy.v1.BacktestRun
-	15, // 54: trb.strategy.v1.StrategyService.GetBacktestResult:output_type -> trb.strategy.v1.GetBacktestResultResponse
-	18, // 55: trb.strategy.v1.StrategyService.ListBacktestRuns:output_type -> trb.strategy.v1.ListBacktestRunsResponse
-	32, // 56: trb.strategy.v1.StrategyService.CancelBacktest:output_type -> trb.strategy.v1.BacktestRun
-	21, // 57: trb.strategy.v1.StrategyService.SubmitSearch:output_type -> trb.strategy.v1.SubmitSearchResponse
-	42, // 58: trb.strategy.v1.StrategyService.GetSearchProgress:output_type -> trb.strategy.v1.SearchRun
-	24, // 59: trb.strategy.v1.StrategyService.GetBestStrategies:output_type -> trb.strategy.v1.GetBestStrategiesResponse
-	26, // 60: trb.strategy.v1.StrategyService.ListSearches:output_type -> trb.strategy.v1.ListSearchesResponse
-	42, // 61: trb.strategy.v1.StrategyService.CancelSearch:output_type -> trb.strategy.v1.SearchRun
-	46, // [46:62] is the sub-list for method output_type
-	30, // [30:46] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	36, // 15: trb.strategy.v1.GetBacktestResultResponse.indicators:type_name -> trb.strategy.v1.BacktestIndicatorSeries
+	31, // 16: trb.strategy.v1.ListBacktestRunsRequest.status:type_name -> trb.strategy.v1.RunStatus
+	32, // 17: trb.strategy.v1.BacktestRunListItem.run:type_name -> trb.strategy.v1.BacktestRun
+	33, // 18: trb.strategy.v1.BacktestRunListItem.metrics:type_name -> trb.strategy.v1.BacktestMetrics
+	17, // 19: trb.strategy.v1.ListBacktestRunsResponse.items:type_name -> trb.strategy.v1.BacktestRunListItem
+	28, // 20: trb.strategy.v1.SubmitSearchRequest.base_spec:type_name -> trb.strategy.v1.StrategySpec
+	37, // 21: trb.strategy.v1.SubmitSearchRequest.method:type_name -> trb.strategy.v1.SearchMethod
+	38, // 22: trb.strategy.v1.SubmitSearchRequest.search_space:type_name -> trb.strategy.v1.ParamRange
+	39, // 23: trb.strategy.v1.SubmitSearchRequest.structure:type_name -> trb.strategy.v1.StructureSpace
+	40, // 24: trb.strategy.v1.SubmitSearchRequest.objective:type_name -> trb.strategy.v1.Objective
+	41, // 25: trb.strategy.v1.SubmitSearchRequest.budget:type_name -> trb.strategy.v1.SearchBudget
+	30, // 26: trb.strategy.v1.SubmitSearchRequest.config:type_name -> trb.strategy.v1.BacktestConfig
+	31, // 27: trb.strategy.v1.SubmitSearchResponse.status:type_name -> trb.strategy.v1.RunStatus
+	42, // 28: trb.strategy.v1.GetBestStrategiesResponse.items:type_name -> trb.strategy.v1.SearchCandidate
+	31, // 29: trb.strategy.v1.ListSearchesRequest.status:type_name -> trb.strategy.v1.RunStatus
+	43, // 30: trb.strategy.v1.ListSearchesResponse.items:type_name -> trb.strategy.v1.SearchRun
+	1,  // 31: trb.strategy.v1.StrategyService.CreateStrategy:input_type -> trb.strategy.v1.CreateStrategyRequest
+	2,  // 32: trb.strategy.v1.StrategyService.GetStrategy:input_type -> trb.strategy.v1.GetStrategyRequest
+	3,  // 33: trb.strategy.v1.StrategyService.ListStrategies:input_type -> trb.strategy.v1.ListStrategiesRequest
+	5,  // 34: trb.strategy.v1.StrategyService.UpdateStrategy:input_type -> trb.strategy.v1.UpdateStrategyRequest
+	6,  // 35: trb.strategy.v1.StrategyService.DeleteStrategy:input_type -> trb.strategy.v1.DeleteStrategyRequest
+	9,  // 36: trb.strategy.v1.StrategyService.ValidateStrategy:input_type -> trb.strategy.v1.ValidateStrategyRequest
+	11, // 37: trb.strategy.v1.StrategyService.SubmitBacktest:input_type -> trb.strategy.v1.SubmitBacktestRequest
+	13, // 38: trb.strategy.v1.StrategyService.GetBacktestStatus:input_type -> trb.strategy.v1.GetBacktestStatusRequest
+	14, // 39: trb.strategy.v1.StrategyService.GetBacktestResult:input_type -> trb.strategy.v1.GetBacktestResultRequest
+	16, // 40: trb.strategy.v1.StrategyService.ListBacktestRuns:input_type -> trb.strategy.v1.ListBacktestRunsRequest
+	19, // 41: trb.strategy.v1.StrategyService.CancelBacktest:input_type -> trb.strategy.v1.CancelBacktestRequest
+	20, // 42: trb.strategy.v1.StrategyService.SubmitSearch:input_type -> trb.strategy.v1.SubmitSearchRequest
+	22, // 43: trb.strategy.v1.StrategyService.GetSearchProgress:input_type -> trb.strategy.v1.GetSearchProgressRequest
+	23, // 44: trb.strategy.v1.StrategyService.GetBestStrategies:input_type -> trb.strategy.v1.GetBestStrategiesRequest
+	25, // 45: trb.strategy.v1.StrategyService.ListSearches:input_type -> trb.strategy.v1.ListSearchesRequest
+	27, // 46: trb.strategy.v1.StrategyService.CancelSearch:input_type -> trb.strategy.v1.CancelSearchRequest
+	0,  // 47: trb.strategy.v1.StrategyService.CreateStrategy:output_type -> trb.strategy.v1.Strategy
+	0,  // 48: trb.strategy.v1.StrategyService.GetStrategy:output_type -> trb.strategy.v1.Strategy
+	4,  // 49: trb.strategy.v1.StrategyService.ListStrategies:output_type -> trb.strategy.v1.ListStrategiesResponse
+	0,  // 50: trb.strategy.v1.StrategyService.UpdateStrategy:output_type -> trb.strategy.v1.Strategy
+	7,  // 51: trb.strategy.v1.StrategyService.DeleteStrategy:output_type -> trb.strategy.v1.DeleteStrategyResponse
+	10, // 52: trb.strategy.v1.StrategyService.ValidateStrategy:output_type -> trb.strategy.v1.ValidateStrategyResponse
+	12, // 53: trb.strategy.v1.StrategyService.SubmitBacktest:output_type -> trb.strategy.v1.SubmitBacktestResponse
+	32, // 54: trb.strategy.v1.StrategyService.GetBacktestStatus:output_type -> trb.strategy.v1.BacktestRun
+	15, // 55: trb.strategy.v1.StrategyService.GetBacktestResult:output_type -> trb.strategy.v1.GetBacktestResultResponse
+	18, // 56: trb.strategy.v1.StrategyService.ListBacktestRuns:output_type -> trb.strategy.v1.ListBacktestRunsResponse
+	32, // 57: trb.strategy.v1.StrategyService.CancelBacktest:output_type -> trb.strategy.v1.BacktestRun
+	21, // 58: trb.strategy.v1.StrategyService.SubmitSearch:output_type -> trb.strategy.v1.SubmitSearchResponse
+	43, // 59: trb.strategy.v1.StrategyService.GetSearchProgress:output_type -> trb.strategy.v1.SearchRun
+	24, // 60: trb.strategy.v1.StrategyService.GetBestStrategies:output_type -> trb.strategy.v1.GetBestStrategiesResponse
+	26, // 61: trb.strategy.v1.StrategyService.ListSearches:output_type -> trb.strategy.v1.ListSearchesResponse
+	43, // 62: trb.strategy.v1.StrategyService.CancelSearch:output_type -> trb.strategy.v1.SearchRun
+	47, // [47:63] is the sub-list for method output_type
+	31, // [31:47] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_strategy_strategy_proto_init() }

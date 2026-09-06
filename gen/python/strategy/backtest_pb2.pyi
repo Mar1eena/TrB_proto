@@ -6,7 +6,7 @@ from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from collections.abc import Mapping as _Mapping
+from collections.abc import Iterable as _Iterable, Mapping as _Mapping
 from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
@@ -132,6 +132,35 @@ class TradeRecord(_message.Message):
     entry_reason: str
     exit_reason: str
     def __init__(self, trade_id: _Optional[int] = ..., is_long: bool = ..., entry_time: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., entry_price: _Optional[float] = ..., exit_time: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., exit_price: _Optional[float] = ..., size: _Optional[float] = ..., pnl: _Optional[float] = ..., pnl_pct: _Optional[float] = ..., bars_held: _Optional[int] = ..., mae: _Optional[float] = ..., mfe: _Optional[float] = ..., entry_reason: _Optional[str] = ..., exit_reason: _Optional[str] = ...) -> None: ...
+
+class BacktestIndicatorPoint(_message.Message):
+    __slots__ = ("time", "values")
+    class ValuesEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: float
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[float] = ...) -> None: ...
+    TIME_FIELD_NUMBER: _ClassVar[int]
+    VALUES_FIELD_NUMBER: _ClassVar[int]
+    time: _timestamp_pb2.Timestamp
+    values: _containers.ScalarMap[str, float]
+    def __init__(self, time: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., values: _Optional[_Mapping[str, float]] = ...) -> None: ...
+
+class BacktestIndicatorSeries(_message.Message):
+    __slots__ = ("indicator_id", "indicator", "output_key", "overlay", "points")
+    INDICATOR_ID_FIELD_NUMBER: _ClassVar[int]
+    INDICATOR_FIELD_NUMBER: _ClassVar[int]
+    OUTPUT_KEY_FIELD_NUMBER: _ClassVar[int]
+    OVERLAY_FIELD_NUMBER: _ClassVar[int]
+    POINTS_FIELD_NUMBER: _ClassVar[int]
+    indicator_id: str
+    indicator: str
+    output_key: str
+    overlay: bool
+    points: _containers.RepeatedCompositeFieldContainer[BacktestIndicatorPoint]
+    def __init__(self, indicator_id: _Optional[str] = ..., indicator: _Optional[str] = ..., output_key: _Optional[str] = ..., overlay: bool = ..., points: _Optional[_Iterable[_Union[BacktestIndicatorPoint, _Mapping]]] = ...) -> None: ...
 
 class BacktestRun(_message.Message):
     __slots__ = ("run_id", "strategy_id", "spec", "config", "status", "error", "engine_version", "search_run_id", "created_at", "started_at", "finished_at")

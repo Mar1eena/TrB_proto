@@ -3480,7 +3480,8 @@ proto.trb.strategy.v1.GetBacktestResultRequest.toObject = function(includeInstan
 runId: jspb.Message.getFieldWithDefault(msg, 1, ""),
 includeEquity: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
 includeTrades: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-equityMaxPoints: jspb.Message.getFieldWithDefault(msg, 4, 0)
+equityMaxPoints: jspb.Message.getFieldWithDefault(msg, 4, 0),
+includeIndicators: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -3532,6 +3533,10 @@ proto.trb.strategy.v1.GetBacktestResultRequest.deserializeBinaryFromReader = fun
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setEquityMaxPoints(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeIndicators(value);
       break;
     default:
       reader.skipField();
@@ -3587,6 +3592,13 @@ proto.trb.strategy.v1.GetBacktestResultRequest.serializeBinaryToWriter = functio
   if (f !== 0) {
     writer.writeInt32(
       4,
+      f
+    );
+  }
+  f = message.getIncludeIndicators();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -3665,13 +3677,31 @@ proto.trb.strategy.v1.GetBacktestResultRequest.prototype.setEquityMaxPoints = fu
 };
 
 
+/**
+ * optional bool include_indicators = 5;
+ * @return {boolean}
+ */
+proto.trb.strategy.v1.GetBacktestResultRequest.prototype.getIncludeIndicators = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.trb.strategy.v1.GetBacktestResultRequest} returns this
+ */
+proto.trb.strategy.v1.GetBacktestResultRequest.prototype.setIncludeIndicators = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.trb.strategy.v1.GetBacktestResultResponse.repeatedFields_ = [3,4];
+proto.trb.strategy.v1.GetBacktestResultResponse.repeatedFields_ = [3,4,5];
 
 
 
@@ -3709,7 +3739,9 @@ metrics: (f = msg.getMetrics()) && strategy_backtest_pb.BacktestMetrics.toObject
 equityList: jspb.Message.toObjectList(msg.getEquityList(),
     strategy_backtest_pb.EquityPoint.toObject, includeInstance),
 tradesList: jspb.Message.toObjectList(msg.getTradesList(),
-    strategy_backtest_pb.TradeRecord.toObject, includeInstance)
+    strategy_backtest_pb.TradeRecord.toObject, includeInstance),
+indicatorsList: jspb.Message.toObjectList(msg.getIndicatorsList(),
+    strategy_backtest_pb.BacktestIndicatorSeries.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3765,6 +3797,11 @@ proto.trb.strategy.v1.GetBacktestResultResponse.deserializeBinaryFromReader = fu
       var value = new strategy_backtest_pb.TradeRecord;
       reader.readMessage(value,strategy_backtest_pb.TradeRecord.deserializeBinaryFromReader);
       msg.addTrades(value);
+      break;
+    case 5:
+      var value = new strategy_backtest_pb.BacktestIndicatorSeries;
+      reader.readMessage(value,strategy_backtest_pb.BacktestIndicatorSeries.deserializeBinaryFromReader);
+      msg.addIndicators(value);
       break;
     default:
       reader.skipField();
@@ -3825,6 +3862,14 @@ proto.trb.strategy.v1.GetBacktestResultResponse.serializeBinaryToWriter = functi
       4,
       f,
       strategy_backtest_pb.TradeRecord.serializeBinaryToWriter
+    );
+  }
+  f = message.getIndicatorsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      strategy_backtest_pb.BacktestIndicatorSeries.serializeBinaryToWriter
     );
   }
 };
@@ -3977,6 +4022,44 @@ proto.trb.strategy.v1.GetBacktestResultResponse.prototype.addTrades = function(o
  */
 proto.trb.strategy.v1.GetBacktestResultResponse.prototype.clearTradesList = function() {
   return this.setTradesList([]);
+};
+
+
+/**
+ * repeated BacktestIndicatorSeries indicators = 5;
+ * @return {!Array<!proto.trb.strategy.v1.BacktestIndicatorSeries>}
+ */
+proto.trb.strategy.v1.GetBacktestResultResponse.prototype.getIndicatorsList = function() {
+  return /** @type{!Array<!proto.trb.strategy.v1.BacktestIndicatorSeries>} */ (
+    jspb.Message.getRepeatedWrapperField(this, strategy_backtest_pb.BacktestIndicatorSeries, 5));
+};
+
+
+/**
+ * @param {!Array<!proto.trb.strategy.v1.BacktestIndicatorSeries>} value
+ * @return {!proto.trb.strategy.v1.GetBacktestResultResponse} returns this
+*/
+proto.trb.strategy.v1.GetBacktestResultResponse.prototype.setIndicatorsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+};
+
+
+/**
+ * @param {!proto.trb.strategy.v1.BacktestIndicatorSeries=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.trb.strategy.v1.BacktestIndicatorSeries}
+ */
+proto.trb.strategy.v1.GetBacktestResultResponse.prototype.addIndicators = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.trb.strategy.v1.BacktestIndicatorSeries, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.trb.strategy.v1.GetBacktestResultResponse} returns this
+ */
+proto.trb.strategy.v1.GetBacktestResultResponse.prototype.clearIndicatorsList = function() {
+  return this.setIndicatorsList([]);
 };
 
 

@@ -565,6 +565,138 @@ func (x *TradeRecord) GetExitReason() string {
 	return ""
 }
 
+// Значение индикатора на одном баре бэктеста.
+type BacktestIndicatorPoint struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Time  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
+	// output_key -> значение: {"value": 55.3} для линейных,
+	// {"macd": .., "signal": .., "hist": ..} / {"upper": .., "middle": .., "lower": ..}.
+	Values        map[string]float64 `protobuf:"bytes,2,rep,name=values,proto3" json:"values,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed64,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BacktestIndicatorPoint) Reset() {
+	*x = BacktestIndicatorPoint{}
+	mi := &file_strategy_backtest_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BacktestIndicatorPoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BacktestIndicatorPoint) ProtoMessage() {}
+
+func (x *BacktestIndicatorPoint) ProtoReflect() protoreflect.Message {
+	mi := &file_strategy_backtest_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BacktestIndicatorPoint.ProtoReflect.Descriptor instead.
+func (*BacktestIndicatorPoint) Descriptor() ([]byte, []int) {
+	return file_strategy_backtest_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *BacktestIndicatorPoint) GetTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Time
+	}
+	return nil
+}
+
+func (x *BacktestIndicatorPoint) GetValues() map[string]float64 {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+// Ряд индикатора, использованного стратегией, выровненный по барам прогона.
+type BacktestIndicatorSeries struct {
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	IndicatorId   string                    `protobuf:"bytes,1,opt,name=indicator_id,json=indicatorId,proto3" json:"indicator_id,omitempty"` // ref.id из StrategySpec.indicators
+	Indicator     string                    `protobuf:"bytes,2,opt,name=indicator,proto3" json:"indicator,omitempty"`                        // ключ oneof: rsi / sma / macd / bbands ...
+	OutputKey     string                    `protobuf:"bytes,3,opt,name=output_key,json=outputKey,proto3" json:"output_key,omitempty"`       // выбранный выход (если несколько)
+	Overlay       bool                      `protobuf:"varint,4,opt,name=overlay,proto3" json:"overlay,omitempty"`                           // true — рисовать поверх свечей; false — отдельной панелью
+	Points        []*BacktestIndicatorPoint `protobuf:"bytes,5,rep,name=points,proto3" json:"points,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BacktestIndicatorSeries) Reset() {
+	*x = BacktestIndicatorSeries{}
+	mi := &file_strategy_backtest_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BacktestIndicatorSeries) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BacktestIndicatorSeries) ProtoMessage() {}
+
+func (x *BacktestIndicatorSeries) ProtoReflect() protoreflect.Message {
+	mi := &file_strategy_backtest_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BacktestIndicatorSeries.ProtoReflect.Descriptor instead.
+func (*BacktestIndicatorSeries) Descriptor() ([]byte, []int) {
+	return file_strategy_backtest_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *BacktestIndicatorSeries) GetIndicatorId() string {
+	if x != nil {
+		return x.IndicatorId
+	}
+	return ""
+}
+
+func (x *BacktestIndicatorSeries) GetIndicator() string {
+	if x != nil {
+		return x.Indicator
+	}
+	return ""
+}
+
+func (x *BacktestIndicatorSeries) GetOutputKey() string {
+	if x != nil {
+		return x.OutputKey
+	}
+	return ""
+}
+
+func (x *BacktestIndicatorSeries) GetOverlay() bool {
+	if x != nil {
+		return x.Overlay
+	}
+	return false
+}
+
+func (x *BacktestIndicatorSeries) GetPoints() []*BacktestIndicatorPoint {
+	if x != nil {
+		return x.Points
+	}
+	return nil
+}
+
 // Полное состояние прогона бэктеста (строка backtest_run + метрики).
 type BacktestRun struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -585,7 +717,7 @@ type BacktestRun struct {
 
 func (x *BacktestRun) Reset() {
 	*x = BacktestRun{}
-	mi := &file_strategy_backtest_proto_msgTypes[4]
+	mi := &file_strategy_backtest_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +729,7 @@ func (x *BacktestRun) String() string {
 func (*BacktestRun) ProtoMessage() {}
 
 func (x *BacktestRun) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_backtest_proto_msgTypes[4]
+	mi := &file_strategy_backtest_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +742,7 @@ func (x *BacktestRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BacktestRun.ProtoReflect.Descriptor instead.
 func (*BacktestRun) Descriptor() ([]byte, []int) {
-	return file_strategy_backtest_proto_rawDescGZIP(), []int{4}
+	return file_strategy_backtest_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BacktestRun) GetRunId() string {
@@ -700,7 +832,7 @@ type BacktestTask struct {
 
 func (x *BacktestTask) Reset() {
 	*x = BacktestTask{}
-	mi := &file_strategy_backtest_proto_msgTypes[5]
+	mi := &file_strategy_backtest_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -712,7 +844,7 @@ func (x *BacktestTask) String() string {
 func (*BacktestTask) ProtoMessage() {}
 
 func (x *BacktestTask) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_backtest_proto_msgTypes[5]
+	mi := &file_strategy_backtest_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -725,7 +857,7 @@ func (x *BacktestTask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BacktestTask.ProtoReflect.Descriptor instead.
 func (*BacktestTask) Descriptor() ([]byte, []int) {
-	return file_strategy_backtest_proto_rawDescGZIP(), []int{5}
+	return file_strategy_backtest_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *BacktestTask) GetRunId() string {
@@ -797,7 +929,20 @@ const file_strategy_backtest_proto_rawDesc = "" +
 	"\x03mfe\x18\f \x01(\x01R\x03mfe\x12!\n" +
 	"\fentry_reason\x18\r \x01(\tR\ventryReason\x12\x1f\n" +
 	"\vexit_reason\x18\x0e \x01(\tR\n" +
-	"exitReason\"\xf9\x03\n" +
+	"exitReason\"\xd0\x01\n" +
+	"\x16BacktestIndicatorPoint\x12.\n" +
+	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12K\n" +
+	"\x06values\x18\x02 \x03(\v23.trb.strategy.v1.BacktestIndicatorPoint.ValuesEntryR\x06values\x1a9\n" +
+	"\vValuesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\xd4\x01\n" +
+	"\x17BacktestIndicatorSeries\x12!\n" +
+	"\findicator_id\x18\x01 \x01(\tR\vindicatorId\x12\x1c\n" +
+	"\tindicator\x18\x02 \x01(\tR\tindicator\x12\x1d\n" +
+	"\n" +
+	"output_key\x18\x03 \x01(\tR\toutputKey\x12\x18\n" +
+	"\aoverlay\x18\x04 \x01(\bR\aoverlay\x12?\n" +
+	"\x06points\x18\x05 \x03(\v2'.trb.strategy.v1.BacktestIndicatorPointR\x06points\"\xf9\x03\n" +
 	"\vBacktestRun\x12\x15\n" +
 	"\x06run_id\x18\x01 \x01(\tR\x05runId\x12\x1f\n" +
 	"\vstrategy_id\x18\x02 \x01(\tR\n" +
@@ -840,37 +985,43 @@ func file_strategy_backtest_proto_rawDescGZIP() []byte {
 }
 
 var file_strategy_backtest_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_strategy_backtest_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_strategy_backtest_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_strategy_backtest_proto_goTypes = []any{
-	(RunStatus)(0),                // 0: trb.strategy.v1.RunStatus
-	(*BacktestConfig)(nil),        // 1: trb.strategy.v1.BacktestConfig
-	(*BacktestMetrics)(nil),       // 2: trb.strategy.v1.BacktestMetrics
-	(*EquityPoint)(nil),           // 3: trb.strategy.v1.EquityPoint
-	(*TradeRecord)(nil),           // 4: trb.strategy.v1.TradeRecord
-	(*BacktestRun)(nil),           // 5: trb.strategy.v1.BacktestRun
-	(*BacktestTask)(nil),          // 6: trb.strategy.v1.BacktestTask
-	nil,                           // 7: trb.strategy.v1.BacktestMetrics.ExtraEntry
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
-	(*StrategySpec)(nil),          // 9: trb.strategy.v1.StrategySpec
+	(RunStatus)(0),                  // 0: trb.strategy.v1.RunStatus
+	(*BacktestConfig)(nil),          // 1: trb.strategy.v1.BacktestConfig
+	(*BacktestMetrics)(nil),         // 2: trb.strategy.v1.BacktestMetrics
+	(*EquityPoint)(nil),             // 3: trb.strategy.v1.EquityPoint
+	(*TradeRecord)(nil),             // 4: trb.strategy.v1.TradeRecord
+	(*BacktestIndicatorPoint)(nil),  // 5: trb.strategy.v1.BacktestIndicatorPoint
+	(*BacktestIndicatorSeries)(nil), // 6: trb.strategy.v1.BacktestIndicatorSeries
+	(*BacktestRun)(nil),             // 7: trb.strategy.v1.BacktestRun
+	(*BacktestTask)(nil),            // 8: trb.strategy.v1.BacktestTask
+	nil,                             // 9: trb.strategy.v1.BacktestMetrics.ExtraEntry
+	nil,                             // 10: trb.strategy.v1.BacktestIndicatorPoint.ValuesEntry
+	(*timestamppb.Timestamp)(nil),   // 11: google.protobuf.Timestamp
+	(*StrategySpec)(nil),            // 12: trb.strategy.v1.StrategySpec
 }
 var file_strategy_backtest_proto_depIdxs = []int32{
-	8,  // 0: trb.strategy.v1.BacktestConfig.start:type_name -> google.protobuf.Timestamp
-	8,  // 1: trb.strategy.v1.BacktestConfig.end:type_name -> google.protobuf.Timestamp
-	7,  // 2: trb.strategy.v1.BacktestMetrics.extra:type_name -> trb.strategy.v1.BacktestMetrics.ExtraEntry
-	8,  // 3: trb.strategy.v1.EquityPoint.time:type_name -> google.protobuf.Timestamp
-	8,  // 4: trb.strategy.v1.TradeRecord.entry_time:type_name -> google.protobuf.Timestamp
-	8,  // 5: trb.strategy.v1.TradeRecord.exit_time:type_name -> google.protobuf.Timestamp
-	9,  // 6: trb.strategy.v1.BacktestRun.spec:type_name -> trb.strategy.v1.StrategySpec
-	1,  // 7: trb.strategy.v1.BacktestRun.config:type_name -> trb.strategy.v1.BacktestConfig
-	0,  // 8: trb.strategy.v1.BacktestRun.status:type_name -> trb.strategy.v1.RunStatus
-	8,  // 9: trb.strategy.v1.BacktestRun.created_at:type_name -> google.protobuf.Timestamp
-	8,  // 10: trb.strategy.v1.BacktestRun.started_at:type_name -> google.protobuf.Timestamp
-	8,  // 11: trb.strategy.v1.BacktestRun.finished_at:type_name -> google.protobuf.Timestamp
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	11, // 0: trb.strategy.v1.BacktestConfig.start:type_name -> google.protobuf.Timestamp
+	11, // 1: trb.strategy.v1.BacktestConfig.end:type_name -> google.protobuf.Timestamp
+	9,  // 2: trb.strategy.v1.BacktestMetrics.extra:type_name -> trb.strategy.v1.BacktestMetrics.ExtraEntry
+	11, // 3: trb.strategy.v1.EquityPoint.time:type_name -> google.protobuf.Timestamp
+	11, // 4: trb.strategy.v1.TradeRecord.entry_time:type_name -> google.protobuf.Timestamp
+	11, // 5: trb.strategy.v1.TradeRecord.exit_time:type_name -> google.protobuf.Timestamp
+	11, // 6: trb.strategy.v1.BacktestIndicatorPoint.time:type_name -> google.protobuf.Timestamp
+	10, // 7: trb.strategy.v1.BacktestIndicatorPoint.values:type_name -> trb.strategy.v1.BacktestIndicatorPoint.ValuesEntry
+	5,  // 8: trb.strategy.v1.BacktestIndicatorSeries.points:type_name -> trb.strategy.v1.BacktestIndicatorPoint
+	12, // 9: trb.strategy.v1.BacktestRun.spec:type_name -> trb.strategy.v1.StrategySpec
+	1,  // 10: trb.strategy.v1.BacktestRun.config:type_name -> trb.strategy.v1.BacktestConfig
+	0,  // 11: trb.strategy.v1.BacktestRun.status:type_name -> trb.strategy.v1.RunStatus
+	11, // 12: trb.strategy.v1.BacktestRun.created_at:type_name -> google.protobuf.Timestamp
+	11, // 13: trb.strategy.v1.BacktestRun.started_at:type_name -> google.protobuf.Timestamp
+	11, // 14: trb.strategy.v1.BacktestRun.finished_at:type_name -> google.protobuf.Timestamp
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_strategy_backtest_proto_init() }
@@ -885,7 +1036,7 @@ func file_strategy_backtest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_strategy_backtest_proto_rawDesc), len(file_strategy_backtest_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
