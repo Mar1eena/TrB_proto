@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package trb.strategy.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategy;strategy";
+
+import "google/protobuf/timestamp.proto";
+import "strategy/spec.proto";
+import "strategy/backtest.proto";
+
+// Метод автопоиска стратегий. v1 реализует только GENETIC.
+enum SearchMethod {
+  SEARCH_METHOD_UNSPECIFIED = 0;
+  SEARCH_METHOD_GENETIC = 1;
+}
+
+message IntRange {
+  int64 min = 1;
+  int64 max = 2;
+  int64 step = 3;  // 0 => 1
+}
+
+message FloatRange {
+  double min = 1;
+  double max = 2;
+  double step = 3;  // 0 => непрерывный диапазон
+}
+
+message Choice {
+  repeated double values = 1;
+}
+
+// Диапазон варьирования одного параметра стратегии.
+// path — точечный адрес поля в StrategySpec, напр.:
+//   "indicators.rsi_fast.settings.rsi.period"
+//   "risk.stop_loss_pct"
+//   "entry_long.all.operands.0.compare.right.constant"
+message ParamRange {
+  string path = 1;
+  oneof range {
+    IntRange ints = 2;
+    FloatRange floats = 3;
+    Choice choice = 4;
+  }
+}
+
+// Границы эволюции структуры дерева правил (генетический поиск).
+message StructureSpace {
+  // Разрешённые индикаторы — имена полей oneof trb.indicators.v1.IndicatorSettings
+  // ("rsi", "sma", "ema", "macd", "bbands", "atr", ...).
+  repeated string indicator_palette = 1;
+  uint32 max_conditions = 2;  // максимум Comparison-узлов в дереве
+  uint32 max_depth = 3;       // максимум глубины BoolExpr
+  repeated CompareOp allowed_ops = 4;
+  bool mutate_structure = 5;  // false => эволюционируют только параметры
+}
+
+// Целевая функция поиска.
+message Objective {
+  // "sharpe" | "cagr" | "cagr_over_maxdd" | "sqn" | "expectancy" | "total_return"
+  string metric = 1;
+  bool maximize = 2;
+  uint32 min_trades = 3;          // меньше => score = -inf (жёсткие ворота)
+  double max_drawdown_limit = 4;  // просадка выше => score = -inf; 0 — выключено
+}
+
+// Бюджет поиска — жёсткие лимиты стоимости.
+message SearchBudget {
+  uint32 max_evaluations = 1;
+  uint32 max_seconds = 2;
+  uint32 concurrency = 3;   // воркеров ProcessPoolExecutor в движке
+  uint32 population = 4;    // размер популяции поколения
+  uint32 generations = 5;
+  uint64 seed = 6;          // 0 => движок выберет случайный и сохранит
+}
+
+// Кандидат, оценённый в ходе поиска.
+message SearchCandidate {
+  string id = 1;
+  StrategySpec spec = 2;
+  uint64 spec_hash = 3;
+  double score = 4;
+  BacktestMetrics metrics = 5;
+  uint32 rank = 6;             // 1 — лучший (проставляется по завершении)
+  uint32 generation = 7;
+  string backtest_run_id = 8;  // непусто для top-K (открывается через GetBacktestResult)
+}
+
+// Прогресс поиска (search_run.progress).
+message SearchProgress {
+  RunStatus status = 1;
+  uint32 evaluated = 2;
+  uint32 total = 3;              // 0, если неизвестно заранее
+  double best_score = 4;
+  string best_candidate_id = 5;
+  uint32 current_generation = 6;
+  string error = 7;
+}
+
+// Полное состояние поиска.
+message SearchRun {
+  string search_id = 1;
+  string base_strategy_id = 2;   // стартовая стратегия (может быть пустой)
+  string name = 3;
+  SearchMethod method = 4;
+  repeated ParamRange search_space = 5;
+  StructureSpace structure = 6;
+  Objective objective = 7;
+  SearchBudget budget = 8;
+  BacktestConfig config = 9;
+  SearchProgress progress = 10;
+  string engine_version = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp started_at = 13;
+  google.protobuf.Timestamp finished_at = 14;
+}
+
+// Payload задачи в NATS (TrB.strategy.search.tasks). Публикует strategy-manage.
+message SearchTask {
+  string search_id = 1;
+}

@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package trb.strategy.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategy;strategy";
+
+import "google/protobuf/timestamp.proto";
+import "strategy/spec.proto";
+
+// Конфигурация одного прогона бэктеста.
+message BacktestConfig {
+  string uid = 1;                        // инструмент (TrB.hct.uid)
+  int32 interval = 2;                    // значение pb.CandleInterval
+  google.protobuf.Timestamp start = 3;
+  google.protobuf.Timestamp end = 4;
+  double initial_cash = 5;              // по умолчанию 100000
+  double commission_pct = 6;           // комиссия за сделку, доля
+  double slippage_pct = 7;             // проскальзывание, доля
+  bool long_only = 8;                  // игнорировать entry_short/exit_short
+}
+
+// Сводные метрики эффективности стратегии.
+message BacktestMetrics {
+  double total_return = 1;      // суммарная доходность за период, доля
+  double cagr = 2;              // годовая доходность, доля
+  double sharpe = 3;
+  double sortino = 4;
+  double max_drawdown = 5;      // максимальная просадка, доля (>= 0)
+  double win_rate = 6;          // доля прибыльных сделок, 0..1
+  double profit_factor = 7;
+  double sqn = 8;               // System Quality Number
+  uint32 trades_count = 9;
+  double exposure = 10;         // доля баров в рынке, 0..1
+  double final_equity = 11;
+  double avg_trade_pct = 12;    // средняя доходность сделки, доля
+  double expectancy = 13;       // матожидание сделки в валюте счёта
+  map<string, double> extra = 20;
+}
+
+// Точка кривой капитала (по бару).
+message EquityPoint {
+  google.protobuf.Timestamp time = 1;
+  double equity = 2;
+  double cash = 3;
+  double position_value = 4;
+  double drawdown = 5;  // текущая просадка, доля
+  double ret = 6;       // доходность бара, доля
+}
+
+// Запись о закрытой сделке.
+message TradeRecord {
+  uint32 trade_id = 1;
+  bool is_long = 2;
+  google.protobuf.Timestamp entry_time = 3;
+  double entry_price = 4;
+  google.protobuf.Timestamp exit_time = 5;
+  double exit_price = 6;
+  double size = 7;
+  double pnl = 8;
+  double pnl_pct = 9;
+  uint32 bars_held = 10;
+  double mae = 11;  // maximum adverse excursion, доля
+  double mfe = 12;  // maximum favorable excursion, доля
+  string entry_reason = 13;
+  string exit_reason = 14;
+}
+
+// Статус прогона бэктеста / поиска.
+enum RunStatus {
+  RUN_STATUS_UNSPECIFIED = 0;
+  RUN_QUEUED = 1;
+  RUN_RUNNING = 2;
+  RUN_SUCCEEDED = 3;
+  RUN_FAILED = 4;
+  RUN_CANCELED = 5;
+}
+
+// Полное состояние прогона бэктеста (строка backtest_run + метрики).
+message BacktestRun {
+  string run_id = 1;
+  string strategy_id = 2;       // пусто, если spec передан inline
+  StrategySpec spec = 3;
+  BacktestConfig config = 4;
+  RunStatus status = 5;
+  string error = 6;
+  string engine_version = 7;
+  string search_run_id = 8;     // непусто, если прогон порождён поиском
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp started_at = 10;
+  google.protobuf.Timestamp finished_at = 11;
+}
+
+// Payload задачи в NATS (TrB.strategy.backtest.tasks). Публикует strategy-manage.
+message BacktestTask {
+  string run_id = 1;
+}

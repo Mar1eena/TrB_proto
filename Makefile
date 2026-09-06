@@ -13,6 +13,7 @@ PROTOS := $(wildcard \
 	$(PROTO_PATH)/postgresql/*.proto \
 	$(PROTO_PATH)/test/*.proto \
 	$(PROTO_PATH)/indicators/*.proto \
+	$(PROTO_PATH)/strategy/*.proto \
 )
 
 GOOGLE_API := $(PROTO_PATH)/google/api/*.proto
@@ -29,9 +30,9 @@ gene:
 	$(PROTOC) -I$(PROTO_PATH) $(GOOGLE_API) \
 		--js_out=import_style=commonjs,binary:$(GEN_JS) \
 		--grpc-web_out=import_style=typescript,mode=grpcweb:$(GEN_JS)
-	mkdir -p $(GEN_PY)
 	python -m grpc_tools.protoc -I$(PROTO_PATH) \
 		$(PROTO_PATH)/indicators/*.proto \
+		$(PROTO_PATH)/strategy/*.proto \
 		$(PROTO_PATH)/google/api/*.proto \
 		--python_out=$(GEN_PY) --pyi_out=$(GEN_PY) \
 		--grpc_python_out=$(GEN_PY)
@@ -55,5 +56,5 @@ rel: gene
 	npm version $(or $(PART),patch) --no-git-tag-version
 	node scripts/sync-py-version.cjs
 	git add -A
-	$(GIT) commit -m "$$(node -p "const v=require('./package.json').version; v.startsWith('v')?v:'v'+v")"
+	$(GIT) commit -m "$$(node -p 'const v=require('\''./package.json'\'').version; v.startsWith('\''v'\'')?v:'\''v'\''+v')"
 	git push origin HEAD

@@ -1,0 +1,300 @@
+syntax = "proto3";
+
+package trb.strategy.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategy;strategy";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "strategy/spec.proto";
+import "strategy/backtest.proto";
+import "strategy/search.proto";
+
+// StrategyService — составление стратегий, бэктесты и генетический поиск.
+// REST-биндинги повторяют стиль trb.indicators.v1: ресурсный путь /v1/strategy/*
+// плюс RPC-фолбэк additional_bindings { post: "/RpcName" }.
+service StrategyService {
+  // --- каталог стратегий ---
+  rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {
+    option (google.api.http) = {
+      post: "/v1/strategy/strategies"
+      body: "*"
+      additional_bindings { post: "/CreateStrategy" body: "*" }
+    };
+  }
+  rpc GetStrategy(GetStrategyRequest) returns (Strategy) {
+    option (google.api.http) = {
+      get: "/v1/strategy/strategies/{id}"
+      additional_bindings { post: "/GetStrategy" body: "*" }
+    };
+  }
+  rpc ListStrategies(ListStrategiesRequest) returns (ListStrategiesResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategy/strategies"
+      additional_bindings { post: "/ListStrategies" body: "*" }
+    };
+  }
+  rpc UpdateStrategy(UpdateStrategyRequest) returns (Strategy) {
+    option (google.api.http) = {
+      put: "/v1/strategy/strategies/{id}"
+      body: "*"
+      additional_bindings { post: "/UpdateStrategy" body: "*" }
+    };
+  }
+  rpc DeleteStrategy(DeleteStrategyRequest) returns (DeleteStrategyResponse) {
+    option (google.api.http) = {
+      delete: "/v1/strategy/strategies/{id}"
+      additional_bindings { post: "/DeleteStrategy" body: "*" }
+    };
+  }
+  // ValidateStrategy — статическая проверка дерева правил без запуска движка.
+  rpc ValidateStrategy(ValidateStrategyRequest) returns (ValidateStrategyResponse) {
+    option (google.api.http) = {
+      post: "/v1/strategy/strategies:validate"
+      body: "*"
+      additional_bindings { post: "/ValidateStrategy" body: "*" }
+    };
+  }
+
+  // --- бэктесты ---
+  rpc SubmitBacktest(SubmitBacktestRequest) returns (SubmitBacktestResponse) {
+    option (google.api.http) = {
+      post: "/v1/strategy/backtests"
+      body: "*"
+      additional_bindings { post: "/SubmitBacktest" body: "*" }
+    };
+  }
+  rpc GetBacktestStatus(GetBacktestStatusRequest) returns (BacktestRun) {
+    option (google.api.http) = {
+      get: "/v1/strategy/backtests/{run_id}"
+      additional_bindings { post: "/GetBacktestStatus" body: "*" }
+    };
+  }
+  rpc GetBacktestResult(GetBacktestResultRequest) returns (GetBacktestResultResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategy/backtests/{run_id}/result"
+      additional_bindings { post: "/GetBacktestResult" body: "*" }
+    };
+  }
+  rpc ListBacktestRuns(ListBacktestRunsRequest) returns (ListBacktestRunsResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategy/backtests"
+      additional_bindings { post: "/ListBacktestRuns" body: "*" }
+    };
+  }
+  rpc CancelBacktest(CancelBacktestRequest) returns (BacktestRun) {
+    option (google.api.http) = {
+      post: "/v1/strategy/backtests/{run_id}:cancel"
+      body: "*"
+      additional_bindings { post: "/CancelBacktest" body: "*" }
+    };
+  }
+
+  // --- генетический поиск ---
+  rpc SubmitSearch(SubmitSearchRequest) returns (SubmitSearchResponse) {
+    option (google.api.http) = {
+      post: "/v1/strategy/searches"
+      body: "*"
+      additional_bindings { post: "/SubmitSearch" body: "*" }
+    };
+  }
+  rpc GetSearchProgress(GetSearchProgressRequest) returns (SearchRun) {
+    option (google.api.http) = {
+      get: "/v1/strategy/searches/{search_id}"
+      additional_bindings { post: "/GetSearchProgress" body: "*" }
+    };
+  }
+  rpc GetBestStrategies(GetBestStrategiesRequest) returns (GetBestStrategiesResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategy/searches/{search_id}/best"
+      additional_bindings { post: "/GetBestStrategies" body: "*" }
+    };
+  }
+  rpc ListSearches(ListSearchesRequest) returns (ListSearchesResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategy/searches"
+      additional_bindings { post: "/ListSearches" body: "*" }
+    };
+  }
+  rpc CancelSearch(CancelSearchRequest) returns (SearchRun) {
+    option (google.api.http) = {
+      post: "/v1/strategy/searches/{search_id}:cancel"
+      body: "*"
+      additional_bindings { post: "/CancelSearch" body: "*" }
+    };
+  }
+}
+
+// --- каталог ---
+
+message Strategy {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  StrategySpec spec = 4;
+  uint64 spec_hash = 5;
+  int32 spec_version = 6;
+  bool archived = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message CreateStrategyRequest {
+  string name = 1;
+  string description = 2;
+  StrategySpec spec = 3;
+}
+
+message GetStrategyRequest {
+  string id = 1;
+}
+
+message ListStrategiesRequest {
+  string q = 1;          // поиск по имени
+  bool include_archived = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message ListStrategiesResponse {
+  repeated Strategy items = 1;
+  int32 total = 2;
+}
+
+message UpdateStrategyRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  StrategySpec spec = 4;
+}
+
+message DeleteStrategyRequest {
+  string id = 1;
+}
+
+message DeleteStrategyResponse {
+  string id = 1;
+  bool archived = 2;
+}
+
+message ValidationIssue {
+  string path = 1;     // точечный адрес узла, где найдена проблема
+  string message = 2;
+}
+
+message ValidateStrategyRequest {
+  StrategySpec spec = 1;
+}
+
+message ValidateStrategyResponse {
+  bool ok = 1;
+  repeated ValidationIssue issues = 2;
+}
+
+// --- бэктесты ---
+
+message SubmitBacktestRequest {
+  // Ровно один из strategy_id / spec.
+  string strategy_id = 1;
+  StrategySpec spec = 2;
+  BacktestConfig config = 3;
+  bool force = 4;  // игнорировать дедуп и запустить заново
+}
+
+message SubmitBacktestResponse {
+  string run_id = 1;
+  RunStatus status = 2;
+  bool reused = 3;  // вернули существующий успешный прогон
+}
+
+message GetBacktestStatusRequest {
+  string run_id = 1;
+}
+
+message GetBacktestResultRequest {
+  string run_id = 1;
+  bool include_equity = 2;
+  bool include_trades = 3;
+  int32 equity_max_points = 4;  // даунсэмплинг; 0 => дефолт (~5000)
+}
+
+message GetBacktestResultResponse {
+  BacktestRun run = 1;
+  BacktestMetrics metrics = 2;
+  repeated EquityPoint equity = 3;
+  repeated TradeRecord trades = 4;
+}
+
+message ListBacktestRunsRequest {
+  string strategy_id = 1;
+  string uid = 2;
+  RunStatus status = 3;
+  string search_run_id = 4;
+  // Сортировка по промо-метрике: "created_at" | "sharpe" | "cagr" |
+  // "total_return" | "max_drawdown" | "sqn". Пусто => "created_at".
+  string sort_by = 5;
+  bool sort_desc = 6;
+  int32 limit = 7;
+  int32 offset = 8;
+}
+
+message BacktestRunListItem {
+  BacktestRun run = 1;
+  BacktestMetrics metrics = 2;  // пусто, если прогон ещё не завершён
+}
+
+message ListBacktestRunsResponse {
+  repeated BacktestRunListItem items = 1;
+  int32 total = 2;
+}
+
+message CancelBacktestRequest {
+  string run_id = 1;
+}
+
+// --- поиск ---
+
+message SubmitSearchRequest {
+  string base_strategy_id = 1;   // либо base_spec
+  StrategySpec base_spec = 2;
+  string name = 3;
+  SearchMethod method = 4;        // UNSPECIFIED => GENETIC
+  repeated ParamRange search_space = 5;
+  StructureSpace structure = 6;
+  Objective objective = 7;
+  SearchBudget budget = 8;
+  BacktestConfig config = 9;
+}
+
+message SubmitSearchResponse {
+  string search_id = 1;
+  RunStatus status = 2;
+}
+
+message GetSearchProgressRequest {
+  string search_id = 1;
+}
+
+message GetBestStrategiesRequest {
+  string search_id = 1;
+  int32 top_k = 2;  // 0 => 10
+}
+
+message GetBestStrategiesResponse {
+  repeated SearchCandidate items = 1;
+}
+
+message ListSearchesRequest {
+  RunStatus status = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListSearchesResponse {
+  repeated SearchRun items = 1;
+  int32 total = 2;
+}
+
+message CancelSearchRequest {
+  string search_id = 1;
+}
