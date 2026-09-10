@@ -10,8 +10,9 @@ PROTOS := $(wildcard \
 	$(PROTO_PATH)/api/tinvest/*.proto \
 	$(PROTO_PATH)/nats/*.proto \
 	$(PROTO_PATH)/clickhouse/*.proto \
+	$(PROTO_PATH)/instruments/*.proto \
+	$(PROTO_PATH)/historiccandle/*.proto \
 	$(PROTO_PATH)/postgresql/*.proto \
-	$(PROTO_PATH)/test/*.proto \
 	$(PROTO_PATH)/indicators/*.proto \
 	$(PROTO_PATH)/strategy/*.proto \
 )

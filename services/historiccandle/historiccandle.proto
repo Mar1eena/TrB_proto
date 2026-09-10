@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package trb.historiccandle.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/historiccandle;historiccandle";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// HistoricCandle — исторические свечи (TrB.hct) и журнал загрузок (TrB.hct_last_download).
+service HistoricCandle {
+  rpc ListLastDownloads(ListLastDownloadsRequest) returns (ListLastDownloadsResponse) {
+    option (google.api.http) = {
+      get: "/v1/historic-candles/last-downloads"
+      additional_bindings { post: "/ListLastDownloads" body: "*" }
+    };
+  }
+
+  // ListCandles — исторические свечи из TrB.hct по инструменту и интервалу.
+  rpc ListCandles(ListCandlesRequest) returns (ListCandlesResponse) {
+    option (google.api.http) = {
+      get: "/v1/historic-candles/candles"
+      additional_bindings { post: "/ListCandles" body: "*" }
+    };
+  }
+}
+
+message ListFilter {
+  string q = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListLastDownloadsRequest {
+  ListFilter filter = 1;
+}
+
+message ListLastDownloadsResponse {
+  repeated LastDownload items = 1;
+}
+
+message LastDownload {
+  string uid = 1;
+  string figi = 2;
+  string ticker = 3;
+  string name = 4;
+  int32 interval = 5;
+  google.protobuf.Timestamp last_start = 6;
+  google.protobuf.Timestamp last_end = 7;
+  bool has_download = 8;
+}
+
+message ListCandlesRequest {
+  string uid = 1;
+  int32 interval = 2;
+  google.protobuf.Timestamp from = 3;
+  google.protobuf.Timestamp to = 4;
+  int32 limit = 5;
+  // newest_first=true — вернуть самые новые limit свечей в диапазоне (догрузка влево).
+  bool newest_first = 6;
+}
+
+message HistoricCandleRow {
+  google.protobuf.Timestamp time = 1;
+  double open = 2;
+  double high = 3;
+  double low = 4;
+  double close = 5;
+  int64 volume = 6;
+  int64 volume_buy = 7;
+  int64 volume_sell = 8;
+  int32 candle_source = 9;
+  bool is_complete = 10;
+}
+
+message ListCandlesResponse {
+  repeated HistoricCandleRow items = 1;
+}

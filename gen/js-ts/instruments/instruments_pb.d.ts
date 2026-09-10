@@ -199,211 +199,37 @@ export namespace UpsertInstrumentsResponse {
   }
 }
 
-export class ListLastDownloadsRequest extends jspb.Message {
-  getFilter(): ListFilter | undefined;
-  setFilter(value?: ListFilter): ListLastDownloadsRequest;
-  hasFilter(): boolean;
-  clearFilter(): ListLastDownloadsRequest;
-
+export class SyncInstrumentsRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListLastDownloadsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListLastDownloadsRequest): ListLastDownloadsRequest.AsObject;
-  static serializeBinaryToWriter(message: ListLastDownloadsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListLastDownloadsRequest;
-  static deserializeBinaryFromReader(message: ListLastDownloadsRequest, reader: jspb.BinaryReader): ListLastDownloadsRequest;
+  toObject(includeInstance?: boolean): SyncInstrumentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SyncInstrumentsRequest): SyncInstrumentsRequest.AsObject;
+  static serializeBinaryToWriter(message: SyncInstrumentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SyncInstrumentsRequest;
+  static deserializeBinaryFromReader(message: SyncInstrumentsRequest, reader: jspb.BinaryReader): SyncInstrumentsRequest;
 }
 
-export namespace ListLastDownloadsRequest {
+export namespace SyncInstrumentsRequest {
   export type AsObject = {
-    filter?: ListFilter.AsObject,
   }
 }
 
-export class ListLastDownloadsResponse extends jspb.Message {
-  getItemsList(): Array<LastDownload>;
-  setItemsList(value: Array<LastDownload>): ListLastDownloadsResponse;
-  clearItemsList(): ListLastDownloadsResponse;
-  addItems(value?: LastDownload, index?: number): LastDownload;
+export class SyncInstrumentsResponse extends jspb.Message {
+  getUpsert(): UpsertInstrumentsResponse | undefined;
+  setUpsert(value?: UpsertInstrumentsResponse): SyncInstrumentsResponse;
+  hasUpsert(): boolean;
+  clearUpsert(): SyncInstrumentsResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListLastDownloadsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListLastDownloadsResponse): ListLastDownloadsResponse.AsObject;
-  static serializeBinaryToWriter(message: ListLastDownloadsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListLastDownloadsResponse;
-  static deserializeBinaryFromReader(message: ListLastDownloadsResponse, reader: jspb.BinaryReader): ListLastDownloadsResponse;
+  toObject(includeInstance?: boolean): SyncInstrumentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SyncInstrumentsResponse): SyncInstrumentsResponse.AsObject;
+  static serializeBinaryToWriter(message: SyncInstrumentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SyncInstrumentsResponse;
+  static deserializeBinaryFromReader(message: SyncInstrumentsResponse, reader: jspb.BinaryReader): SyncInstrumentsResponse;
 }
 
-export namespace ListLastDownloadsResponse {
+export namespace SyncInstrumentsResponse {
   export type AsObject = {
-    itemsList: Array<LastDownload.AsObject>,
-  }
-}
-
-export class LastDownload extends jspb.Message {
-  getUid(): string;
-  setUid(value: string): LastDownload;
-
-  getFigi(): string;
-  setFigi(value: string): LastDownload;
-
-  getTicker(): string;
-  setTicker(value: string): LastDownload;
-
-  getName(): string;
-  setName(value: string): LastDownload;
-
-  getInterval(): number;
-  setInterval(value: number): LastDownload;
-
-  getLastStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setLastStart(value?: google_protobuf_timestamp_pb.Timestamp): LastDownload;
-  hasLastStart(): boolean;
-  clearLastStart(): LastDownload;
-
-  getLastEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setLastEnd(value?: google_protobuf_timestamp_pb.Timestamp): LastDownload;
-  hasLastEnd(): boolean;
-  clearLastEnd(): LastDownload;
-
-  getHasDownload(): boolean;
-  setHasDownload(value: boolean): LastDownload;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): LastDownload.AsObject;
-  static toObject(includeInstance: boolean, msg: LastDownload): LastDownload.AsObject;
-  static serializeBinaryToWriter(message: LastDownload, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): LastDownload;
-  static deserializeBinaryFromReader(message: LastDownload, reader: jspb.BinaryReader): LastDownload;
-}
-
-export namespace LastDownload {
-  export type AsObject = {
-    uid: string,
-    figi: string,
-    ticker: string,
-    name: string,
-    interval: number,
-    lastStart?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    lastEnd?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    hasDownload: boolean,
-  }
-}
-
-export class ListCandlesRequest extends jspb.Message {
-  getUid(): string;
-  setUid(value: string): ListCandlesRequest;
-
-  getInterval(): number;
-  setInterval(value: number): ListCandlesRequest;
-
-  getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setFrom(value?: google_protobuf_timestamp_pb.Timestamp): ListCandlesRequest;
-  hasFrom(): boolean;
-  clearFrom(): ListCandlesRequest;
-
-  getTo(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTo(value?: google_protobuf_timestamp_pb.Timestamp): ListCandlesRequest;
-  hasTo(): boolean;
-  clearTo(): ListCandlesRequest;
-
-  getLimit(): number;
-  setLimit(value: number): ListCandlesRequest;
-
-  getNewestFirst(): boolean;
-  setNewestFirst(value: boolean): ListCandlesRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListCandlesRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListCandlesRequest): ListCandlesRequest.AsObject;
-  static serializeBinaryToWriter(message: ListCandlesRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListCandlesRequest;
-  static deserializeBinaryFromReader(message: ListCandlesRequest, reader: jspb.BinaryReader): ListCandlesRequest;
-}
-
-export namespace ListCandlesRequest {
-  export type AsObject = {
-    uid: string,
-    interval: number,
-    from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    limit: number,
-    newestFirst: boolean,
-  }
-}
-
-export class HistoricCandleRow extends jspb.Message {
-  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTime(value?: google_protobuf_timestamp_pb.Timestamp): HistoricCandleRow;
-  hasTime(): boolean;
-  clearTime(): HistoricCandleRow;
-
-  getOpen(): number;
-  setOpen(value: number): HistoricCandleRow;
-
-  getHigh(): number;
-  setHigh(value: number): HistoricCandleRow;
-
-  getLow(): number;
-  setLow(value: number): HistoricCandleRow;
-
-  getClose(): number;
-  setClose(value: number): HistoricCandleRow;
-
-  getVolume(): number;
-  setVolume(value: number): HistoricCandleRow;
-
-  getVolumeBuy(): number;
-  setVolumeBuy(value: number): HistoricCandleRow;
-
-  getVolumeSell(): number;
-  setVolumeSell(value: number): HistoricCandleRow;
-
-  getCandleSource(): number;
-  setCandleSource(value: number): HistoricCandleRow;
-
-  getIsComplete(): boolean;
-  setIsComplete(value: boolean): HistoricCandleRow;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): HistoricCandleRow.AsObject;
-  static toObject(includeInstance: boolean, msg: HistoricCandleRow): HistoricCandleRow.AsObject;
-  static serializeBinaryToWriter(message: HistoricCandleRow, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): HistoricCandleRow;
-  static deserializeBinaryFromReader(message: HistoricCandleRow, reader: jspb.BinaryReader): HistoricCandleRow;
-}
-
-export namespace HistoricCandleRow {
-  export type AsObject = {
-    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    open: number,
-    high: number,
-    low: number,
-    close: number,
-    volume: number,
-    volumeBuy: number,
-    volumeSell: number,
-    candleSource: number,
-    isComplete: boolean,
-  }
-}
-
-export class ListCandlesResponse extends jspb.Message {
-  getItemsList(): Array<HistoricCandleRow>;
-  setItemsList(value: Array<HistoricCandleRow>): ListCandlesResponse;
-  clearItemsList(): ListCandlesResponse;
-  addItems(value?: HistoricCandleRow, index?: number): HistoricCandleRow;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListCandlesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListCandlesResponse): ListCandlesResponse.AsObject;
-  static serializeBinaryToWriter(message: ListCandlesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListCandlesResponse;
-  static deserializeBinaryFromReader(message: ListCandlesResponse, reader: jspb.BinaryReader): ListCandlesResponse;
-}
-
-export namespace ListCandlesResponse {
-  export type AsObject = {
-    itemsList: Array<HistoricCandleRow.AsObject>,
+    upsert?: UpsertInstrumentsResponse.AsObject,
   }
 }
 
