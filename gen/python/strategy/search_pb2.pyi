@@ -84,20 +84,61 @@ class Objective(_message.Message):
     def __init__(self, metric: _Optional[str] = ..., maximize: bool = ..., min_trades: _Optional[int] = ..., max_drawdown_limit: _Optional[float] = ...) -> None: ...
 
 class SearchBudget(_message.Message):
-    __slots__ = ("max_evaluations", "max_seconds", "concurrency", "population", "generations", "seed")
+    __slots__ = ("max_evaluations", "max_seconds", "concurrency", "population", "generations", "seed", "halving_eta", "low_fidelity_frac", "disable_cache")
     MAX_EVALUATIONS_FIELD_NUMBER: _ClassVar[int]
     MAX_SECONDS_FIELD_NUMBER: _ClassVar[int]
     CONCURRENCY_FIELD_NUMBER: _ClassVar[int]
     POPULATION_FIELD_NUMBER: _ClassVar[int]
     GENERATIONS_FIELD_NUMBER: _ClassVar[int]
     SEED_FIELD_NUMBER: _ClassVar[int]
+    HALVING_ETA_FIELD_NUMBER: _ClassVar[int]
+    LOW_FIDELITY_FRAC_FIELD_NUMBER: _ClassVar[int]
+    DISABLE_CACHE_FIELD_NUMBER: _ClassVar[int]
     max_evaluations: int
     max_seconds: int
     concurrency: int
     population: int
     generations: int
     seed: int
-    def __init__(self, max_evaluations: _Optional[int] = ..., max_seconds: _Optional[int] = ..., concurrency: _Optional[int] = ..., population: _Optional[int] = ..., generations: _Optional[int] = ..., seed: _Optional[int] = ...) -> None: ...
+    halving_eta: int
+    low_fidelity_frac: float
+    disable_cache: bool
+    def __init__(self, max_evaluations: _Optional[int] = ..., max_seconds: _Optional[int] = ..., concurrency: _Optional[int] = ..., population: _Optional[int] = ..., generations: _Optional[int] = ..., seed: _Optional[int] = ..., halving_eta: _Optional[int] = ..., low_fidelity_frac: _Optional[float] = ..., disable_cache: bool = ...) -> None: ...
+
+class EvalTask(_message.Message):
+    __slots__ = ("eval_id", "search_id", "spec", "config", "data_fraction", "reply_subject")
+    EVAL_ID_FIELD_NUMBER: _ClassVar[int]
+    SEARCH_ID_FIELD_NUMBER: _ClassVar[int]
+    SPEC_FIELD_NUMBER: _ClassVar[int]
+    CONFIG_FIELD_NUMBER: _ClassVar[int]
+    DATA_FRACTION_FIELD_NUMBER: _ClassVar[int]
+    REPLY_SUBJECT_FIELD_NUMBER: _ClassVar[int]
+    eval_id: str
+    search_id: str
+    spec: _spec_pb2.StrategySpec
+    config: _backtest_pb2.BacktestConfig
+    data_fraction: float
+    reply_subject: str
+    def __init__(self, eval_id: _Optional[str] = ..., search_id: _Optional[str] = ..., spec: _Optional[_Union[_spec_pb2.StrategySpec, _Mapping]] = ..., config: _Optional[_Union[_backtest_pb2.BacktestConfig, _Mapping]] = ..., data_fraction: _Optional[float] = ..., reply_subject: _Optional[str] = ...) -> None: ...
+
+class EvalResult(_message.Message):
+    __slots__ = ("eval_id", "metrics", "error", "engine_version")
+    class MetricsEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: float
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[float] = ...) -> None: ...
+    EVAL_ID_FIELD_NUMBER: _ClassVar[int]
+    METRICS_FIELD_NUMBER: _ClassVar[int]
+    ERROR_FIELD_NUMBER: _ClassVar[int]
+    ENGINE_VERSION_FIELD_NUMBER: _ClassVar[int]
+    eval_id: str
+    metrics: _containers.ScalarMap[str, float]
+    error: str
+    engine_version: str
+    def __init__(self, eval_id: _Optional[str] = ..., metrics: _Optional[_Mapping[str, float]] = ..., error: _Optional[str] = ..., engine_version: _Optional[str] = ...) -> None: ...
 
 class SearchCandidate(_message.Message):
     __slots__ = ("id", "spec", "spec_hash", "score", "metrics", "rank", "generation", "backtest_run_id")

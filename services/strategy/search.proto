@@ -68,10 +68,36 @@ message Objective {
 message SearchBudget {
   uint32 max_evaluations = 1;
   uint32 max_seconds = 2;
-  uint32 concurrency = 3;   // воркеров ProcessPoolExecutor в движке
+  uint32 concurrency = 3;   // воркеров ProcessPoolExecutor в движке (локальный фолбэк)
   uint32 population = 4;    // размер популяции поколения
   uint32 generations = 5;
   uint64 seed = 6;          // 0 => движок выберет случайный и сохранит
+
+  // Successive halving: нижняя ступень оценивает всю популяцию на префиксе
+  // периода, наверх (1/eta) проходят на полный период. 0/1 => выключено.
+  uint32 halving_eta = 7;
+  double low_fidelity_frac = 8;  // доля периода на нижней ступени; 0 => 0.5
+  // true => не читать/не писать глобальный кэш оценок (search_eval_cache).
+  bool disable_cache = 9;
+}
+
+// Задача оценки одного кандидата воркеру (JetStream TrB.strategy.eval.tasks).
+// Публикует координатор поиска, MsgId = eval_id.
+message EvalTask {
+  string eval_id = 1;
+  string search_id = 2;
+  StrategySpec spec = 3;
+  BacktestConfig config = 4;
+  double data_fraction = 5;   // 1.0 => полный период; (0,1) => префикс для halving
+  string reply_subject = 6;   // core-NATS субъект для EvalResult
+}
+
+// Ответ воркера координатору (core-NATS, reply_subject из EvalTask).
+message EvalResult {
+  string eval_id = 1;
+  map<string, double> metrics = 2;  // пусто => кандидат упал (poison/пустая спека)
+  string error = 3;
+  string engine_version = 4;
 }
 
 // Кандидат, оценённый в ходе поиска.

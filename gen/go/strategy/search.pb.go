@@ -499,12 +499,18 @@ type SearchBudget struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	MaxEvaluations uint32                 `protobuf:"varint,1,opt,name=max_evaluations,json=maxEvaluations,proto3" json:"max_evaluations,omitempty"`
 	MaxSeconds     uint32                 `protobuf:"varint,2,opt,name=max_seconds,json=maxSeconds,proto3" json:"max_seconds,omitempty"`
-	Concurrency    uint32                 `protobuf:"varint,3,opt,name=concurrency,proto3" json:"concurrency,omitempty"` // воркеров ProcessPoolExecutor в движке
+	Concurrency    uint32                 `protobuf:"varint,3,opt,name=concurrency,proto3" json:"concurrency,omitempty"` // воркеров ProcessPoolExecutor в движке (локальный фолбэк)
 	Population     uint32                 `protobuf:"varint,4,opt,name=population,proto3" json:"population,omitempty"`   // размер популяции поколения
 	Generations    uint32                 `protobuf:"varint,5,opt,name=generations,proto3" json:"generations,omitempty"`
 	Seed           uint64                 `protobuf:"varint,6,opt,name=seed,proto3" json:"seed,omitempty"` // 0 => движок выберет случайный и сохранит
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// Successive halving: нижняя ступень оценивает всю популяцию на префиксе
+	// периода, наверх (1/eta) проходят на полный период. 0/1 => выключено.
+	HalvingEta      uint32  `protobuf:"varint,7,opt,name=halving_eta,json=halvingEta,proto3" json:"halving_eta,omitempty"`
+	LowFidelityFrac float64 `protobuf:"fixed64,8,opt,name=low_fidelity_frac,json=lowFidelityFrac,proto3" json:"low_fidelity_frac,omitempty"` // доля периода на нижней ступени; 0 => 0.5
+	// true => не читать/не писать глобальный кэш оценок (search_eval_cache).
+	DisableCache  bool `protobuf:"varint,9,opt,name=disable_cache,json=disableCache,proto3" json:"disable_cache,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchBudget) Reset() {
@@ -579,6 +585,182 @@ func (x *SearchBudget) GetSeed() uint64 {
 	return 0
 }
 
+func (x *SearchBudget) GetHalvingEta() uint32 {
+	if x != nil {
+		return x.HalvingEta
+	}
+	return 0
+}
+
+func (x *SearchBudget) GetLowFidelityFrac() float64 {
+	if x != nil {
+		return x.LowFidelityFrac
+	}
+	return 0
+}
+
+func (x *SearchBudget) GetDisableCache() bool {
+	if x != nil {
+		return x.DisableCache
+	}
+	return false
+}
+
+// Задача оценки одного кандидата воркеру (JetStream TrB.strategy.eval.tasks).
+// Публикует координатор поиска, MsgId = eval_id.
+type EvalTask struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EvalId        string                 `protobuf:"bytes,1,opt,name=eval_id,json=evalId,proto3" json:"eval_id,omitempty"`
+	SearchId      string                 `protobuf:"bytes,2,opt,name=search_id,json=searchId,proto3" json:"search_id,omitempty"`
+	Spec          *StrategySpec          `protobuf:"bytes,3,opt,name=spec,proto3" json:"spec,omitempty"`
+	Config        *BacktestConfig        `protobuf:"bytes,4,opt,name=config,proto3" json:"config,omitempty"`
+	DataFraction  float64                `protobuf:"fixed64,5,opt,name=data_fraction,json=dataFraction,proto3" json:"data_fraction,omitempty"` // 1.0 => полный период; (0,1) => префикс для halving
+	ReplySubject  string                 `protobuf:"bytes,6,opt,name=reply_subject,json=replySubject,proto3" json:"reply_subject,omitempty"`   // core-NATS субъект для EvalResult
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EvalTask) Reset() {
+	*x = EvalTask{}
+	mi := &file_strategy_search_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EvalTask) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EvalTask) ProtoMessage() {}
+
+func (x *EvalTask) ProtoReflect() protoreflect.Message {
+	mi := &file_strategy_search_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EvalTask.ProtoReflect.Descriptor instead.
+func (*EvalTask) Descriptor() ([]byte, []int) {
+	return file_strategy_search_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *EvalTask) GetEvalId() string {
+	if x != nil {
+		return x.EvalId
+	}
+	return ""
+}
+
+func (x *EvalTask) GetSearchId() string {
+	if x != nil {
+		return x.SearchId
+	}
+	return ""
+}
+
+func (x *EvalTask) GetSpec() *StrategySpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *EvalTask) GetConfig() *BacktestConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+func (x *EvalTask) GetDataFraction() float64 {
+	if x != nil {
+		return x.DataFraction
+	}
+	return 0
+}
+
+func (x *EvalTask) GetReplySubject() string {
+	if x != nil {
+		return x.ReplySubject
+	}
+	return ""
+}
+
+// Ответ воркера координатору (core-NATS, reply_subject из EvalTask).
+type EvalResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EvalId        string                 `protobuf:"bytes,1,opt,name=eval_id,json=evalId,proto3" json:"eval_id,omitempty"`
+	Metrics       map[string]float64     `protobuf:"bytes,2,rep,name=metrics,proto3" json:"metrics,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed64,2,opt,name=value"` // пусто => кандидат упал (poison/пустая спека)
+	Error         string                 `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+	EngineVersion string                 `protobuf:"bytes,4,opt,name=engine_version,json=engineVersion,proto3" json:"engine_version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EvalResult) Reset() {
+	*x = EvalResult{}
+	mi := &file_strategy_search_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EvalResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EvalResult) ProtoMessage() {}
+
+func (x *EvalResult) ProtoReflect() protoreflect.Message {
+	mi := &file_strategy_search_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EvalResult.ProtoReflect.Descriptor instead.
+func (*EvalResult) Descriptor() ([]byte, []int) {
+	return file_strategy_search_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *EvalResult) GetEvalId() string {
+	if x != nil {
+		return x.EvalId
+	}
+	return ""
+}
+
+func (x *EvalResult) GetMetrics() map[string]float64 {
+	if x != nil {
+		return x.Metrics
+	}
+	return nil
+}
+
+func (x *EvalResult) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+func (x *EvalResult) GetEngineVersion() string {
+	if x != nil {
+		return x.EngineVersion
+	}
+	return ""
+}
+
 // Кандидат, оценённый в ходе поиска.
 type SearchCandidate struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -596,7 +778,7 @@ type SearchCandidate struct {
 
 func (x *SearchCandidate) Reset() {
 	*x = SearchCandidate{}
-	mi := &file_strategy_search_proto_msgTypes[7]
+	mi := &file_strategy_search_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -608,7 +790,7 @@ func (x *SearchCandidate) String() string {
 func (*SearchCandidate) ProtoMessage() {}
 
 func (x *SearchCandidate) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_search_proto_msgTypes[7]
+	mi := &file_strategy_search_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -621,7 +803,7 @@ func (x *SearchCandidate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchCandidate.ProtoReflect.Descriptor instead.
 func (*SearchCandidate) Descriptor() ([]byte, []int) {
-	return file_strategy_search_proto_rawDescGZIP(), []int{7}
+	return file_strategy_search_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SearchCandidate) GetId() string {
@@ -696,7 +878,7 @@ type SearchProgress struct {
 
 func (x *SearchProgress) Reset() {
 	*x = SearchProgress{}
-	mi := &file_strategy_search_proto_msgTypes[8]
+	mi := &file_strategy_search_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -708,7 +890,7 @@ func (x *SearchProgress) String() string {
 func (*SearchProgress) ProtoMessage() {}
 
 func (x *SearchProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_search_proto_msgTypes[8]
+	mi := &file_strategy_search_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -721,7 +903,7 @@ func (x *SearchProgress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchProgress.ProtoReflect.Descriptor instead.
 func (*SearchProgress) Descriptor() ([]byte, []int) {
-	return file_strategy_search_proto_rawDescGZIP(), []int{8}
+	return file_strategy_search_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SearchProgress) GetStatus() RunStatus {
@@ -796,7 +978,7 @@ type SearchRun struct {
 
 func (x *SearchRun) Reset() {
 	*x = SearchRun{}
-	mi := &file_strategy_search_proto_msgTypes[9]
+	mi := &file_strategy_search_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -808,7 +990,7 @@ func (x *SearchRun) String() string {
 func (*SearchRun) ProtoMessage() {}
 
 func (x *SearchRun) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_search_proto_msgTypes[9]
+	mi := &file_strategy_search_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -821,7 +1003,7 @@ func (x *SearchRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchRun.ProtoReflect.Descriptor instead.
 func (*SearchRun) Descriptor() ([]byte, []int) {
-	return file_strategy_search_proto_rawDescGZIP(), []int{9}
+	return file_strategy_search_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SearchRun) GetSearchId() string {
@@ -932,7 +1114,7 @@ type SearchTask struct {
 
 func (x *SearchTask) Reset() {
 	*x = SearchTask{}
-	mi := &file_strategy_search_proto_msgTypes[10]
+	mi := &file_strategy_search_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -944,7 +1126,7 @@ func (x *SearchTask) String() string {
 func (*SearchTask) ProtoMessage() {}
 
 func (x *SearchTask) ProtoReflect() protoreflect.Message {
-	mi := &file_strategy_search_proto_msgTypes[10]
+	mi := &file_strategy_search_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -957,7 +1139,7 @@ func (x *SearchTask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTask.ProtoReflect.Descriptor instead.
 func (*SearchTask) Descriptor() ([]byte, []int) {
-	return file_strategy_search_proto_rawDescGZIP(), []int{10}
+	return file_strategy_search_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SearchTask) GetSearchId() string {
@@ -1002,7 +1184,7 @@ const file_strategy_search_proto_rawDesc = "" +
 	"\bmaximize\x18\x02 \x01(\bR\bmaximize\x12\x1d\n" +
 	"\n" +
 	"min_trades\x18\x03 \x01(\rR\tminTrades\x12,\n" +
-	"\x12max_drawdown_limit\x18\x04 \x01(\x01R\x10maxDrawdownLimit\"\xd0\x01\n" +
+	"\x12max_drawdown_limit\x18\x04 \x01(\x01R\x10maxDrawdownLimit\"\xc2\x02\n" +
 	"\fSearchBudget\x12'\n" +
 	"\x0fmax_evaluations\x18\x01 \x01(\rR\x0emaxEvaluations\x12\x1f\n" +
 	"\vmax_seconds\x18\x02 \x01(\rR\n" +
@@ -1012,7 +1194,27 @@ const file_strategy_search_proto_rawDesc = "" +
 	"population\x18\x04 \x01(\rR\n" +
 	"population\x12 \n" +
 	"\vgenerations\x18\x05 \x01(\rR\vgenerations\x12\x12\n" +
-	"\x04seed\x18\x06 \x01(\x04R\x04seed\"\x9f\x02\n" +
+	"\x04seed\x18\x06 \x01(\x04R\x04seed\x12\x1f\n" +
+	"\vhalving_eta\x18\a \x01(\rR\n" +
+	"halvingEta\x12*\n" +
+	"\x11low_fidelity_frac\x18\b \x01(\x01R\x0flowFidelityFrac\x12#\n" +
+	"\rdisable_cache\x18\t \x01(\bR\fdisableCache\"\xf6\x01\n" +
+	"\bEvalTask\x12\x17\n" +
+	"\aeval_id\x18\x01 \x01(\tR\x06evalId\x12\x1b\n" +
+	"\tsearch_id\x18\x02 \x01(\tR\bsearchId\x121\n" +
+	"\x04spec\x18\x03 \x01(\v2\x1d.trb.strategy.v1.StrategySpecR\x04spec\x127\n" +
+	"\x06config\x18\x04 \x01(\v2\x1f.trb.strategy.v1.BacktestConfigR\x06config\x12#\n" +
+	"\rdata_fraction\x18\x05 \x01(\x01R\fdataFraction\x12#\n" +
+	"\rreply_subject\x18\x06 \x01(\tR\freplySubject\"\xe2\x01\n" +
+	"\n" +
+	"EvalResult\x12\x17\n" +
+	"\aeval_id\x18\x01 \x01(\tR\x06evalId\x12B\n" +
+	"\ametrics\x18\x02 \x03(\v2(.trb.strategy.v1.EvalResult.MetricsEntryR\ametrics\x12\x14\n" +
+	"\x05error\x18\x03 \x01(\tR\x05error\x12%\n" +
+	"\x0eengine_version\x18\x04 \x01(\tR\rengineVersion\x1a:\n" +
+	"\fMetricsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\x9f\x02\n" +
 	"\x0fSearchCandidate\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x121\n" +
 	"\x04spec\x18\x02 \x01(\v2\x1d.trb.strategy.v1.StrategySpecR\x04spec\x12\x1b\n" +
@@ -1072,7 +1274,7 @@ func file_strategy_search_proto_rawDescGZIP() []byte {
 }
 
 var file_strategy_search_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_strategy_search_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_strategy_search_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_strategy_search_proto_goTypes = []any{
 	(SearchMethod)(0),             // 0: trb.strategy.v1.SearchMethod
 	(*IntRange)(nil),              // 1: trb.strategy.v1.IntRange
@@ -1082,40 +1284,46 @@ var file_strategy_search_proto_goTypes = []any{
 	(*StructureSpace)(nil),        // 5: trb.strategy.v1.StructureSpace
 	(*Objective)(nil),             // 6: trb.strategy.v1.Objective
 	(*SearchBudget)(nil),          // 7: trb.strategy.v1.SearchBudget
-	(*SearchCandidate)(nil),       // 8: trb.strategy.v1.SearchCandidate
-	(*SearchProgress)(nil),        // 9: trb.strategy.v1.SearchProgress
-	(*SearchRun)(nil),             // 10: trb.strategy.v1.SearchRun
-	(*SearchTask)(nil),            // 11: trb.strategy.v1.SearchTask
-	(CompareOp)(0),                // 12: trb.strategy.v1.CompareOp
-	(*StrategySpec)(nil),          // 13: trb.strategy.v1.StrategySpec
-	(*BacktestMetrics)(nil),       // 14: trb.strategy.v1.BacktestMetrics
-	(RunStatus)(0),                // 15: trb.strategy.v1.RunStatus
-	(*BacktestConfig)(nil),        // 16: trb.strategy.v1.BacktestConfig
-	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
+	(*EvalTask)(nil),              // 8: trb.strategy.v1.EvalTask
+	(*EvalResult)(nil),            // 9: trb.strategy.v1.EvalResult
+	(*SearchCandidate)(nil),       // 10: trb.strategy.v1.SearchCandidate
+	(*SearchProgress)(nil),        // 11: trb.strategy.v1.SearchProgress
+	(*SearchRun)(nil),             // 12: trb.strategy.v1.SearchRun
+	(*SearchTask)(nil),            // 13: trb.strategy.v1.SearchTask
+	nil,                           // 14: trb.strategy.v1.EvalResult.MetricsEntry
+	(CompareOp)(0),                // 15: trb.strategy.v1.CompareOp
+	(*StrategySpec)(nil),          // 16: trb.strategy.v1.StrategySpec
+	(*BacktestConfig)(nil),        // 17: trb.strategy.v1.BacktestConfig
+	(*BacktestMetrics)(nil),       // 18: trb.strategy.v1.BacktestMetrics
+	(RunStatus)(0),                // 19: trb.strategy.v1.RunStatus
+	(*timestamppb.Timestamp)(nil), // 20: google.protobuf.Timestamp
 }
 var file_strategy_search_proto_depIdxs = []int32{
 	1,  // 0: trb.strategy.v1.ParamRange.ints:type_name -> trb.strategy.v1.IntRange
 	2,  // 1: trb.strategy.v1.ParamRange.floats:type_name -> trb.strategy.v1.FloatRange
 	3,  // 2: trb.strategy.v1.ParamRange.choice:type_name -> trb.strategy.v1.Choice
-	12, // 3: trb.strategy.v1.StructureSpace.allowed_ops:type_name -> trb.strategy.v1.CompareOp
-	13, // 4: trb.strategy.v1.SearchCandidate.spec:type_name -> trb.strategy.v1.StrategySpec
-	14, // 5: trb.strategy.v1.SearchCandidate.metrics:type_name -> trb.strategy.v1.BacktestMetrics
-	15, // 6: trb.strategy.v1.SearchProgress.status:type_name -> trb.strategy.v1.RunStatus
-	0,  // 7: trb.strategy.v1.SearchRun.method:type_name -> trb.strategy.v1.SearchMethod
-	4,  // 8: trb.strategy.v1.SearchRun.search_space:type_name -> trb.strategy.v1.ParamRange
-	5,  // 9: trb.strategy.v1.SearchRun.structure:type_name -> trb.strategy.v1.StructureSpace
-	6,  // 10: trb.strategy.v1.SearchRun.objective:type_name -> trb.strategy.v1.Objective
-	7,  // 11: trb.strategy.v1.SearchRun.budget:type_name -> trb.strategy.v1.SearchBudget
-	16, // 12: trb.strategy.v1.SearchRun.config:type_name -> trb.strategy.v1.BacktestConfig
-	9,  // 13: trb.strategy.v1.SearchRun.progress:type_name -> trb.strategy.v1.SearchProgress
-	17, // 14: trb.strategy.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
-	17, // 15: trb.strategy.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
-	17, // 16: trb.strategy.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	15, // 3: trb.strategy.v1.StructureSpace.allowed_ops:type_name -> trb.strategy.v1.CompareOp
+	16, // 4: trb.strategy.v1.EvalTask.spec:type_name -> trb.strategy.v1.StrategySpec
+	17, // 5: trb.strategy.v1.EvalTask.config:type_name -> trb.strategy.v1.BacktestConfig
+	14, // 6: trb.strategy.v1.EvalResult.metrics:type_name -> trb.strategy.v1.EvalResult.MetricsEntry
+	16, // 7: trb.strategy.v1.SearchCandidate.spec:type_name -> trb.strategy.v1.StrategySpec
+	18, // 8: trb.strategy.v1.SearchCandidate.metrics:type_name -> trb.strategy.v1.BacktestMetrics
+	19, // 9: trb.strategy.v1.SearchProgress.status:type_name -> trb.strategy.v1.RunStatus
+	0,  // 10: trb.strategy.v1.SearchRun.method:type_name -> trb.strategy.v1.SearchMethod
+	4,  // 11: trb.strategy.v1.SearchRun.search_space:type_name -> trb.strategy.v1.ParamRange
+	5,  // 12: trb.strategy.v1.SearchRun.structure:type_name -> trb.strategy.v1.StructureSpace
+	6,  // 13: trb.strategy.v1.SearchRun.objective:type_name -> trb.strategy.v1.Objective
+	7,  // 14: trb.strategy.v1.SearchRun.budget:type_name -> trb.strategy.v1.SearchBudget
+	17, // 15: trb.strategy.v1.SearchRun.config:type_name -> trb.strategy.v1.BacktestConfig
+	11, // 16: trb.strategy.v1.SearchRun.progress:type_name -> trb.strategy.v1.SearchProgress
+	20, // 17: trb.strategy.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
+	20, // 18: trb.strategy.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
+	20, // 19: trb.strategy.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_strategy_search_proto_init() }
@@ -1136,7 +1344,7 @@ func file_strategy_search_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_strategy_search_proto_rawDesc), len(file_strategy_search_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

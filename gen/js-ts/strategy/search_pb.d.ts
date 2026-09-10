@@ -209,6 +209,15 @@ export class SearchBudget extends jspb.Message {
   getSeed(): number;
   setSeed(value: number): SearchBudget;
 
+  getHalvingEta(): number;
+  setHalvingEta(value: number): SearchBudget;
+
+  getLowFidelityFrac(): number;
+  setLowFidelityFrac(value: number): SearchBudget;
+
+  getDisableCache(): boolean;
+  setDisableCache(value: boolean): SearchBudget;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchBudget.AsObject;
   static toObject(includeInstance: boolean, msg: SearchBudget): SearchBudget.AsObject;
@@ -225,6 +234,81 @@ export namespace SearchBudget {
     population: number,
     generations: number,
     seed: number,
+    halvingEta: number,
+    lowFidelityFrac: number,
+    disableCache: boolean,
+  }
+}
+
+export class EvalTask extends jspb.Message {
+  getEvalId(): string;
+  setEvalId(value: string): EvalTask;
+
+  getSearchId(): string;
+  setSearchId(value: string): EvalTask;
+
+  getSpec(): strategy_spec_pb.StrategySpec | undefined;
+  setSpec(value?: strategy_spec_pb.StrategySpec): EvalTask;
+  hasSpec(): boolean;
+  clearSpec(): EvalTask;
+
+  getConfig(): strategy_backtest_pb.BacktestConfig | undefined;
+  setConfig(value?: strategy_backtest_pb.BacktestConfig): EvalTask;
+  hasConfig(): boolean;
+  clearConfig(): EvalTask;
+
+  getDataFraction(): number;
+  setDataFraction(value: number): EvalTask;
+
+  getReplySubject(): string;
+  setReplySubject(value: string): EvalTask;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EvalTask.AsObject;
+  static toObject(includeInstance: boolean, msg: EvalTask): EvalTask.AsObject;
+  static serializeBinaryToWriter(message: EvalTask, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EvalTask;
+  static deserializeBinaryFromReader(message: EvalTask, reader: jspb.BinaryReader): EvalTask;
+}
+
+export namespace EvalTask {
+  export type AsObject = {
+    evalId: string,
+    searchId: string,
+    spec?: strategy_spec_pb.StrategySpec.AsObject,
+    config?: strategy_backtest_pb.BacktestConfig.AsObject,
+    dataFraction: number,
+    replySubject: string,
+  }
+}
+
+export class EvalResult extends jspb.Message {
+  getEvalId(): string;
+  setEvalId(value: string): EvalResult;
+
+  getMetricsMap(): jspb.Map<string, number>;
+  clearMetricsMap(): EvalResult;
+
+  getError(): string;
+  setError(value: string): EvalResult;
+
+  getEngineVersion(): string;
+  setEngineVersion(value: string): EvalResult;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EvalResult.AsObject;
+  static toObject(includeInstance: boolean, msg: EvalResult): EvalResult.AsObject;
+  static serializeBinaryToWriter(message: EvalResult, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EvalResult;
+  static deserializeBinaryFromReader(message: EvalResult, reader: jspb.BinaryReader): EvalResult;
+}
+
+export namespace EvalResult {
+  export type AsObject = {
+    evalId: string,
+    metricsMap: Array<[string, number]>,
+    error: string,
+    engineVersion: string,
   }
 }
 
