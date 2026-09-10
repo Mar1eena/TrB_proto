@@ -29,6 +29,18 @@ message ListFilter {
   string q = 1;
   int32 limit = 2;
   int32 offset = 3;
+  // sort_by — колонка сортировки (whitelist на сервере): uid|name|ticker|interval|last_start|last_end.
+  string sort_by = 4;
+  bool sort_desc = 5;
+  // field_filters — подстрочные фильтры по отдельным колонкам (ticker|name|uid).
+  repeated FieldFilter field_filters = 6;
+  // interval_filter — точный фильтр по интервалу свечи (0 = любой).
+  int32 interval_filter = 7;
+}
+
+message FieldFilter {
+  string field = 1;
+  string value = 2;
 }
 
 message ListLastDownloadsRequest {
@@ -37,6 +49,8 @@ message ListLastDownloadsRequest {
 
 message ListLastDownloadsResponse {
   repeated LastDownload items = 1;
+  // total — полное число строк под текущим фильтром.
+  int32 total = 2;
 }
 
 message LastDownload {

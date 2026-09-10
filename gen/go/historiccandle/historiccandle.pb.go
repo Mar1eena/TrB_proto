@@ -24,12 +24,19 @@ const (
 )
 
 type ListFilter struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Q             string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	Q      string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
+	Limit  int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	// sort_by — колонка сортировки (whitelist на сервере): uid|name|ticker|interval|last_start|last_end.
+	SortBy   string `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortDesc bool   `protobuf:"varint,5,opt,name=sort_desc,json=sortDesc,proto3" json:"sort_desc,omitempty"`
+	// field_filters — подстрочные фильтры по отдельным колонкам (ticker|name|uid).
+	FieldFilters []*FieldFilter `protobuf:"bytes,6,rep,name=field_filters,json=fieldFilters,proto3" json:"field_filters,omitempty"`
+	// interval_filter — точный фильтр по интервалу свечи (0 = любой).
+	IntervalFilter int32 `protobuf:"varint,7,opt,name=interval_filter,json=intervalFilter,proto3" json:"interval_filter,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ListFilter) Reset() {
@@ -83,6 +90,86 @@ func (x *ListFilter) GetOffset() int32 {
 	return 0
 }
 
+func (x *ListFilter) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListFilter) GetSortDesc() bool {
+	if x != nil {
+		return x.SortDesc
+	}
+	return false
+}
+
+func (x *ListFilter) GetFieldFilters() []*FieldFilter {
+	if x != nil {
+		return x.FieldFilters
+	}
+	return nil
+}
+
+func (x *ListFilter) GetIntervalFilter() int32 {
+	if x != nil {
+		return x.IntervalFilter
+	}
+	return 0
+}
+
+type FieldFilter struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Field         string                 `protobuf:"bytes,1,opt,name=field,proto3" json:"field,omitempty"`
+	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FieldFilter) Reset() {
+	*x = FieldFilter{}
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldFilter) ProtoMessage() {}
+
+func (x *FieldFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FieldFilter.ProtoReflect.Descriptor instead.
+func (*FieldFilter) Descriptor() ([]byte, []int) {
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FieldFilter) GetField() string {
+	if x != nil {
+		return x.Field
+	}
+	return ""
+}
+
+func (x *FieldFilter) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
 type ListLastDownloadsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Filter        *ListFilter            `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
@@ -92,7 +179,7 @@ type ListLastDownloadsRequest struct {
 
 func (x *ListLastDownloadsRequest) Reset() {
 	*x = ListLastDownloadsRequest{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[1]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -104,7 +191,7 @@ func (x *ListLastDownloadsRequest) String() string {
 func (*ListLastDownloadsRequest) ProtoMessage() {}
 
 func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[1]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117,7 +204,7 @@ func (x *ListLastDownloadsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsRequest.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsRequest) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{1}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListLastDownloadsRequest) GetFilter() *ListFilter {
@@ -128,15 +215,17 @@ func (x *ListLastDownloadsRequest) GetFilter() *ListFilter {
 }
 
 type ListLastDownloadsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Items         []*LastDownload        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Items []*LastDownload        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	// total — полное число строк под текущим фильтром.
+	Total         int32 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListLastDownloadsResponse) Reset() {
 	*x = ListLastDownloadsResponse{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[2]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -148,7 +237,7 @@ func (x *ListLastDownloadsResponse) String() string {
 func (*ListLastDownloadsResponse) ProtoMessage() {}
 
 func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[2]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +250,7 @@ func (x *ListLastDownloadsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLastDownloadsResponse.ProtoReflect.Descriptor instead.
 func (*ListLastDownloadsResponse) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{2}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListLastDownloadsResponse) GetItems() []*LastDownload {
@@ -169,6 +258,13 @@ func (x *ListLastDownloadsResponse) GetItems() []*LastDownload {
 		return x.Items
 	}
 	return nil
+}
+
+func (x *ListLastDownloadsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type LastDownload struct {
@@ -187,7 +283,7 @@ type LastDownload struct {
 
 func (x *LastDownload) Reset() {
 	*x = LastDownload{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[3]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -199,7 +295,7 @@ func (x *LastDownload) String() string {
 func (*LastDownload) ProtoMessage() {}
 
 func (x *LastDownload) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[3]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -212,7 +308,7 @@ func (x *LastDownload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LastDownload.ProtoReflect.Descriptor instead.
 func (*LastDownload) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{3}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *LastDownload) GetUid() string {
@@ -286,7 +382,7 @@ type ListCandlesRequest struct {
 
 func (x *ListCandlesRequest) Reset() {
 	*x = ListCandlesRequest{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[4]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -298,7 +394,7 @@ func (x *ListCandlesRequest) String() string {
 func (*ListCandlesRequest) ProtoMessage() {}
 
 func (x *ListCandlesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[4]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -311,7 +407,7 @@ func (x *ListCandlesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCandlesRequest.ProtoReflect.Descriptor instead.
 func (*ListCandlesRequest) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{4}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListCandlesRequest) GetUid() string {
@@ -374,7 +470,7 @@ type HistoricCandleRow struct {
 
 func (x *HistoricCandleRow) Reset() {
 	*x = HistoricCandleRow{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[5]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -386,7 +482,7 @@ func (x *HistoricCandleRow) String() string {
 func (*HistoricCandleRow) ProtoMessage() {}
 
 func (x *HistoricCandleRow) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[5]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +495,7 @@ func (x *HistoricCandleRow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HistoricCandleRow.ProtoReflect.Descriptor instead.
 func (*HistoricCandleRow) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{5}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *HistoricCandleRow) GetTime() *timestamppb.Timestamp {
@@ -481,7 +577,7 @@ type ListCandlesResponse struct {
 
 func (x *ListCandlesResponse) Reset() {
 	*x = ListCandlesResponse{}
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[6]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -493,7 +589,7 @@ func (x *ListCandlesResponse) String() string {
 func (*ListCandlesResponse) ProtoMessage() {}
 
 func (x *ListCandlesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_historiccandle_historiccandle_proto_msgTypes[6]
+	mi := &file_historiccandle_historiccandle_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +602,7 @@ func (x *ListCandlesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCandlesResponse.ProtoReflect.Descriptor instead.
 func (*ListCandlesResponse) Descriptor() ([]byte, []int) {
-	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{6}
+	return file_historiccandle_historiccandle_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListCandlesResponse) GetItems() []*HistoricCandleRow {
@@ -520,16 +616,24 @@ var File_historiccandle_historiccandle_proto protoreflect.FileDescriptor
 
 const file_historiccandle_historiccandle_proto_rawDesc = "" +
 	"\n" +
-	"#historiccandle/historiccandle.proto\x12\x15trb.historiccandle.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"H\n" +
+	"#historiccandle/historiccandle.proto\x12\x15trb.historiccandle.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf0\x01\n" +
 	"\n" +
 	"ListFilter\x12\f\n" +
 	"\x01q\x18\x01 \x01(\tR\x01q\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"U\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x17\n" +
+	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x1b\n" +
+	"\tsort_desc\x18\x05 \x01(\bR\bsortDesc\x12G\n" +
+	"\rfield_filters\x18\x06 \x03(\v2\".trb.historiccandle.v1.FieldFilterR\ffieldFilters\x12'\n" +
+	"\x0finterval_filter\x18\a \x01(\x05R\x0eintervalFilter\"9\n" +
+	"\vFieldFilter\x12\x14\n" +
+	"\x05field\x18\x01 \x01(\tR\x05field\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value\"U\n" +
 	"\x18ListLastDownloadsRequest\x129\n" +
-	"\x06filter\x18\x01 \x01(\v2!.trb.historiccandle.v1.ListFilterR\x06filter\"V\n" +
+	"\x06filter\x18\x01 \x01(\v2!.trb.historiccandle.v1.ListFilterR\x06filter\"l\n" +
 	"\x19ListLastDownloadsResponse\x129\n" +
-	"\x05items\x18\x01 \x03(\v2#.trb.historiccandle.v1.LastDownloadR\x05items\"\x91\x02\n" +
+	"\x05items\x18\x01 \x03(\v2#.trb.historiccandle.v1.LastDownloadR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x91\x02\n" +
 	"\fLastDownload\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04figi\x18\x02 \x01(\tR\x04figi\x12\x16\n" +
@@ -580,35 +684,37 @@ func file_historiccandle_historiccandle_proto_rawDescGZIP() []byte {
 	return file_historiccandle_historiccandle_proto_rawDescData
 }
 
-var file_historiccandle_historiccandle_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_historiccandle_historiccandle_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_historiccandle_historiccandle_proto_goTypes = []any{
 	(*ListFilter)(nil),                // 0: trb.historiccandle.v1.ListFilter
-	(*ListLastDownloadsRequest)(nil),  // 1: trb.historiccandle.v1.ListLastDownloadsRequest
-	(*ListLastDownloadsResponse)(nil), // 2: trb.historiccandle.v1.ListLastDownloadsResponse
-	(*LastDownload)(nil),              // 3: trb.historiccandle.v1.LastDownload
-	(*ListCandlesRequest)(nil),        // 4: trb.historiccandle.v1.ListCandlesRequest
-	(*HistoricCandleRow)(nil),         // 5: trb.historiccandle.v1.HistoricCandleRow
-	(*ListCandlesResponse)(nil),       // 6: trb.historiccandle.v1.ListCandlesResponse
-	(*timestamppb.Timestamp)(nil),     // 7: google.protobuf.Timestamp
+	(*FieldFilter)(nil),               // 1: trb.historiccandle.v1.FieldFilter
+	(*ListLastDownloadsRequest)(nil),  // 2: trb.historiccandle.v1.ListLastDownloadsRequest
+	(*ListLastDownloadsResponse)(nil), // 3: trb.historiccandle.v1.ListLastDownloadsResponse
+	(*LastDownload)(nil),              // 4: trb.historiccandle.v1.LastDownload
+	(*ListCandlesRequest)(nil),        // 5: trb.historiccandle.v1.ListCandlesRequest
+	(*HistoricCandleRow)(nil),         // 6: trb.historiccandle.v1.HistoricCandleRow
+	(*ListCandlesResponse)(nil),       // 7: trb.historiccandle.v1.ListCandlesResponse
+	(*timestamppb.Timestamp)(nil),     // 8: google.protobuf.Timestamp
 }
 var file_historiccandle_historiccandle_proto_depIdxs = []int32{
-	0,  // 0: trb.historiccandle.v1.ListLastDownloadsRequest.filter:type_name -> trb.historiccandle.v1.ListFilter
-	3,  // 1: trb.historiccandle.v1.ListLastDownloadsResponse.items:type_name -> trb.historiccandle.v1.LastDownload
-	7,  // 2: trb.historiccandle.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
-	7,  // 3: trb.historiccandle.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
-	7,  // 4: trb.historiccandle.v1.ListCandlesRequest.from:type_name -> google.protobuf.Timestamp
-	7,  // 5: trb.historiccandle.v1.ListCandlesRequest.to:type_name -> google.protobuf.Timestamp
-	7,  // 6: trb.historiccandle.v1.HistoricCandleRow.time:type_name -> google.protobuf.Timestamp
-	5,  // 7: trb.historiccandle.v1.ListCandlesResponse.items:type_name -> trb.historiccandle.v1.HistoricCandleRow
-	1,  // 8: trb.historiccandle.v1.HistoricCandle.ListLastDownloads:input_type -> trb.historiccandle.v1.ListLastDownloadsRequest
-	4,  // 9: trb.historiccandle.v1.HistoricCandle.ListCandles:input_type -> trb.historiccandle.v1.ListCandlesRequest
-	2,  // 10: trb.historiccandle.v1.HistoricCandle.ListLastDownloads:output_type -> trb.historiccandle.v1.ListLastDownloadsResponse
-	6,  // 11: trb.historiccandle.v1.HistoricCandle.ListCandles:output_type -> trb.historiccandle.v1.ListCandlesResponse
-	10, // [10:12] is the sub-list for method output_type
-	8,  // [8:10] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	1,  // 0: trb.historiccandle.v1.ListFilter.field_filters:type_name -> trb.historiccandle.v1.FieldFilter
+	0,  // 1: trb.historiccandle.v1.ListLastDownloadsRequest.filter:type_name -> trb.historiccandle.v1.ListFilter
+	4,  // 2: trb.historiccandle.v1.ListLastDownloadsResponse.items:type_name -> trb.historiccandle.v1.LastDownload
+	8,  // 3: trb.historiccandle.v1.LastDownload.last_start:type_name -> google.protobuf.Timestamp
+	8,  // 4: trb.historiccandle.v1.LastDownload.last_end:type_name -> google.protobuf.Timestamp
+	8,  // 5: trb.historiccandle.v1.ListCandlesRequest.from:type_name -> google.protobuf.Timestamp
+	8,  // 6: trb.historiccandle.v1.ListCandlesRequest.to:type_name -> google.protobuf.Timestamp
+	8,  // 7: trb.historiccandle.v1.HistoricCandleRow.time:type_name -> google.protobuf.Timestamp
+	6,  // 8: trb.historiccandle.v1.ListCandlesResponse.items:type_name -> trb.historiccandle.v1.HistoricCandleRow
+	2,  // 9: trb.historiccandle.v1.HistoricCandle.ListLastDownloads:input_type -> trb.historiccandle.v1.ListLastDownloadsRequest
+	5,  // 10: trb.historiccandle.v1.HistoricCandle.ListCandles:input_type -> trb.historiccandle.v1.ListCandlesRequest
+	3,  // 11: trb.historiccandle.v1.HistoricCandle.ListLastDownloads:output_type -> trb.historiccandle.v1.ListLastDownloadsResponse
+	7,  // 12: trb.historiccandle.v1.HistoricCandle.ListCandles:output_type -> trb.historiccandle.v1.ListCandlesResponse
+	11, // [11:13] is the sub-list for method output_type
+	9,  // [9:11] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_historiccandle_historiccandle_proto_init() }
@@ -622,7 +728,7 @@ func file_historiccandle_historiccandle_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_historiccandle_historiccandle_proto_rawDesc), len(file_historiccandle_historiccandle_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -25,10 +25,15 @@ const (
 )
 
 type ListFilter struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Q             string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	Q      string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
+	Limit  int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	// sort_by — колонка сортировки (whitelist на сервере): ticker|name|figi|uid|currency|exchange|version.
+	SortBy   string `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortDesc bool   `protobuf:"varint,5,opt,name=sort_desc,json=sortDesc,proto3" json:"sort_desc,omitempty"`
+	// field_filters — подстрочные фильтры по отдельным колонкам (ключи whitelisted на сервере).
+	FieldFilters  []*FieldFilter `protobuf:"bytes,6,rep,name=field_filters,json=fieldFilters,proto3" json:"field_filters,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -84,6 +89,79 @@ func (x *ListFilter) GetOffset() int32 {
 	return 0
 }
 
+func (x *ListFilter) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListFilter) GetSortDesc() bool {
+	if x != nil {
+		return x.SortDesc
+	}
+	return false
+}
+
+func (x *ListFilter) GetFieldFilters() []*FieldFilter {
+	if x != nil {
+		return x.FieldFilters
+	}
+	return nil
+}
+
+type FieldFilter struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Field         string                 `protobuf:"bytes,1,opt,name=field,proto3" json:"field,omitempty"`
+	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FieldFilter) Reset() {
+	*x = FieldFilter{}
+	mi := &file_instruments_instruments_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldFilter) ProtoMessage() {}
+
+func (x *FieldFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_instruments_instruments_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FieldFilter.ProtoReflect.Descriptor instead.
+func (*FieldFilter) Descriptor() ([]byte, []int) {
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FieldFilter) GetField() string {
+	if x != nil {
+		return x.Field
+	}
+	return ""
+}
+
+func (x *FieldFilter) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
 type ListInstrumentsRequest struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
 	Filter *ListFilter            `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
@@ -95,7 +173,7 @@ type ListInstrumentsRequest struct {
 
 func (x *ListInstrumentsRequest) Reset() {
 	*x = ListInstrumentsRequest{}
-	mi := &file_instruments_instruments_proto_msgTypes[1]
+	mi := &file_instruments_instruments_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -107,7 +185,7 @@ func (x *ListInstrumentsRequest) String() string {
 func (*ListInstrumentsRequest) ProtoMessage() {}
 
 func (x *ListInstrumentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[1]
+	mi := &file_instruments_instruments_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120,7 +198,7 @@ func (x *ListInstrumentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentsRequest.ProtoReflect.Descriptor instead.
 func (*ListInstrumentsRequest) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{1}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListInstrumentsRequest) GetFilter() *ListFilter {
@@ -149,7 +227,7 @@ type InstrumentListItem struct {
 
 func (x *InstrumentListItem) Reset() {
 	*x = InstrumentListItem{}
-	mi := &file_instruments_instruments_proto_msgTypes[2]
+	mi := &file_instruments_instruments_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -161,7 +239,7 @@ func (x *InstrumentListItem) String() string {
 func (*InstrumentListItem) ProtoMessage() {}
 
 func (x *InstrumentListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[2]
+	mi := &file_instruments_instruments_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -174,7 +252,7 @@ func (x *InstrumentListItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstrumentListItem.ProtoReflect.Descriptor instead.
 func (*InstrumentListItem) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{2}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *InstrumentListItem) GetShare() *tinvest.Share {
@@ -199,15 +277,17 @@ func (x *InstrumentListItem) GetVersionCount() int32 {
 }
 
 type ListInstrumentsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Items         []*InstrumentListItem  `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Items []*InstrumentListItem  `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	// total — полное число строк под текущим фильтром (для пагинации на клиенте).
+	Total         int32 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListInstrumentsResponse) Reset() {
 	*x = ListInstrumentsResponse{}
-	mi := &file_instruments_instruments_proto_msgTypes[3]
+	mi := &file_instruments_instruments_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -219,7 +299,7 @@ func (x *ListInstrumentsResponse) String() string {
 func (*ListInstrumentsResponse) ProtoMessage() {}
 
 func (x *ListInstrumentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[3]
+	mi := &file_instruments_instruments_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -232,7 +312,7 @@ func (x *ListInstrumentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentsResponse.ProtoReflect.Descriptor instead.
 func (*ListInstrumentsResponse) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{3}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ListInstrumentsResponse) GetItems() []*InstrumentListItem {
@@ -240,6 +320,13 @@ func (x *ListInstrumentsResponse) GetItems() []*InstrumentListItem {
 		return x.Items
 	}
 	return nil
+}
+
+func (x *ListInstrumentsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type ListInstrumentVersionsRequest struct {
@@ -251,7 +338,7 @@ type ListInstrumentVersionsRequest struct {
 
 func (x *ListInstrumentVersionsRequest) Reset() {
 	*x = ListInstrumentVersionsRequest{}
-	mi := &file_instruments_instruments_proto_msgTypes[4]
+	mi := &file_instruments_instruments_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -263,7 +350,7 @@ func (x *ListInstrumentVersionsRequest) String() string {
 func (*ListInstrumentVersionsRequest) ProtoMessage() {}
 
 func (x *ListInstrumentVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[4]
+	mi := &file_instruments_instruments_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -276,7 +363,7 @@ func (x *ListInstrumentVersionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentVersionsRequest.ProtoReflect.Descriptor instead.
 func (*ListInstrumentVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{4}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListInstrumentVersionsRequest) GetUid() string {
@@ -296,7 +383,7 @@ type InstrumentVersion struct {
 
 func (x *InstrumentVersion) Reset() {
 	*x = InstrumentVersion{}
-	mi := &file_instruments_instruments_proto_msgTypes[5]
+	mi := &file_instruments_instruments_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -308,7 +395,7 @@ func (x *InstrumentVersion) String() string {
 func (*InstrumentVersion) ProtoMessage() {}
 
 func (x *InstrumentVersion) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[5]
+	mi := &file_instruments_instruments_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -321,7 +408,7 @@ func (x *InstrumentVersion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstrumentVersion.ProtoReflect.Descriptor instead.
 func (*InstrumentVersion) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{5}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *InstrumentVersion) GetShare() *tinvest.Share {
@@ -347,7 +434,7 @@ type ListInstrumentVersionsResponse struct {
 
 func (x *ListInstrumentVersionsResponse) Reset() {
 	*x = ListInstrumentVersionsResponse{}
-	mi := &file_instruments_instruments_proto_msgTypes[6]
+	mi := &file_instruments_instruments_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -359,7 +446,7 @@ func (x *ListInstrumentVersionsResponse) String() string {
 func (*ListInstrumentVersionsResponse) ProtoMessage() {}
 
 func (x *ListInstrumentVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[6]
+	mi := &file_instruments_instruments_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -372,7 +459,7 @@ func (x *ListInstrumentVersionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInstrumentVersionsResponse.ProtoReflect.Descriptor instead.
 func (*ListInstrumentVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{6}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListInstrumentVersionsResponse) GetItems() []*InstrumentVersion {
@@ -394,7 +481,7 @@ type UpsertInstrumentsResponse struct {
 
 func (x *UpsertInstrumentsResponse) Reset() {
 	*x = UpsertInstrumentsResponse{}
-	mi := &file_instruments_instruments_proto_msgTypes[7]
+	mi := &file_instruments_instruments_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -406,7 +493,7 @@ func (x *UpsertInstrumentsResponse) String() string {
 func (*UpsertInstrumentsResponse) ProtoMessage() {}
 
 func (x *UpsertInstrumentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[7]
+	mi := &file_instruments_instruments_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -419,7 +506,7 @@ func (x *UpsertInstrumentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertInstrumentsResponse.ProtoReflect.Descriptor instead.
 func (*UpsertInstrumentsResponse) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{7}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpsertInstrumentsResponse) GetFetched() int32 {
@@ -458,7 +545,7 @@ type SyncInstrumentsRequest struct {
 
 func (x *SyncInstrumentsRequest) Reset() {
 	*x = SyncInstrumentsRequest{}
-	mi := &file_instruments_instruments_proto_msgTypes[8]
+	mi := &file_instruments_instruments_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -470,7 +557,7 @@ func (x *SyncInstrumentsRequest) String() string {
 func (*SyncInstrumentsRequest) ProtoMessage() {}
 
 func (x *SyncInstrumentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[8]
+	mi := &file_instruments_instruments_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -483,7 +570,7 @@ func (x *SyncInstrumentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncInstrumentsRequest.ProtoReflect.Descriptor instead.
 func (*SyncInstrumentsRequest) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{8}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{9}
 }
 
 type SyncInstrumentsResponse struct {
@@ -495,7 +582,7 @@ type SyncInstrumentsResponse struct {
 
 func (x *SyncInstrumentsResponse) Reset() {
 	*x = SyncInstrumentsResponse{}
-	mi := &file_instruments_instruments_proto_msgTypes[9]
+	mi := &file_instruments_instruments_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +594,7 @@ func (x *SyncInstrumentsResponse) String() string {
 func (*SyncInstrumentsResponse) ProtoMessage() {}
 
 func (x *SyncInstrumentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_instruments_instruments_proto_msgTypes[9]
+	mi := &file_instruments_instruments_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +607,7 @@ func (x *SyncInstrumentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncInstrumentsResponse.ProtoReflect.Descriptor instead.
 func (*SyncInstrumentsResponse) Descriptor() ([]byte, []int) {
-	return file_instruments_instruments_proto_rawDescGZIP(), []int{9}
+	return file_instruments_instruments_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SyncInstrumentsResponse) GetUpsert() *UpsertInstrumentsResponse {
@@ -534,21 +621,28 @@ var File_instruments_instruments_proto protoreflect.FileDescriptor
 
 const file_instruments_instruments_proto_rawDesc = "" +
 	"\n" +
-	"\x1dinstruments/instruments.proto\x12\x12trb.instruments.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1dapi/tinvest/instruments.proto\"H\n" +
+	"\x1dinstruments/instruments.proto\x12\x12trb.instruments.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1dapi/tinvest/instruments.proto\"\xc4\x01\n" +
 	"\n" +
 	"ListFilter\x12\f\n" +
 	"\x01q\x18\x01 \x01(\tR\x01q\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"d\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x17\n" +
+	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x1b\n" +
+	"\tsort_desc\x18\x05 \x01(\bR\bsortDesc\x12D\n" +
+	"\rfield_filters\x18\x06 \x03(\v2\x1f.trb.instruments.v1.FieldFilterR\ffieldFilters\"9\n" +
+	"\vFieldFilter\x12\x14\n" +
+	"\x05field\x18\x01 \x01(\tR\x05field\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value\"d\n" +
 	"\x16ListInstrumentsRequest\x126\n" +
 	"\x06filter\x18\x01 \x01(\v2\x1e.trb.instruments.v1.ListFilterR\x06filter\x12\x12\n" +
 	"\x04lite\x18\x02 \x01(\bR\x04lite\"\xb3\x01\n" +
 	"\x12InstrumentListItem\x12B\n" +
 	"\x05share\x18\x01 \x01(\v2,.tinkoff.public.invest.api.contract.v1.ShareR\x05share\x124\n" +
 	"\aversion\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\aversion\x12#\n" +
-	"\rversion_count\x18\x03 \x01(\x05R\fversionCount\"W\n" +
+	"\rversion_count\x18\x03 \x01(\x05R\fversionCount\"m\n" +
 	"\x17ListInstrumentsResponse\x12<\n" +
-	"\x05items\x18\x01 \x03(\v2&.trb.instruments.v1.InstrumentListItemR\x05items\"1\n" +
+	"\x05items\x18\x01 \x03(\v2&.trb.instruments.v1.InstrumentListItemR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"1\n" +
 	"\x1dListInstrumentVersionsRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\"\x8d\x01\n" +
 	"\x11InstrumentVersion\x12B\n" +
@@ -582,44 +676,46 @@ func file_instruments_instruments_proto_rawDescGZIP() []byte {
 	return file_instruments_instruments_proto_rawDescData
 }
 
-var file_instruments_instruments_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_instruments_instruments_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_instruments_instruments_proto_goTypes = []any{
 	(*ListFilter)(nil),                     // 0: trb.instruments.v1.ListFilter
-	(*ListInstrumentsRequest)(nil),         // 1: trb.instruments.v1.ListInstrumentsRequest
-	(*InstrumentListItem)(nil),             // 2: trb.instruments.v1.InstrumentListItem
-	(*ListInstrumentsResponse)(nil),        // 3: trb.instruments.v1.ListInstrumentsResponse
-	(*ListInstrumentVersionsRequest)(nil),  // 4: trb.instruments.v1.ListInstrumentVersionsRequest
-	(*InstrumentVersion)(nil),              // 5: trb.instruments.v1.InstrumentVersion
-	(*ListInstrumentVersionsResponse)(nil), // 6: trb.instruments.v1.ListInstrumentVersionsResponse
-	(*UpsertInstrumentsResponse)(nil),      // 7: trb.instruments.v1.UpsertInstrumentsResponse
-	(*SyncInstrumentsRequest)(nil),         // 8: trb.instruments.v1.SyncInstrumentsRequest
-	(*SyncInstrumentsResponse)(nil),        // 9: trb.instruments.v1.SyncInstrumentsResponse
-	(*tinvest.Share)(nil),                  // 10: tinkoff.public.invest.api.contract.v1.Share
-	(*timestamppb.Timestamp)(nil),          // 11: google.protobuf.Timestamp
-	(*tinvest.SharesResponse)(nil),         // 12: tinkoff.public.invest.api.contract.v1.SharesResponse
+	(*FieldFilter)(nil),                    // 1: trb.instruments.v1.FieldFilter
+	(*ListInstrumentsRequest)(nil),         // 2: trb.instruments.v1.ListInstrumentsRequest
+	(*InstrumentListItem)(nil),             // 3: trb.instruments.v1.InstrumentListItem
+	(*ListInstrumentsResponse)(nil),        // 4: trb.instruments.v1.ListInstrumentsResponse
+	(*ListInstrumentVersionsRequest)(nil),  // 5: trb.instruments.v1.ListInstrumentVersionsRequest
+	(*InstrumentVersion)(nil),              // 6: trb.instruments.v1.InstrumentVersion
+	(*ListInstrumentVersionsResponse)(nil), // 7: trb.instruments.v1.ListInstrumentVersionsResponse
+	(*UpsertInstrumentsResponse)(nil),      // 8: trb.instruments.v1.UpsertInstrumentsResponse
+	(*SyncInstrumentsRequest)(nil),         // 9: trb.instruments.v1.SyncInstrumentsRequest
+	(*SyncInstrumentsResponse)(nil),        // 10: trb.instruments.v1.SyncInstrumentsResponse
+	(*tinvest.Share)(nil),                  // 11: tinkoff.public.invest.api.contract.v1.Share
+	(*timestamppb.Timestamp)(nil),          // 12: google.protobuf.Timestamp
+	(*tinvest.SharesResponse)(nil),         // 13: tinkoff.public.invest.api.contract.v1.SharesResponse
 }
 var file_instruments_instruments_proto_depIdxs = []int32{
-	0,  // 0: trb.instruments.v1.ListInstrumentsRequest.filter:type_name -> trb.instruments.v1.ListFilter
-	10, // 1: trb.instruments.v1.InstrumentListItem.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	11, // 2: trb.instruments.v1.InstrumentListItem.version:type_name -> google.protobuf.Timestamp
-	2,  // 3: trb.instruments.v1.ListInstrumentsResponse.items:type_name -> trb.instruments.v1.InstrumentListItem
-	10, // 4: trb.instruments.v1.InstrumentVersion.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
-	11, // 5: trb.instruments.v1.InstrumentVersion.version:type_name -> google.protobuf.Timestamp
-	5,  // 6: trb.instruments.v1.ListInstrumentVersionsResponse.items:type_name -> trb.instruments.v1.InstrumentVersion
-	7,  // 7: trb.instruments.v1.SyncInstrumentsResponse.upsert:type_name -> trb.instruments.v1.UpsertInstrumentsResponse
-	1,  // 8: trb.instruments.v1.Instruments.ListInstruments:input_type -> trb.instruments.v1.ListInstrumentsRequest
-	4,  // 9: trb.instruments.v1.Instruments.ListInstrumentVersions:input_type -> trb.instruments.v1.ListInstrumentVersionsRequest
-	12, // 10: trb.instruments.v1.Instruments.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
-	8,  // 11: trb.instruments.v1.Instruments.SyncInstruments:input_type -> trb.instruments.v1.SyncInstrumentsRequest
-	3,  // 12: trb.instruments.v1.Instruments.ListInstruments:output_type -> trb.instruments.v1.ListInstrumentsResponse
-	6,  // 13: trb.instruments.v1.Instruments.ListInstrumentVersions:output_type -> trb.instruments.v1.ListInstrumentVersionsResponse
-	7,  // 14: trb.instruments.v1.Instruments.UpsertInstruments:output_type -> trb.instruments.v1.UpsertInstrumentsResponse
-	9,  // 15: trb.instruments.v1.Instruments.SyncInstruments:output_type -> trb.instruments.v1.SyncInstrumentsResponse
-	12, // [12:16] is the sub-list for method output_type
-	8,  // [8:12] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	1,  // 0: trb.instruments.v1.ListFilter.field_filters:type_name -> trb.instruments.v1.FieldFilter
+	0,  // 1: trb.instruments.v1.ListInstrumentsRequest.filter:type_name -> trb.instruments.v1.ListFilter
+	11, // 2: trb.instruments.v1.InstrumentListItem.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	12, // 3: trb.instruments.v1.InstrumentListItem.version:type_name -> google.protobuf.Timestamp
+	3,  // 4: trb.instruments.v1.ListInstrumentsResponse.items:type_name -> trb.instruments.v1.InstrumentListItem
+	11, // 5: trb.instruments.v1.InstrumentVersion.share:type_name -> tinkoff.public.invest.api.contract.v1.Share
+	12, // 6: trb.instruments.v1.InstrumentVersion.version:type_name -> google.protobuf.Timestamp
+	6,  // 7: trb.instruments.v1.ListInstrumentVersionsResponse.items:type_name -> trb.instruments.v1.InstrumentVersion
+	8,  // 8: trb.instruments.v1.SyncInstrumentsResponse.upsert:type_name -> trb.instruments.v1.UpsertInstrumentsResponse
+	2,  // 9: trb.instruments.v1.Instruments.ListInstruments:input_type -> trb.instruments.v1.ListInstrumentsRequest
+	5,  // 10: trb.instruments.v1.Instruments.ListInstrumentVersions:input_type -> trb.instruments.v1.ListInstrumentVersionsRequest
+	13, // 11: trb.instruments.v1.Instruments.UpsertInstruments:input_type -> tinkoff.public.invest.api.contract.v1.SharesResponse
+	9,  // 12: trb.instruments.v1.Instruments.SyncInstruments:input_type -> trb.instruments.v1.SyncInstrumentsRequest
+	4,  // 13: trb.instruments.v1.Instruments.ListInstruments:output_type -> trb.instruments.v1.ListInstrumentsResponse
+	7,  // 14: trb.instruments.v1.Instruments.ListInstrumentVersions:output_type -> trb.instruments.v1.ListInstrumentVersionsResponse
+	8,  // 15: trb.instruments.v1.Instruments.UpsertInstruments:output_type -> trb.instruments.v1.UpsertInstrumentsResponse
+	10, // 16: trb.instruments.v1.Instruments.SyncInstruments:output_type -> trb.instruments.v1.SyncInstrumentsResponse
+	13, // [13:17] is the sub-list for method output_type
+	9,  // [9:13] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_instruments_instruments_proto_init() }
@@ -633,7 +729,7 @@ func file_instruments_instruments_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_instruments_instruments_proto_rawDesc), len(file_instruments_instruments_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

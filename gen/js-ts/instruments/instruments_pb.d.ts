@@ -15,6 +15,17 @@ export class ListFilter extends jspb.Message {
   getOffset(): number;
   setOffset(value: number): ListFilter;
 
+  getSortBy(): string;
+  setSortBy(value: string): ListFilter;
+
+  getSortDesc(): boolean;
+  setSortDesc(value: boolean): ListFilter;
+
+  getFieldFiltersList(): Array<FieldFilter>;
+  setFieldFiltersList(value: Array<FieldFilter>): ListFilter;
+  clearFieldFiltersList(): ListFilter;
+  addFieldFilters(value?: FieldFilter, index?: number): FieldFilter;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListFilter.AsObject;
   static toObject(includeInstance: boolean, msg: ListFilter): ListFilter.AsObject;
@@ -28,6 +39,31 @@ export namespace ListFilter {
     q: string,
     limit: number,
     offset: number,
+    sortBy: string,
+    sortDesc: boolean,
+    fieldFiltersList: Array<FieldFilter.AsObject>,
+  }
+}
+
+export class FieldFilter extends jspb.Message {
+  getField(): string;
+  setField(value: string): FieldFilter;
+
+  getValue(): string;
+  setValue(value: string): FieldFilter;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FieldFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: FieldFilter): FieldFilter.AsObject;
+  static serializeBinaryToWriter(message: FieldFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FieldFilter;
+  static deserializeBinaryFromReader(message: FieldFilter, reader: jspb.BinaryReader): FieldFilter;
+}
+
+export namespace FieldFilter {
+  export type AsObject = {
+    field: string,
+    value: string,
   }
 }
 
@@ -91,6 +127,9 @@ export class ListInstrumentsResponse extends jspb.Message {
   clearItemsList(): ListInstrumentsResponse;
   addItems(value?: InstrumentListItem, index?: number): InstrumentListItem;
 
+  getTotal(): number;
+  setTotal(value: number): ListInstrumentsResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListInstrumentsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ListInstrumentsResponse): ListInstrumentsResponse.AsObject;
@@ -102,6 +141,7 @@ export class ListInstrumentsResponse extends jspb.Message {
 export namespace ListInstrumentsResponse {
   export type AsObject = {
     itemsList: Array<InstrumentListItem.AsObject>,
+    total: number,
   }
 }
 

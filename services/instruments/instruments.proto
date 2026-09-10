@@ -49,6 +49,16 @@ message ListFilter {
   string q = 1;
   int32 limit = 2;
   int32 offset = 3;
+  // sort_by — колонка сортировки (whitelist на сервере): ticker|name|figi|uid|currency|exchange|version.
+  string sort_by = 4;
+  bool sort_desc = 5;
+  // field_filters — подстрочные фильтры по отдельным колонкам (ключи whitelisted на сервере).
+  repeated FieldFilter field_filters = 6;
+}
+
+message FieldFilter {
+  string field = 1;
+  string value = 2;
 }
 
 message ListInstrumentsRequest {
@@ -66,6 +76,8 @@ message InstrumentListItem {
 
 message ListInstrumentsResponse {
   repeated InstrumentListItem items = 1;
+  // total — полное число строк под текущим фильтром (для пагинации на клиенте).
+  int32 total = 2;
 }
 
 message ListInstrumentVersionsRequest {
