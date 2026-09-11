@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_api_annotations_pb from '../google/api/annotations_pb'; // proto import: "google/api/annotations.proto"
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
 import * as strategysearch_spec_pb from '../strategysearch/spec_pb'; // proto import: "strategysearch/spec.proto"
 import * as strategysearch_backtest_pb from '../strategysearch/backtest_pb'; // proto import: "strategysearch/backtest.proto"
 import * as strategysearch_search_pb from '../strategysearch/search_pb'; // proto import: "strategysearch/search.proto"
@@ -195,6 +196,182 @@ export class CancelSearchRequest extends jspb.Message {
 export namespace CancelSearchRequest {
   export type AsObject = {
     searchId: string,
+  }
+}
+
+export class SearchPreset extends jspb.Message {
+  getId(): string;
+  setId(value: string): SearchPreset;
+
+  getName(): string;
+  setName(value: string): SearchPreset;
+
+  getBaseSpec(): strategysearch_spec_pb.StrategySearchSpec | undefined;
+  setBaseSpec(value?: strategysearch_spec_pb.StrategySearchSpec): SearchPreset;
+  hasBaseSpec(): boolean;
+  clearBaseSpec(): SearchPreset;
+
+  getSearchSpaceList(): Array<strategysearch_search_pb.ParamRange>;
+  setSearchSpaceList(value: Array<strategysearch_search_pb.ParamRange>): SearchPreset;
+  clearSearchSpaceList(): SearchPreset;
+  addSearchSpace(value?: strategysearch_search_pb.ParamRange, index?: number): strategysearch_search_pb.ParamRange;
+
+  getStudy(): strategysearch_search_pb.StudyConfig | undefined;
+  setStudy(value?: strategysearch_search_pb.StudyConfig): SearchPreset;
+  hasStudy(): boolean;
+  clearStudy(): SearchPreset;
+
+  getConfig(): strategysearch_backtest_pb.BacktestConfig | undefined;
+  setConfig(value?: strategysearch_backtest_pb.BacktestConfig): SearchPreset;
+  hasConfig(): boolean;
+  clearConfig(): SearchPreset;
+
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): SearchPreset;
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): SearchPreset;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchPreset.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchPreset): SearchPreset.AsObject;
+  static serializeBinaryToWriter(message: SearchPreset, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchPreset;
+  static deserializeBinaryFromReader(message: SearchPreset, reader: jspb.BinaryReader): SearchPreset;
+}
+
+export namespace SearchPreset {
+  export type AsObject = {
+    id: string,
+    name: string,
+    baseSpec?: strategysearch_spec_pb.StrategySearchSpec.AsObject,
+    searchSpaceList: Array<strategysearch_search_pb.ParamRange.AsObject>,
+    study?: strategysearch_search_pb.StudyConfig.AsObject,
+    config?: strategysearch_backtest_pb.BacktestConfig.AsObject,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class CreateSearchPresetRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): CreateSearchPresetRequest;
+
+  getBaseSpec(): strategysearch_spec_pb.StrategySearchSpec | undefined;
+  setBaseSpec(value?: strategysearch_spec_pb.StrategySearchSpec): CreateSearchPresetRequest;
+  hasBaseSpec(): boolean;
+  clearBaseSpec(): CreateSearchPresetRequest;
+
+  getSearchSpaceList(): Array<strategysearch_search_pb.ParamRange>;
+  setSearchSpaceList(value: Array<strategysearch_search_pb.ParamRange>): CreateSearchPresetRequest;
+  clearSearchSpaceList(): CreateSearchPresetRequest;
+  addSearchSpace(value?: strategysearch_search_pb.ParamRange, index?: number): strategysearch_search_pb.ParamRange;
+
+  getStudy(): strategysearch_search_pb.StudyConfig | undefined;
+  setStudy(value?: strategysearch_search_pb.StudyConfig): CreateSearchPresetRequest;
+  hasStudy(): boolean;
+  clearStudy(): CreateSearchPresetRequest;
+
+  getConfig(): strategysearch_backtest_pb.BacktestConfig | undefined;
+  setConfig(value?: strategysearch_backtest_pb.BacktestConfig): CreateSearchPresetRequest;
+  hasConfig(): boolean;
+  clearConfig(): CreateSearchPresetRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateSearchPresetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateSearchPresetRequest): CreateSearchPresetRequest.AsObject;
+  static serializeBinaryToWriter(message: CreateSearchPresetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateSearchPresetRequest;
+  static deserializeBinaryFromReader(message: CreateSearchPresetRequest, reader: jspb.BinaryReader): CreateSearchPresetRequest;
+}
+
+export namespace CreateSearchPresetRequest {
+  export type AsObject = {
+    name: string,
+    baseSpec?: strategysearch_spec_pb.StrategySearchSpec.AsObject,
+    searchSpaceList: Array<strategysearch_search_pb.ParamRange.AsObject>,
+    study?: strategysearch_search_pb.StudyConfig.AsObject,
+    config?: strategysearch_backtest_pb.BacktestConfig.AsObject,
+  }
+}
+
+export class ListSearchPresetsRequest extends jspb.Message {
+  getLimit(): number;
+  setLimit(value: number): ListSearchPresetsRequest;
+
+  getOffset(): number;
+  setOffset(value: number): ListSearchPresetsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSearchPresetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSearchPresetsRequest): ListSearchPresetsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListSearchPresetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSearchPresetsRequest;
+  static deserializeBinaryFromReader(message: ListSearchPresetsRequest, reader: jspb.BinaryReader): ListSearchPresetsRequest;
+}
+
+export namespace ListSearchPresetsRequest {
+  export type AsObject = {
+    limit: number,
+    offset: number,
+  }
+}
+
+export class ListSearchPresetsResponse extends jspb.Message {
+  getItemsList(): Array<SearchPreset>;
+  setItemsList(value: Array<SearchPreset>): ListSearchPresetsResponse;
+  clearItemsList(): ListSearchPresetsResponse;
+  addItems(value?: SearchPreset, index?: number): SearchPreset;
+
+  getTotal(): number;
+  setTotal(value: number): ListSearchPresetsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSearchPresetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSearchPresetsResponse): ListSearchPresetsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListSearchPresetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSearchPresetsResponse;
+  static deserializeBinaryFromReader(message: ListSearchPresetsResponse, reader: jspb.BinaryReader): ListSearchPresetsResponse;
+}
+
+export namespace ListSearchPresetsResponse {
+  export type AsObject = {
+    itemsList: Array<SearchPreset.AsObject>,
+    total: number,
+  }
+}
+
+export class DeleteSearchPresetRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): DeleteSearchPresetRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSearchPresetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSearchPresetRequest): DeleteSearchPresetRequest.AsObject;
+  static serializeBinaryToWriter(message: DeleteSearchPresetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSearchPresetRequest;
+  static deserializeBinaryFromReader(message: DeleteSearchPresetRequest, reader: jspb.BinaryReader): DeleteSearchPresetRequest;
+}
+
+export namespace DeleteSearchPresetRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteSearchPresetResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): DeleteSearchPresetResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSearchPresetResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSearchPresetResponse): DeleteSearchPresetResponse.AsObject;
+  static serializeBinaryToWriter(message: DeleteSearchPresetResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSearchPresetResponse;
+  static deserializeBinaryFromReader(message: DeleteSearchPresetResponse, reader: jspb.BinaryReader): DeleteSearchPresetResponse;
+}
+
+export namespace DeleteSearchPresetResponse {
+  export type AsObject = {
+    id: string,
   }
 }
 

@@ -5,6 +5,7 @@ package trb.strategysearch.v1;
 option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearch";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "strategysearch/spec.proto";
 import "strategysearch/backtest.proto";
 import "strategysearch/search.proto";
@@ -45,6 +46,27 @@ service StrategySearchService {
     option (google.api.http) = {
       post: "/v1/strategysearch/searches/{search_id}:cancel"
       additional_bindings { post: "/CancelSearch" body: "*" }
+    };
+  }
+
+  // --- сохранённые настройки поиска (пресеты формы) ---
+  rpc CreateSearchPreset(CreateSearchPresetRequest) returns (SearchPreset) {
+    option (google.api.http) = {
+      post: "/v1/strategysearch/presets"
+      body: "*"
+      additional_bindings { post: "/CreateSearchPreset" body: "*" }
+    };
+  }
+  rpc ListSearchPresets(ListSearchPresetsRequest) returns (ListSearchPresetsResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategysearch/presets"
+      additional_bindings { post: "/ListSearchPresets" body: "*" }
+    };
+  }
+  rpc DeleteSearchPreset(DeleteSearchPresetRequest) returns (DeleteSearchPresetResponse) {
+    option (google.api.http) = {
+      delete: "/v1/strategysearch/presets/{id}"
+      additional_bindings { post: "/DeleteSearchPreset" body: "*" }
     };
   }
 }
@@ -88,4 +110,48 @@ message ListSearchesResponse {
 
 message CancelSearchRequest {
   string search_id = 1;
+}
+
+// --- пресеты формы поиска ---
+// Именованный снимок настроек формы (base_spec/search_space/study/config) —
+// чтобы не заполнять её каждый раз заново. Не запускает поиск сам по себе;
+// для запуска нужно скопировать значения в SubmitSearchRequest.
+// Изменить пресет = удалить и создать заново под тем же именем — отдельного
+// Update/Get-по-id не вводим, при ожидаемых единицах-десятках пресетов
+// ListSearchPresets отдаёт полные объекты.
+
+message SearchPreset {
+  string id = 1;
+  string name = 2;
+  StrategySearchSpec base_spec = 3;
+  repeated ParamRange search_space = 4;
+  StudyConfig study = 5;
+  BacktestConfig config = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+message CreateSearchPresetRequest {
+  string name = 1;
+  StrategySearchSpec base_spec = 2;
+  repeated ParamRange search_space = 3;
+  StudyConfig study = 4;
+  BacktestConfig config = 5;
+}
+
+message ListSearchPresetsRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message ListSearchPresetsResponse {
+  repeated SearchPreset items = 1;
+  int32 total = 2;
+}
+
+message DeleteSearchPresetRequest {
+  string id = 1;
+}
+
+message DeleteSearchPresetResponse {
+  string id = 1;
 }

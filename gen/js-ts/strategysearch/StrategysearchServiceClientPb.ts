@@ -255,5 +255,134 @@ export class StrategySearchServiceClient {
     this.methodDescriptorCancelSearch);
   }
 
+  methodDescriptorCreateSearchPreset = new grpcWeb.MethodDescriptor(
+    '/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset',
+    grpcWeb.MethodType.UNARY,
+    strategysearch_strategysearch_pb.CreateSearchPresetRequest,
+    strategysearch_strategysearch_pb.SearchPreset,
+    (request: strategysearch_strategysearch_pb.CreateSearchPresetRequest) => {
+      return request.serializeBinary();
+    },
+    strategysearch_strategysearch_pb.SearchPreset.deserializeBinary
+  );
+
+  createSearchPreset(
+    request: strategysearch_strategysearch_pb.CreateSearchPresetRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<strategysearch_strategysearch_pb.SearchPreset>;
+
+  createSearchPreset(
+    request: strategysearch_strategysearch_pb.CreateSearchPresetRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.SearchPreset) => void): grpcWeb.ClientReadableStream<strategysearch_strategysearch_pb.SearchPreset>;
+
+  createSearchPreset(
+    request: strategysearch_strategysearch_pb.CreateSearchPresetRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.SearchPreset) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset',
+        request,
+        metadata || {},
+        this.methodDescriptorCreateSearchPreset,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset',
+    request,
+    metadata || {},
+    this.methodDescriptorCreateSearchPreset);
+  }
+
+  methodDescriptorListSearchPresets = new grpcWeb.MethodDescriptor(
+    '/trb.strategysearch.v1.StrategySearchService/ListSearchPresets',
+    grpcWeb.MethodType.UNARY,
+    strategysearch_strategysearch_pb.ListSearchPresetsRequest,
+    strategysearch_strategysearch_pb.ListSearchPresetsResponse,
+    (request: strategysearch_strategysearch_pb.ListSearchPresetsRequest) => {
+      return request.serializeBinary();
+    },
+    strategysearch_strategysearch_pb.ListSearchPresetsResponse.deserializeBinary
+  );
+
+  listSearchPresets(
+    request: strategysearch_strategysearch_pb.ListSearchPresetsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<strategysearch_strategysearch_pb.ListSearchPresetsResponse>;
+
+  listSearchPresets(
+    request: strategysearch_strategysearch_pb.ListSearchPresetsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.ListSearchPresetsResponse) => void): grpcWeb.ClientReadableStream<strategysearch_strategysearch_pb.ListSearchPresetsResponse>;
+
+  listSearchPresets(
+    request: strategysearch_strategysearch_pb.ListSearchPresetsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.ListSearchPresetsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.strategysearch.v1.StrategySearchService/ListSearchPresets',
+        request,
+        metadata || {},
+        this.methodDescriptorListSearchPresets,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.strategysearch.v1.StrategySearchService/ListSearchPresets',
+    request,
+    metadata || {},
+    this.methodDescriptorListSearchPresets);
+  }
+
+  methodDescriptorDeleteSearchPreset = new grpcWeb.MethodDescriptor(
+    '/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset',
+    grpcWeb.MethodType.UNARY,
+    strategysearch_strategysearch_pb.DeleteSearchPresetRequest,
+    strategysearch_strategysearch_pb.DeleteSearchPresetResponse,
+    (request: strategysearch_strategysearch_pb.DeleteSearchPresetRequest) => {
+      return request.serializeBinary();
+    },
+    strategysearch_strategysearch_pb.DeleteSearchPresetResponse.deserializeBinary
+  );
+
+  deleteSearchPreset(
+    request: strategysearch_strategysearch_pb.DeleteSearchPresetRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<strategysearch_strategysearch_pb.DeleteSearchPresetResponse>;
+
+  deleteSearchPreset(
+    request: strategysearch_strategysearch_pb.DeleteSearchPresetRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.DeleteSearchPresetResponse) => void): grpcWeb.ClientReadableStream<strategysearch_strategysearch_pb.DeleteSearchPresetResponse>;
+
+  deleteSearchPreset(
+    request: strategysearch_strategysearch_pb.DeleteSearchPresetRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.DeleteSearchPresetResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset',
+        request,
+        metadata || {},
+        this.methodDescriptorDeleteSearchPreset,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset',
+    request,
+    metadata || {},
+    this.methodDescriptorDeleteSearchPreset);
+  }
+
 }
 

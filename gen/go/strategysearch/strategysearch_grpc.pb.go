@@ -19,11 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StrategySearchService_SubmitSearch_FullMethodName      = "/trb.strategysearch.v1.StrategySearchService/SubmitSearch"
-	StrategySearchService_GetSearchProgress_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/GetSearchProgress"
-	StrategySearchService_GetBestTrials_FullMethodName     = "/trb.strategysearch.v1.StrategySearchService/GetBestTrials"
-	StrategySearchService_ListSearches_FullMethodName      = "/trb.strategysearch.v1.StrategySearchService/ListSearches"
-	StrategySearchService_CancelSearch_FullMethodName      = "/trb.strategysearch.v1.StrategySearchService/CancelSearch"
+	StrategySearchService_SubmitSearch_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/SubmitSearch"
+	StrategySearchService_GetSearchProgress_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/GetSearchProgress"
+	StrategySearchService_GetBestTrials_FullMethodName      = "/trb.strategysearch.v1.StrategySearchService/GetBestTrials"
+	StrategySearchService_ListSearches_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/ListSearches"
+	StrategySearchService_CancelSearch_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/CancelSearch"
+	StrategySearchService_CreateSearchPreset_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset"
+	StrategySearchService_ListSearchPresets_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/ListSearchPresets"
+	StrategySearchService_DeleteSearchPreset_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset"
 )
 
 // StrategySearchServiceClient is the client API for StrategySearchService service.
@@ -42,6 +45,10 @@ type StrategySearchServiceClient interface {
 	GetBestTrials(ctx context.Context, in *GetBestTrialsRequest, opts ...grpc.CallOption) (*GetBestTrialsResponse, error)
 	ListSearches(ctx context.Context, in *ListSearchesRequest, opts ...grpc.CallOption) (*ListSearchesResponse, error)
 	CancelSearch(ctx context.Context, in *CancelSearchRequest, opts ...grpc.CallOption) (*SearchRun, error)
+	// --- сохранённые настройки поиска (пресеты формы) ---
+	CreateSearchPreset(ctx context.Context, in *CreateSearchPresetRequest, opts ...grpc.CallOption) (*SearchPreset, error)
+	ListSearchPresets(ctx context.Context, in *ListSearchPresetsRequest, opts ...grpc.CallOption) (*ListSearchPresetsResponse, error)
+	DeleteSearchPreset(ctx context.Context, in *DeleteSearchPresetRequest, opts ...grpc.CallOption) (*DeleteSearchPresetResponse, error)
 }
 
 type strategySearchServiceClient struct {
@@ -102,6 +109,36 @@ func (c *strategySearchServiceClient) CancelSearch(ctx context.Context, in *Canc
 	return out, nil
 }
 
+func (c *strategySearchServiceClient) CreateSearchPreset(ctx context.Context, in *CreateSearchPresetRequest, opts ...grpc.CallOption) (*SearchPreset, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchPreset)
+	err := c.cc.Invoke(ctx, StrategySearchService_CreateSearchPreset_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *strategySearchServiceClient) ListSearchPresets(ctx context.Context, in *ListSearchPresetsRequest, opts ...grpc.CallOption) (*ListSearchPresetsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSearchPresetsResponse)
+	err := c.cc.Invoke(ctx, StrategySearchService_ListSearchPresets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *strategySearchServiceClient) DeleteSearchPreset(ctx context.Context, in *DeleteSearchPresetRequest, opts ...grpc.CallOption) (*DeleteSearchPresetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSearchPresetResponse)
+	err := c.cc.Invoke(ctx, StrategySearchService_DeleteSearchPreset_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StrategySearchServiceServer is the server API for StrategySearchService service.
 // All implementations must embed UnimplementedStrategySearchServiceServer
 // for forward compatibility.
@@ -118,6 +155,10 @@ type StrategySearchServiceServer interface {
 	GetBestTrials(context.Context, *GetBestTrialsRequest) (*GetBestTrialsResponse, error)
 	ListSearches(context.Context, *ListSearchesRequest) (*ListSearchesResponse, error)
 	CancelSearch(context.Context, *CancelSearchRequest) (*SearchRun, error)
+	// --- сохранённые настройки поиска (пресеты формы) ---
+	CreateSearchPreset(context.Context, *CreateSearchPresetRequest) (*SearchPreset, error)
+	ListSearchPresets(context.Context, *ListSearchPresetsRequest) (*ListSearchPresetsResponse, error)
+	DeleteSearchPreset(context.Context, *DeleteSearchPresetRequest) (*DeleteSearchPresetResponse, error)
 	mustEmbedUnimplementedStrategySearchServiceServer()
 }
 
@@ -142,6 +183,15 @@ func (UnimplementedStrategySearchServiceServer) ListSearches(context.Context, *L
 }
 func (UnimplementedStrategySearchServiceServer) CancelSearch(context.Context, *CancelSearchRequest) (*SearchRun, error) {
 	return nil, status.Error(codes.Unimplemented, "method CancelSearch not implemented")
+}
+func (UnimplementedStrategySearchServiceServer) CreateSearchPreset(context.Context, *CreateSearchPresetRequest) (*SearchPreset, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateSearchPreset not implemented")
+}
+func (UnimplementedStrategySearchServiceServer) ListSearchPresets(context.Context, *ListSearchPresetsRequest) (*ListSearchPresetsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSearchPresets not implemented")
+}
+func (UnimplementedStrategySearchServiceServer) DeleteSearchPreset(context.Context, *DeleteSearchPresetRequest) (*DeleteSearchPresetResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteSearchPreset not implemented")
 }
 func (UnimplementedStrategySearchServiceServer) mustEmbedUnimplementedStrategySearchServiceServer() {}
 func (UnimplementedStrategySearchServiceServer) testEmbeddedByValue()                               {}
@@ -254,6 +304,60 @@ func _StrategySearchService_CancelSearch_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StrategySearchService_CreateSearchPreset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSearchPresetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategySearchServiceServer).CreateSearchPreset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StrategySearchService_CreateSearchPreset_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategySearchServiceServer).CreateSearchPreset(ctx, req.(*CreateSearchPresetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StrategySearchService_ListSearchPresets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSearchPresetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategySearchServiceServer).ListSearchPresets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StrategySearchService_ListSearchPresets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategySearchServiceServer).ListSearchPresets(ctx, req.(*ListSearchPresetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StrategySearchService_DeleteSearchPreset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSearchPresetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategySearchServiceServer).DeleteSearchPreset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StrategySearchService_DeleteSearchPreset_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategySearchServiceServer).DeleteSearchPreset(ctx, req.(*DeleteSearchPresetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StrategySearchService_ServiceDesc is the grpc.ServiceDesc for StrategySearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -280,6 +384,18 @@ var StrategySearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelSearch",
 			Handler:    _StrategySearchService_CancelSearch_Handler,
+		},
+		{
+			MethodName: "CreateSearchPreset",
+			Handler:    _StrategySearchService_CreateSearchPreset_Handler,
+		},
+		{
+			MethodName: "ListSearchPresets",
+			Handler:    _StrategySearchService_ListSearchPresets_Handler,
+		},
+		{
+			MethodName: "DeleteSearchPreset",
+			Handler:    _StrategySearchService_DeleteSearchPreset_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

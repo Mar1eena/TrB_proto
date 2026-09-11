@@ -66,6 +66,21 @@ class StrategySearchServiceStub(object):
                 request_serializer=strategysearch_dot_strategysearch__pb2.CancelSearchRequest.SerializeToString,
                 response_deserializer=strategysearch_dot_search__pb2.SearchRun.FromString,
                 _registered_method=True)
+        self.CreateSearchPreset = channel.unary_unary(
+                '/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset',
+                request_serializer=strategysearch_dot_strategysearch__pb2.CreateSearchPresetRequest.SerializeToString,
+                response_deserializer=strategysearch_dot_strategysearch__pb2.SearchPreset.FromString,
+                _registered_method=True)
+        self.ListSearchPresets = channel.unary_unary(
+                '/trb.strategysearch.v1.StrategySearchService/ListSearchPresets',
+                request_serializer=strategysearch_dot_strategysearch__pb2.ListSearchPresetsRequest.SerializeToString,
+                response_deserializer=strategysearch_dot_strategysearch__pb2.ListSearchPresetsResponse.FromString,
+                _registered_method=True)
+        self.DeleteSearchPreset = channel.unary_unary(
+                '/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset',
+                request_serializer=strategysearch_dot_strategysearch__pb2.DeleteSearchPresetRequest.SerializeToString,
+                response_deserializer=strategysearch_dot_strategysearch__pb2.DeleteSearchPresetResponse.FromString,
+                _registered_method=True)
 
 
 class StrategySearchServiceServicer(object):
@@ -107,6 +122,25 @@ class StrategySearchServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateSearchPreset(self, request, context):
+        """--- сохранённые настройки поиска (пресеты формы) ---
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListSearchPresets(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSearchPreset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_StrategySearchServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -134,6 +168,21 @@ def add_StrategySearchServiceServicer_to_server(servicer, server):
                     servicer.CancelSearch,
                     request_deserializer=strategysearch_dot_strategysearch__pb2.CancelSearchRequest.FromString,
                     response_serializer=strategysearch_dot_search__pb2.SearchRun.SerializeToString,
+            ),
+            'CreateSearchPreset': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateSearchPreset,
+                    request_deserializer=strategysearch_dot_strategysearch__pb2.CreateSearchPresetRequest.FromString,
+                    response_serializer=strategysearch_dot_strategysearch__pb2.SearchPreset.SerializeToString,
+            ),
+            'ListSearchPresets': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSearchPresets,
+                    request_deserializer=strategysearch_dot_strategysearch__pb2.ListSearchPresetsRequest.FromString,
+                    response_serializer=strategysearch_dot_strategysearch__pb2.ListSearchPresetsResponse.SerializeToString,
+            ),
+            'DeleteSearchPreset': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSearchPreset,
+                    request_deserializer=strategysearch_dot_strategysearch__pb2.DeleteSearchPresetRequest.FromString,
+                    response_serializer=strategysearch_dot_strategysearch__pb2.DeleteSearchPresetResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -277,6 +326,87 @@ class StrategySearchService(object):
             '/trb.strategysearch.v1.StrategySearchService/CancelSearch',
             strategysearch_dot_strategysearch__pb2.CancelSearchRequest.SerializeToString,
             strategysearch_dot_search__pb2.SearchRun.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateSearchPreset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset',
+            strategysearch_dot_strategysearch__pb2.CreateSearchPresetRequest.SerializeToString,
+            strategysearch_dot_strategysearch__pb2.SearchPreset.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListSearchPresets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.strategysearch.v1.StrategySearchService/ListSearchPresets',
+            strategysearch_dot_strategysearch__pb2.ListSearchPresetsRequest.SerializeToString,
+            strategysearch_dot_strategysearch__pb2.ListSearchPresetsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteSearchPreset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset',
+            strategysearch_dot_strategysearch__pb2.DeleteSearchPresetRequest.SerializeToString,
+            strategysearch_dot_strategysearch__pb2.DeleteSearchPresetResponse.FromString,
             options,
             channel_credentials,
             insecure,

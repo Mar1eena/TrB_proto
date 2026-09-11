@@ -23,12 +23,13 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from strategysearch import spec_pb2 as strategysearch_dot_spec__pb2
 from strategysearch import backtest_pb2 as strategysearch_dot_backtest__pb2
 from strategysearch import search_pb2 as strategysearch_dot_search__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#strategysearch/strategysearch.proto\x12\x15trb.strategysearch.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x19strategysearch/spec.proto\x1a\x1dstrategysearch/backtest.proto\x1a\x1bstrategysearch/search.proto\"\x84\x02\n\x13SubmitSearchRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12<\n\tbase_spec\x18\x02 \x01(\x0b\x32).trb.strategysearch.v1.StrategySearchSpec\x12\x37\n\x0csearch_space\x18\x03 \x03(\x0b\x32!.trb.strategysearch.v1.ParamRange\x12\x31\n\x05study\x18\x04 \x01(\x0b\x32\".trb.strategysearch.v1.StudyConfig\x12\x35\n\x06\x63onfig\x18\x05 \x01(\x0b\x32%.trb.strategysearch.v1.BacktestConfig\"[\n\x14SubmitSearchResponse\x12\x11\n\tsearch_id\x18\x01 \x01(\t\x12\x30\n\x06status\x18\x02 \x01(\x0e\x32 .trb.strategysearch.v1.RunStatus\"-\n\x18GetSearchProgressRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t\"8\n\x14GetBestTrialsRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t\x12\r\n\x05top_k\x18\x02 \x01(\x05\"D\n\x15GetBestTrialsResponse\x12+\n\x05items\x18\x01 \x03(\x0b\x32\x1c.trb.strategysearch.v1.Trial\"f\n\x13ListSearchesRequest\x12\x30\n\x06status\x18\x01 \x01(\x0e\x32 .trb.strategysearch.v1.RunStatus\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\x0e\n\x06offset\x18\x03 \x01(\x05\"V\n\x14ListSearchesResponse\x12/\n\x05items\x18\x01 \x03(\x0b\x32 .trb.strategysearch.v1.SearchRun\x12\r\n\x05total\x18\x02 \x01(\x05\"(\n\x13\x43\x61ncelSearchRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t2\xf6\x06\n\x15StrategySearchService\x12\xa3\x01\n\x0cSubmitSearch\x12*.trb.strategysearch.v1.SubmitSearchRequest\x1a+.trb.strategysearch.v1.SubmitSearchResponse\":\x82\xd3\xe4\x93\x02\x34\"\x1b/v1/strategysearch/searches:\x01*Z\x12\"\r/SubmitSearch:\x01*\x12\xb0\x01\n\x11GetSearchProgress\x12/.trb.strategysearch.v1.GetSearchProgressRequest\x1a .trb.strategysearch.v1.SearchRun\"H\x82\xd3\xe4\x93\x02\x42\x12\'/v1/strategysearch/searches/{search_id}Z\x17\"\x12/GetSearchProgress:\x01*\x12\xb5\x01\n\rGetBestTrials\x12+.trb.strategysearch.v1.GetBestTrialsRequest\x1a,.trb.strategysearch.v1.GetBestTrialsResponse\"I\x82\xd3\xe4\x93\x02\x43\x12,/v1/strategysearch/searches/{search_id}/bestZ\x13\"\x0e/GetBestTrials:\x01*\x12\xa0\x01\n\x0cListSearches\x12*.trb.strategysearch.v1.ListSearchesRequest\x1a+.trb.strategysearch.v1.ListSearchesResponse\"7\x82\xd3\xe4\x93\x02\x31\x12\x1b/v1/strategysearch/searchesZ\x12\"\r/ListSearches:\x01*\x12\xa8\x01\n\x0c\x43\x61ncelSearch\x12*.trb.strategysearch.v1.CancelSearchRequest\x1a .trb.strategysearch.v1.SearchRun\"J\x82\xd3\xe4\x93\x02\x44\"./v1/strategysearch/searches/{search_id}:cancelZ\x12\"\r/CancelSearch:\x01*BDZBgithub.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearchb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#strategysearch/strategysearch.proto\x12\x15trb.strategysearch.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19strategysearch/spec.proto\x1a\x1dstrategysearch/backtest.proto\x1a\x1bstrategysearch/search.proto\"\x84\x02\n\x13SubmitSearchRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12<\n\tbase_spec\x18\x02 \x01(\x0b\x32).trb.strategysearch.v1.StrategySearchSpec\x12\x37\n\x0csearch_space\x18\x03 \x03(\x0b\x32!.trb.strategysearch.v1.ParamRange\x12\x31\n\x05study\x18\x04 \x01(\x0b\x32\".trb.strategysearch.v1.StudyConfig\x12\x35\n\x06\x63onfig\x18\x05 \x01(\x0b\x32%.trb.strategysearch.v1.BacktestConfig\"[\n\x14SubmitSearchResponse\x12\x11\n\tsearch_id\x18\x01 \x01(\t\x12\x30\n\x06status\x18\x02 \x01(\x0e\x32 .trb.strategysearch.v1.RunStatus\"-\n\x18GetSearchProgressRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t\"8\n\x14GetBestTrialsRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t\x12\r\n\x05top_k\x18\x02 \x01(\x05\"D\n\x15GetBestTrialsResponse\x12+\n\x05items\x18\x01 \x03(\x0b\x32\x1c.trb.strategysearch.v1.Trial\"f\n\x13ListSearchesRequest\x12\x30\n\x06status\x18\x01 \x01(\x0e\x32 .trb.strategysearch.v1.RunStatus\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\x0e\n\x06offset\x18\x03 \x01(\x05\"V\n\x14ListSearchesResponse\x12/\n\x05items\x18\x01 \x03(\x0b\x32 .trb.strategysearch.v1.SearchRun\x12\r\n\x05total\x18\x02 \x01(\x05\"(\n\x13\x43\x61ncelSearchRequest\x12\x11\n\tsearch_id\x18\x01 \x01(\t\"\xb9\x02\n\x0cSearchPreset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12<\n\tbase_spec\x18\x03 \x01(\x0b\x32).trb.strategysearch.v1.StrategySearchSpec\x12\x37\n\x0csearch_space\x18\x04 \x03(\x0b\x32!.trb.strategysearch.v1.ParamRange\x12\x31\n\x05study\x18\x05 \x01(\x0b\x32\".trb.strategysearch.v1.StudyConfig\x12\x35\n\x06\x63onfig\x18\x06 \x01(\x0b\x32%.trb.strategysearch.v1.BacktestConfig\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8a\x02\n\x19\x43reateSearchPresetRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12<\n\tbase_spec\x18\x02 \x01(\x0b\x32).trb.strategysearch.v1.StrategySearchSpec\x12\x37\n\x0csearch_space\x18\x03 \x03(\x0b\x32!.trb.strategysearch.v1.ParamRange\x12\x31\n\x05study\x18\x04 \x01(\x0b\x32\".trb.strategysearch.v1.StudyConfig\x12\x35\n\x06\x63onfig\x18\x05 \x01(\x0b\x32%.trb.strategysearch.v1.BacktestConfig\"9\n\x18ListSearchPresetsRequest\x12\r\n\x05limit\x18\x01 \x01(\x05\x12\x0e\n\x06offset\x18\x02 \x01(\x05\"^\n\x19ListSearchPresetsResponse\x12\x32\n\x05items\x18\x01 \x03(\x0b\x32#.trb.strategysearch.v1.SearchPreset\x12\r\n\x05total\x18\x02 \x01(\x05\"\'\n\x19\x44\x65leteSearchPresetRequest\x12\n\n\x02id\x18\x01 \x01(\t\"(\n\x1a\x44\x65leteSearchPresetResponse\x12\n\n\x02id\x18\x01 \x01(\t2\x9a\x0b\n\x15StrategySearchService\x12\xa3\x01\n\x0cSubmitSearch\x12*.trb.strategysearch.v1.SubmitSearchRequest\x1a+.trb.strategysearch.v1.SubmitSearchResponse\":\x82\xd3\xe4\x93\x02\x34\"\x1b/v1/strategysearch/searches:\x01*Z\x12\"\r/SubmitSearch:\x01*\x12\xb0\x01\n\x11GetSearchProgress\x12/.trb.strategysearch.v1.GetSearchProgressRequest\x1a .trb.strategysearch.v1.SearchRun\"H\x82\xd3\xe4\x93\x02\x42\x12\'/v1/strategysearch/searches/{search_id}Z\x17\"\x12/GetSearchProgress:\x01*\x12\xb5\x01\n\rGetBestTrials\x12+.trb.strategysearch.v1.GetBestTrialsRequest\x1a,.trb.strategysearch.v1.GetBestTrialsResponse\"I\x82\xd3\xe4\x93\x02\x43\x12,/v1/strategysearch/searches/{search_id}/bestZ\x13\"\x0e/GetBestTrials:\x01*\x12\xa0\x01\n\x0cListSearches\x12*.trb.strategysearch.v1.ListSearchesRequest\x1a+.trb.strategysearch.v1.ListSearchesResponse\"7\x82\xd3\xe4\x93\x02\x31\x12\x1b/v1/strategysearch/searchesZ\x12\"\r/ListSearches:\x01*\x12\xa8\x01\n\x0c\x43\x61ncelSearch\x12*.trb.strategysearch.v1.CancelSearchRequest\x1a .trb.strategysearch.v1.SearchRun\"J\x82\xd3\xe4\x93\x02\x44\"./v1/strategysearch/searches/{search_id}:cancelZ\x12\"\r/CancelSearch:\x01*\x12\xac\x01\n\x12\x43reateSearchPreset\x12\x30.trb.strategysearch.v1.CreateSearchPresetRequest\x1a#.trb.strategysearch.v1.SearchPreset\"?\x82\xd3\xe4\x93\x02\x39\"\x1a/v1/strategysearch/presets:\x01*Z\x18\"\x13/CreateSearchPreset:\x01*\x12\xb3\x01\n\x11ListSearchPresets\x12/.trb.strategysearch.v1.ListSearchPresetsRequest\x1a\x30.trb.strategysearch.v1.ListSearchPresetsResponse\";\x82\xd3\xe4\x93\x02\x35\x12\x1a/v1/strategysearch/presetsZ\x17\"\x12/ListSearchPresets:\x01*\x12\xbc\x01\n\x12\x44\x65leteSearchPreset\x12\x30.trb.strategysearch.v1.DeleteSearchPresetRequest\x1a\x31.trb.strategysearch.v1.DeleteSearchPresetResponse\"A\x82\xd3\xe4\x93\x02;*\x1f/v1/strategysearch/presets/{id}Z\x18\"\x13/DeleteSearchPreset:\x01*BDZBgithub.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearchb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -46,22 +47,40 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['ListSearches']._serialized_options = b'\202\323\344\223\0021\022\033/v1/strategysearch/searchesZ\022\"\r/ListSearches:\001*'
   _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['CancelSearch']._loaded_options = None
   _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['CancelSearch']._serialized_options = b'\202\323\344\223\002D\"./v1/strategysearch/searches/{search_id}:cancelZ\022\"\r/CancelSearch:\001*'
-  _globals['_SUBMITSEARCHREQUEST']._serialized_start=180
-  _globals['_SUBMITSEARCHREQUEST']._serialized_end=440
-  _globals['_SUBMITSEARCHRESPONSE']._serialized_start=442
-  _globals['_SUBMITSEARCHRESPONSE']._serialized_end=533
-  _globals['_GETSEARCHPROGRESSREQUEST']._serialized_start=535
-  _globals['_GETSEARCHPROGRESSREQUEST']._serialized_end=580
-  _globals['_GETBESTTRIALSREQUEST']._serialized_start=582
-  _globals['_GETBESTTRIALSREQUEST']._serialized_end=638
-  _globals['_GETBESTTRIALSRESPONSE']._serialized_start=640
-  _globals['_GETBESTTRIALSRESPONSE']._serialized_end=708
-  _globals['_LISTSEARCHESREQUEST']._serialized_start=710
-  _globals['_LISTSEARCHESREQUEST']._serialized_end=812
-  _globals['_LISTSEARCHESRESPONSE']._serialized_start=814
-  _globals['_LISTSEARCHESRESPONSE']._serialized_end=900
-  _globals['_CANCELSEARCHREQUEST']._serialized_start=902
-  _globals['_CANCELSEARCHREQUEST']._serialized_end=942
-  _globals['_STRATEGYSEARCHSERVICE']._serialized_start=945
-  _globals['_STRATEGYSEARCHSERVICE']._serialized_end=1831
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['CreateSearchPreset']._loaded_options = None
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['CreateSearchPreset']._serialized_options = b'\202\323\344\223\0029\"\032/v1/strategysearch/presets:\001*Z\030\"\023/CreateSearchPreset:\001*'
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['ListSearchPresets']._loaded_options = None
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['ListSearchPresets']._serialized_options = b'\202\323\344\223\0025\022\032/v1/strategysearch/presetsZ\027\"\022/ListSearchPresets:\001*'
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['DeleteSearchPreset']._loaded_options = None
+  _globals['_STRATEGYSEARCHSERVICE'].methods_by_name['DeleteSearchPreset']._serialized_options = b'\202\323\344\223\002;*\037/v1/strategysearch/presets/{id}Z\030\"\023/DeleteSearchPreset:\001*'
+  _globals['_SUBMITSEARCHREQUEST']._serialized_start=213
+  _globals['_SUBMITSEARCHREQUEST']._serialized_end=473
+  _globals['_SUBMITSEARCHRESPONSE']._serialized_start=475
+  _globals['_SUBMITSEARCHRESPONSE']._serialized_end=566
+  _globals['_GETSEARCHPROGRESSREQUEST']._serialized_start=568
+  _globals['_GETSEARCHPROGRESSREQUEST']._serialized_end=613
+  _globals['_GETBESTTRIALSREQUEST']._serialized_start=615
+  _globals['_GETBESTTRIALSREQUEST']._serialized_end=671
+  _globals['_GETBESTTRIALSRESPONSE']._serialized_start=673
+  _globals['_GETBESTTRIALSRESPONSE']._serialized_end=741
+  _globals['_LISTSEARCHESREQUEST']._serialized_start=743
+  _globals['_LISTSEARCHESREQUEST']._serialized_end=845
+  _globals['_LISTSEARCHESRESPONSE']._serialized_start=847
+  _globals['_LISTSEARCHESRESPONSE']._serialized_end=933
+  _globals['_CANCELSEARCHREQUEST']._serialized_start=935
+  _globals['_CANCELSEARCHREQUEST']._serialized_end=975
+  _globals['_SEARCHPRESET']._serialized_start=978
+  _globals['_SEARCHPRESET']._serialized_end=1291
+  _globals['_CREATESEARCHPRESETREQUEST']._serialized_start=1294
+  _globals['_CREATESEARCHPRESETREQUEST']._serialized_end=1560
+  _globals['_LISTSEARCHPRESETSREQUEST']._serialized_start=1562
+  _globals['_LISTSEARCHPRESETSREQUEST']._serialized_end=1619
+  _globals['_LISTSEARCHPRESETSRESPONSE']._serialized_start=1621
+  _globals['_LISTSEARCHPRESETSRESPONSE']._serialized_end=1715
+  _globals['_DELETESEARCHPRESETREQUEST']._serialized_start=1717
+  _globals['_DELETESEARCHPRESETREQUEST']._serialized_end=1756
+  _globals['_DELETESEARCHPRESETRESPONSE']._serialized_start=1758
+  _globals['_DELETESEARCHPRESETRESPONSE']._serialized_end=1798
+  _globals['_STRATEGYSEARCHSERVICE']._serialized_start=1801
+  _globals['_STRATEGYSEARCHSERVICE']._serialized_end=3235
 # @@protoc_insertion_point(module_scope)
