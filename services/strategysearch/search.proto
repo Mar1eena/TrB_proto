@@ -1,0 +1,344 @@
+syntax = "proto3";
+
+package trb.strategysearch.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearch";
+
+import "google/protobuf/timestamp.proto";
+import "strategysearch/spec.proto";
+import "strategysearch/backtest.proto";
+
+// Поиск стратегий на движке Optuna: TPE/CMA-ES/GP-семплеры, прунинг
+// частично выполненных бэктестов, многоцелевая (Парето) оптимизация.
+// Оценка кандидата выполняется воркером backtrader/TA-Lib, метрики —
+// полным QuantStats-набором (см. BacktestMetrics в strategysearch/backtest.proto).
+
+// ---------------------------------------------------------------------------
+// Пространство поиска
+// ---------------------------------------------------------------------------
+
+message IntRange {
+  int64 min = 1;
+  int64 max = 2;
+  int64 step = 3;  // 0 => 1
+}
+
+message FloatRange {
+  double min = 1;
+  double max = 2;
+  double step = 3;  // 0 => непрерывный диапазон
+}
+
+// Логарифмический диапазон вещественного параметра (optuna suggest_float(log=True)).
+// Требует min > 0.
+message LogFloatRange {
+  double min = 1;
+  double max = 2;
+}
+
+message Choice {
+  repeated double values = 1;  // suggest_categorical по числам
+}
+
+// Категориальный набор строковых значений (optuna suggest_categorical),
+// например индикатор из палитры, ключ output_key, вариант MAType и т.п.
+message CategoricalChoice {
+  repeated string values = 1;
+}
+
+// Диапазон варьирования одного параметра стратегии.
+// path — точечный адрес поля в StrategySearchSpec, напр.:
+//   "indicators.rsi_fast.settings.rsi.period"
+//   "risk.stop_loss_pct"
+//   "entry_long.all.operands.0.compare.right.constant"
+message ParamRange {
+  string path = 1;
+  oneof range {
+    IntRange ints = 2;
+    FloatRange floats = 3;              // suggest_float (линейный)
+    LogFloatRange log_floats = 4;       // suggest_float(log=True)
+    Choice choice = 5;
+    CategoricalChoice categorical = 6;
+  }
+}
+
+// Предзаданная точка пространства поиска, добавляемая в study через
+// study.enqueue_trial до старта оптимизации (напр. параметры base_spec — тёплый старт).
+message SeedTrial {
+  map<string, double> params = 1;  // path -> значение (числовые пути)
+}
+
+// ---------------------------------------------------------------------------
+// Семплеры (optuna.samplers)
+// ---------------------------------------------------------------------------
+
+message TpeSamplerParams {
+  uint32 n_startup_trials = 1;  // число случайных трайлов до включения TPE; 0 => дефолт движка (10)
+  uint32 n_ei_candidates = 2;   // 0 => дефолт движка (24)
+  bool multivariate = 3;
+  bool group = 4;                // требует multivariate=true
+  bool constant_liar = 5;        // безопасно для параллельных n_jobs > 1
+  double prior_weight = 6;       // 0 => дефолт движка (1.0)
+  uint64 seed = 7;                // 0 => случайный
+}
+
+message CmaEsSamplerParams {
+  uint32 n_startup_trials = 1;
+  double sigma0 = 2;              // 0 => семплер оценивает по диапазонам
+  bool warn_independent_sampling = 3;
+  bool restart_strategy_ipop = 4;  // IPOP-CMA-ES рестарты
+  bool use_separable_cma = 5;
+  uint64 seed = 6;
+}
+
+message RandomSamplerParams {
+  uint64 seed = 1;
+}
+
+// GridSampler перебирает декартово произведение search_space;
+// нечисловые/непрерывные FloatRange/LogFloatRange без step несовместимы с ним.
+message GridSamplerParams {}
+
+message NsgaIiSamplerParams {
+  uint32 population_size = 1;  // 0 => дефолт движка (50)
+  double mutation_prob = 2;    // 0 => дефолт движка (1/len(search_space))
+  double crossover_prob = 3;   // 0 => дефолт движка (0.9)
+  uint64 seed = 4;
+}
+
+message QmcSamplerParams {
+  bool scramble = 1;
+  uint64 seed = 2;
+}
+
+// GPSampler — байесовская оптимизация на гауссовских процессах (optuna >= 3.6).
+message GpSamplerParams {
+  uint32 n_startup_trials = 1;
+  uint64 seed = 2;
+}
+
+message SamplerConfig {
+  oneof sampler {
+    TpeSamplerParams tpe = 1;
+    CmaEsSamplerParams cmaes = 2;
+    RandomSamplerParams random = 3;
+    GridSamplerParams grid = 4;
+    NsgaIiSamplerParams nsga2 = 5;  // рекомендуется при objective.metrics > 1
+    QmcSamplerParams qmc = 6;
+    GpSamplerParams gp = 7;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Прунеры (optuna.pruners) — досрочная остановка слабых трайлов
+// по промежуточным значениям (halving внутри одного бэктеста).
+// ---------------------------------------------------------------------------
+
+message NopPrunerParams {}  // явное отключение прунинга
+
+message MedianPrunerParams {
+  uint32 n_startup_trials = 1;
+  uint32 n_warmup_steps = 2;
+  uint32 interval_steps = 3;
+  uint32 n_min_trials = 4;
+}
+
+message PercentilePrunerParams {
+  double percentile = 1;  // 0..100
+  uint32 n_startup_trials = 2;
+  uint32 n_warmup_steps = 3;
+  uint32 interval_steps = 4;
+  uint32 n_min_trials = 5;
+}
+
+message SuccessiveHalvingPrunerParams {
+  double min_resource = 1;  // 0 => "auto"
+  double reduction_factor = 2;
+  uint32 min_early_stopping_rate = 3;
+}
+
+message HyperbandPrunerParams {
+  uint32 min_resource = 1;
+  uint32 max_resource = 2;  // 0 => "auto"
+  double reduction_factor = 3;
+}
+
+message PatientPrunerParams {
+  uint32 patience = 1;
+  double min_delta = 2;
+}
+
+message ThresholdPrunerParams {
+  double lower = 1;
+  double upper = 2;
+  uint32 n_warmup_steps = 3;
+  uint32 interval_steps = 4;
+}
+
+message PrunerConfig {
+  oneof pruner {
+    NopPrunerParams none = 1;
+    MedianPrunerParams median = 2;
+    PercentilePrunerParams percentile = 3;
+    SuccessiveHalvingPrunerParams successive_halving = 4;
+    HyperbandPrunerParams hyperband = 5;
+    PatientPrunerParams patient = 6;
+    ThresholdPrunerParams threshold = 7;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Целевая функция и бюджет
+// ---------------------------------------------------------------------------
+
+message ObjectiveMetric {
+  // Ключ метрики из BacktestMetrics ("sharpe" | "cagr" | "calmar" | "omega" |
+  // "sqn" | "total_return" | ... — см. strategysearch/backtest.proto).
+  string metric = 1;
+  bool maximize = 2;
+}
+
+// len(metrics) == 1  => одноцелевая оптимизация (study.direction).
+// len(metrics)  > 1  => многоцелевая (study.directions), результат — фронт Парето.
+message Objective {
+  repeated ObjectiveMetric metrics = 1;
+  uint32 min_trades = 2;           // меньше => трайл получает штраф, см. движок
+  double max_drawdown_limit = 3;   // просадка выше => штраф; 0 — выключено
+}
+
+message Budget {
+  uint32 n_trials = 1;               // 0 => не ограничено (нужен timeout_seconds)
+  uint32 timeout_seconds = 2;        // 0 => не ограничено
+  uint32 n_jobs = 3;                 // параллельных воркеров; 0 => 1
+  uint64 seed = 4;                   // 0 => движок выберет случайный и сохранит
+  bool disable_cache = 5;            // не читать/не писать кэш оценок
+  // Раз в N баров бэктеста воркер вызывает trial.report(value, step) для
+  // прунера. 0 => промежуточные значения не репортятся (прунинг неактивен
+  // независимо от PrunerConfig).
+  uint32 pruning_report_interval_bars = 6;
+}
+
+// ---------------------------------------------------------------------------
+// Хранилище study/трайлов
+// ---------------------------------------------------------------------------
+
+// Зеркалирование трайлов Optuna в ClickHouse для последующей аналитики
+// (важность параметров, срезы по времени, дашборды) отдельно от
+// RDB-хранилища самого Optuna (storage_url).
+message ClickHouseTrialSink {
+  bool enabled = 1;
+  string database = 2;
+  string trials_table = 3;        // одна строка на завершённый/pruned/failed трайл
+  string studies_table = 4;       // одна строка на study, обновляется по прогрессу
+  uint32 flush_batch_size = 5;    // буферизация вставок; 0 => дефолт движка (500)
+  uint32 flush_interval_ms = 6;   // макс. задержка перед флашем; 0 => дефолт движка (2000)
+}
+
+message Storage {
+  // RDB URL для optuna.create_study(storage=...), напр. postgresql+psycopg2://...
+  // Пусто => in-memory storage (недопустимо при n_jobs > 1 / распределённом поиске).
+  string storage_url = 1;
+  ClickHouseTrialSink clickhouse = 2;
+}
+
+message StudyConfig {
+  string study_name = 1;             // уникален в рамках storage_url; по умолчанию = search_id
+  SamplerConfig sampler = 2;         // не задан => TpeSamplerParams с дефолтами движка
+  PrunerConfig pruner = 3;           // не задан => NopPrunerParams (без прунинга)
+  Objective objective = 4;
+  Budget budget = 5;
+  Storage storage = 6;
+  bool load_if_exists = 7;           // продолжить существующий study с тем же study_name
+  repeated SeedTrial seed_trials = 8;
+}
+
+// ---------------------------------------------------------------------------
+// Задача/результат оценки трайла (NATS)
+// ---------------------------------------------------------------------------
+
+// Задача оценки одного трайла воркеру (JetStream TrB.strategysearch.trial.tasks).
+// Публикует координатор поиска, MsgId = trial_id.
+message TrialTask {
+  string trial_id = 1;
+  string search_id = 2;
+  uint32 trial_number = 3;    // optuna Trial.number
+  StrategySearchSpec spec = 4;  // собран координатором из suggest_*(search_space)
+  BacktestConfig config = 5;
+  uint32 pruning_report_interval_bars = 6;  // 0 => не репортить
+  string reply_subject = 7;   // core-NATS субъект для TrialResult
+}
+
+message TrialIntermediateValue {
+  uint32 step = 1;   // номер бара/чекпоинта, переданный в trial.report(value, step)
+  double value = 2;
+}
+
+enum TrialState {
+  TRIAL_STATE_UNSPECIFIED = 0;
+  TRIAL_STATE_RUNNING = 1;
+  TRIAL_STATE_WAITING = 2;
+  TRIAL_STATE_COMPLETE = 3;
+  TRIAL_STATE_PRUNED = 4;
+  TRIAL_STATE_FAIL = 5;
+}
+
+// Ответ воркера координатору (core-NATS, reply_subject из TrialTask).
+message TrialResult {
+  string trial_id = 1;
+  map<string, double> values = 2;   // по одному значению на ObjectiveMetric; пусто при FAIL
+  TrialState state = 3;
+  repeated TrialIntermediateValue intermediate_values = 4;
+  string error = 5;
+  string engine_version = 6;
+}
+
+// ---------------------------------------------------------------------------
+// Персистентное состояние трайла/поиска
+// ---------------------------------------------------------------------------
+
+message Trial {
+  string trial_id = 1;
+  uint32 number = 2;
+  StrategySearchSpec spec = 3;
+  uint64 spec_hash = 4;
+  map<string, double> params = 5;    // path -> значение, выбранное suggest_*
+  map<string, double> values = 6;    // по ObjectiveMetric.metric -> значение
+  TrialState state = 7;
+  BacktestMetrics metrics = 8;       // полный QuantStats-набор метрик
+  bool is_pareto_optimal = 9;        // проставляется по завершении study при objective.metrics > 1
+  string backtest_run_id = 10;       // непусто для лучших/pareto-трайлов
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp completed_at = 12;
+}
+
+message SearchProgress {
+  RunStatus status = 1;
+  uint32 completed_trials = 2;
+  uint32 pruned_trials = 3;
+  uint32 failed_trials = 4;
+  uint32 total_trials = 5;                    // 0, если бюджет — только timeout
+  bool is_multi_objective = 6;
+  map<string, double> best_values = 7;        // заполняется только при is_multi_objective=false
+  string best_trial_id = 8;                   // заполняется только при is_multi_objective=false
+  repeated string pareto_front_trial_ids = 9; // заполняется только при is_multi_objective=true
+  string error = 10;
+}
+
+message SearchRun {
+  string search_id = 1;
+  string name = 2;
+  StrategySearchSpec base_spec = 3;    // стартовые/фиксированные значения вне search_space
+  repeated ParamRange search_space = 4;
+  StudyConfig study = 5;
+  BacktestConfig config = 6;
+  SearchProgress progress = 7;
+  string engine_version = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp started_at = 10;
+  google.protobuf.Timestamp finished_at = 11;
+}
+
+// Payload задачи в NATS (TrB.strategysearch.search.tasks). Публикует координатор.
+message SearchTask {
+  string search_id = 1;
+}

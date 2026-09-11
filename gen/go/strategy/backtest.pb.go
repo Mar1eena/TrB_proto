@@ -92,6 +92,9 @@ type BacktestConfig struct {
 	CommissionPct float64                `protobuf:"fixed64,6,opt,name=commission_pct,json=commissionPct,proto3" json:"commission_pct,omitempty"` // комиссия за сделку, доля
 	SlippagePct   float64                `protobuf:"fixed64,7,opt,name=slippage_pct,json=slippagePct,proto3" json:"slippage_pct,omitempty"`       // проскальзывание, доля
 	LongOnly      bool                   `protobuf:"varint,8,opt,name=long_only,json=longOnly,proto3" json:"long_only,omitempty"`                 // игнорировать entry_short/exit_short
+	// Инструмент сравнения для QuantStats-метрик (alpha/beta/information_ratio/
+	// r_squared в BacktestMetrics). Пусто => метрики относительно бенчмарка не считаются.
+	BenchmarkUid  string `protobuf:"bytes,9,opt,name=benchmark_uid,json=benchmarkUid,proto3" json:"benchmark_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -182,25 +185,55 @@ func (x *BacktestConfig) GetLongOnly() bool {
 	return false
 }
 
+func (x *BacktestConfig) GetBenchmarkUid() string {
+	if x != nil {
+		return x.BenchmarkUid
+	}
+	return ""
+}
+
 // Сводные метрики эффективности стратегии.
 type BacktestMetrics struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TotalReturn   float64                `protobuf:"fixed64,1,opt,name=total_return,json=totalReturn,proto3" json:"total_return,omitempty"` // суммарная доходность за период, доля
-	Cagr          float64                `protobuf:"fixed64,2,opt,name=cagr,proto3" json:"cagr,omitempty"`                                  // годовая доходность, доля
-	Sharpe        float64                `protobuf:"fixed64,3,opt,name=sharpe,proto3" json:"sharpe,omitempty"`
-	Sortino       float64                `protobuf:"fixed64,4,opt,name=sortino,proto3" json:"sortino,omitempty"`
-	MaxDrawdown   float64                `protobuf:"fixed64,5,opt,name=max_drawdown,json=maxDrawdown,proto3" json:"max_drawdown,omitempty"` // максимальная просадка, доля (>= 0)
-	WinRate       float64                `protobuf:"fixed64,6,opt,name=win_rate,json=winRate,proto3" json:"win_rate,omitempty"`             // доля прибыльных сделок, 0..1
-	ProfitFactor  float64                `protobuf:"fixed64,7,opt,name=profit_factor,json=profitFactor,proto3" json:"profit_factor,omitempty"`
-	Sqn           float64                `protobuf:"fixed64,8,opt,name=sqn,proto3" json:"sqn,omitempty"` // System Quality Number
-	TradesCount   uint32                 `protobuf:"varint,9,opt,name=trades_count,json=tradesCount,proto3" json:"trades_count,omitempty"`
-	Exposure      float64                `protobuf:"fixed64,10,opt,name=exposure,proto3" json:"exposure,omitempty"` // доля баров в рынке, 0..1
-	FinalEquity   float64                `protobuf:"fixed64,11,opt,name=final_equity,json=finalEquity,proto3" json:"final_equity,omitempty"`
-	AvgTradePct   float64                `protobuf:"fixed64,12,opt,name=avg_trade_pct,json=avgTradePct,proto3" json:"avg_trade_pct,omitempty"` // средняя доходность сделки, доля
-	Expectancy    float64                `protobuf:"fixed64,13,opt,name=expectancy,proto3" json:"expectancy,omitempty"`                        // матожидание сделки в валюте счёта
-	Extra         map[string]float64     `protobuf:"bytes,20,rep,name=extra,proto3" json:"extra,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed64,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	TotalReturn  float64                `protobuf:"fixed64,1,opt,name=total_return,json=totalReturn,proto3" json:"total_return,omitempty"` // суммарная доходность за период, доля
+	Cagr         float64                `protobuf:"fixed64,2,opt,name=cagr,proto3" json:"cagr,omitempty"`                                  // годовая доходность, доля
+	Sharpe       float64                `protobuf:"fixed64,3,opt,name=sharpe,proto3" json:"sharpe,omitempty"`
+	Sortino      float64                `protobuf:"fixed64,4,opt,name=sortino,proto3" json:"sortino,omitempty"`
+	MaxDrawdown  float64                `protobuf:"fixed64,5,opt,name=max_drawdown,json=maxDrawdown,proto3" json:"max_drawdown,omitempty"` // максимальная просадка, доля (>= 0)
+	WinRate      float64                `protobuf:"fixed64,6,opt,name=win_rate,json=winRate,proto3" json:"win_rate,omitempty"`             // доля прибыльных сделок, 0..1
+	ProfitFactor float64                `protobuf:"fixed64,7,opt,name=profit_factor,json=profitFactor,proto3" json:"profit_factor,omitempty"`
+	Sqn          float64                `protobuf:"fixed64,8,opt,name=sqn,proto3" json:"sqn,omitempty"` // System Quality Number
+	TradesCount  uint32                 `protobuf:"varint,9,opt,name=trades_count,json=tradesCount,proto3" json:"trades_count,omitempty"`
+	Exposure     float64                `protobuf:"fixed64,10,opt,name=exposure,proto3" json:"exposure,omitempty"` // доля баров в рынке, 0..1
+	FinalEquity  float64                `protobuf:"fixed64,11,opt,name=final_equity,json=finalEquity,proto3" json:"final_equity,omitempty"`
+	AvgTradePct  float64                `protobuf:"fixed64,12,opt,name=avg_trade_pct,json=avgTradePct,proto3" json:"avg_trade_pct,omitempty"` // средняя доходность сделки, доля
+	Expectancy   float64                `protobuf:"fixed64,13,opt,name=expectancy,proto3" json:"expectancy,omitempty"`                        // матожидание сделки в валюте счёта
+	// --- Расширенный набор метрик QuantStats (quantstats.stats) ---
+	Calmar                 float64 `protobuf:"fixed64,21,opt,name=calmar,proto3" json:"calmar,omitempty"` // CAGR / |max_drawdown|
+	Omega                  float64 `protobuf:"fixed64,22,opt,name=omega,proto3" json:"omega,omitempty"`   // Omega Ratio
+	TailRatio              float64 `protobuf:"fixed64,23,opt,name=tail_ratio,json=tailRatio,proto3" json:"tail_ratio,omitempty"`
+	ValueAtRisk            float64 `protobuf:"fixed64,24,opt,name=value_at_risk,json=valueAtRisk,proto3" json:"value_at_risk,omitempty"`                                    // VaR 95%, доля (отрицательное число)
+	ConditionalValueAtRisk float64 `protobuf:"fixed64,25,opt,name=conditional_value_at_risk,json=conditionalValueAtRisk,proto3" json:"conditional_value_at_risk,omitempty"` // CVaR/Expected Shortfall 95%
+	Skew                   float64 `protobuf:"fixed64,26,opt,name=skew,proto3" json:"skew,omitempty"`
+	Kurtosis               float64 `protobuf:"fixed64,27,opt,name=kurtosis,proto3" json:"kurtosis,omitempty"`
+	KellyCriterion         float64 `protobuf:"fixed64,28,opt,name=kelly_criterion,json=kellyCriterion,proto3" json:"kelly_criterion,omitempty"`
+	RiskOfRuin             float64 `protobuf:"fixed64,29,opt,name=risk_of_ruin,json=riskOfRuin,proto3" json:"risk_of_ruin,omitempty"`
+	RecoveryFactor         float64 `protobuf:"fixed64,30,opt,name=recovery_factor,json=recoveryFactor,proto3" json:"recovery_factor,omitempty"`
+	PayoffRatio            float64 `protobuf:"fixed64,31,opt,name=payoff_ratio,json=payoffRatio,proto3" json:"payoff_ratio,omitempty"`
+	GainToPainRatio        float64 `protobuf:"fixed64,32,opt,name=gain_to_pain_ratio,json=gainToPainRatio,proto3" json:"gain_to_pain_ratio,omitempty"`
+	OutlierWinRatio        float64 `protobuf:"fixed64,33,opt,name=outlier_win_ratio,json=outlierWinRatio,proto3" json:"outlier_win_ratio,omitempty"`
+	OutlierLossRatio       float64 `protobuf:"fixed64,34,opt,name=outlier_loss_ratio,json=outlierLossRatio,proto3" json:"outlier_loss_ratio,omitempty"`
+	CommonSenseRatio       float64 `protobuf:"fixed64,35,opt,name=common_sense_ratio,json=commonSenseRatio,proto3" json:"common_sense_ratio,omitempty"`
+	UlcerIndex             float64 `protobuf:"fixed64,36,opt,name=ulcer_index,json=ulcerIndex,proto3" json:"ulcer_index,omitempty"`
+	SerenityIndex          float64 `protobuf:"fixed64,37,opt,name=serenity_index,json=serenityIndex,proto3" json:"serenity_index,omitempty"`
+	// Заполняются, только если у BacktestConfig задан benchmark_uid.
+	Alpha            float64            `protobuf:"fixed64,38,opt,name=alpha,proto3" json:"alpha,omitempty"`
+	Beta             float64            `protobuf:"fixed64,39,opt,name=beta,proto3" json:"beta,omitempty"`
+	InformationRatio float64            `protobuf:"fixed64,40,opt,name=information_ratio,json=informationRatio,proto3" json:"information_ratio,omitempty"`
+	RSquared         float64            `protobuf:"fixed64,41,opt,name=r_squared,json=rSquared,proto3" json:"r_squared,omitempty"`
+	Extra            map[string]float64 `protobuf:"bytes,20,rep,name=extra,proto3" json:"extra,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed64,2,opt,name=value"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *BacktestMetrics) Reset() {
@@ -320,6 +353,153 @@ func (x *BacktestMetrics) GetAvgTradePct() float64 {
 func (x *BacktestMetrics) GetExpectancy() float64 {
 	if x != nil {
 		return x.Expectancy
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetCalmar() float64 {
+	if x != nil {
+		return x.Calmar
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetOmega() float64 {
+	if x != nil {
+		return x.Omega
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetTailRatio() float64 {
+	if x != nil {
+		return x.TailRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetValueAtRisk() float64 {
+	if x != nil {
+		return x.ValueAtRisk
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetConditionalValueAtRisk() float64 {
+	if x != nil {
+		return x.ConditionalValueAtRisk
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetSkew() float64 {
+	if x != nil {
+		return x.Skew
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetKurtosis() float64 {
+	if x != nil {
+		return x.Kurtosis
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetKellyCriterion() float64 {
+	if x != nil {
+		return x.KellyCriterion
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetRiskOfRuin() float64 {
+	if x != nil {
+		return x.RiskOfRuin
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetRecoveryFactor() float64 {
+	if x != nil {
+		return x.RecoveryFactor
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetPayoffRatio() float64 {
+	if x != nil {
+		return x.PayoffRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetGainToPainRatio() float64 {
+	if x != nil {
+		return x.GainToPainRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetOutlierWinRatio() float64 {
+	if x != nil {
+		return x.OutlierWinRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetOutlierLossRatio() float64 {
+	if x != nil {
+		return x.OutlierLossRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetCommonSenseRatio() float64 {
+	if x != nil {
+		return x.CommonSenseRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetUlcerIndex() float64 {
+	if x != nil {
+		return x.UlcerIndex
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetSerenityIndex() float64 {
+	if x != nil {
+		return x.SerenityIndex
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetAlpha() float64 {
+	if x != nil {
+		return x.Alpha
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetBeta() float64 {
+	if x != nil {
+		return x.Beta
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetInformationRatio() float64 {
+	if x != nil {
+		return x.InformationRatio
+	}
+	return 0
+}
+
+func (x *BacktestMetrics) GetRSquared() float64 {
+	if x != nil {
+		return x.RSquared
 	}
 	return 0
 }
@@ -871,7 +1051,7 @@ var File_strategy_backtest_proto protoreflect.FileDescriptor
 
 const file_strategy_backtest_proto_rawDesc = "" +
 	"\n" +
-	"\x17strategy/backtest.proto\x12\x0ftrb.strategy.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13strategy/spec.proto\"\xa8\x02\n" +
+	"\x17strategy/backtest.proto\x12\x0ftrb.strategy.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13strategy/spec.proto\"\xcd\x02\n" +
 	"\x0eBacktestConfig\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
 	"\binterval\x18\x02 \x01(\x05R\binterval\x120\n" +
@@ -880,7 +1060,8 @@ const file_strategy_backtest_proto_rawDesc = "" +
 	"\finitial_cash\x18\x05 \x01(\x01R\vinitialCash\x12%\n" +
 	"\x0ecommission_pct\x18\x06 \x01(\x01R\rcommissionPct\x12!\n" +
 	"\fslippage_pct\x18\a \x01(\x01R\vslippagePct\x12\x1b\n" +
-	"\tlong_only\x18\b \x01(\bR\blongOnly\"\x92\x04\n" +
+	"\tlong_only\x18\b \x01(\bR\blongOnly\x12#\n" +
+	"\rbenchmark_uid\x18\t \x01(\tR\fbenchmarkUid\"\xf6\t\n" +
 	"\x0fBacktestMetrics\x12!\n" +
 	"\ftotal_return\x18\x01 \x01(\x01R\vtotalReturn\x12\x12\n" +
 	"\x04cagr\x18\x02 \x01(\x01R\x04cagr\x12\x16\n" +
@@ -897,7 +1078,31 @@ const file_strategy_backtest_proto_rawDesc = "" +
 	"\ravg_trade_pct\x18\f \x01(\x01R\vavgTradePct\x12\x1e\n" +
 	"\n" +
 	"expectancy\x18\r \x01(\x01R\n" +
-	"expectancy\x12A\n" +
+	"expectancy\x12\x16\n" +
+	"\x06calmar\x18\x15 \x01(\x01R\x06calmar\x12\x14\n" +
+	"\x05omega\x18\x16 \x01(\x01R\x05omega\x12\x1d\n" +
+	"\n" +
+	"tail_ratio\x18\x17 \x01(\x01R\ttailRatio\x12\"\n" +
+	"\rvalue_at_risk\x18\x18 \x01(\x01R\vvalueAtRisk\x129\n" +
+	"\x19conditional_value_at_risk\x18\x19 \x01(\x01R\x16conditionalValueAtRisk\x12\x12\n" +
+	"\x04skew\x18\x1a \x01(\x01R\x04skew\x12\x1a\n" +
+	"\bkurtosis\x18\x1b \x01(\x01R\bkurtosis\x12'\n" +
+	"\x0fkelly_criterion\x18\x1c \x01(\x01R\x0ekellyCriterion\x12 \n" +
+	"\frisk_of_ruin\x18\x1d \x01(\x01R\n" +
+	"riskOfRuin\x12'\n" +
+	"\x0frecovery_factor\x18\x1e \x01(\x01R\x0erecoveryFactor\x12!\n" +
+	"\fpayoff_ratio\x18\x1f \x01(\x01R\vpayoffRatio\x12+\n" +
+	"\x12gain_to_pain_ratio\x18  \x01(\x01R\x0fgainToPainRatio\x12*\n" +
+	"\x11outlier_win_ratio\x18! \x01(\x01R\x0foutlierWinRatio\x12,\n" +
+	"\x12outlier_loss_ratio\x18\" \x01(\x01R\x10outlierLossRatio\x12,\n" +
+	"\x12common_sense_ratio\x18# \x01(\x01R\x10commonSenseRatio\x12\x1f\n" +
+	"\vulcer_index\x18$ \x01(\x01R\n" +
+	"ulcerIndex\x12%\n" +
+	"\x0eserenity_index\x18% \x01(\x01R\rserenityIndex\x12\x14\n" +
+	"\x05alpha\x18& \x01(\x01R\x05alpha\x12\x12\n" +
+	"\x04beta\x18' \x01(\x01R\x04beta\x12+\n" +
+	"\x11information_ratio\x18( \x01(\x01R\x10informationRatio\x12\x1b\n" +
+	"\tr_squared\x18) \x01(\x01R\brSquared\x12A\n" +
 	"\x05extra\x18\x14 \x03(\v2+.trb.strategy.v1.BacktestMetrics.ExtraEntryR\x05extra\x1a8\n" +
 	"\n" +
 	"ExtraEntry\x12\x10\n" +

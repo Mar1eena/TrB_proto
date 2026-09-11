@@ -15,6 +15,7 @@ PROTOS := $(wildcard \
 	$(PROTO_PATH)/postgresql/*.proto \
 	$(PROTO_PATH)/indicators/*.proto \
 	$(PROTO_PATH)/strategy/*.proto \
+	$(PROTO_PATH)/strategysearch/*.proto \
 )
 
 GOOGLE_API := $(PROTO_PATH)/google/api/*.proto
@@ -34,6 +35,7 @@ gene:
 	python -m grpc_tools.protoc -I$(PROTO_PATH) \
 		$(PROTO_PATH)/indicators/*.proto \
 		$(PROTO_PATH)/strategy/*.proto \
+		$(PROTO_PATH)/strategysearch/*.proto \
 		$(PROTO_PATH)/google/api/*.proto \
 		--python_out=$(GEN_PY) --pyi_out=$(GEN_PY) \
 		--grpc_python_out=$(GEN_PY)

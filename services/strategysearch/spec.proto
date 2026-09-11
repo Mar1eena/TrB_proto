@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package trb.strategysearch.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearch";
+
+import "indicators/params.proto";
+
+// Минимальный декларативный спек стратегии для сервиса strategysearch.
+// Самостоятельная копия набора правил (не зависит от trb.strategy.v1) —
+// набора индикаторов + деревьев булевых правил входа/выхода + сайзинга +
+// риск-контролей достаточно, чтобы движок optuna/backtrader мог параметризовать
+// и оценить кандидата без обращения к каталогу стратегий.
+
+// Поле цены свечи, к которому применяется операнд/индикатор.
+enum PriceField {
+  PRICE_CLOSE = 0;
+  PRICE_OPEN = 1;
+  PRICE_HIGH = 2;
+  PRICE_LOW = 3;
+  PRICE_VOLUME = 4;
+  PRICE_HL2 = 5;    // (high + low) / 2
+  PRICE_HLC3 = 6;   // (high + low + close) / 3
+  PRICE_OHLC4 = 7;  // (open + high + low + close) / 4
+}
+
+// Ссылка на индикатор внутри спека. settings переиспользует oneof из
+// trb.indicators.v1 (TA-Lib) — имена и семантика параметров общие с сервисом индикаторов.
+message IndicatorRef {
+  // Уникальный идентификатор в пределах StrategySearchSpec (ссылка из Operand.indicator_id).
+  string id = 1;
+  trb.indicators.v1.IndicatorSettings settings = 2;
+  // Линия мульти-выходного индикатора: "macd"/"signal"/"hist",
+  // "upper"/"middle"/"lower", "slowk"/"slowd" и т.п. Пусто => основной выход.
+  string output_key = 3;
+  // Входная серия для индикатора (по умолчанию close).
+  PriceField applied_to = 4;
+}
+
+enum ArithOp {
+  ARITH_OP_ADD = 0;
+  ARITH_OP_SUB = 1;
+  ARITH_OP_MUL = 2;
+  ARITH_OP_DIV = 3;
+}
+
+// Арифметическое выражение над двумя операндами.
+message ArithExpr {
+  Operand left = 1;
+  ArithOp op = 2;
+  Operand right = 3;
+}
+
+// Операнд сравнения: значение индикатора, поле цены, константа или арифметика.
+message Operand {
+  // Сдвиг назад в барах: 0 — текущий закрытый бар, 1 — предыдущий и т.д.
+  uint32 shift = 5;
+  oneof operand {
+    string indicator_id = 1;  // IndicatorRef.id
+    PriceField price = 2;
+    double constant = 3;
+    ArithExpr arith = 4;
+  }
+}
+
+enum CompareOp {
+  COMPARE_OP_GT = 0;
+  COMPARE_OP_GE = 1;
+  COMPARE_OP_LT = 2;
+  COMPARE_OP_LE = 3;
+  COMPARE_OP_EQ = 4;
+  COMPARE_OP_NE = 5;
+  COMPARE_OP_CROSSES_ABOVE = 6;  // left пересекает right снизу вверх на этом баре
+  COMPARE_OP_CROSSES_BELOW = 7;  // left пересекает right сверху вниз на этом баре
+}
+
+message Comparison {
+  Operand left = 1;
+  CompareOp op = 2;
+  Operand right = 3;
+}
+
+// Узел дерева булевых правил.
+message BoolExpr {
+  oneof node {
+    Comparison compare = 1;
+    BoolList all = 2;      // логическое И над operands
+    BoolList any = 3;      // логическое ИЛИ над operands
+    BoolExpr negate = 4;   // логическое НЕ
+    bool literal = 5;      // константа true/false
+  }
+}
+
+message BoolList {
+  repeated BoolExpr operands = 1;
+}
+
+// Размер позиции при входе.
+message PositionSizing {
+  oneof method {
+    double fixed_cash = 1;       // фиксированная сумма в валюте счёта
+    double percent_equity = 2;   // доля капитала, 0..1
+    uint32 fixed_units = 3;      // фиксированное число лотов/единиц
+    double risk_per_trade = 4;   // доля капитала под риском до стопа, 0..1
+  }
+  uint32 max_open_positions = 10;  // по умолчанию 1
+  bool allow_pyramiding = 11;      // разрешить доборы в открытую позицию
+}
+
+// Управление риском на сделку.
+message RiskControls {
+  double stop_loss_pct = 1;    // доля от цены входа; 0 — выключено
+  double take_profit_pct = 2;  // доля от цены входа; 0 — выключено
+  bool trailing_stop = 3;
+  double trailing_pct = 4;     // доля отката для трейлинг-стопа
+  uint32 time_stop_bars = 5;   // принудительный выход через N баров; 0 — выключено
+}
+
+// Полное описание стратегии для сервиса поиска.
+message StrategySearchSpec {
+  int32 version = 1;                    // версия схемы (для миграций хранилища)
+  repeated IndicatorRef indicators = 2;
+  BoolExpr entry_long = 3;
+  BoolExpr exit_long = 4;
+  BoolExpr entry_short = 5;             // пусто => только long
+  BoolExpr exit_short = 6;
+  PositionSizing sizing = 7;
+  RiskControls risk = 8;
+  int32 warmup_bars = 9;                // сколько баров пропустить до активации правил
+}

@@ -241,7 +241,8 @@ end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(inclu
 initialCash: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
 commissionPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
 slippagePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-longOnly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
+longOnly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+benchmarkUid: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -311,6 +312,10 @@ proto.trb.strategy.v1.BacktestConfig.deserializeBinaryFromReader = function(msg,
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setLongOnly(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBenchmarkUid(value);
       break;
     default:
       reader.skipField();
@@ -396,6 +401,13 @@ proto.trb.strategy.v1.BacktestConfig.serializeBinaryToWriter = function(message,
   if (f) {
     writer.writeBool(
       8,
+      f
+    );
+  }
+  f = message.getBenchmarkUid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -584,6 +596,24 @@ proto.trb.strategy.v1.BacktestConfig.prototype.setLongOnly = function(value) {
 };
 
 
+/**
+ * optional string benchmark_uid = 9;
+ * @return {string}
+ */
+proto.trb.strategy.v1.BacktestConfig.prototype.getBenchmarkUid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.trb.strategy.v1.BacktestConfig} returns this
+ */
+proto.trb.strategy.v1.BacktestConfig.prototype.setBenchmarkUid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
 
 
 
@@ -629,6 +659,27 @@ exposure: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
 finalEquity: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
 avgTradePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
 expectancy: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0),
+calmar: jspb.Message.getFloatingPointFieldWithDefault(msg, 21, 0.0),
+omega: jspb.Message.getFloatingPointFieldWithDefault(msg, 22, 0.0),
+tailRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
+valueAtRisk: jspb.Message.getFloatingPointFieldWithDefault(msg, 24, 0.0),
+conditionalValueAtRisk: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
+skew: jspb.Message.getFloatingPointFieldWithDefault(msg, 26, 0.0),
+kurtosis: jspb.Message.getFloatingPointFieldWithDefault(msg, 27, 0.0),
+kellyCriterion: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
+riskOfRuin: jspb.Message.getFloatingPointFieldWithDefault(msg, 29, 0.0),
+recoveryFactor: jspb.Message.getFloatingPointFieldWithDefault(msg, 30, 0.0),
+payoffRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 31, 0.0),
+gainToPainRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 32, 0.0),
+outlierWinRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 33, 0.0),
+outlierLossRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 34, 0.0),
+commonSenseRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 35, 0.0),
+ulcerIndex: jspb.Message.getFloatingPointFieldWithDefault(msg, 36, 0.0),
+serenityIndex: jspb.Message.getFloatingPointFieldWithDefault(msg, 37, 0.0),
+alpha: jspb.Message.getFloatingPointFieldWithDefault(msg, 38, 0.0),
+beta: jspb.Message.getFloatingPointFieldWithDefault(msg, 39, 0.0),
+informationRatio: jspb.Message.getFloatingPointFieldWithDefault(msg, 40, 0.0),
+rSquared: jspb.Message.getFloatingPointFieldWithDefault(msg, 41, 0.0),
 extraMap: (f = msg.getExtraMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
@@ -717,6 +768,90 @@ proto.trb.strategy.v1.BacktestMetrics.deserializeBinaryFromReader = function(msg
     case 13:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setExpectancy(value);
+      break;
+    case 21:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setCalmar(value);
+      break;
+    case 22:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setOmega(value);
+      break;
+    case 23:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTailRatio(value);
+      break;
+    case 24:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setValueAtRisk(value);
+      break;
+    case 25:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setConditionalValueAtRisk(value);
+      break;
+    case 26:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setSkew(value);
+      break;
+    case 27:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setKurtosis(value);
+      break;
+    case 28:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setKellyCriterion(value);
+      break;
+    case 29:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setRiskOfRuin(value);
+      break;
+    case 30:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setRecoveryFactor(value);
+      break;
+    case 31:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setPayoffRatio(value);
+      break;
+    case 32:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setGainToPainRatio(value);
+      break;
+    case 33:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setOutlierWinRatio(value);
+      break;
+    case 34:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setOutlierLossRatio(value);
+      break;
+    case 35:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setCommonSenseRatio(value);
+      break;
+    case 36:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setUlcerIndex(value);
+      break;
+    case 37:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setSerenityIndex(value);
+      break;
+    case 38:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setAlpha(value);
+      break;
+    case 39:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBeta(value);
+      break;
+    case 40:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setInformationRatio(value);
+      break;
+    case 41:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setRSquared(value);
       break;
     case 20:
       var value = msg.getExtraMap();
@@ -841,6 +976,153 @@ proto.trb.strategy.v1.BacktestMetrics.serializeBinaryToWriter = function(message
   if (f !== 0.0) {
     writer.writeDouble(
       13,
+      f
+    );
+  }
+  f = message.getCalmar();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      21,
+      f
+    );
+  }
+  f = message.getOmega();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      22,
+      f
+    );
+  }
+  f = message.getTailRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      23,
+      f
+    );
+  }
+  f = message.getValueAtRisk();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      24,
+      f
+    );
+  }
+  f = message.getConditionalValueAtRisk();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      25,
+      f
+    );
+  }
+  f = message.getSkew();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      26,
+      f
+    );
+  }
+  f = message.getKurtosis();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      27,
+      f
+    );
+  }
+  f = message.getKellyCriterion();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      28,
+      f
+    );
+  }
+  f = message.getRiskOfRuin();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      29,
+      f
+    );
+  }
+  f = message.getRecoveryFactor();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      30,
+      f
+    );
+  }
+  f = message.getPayoffRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      31,
+      f
+    );
+  }
+  f = message.getGainToPainRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      32,
+      f
+    );
+  }
+  f = message.getOutlierWinRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      33,
+      f
+    );
+  }
+  f = message.getOutlierLossRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      34,
+      f
+    );
+  }
+  f = message.getCommonSenseRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      35,
+      f
+    );
+  }
+  f = message.getUlcerIndex();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      36,
+      f
+    );
+  }
+  f = message.getSerenityIndex();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      37,
+      f
+    );
+  }
+  f = message.getAlpha();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      38,
+      f
+    );
+  }
+  f = message.getBeta();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      39,
+      f
+    );
+  }
+  f = message.getInformationRatio();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      40,
+      f
+    );
+  }
+  f = message.getRSquared();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      41,
       f
     );
   }
@@ -1082,6 +1364,384 @@ proto.trb.strategy.v1.BacktestMetrics.prototype.getExpectancy = function() {
  */
 proto.trb.strategy.v1.BacktestMetrics.prototype.setExpectancy = function(value) {
   return jspb.Message.setProto3FloatField(this, 13, value);
+};
+
+
+/**
+ * optional double calmar = 21;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getCalmar = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 21, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setCalmar = function(value) {
+  return jspb.Message.setProto3FloatField(this, 21, value);
+};
+
+
+/**
+ * optional double omega = 22;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getOmega = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 22, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setOmega = function(value) {
+  return jspb.Message.setProto3FloatField(this, 22, value);
+};
+
+
+/**
+ * optional double tail_ratio = 23;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getTailRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 23, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setTailRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 23, value);
+};
+
+
+/**
+ * optional double value_at_risk = 24;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getValueAtRisk = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 24, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setValueAtRisk = function(value) {
+  return jspb.Message.setProto3FloatField(this, 24, value);
+};
+
+
+/**
+ * optional double conditional_value_at_risk = 25;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getConditionalValueAtRisk = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 25, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setConditionalValueAtRisk = function(value) {
+  return jspb.Message.setProto3FloatField(this, 25, value);
+};
+
+
+/**
+ * optional double skew = 26;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getSkew = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 26, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setSkew = function(value) {
+  return jspb.Message.setProto3FloatField(this, 26, value);
+};
+
+
+/**
+ * optional double kurtosis = 27;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getKurtosis = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 27, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setKurtosis = function(value) {
+  return jspb.Message.setProto3FloatField(this, 27, value);
+};
+
+
+/**
+ * optional double kelly_criterion = 28;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getKellyCriterion = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 28, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setKellyCriterion = function(value) {
+  return jspb.Message.setProto3FloatField(this, 28, value);
+};
+
+
+/**
+ * optional double risk_of_ruin = 29;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getRiskOfRuin = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 29, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setRiskOfRuin = function(value) {
+  return jspb.Message.setProto3FloatField(this, 29, value);
+};
+
+
+/**
+ * optional double recovery_factor = 30;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getRecoveryFactor = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 30, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setRecoveryFactor = function(value) {
+  return jspb.Message.setProto3FloatField(this, 30, value);
+};
+
+
+/**
+ * optional double payoff_ratio = 31;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getPayoffRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 31, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setPayoffRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 31, value);
+};
+
+
+/**
+ * optional double gain_to_pain_ratio = 32;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getGainToPainRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 32, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setGainToPainRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 32, value);
+};
+
+
+/**
+ * optional double outlier_win_ratio = 33;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getOutlierWinRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 33, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setOutlierWinRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 33, value);
+};
+
+
+/**
+ * optional double outlier_loss_ratio = 34;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getOutlierLossRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 34, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setOutlierLossRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 34, value);
+};
+
+
+/**
+ * optional double common_sense_ratio = 35;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getCommonSenseRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 35, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setCommonSenseRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 35, value);
+};
+
+
+/**
+ * optional double ulcer_index = 36;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getUlcerIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 36, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setUlcerIndex = function(value) {
+  return jspb.Message.setProto3FloatField(this, 36, value);
+};
+
+
+/**
+ * optional double serenity_index = 37;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getSerenityIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 37, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setSerenityIndex = function(value) {
+  return jspb.Message.setProto3FloatField(this, 37, value);
+};
+
+
+/**
+ * optional double alpha = 38;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getAlpha = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 38, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setAlpha = function(value) {
+  return jspb.Message.setProto3FloatField(this, 38, value);
+};
+
+
+/**
+ * optional double beta = 39;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getBeta = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 39, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setBeta = function(value) {
+  return jspb.Message.setProto3FloatField(this, 39, value);
+};
+
+
+/**
+ * optional double information_ratio = 40;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getInformationRatio = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 40, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setInformationRatio = function(value) {
+  return jspb.Message.setProto3FloatField(this, 40, value);
+};
+
+
+/**
+ * optional double r_squared = 41;
+ * @return {number}
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.getRSquared = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 41, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.trb.strategy.v1.BacktestMetrics} returns this
+ */
+proto.trb.strategy.v1.BacktestMetrics.prototype.setRSquared = function(value) {
+  return jspb.Message.setProto3FloatField(this, 41, value);
 };
 
 

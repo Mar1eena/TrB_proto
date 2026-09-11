@@ -33,6 +33,9 @@ export class BacktestConfig extends jspb.Message {
   getLongOnly(): boolean;
   setLongOnly(value: boolean): BacktestConfig;
 
+  getBenchmarkUid(): string;
+  setBenchmarkUid(value: string): BacktestConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BacktestConfig.AsObject;
   static toObject(includeInstance: boolean, msg: BacktestConfig): BacktestConfig.AsObject;
@@ -51,6 +54,7 @@ export namespace BacktestConfig {
     commissionPct: number,
     slippagePct: number,
     longOnly: boolean,
+    benchmarkUid: string,
   }
 }
 
@@ -94,6 +98,69 @@ export class BacktestMetrics extends jspb.Message {
   getExpectancy(): number;
   setExpectancy(value: number): BacktestMetrics;
 
+  getCalmar(): number;
+  setCalmar(value: number): BacktestMetrics;
+
+  getOmega(): number;
+  setOmega(value: number): BacktestMetrics;
+
+  getTailRatio(): number;
+  setTailRatio(value: number): BacktestMetrics;
+
+  getValueAtRisk(): number;
+  setValueAtRisk(value: number): BacktestMetrics;
+
+  getConditionalValueAtRisk(): number;
+  setConditionalValueAtRisk(value: number): BacktestMetrics;
+
+  getSkew(): number;
+  setSkew(value: number): BacktestMetrics;
+
+  getKurtosis(): number;
+  setKurtosis(value: number): BacktestMetrics;
+
+  getKellyCriterion(): number;
+  setKellyCriterion(value: number): BacktestMetrics;
+
+  getRiskOfRuin(): number;
+  setRiskOfRuin(value: number): BacktestMetrics;
+
+  getRecoveryFactor(): number;
+  setRecoveryFactor(value: number): BacktestMetrics;
+
+  getPayoffRatio(): number;
+  setPayoffRatio(value: number): BacktestMetrics;
+
+  getGainToPainRatio(): number;
+  setGainToPainRatio(value: number): BacktestMetrics;
+
+  getOutlierWinRatio(): number;
+  setOutlierWinRatio(value: number): BacktestMetrics;
+
+  getOutlierLossRatio(): number;
+  setOutlierLossRatio(value: number): BacktestMetrics;
+
+  getCommonSenseRatio(): number;
+  setCommonSenseRatio(value: number): BacktestMetrics;
+
+  getUlcerIndex(): number;
+  setUlcerIndex(value: number): BacktestMetrics;
+
+  getSerenityIndex(): number;
+  setSerenityIndex(value: number): BacktestMetrics;
+
+  getAlpha(): number;
+  setAlpha(value: number): BacktestMetrics;
+
+  getBeta(): number;
+  setBeta(value: number): BacktestMetrics;
+
+  getInformationRatio(): number;
+  setInformationRatio(value: number): BacktestMetrics;
+
+  getRSquared(): number;
+  setRSquared(value: number): BacktestMetrics;
+
   getExtraMap(): jspb.Map<string, number>;
   clearExtraMap(): BacktestMetrics;
 
@@ -120,6 +187,27 @@ export namespace BacktestMetrics {
     finalEquity: number,
     avgTradePct: number,
     expectancy: number,
+    calmar: number,
+    omega: number,
+    tailRatio: number,
+    valueAtRisk: number,
+    conditionalValueAtRisk: number,
+    skew: number,
+    kurtosis: number,
+    kellyCriterion: number,
+    riskOfRuin: number,
+    recoveryFactor: number,
+    payoffRatio: number,
+    gainToPainRatio: number,
+    outlierWinRatio: number,
+    outlierLossRatio: number,
+    commonSenseRatio: number,
+    ulcerIndex: number,
+    serenityIndex: number,
+    alpha: number,
+    beta: number,
+    informationRatio: number,
+    rSquared: number,
     extraMap: Array<[string, number]>,
   }
 }

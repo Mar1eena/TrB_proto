@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package trb.strategysearch.v1;
+
+option go_package = "github.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearch";
+
+import "google/protobuf/timestamp.proto";
+
+// Статус прогона бэктеста / поиска.
+enum RunStatus {
+  RUN_STATUS_UNSPECIFIED = 0;
+  RUN_QUEUED = 1;
+  RUN_RUNNING = 2;
+  RUN_SUCCEEDED = 3;
+  RUN_FAILED = 4;
+  RUN_CANCELED = 5;
+}
+
+// Конфигурация одного прогона бэктеста (движок backtrader).
+message BacktestConfig {
+  string uid = 1;                        // инструмент (TrB.hct.uid, ClickHouse)
+  int32 interval = 2;                    // значение pb.CandleInterval
+  google.protobuf.Timestamp start = 3;
+  google.protobuf.Timestamp end = 4;
+  double initial_cash = 5;               // по умолчанию 100000
+  double commission_pct = 6;             // комиссия за сделку, доля
+  double slippage_pct = 7;               // проскальзывание, доля
+  bool long_only = 8;                    // игнорировать entry_short/exit_short
+  // Инструмент сравнения для QuantStats-метрик (alpha/beta/information_ratio/
+  // r_squared в BacktestMetrics). Пусто => метрики относительно бенчмарка не считаются.
+  string benchmark_uid = 9;
+}
+
+// Сводные метрики эффективности стратегии (quantstats.stats).
+message BacktestMetrics {
+  double total_return = 1;      // суммарная доходность за период, доля
+  double cagr = 2;              // годовая доходность, доля
+  double sharpe = 3;
+  double sortino = 4;
+  double max_drawdown = 5;      // максимальная просадка, доля (>= 0)
+  double win_rate = 6;          // доля прибыльных сделок, 0..1
+  double profit_factor = 7;
+  double sqn = 8;               // System Quality Number
+  uint32 trades_count = 9;
+  double exposure = 10;         // доля баров в рынке, 0..1
+  double final_equity = 11;
+  double avg_trade_pct = 12;    // средняя доходность сделки, доля
+  double expectancy = 13;       // матожидание сделки в валюте счёта
+
+  // --- Расширенный набор метрик QuantStats (quantstats.stats) ---
+  double calmar = 21;                    // CAGR / |max_drawdown|
+  double omega = 22;                     // Omega Ratio
+  double tail_ratio = 23;
+  double value_at_risk = 24;             // VaR 95%, доля (отрицательное число)
+  double conditional_value_at_risk = 25; // CVaR/Expected Shortfall 95%
+  double skew = 26;
+  double kurtosis = 27;
+  double kelly_criterion = 28;
+  double risk_of_ruin = 29;
+  double recovery_factor = 30;
+  double payoff_ratio = 31;
+  double gain_to_pain_ratio = 32;
+  double outlier_win_ratio = 33;
+  double outlier_loss_ratio = 34;
+  double common_sense_ratio = 35;
+  double ulcer_index = 36;
+  double serenity_index = 37;
+  // Заполняются, только если у BacktestConfig задан benchmark_uid.
+  double alpha = 38;
+  double beta = 39;
+  double information_ratio = 40;
+  double r_squared = 41;
+
+  map<string, double> extra = 20;
+}
