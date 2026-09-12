@@ -80,6 +80,52 @@ func (TrialState) EnumDescriptor() ([]byte, []int) {
 	return file_strategysearch_search_proto_rawDescGZIP(), []int{0}
 }
 
+type MarketMode int32
+
+const (
+	MarketMode_MARKET_MODE_PALETTE MarketMode = 0 // строго из uid_filter (список выбран на фронте)
+	MarketMode_MARKET_MODE_RANDOM  MarketMode = 1 // весь каталог; uid_filter — необязательный доп. отбор
+)
+
+// Enum value maps for MarketMode.
+var (
+	MarketMode_name = map[int32]string{
+		0: "MARKET_MODE_PALETTE",
+		1: "MARKET_MODE_RANDOM",
+	}
+	MarketMode_value = map[string]int32{
+		"MARKET_MODE_PALETTE": 0,
+		"MARKET_MODE_RANDOM":  1,
+	}
+)
+
+func (x MarketMode) Enum() *MarketMode {
+	p := new(MarketMode)
+	*p = x
+	return p
+}
+
+func (x MarketMode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MarketMode) Descriptor() protoreflect.EnumDescriptor {
+	return file_strategysearch_search_proto_enumTypes[1].Descriptor()
+}
+
+func (MarketMode) Type() protoreflect.EnumType {
+	return &file_strategysearch_search_proto_enumTypes[1]
+}
+
+func (x MarketMode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MarketMode.Descriptor instead.
+func (MarketMode) EnumDescriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{1}
+}
+
 type IntRange struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Min           int64                  `protobuf:"varint,1,opt,name=min,proto3" json:"min,omitempty"`
@@ -2700,8 +2746,16 @@ type SearchRun struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	StartedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
 	FinishedAt    *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=finished_at,json=finishedAt,proto3" json:"finished_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// template задан => координатор строит StrategySearchSpec на каждом трайле
+	// сам (см. StrategyTemplate ниже), base_spec/search_space игнорируются.
+	Template *StrategyTemplate `protobuf:"bytes,12,opt,name=template,proto3" json:"template,omitempty"`
+	// market_space задан => uid/interval/период config — тоже часть поиска,
+	// а не фиксированное значение; market_candidates — резолв market_space
+	// (запрос к HistoricCandle/Instruments), сделанный один раз при SubmitSearch.
+	MarketSpace      *MarketSpace       `protobuf:"bytes,13,opt,name=market_space,json=marketSpace,proto3" json:"market_space,omitempty"`
+	MarketCandidates []*MarketCandidate `protobuf:"bytes,14,rep,name=market_candidates,json=marketCandidates,proto3" json:"market_candidates,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *SearchRun) Reset() {
@@ -2811,6 +2865,27 @@ func (x *SearchRun) GetFinishedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *SearchRun) GetTemplate() *StrategyTemplate {
+	if x != nil {
+		return x.Template
+	}
+	return nil
+}
+
+func (x *SearchRun) GetMarketSpace() *MarketSpace {
+	if x != nil {
+		return x.MarketSpace
+	}
+	return nil
+}
+
+func (x *SearchRun) GetMarketCandidates() []*MarketCandidate {
+	if x != nil {
+		return x.MarketCandidates
+	}
+	return nil
+}
+
 // Payload задачи в NATS (TrB.strategysearch.search.tasks). Публикует координатор.
 type SearchTask struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2854,6 +2929,293 @@ func (x *SearchTask) GetSearchId() string {
 		return x.SearchId
 	}
 	return ""
+}
+
+// Диапазоны гиперпараметров одного типа индикатора из палитры. field_ranges —
+// ParamRange, где path = имя скалярного поля внутри IndicatorSettings.<type>
+// (напр. "period"), без точечного адреса внутри StrategySearchSpec.
+type IndicatorTypeRanges struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IndicatorType string                 `protobuf:"bytes,1,opt,name=indicator_type,json=indicatorType,proto3" json:"indicator_type,omitempty"` // имя oneof-поля IndicatorSettings.indicator_type, напр. "rsi"
+	FieldRanges   []*ParamRange          `protobuf:"bytes,2,rep,name=field_ranges,json=fieldRanges,proto3" json:"field_ranges,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IndicatorTypeRanges) Reset() {
+	*x = IndicatorTypeRanges{}
+	mi := &file_strategysearch_search_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IndicatorTypeRanges) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IndicatorTypeRanges) ProtoMessage() {}
+
+func (x *IndicatorTypeRanges) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_search_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IndicatorTypeRanges.ProtoReflect.Descriptor instead.
+func (*IndicatorTypeRanges) Descriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *IndicatorTypeRanges) GetIndicatorType() string {
+	if x != nil {
+		return x.IndicatorType
+	}
+	return ""
+}
+
+func (x *IndicatorTypeRanges) GetFieldRanges() []*ParamRange {
+	if x != nil {
+		return x.FieldRanges
+	}
+	return nil
+}
+
+type StrategyTemplate struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	IndicatorPalette   []string               `protobuf:"bytes,1,rep,name=indicator_palette,json=indicatorPalette,proto3" json:"indicator_palette,omitempty"`          // допустимые типы (IndicatorSettings.indicator_type)
+	MaxIndicators      uint32                 `protobuf:"varint,2,opt,name=max_indicators,json=maxIndicators,proto3" json:"max_indicators,omitempty"`                  // верхняя граница числа индикаторов в стратегии
+	MaxConditionsEntry uint32                 `protobuf:"varint,3,opt,name=max_conditions_entry,json=maxConditionsEntry,proto3" json:"max_conditions_entry,omitempty"` // верхняя граница числа условий в entry_long (AND)
+	MaxConditionsExit  uint32                 `protobuf:"varint,4,opt,name=max_conditions_exit,json=maxConditionsExit,proto3" json:"max_conditions_exit,omitempty"`    // 0 => exit строится автоматически (обратное условие)
+	TypeRanges         []*IndicatorTypeRanges `protobuf:"bytes,5,rep,name=type_ranges,json=typeRanges,proto3" json:"type_ranges,omitempty"`
+	AllowedOps         []CompareOp            `protobuf:"varint,6,rep,packed,name=allowed_ops,json=allowedOps,proto3,enum=trb.strategysearch.v1.CompareOp" json:"allowed_ops,omitempty"` // пусто => GT/LT/GE/LE/CROSSES_ABOVE/CROSSES_BELOW
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *StrategyTemplate) Reset() {
+	*x = StrategyTemplate{}
+	mi := &file_strategysearch_search_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StrategyTemplate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StrategyTemplate) ProtoMessage() {}
+
+func (x *StrategyTemplate) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_search_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StrategyTemplate.ProtoReflect.Descriptor instead.
+func (*StrategyTemplate) Descriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *StrategyTemplate) GetIndicatorPalette() []string {
+	if x != nil {
+		return x.IndicatorPalette
+	}
+	return nil
+}
+
+func (x *StrategyTemplate) GetMaxIndicators() uint32 {
+	if x != nil {
+		return x.MaxIndicators
+	}
+	return 0
+}
+
+func (x *StrategyTemplate) GetMaxConditionsEntry() uint32 {
+	if x != nil {
+		return x.MaxConditionsEntry
+	}
+	return 0
+}
+
+func (x *StrategyTemplate) GetMaxConditionsExit() uint32 {
+	if x != nil {
+		return x.MaxConditionsExit
+	}
+	return 0
+}
+
+func (x *StrategyTemplate) GetTypeRanges() []*IndicatorTypeRanges {
+	if x != nil {
+		return x.TypeRanges
+	}
+	return nil
+}
+
+func (x *StrategyTemplate) GetAllowedOps() []CompareOp {
+	if x != nil {
+		return x.AllowedOps
+	}
+	return nil
+}
+
+// Резолвится координатором (manage) один раз при SubmitSearch запросом к
+// HistoricCandle.ListLastDownloads/Instruments.ListInstruments и замораживается
+// в SearchRun.market_candidates — трайлы сэмплируют uid/interval/период из
+// этого списка, без обращения к ClickHouse на каждый трайл.
+type MarketCandidate struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Uid            string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Interval       int32                  `protobuf:"varint,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	AvailableStart *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=available_start,json=availableStart,proto3" json:"available_start,omitempty"`
+	AvailableEnd   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=available_end,json=availableEnd,proto3" json:"available_end,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MarketCandidate) Reset() {
+	*x = MarketCandidate{}
+	mi := &file_strategysearch_search_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarketCandidate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarketCandidate) ProtoMessage() {}
+
+func (x *MarketCandidate) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_search_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarketCandidate.ProtoReflect.Descriptor instead.
+func (*MarketCandidate) Descriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *MarketCandidate) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *MarketCandidate) GetInterval() int32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
+}
+
+func (x *MarketCandidate) GetAvailableStart() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AvailableStart
+	}
+	return nil
+}
+
+func (x *MarketCandidate) GetAvailableEnd() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AvailableEnd
+	}
+	return nil
+}
+
+type MarketSpace struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Mode             MarketMode             `protobuf:"varint,1,opt,name=mode,proto3,enum=trb.strategysearch.v1.MarketMode" json:"mode,omitempty"`
+	UidFilter        []string               `protobuf:"bytes,2,rep,name=uid_filter,json=uidFilter,proto3" json:"uid_filter,omitempty"` // PALETTE: точный список; RANDOM: доп. фильтр (пусто = весь каталог)
+	IntervalFilter   []int32                `protobuf:"varint,3,rep,packed,name=interval_filter,json=intervalFilter,proto3" json:"interval_filter,omitempty"`
+	PeriodLengthDays uint32                 `protobuf:"varint,4,opt,name=period_length_days,json=periodLengthDays,proto3" json:"period_length_days,omitempty"` // длина окна бэктеста на трайл
+	MinHistoryDays   uint32                 `protobuf:"varint,5,opt,name=min_history_days,json=minHistoryDays,proto3" json:"min_history_days,omitempty"`       // отсеять кандидатов короче этого при резолве
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *MarketSpace) Reset() {
+	*x = MarketSpace{}
+	mi := &file_strategysearch_search_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarketSpace) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarketSpace) ProtoMessage() {}
+
+func (x *MarketSpace) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_search_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarketSpace.ProtoReflect.Descriptor instead.
+func (*MarketSpace) Descriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *MarketSpace) GetMode() MarketMode {
+	if x != nil {
+		return x.Mode
+	}
+	return MarketMode_MARKET_MODE_PALETTE
+}
+
+func (x *MarketSpace) GetUidFilter() []string {
+	if x != nil {
+		return x.UidFilter
+	}
+	return nil
+}
+
+func (x *MarketSpace) GetIntervalFilter() []int32 {
+	if x != nil {
+		return x.IntervalFilter
+	}
+	return nil
+}
+
+func (x *MarketSpace) GetPeriodLengthDays() uint32 {
+	if x != nil {
+		return x.PeriodLengthDays
+	}
+	return 0
+}
+
+func (x *MarketSpace) GetMinHistoryDays() uint32 {
+	if x != nil {
+		return x.MinHistoryDays
+	}
+	return 0
 }
 
 var File_strategysearch_search_proto protoreflect.FileDescriptor
@@ -3074,7 +3436,7 @@ const file_strategysearch_search_proto_rawDesc = "" +
 	" \x01(\tR\x05error\x1a=\n" +
 	"\x0fBestValuesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\xe0\x04\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\xc1\x06\n" +
 	"\tSearchRun\x12\x1b\n" +
 	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12F\n" +
@@ -3090,10 +3452,37 @@ const file_strategysearch_search_proto_rawDesc = "" +
 	"started_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tstartedAt\x12;\n" +
 	"\vfinished_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"finishedAt\")\n" +
+	"finishedAt\x12C\n" +
+	"\btemplate\x18\f \x01(\v2'.trb.strategysearch.v1.StrategyTemplateR\btemplate\x12E\n" +
+	"\fmarket_space\x18\r \x01(\v2\".trb.strategysearch.v1.MarketSpaceR\vmarketSpace\x12S\n" +
+	"\x11market_candidates\x18\x0e \x03(\v2&.trb.strategysearch.v1.MarketCandidateR\x10marketCandidates\")\n" +
 	"\n" +
 	"SearchTask\x12\x1b\n" +
-	"\tsearch_id\x18\x01 \x01(\tR\bsearchId*\xa3\x01\n" +
+	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\"\x82\x01\n" +
+	"\x13IndicatorTypeRanges\x12%\n" +
+	"\x0eindicator_type\x18\x01 \x01(\tR\rindicatorType\x12D\n" +
+	"\ffield_ranges\x18\x02 \x03(\v2!.trb.strategysearch.v1.ParamRangeR\vfieldRanges\"\xd8\x02\n" +
+	"\x10StrategyTemplate\x12+\n" +
+	"\x11indicator_palette\x18\x01 \x03(\tR\x10indicatorPalette\x12%\n" +
+	"\x0emax_indicators\x18\x02 \x01(\rR\rmaxIndicators\x120\n" +
+	"\x14max_conditions_entry\x18\x03 \x01(\rR\x12maxConditionsEntry\x12.\n" +
+	"\x13max_conditions_exit\x18\x04 \x01(\rR\x11maxConditionsExit\x12K\n" +
+	"\vtype_ranges\x18\x05 \x03(\v2*.trb.strategysearch.v1.IndicatorTypeRangesR\n" +
+	"typeRanges\x12A\n" +
+	"\vallowed_ops\x18\x06 \x03(\x0e2 .trb.strategysearch.v1.CompareOpR\n" +
+	"allowedOps\"\xc5\x01\n" +
+	"\x0fMarketCandidate\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1a\n" +
+	"\binterval\x18\x02 \x01(\x05R\binterval\x12C\n" +
+	"\x0favailable_start\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0eavailableStart\x12?\n" +
+	"\ravailable_end\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\favailableEnd\"\xe4\x01\n" +
+	"\vMarketSpace\x125\n" +
+	"\x04mode\x18\x01 \x01(\x0e2!.trb.strategysearch.v1.MarketModeR\x04mode\x12\x1d\n" +
+	"\n" +
+	"uid_filter\x18\x02 \x03(\tR\tuidFilter\x12'\n" +
+	"\x0finterval_filter\x18\x03 \x03(\x05R\x0eintervalFilter\x12,\n" +
+	"\x12period_length_days\x18\x04 \x01(\rR\x10periodLengthDays\x12(\n" +
+	"\x10min_history_days\x18\x05 \x01(\rR\x0eminHistoryDays*\xa3\x01\n" +
 	"\n" +
 	"TrialState\x12\x1b\n" +
 	"\x17TRIAL_STATE_UNSPECIFIED\x10\x00\x12\x17\n" +
@@ -3101,7 +3490,11 @@ const file_strategysearch_search_proto_rawDesc = "" +
 	"\x13TRIAL_STATE_WAITING\x10\x02\x12\x18\n" +
 	"\x14TRIAL_STATE_COMPLETE\x10\x03\x12\x16\n" +
 	"\x12TRIAL_STATE_PRUNED\x10\x04\x12\x14\n" +
-	"\x10TRIAL_STATE_FAIL\x10\x05BDZBgithub.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearchb\x06proto3"
+	"\x10TRIAL_STATE_FAIL\x10\x05*=\n" +
+	"\n" +
+	"MarketMode\x12\x17\n" +
+	"\x13MARKET_MODE_PALETTE\x10\x00\x12\x16\n" +
+	"\x12MARKET_MODE_RANDOM\x10\x01BDZBgithub.com/Mar1eena/trb_proto/gen/go/strategysearch;strategysearchb\x06proto3"
 
 var (
 	file_strategysearch_search_proto_rawDescOnce sync.Once
@@ -3115,114 +3508,129 @@ func file_strategysearch_search_proto_rawDescGZIP() []byte {
 	return file_strategysearch_search_proto_rawDescData
 }
 
-var file_strategysearch_search_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_strategysearch_search_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_strategysearch_search_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_strategysearch_search_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
 var file_strategysearch_search_proto_goTypes = []any{
 	(TrialState)(0),                       // 0: trb.strategysearch.v1.TrialState
-	(*IntRange)(nil),                      // 1: trb.strategysearch.v1.IntRange
-	(*FloatRange)(nil),                    // 2: trb.strategysearch.v1.FloatRange
-	(*LogFloatRange)(nil),                 // 3: trb.strategysearch.v1.LogFloatRange
-	(*Choice)(nil),                        // 4: trb.strategysearch.v1.Choice
-	(*CategoricalChoice)(nil),             // 5: trb.strategysearch.v1.CategoricalChoice
-	(*ParamRange)(nil),                    // 6: trb.strategysearch.v1.ParamRange
-	(*SeedTrial)(nil),                     // 7: trb.strategysearch.v1.SeedTrial
-	(*TpeSamplerParams)(nil),              // 8: trb.strategysearch.v1.TpeSamplerParams
-	(*CmaEsSamplerParams)(nil),            // 9: trb.strategysearch.v1.CmaEsSamplerParams
-	(*RandomSamplerParams)(nil),           // 10: trb.strategysearch.v1.RandomSamplerParams
-	(*GridSamplerParams)(nil),             // 11: trb.strategysearch.v1.GridSamplerParams
-	(*NsgaIiSamplerParams)(nil),           // 12: trb.strategysearch.v1.NsgaIiSamplerParams
-	(*QmcSamplerParams)(nil),              // 13: trb.strategysearch.v1.QmcSamplerParams
-	(*GpSamplerParams)(nil),               // 14: trb.strategysearch.v1.GpSamplerParams
-	(*SamplerConfig)(nil),                 // 15: trb.strategysearch.v1.SamplerConfig
-	(*NopPrunerParams)(nil),               // 16: trb.strategysearch.v1.NopPrunerParams
-	(*MedianPrunerParams)(nil),            // 17: trb.strategysearch.v1.MedianPrunerParams
-	(*PercentilePrunerParams)(nil),        // 18: trb.strategysearch.v1.PercentilePrunerParams
-	(*SuccessiveHalvingPrunerParams)(nil), // 19: trb.strategysearch.v1.SuccessiveHalvingPrunerParams
-	(*HyperbandPrunerParams)(nil),         // 20: trb.strategysearch.v1.HyperbandPrunerParams
-	(*PatientPrunerParams)(nil),           // 21: trb.strategysearch.v1.PatientPrunerParams
-	(*ThresholdPrunerParams)(nil),         // 22: trb.strategysearch.v1.ThresholdPrunerParams
-	(*PrunerConfig)(nil),                  // 23: trb.strategysearch.v1.PrunerConfig
-	(*ObjectiveMetric)(nil),               // 24: trb.strategysearch.v1.ObjectiveMetric
-	(*Objective)(nil),                     // 25: trb.strategysearch.v1.Objective
-	(*Budget)(nil),                        // 26: trb.strategysearch.v1.Budget
-	(*ClickHouseTrialSink)(nil),           // 27: trb.strategysearch.v1.ClickHouseTrialSink
-	(*Storage)(nil),                       // 28: trb.strategysearch.v1.Storage
-	(*StudyConfig)(nil),                   // 29: trb.strategysearch.v1.StudyConfig
-	(*TrialTask)(nil),                     // 30: trb.strategysearch.v1.TrialTask
-	(*TrialIntermediateValue)(nil),        // 31: trb.strategysearch.v1.TrialIntermediateValue
-	(*TrialResult)(nil),                   // 32: trb.strategysearch.v1.TrialResult
-	(*Trial)(nil),                         // 33: trb.strategysearch.v1.Trial
-	(*ParamImportance)(nil),               // 34: trb.strategysearch.v1.ParamImportance
-	(*SearchProgress)(nil),                // 35: trb.strategysearch.v1.SearchProgress
-	(*SearchRun)(nil),                     // 36: trb.strategysearch.v1.SearchRun
-	(*SearchTask)(nil),                    // 37: trb.strategysearch.v1.SearchTask
-	nil,                                   // 38: trb.strategysearch.v1.SeedTrial.ParamsEntry
-	nil,                                   // 39: trb.strategysearch.v1.TrialResult.ValuesEntry
-	nil,                                   // 40: trb.strategysearch.v1.Trial.ParamsEntry
-	nil,                                   // 41: trb.strategysearch.v1.Trial.ValuesEntry
-	nil,                                   // 42: trb.strategysearch.v1.SearchProgress.BestValuesEntry
-	(*StrategySearchSpec)(nil),            // 43: trb.strategysearch.v1.StrategySearchSpec
-	(*BacktestConfig)(nil),                // 44: trb.strategysearch.v1.BacktestConfig
-	(*BacktestMetrics)(nil),               // 45: trb.strategysearch.v1.BacktestMetrics
-	(*timestamppb.Timestamp)(nil),         // 46: google.protobuf.Timestamp
-	(RunStatus)(0),                        // 47: trb.strategysearch.v1.RunStatus
+	(MarketMode)(0),                       // 1: trb.strategysearch.v1.MarketMode
+	(*IntRange)(nil),                      // 2: trb.strategysearch.v1.IntRange
+	(*FloatRange)(nil),                    // 3: trb.strategysearch.v1.FloatRange
+	(*LogFloatRange)(nil),                 // 4: trb.strategysearch.v1.LogFloatRange
+	(*Choice)(nil),                        // 5: trb.strategysearch.v1.Choice
+	(*CategoricalChoice)(nil),             // 6: trb.strategysearch.v1.CategoricalChoice
+	(*ParamRange)(nil),                    // 7: trb.strategysearch.v1.ParamRange
+	(*SeedTrial)(nil),                     // 8: trb.strategysearch.v1.SeedTrial
+	(*TpeSamplerParams)(nil),              // 9: trb.strategysearch.v1.TpeSamplerParams
+	(*CmaEsSamplerParams)(nil),            // 10: trb.strategysearch.v1.CmaEsSamplerParams
+	(*RandomSamplerParams)(nil),           // 11: trb.strategysearch.v1.RandomSamplerParams
+	(*GridSamplerParams)(nil),             // 12: trb.strategysearch.v1.GridSamplerParams
+	(*NsgaIiSamplerParams)(nil),           // 13: trb.strategysearch.v1.NsgaIiSamplerParams
+	(*QmcSamplerParams)(nil),              // 14: trb.strategysearch.v1.QmcSamplerParams
+	(*GpSamplerParams)(nil),               // 15: trb.strategysearch.v1.GpSamplerParams
+	(*SamplerConfig)(nil),                 // 16: trb.strategysearch.v1.SamplerConfig
+	(*NopPrunerParams)(nil),               // 17: trb.strategysearch.v1.NopPrunerParams
+	(*MedianPrunerParams)(nil),            // 18: trb.strategysearch.v1.MedianPrunerParams
+	(*PercentilePrunerParams)(nil),        // 19: trb.strategysearch.v1.PercentilePrunerParams
+	(*SuccessiveHalvingPrunerParams)(nil), // 20: trb.strategysearch.v1.SuccessiveHalvingPrunerParams
+	(*HyperbandPrunerParams)(nil),         // 21: trb.strategysearch.v1.HyperbandPrunerParams
+	(*PatientPrunerParams)(nil),           // 22: trb.strategysearch.v1.PatientPrunerParams
+	(*ThresholdPrunerParams)(nil),         // 23: trb.strategysearch.v1.ThresholdPrunerParams
+	(*PrunerConfig)(nil),                  // 24: trb.strategysearch.v1.PrunerConfig
+	(*ObjectiveMetric)(nil),               // 25: trb.strategysearch.v1.ObjectiveMetric
+	(*Objective)(nil),                     // 26: trb.strategysearch.v1.Objective
+	(*Budget)(nil),                        // 27: trb.strategysearch.v1.Budget
+	(*ClickHouseTrialSink)(nil),           // 28: trb.strategysearch.v1.ClickHouseTrialSink
+	(*Storage)(nil),                       // 29: trb.strategysearch.v1.Storage
+	(*StudyConfig)(nil),                   // 30: trb.strategysearch.v1.StudyConfig
+	(*TrialTask)(nil),                     // 31: trb.strategysearch.v1.TrialTask
+	(*TrialIntermediateValue)(nil),        // 32: trb.strategysearch.v1.TrialIntermediateValue
+	(*TrialResult)(nil),                   // 33: trb.strategysearch.v1.TrialResult
+	(*Trial)(nil),                         // 34: trb.strategysearch.v1.Trial
+	(*ParamImportance)(nil),               // 35: trb.strategysearch.v1.ParamImportance
+	(*SearchProgress)(nil),                // 36: trb.strategysearch.v1.SearchProgress
+	(*SearchRun)(nil),                     // 37: trb.strategysearch.v1.SearchRun
+	(*SearchTask)(nil),                    // 38: trb.strategysearch.v1.SearchTask
+	(*IndicatorTypeRanges)(nil),           // 39: trb.strategysearch.v1.IndicatorTypeRanges
+	(*StrategyTemplate)(nil),              // 40: trb.strategysearch.v1.StrategyTemplate
+	(*MarketCandidate)(nil),               // 41: trb.strategysearch.v1.MarketCandidate
+	(*MarketSpace)(nil),                   // 42: trb.strategysearch.v1.MarketSpace
+	nil,                                   // 43: trb.strategysearch.v1.SeedTrial.ParamsEntry
+	nil,                                   // 44: trb.strategysearch.v1.TrialResult.ValuesEntry
+	nil,                                   // 45: trb.strategysearch.v1.Trial.ParamsEntry
+	nil,                                   // 46: trb.strategysearch.v1.Trial.ValuesEntry
+	nil,                                   // 47: trb.strategysearch.v1.SearchProgress.BestValuesEntry
+	(*StrategySearchSpec)(nil),            // 48: trb.strategysearch.v1.StrategySearchSpec
+	(*BacktestConfig)(nil),                // 49: trb.strategysearch.v1.BacktestConfig
+	(*BacktestMetrics)(nil),               // 50: trb.strategysearch.v1.BacktestMetrics
+	(*timestamppb.Timestamp)(nil),         // 51: google.protobuf.Timestamp
+	(RunStatus)(0),                        // 52: trb.strategysearch.v1.RunStatus
+	(CompareOp)(0),                        // 53: trb.strategysearch.v1.CompareOp
 }
 var file_strategysearch_search_proto_depIdxs = []int32{
-	1,  // 0: trb.strategysearch.v1.ParamRange.ints:type_name -> trb.strategysearch.v1.IntRange
-	2,  // 1: trb.strategysearch.v1.ParamRange.floats:type_name -> trb.strategysearch.v1.FloatRange
-	3,  // 2: trb.strategysearch.v1.ParamRange.log_floats:type_name -> trb.strategysearch.v1.LogFloatRange
-	4,  // 3: trb.strategysearch.v1.ParamRange.choice:type_name -> trb.strategysearch.v1.Choice
-	5,  // 4: trb.strategysearch.v1.ParamRange.categorical:type_name -> trb.strategysearch.v1.CategoricalChoice
-	38, // 5: trb.strategysearch.v1.SeedTrial.params:type_name -> trb.strategysearch.v1.SeedTrial.ParamsEntry
-	8,  // 6: trb.strategysearch.v1.SamplerConfig.tpe:type_name -> trb.strategysearch.v1.TpeSamplerParams
-	9,  // 7: trb.strategysearch.v1.SamplerConfig.cmaes:type_name -> trb.strategysearch.v1.CmaEsSamplerParams
-	10, // 8: trb.strategysearch.v1.SamplerConfig.random:type_name -> trb.strategysearch.v1.RandomSamplerParams
-	11, // 9: trb.strategysearch.v1.SamplerConfig.grid:type_name -> trb.strategysearch.v1.GridSamplerParams
-	12, // 10: trb.strategysearch.v1.SamplerConfig.nsga2:type_name -> trb.strategysearch.v1.NsgaIiSamplerParams
-	13, // 11: trb.strategysearch.v1.SamplerConfig.qmc:type_name -> trb.strategysearch.v1.QmcSamplerParams
-	14, // 12: trb.strategysearch.v1.SamplerConfig.gp:type_name -> trb.strategysearch.v1.GpSamplerParams
-	16, // 13: trb.strategysearch.v1.PrunerConfig.none:type_name -> trb.strategysearch.v1.NopPrunerParams
-	17, // 14: trb.strategysearch.v1.PrunerConfig.median:type_name -> trb.strategysearch.v1.MedianPrunerParams
-	18, // 15: trb.strategysearch.v1.PrunerConfig.percentile:type_name -> trb.strategysearch.v1.PercentilePrunerParams
-	19, // 16: trb.strategysearch.v1.PrunerConfig.successive_halving:type_name -> trb.strategysearch.v1.SuccessiveHalvingPrunerParams
-	20, // 17: trb.strategysearch.v1.PrunerConfig.hyperband:type_name -> trb.strategysearch.v1.HyperbandPrunerParams
-	21, // 18: trb.strategysearch.v1.PrunerConfig.patient:type_name -> trb.strategysearch.v1.PatientPrunerParams
-	22, // 19: trb.strategysearch.v1.PrunerConfig.threshold:type_name -> trb.strategysearch.v1.ThresholdPrunerParams
-	24, // 20: trb.strategysearch.v1.Objective.metrics:type_name -> trb.strategysearch.v1.ObjectiveMetric
-	27, // 21: trb.strategysearch.v1.Storage.clickhouse:type_name -> trb.strategysearch.v1.ClickHouseTrialSink
-	15, // 22: trb.strategysearch.v1.StudyConfig.sampler:type_name -> trb.strategysearch.v1.SamplerConfig
-	23, // 23: trb.strategysearch.v1.StudyConfig.pruner:type_name -> trb.strategysearch.v1.PrunerConfig
-	25, // 24: trb.strategysearch.v1.StudyConfig.objective:type_name -> trb.strategysearch.v1.Objective
-	26, // 25: trb.strategysearch.v1.StudyConfig.budget:type_name -> trb.strategysearch.v1.Budget
-	28, // 26: trb.strategysearch.v1.StudyConfig.storage:type_name -> trb.strategysearch.v1.Storage
-	7,  // 27: trb.strategysearch.v1.StudyConfig.seed_trials:type_name -> trb.strategysearch.v1.SeedTrial
-	43, // 28: trb.strategysearch.v1.TrialTask.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	44, // 29: trb.strategysearch.v1.TrialTask.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	39, // 30: trb.strategysearch.v1.TrialResult.values:type_name -> trb.strategysearch.v1.TrialResult.ValuesEntry
+	2,  // 0: trb.strategysearch.v1.ParamRange.ints:type_name -> trb.strategysearch.v1.IntRange
+	3,  // 1: trb.strategysearch.v1.ParamRange.floats:type_name -> trb.strategysearch.v1.FloatRange
+	4,  // 2: trb.strategysearch.v1.ParamRange.log_floats:type_name -> trb.strategysearch.v1.LogFloatRange
+	5,  // 3: trb.strategysearch.v1.ParamRange.choice:type_name -> trb.strategysearch.v1.Choice
+	6,  // 4: trb.strategysearch.v1.ParamRange.categorical:type_name -> trb.strategysearch.v1.CategoricalChoice
+	43, // 5: trb.strategysearch.v1.SeedTrial.params:type_name -> trb.strategysearch.v1.SeedTrial.ParamsEntry
+	9,  // 6: trb.strategysearch.v1.SamplerConfig.tpe:type_name -> trb.strategysearch.v1.TpeSamplerParams
+	10, // 7: trb.strategysearch.v1.SamplerConfig.cmaes:type_name -> trb.strategysearch.v1.CmaEsSamplerParams
+	11, // 8: trb.strategysearch.v1.SamplerConfig.random:type_name -> trb.strategysearch.v1.RandomSamplerParams
+	12, // 9: trb.strategysearch.v1.SamplerConfig.grid:type_name -> trb.strategysearch.v1.GridSamplerParams
+	13, // 10: trb.strategysearch.v1.SamplerConfig.nsga2:type_name -> trb.strategysearch.v1.NsgaIiSamplerParams
+	14, // 11: trb.strategysearch.v1.SamplerConfig.qmc:type_name -> trb.strategysearch.v1.QmcSamplerParams
+	15, // 12: trb.strategysearch.v1.SamplerConfig.gp:type_name -> trb.strategysearch.v1.GpSamplerParams
+	17, // 13: trb.strategysearch.v1.PrunerConfig.none:type_name -> trb.strategysearch.v1.NopPrunerParams
+	18, // 14: trb.strategysearch.v1.PrunerConfig.median:type_name -> trb.strategysearch.v1.MedianPrunerParams
+	19, // 15: trb.strategysearch.v1.PrunerConfig.percentile:type_name -> trb.strategysearch.v1.PercentilePrunerParams
+	20, // 16: trb.strategysearch.v1.PrunerConfig.successive_halving:type_name -> trb.strategysearch.v1.SuccessiveHalvingPrunerParams
+	21, // 17: trb.strategysearch.v1.PrunerConfig.hyperband:type_name -> trb.strategysearch.v1.HyperbandPrunerParams
+	22, // 18: trb.strategysearch.v1.PrunerConfig.patient:type_name -> trb.strategysearch.v1.PatientPrunerParams
+	23, // 19: trb.strategysearch.v1.PrunerConfig.threshold:type_name -> trb.strategysearch.v1.ThresholdPrunerParams
+	25, // 20: trb.strategysearch.v1.Objective.metrics:type_name -> trb.strategysearch.v1.ObjectiveMetric
+	28, // 21: trb.strategysearch.v1.Storage.clickhouse:type_name -> trb.strategysearch.v1.ClickHouseTrialSink
+	16, // 22: trb.strategysearch.v1.StudyConfig.sampler:type_name -> trb.strategysearch.v1.SamplerConfig
+	24, // 23: trb.strategysearch.v1.StudyConfig.pruner:type_name -> trb.strategysearch.v1.PrunerConfig
+	26, // 24: trb.strategysearch.v1.StudyConfig.objective:type_name -> trb.strategysearch.v1.Objective
+	27, // 25: trb.strategysearch.v1.StudyConfig.budget:type_name -> trb.strategysearch.v1.Budget
+	29, // 26: trb.strategysearch.v1.StudyConfig.storage:type_name -> trb.strategysearch.v1.Storage
+	8,  // 27: trb.strategysearch.v1.StudyConfig.seed_trials:type_name -> trb.strategysearch.v1.SeedTrial
+	48, // 28: trb.strategysearch.v1.TrialTask.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	49, // 29: trb.strategysearch.v1.TrialTask.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	44, // 30: trb.strategysearch.v1.TrialResult.values:type_name -> trb.strategysearch.v1.TrialResult.ValuesEntry
 	0,  // 31: trb.strategysearch.v1.TrialResult.state:type_name -> trb.strategysearch.v1.TrialState
-	31, // 32: trb.strategysearch.v1.TrialResult.intermediate_values:type_name -> trb.strategysearch.v1.TrialIntermediateValue
-	43, // 33: trb.strategysearch.v1.Trial.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	40, // 34: trb.strategysearch.v1.Trial.params:type_name -> trb.strategysearch.v1.Trial.ParamsEntry
-	41, // 35: trb.strategysearch.v1.Trial.values:type_name -> trb.strategysearch.v1.Trial.ValuesEntry
+	32, // 32: trb.strategysearch.v1.TrialResult.intermediate_values:type_name -> trb.strategysearch.v1.TrialIntermediateValue
+	48, // 33: trb.strategysearch.v1.Trial.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	45, // 34: trb.strategysearch.v1.Trial.params:type_name -> trb.strategysearch.v1.Trial.ParamsEntry
+	46, // 35: trb.strategysearch.v1.Trial.values:type_name -> trb.strategysearch.v1.Trial.ValuesEntry
 	0,  // 36: trb.strategysearch.v1.Trial.state:type_name -> trb.strategysearch.v1.TrialState
-	45, // 37: trb.strategysearch.v1.Trial.metrics:type_name -> trb.strategysearch.v1.BacktestMetrics
-	46, // 38: trb.strategysearch.v1.Trial.created_at:type_name -> google.protobuf.Timestamp
-	46, // 39: trb.strategysearch.v1.Trial.completed_at:type_name -> google.protobuf.Timestamp
-	47, // 40: trb.strategysearch.v1.SearchProgress.status:type_name -> trb.strategysearch.v1.RunStatus
-	42, // 41: trb.strategysearch.v1.SearchProgress.best_values:type_name -> trb.strategysearch.v1.SearchProgress.BestValuesEntry
-	43, // 42: trb.strategysearch.v1.SearchRun.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	6,  // 43: trb.strategysearch.v1.SearchRun.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	29, // 44: trb.strategysearch.v1.SearchRun.study:type_name -> trb.strategysearch.v1.StudyConfig
-	44, // 45: trb.strategysearch.v1.SearchRun.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	35, // 46: trb.strategysearch.v1.SearchRun.progress:type_name -> trb.strategysearch.v1.SearchProgress
-	46, // 47: trb.strategysearch.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
-	46, // 48: trb.strategysearch.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
-	46, // 49: trb.strategysearch.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
-	50, // [50:50] is the sub-list for method output_type
-	50, // [50:50] is the sub-list for method input_type
-	50, // [50:50] is the sub-list for extension type_name
-	50, // [50:50] is the sub-list for extension extendee
-	0,  // [0:50] is the sub-list for field type_name
+	50, // 37: trb.strategysearch.v1.Trial.metrics:type_name -> trb.strategysearch.v1.BacktestMetrics
+	51, // 38: trb.strategysearch.v1.Trial.created_at:type_name -> google.protobuf.Timestamp
+	51, // 39: trb.strategysearch.v1.Trial.completed_at:type_name -> google.protobuf.Timestamp
+	52, // 40: trb.strategysearch.v1.SearchProgress.status:type_name -> trb.strategysearch.v1.RunStatus
+	47, // 41: trb.strategysearch.v1.SearchProgress.best_values:type_name -> trb.strategysearch.v1.SearchProgress.BestValuesEntry
+	48, // 42: trb.strategysearch.v1.SearchRun.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	7,  // 43: trb.strategysearch.v1.SearchRun.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	30, // 44: trb.strategysearch.v1.SearchRun.study:type_name -> trb.strategysearch.v1.StudyConfig
+	49, // 45: trb.strategysearch.v1.SearchRun.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	36, // 46: trb.strategysearch.v1.SearchRun.progress:type_name -> trb.strategysearch.v1.SearchProgress
+	51, // 47: trb.strategysearch.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
+	51, // 48: trb.strategysearch.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
+	51, // 49: trb.strategysearch.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
+	40, // 50: trb.strategysearch.v1.SearchRun.template:type_name -> trb.strategysearch.v1.StrategyTemplate
+	42, // 51: trb.strategysearch.v1.SearchRun.market_space:type_name -> trb.strategysearch.v1.MarketSpace
+	41, // 52: trb.strategysearch.v1.SearchRun.market_candidates:type_name -> trb.strategysearch.v1.MarketCandidate
+	7,  // 53: trb.strategysearch.v1.IndicatorTypeRanges.field_ranges:type_name -> trb.strategysearch.v1.ParamRange
+	39, // 54: trb.strategysearch.v1.StrategyTemplate.type_ranges:type_name -> trb.strategysearch.v1.IndicatorTypeRanges
+	53, // 55: trb.strategysearch.v1.StrategyTemplate.allowed_ops:type_name -> trb.strategysearch.v1.CompareOp
+	51, // 56: trb.strategysearch.v1.MarketCandidate.available_start:type_name -> google.protobuf.Timestamp
+	51, // 57: trb.strategysearch.v1.MarketCandidate.available_end:type_name -> google.protobuf.Timestamp
+	1,  // 58: trb.strategysearch.v1.MarketSpace.mode:type_name -> trb.strategysearch.v1.MarketMode
+	59, // [59:59] is the sub-list for method output_type
+	59, // [59:59] is the sub-list for method input_type
+	59, // [59:59] is the sub-list for extension type_name
+	59, // [59:59] is the sub-list for extension extendee
+	0,  // [0:59] is the sub-list for field type_name
 }
 
 func init() { file_strategysearch_search_proto_init() }
@@ -3262,8 +3670,8 @@ func file_strategysearch_search_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_strategysearch_search_proto_rawDesc), len(file_strategysearch_search_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   42,
+			NumEnums:      2,
+			NumMessages:   46,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

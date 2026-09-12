@@ -31,6 +31,16 @@ export class SubmitSearchRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): SubmitSearchRequest;
 
+  getTemplate(): strategysearch_search_pb.StrategyTemplate | undefined;
+  setTemplate(value?: strategysearch_search_pb.StrategyTemplate): SubmitSearchRequest;
+  hasTemplate(): boolean;
+  clearTemplate(): SubmitSearchRequest;
+
+  getMarketSpace(): strategysearch_search_pb.MarketSpace | undefined;
+  setMarketSpace(value?: strategysearch_search_pb.MarketSpace): SubmitSearchRequest;
+  hasMarketSpace(): boolean;
+  clearMarketSpace(): SubmitSearchRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitSearchRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitSearchRequest): SubmitSearchRequest.AsObject;
@@ -46,6 +56,8 @@ export namespace SubmitSearchRequest {
     searchSpaceList: Array<strategysearch_search_pb.ParamRange.AsObject>,
     study?: strategysearch_search_pb.StudyConfig.AsObject,
     config?: strategysearch_backtest_pb.BacktestConfig.AsObject,
+    template?: strategysearch_search_pb.StrategyTemplate.AsObject,
+    marketSpace?: strategysearch_search_pb.MarketSpace.AsObject,
   }
 }
 

@@ -344,9 +344,70 @@ message SearchRun {
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp started_at = 10;
   google.protobuf.Timestamp finished_at = 11;
+  // template задан => координатор строит StrategySearchSpec на каждом трайле
+  // сам (см. StrategyTemplate ниже), base_spec/search_space игнорируются.
+  StrategyTemplate template = 12;
+  // market_space задан => uid/interval/период config — тоже часть поиска,
+  // а не фиксированное значение; market_candidates — резолв market_space
+  // (запрос к HistoricCandle/Instruments), сделанный один раз при SubmitSearch.
+  MarketSpace market_space = 13;
+  repeated MarketCandidate market_candidates = 14;
 }
 
 // Payload задачи в NATS (TrB.strategysearch.search.tasks). Публикует координатор.
 message SearchTask {
   string search_id = 1;
+}
+
+// ---------------------------------------------------------------------------
+// Композиция стратегии из палитры индикаторов (define-by-run под Optuna):
+// в отличие от ParamRange/search_space (тюнинг СКАЛЯРОВ фиксированного
+// base_spec), здесь сама СТРУКТУРА StrategySearchSpec — часть поиска. Движок
+// на каждом трайле сам решает, сколько индикаторов использовать, каких типов
+// и из скольких условий состоит entry_long/exit_long (см. engine/search/compose.py).
+// ---------------------------------------------------------------------------
+
+// Диапазоны гиперпараметров одного типа индикатора из палитры. field_ranges —
+// ParamRange, где path = имя скалярного поля внутри IndicatorSettings.<type>
+// (напр. "period"), без точечного адреса внутри StrategySearchSpec.
+message IndicatorTypeRanges {
+  string indicator_type = 1;   // имя oneof-поля IndicatorSettings.indicator_type, напр. "rsi"
+  repeated ParamRange field_ranges = 2;
+}
+
+message StrategyTemplate {
+  repeated string indicator_palette = 1;   // допустимые типы (IndicatorSettings.indicator_type)
+  uint32 max_indicators = 2;               // верхняя граница числа индикаторов в стратегии
+  uint32 max_conditions_entry = 3;         // верхняя граница числа условий в entry_long (AND)
+  uint32 max_conditions_exit = 4;          // 0 => exit строится автоматически (обратное условие)
+  repeated IndicatorTypeRanges type_ranges = 5;
+  repeated CompareOp allowed_ops = 6;      // пусто => GT/LT/GE/LE/CROSSES_ABOVE/CROSSES_BELOW
+}
+
+// ---------------------------------------------------------------------------
+// Рыночный контекст (инструмент/интервал/окно) как измерение поиска.
+// ---------------------------------------------------------------------------
+
+enum MarketMode {
+  MARKET_MODE_PALETTE = 0;  // строго из uid_filter (список выбран на фронте)
+  MARKET_MODE_RANDOM = 1;   // весь каталог; uid_filter — необязательный доп. отбор
+}
+
+// Резолвится координатором (manage) один раз при SubmitSearch запросом к
+// HistoricCandle.ListLastDownloads/Instruments.ListInstruments и замораживается
+// в SearchRun.market_candidates — трайлы сэмплируют uid/interval/период из
+// этого списка, без обращения к ClickHouse на каждый трайл.
+message MarketCandidate {
+  string uid = 1;
+  int32 interval = 2;
+  google.protobuf.Timestamp available_start = 3;
+  google.protobuf.Timestamp available_end = 4;
+}
+
+message MarketSpace {
+  MarketMode mode = 1;
+  repeated string uid_filter = 2;       // PALETTE: точный список; RANDOM: доп. фильтр (пусто = весь каталог)
+  repeated int32 interval_filter = 3;
+  uint32 period_length_days = 4;        // длина окна бэктеста на трайл
+  uint32 min_history_days = 5;          // отсеять кандидатов короче этого при резолве
 }

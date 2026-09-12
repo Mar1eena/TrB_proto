@@ -1216,6 +1216,21 @@ export class SearchRun extends jspb.Message {
   hasFinishedAt(): boolean;
   clearFinishedAt(): SearchRun;
 
+  getTemplate(): StrategyTemplate | undefined;
+  setTemplate(value?: StrategyTemplate): SearchRun;
+  hasTemplate(): boolean;
+  clearTemplate(): SearchRun;
+
+  getMarketSpace(): MarketSpace | undefined;
+  setMarketSpace(value?: MarketSpace): SearchRun;
+  hasMarketSpace(): boolean;
+  clearMarketSpace(): SearchRun;
+
+  getMarketCandidatesList(): Array<MarketCandidate>;
+  setMarketCandidatesList(value: Array<MarketCandidate>): SearchRun;
+  clearMarketCandidatesList(): SearchRun;
+  addMarketCandidates(value?: MarketCandidate, index?: number): MarketCandidate;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchRun.AsObject;
   static toObject(includeInstance: boolean, msg: SearchRun): SearchRun.AsObject;
@@ -1237,6 +1252,9 @@ export namespace SearchRun {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     startedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     finishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    template?: StrategyTemplate.AsObject,
+    marketSpace?: MarketSpace.AsObject,
+    marketCandidatesList: Array<MarketCandidate.AsObject>,
   }
 }
 
@@ -1258,6 +1276,146 @@ export namespace SearchTask {
   }
 }
 
+export class IndicatorTypeRanges extends jspb.Message {
+  getIndicatorType(): string;
+  setIndicatorType(value: string): IndicatorTypeRanges;
+
+  getFieldRangesList(): Array<ParamRange>;
+  setFieldRangesList(value: Array<ParamRange>): IndicatorTypeRanges;
+  clearFieldRangesList(): IndicatorTypeRanges;
+  addFieldRanges(value?: ParamRange, index?: number): ParamRange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IndicatorTypeRanges.AsObject;
+  static toObject(includeInstance: boolean, msg: IndicatorTypeRanges): IndicatorTypeRanges.AsObject;
+  static serializeBinaryToWriter(message: IndicatorTypeRanges, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IndicatorTypeRanges;
+  static deserializeBinaryFromReader(message: IndicatorTypeRanges, reader: jspb.BinaryReader): IndicatorTypeRanges;
+}
+
+export namespace IndicatorTypeRanges {
+  export type AsObject = {
+    indicatorType: string,
+    fieldRangesList: Array<ParamRange.AsObject>,
+  }
+}
+
+export class StrategyTemplate extends jspb.Message {
+  getIndicatorPaletteList(): Array<string>;
+  setIndicatorPaletteList(value: Array<string>): StrategyTemplate;
+  clearIndicatorPaletteList(): StrategyTemplate;
+  addIndicatorPalette(value: string, index?: number): StrategyTemplate;
+
+  getMaxIndicators(): number;
+  setMaxIndicators(value: number): StrategyTemplate;
+
+  getMaxConditionsEntry(): number;
+  setMaxConditionsEntry(value: number): StrategyTemplate;
+
+  getMaxConditionsExit(): number;
+  setMaxConditionsExit(value: number): StrategyTemplate;
+
+  getTypeRangesList(): Array<IndicatorTypeRanges>;
+  setTypeRangesList(value: Array<IndicatorTypeRanges>): StrategyTemplate;
+  clearTypeRangesList(): StrategyTemplate;
+  addTypeRanges(value?: IndicatorTypeRanges, index?: number): IndicatorTypeRanges;
+
+  getAllowedOpsList(): Array<strategysearch_spec_pb.CompareOp>;
+  setAllowedOpsList(value: Array<strategysearch_spec_pb.CompareOp>): StrategyTemplate;
+  clearAllowedOpsList(): StrategyTemplate;
+  addAllowedOps(value: strategysearch_spec_pb.CompareOp, index?: number): StrategyTemplate;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StrategyTemplate.AsObject;
+  static toObject(includeInstance: boolean, msg: StrategyTemplate): StrategyTemplate.AsObject;
+  static serializeBinaryToWriter(message: StrategyTemplate, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StrategyTemplate;
+  static deserializeBinaryFromReader(message: StrategyTemplate, reader: jspb.BinaryReader): StrategyTemplate;
+}
+
+export namespace StrategyTemplate {
+  export type AsObject = {
+    indicatorPaletteList: Array<string>,
+    maxIndicators: number,
+    maxConditionsEntry: number,
+    maxConditionsExit: number,
+    typeRangesList: Array<IndicatorTypeRanges.AsObject>,
+    allowedOpsList: Array<strategysearch_spec_pb.CompareOp>,
+  }
+}
+
+export class MarketCandidate extends jspb.Message {
+  getUid(): string;
+  setUid(value: string): MarketCandidate;
+
+  getInterval(): number;
+  setInterval(value: number): MarketCandidate;
+
+  getAvailableStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setAvailableStart(value?: google_protobuf_timestamp_pb.Timestamp): MarketCandidate;
+  hasAvailableStart(): boolean;
+  clearAvailableStart(): MarketCandidate;
+
+  getAvailableEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setAvailableEnd(value?: google_protobuf_timestamp_pb.Timestamp): MarketCandidate;
+  hasAvailableEnd(): boolean;
+  clearAvailableEnd(): MarketCandidate;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarketCandidate.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketCandidate): MarketCandidate.AsObject;
+  static serializeBinaryToWriter(message: MarketCandidate, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketCandidate;
+  static deserializeBinaryFromReader(message: MarketCandidate, reader: jspb.BinaryReader): MarketCandidate;
+}
+
+export namespace MarketCandidate {
+  export type AsObject = {
+    uid: string,
+    interval: number,
+    availableStart?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    availableEnd?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class MarketSpace extends jspb.Message {
+  getMode(): MarketMode;
+  setMode(value: MarketMode): MarketSpace;
+
+  getUidFilterList(): Array<string>;
+  setUidFilterList(value: Array<string>): MarketSpace;
+  clearUidFilterList(): MarketSpace;
+  addUidFilter(value: string, index?: number): MarketSpace;
+
+  getIntervalFilterList(): Array<number>;
+  setIntervalFilterList(value: Array<number>): MarketSpace;
+  clearIntervalFilterList(): MarketSpace;
+  addIntervalFilter(value: number, index?: number): MarketSpace;
+
+  getPeriodLengthDays(): number;
+  setPeriodLengthDays(value: number): MarketSpace;
+
+  getMinHistoryDays(): number;
+  setMinHistoryDays(value: number): MarketSpace;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarketSpace.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketSpace): MarketSpace.AsObject;
+  static serializeBinaryToWriter(message: MarketSpace, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketSpace;
+  static deserializeBinaryFromReader(message: MarketSpace, reader: jspb.BinaryReader): MarketSpace;
+}
+
+export namespace MarketSpace {
+  export type AsObject = {
+    mode: MarketMode,
+    uidFilterList: Array<string>,
+    intervalFilterList: Array<number>,
+    periodLengthDays: number,
+    minHistoryDays: number,
+  }
+}
+
 export enum TrialState { 
   TRIAL_STATE_UNSPECIFIED = 0,
   TRIAL_STATE_RUNNING = 1,
@@ -1265,4 +1423,8 @@ export enum TrialState {
   TRIAL_STATE_COMPLETE = 3,
   TRIAL_STATE_PRUNED = 4,
   TRIAL_STATE_FAIL = 5,
+}
+export enum MarketMode { 
+  MARKET_MODE_PALETTE = 0,
+  MARKET_MODE_RANDOM = 1,
 }

@@ -24,12 +24,20 @@ const (
 )
 
 type SubmitSearchRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	BaseSpec      *StrategySearchSpec    `protobuf:"bytes,2,opt,name=base_spec,json=baseSpec,proto3" json:"base_spec,omitempty"` // фиксированная часть спека + стартовые значения
-	SearchSpace   []*ParamRange          `protobuf:"bytes,3,rep,name=search_space,json=searchSpace,proto3" json:"search_space,omitempty"`
-	Study         *StudyConfig           `protobuf:"bytes,4,opt,name=study,proto3" json:"study,omitempty"`
-	Config        *BacktestConfig        `protobuf:"bytes,5,opt,name=config,proto3" json:"config,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Name        string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	BaseSpec    *StrategySearchSpec    `protobuf:"bytes,2,opt,name=base_spec,json=baseSpec,proto3" json:"base_spec,omitempty"` // фиксированная часть спека + стартовые значения
+	SearchSpace []*ParamRange          `protobuf:"bytes,3,rep,name=search_space,json=searchSpace,proto3" json:"search_space,omitempty"`
+	Study       *StudyConfig           `protobuf:"bytes,4,opt,name=study,proto3" json:"study,omitempty"`
+	Config      *BacktestConfig        `protobuf:"bytes,5,opt,name=config,proto3" json:"config,omitempty"`
+	// template задан => структура стратегии (индикаторы/условия) тоже часть
+	// поиска, base_spec даёт только sizing/risk/warmup_bars (см. search.proto).
+	Template *StrategyTemplate `protobuf:"bytes,6,opt,name=template,proto3" json:"template,omitempty"`
+	// market_space задан => manage резолвит config.uid/interval в
+	// market_candidates запросом к HistoricCandle/Instruments и uid/interval/
+	// период тоже становятся частью поиска; config.uid/interval/start/end
+	// в этом случае — не обязательны (игнорируются координатором).
+	MarketSpace   *MarketSpace `protobuf:"bytes,7,opt,name=market_space,json=marketSpace,proto3" json:"market_space,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -95,6 +103,20 @@ func (x *SubmitSearchRequest) GetStudy() *StudyConfig {
 func (x *SubmitSearchRequest) GetConfig() *BacktestConfig {
 	if x != nil {
 		return x.Config
+	}
+	return nil
+}
+
+func (x *SubmitSearchRequest) GetTemplate() *StrategyTemplate {
+	if x != nil {
+		return x.Template
+	}
+	return nil
+}
+
+func (x *SubmitSearchRequest) GetMarketSpace() *MarketSpace {
+	if x != nil {
+		return x.MarketSpace
 	}
 	return nil
 }
@@ -1021,13 +1043,15 @@ var File_strategysearch_strategysearch_proto protoreflect.FileDescriptor
 
 const file_strategysearch_strategysearch_proto_rawDesc = "" +
 	"\n" +
-	"#strategysearch/strategysearch.proto\x12\x15trb.strategysearch.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19strategysearch/spec.proto\x1a\x1dstrategysearch/backtest.proto\x1a\x1bstrategysearch/search.proto\"\xb0\x02\n" +
+	"#strategysearch/strategysearch.proto\x12\x15trb.strategysearch.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19strategysearch/spec.proto\x1a\x1dstrategysearch/backtest.proto\x1a\x1bstrategysearch/search.proto\"\xbc\x03\n" +
 	"\x13SubmitSearchRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12F\n" +
 	"\tbase_spec\x18\x02 \x01(\v2).trb.strategysearch.v1.StrategySearchSpecR\bbaseSpec\x12D\n" +
 	"\fsearch_space\x18\x03 \x03(\v2!.trb.strategysearch.v1.ParamRangeR\vsearchSpace\x128\n" +
 	"\x05study\x18\x04 \x01(\v2\".trb.strategysearch.v1.StudyConfigR\x05study\x12=\n" +
-	"\x06config\x18\x05 \x01(\v2%.trb.strategysearch.v1.BacktestConfigR\x06config\"m\n" +
+	"\x06config\x18\x05 \x01(\v2%.trb.strategysearch.v1.BacktestConfigR\x06config\x12C\n" +
+	"\btemplate\x18\x06 \x01(\v2'.trb.strategysearch.v1.StrategyTemplateR\btemplate\x12E\n" +
+	"\fmarket_space\x18\a \x01(\v2\".trb.strategysearch.v1.MarketSpaceR\vmarketSpace\"m\n" +
 	"\x14SubmitSearchResponse\x12\x1b\n" +
 	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\x128\n" +
 	"\x06status\x18\x02 \x01(\x0e2 .trb.strategysearch.v1.RunStatusR\x06status\"7\n" +
@@ -1132,58 +1156,62 @@ var file_strategysearch_strategysearch_proto_goTypes = []any{
 	(*ParamRange)(nil),                  // 19: trb.strategysearch.v1.ParamRange
 	(*StudyConfig)(nil),                 // 20: trb.strategysearch.v1.StudyConfig
 	(*BacktestConfig)(nil),              // 21: trb.strategysearch.v1.BacktestConfig
-	(RunStatus)(0),                      // 22: trb.strategysearch.v1.RunStatus
-	(*Trial)(nil),                       // 23: trb.strategysearch.v1.Trial
-	(*ParamImportance)(nil),             // 24: trb.strategysearch.v1.ParamImportance
-	(*SearchRun)(nil),                   // 25: trb.strategysearch.v1.SearchRun
-	(*timestamppb.Timestamp)(nil),       // 26: google.protobuf.Timestamp
+	(*StrategyTemplate)(nil),            // 22: trb.strategysearch.v1.StrategyTemplate
+	(*MarketSpace)(nil),                 // 23: trb.strategysearch.v1.MarketSpace
+	(RunStatus)(0),                      // 24: trb.strategysearch.v1.RunStatus
+	(*Trial)(nil),                       // 25: trb.strategysearch.v1.Trial
+	(*ParamImportance)(nil),             // 26: trb.strategysearch.v1.ParamImportance
+	(*SearchRun)(nil),                   // 27: trb.strategysearch.v1.SearchRun
+	(*timestamppb.Timestamp)(nil),       // 28: google.protobuf.Timestamp
 }
 var file_strategysearch_strategysearch_proto_depIdxs = []int32{
 	18, // 0: trb.strategysearch.v1.SubmitSearchRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
 	19, // 1: trb.strategysearch.v1.SubmitSearchRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
 	20, // 2: trb.strategysearch.v1.SubmitSearchRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
 	21, // 3: trb.strategysearch.v1.SubmitSearchRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	22, // 4: trb.strategysearch.v1.SubmitSearchResponse.status:type_name -> trb.strategysearch.v1.RunStatus
-	23, // 5: trb.strategysearch.v1.GetBestTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
-	23, // 6: trb.strategysearch.v1.ListSearchTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
-	24, // 7: trb.strategysearch.v1.GetParamImportancesResponse.items:type_name -> trb.strategysearch.v1.ParamImportance
-	22, // 8: trb.strategysearch.v1.ListSearchesRequest.status:type_name -> trb.strategysearch.v1.RunStatus
-	25, // 9: trb.strategysearch.v1.ListSearchesResponse.items:type_name -> trb.strategysearch.v1.SearchRun
-	18, // 10: trb.strategysearch.v1.SearchPreset.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	19, // 11: trb.strategysearch.v1.SearchPreset.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	20, // 12: trb.strategysearch.v1.SearchPreset.study:type_name -> trb.strategysearch.v1.StudyConfig
-	21, // 13: trb.strategysearch.v1.SearchPreset.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	26, // 14: trb.strategysearch.v1.SearchPreset.created_at:type_name -> google.protobuf.Timestamp
-	18, // 15: trb.strategysearch.v1.CreateSearchPresetRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	19, // 16: trb.strategysearch.v1.CreateSearchPresetRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	20, // 17: trb.strategysearch.v1.CreateSearchPresetRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
-	21, // 18: trb.strategysearch.v1.CreateSearchPresetRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	12, // 19: trb.strategysearch.v1.ListSearchPresetsResponse.items:type_name -> trb.strategysearch.v1.SearchPreset
-	0,  // 20: trb.strategysearch.v1.StrategySearchService.SubmitSearch:input_type -> trb.strategysearch.v1.SubmitSearchRequest
-	2,  // 21: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:input_type -> trb.strategysearch.v1.GetSearchProgressRequest
-	3,  // 22: trb.strategysearch.v1.StrategySearchService.GetBestTrials:input_type -> trb.strategysearch.v1.GetBestTrialsRequest
-	5,  // 23: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:input_type -> trb.strategysearch.v1.ListSearchTrialsRequest
-	7,  // 24: trb.strategysearch.v1.StrategySearchService.GetParamImportances:input_type -> trb.strategysearch.v1.GetParamImportancesRequest
-	9,  // 25: trb.strategysearch.v1.StrategySearchService.ListSearches:input_type -> trb.strategysearch.v1.ListSearchesRequest
-	11, // 26: trb.strategysearch.v1.StrategySearchService.CancelSearch:input_type -> trb.strategysearch.v1.CancelSearchRequest
-	13, // 27: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:input_type -> trb.strategysearch.v1.CreateSearchPresetRequest
-	14, // 28: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:input_type -> trb.strategysearch.v1.ListSearchPresetsRequest
-	16, // 29: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:input_type -> trb.strategysearch.v1.DeleteSearchPresetRequest
-	1,  // 30: trb.strategysearch.v1.StrategySearchService.SubmitSearch:output_type -> trb.strategysearch.v1.SubmitSearchResponse
-	25, // 31: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:output_type -> trb.strategysearch.v1.SearchRun
-	4,  // 32: trb.strategysearch.v1.StrategySearchService.GetBestTrials:output_type -> trb.strategysearch.v1.GetBestTrialsResponse
-	6,  // 33: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:output_type -> trb.strategysearch.v1.ListSearchTrialsResponse
-	8,  // 34: trb.strategysearch.v1.StrategySearchService.GetParamImportances:output_type -> trb.strategysearch.v1.GetParamImportancesResponse
-	10, // 35: trb.strategysearch.v1.StrategySearchService.ListSearches:output_type -> trb.strategysearch.v1.ListSearchesResponse
-	25, // 36: trb.strategysearch.v1.StrategySearchService.CancelSearch:output_type -> trb.strategysearch.v1.SearchRun
-	12, // 37: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:output_type -> trb.strategysearch.v1.SearchPreset
-	15, // 38: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:output_type -> trb.strategysearch.v1.ListSearchPresetsResponse
-	17, // 39: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:output_type -> trb.strategysearch.v1.DeleteSearchPresetResponse
-	30, // [30:40] is the sub-list for method output_type
-	20, // [20:30] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	22, // 4: trb.strategysearch.v1.SubmitSearchRequest.template:type_name -> trb.strategysearch.v1.StrategyTemplate
+	23, // 5: trb.strategysearch.v1.SubmitSearchRequest.market_space:type_name -> trb.strategysearch.v1.MarketSpace
+	24, // 6: trb.strategysearch.v1.SubmitSearchResponse.status:type_name -> trb.strategysearch.v1.RunStatus
+	25, // 7: trb.strategysearch.v1.GetBestTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
+	25, // 8: trb.strategysearch.v1.ListSearchTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
+	26, // 9: trb.strategysearch.v1.GetParamImportancesResponse.items:type_name -> trb.strategysearch.v1.ParamImportance
+	24, // 10: trb.strategysearch.v1.ListSearchesRequest.status:type_name -> trb.strategysearch.v1.RunStatus
+	27, // 11: trb.strategysearch.v1.ListSearchesResponse.items:type_name -> trb.strategysearch.v1.SearchRun
+	18, // 12: trb.strategysearch.v1.SearchPreset.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	19, // 13: trb.strategysearch.v1.SearchPreset.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	20, // 14: trb.strategysearch.v1.SearchPreset.study:type_name -> trb.strategysearch.v1.StudyConfig
+	21, // 15: trb.strategysearch.v1.SearchPreset.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	28, // 16: trb.strategysearch.v1.SearchPreset.created_at:type_name -> google.protobuf.Timestamp
+	18, // 17: trb.strategysearch.v1.CreateSearchPresetRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	19, // 18: trb.strategysearch.v1.CreateSearchPresetRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	20, // 19: trb.strategysearch.v1.CreateSearchPresetRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
+	21, // 20: trb.strategysearch.v1.CreateSearchPresetRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	12, // 21: trb.strategysearch.v1.ListSearchPresetsResponse.items:type_name -> trb.strategysearch.v1.SearchPreset
+	0,  // 22: trb.strategysearch.v1.StrategySearchService.SubmitSearch:input_type -> trb.strategysearch.v1.SubmitSearchRequest
+	2,  // 23: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:input_type -> trb.strategysearch.v1.GetSearchProgressRequest
+	3,  // 24: trb.strategysearch.v1.StrategySearchService.GetBestTrials:input_type -> trb.strategysearch.v1.GetBestTrialsRequest
+	5,  // 25: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:input_type -> trb.strategysearch.v1.ListSearchTrialsRequest
+	7,  // 26: trb.strategysearch.v1.StrategySearchService.GetParamImportances:input_type -> trb.strategysearch.v1.GetParamImportancesRequest
+	9,  // 27: trb.strategysearch.v1.StrategySearchService.ListSearches:input_type -> trb.strategysearch.v1.ListSearchesRequest
+	11, // 28: trb.strategysearch.v1.StrategySearchService.CancelSearch:input_type -> trb.strategysearch.v1.CancelSearchRequest
+	13, // 29: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:input_type -> trb.strategysearch.v1.CreateSearchPresetRequest
+	14, // 30: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:input_type -> trb.strategysearch.v1.ListSearchPresetsRequest
+	16, // 31: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:input_type -> trb.strategysearch.v1.DeleteSearchPresetRequest
+	1,  // 32: trb.strategysearch.v1.StrategySearchService.SubmitSearch:output_type -> trb.strategysearch.v1.SubmitSearchResponse
+	27, // 33: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:output_type -> trb.strategysearch.v1.SearchRun
+	4,  // 34: trb.strategysearch.v1.StrategySearchService.GetBestTrials:output_type -> trb.strategysearch.v1.GetBestTrialsResponse
+	6,  // 35: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:output_type -> trb.strategysearch.v1.ListSearchTrialsResponse
+	8,  // 36: trb.strategysearch.v1.StrategySearchService.GetParamImportances:output_type -> trb.strategysearch.v1.GetParamImportancesResponse
+	10, // 37: trb.strategysearch.v1.StrategySearchService.ListSearches:output_type -> trb.strategysearch.v1.ListSearchesResponse
+	27, // 38: trb.strategysearch.v1.StrategySearchService.CancelSearch:output_type -> trb.strategysearch.v1.SearchRun
+	12, // 39: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:output_type -> trb.strategysearch.v1.SearchPreset
+	15, // 40: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:output_type -> trb.strategysearch.v1.ListSearchPresetsResponse
+	17, // 41: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:output_type -> trb.strategysearch.v1.DeleteSearchPresetResponse
+	32, // [32:42] is the sub-list for method output_type
+	22, // [22:32] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_strategysearch_strategysearch_proto_init() }

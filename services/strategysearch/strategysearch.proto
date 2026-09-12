@@ -94,6 +94,14 @@ message SubmitSearchRequest {
   repeated ParamRange search_space = 3;
   StudyConfig study = 4;
   BacktestConfig config = 5;
+  // template задан => структура стратегии (индикаторы/условия) тоже часть
+  // поиска, base_spec даёт только sizing/risk/warmup_bars (см. search.proto).
+  StrategyTemplate template = 6;
+  // market_space задан => manage резолвит config.uid/interval в
+  // market_candidates запросом к HistoricCandle/Instruments и uid/interval/
+  // период тоже становятся частью поиска; config.uid/interval/start/end
+  // в этом случае — не обязательны (игнорируются координатором).
+  MarketSpace market_space = 7;
 }
 
 message SubmitSearchResponse {

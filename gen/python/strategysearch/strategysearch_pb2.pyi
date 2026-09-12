@@ -14,18 +14,22 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class SubmitSearchRequest(_message.Message):
-    __slots__ = ("name", "base_spec", "search_space", "study", "config")
+    __slots__ = ("name", "base_spec", "search_space", "study", "config", "template", "market_space")
     NAME_FIELD_NUMBER: _ClassVar[int]
     BASE_SPEC_FIELD_NUMBER: _ClassVar[int]
     SEARCH_SPACE_FIELD_NUMBER: _ClassVar[int]
     STUDY_FIELD_NUMBER: _ClassVar[int]
     CONFIG_FIELD_NUMBER: _ClassVar[int]
+    TEMPLATE_FIELD_NUMBER: _ClassVar[int]
+    MARKET_SPACE_FIELD_NUMBER: _ClassVar[int]
     name: str
     base_spec: _spec_pb2.StrategySearchSpec
     search_space: _containers.RepeatedCompositeFieldContainer[_search_pb2.ParamRange]
     study: _search_pb2.StudyConfig
     config: _backtest_pb2.BacktestConfig
-    def __init__(self, name: _Optional[str] = ..., base_spec: _Optional[_Union[_spec_pb2.StrategySearchSpec, _Mapping]] = ..., search_space: _Optional[_Iterable[_Union[_search_pb2.ParamRange, _Mapping]]] = ..., study: _Optional[_Union[_search_pb2.StudyConfig, _Mapping]] = ..., config: _Optional[_Union[_backtest_pb2.BacktestConfig, _Mapping]] = ...) -> None: ...
+    template: _search_pb2.StrategyTemplate
+    market_space: _search_pb2.MarketSpace
+    def __init__(self, name: _Optional[str] = ..., base_spec: _Optional[_Union[_spec_pb2.StrategySearchSpec, _Mapping]] = ..., search_space: _Optional[_Iterable[_Union[_search_pb2.ParamRange, _Mapping]]] = ..., study: _Optional[_Union[_search_pb2.StudyConfig, _Mapping]] = ..., config: _Optional[_Union[_backtest_pb2.BacktestConfig, _Mapping]] = ..., template: _Optional[_Union[_search_pb2.StrategyTemplate, _Mapping]] = ..., market_space: _Optional[_Union[_search_pb2.MarketSpace, _Mapping]] = ...) -> None: ...
 
 class SubmitSearchResponse(_message.Message):
     __slots__ = ("search_id", "status")

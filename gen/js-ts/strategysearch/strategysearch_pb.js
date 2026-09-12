@@ -471,7 +471,9 @@ baseSpec: (f = msg.getBaseSpec()) && strategysearch_spec_pb.StrategySearchSpec.t
 searchSpaceList: jspb.Message.toObjectList(msg.getSearchSpaceList(),
     strategysearch_search_pb.ParamRange.toObject, includeInstance),
 study: (f = msg.getStudy()) && strategysearch_search_pb.StudyConfig.toObject(includeInstance, f),
-config: (f = msg.getConfig()) && strategysearch_backtest_pb.BacktestConfig.toObject(includeInstance, f)
+config: (f = msg.getConfig()) && strategysearch_backtest_pb.BacktestConfig.toObject(includeInstance, f),
+template: (f = msg.getTemplate()) && strategysearch_search_pb.StrategyTemplate.toObject(includeInstance, f),
+marketSpace: (f = msg.getMarketSpace()) && strategysearch_search_pb.MarketSpace.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -531,6 +533,16 @@ proto.trb.strategysearch.v1.SubmitSearchRequest.deserializeBinaryFromReader = fu
       var value = new strategysearch_backtest_pb.BacktestConfig;
       reader.readMessage(value,strategysearch_backtest_pb.BacktestConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
+      break;
+    case 6:
+      var value = new strategysearch_search_pb.StrategyTemplate;
+      reader.readMessage(value,strategysearch_search_pb.StrategyTemplate.deserializeBinaryFromReader);
+      msg.setTemplate(value);
+      break;
+    case 7:
+      var value = new strategysearch_search_pb.MarketSpace;
+      reader.readMessage(value,strategysearch_search_pb.MarketSpace.deserializeBinaryFromReader);
+      msg.setMarketSpace(value);
       break;
     default:
       reader.skipField();
@@ -598,6 +610,22 @@ proto.trb.strategysearch.v1.SubmitSearchRequest.serializeBinaryToWriter = functi
       5,
       f,
       strategysearch_backtest_pb.BacktestConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getTemplate();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      strategysearch_search_pb.StrategyTemplate.serializeBinaryToWriter
+    );
+  }
+  f = message.getMarketSpace();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      strategysearch_search_pb.MarketSpace.serializeBinaryToWriter
     );
   }
 };
@@ -767,6 +795,80 @@ proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.clearConfig = function
  */
 proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional StrategyTemplate template = 6;
+ * @return {?proto.trb.strategysearch.v1.StrategyTemplate}
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.getTemplate = function() {
+  return /** @type{?proto.trb.strategysearch.v1.StrategyTemplate} */ (
+    jspb.Message.getWrapperField(this, strategysearch_search_pb.StrategyTemplate, 6));
+};
+
+
+/**
+ * @param {?proto.trb.strategysearch.v1.StrategyTemplate|undefined} value
+ * @return {!proto.trb.strategysearch.v1.SubmitSearchRequest} returns this
+*/
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.setTemplate = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.trb.strategysearch.v1.SubmitSearchRequest} returns this
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.clearTemplate = function() {
+  return this.setTemplate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.hasTemplate = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional MarketSpace market_space = 7;
+ * @return {?proto.trb.strategysearch.v1.MarketSpace}
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.getMarketSpace = function() {
+  return /** @type{?proto.trb.strategysearch.v1.MarketSpace} */ (
+    jspb.Message.getWrapperField(this, strategysearch_search_pb.MarketSpace, 7));
+};
+
+
+/**
+ * @param {?proto.trb.strategysearch.v1.MarketSpace|undefined} value
+ * @return {!proto.trb.strategysearch.v1.SubmitSearchRequest} returns this
+*/
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.setMarketSpace = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.trb.strategysearch.v1.SubmitSearchRequest} returns this
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.clearMarketSpace = function() {
+  return this.setMarketSpace(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.trb.strategysearch.v1.SubmitSearchRequest.prototype.hasMarketSpace = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

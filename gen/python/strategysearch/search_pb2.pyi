@@ -20,12 +20,19 @@ class TrialState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     TRIAL_STATE_COMPLETE: _ClassVar[TrialState]
     TRIAL_STATE_PRUNED: _ClassVar[TrialState]
     TRIAL_STATE_FAIL: _ClassVar[TrialState]
+
+class MarketMode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    MARKET_MODE_PALETTE: _ClassVar[MarketMode]
+    MARKET_MODE_RANDOM: _ClassVar[MarketMode]
 TRIAL_STATE_UNSPECIFIED: TrialState
 TRIAL_STATE_RUNNING: TrialState
 TRIAL_STATE_WAITING: TrialState
 TRIAL_STATE_COMPLETE: TrialState
 TRIAL_STATE_PRUNED: TrialState
 TRIAL_STATE_FAIL: TrialState
+MARKET_MODE_PALETTE: MarketMode
+MARKET_MODE_RANDOM: MarketMode
 
 class IntRange(_message.Message):
     __slots__ = ("min", "max", "step")
@@ -483,7 +490,7 @@ class SearchProgress(_message.Message):
     def __init__(self, status: _Optional[_Union[_backtest_pb2.RunStatus, str]] = ..., completed_trials: _Optional[int] = ..., pruned_trials: _Optional[int] = ..., failed_trials: _Optional[int] = ..., total_trials: _Optional[int] = ..., is_multi_objective: bool = ..., best_values: _Optional[_Mapping[str, float]] = ..., best_trial_id: _Optional[str] = ..., pareto_front_trial_ids: _Optional[_Iterable[str]] = ..., error: _Optional[str] = ...) -> None: ...
 
 class SearchRun(_message.Message):
-    __slots__ = ("search_id", "name", "base_spec", "search_space", "study", "config", "progress", "engine_version", "created_at", "started_at", "finished_at")
+    __slots__ = ("search_id", "name", "base_spec", "search_space", "study", "config", "progress", "engine_version", "created_at", "started_at", "finished_at", "template", "market_space", "market_candidates")
     SEARCH_ID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     BASE_SPEC_FIELD_NUMBER: _ClassVar[int]
@@ -495,6 +502,9 @@ class SearchRun(_message.Message):
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     STARTED_AT_FIELD_NUMBER: _ClassVar[int]
     FINISHED_AT_FIELD_NUMBER: _ClassVar[int]
+    TEMPLATE_FIELD_NUMBER: _ClassVar[int]
+    MARKET_SPACE_FIELD_NUMBER: _ClassVar[int]
+    MARKET_CANDIDATES_FIELD_NUMBER: _ClassVar[int]
     search_id: str
     name: str
     base_spec: _spec_pb2.StrategySearchSpec
@@ -506,10 +516,63 @@ class SearchRun(_message.Message):
     created_at: _timestamp_pb2.Timestamp
     started_at: _timestamp_pb2.Timestamp
     finished_at: _timestamp_pb2.Timestamp
-    def __init__(self, search_id: _Optional[str] = ..., name: _Optional[str] = ..., base_spec: _Optional[_Union[_spec_pb2.StrategySearchSpec, _Mapping]] = ..., search_space: _Optional[_Iterable[_Union[ParamRange, _Mapping]]] = ..., study: _Optional[_Union[StudyConfig, _Mapping]] = ..., config: _Optional[_Union[_backtest_pb2.BacktestConfig, _Mapping]] = ..., progress: _Optional[_Union[SearchProgress, _Mapping]] = ..., engine_version: _Optional[str] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., started_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., finished_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+    template: StrategyTemplate
+    market_space: MarketSpace
+    market_candidates: _containers.RepeatedCompositeFieldContainer[MarketCandidate]
+    def __init__(self, search_id: _Optional[str] = ..., name: _Optional[str] = ..., base_spec: _Optional[_Union[_spec_pb2.StrategySearchSpec, _Mapping]] = ..., search_space: _Optional[_Iterable[_Union[ParamRange, _Mapping]]] = ..., study: _Optional[_Union[StudyConfig, _Mapping]] = ..., config: _Optional[_Union[_backtest_pb2.BacktestConfig, _Mapping]] = ..., progress: _Optional[_Union[SearchProgress, _Mapping]] = ..., engine_version: _Optional[str] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., started_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., finished_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., template: _Optional[_Union[StrategyTemplate, _Mapping]] = ..., market_space: _Optional[_Union[MarketSpace, _Mapping]] = ..., market_candidates: _Optional[_Iterable[_Union[MarketCandidate, _Mapping]]] = ...) -> None: ...
 
 class SearchTask(_message.Message):
     __slots__ = ("search_id",)
     SEARCH_ID_FIELD_NUMBER: _ClassVar[int]
     search_id: str
     def __init__(self, search_id: _Optional[str] = ...) -> None: ...
+
+class IndicatorTypeRanges(_message.Message):
+    __slots__ = ("indicator_type", "field_ranges")
+    INDICATOR_TYPE_FIELD_NUMBER: _ClassVar[int]
+    FIELD_RANGES_FIELD_NUMBER: _ClassVar[int]
+    indicator_type: str
+    field_ranges: _containers.RepeatedCompositeFieldContainer[ParamRange]
+    def __init__(self, indicator_type: _Optional[str] = ..., field_ranges: _Optional[_Iterable[_Union[ParamRange, _Mapping]]] = ...) -> None: ...
+
+class StrategyTemplate(_message.Message):
+    __slots__ = ("indicator_palette", "max_indicators", "max_conditions_entry", "max_conditions_exit", "type_ranges", "allowed_ops")
+    INDICATOR_PALETTE_FIELD_NUMBER: _ClassVar[int]
+    MAX_INDICATORS_FIELD_NUMBER: _ClassVar[int]
+    MAX_CONDITIONS_ENTRY_FIELD_NUMBER: _ClassVar[int]
+    MAX_CONDITIONS_EXIT_FIELD_NUMBER: _ClassVar[int]
+    TYPE_RANGES_FIELD_NUMBER: _ClassVar[int]
+    ALLOWED_OPS_FIELD_NUMBER: _ClassVar[int]
+    indicator_palette: _containers.RepeatedScalarFieldContainer[str]
+    max_indicators: int
+    max_conditions_entry: int
+    max_conditions_exit: int
+    type_ranges: _containers.RepeatedCompositeFieldContainer[IndicatorTypeRanges]
+    allowed_ops: _containers.RepeatedScalarFieldContainer[_spec_pb2.CompareOp]
+    def __init__(self, indicator_palette: _Optional[_Iterable[str]] = ..., max_indicators: _Optional[int] = ..., max_conditions_entry: _Optional[int] = ..., max_conditions_exit: _Optional[int] = ..., type_ranges: _Optional[_Iterable[_Union[IndicatorTypeRanges, _Mapping]]] = ..., allowed_ops: _Optional[_Iterable[_Union[_spec_pb2.CompareOp, str]]] = ...) -> None: ...
+
+class MarketCandidate(_message.Message):
+    __slots__ = ("uid", "interval", "available_start", "available_end")
+    UID_FIELD_NUMBER: _ClassVar[int]
+    INTERVAL_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLE_START_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLE_END_FIELD_NUMBER: _ClassVar[int]
+    uid: str
+    interval: int
+    available_start: _timestamp_pb2.Timestamp
+    available_end: _timestamp_pb2.Timestamp
+    def __init__(self, uid: _Optional[str] = ..., interval: _Optional[int] = ..., available_start: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., available_end: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+
+class MarketSpace(_message.Message):
+    __slots__ = ("mode", "uid_filter", "interval_filter", "period_length_days", "min_history_days")
+    MODE_FIELD_NUMBER: _ClassVar[int]
+    UID_FILTER_FIELD_NUMBER: _ClassVar[int]
+    INTERVAL_FILTER_FIELD_NUMBER: _ClassVar[int]
+    PERIOD_LENGTH_DAYS_FIELD_NUMBER: _ClassVar[int]
+    MIN_HISTORY_DAYS_FIELD_NUMBER: _ClassVar[int]
+    mode: MarketMode
+    uid_filter: _containers.RepeatedScalarFieldContainer[str]
+    interval_filter: _containers.RepeatedScalarFieldContainer[int]
+    period_length_days: int
+    min_history_days: int
+    def __init__(self, mode: _Optional[_Union[MarketMode, str]] = ..., uid_filter: _Optional[_Iterable[str]] = ..., interval_filter: _Optional[_Iterable[int]] = ..., period_length_days: _Optional[int] = ..., min_history_days: _Optional[int] = ...) -> None: ...
