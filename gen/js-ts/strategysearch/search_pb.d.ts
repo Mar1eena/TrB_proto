@@ -1088,6 +1088,28 @@ export namespace Trial {
   }
 }
 
+export class ParamImportance extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): ParamImportance;
+
+  getImportance(): number;
+  setImportance(value: number): ParamImportance;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ParamImportance.AsObject;
+  static toObject(includeInstance: boolean, msg: ParamImportance): ParamImportance.AsObject;
+  static serializeBinaryToWriter(message: ParamImportance, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ParamImportance;
+  static deserializeBinaryFromReader(message: ParamImportance, reader: jspb.BinaryReader): ParamImportance;
+}
+
+export namespace ParamImportance {
+  export type AsObject = {
+    path: string,
+    importance: number,
+  }
+}
+
 export class SearchProgress extends jspb.Message {
   getStatus(): strategysearch_backtest_pb.RunStatus;
   setStatus(value: strategysearch_backtest_pb.RunStatus): SearchProgress;

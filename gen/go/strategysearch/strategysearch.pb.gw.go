@@ -235,6 +235,166 @@ func local_request_StrategySearchService_GetBestTrials_1(ctx context.Context, ma
 	return msg, metadata, err
 }
 
+var filter_StrategySearchService_ListSearchTrials_0 = &utilities.DoubleArray{Encoding: map[string]int{"search_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
+func request_StrategySearchService_ListSearchTrials_0(ctx context.Context, marshaler runtime.Marshaler, client StrategySearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListSearchTrialsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["search_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "search_id")
+	}
+	protoReq.SearchId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "search_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StrategySearchService_ListSearchTrials_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListSearchTrials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_StrategySearchService_ListSearchTrials_0(ctx context.Context, marshaler runtime.Marshaler, server StrategySearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListSearchTrialsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["search_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "search_id")
+	}
+	protoReq.SearchId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "search_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StrategySearchService_ListSearchTrials_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListSearchTrials(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_StrategySearchService_ListSearchTrials_1(ctx context.Context, marshaler runtime.Marshaler, client StrategySearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListSearchTrialsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListSearchTrials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_StrategySearchService_ListSearchTrials_1(ctx context.Context, marshaler runtime.Marshaler, server StrategySearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListSearchTrialsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListSearchTrials(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_StrategySearchService_GetParamImportances_0 = &utilities.DoubleArray{Encoding: map[string]int{"search_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
+func request_StrategySearchService_GetParamImportances_0(ctx context.Context, marshaler runtime.Marshaler, client StrategySearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetParamImportancesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["search_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "search_id")
+	}
+	protoReq.SearchId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "search_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StrategySearchService_GetParamImportances_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetParamImportances(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_StrategySearchService_GetParamImportances_0(ctx context.Context, marshaler runtime.Marshaler, server StrategySearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetParamImportancesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["search_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "search_id")
+	}
+	protoReq.SearchId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "search_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StrategySearchService_GetParamImportances_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetParamImportances(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_StrategySearchService_GetParamImportances_1(ctx context.Context, marshaler runtime.Marshaler, client StrategySearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetParamImportancesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetParamImportances(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_StrategySearchService_GetParamImportances_1(ctx context.Context, marshaler runtime.Marshaler, server StrategySearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetParamImportancesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetParamImportances(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 var filter_StrategySearchService_ListSearches_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_StrategySearchService_ListSearches_0(ctx context.Context, marshaler runtime.Marshaler, client StrategySearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -671,6 +831,86 @@ func RegisterStrategySearchServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_StrategySearchService_GetBestTrials_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_StrategySearchService_ListSearchTrials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/ListSearchTrials", runtime.WithHTTPPathPattern("/v1/strategysearch/searches/{search_id}/trials"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StrategySearchService_ListSearchTrials_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_ListSearchTrials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_StrategySearchService_ListSearchTrials_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/ListSearchTrials", runtime.WithHTTPPathPattern("/ListSearchTrials"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StrategySearchService_ListSearchTrials_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_ListSearchTrials_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_StrategySearchService_GetParamImportances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/GetParamImportances", runtime.WithHTTPPathPattern("/v1/strategysearch/searches/{search_id}/importances"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StrategySearchService_GetParamImportances_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_GetParamImportances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_StrategySearchService_GetParamImportances_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/GetParamImportances", runtime.WithHTTPPathPattern("/GetParamImportances"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StrategySearchService_GetParamImportances_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_GetParamImportances_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_StrategySearchService_ListSearches_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1013,6 +1253,74 @@ func RegisterStrategySearchServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_StrategySearchService_GetBestTrials_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_StrategySearchService_ListSearchTrials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/ListSearchTrials", runtime.WithHTTPPathPattern("/v1/strategysearch/searches/{search_id}/trials"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StrategySearchService_ListSearchTrials_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_ListSearchTrials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_StrategySearchService_ListSearchTrials_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/ListSearchTrials", runtime.WithHTTPPathPattern("/ListSearchTrials"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StrategySearchService_ListSearchTrials_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_ListSearchTrials_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_StrategySearchService_GetParamImportances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/GetParamImportances", runtime.WithHTTPPathPattern("/v1/strategysearch/searches/{search_id}/importances"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StrategySearchService_GetParamImportances_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_GetParamImportances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_StrategySearchService_GetParamImportances_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/trb.strategysearch.v1.StrategySearchService/GetParamImportances", runtime.WithHTTPPathPattern("/GetParamImportances"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StrategySearchService_GetParamImportances_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_StrategySearchService_GetParamImportances_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_StrategySearchService_ListSearches_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1187,39 +1495,47 @@ func RegisterStrategySearchServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_StrategySearchService_SubmitSearch_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "searches"}, ""))
-	pattern_StrategySearchService_SubmitSearch_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SubmitSearch"}, ""))
-	pattern_StrategySearchService_GetSearchProgress_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "searches", "search_id"}, ""))
-	pattern_StrategySearchService_GetSearchProgress_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetSearchProgress"}, ""))
-	pattern_StrategySearchService_GetBestTrials_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "strategysearch", "searches", "search_id", "best"}, ""))
-	pattern_StrategySearchService_GetBestTrials_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetBestTrials"}, ""))
-	pattern_StrategySearchService_ListSearches_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "searches"}, ""))
-	pattern_StrategySearchService_ListSearches_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSearches"}, ""))
-	pattern_StrategySearchService_CancelSearch_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "searches", "search_id"}, "cancel"))
-	pattern_StrategySearchService_CancelSearch_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CancelSearch"}, ""))
-	pattern_StrategySearchService_CreateSearchPreset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "presets"}, ""))
-	pattern_StrategySearchService_CreateSearchPreset_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateSearchPreset"}, ""))
-	pattern_StrategySearchService_ListSearchPresets_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "presets"}, ""))
-	pattern_StrategySearchService_ListSearchPresets_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSearchPresets"}, ""))
-	pattern_StrategySearchService_DeleteSearchPreset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "presets", "id"}, ""))
-	pattern_StrategySearchService_DeleteSearchPreset_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteSearchPreset"}, ""))
+	pattern_StrategySearchService_SubmitSearch_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "searches"}, ""))
+	pattern_StrategySearchService_SubmitSearch_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"SubmitSearch"}, ""))
+	pattern_StrategySearchService_GetSearchProgress_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "searches", "search_id"}, ""))
+	pattern_StrategySearchService_GetSearchProgress_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetSearchProgress"}, ""))
+	pattern_StrategySearchService_GetBestTrials_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "strategysearch", "searches", "search_id", "best"}, ""))
+	pattern_StrategySearchService_GetBestTrials_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetBestTrials"}, ""))
+	pattern_StrategySearchService_ListSearchTrials_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "strategysearch", "searches", "search_id", "trials"}, ""))
+	pattern_StrategySearchService_ListSearchTrials_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSearchTrials"}, ""))
+	pattern_StrategySearchService_GetParamImportances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "strategysearch", "searches", "search_id", "importances"}, ""))
+	pattern_StrategySearchService_GetParamImportances_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"GetParamImportances"}, ""))
+	pattern_StrategySearchService_ListSearches_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "searches"}, ""))
+	pattern_StrategySearchService_ListSearches_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSearches"}, ""))
+	pattern_StrategySearchService_CancelSearch_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "searches", "search_id"}, "cancel"))
+	pattern_StrategySearchService_CancelSearch_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CancelSearch"}, ""))
+	pattern_StrategySearchService_CreateSearchPreset_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "presets"}, ""))
+	pattern_StrategySearchService_CreateSearchPreset_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"CreateSearchPreset"}, ""))
+	pattern_StrategySearchService_ListSearchPresets_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "strategysearch", "presets"}, ""))
+	pattern_StrategySearchService_ListSearchPresets_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"ListSearchPresets"}, ""))
+	pattern_StrategySearchService_DeleteSearchPreset_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "strategysearch", "presets", "id"}, ""))
+	pattern_StrategySearchService_DeleteSearchPreset_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"DeleteSearchPreset"}, ""))
 )
 
 var (
-	forward_StrategySearchService_SubmitSearch_0       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_SubmitSearch_1       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_GetSearchProgress_0  = runtime.ForwardResponseMessage
-	forward_StrategySearchService_GetSearchProgress_1  = runtime.ForwardResponseMessage
-	forward_StrategySearchService_GetBestTrials_0      = runtime.ForwardResponseMessage
-	forward_StrategySearchService_GetBestTrials_1      = runtime.ForwardResponseMessage
-	forward_StrategySearchService_ListSearches_0       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_ListSearches_1       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_CancelSearch_0       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_CancelSearch_1       = runtime.ForwardResponseMessage
-	forward_StrategySearchService_CreateSearchPreset_0 = runtime.ForwardResponseMessage
-	forward_StrategySearchService_CreateSearchPreset_1 = runtime.ForwardResponseMessage
-	forward_StrategySearchService_ListSearchPresets_0  = runtime.ForwardResponseMessage
-	forward_StrategySearchService_ListSearchPresets_1  = runtime.ForwardResponseMessage
-	forward_StrategySearchService_DeleteSearchPreset_0 = runtime.ForwardResponseMessage
-	forward_StrategySearchService_DeleteSearchPreset_1 = runtime.ForwardResponseMessage
+	forward_StrategySearchService_SubmitSearch_0        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_SubmitSearch_1        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetSearchProgress_0   = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetSearchProgress_1   = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetBestTrials_0       = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetBestTrials_1       = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearchTrials_0    = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearchTrials_1    = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetParamImportances_0 = runtime.ForwardResponseMessage
+	forward_StrategySearchService_GetParamImportances_1 = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearches_0        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearches_1        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_CancelSearch_0        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_CancelSearch_1        = runtime.ForwardResponseMessage
+	forward_StrategySearchService_CreateSearchPreset_0  = runtime.ForwardResponseMessage
+	forward_StrategySearchService_CreateSearchPreset_1  = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearchPresets_0   = runtime.ForwardResponseMessage
+	forward_StrategySearchService_ListSearchPresets_1   = runtime.ForwardResponseMessage
+	forward_StrategySearchService_DeleteSearchPreset_0  = runtime.ForwardResponseMessage
+	forward_StrategySearchService_DeleteSearchPreset_1  = runtime.ForwardResponseMessage
 )

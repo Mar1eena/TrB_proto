@@ -131,6 +131,98 @@ export namespace GetBestTrialsResponse {
   }
 }
 
+export class ListSearchTrialsRequest extends jspb.Message {
+  getSearchId(): string;
+  setSearchId(value: string): ListSearchTrialsRequest;
+
+  getLimit(): number;
+  setLimit(value: number): ListSearchTrialsRequest;
+
+  getOffset(): number;
+  setOffset(value: number): ListSearchTrialsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSearchTrialsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSearchTrialsRequest): ListSearchTrialsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListSearchTrialsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSearchTrialsRequest;
+  static deserializeBinaryFromReader(message: ListSearchTrialsRequest, reader: jspb.BinaryReader): ListSearchTrialsRequest;
+}
+
+export namespace ListSearchTrialsRequest {
+  export type AsObject = {
+    searchId: string,
+    limit: number,
+    offset: number,
+  }
+}
+
+export class ListSearchTrialsResponse extends jspb.Message {
+  getItemsList(): Array<strategysearch_search_pb.Trial>;
+  setItemsList(value: Array<strategysearch_search_pb.Trial>): ListSearchTrialsResponse;
+  clearItemsList(): ListSearchTrialsResponse;
+  addItems(value?: strategysearch_search_pb.Trial, index?: number): strategysearch_search_pb.Trial;
+
+  getTotal(): number;
+  setTotal(value: number): ListSearchTrialsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSearchTrialsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSearchTrialsResponse): ListSearchTrialsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListSearchTrialsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSearchTrialsResponse;
+  static deserializeBinaryFromReader(message: ListSearchTrialsResponse, reader: jspb.BinaryReader): ListSearchTrialsResponse;
+}
+
+export namespace ListSearchTrialsResponse {
+  export type AsObject = {
+    itemsList: Array<strategysearch_search_pb.Trial.AsObject>,
+    total: number,
+  }
+}
+
+export class GetParamImportancesRequest extends jspb.Message {
+  getSearchId(): string;
+  setSearchId(value: string): GetParamImportancesRequest;
+
+  getMetric(): string;
+  setMetric(value: string): GetParamImportancesRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetParamImportancesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetParamImportancesRequest): GetParamImportancesRequest.AsObject;
+  static serializeBinaryToWriter(message: GetParamImportancesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetParamImportancesRequest;
+  static deserializeBinaryFromReader(message: GetParamImportancesRequest, reader: jspb.BinaryReader): GetParamImportancesRequest;
+}
+
+export namespace GetParamImportancesRequest {
+  export type AsObject = {
+    searchId: string,
+    metric: string,
+  }
+}
+
+export class GetParamImportancesResponse extends jspb.Message {
+  getItemsList(): Array<strategysearch_search_pb.ParamImportance>;
+  setItemsList(value: Array<strategysearch_search_pb.ParamImportance>): GetParamImportancesResponse;
+  clearItemsList(): GetParamImportancesResponse;
+  addItems(value?: strategysearch_search_pb.ParamImportance, index?: number): strategysearch_search_pb.ParamImportance;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetParamImportancesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetParamImportancesResponse): GetParamImportancesResponse.AsObject;
+  static serializeBinaryToWriter(message: GetParamImportancesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetParamImportancesResponse;
+  static deserializeBinaryFromReader(message: GetParamImportancesResponse, reader: jspb.BinaryReader): GetParamImportancesResponse;
+}
+
+export namespace GetParamImportancesResponse {
+  export type AsObject = {
+    itemsList: Array<strategysearch_search_pb.ParamImportance.AsObject>,
+  }
+}
+
 export class ListSearchesRequest extends jspb.Message {
   getStatus(): strategysearch_backtest_pb.RunStatus;
   setStatus(value: strategysearch_backtest_pb.RunStatus): ListSearchesRequest;

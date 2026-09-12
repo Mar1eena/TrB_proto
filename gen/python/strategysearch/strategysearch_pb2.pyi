@@ -55,6 +55,38 @@ class GetBestTrialsResponse(_message.Message):
     items: _containers.RepeatedCompositeFieldContainer[_search_pb2.Trial]
     def __init__(self, items: _Optional[_Iterable[_Union[_search_pb2.Trial, _Mapping]]] = ...) -> None: ...
 
+class ListSearchTrialsRequest(_message.Message):
+    __slots__ = ("search_id", "limit", "offset")
+    SEARCH_ID_FIELD_NUMBER: _ClassVar[int]
+    LIMIT_FIELD_NUMBER: _ClassVar[int]
+    OFFSET_FIELD_NUMBER: _ClassVar[int]
+    search_id: str
+    limit: int
+    offset: int
+    def __init__(self, search_id: _Optional[str] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ...) -> None: ...
+
+class ListSearchTrialsResponse(_message.Message):
+    __slots__ = ("items", "total")
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_FIELD_NUMBER: _ClassVar[int]
+    items: _containers.RepeatedCompositeFieldContainer[_search_pb2.Trial]
+    total: int
+    def __init__(self, items: _Optional[_Iterable[_Union[_search_pb2.Trial, _Mapping]]] = ..., total: _Optional[int] = ...) -> None: ...
+
+class GetParamImportancesRequest(_message.Message):
+    __slots__ = ("search_id", "metric")
+    SEARCH_ID_FIELD_NUMBER: _ClassVar[int]
+    METRIC_FIELD_NUMBER: _ClassVar[int]
+    search_id: str
+    metric: str
+    def __init__(self, search_id: _Optional[str] = ..., metric: _Optional[str] = ...) -> None: ...
+
+class GetParamImportancesResponse(_message.Message):
+    __slots__ = ("items",)
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    items: _containers.RepeatedCompositeFieldContainer[_search_pb2.ParamImportance]
+    def __init__(self, items: _Optional[_Iterable[_Union[_search_pb2.ParamImportance, _Mapping]]] = ...) -> None: ...
+
 class ListSearchesRequest(_message.Message):
     __slots__ = ("status", "limit", "offset")
     STATUS_FIELD_NUMBER: _ClassVar[int]

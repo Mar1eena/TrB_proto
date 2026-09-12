@@ -19,14 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StrategySearchService_SubmitSearch_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/SubmitSearch"
-	StrategySearchService_GetSearchProgress_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/GetSearchProgress"
-	StrategySearchService_GetBestTrials_FullMethodName      = "/trb.strategysearch.v1.StrategySearchService/GetBestTrials"
-	StrategySearchService_ListSearches_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/ListSearches"
-	StrategySearchService_CancelSearch_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/CancelSearch"
-	StrategySearchService_CreateSearchPreset_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset"
-	StrategySearchService_ListSearchPresets_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/ListSearchPresets"
-	StrategySearchService_DeleteSearchPreset_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset"
+	StrategySearchService_SubmitSearch_FullMethodName        = "/trb.strategysearch.v1.StrategySearchService/SubmitSearch"
+	StrategySearchService_GetSearchProgress_FullMethodName   = "/trb.strategysearch.v1.StrategySearchService/GetSearchProgress"
+	StrategySearchService_GetBestTrials_FullMethodName       = "/trb.strategysearch.v1.StrategySearchService/GetBestTrials"
+	StrategySearchService_ListSearchTrials_FullMethodName    = "/trb.strategysearch.v1.StrategySearchService/ListSearchTrials"
+	StrategySearchService_GetParamImportances_FullMethodName = "/trb.strategysearch.v1.StrategySearchService/GetParamImportances"
+	StrategySearchService_ListSearches_FullMethodName        = "/trb.strategysearch.v1.StrategySearchService/ListSearches"
+	StrategySearchService_CancelSearch_FullMethodName        = "/trb.strategysearch.v1.StrategySearchService/CancelSearch"
+	StrategySearchService_CreateSearchPreset_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/CreateSearchPreset"
+	StrategySearchService_ListSearchPresets_FullMethodName   = "/trb.strategysearch.v1.StrategySearchService/ListSearchPresets"
+	StrategySearchService_DeleteSearchPreset_FullMethodName  = "/trb.strategysearch.v1.StrategySearchService/DeleteSearchPreset"
 )
 
 // StrategySearchServiceClient is the client API for StrategySearchService service.
@@ -43,6 +45,13 @@ type StrategySearchServiceClient interface {
 	SubmitSearch(ctx context.Context, in *SubmitSearchRequest, opts ...grpc.CallOption) (*SubmitSearchResponse, error)
 	GetSearchProgress(ctx context.Context, in *GetSearchProgressRequest, opts ...grpc.CallOption) (*SearchRun, error)
 	GetBestTrials(ctx context.Context, in *GetBestTrialsRequest, opts ...grpc.CallOption) (*GetBestTrialsResponse, error)
+	// Все трайлы поиска (любой state), по возрастанию trial_number — источник
+	// для графиков истории оптимизации/parallel coordinate/slice (в отличие от
+	// GetBestTrials, который отдаёт только complete-трайлы).
+	ListSearchTrials(ctx context.Context, in *ListSearchTrialsRequest, opts ...grpc.CallOption) (*ListSearchTrialsResponse, error)
+	// Важность параметров поиска (optuna fANOVA), считается по требованию через
+	// реконструкцию Study из RDB-хранилища — см. ParamImportance в search.proto.
+	GetParamImportances(ctx context.Context, in *GetParamImportancesRequest, opts ...grpc.CallOption) (*GetParamImportancesResponse, error)
 	ListSearches(ctx context.Context, in *ListSearchesRequest, opts ...grpc.CallOption) (*ListSearchesResponse, error)
 	CancelSearch(ctx context.Context, in *CancelSearchRequest, opts ...grpc.CallOption) (*SearchRun, error)
 	// --- сохранённые настройки поиска (пресеты формы) ---
@@ -83,6 +92,26 @@ func (c *strategySearchServiceClient) GetBestTrials(ctx context.Context, in *Get
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBestTrialsResponse)
 	err := c.cc.Invoke(ctx, StrategySearchService_GetBestTrials_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *strategySearchServiceClient) ListSearchTrials(ctx context.Context, in *ListSearchTrialsRequest, opts ...grpc.CallOption) (*ListSearchTrialsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSearchTrialsResponse)
+	err := c.cc.Invoke(ctx, StrategySearchService_ListSearchTrials_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *strategySearchServiceClient) GetParamImportances(ctx context.Context, in *GetParamImportancesRequest, opts ...grpc.CallOption) (*GetParamImportancesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetParamImportancesResponse)
+	err := c.cc.Invoke(ctx, StrategySearchService_GetParamImportances_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,6 +182,13 @@ type StrategySearchServiceServer interface {
 	SubmitSearch(context.Context, *SubmitSearchRequest) (*SubmitSearchResponse, error)
 	GetSearchProgress(context.Context, *GetSearchProgressRequest) (*SearchRun, error)
 	GetBestTrials(context.Context, *GetBestTrialsRequest) (*GetBestTrialsResponse, error)
+	// Все трайлы поиска (любой state), по возрастанию trial_number — источник
+	// для графиков истории оптимизации/parallel coordinate/slice (в отличие от
+	// GetBestTrials, который отдаёт только complete-трайлы).
+	ListSearchTrials(context.Context, *ListSearchTrialsRequest) (*ListSearchTrialsResponse, error)
+	// Важность параметров поиска (optuna fANOVA), считается по требованию через
+	// реконструкцию Study из RDB-хранилища — см. ParamImportance в search.proto.
+	GetParamImportances(context.Context, *GetParamImportancesRequest) (*GetParamImportancesResponse, error)
 	ListSearches(context.Context, *ListSearchesRequest) (*ListSearchesResponse, error)
 	CancelSearch(context.Context, *CancelSearchRequest) (*SearchRun, error)
 	// --- сохранённые настройки поиска (пресеты формы) ---
@@ -177,6 +213,12 @@ func (UnimplementedStrategySearchServiceServer) GetSearchProgress(context.Contex
 }
 func (UnimplementedStrategySearchServiceServer) GetBestTrials(context.Context, *GetBestTrialsRequest) (*GetBestTrialsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBestTrials not implemented")
+}
+func (UnimplementedStrategySearchServiceServer) ListSearchTrials(context.Context, *ListSearchTrialsRequest) (*ListSearchTrialsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSearchTrials not implemented")
+}
+func (UnimplementedStrategySearchServiceServer) GetParamImportances(context.Context, *GetParamImportancesRequest) (*GetParamImportancesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetParamImportances not implemented")
 }
 func (UnimplementedStrategySearchServiceServer) ListSearches(context.Context, *ListSearchesRequest) (*ListSearchesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListSearches not implemented")
@@ -264,6 +306,42 @@ func _StrategySearchService_GetBestTrials_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StrategySearchServiceServer).GetBestTrials(ctx, req.(*GetBestTrialsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StrategySearchService_ListSearchTrials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSearchTrialsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategySearchServiceServer).ListSearchTrials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StrategySearchService_ListSearchTrials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategySearchServiceServer).ListSearchTrials(ctx, req.(*ListSearchTrialsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StrategySearchService_GetParamImportances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetParamImportancesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategySearchServiceServer).GetParamImportances(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StrategySearchService_GetParamImportances_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategySearchServiceServer).GetParamImportances(ctx, req.(*GetParamImportancesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -376,6 +454,14 @@ var StrategySearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBestTrials",
 			Handler:    _StrategySearchService_GetBestTrials_Handler,
+		},
+		{
+			MethodName: "ListSearchTrials",
+			Handler:    _StrategySearchService_ListSearchTrials_Handler,
+		},
+		{
+			MethodName: "GetParamImportances",
+			Handler:    _StrategySearchService_GetParamImportances_Handler,
 		},
 		{
 			MethodName: "ListSearches",

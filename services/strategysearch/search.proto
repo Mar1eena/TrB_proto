@@ -311,6 +311,14 @@ message Trial {
   google.protobuf.Timestamp completed_at = 12;
 }
 
+// Важность параметра поиска относительно выбранной цели (fANOVA,
+// optuna.importance.get_param_importances). Не хранится — считается post-hoc
+// по RDB-хранилищу Optuna (StudyConfig.storage.storage_url) при запросе.
+message ParamImportance {
+  string path = 1;
+  double importance = 2;  // сумма importance по всем параметрам поиска ~= 1
+}
+
 message SearchProgress {
   RunStatus status = 1;
   uint32 completed_trials = 2;

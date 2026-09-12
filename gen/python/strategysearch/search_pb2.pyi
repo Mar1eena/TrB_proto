@@ -443,6 +443,14 @@ class Trial(_message.Message):
     completed_at: _timestamp_pb2.Timestamp
     def __init__(self, trial_id: _Optional[str] = ..., number: _Optional[int] = ..., spec: _Optional[_Union[_spec_pb2.StrategySearchSpec, _Mapping]] = ..., spec_hash: _Optional[int] = ..., params: _Optional[_Mapping[str, float]] = ..., values: _Optional[_Mapping[str, float]] = ..., state: _Optional[_Union[TrialState, str]] = ..., metrics: _Optional[_Union[_backtest_pb2.BacktestMetrics, _Mapping]] = ..., is_pareto_optimal: bool = ..., backtest_run_id: _Optional[str] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., completed_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
+class ParamImportance(_message.Message):
+    __slots__ = ("path", "importance")
+    PATH_FIELD_NUMBER: _ClassVar[int]
+    IMPORTANCE_FIELD_NUMBER: _ClassVar[int]
+    path: str
+    importance: float
+    def __init__(self, path: _Optional[str] = ..., importance: _Optional[float] = ...) -> None: ...
+
 class SearchProgress(_message.Message):
     __slots__ = ("status", "completed_trials", "pruned_trials", "failed_trials", "total_trials", "is_multi_objective", "best_values", "best_trial_id", "pareto_front_trial_ids", "error")
     class BestValuesEntry(_message.Message):

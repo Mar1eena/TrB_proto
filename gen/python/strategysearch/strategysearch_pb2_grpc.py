@@ -56,6 +56,16 @@ class StrategySearchServiceStub(object):
                 request_serializer=strategysearch_dot_strategysearch__pb2.GetBestTrialsRequest.SerializeToString,
                 response_deserializer=strategysearch_dot_strategysearch__pb2.GetBestTrialsResponse.FromString,
                 _registered_method=True)
+        self.ListSearchTrials = channel.unary_unary(
+                '/trb.strategysearch.v1.StrategySearchService/ListSearchTrials',
+                request_serializer=strategysearch_dot_strategysearch__pb2.ListSearchTrialsRequest.SerializeToString,
+                response_deserializer=strategysearch_dot_strategysearch__pb2.ListSearchTrialsResponse.FromString,
+                _registered_method=True)
+        self.GetParamImportances = channel.unary_unary(
+                '/trb.strategysearch.v1.StrategySearchService/GetParamImportances',
+                request_serializer=strategysearch_dot_strategysearch__pb2.GetParamImportancesRequest.SerializeToString,
+                response_deserializer=strategysearch_dot_strategysearch__pb2.GetParamImportancesResponse.FromString,
+                _registered_method=True)
         self.ListSearches = channel.unary_unary(
                 '/trb.strategysearch.v1.StrategySearchService/ListSearches',
                 request_serializer=strategysearch_dot_strategysearch__pb2.ListSearchesRequest.SerializeToString,
@@ -110,6 +120,23 @@ class StrategySearchServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListSearchTrials(self, request, context):
+        """Все трайлы поиска (любой state), по возрастанию trial_number — источник
+        для графиков истории оптимизации/parallel coordinate/slice (в отличие от
+        GetBestTrials, который отдаёт только complete-трайлы).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetParamImportances(self, request, context):
+        """Важность параметров поиска (optuna fANOVA), считается по требованию через
+        реконструкцию Study из RDB-хранилища — см. ParamImportance в search.proto.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListSearches(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -158,6 +185,16 @@ def add_StrategySearchServiceServicer_to_server(servicer, server):
                     servicer.GetBestTrials,
                     request_deserializer=strategysearch_dot_strategysearch__pb2.GetBestTrialsRequest.FromString,
                     response_serializer=strategysearch_dot_strategysearch__pb2.GetBestTrialsResponse.SerializeToString,
+            ),
+            'ListSearchTrials': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSearchTrials,
+                    request_deserializer=strategysearch_dot_strategysearch__pb2.ListSearchTrialsRequest.FromString,
+                    response_serializer=strategysearch_dot_strategysearch__pb2.ListSearchTrialsResponse.SerializeToString,
+            ),
+            'GetParamImportances': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetParamImportances,
+                    request_deserializer=strategysearch_dot_strategysearch__pb2.GetParamImportancesRequest.FromString,
+                    response_serializer=strategysearch_dot_strategysearch__pb2.GetParamImportancesResponse.SerializeToString,
             ),
             'ListSearches': grpc.unary_unary_rpc_method_handler(
                     servicer.ListSearches,
@@ -272,6 +309,60 @@ class StrategySearchService(object):
             '/trb.strategysearch.v1.StrategySearchService/GetBestTrials',
             strategysearch_dot_strategysearch__pb2.GetBestTrialsRequest.SerializeToString,
             strategysearch_dot_strategysearch__pb2.GetBestTrialsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListSearchTrials(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.strategysearch.v1.StrategySearchService/ListSearchTrials',
+            strategysearch_dot_strategysearch__pb2.ListSearchTrialsRequest.SerializeToString,
+            strategysearch_dot_strategysearch__pb2.ListSearchTrialsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetParamImportances(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/trb.strategysearch.v1.StrategySearchService/GetParamImportances',
+            strategysearch_dot_strategysearch__pb2.GetParamImportancesRequest.SerializeToString,
+            strategysearch_dot_strategysearch__pb2.GetParamImportancesResponse.FromString,
             options,
             channel_credentials,
             insecure,

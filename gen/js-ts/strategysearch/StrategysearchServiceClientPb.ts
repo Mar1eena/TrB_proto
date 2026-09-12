@@ -169,6 +169,92 @@ export class StrategySearchServiceClient {
     this.methodDescriptorGetBestTrials);
   }
 
+  methodDescriptorListSearchTrials = new grpcWeb.MethodDescriptor(
+    '/trb.strategysearch.v1.StrategySearchService/ListSearchTrials',
+    grpcWeb.MethodType.UNARY,
+    strategysearch_strategysearch_pb.ListSearchTrialsRequest,
+    strategysearch_strategysearch_pb.ListSearchTrialsResponse,
+    (request: strategysearch_strategysearch_pb.ListSearchTrialsRequest) => {
+      return request.serializeBinary();
+    },
+    strategysearch_strategysearch_pb.ListSearchTrialsResponse.deserializeBinary
+  );
+
+  listSearchTrials(
+    request: strategysearch_strategysearch_pb.ListSearchTrialsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<strategysearch_strategysearch_pb.ListSearchTrialsResponse>;
+
+  listSearchTrials(
+    request: strategysearch_strategysearch_pb.ListSearchTrialsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.ListSearchTrialsResponse) => void): grpcWeb.ClientReadableStream<strategysearch_strategysearch_pb.ListSearchTrialsResponse>;
+
+  listSearchTrials(
+    request: strategysearch_strategysearch_pb.ListSearchTrialsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.ListSearchTrialsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.strategysearch.v1.StrategySearchService/ListSearchTrials',
+        request,
+        metadata || {},
+        this.methodDescriptorListSearchTrials,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.strategysearch.v1.StrategySearchService/ListSearchTrials',
+    request,
+    metadata || {},
+    this.methodDescriptorListSearchTrials);
+  }
+
+  methodDescriptorGetParamImportances = new grpcWeb.MethodDescriptor(
+    '/trb.strategysearch.v1.StrategySearchService/GetParamImportances',
+    grpcWeb.MethodType.UNARY,
+    strategysearch_strategysearch_pb.GetParamImportancesRequest,
+    strategysearch_strategysearch_pb.GetParamImportancesResponse,
+    (request: strategysearch_strategysearch_pb.GetParamImportancesRequest) => {
+      return request.serializeBinary();
+    },
+    strategysearch_strategysearch_pb.GetParamImportancesResponse.deserializeBinary
+  );
+
+  getParamImportances(
+    request: strategysearch_strategysearch_pb.GetParamImportancesRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<strategysearch_strategysearch_pb.GetParamImportancesResponse>;
+
+  getParamImportances(
+    request: strategysearch_strategysearch_pb.GetParamImportancesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.GetParamImportancesResponse) => void): grpcWeb.ClientReadableStream<strategysearch_strategysearch_pb.GetParamImportancesResponse>;
+
+  getParamImportances(
+    request: strategysearch_strategysearch_pb.GetParamImportancesRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: strategysearch_strategysearch_pb.GetParamImportancesResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/trb.strategysearch.v1.StrategySearchService/GetParamImportances',
+        request,
+        metadata || {},
+        this.methodDescriptorGetParamImportances,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/trb.strategysearch.v1.StrategySearchService/GetParamImportances',
+    request,
+    metadata || {},
+    this.methodDescriptorGetParamImportances);
+  }
+
   methodDescriptorListSearches = new grpcWeb.MethodDescriptor(
     '/trb.strategysearch.v1.StrategySearchService/ListSearches',
     grpcWeb.MethodType.UNARY,

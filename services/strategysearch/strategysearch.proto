@@ -36,6 +36,23 @@ service StrategySearchService {
       additional_bindings { post: "/GetBestTrials" body: "*" }
     };
   }
+  // Все трайлы поиска (любой state), по возрастанию trial_number — источник
+  // для графиков истории оптимизации/parallel coordinate/slice (в отличие от
+  // GetBestTrials, который отдаёт только complete-трайлы).
+  rpc ListSearchTrials(ListSearchTrialsRequest) returns (ListSearchTrialsResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategysearch/searches/{search_id}/trials"
+      additional_bindings { post: "/ListSearchTrials" body: "*" }
+    };
+  }
+  // Важность параметров поиска (optuna fANOVA), считается по требованию через
+  // реконструкцию Study из RDB-хранилища — см. ParamImportance в search.proto.
+  rpc GetParamImportances(GetParamImportancesRequest) returns (GetParamImportancesResponse) {
+    option (google.api.http) = {
+      get: "/v1/strategysearch/searches/{search_id}/importances"
+      additional_bindings { post: "/GetParamImportances" body: "*" }
+    };
+  }
   rpc ListSearches(ListSearchesRequest) returns (ListSearchesResponse) {
     option (google.api.http) = {
       get: "/v1/strategysearch/searches"
@@ -95,6 +112,28 @@ message GetBestTrialsRequest {
 
 message GetBestTrialsResponse {
   repeated Trial items = 1;
+}
+
+message ListSearchTrialsRequest {
+  string search_id = 1;
+  int32 limit = 2;   // 0 => 200
+  int32 offset = 3;
+}
+
+message ListSearchTrialsResponse {
+  repeated Trial items = 1;
+  int32 total = 2;
+}
+
+message GetParamImportancesRequest {
+  string search_id = 1;
+  // По какой цели считать при многоцелевом поиске (ObjectiveMetric.metric);
+  // пусто => первая метрика study.objective.metrics.
+  string metric = 2;
+}
+
+message GetParamImportancesResponse {
+  repeated ParamImportance items = 1;
 }
 
 message ListSearchesRequest {

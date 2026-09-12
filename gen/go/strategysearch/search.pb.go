@@ -2516,6 +2516,61 @@ func (x *Trial) GetCompletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+// Важность параметра поиска относительно выбранной цели (fANOVA,
+// optuna.importance.get_param_importances). Не хранится — считается post-hoc
+// по RDB-хранилищу Optuna (StudyConfig.storage.storage_url) при запросе.
+type ParamImportance struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	Importance    float64                `protobuf:"fixed64,2,opt,name=importance,proto3" json:"importance,omitempty"` // сумма importance по всем параметрам поиска ~= 1
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ParamImportance) Reset() {
+	*x = ParamImportance{}
+	mi := &file_strategysearch_search_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ParamImportance) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ParamImportance) ProtoMessage() {}
+
+func (x *ParamImportance) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_search_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ParamImportance.ProtoReflect.Descriptor instead.
+func (*ParamImportance) Descriptor() ([]byte, []int) {
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ParamImportance) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *ParamImportance) GetImportance() float64 {
+	if x != nil {
+		return x.Importance
+	}
+	return 0
+}
+
 type SearchProgress struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	Status              RunStatus              `protobuf:"varint,1,opt,name=status,proto3,enum=trb.strategysearch.v1.RunStatus" json:"status,omitempty"`
@@ -2534,7 +2589,7 @@ type SearchProgress struct {
 
 func (x *SearchProgress) Reset() {
 	*x = SearchProgress{}
-	mi := &file_strategysearch_search_proto_msgTypes[33]
+	mi := &file_strategysearch_search_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2546,7 +2601,7 @@ func (x *SearchProgress) String() string {
 func (*SearchProgress) ProtoMessage() {}
 
 func (x *SearchProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_search_proto_msgTypes[33]
+	mi := &file_strategysearch_search_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2559,7 +2614,7 @@ func (x *SearchProgress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchProgress.ProtoReflect.Descriptor instead.
 func (*SearchProgress) Descriptor() ([]byte, []int) {
-	return file_strategysearch_search_proto_rawDescGZIP(), []int{33}
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SearchProgress) GetStatus() RunStatus {
@@ -2651,7 +2706,7 @@ type SearchRun struct {
 
 func (x *SearchRun) Reset() {
 	*x = SearchRun{}
-	mi := &file_strategysearch_search_proto_msgTypes[34]
+	mi := &file_strategysearch_search_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2663,7 +2718,7 @@ func (x *SearchRun) String() string {
 func (*SearchRun) ProtoMessage() {}
 
 func (x *SearchRun) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_search_proto_msgTypes[34]
+	mi := &file_strategysearch_search_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2676,7 +2731,7 @@ func (x *SearchRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchRun.ProtoReflect.Descriptor instead.
 func (*SearchRun) Descriptor() ([]byte, []int) {
-	return file_strategysearch_search_proto_rawDescGZIP(), []int{34}
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SearchRun) GetSearchId() string {
@@ -2766,7 +2821,7 @@ type SearchTask struct {
 
 func (x *SearchTask) Reset() {
 	*x = SearchTask{}
-	mi := &file_strategysearch_search_proto_msgTypes[35]
+	mi := &file_strategysearch_search_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2778,7 +2833,7 @@ func (x *SearchTask) String() string {
 func (*SearchTask) ProtoMessage() {}
 
 func (x *SearchTask) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_search_proto_msgTypes[35]
+	mi := &file_strategysearch_search_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2791,7 +2846,7 @@ func (x *SearchTask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTask.ProtoReflect.Descriptor instead.
 func (*SearchTask) Descriptor() ([]byte, []int) {
-	return file_strategysearch_search_proto_rawDescGZIP(), []int{35}
+	return file_strategysearch_search_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *SearchTask) GetSearchId() string {
@@ -2998,7 +3053,12 @@ const file_strategysearch_search_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\x1a9\n" +
 	"\vValuesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"\x96\x04\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value:\x028\x01\"E\n" +
+	"\x0fParamImportance\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12\x1e\n" +
+	"\n" +
+	"importance\x18\x02 \x01(\x01R\n" +
+	"importance\"\x96\x04\n" +
 	"\x0eSearchProgress\x128\n" +
 	"\x06status\x18\x01 \x01(\x0e2 .trb.strategysearch.v1.RunStatusR\x06status\x12)\n" +
 	"\x10completed_trials\x18\x02 \x01(\rR\x0fcompletedTrials\x12#\n" +
@@ -3056,7 +3116,7 @@ func file_strategysearch_search_proto_rawDescGZIP() []byte {
 }
 
 var file_strategysearch_search_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_strategysearch_search_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
+var file_strategysearch_search_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
 var file_strategysearch_search_proto_goTypes = []any{
 	(TrialState)(0),                       // 0: trb.strategysearch.v1.TrialState
 	(*IntRange)(nil),                      // 1: trb.strategysearch.v1.IntRange
@@ -3092,19 +3152,20 @@ var file_strategysearch_search_proto_goTypes = []any{
 	(*TrialIntermediateValue)(nil),        // 31: trb.strategysearch.v1.TrialIntermediateValue
 	(*TrialResult)(nil),                   // 32: trb.strategysearch.v1.TrialResult
 	(*Trial)(nil),                         // 33: trb.strategysearch.v1.Trial
-	(*SearchProgress)(nil),                // 34: trb.strategysearch.v1.SearchProgress
-	(*SearchRun)(nil),                     // 35: trb.strategysearch.v1.SearchRun
-	(*SearchTask)(nil),                    // 36: trb.strategysearch.v1.SearchTask
-	nil,                                   // 37: trb.strategysearch.v1.SeedTrial.ParamsEntry
-	nil,                                   // 38: trb.strategysearch.v1.TrialResult.ValuesEntry
-	nil,                                   // 39: trb.strategysearch.v1.Trial.ParamsEntry
-	nil,                                   // 40: trb.strategysearch.v1.Trial.ValuesEntry
-	nil,                                   // 41: trb.strategysearch.v1.SearchProgress.BestValuesEntry
-	(*StrategySearchSpec)(nil),            // 42: trb.strategysearch.v1.StrategySearchSpec
-	(*BacktestConfig)(nil),                // 43: trb.strategysearch.v1.BacktestConfig
-	(*BacktestMetrics)(nil),               // 44: trb.strategysearch.v1.BacktestMetrics
-	(*timestamppb.Timestamp)(nil),         // 45: google.protobuf.Timestamp
-	(RunStatus)(0),                        // 46: trb.strategysearch.v1.RunStatus
+	(*ParamImportance)(nil),               // 34: trb.strategysearch.v1.ParamImportance
+	(*SearchProgress)(nil),                // 35: trb.strategysearch.v1.SearchProgress
+	(*SearchRun)(nil),                     // 36: trb.strategysearch.v1.SearchRun
+	(*SearchTask)(nil),                    // 37: trb.strategysearch.v1.SearchTask
+	nil,                                   // 38: trb.strategysearch.v1.SeedTrial.ParamsEntry
+	nil,                                   // 39: trb.strategysearch.v1.TrialResult.ValuesEntry
+	nil,                                   // 40: trb.strategysearch.v1.Trial.ParamsEntry
+	nil,                                   // 41: trb.strategysearch.v1.Trial.ValuesEntry
+	nil,                                   // 42: trb.strategysearch.v1.SearchProgress.BestValuesEntry
+	(*StrategySearchSpec)(nil),            // 43: trb.strategysearch.v1.StrategySearchSpec
+	(*BacktestConfig)(nil),                // 44: trb.strategysearch.v1.BacktestConfig
+	(*BacktestMetrics)(nil),               // 45: trb.strategysearch.v1.BacktestMetrics
+	(*timestamppb.Timestamp)(nil),         // 46: google.protobuf.Timestamp
+	(RunStatus)(0),                        // 47: trb.strategysearch.v1.RunStatus
 }
 var file_strategysearch_search_proto_depIdxs = []int32{
 	1,  // 0: trb.strategysearch.v1.ParamRange.ints:type_name -> trb.strategysearch.v1.IntRange
@@ -3112,7 +3173,7 @@ var file_strategysearch_search_proto_depIdxs = []int32{
 	3,  // 2: trb.strategysearch.v1.ParamRange.log_floats:type_name -> trb.strategysearch.v1.LogFloatRange
 	4,  // 3: trb.strategysearch.v1.ParamRange.choice:type_name -> trb.strategysearch.v1.Choice
 	5,  // 4: trb.strategysearch.v1.ParamRange.categorical:type_name -> trb.strategysearch.v1.CategoricalChoice
-	37, // 5: trb.strategysearch.v1.SeedTrial.params:type_name -> trb.strategysearch.v1.SeedTrial.ParamsEntry
+	38, // 5: trb.strategysearch.v1.SeedTrial.params:type_name -> trb.strategysearch.v1.SeedTrial.ParamsEntry
 	8,  // 6: trb.strategysearch.v1.SamplerConfig.tpe:type_name -> trb.strategysearch.v1.TpeSamplerParams
 	9,  // 7: trb.strategysearch.v1.SamplerConfig.cmaes:type_name -> trb.strategysearch.v1.CmaEsSamplerParams
 	10, // 8: trb.strategysearch.v1.SamplerConfig.random:type_name -> trb.strategysearch.v1.RandomSamplerParams
@@ -3135,28 +3196,28 @@ var file_strategysearch_search_proto_depIdxs = []int32{
 	26, // 25: trb.strategysearch.v1.StudyConfig.budget:type_name -> trb.strategysearch.v1.Budget
 	28, // 26: trb.strategysearch.v1.StudyConfig.storage:type_name -> trb.strategysearch.v1.Storage
 	7,  // 27: trb.strategysearch.v1.StudyConfig.seed_trials:type_name -> trb.strategysearch.v1.SeedTrial
-	42, // 28: trb.strategysearch.v1.TrialTask.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	43, // 29: trb.strategysearch.v1.TrialTask.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	38, // 30: trb.strategysearch.v1.TrialResult.values:type_name -> trb.strategysearch.v1.TrialResult.ValuesEntry
+	43, // 28: trb.strategysearch.v1.TrialTask.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	44, // 29: trb.strategysearch.v1.TrialTask.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	39, // 30: trb.strategysearch.v1.TrialResult.values:type_name -> trb.strategysearch.v1.TrialResult.ValuesEntry
 	0,  // 31: trb.strategysearch.v1.TrialResult.state:type_name -> trb.strategysearch.v1.TrialState
 	31, // 32: trb.strategysearch.v1.TrialResult.intermediate_values:type_name -> trb.strategysearch.v1.TrialIntermediateValue
-	42, // 33: trb.strategysearch.v1.Trial.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	39, // 34: trb.strategysearch.v1.Trial.params:type_name -> trb.strategysearch.v1.Trial.ParamsEntry
-	40, // 35: trb.strategysearch.v1.Trial.values:type_name -> trb.strategysearch.v1.Trial.ValuesEntry
+	43, // 33: trb.strategysearch.v1.Trial.spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	40, // 34: trb.strategysearch.v1.Trial.params:type_name -> trb.strategysearch.v1.Trial.ParamsEntry
+	41, // 35: trb.strategysearch.v1.Trial.values:type_name -> trb.strategysearch.v1.Trial.ValuesEntry
 	0,  // 36: trb.strategysearch.v1.Trial.state:type_name -> trb.strategysearch.v1.TrialState
-	44, // 37: trb.strategysearch.v1.Trial.metrics:type_name -> trb.strategysearch.v1.BacktestMetrics
-	45, // 38: trb.strategysearch.v1.Trial.created_at:type_name -> google.protobuf.Timestamp
-	45, // 39: trb.strategysearch.v1.Trial.completed_at:type_name -> google.protobuf.Timestamp
-	46, // 40: trb.strategysearch.v1.SearchProgress.status:type_name -> trb.strategysearch.v1.RunStatus
-	41, // 41: trb.strategysearch.v1.SearchProgress.best_values:type_name -> trb.strategysearch.v1.SearchProgress.BestValuesEntry
-	42, // 42: trb.strategysearch.v1.SearchRun.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	45, // 37: trb.strategysearch.v1.Trial.metrics:type_name -> trb.strategysearch.v1.BacktestMetrics
+	46, // 38: trb.strategysearch.v1.Trial.created_at:type_name -> google.protobuf.Timestamp
+	46, // 39: trb.strategysearch.v1.Trial.completed_at:type_name -> google.protobuf.Timestamp
+	47, // 40: trb.strategysearch.v1.SearchProgress.status:type_name -> trb.strategysearch.v1.RunStatus
+	42, // 41: trb.strategysearch.v1.SearchProgress.best_values:type_name -> trb.strategysearch.v1.SearchProgress.BestValuesEntry
+	43, // 42: trb.strategysearch.v1.SearchRun.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
 	6,  // 43: trb.strategysearch.v1.SearchRun.search_space:type_name -> trb.strategysearch.v1.ParamRange
 	29, // 44: trb.strategysearch.v1.SearchRun.study:type_name -> trb.strategysearch.v1.StudyConfig
-	43, // 45: trb.strategysearch.v1.SearchRun.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	34, // 46: trb.strategysearch.v1.SearchRun.progress:type_name -> trb.strategysearch.v1.SearchProgress
-	45, // 47: trb.strategysearch.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
-	45, // 48: trb.strategysearch.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
-	45, // 49: trb.strategysearch.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
+	44, // 45: trb.strategysearch.v1.SearchRun.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	35, // 46: trb.strategysearch.v1.SearchRun.progress:type_name -> trb.strategysearch.v1.SearchProgress
+	46, // 47: trb.strategysearch.v1.SearchRun.created_at:type_name -> google.protobuf.Timestamp
+	46, // 48: trb.strategysearch.v1.SearchRun.started_at:type_name -> google.protobuf.Timestamp
+	46, // 49: trb.strategysearch.v1.SearchRun.finished_at:type_name -> google.protobuf.Timestamp
 	50, // [50:50] is the sub-list for method output_type
 	50, // [50:50] is the sub-list for method input_type
 	50, // [50:50] is the sub-list for extension type_name
@@ -3202,7 +3263,7 @@ func file_strategysearch_search_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_strategysearch_search_proto_rawDesc), len(file_strategysearch_search_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   41,
+			NumMessages:   42,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

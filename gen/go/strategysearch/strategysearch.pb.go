@@ -291,6 +291,216 @@ func (x *GetBestTrialsResponse) GetItems() []*Trial {
 	return nil
 }
 
+type ListSearchTrialsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SearchId      string                 `protobuf:"bytes,1,opt,name=search_id,json=searchId,proto3" json:"search_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"` // 0 => 200
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSearchTrialsRequest) Reset() {
+	*x = ListSearchTrialsRequest{}
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSearchTrialsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSearchTrialsRequest) ProtoMessage() {}
+
+func (x *ListSearchTrialsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSearchTrialsRequest.ProtoReflect.Descriptor instead.
+func (*ListSearchTrialsRequest) Descriptor() ([]byte, []int) {
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ListSearchTrialsRequest) GetSearchId() string {
+	if x != nil {
+		return x.SearchId
+	}
+	return ""
+}
+
+func (x *ListSearchTrialsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListSearchTrialsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListSearchTrialsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Trial               `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSearchTrialsResponse) Reset() {
+	*x = ListSearchTrialsResponse{}
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSearchTrialsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSearchTrialsResponse) ProtoMessage() {}
+
+func (x *ListSearchTrialsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSearchTrialsResponse.ProtoReflect.Descriptor instead.
+func (*ListSearchTrialsResponse) Descriptor() ([]byte, []int) {
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListSearchTrialsResponse) GetItems() []*Trial {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *ListSearchTrialsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type GetParamImportancesRequest struct {
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	SearchId string                 `protobuf:"bytes,1,opt,name=search_id,json=searchId,proto3" json:"search_id,omitempty"`
+	// По какой цели считать при многоцелевом поиске (ObjectiveMetric.metric);
+	// пусто => первая метрика study.objective.metrics.
+	Metric        string `protobuf:"bytes,2,opt,name=metric,proto3" json:"metric,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetParamImportancesRequest) Reset() {
+	*x = GetParamImportancesRequest{}
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetParamImportancesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetParamImportancesRequest) ProtoMessage() {}
+
+func (x *GetParamImportancesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetParamImportancesRequest.ProtoReflect.Descriptor instead.
+func (*GetParamImportancesRequest) Descriptor() ([]byte, []int) {
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetParamImportancesRequest) GetSearchId() string {
+	if x != nil {
+		return x.SearchId
+	}
+	return ""
+}
+
+func (x *GetParamImportancesRequest) GetMetric() string {
+	if x != nil {
+		return x.Metric
+	}
+	return ""
+}
+
+type GetParamImportancesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*ParamImportance     `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetParamImportancesResponse) Reset() {
+	*x = GetParamImportancesResponse{}
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetParamImportancesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetParamImportancesResponse) ProtoMessage() {}
+
+func (x *GetParamImportancesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetParamImportancesResponse.ProtoReflect.Descriptor instead.
+func (*GetParamImportancesResponse) Descriptor() ([]byte, []int) {
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetParamImportancesResponse) GetItems() []*ParamImportance {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 type ListSearchesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Status        RunStatus              `protobuf:"varint,1,opt,name=status,proto3,enum=trb.strategysearch.v1.RunStatus" json:"status,omitempty"`
@@ -302,7 +512,7 @@ type ListSearchesRequest struct {
 
 func (x *ListSearchesRequest) Reset() {
 	*x = ListSearchesRequest{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[5]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -314,7 +524,7 @@ func (x *ListSearchesRequest) String() string {
 func (*ListSearchesRequest) ProtoMessage() {}
 
 func (x *ListSearchesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[5]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -327,7 +537,7 @@ func (x *ListSearchesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSearchesRequest.ProtoReflect.Descriptor instead.
 func (*ListSearchesRequest) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{5}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListSearchesRequest) GetStatus() RunStatus {
@@ -361,7 +571,7 @@ type ListSearchesResponse struct {
 
 func (x *ListSearchesResponse) Reset() {
 	*x = ListSearchesResponse{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[6]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -373,7 +583,7 @@ func (x *ListSearchesResponse) String() string {
 func (*ListSearchesResponse) ProtoMessage() {}
 
 func (x *ListSearchesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[6]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +596,7 @@ func (x *ListSearchesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSearchesResponse.ProtoReflect.Descriptor instead.
 func (*ListSearchesResponse) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{6}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListSearchesResponse) GetItems() []*SearchRun {
@@ -412,7 +622,7 @@ type CancelSearchRequest struct {
 
 func (x *CancelSearchRequest) Reset() {
 	*x = CancelSearchRequest{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[7]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -424,7 +634,7 @@ func (x *CancelSearchRequest) String() string {
 func (*CancelSearchRequest) ProtoMessage() {}
 
 func (x *CancelSearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[7]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -437,7 +647,7 @@ func (x *CancelSearchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelSearchRequest.ProtoReflect.Descriptor instead.
 func (*CancelSearchRequest) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{7}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CancelSearchRequest) GetSearchId() string {
@@ -462,7 +672,7 @@ type SearchPreset struct {
 
 func (x *SearchPreset) Reset() {
 	*x = SearchPreset{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[8]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -474,7 +684,7 @@ func (x *SearchPreset) String() string {
 func (*SearchPreset) ProtoMessage() {}
 
 func (x *SearchPreset) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[8]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -487,7 +697,7 @@ func (x *SearchPreset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchPreset.ProtoReflect.Descriptor instead.
 func (*SearchPreset) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{8}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SearchPreset) GetId() string {
@@ -552,7 +762,7 @@ type CreateSearchPresetRequest struct {
 
 func (x *CreateSearchPresetRequest) Reset() {
 	*x = CreateSearchPresetRequest{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[9]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -564,7 +774,7 @@ func (x *CreateSearchPresetRequest) String() string {
 func (*CreateSearchPresetRequest) ProtoMessage() {}
 
 func (x *CreateSearchPresetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[9]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -577,7 +787,7 @@ func (x *CreateSearchPresetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSearchPresetRequest.ProtoReflect.Descriptor instead.
 func (*CreateSearchPresetRequest) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{9}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateSearchPresetRequest) GetName() string {
@@ -625,7 +835,7 @@ type ListSearchPresetsRequest struct {
 
 func (x *ListSearchPresetsRequest) Reset() {
 	*x = ListSearchPresetsRequest{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[10]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -637,7 +847,7 @@ func (x *ListSearchPresetsRequest) String() string {
 func (*ListSearchPresetsRequest) ProtoMessage() {}
 
 func (x *ListSearchPresetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[10]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -650,7 +860,7 @@ func (x *ListSearchPresetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSearchPresetsRequest.ProtoReflect.Descriptor instead.
 func (*ListSearchPresetsRequest) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{10}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListSearchPresetsRequest) GetLimit() int32 {
@@ -677,7 +887,7 @@ type ListSearchPresetsResponse struct {
 
 func (x *ListSearchPresetsResponse) Reset() {
 	*x = ListSearchPresetsResponse{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[11]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -689,7 +899,7 @@ func (x *ListSearchPresetsResponse) String() string {
 func (*ListSearchPresetsResponse) ProtoMessage() {}
 
 func (x *ListSearchPresetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[11]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -702,7 +912,7 @@ func (x *ListSearchPresetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSearchPresetsResponse.ProtoReflect.Descriptor instead.
 func (*ListSearchPresetsResponse) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{11}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListSearchPresetsResponse) GetItems() []*SearchPreset {
@@ -728,7 +938,7 @@ type DeleteSearchPresetRequest struct {
 
 func (x *DeleteSearchPresetRequest) Reset() {
 	*x = DeleteSearchPresetRequest{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[12]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -740,7 +950,7 @@ func (x *DeleteSearchPresetRequest) String() string {
 func (*DeleteSearchPresetRequest) ProtoMessage() {}
 
 func (x *DeleteSearchPresetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[12]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -753,7 +963,7 @@ func (x *DeleteSearchPresetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSearchPresetRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSearchPresetRequest) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{12}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeleteSearchPresetRequest) GetId() string {
@@ -772,7 +982,7 @@ type DeleteSearchPresetResponse struct {
 
 func (x *DeleteSearchPresetResponse) Reset() {
 	*x = DeleteSearchPresetResponse{}
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[13]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +994,7 @@ func (x *DeleteSearchPresetResponse) String() string {
 func (*DeleteSearchPresetResponse) ProtoMessage() {}
 
 func (x *DeleteSearchPresetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_strategysearch_strategysearch_proto_msgTypes[13]
+	mi := &file_strategysearch_strategysearch_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +1007,7 @@ func (x *DeleteSearchPresetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSearchPresetResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSearchPresetResponse) Descriptor() ([]byte, []int) {
-	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{13}
+	return file_strategysearch_strategysearch_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteSearchPresetResponse) GetId() string {
@@ -827,7 +1037,19 @@ const file_strategysearch_strategysearch_proto_rawDesc = "" +
 	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\x12\x13\n" +
 	"\x05top_k\x18\x02 \x01(\x05R\x04topK\"K\n" +
 	"\x15GetBestTrialsResponse\x122\n" +
-	"\x05items\x18\x01 \x03(\v2\x1c.trb.strategysearch.v1.TrialR\x05items\"}\n" +
+	"\x05items\x18\x01 \x03(\v2\x1c.trb.strategysearch.v1.TrialR\x05items\"d\n" +
+	"\x17ListSearchTrialsRequest\x12\x1b\n" +
+	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"d\n" +
+	"\x18ListSearchTrialsResponse\x122\n" +
+	"\x05items\x18\x01 \x03(\v2\x1c.trb.strategysearch.v1.TrialR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"Q\n" +
+	"\x1aGetParamImportancesRequest\x12\x1b\n" +
+	"\tsearch_id\x18\x01 \x01(\tR\bsearchId\x12\x16\n" +
+	"\x06metric\x18\x02 \x01(\tR\x06metric\"[\n" +
+	"\x1bGetParamImportancesResponse\x12<\n" +
+	"\x05items\x18\x01 \x03(\v2&.trb.strategysearch.v1.ParamImportanceR\x05items\"}\n" +
 	"\x13ListSearchesRequest\x128\n" +
 	"\x06status\x18\x01 \x01(\x0e2 .trb.strategysearch.v1.RunStatusR\x06status\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
@@ -861,11 +1083,13 @@ const file_strategysearch_strategysearch_proto_rawDesc = "" +
 	"\x19DeleteSearchPresetRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\",\n" +
 	"\x1aDeleteSearchPresetResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\x9a\v\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xb7\x0e\n" +
 	"\x15StrategySearchService\x12\xa3\x01\n" +
 	"\fSubmitSearch\x12*.trb.strategysearch.v1.SubmitSearchRequest\x1a+.trb.strategysearch.v1.SubmitSearchResponse\":\x82\xd3\xe4\x93\x024:\x01*Z\x12:\x01*\"\r/SubmitSearch\"\x1b/v1/strategysearch/searches\x12\xb0\x01\n" +
 	"\x11GetSearchProgress\x12/.trb.strategysearch.v1.GetSearchProgressRequest\x1a .trb.strategysearch.v1.SearchRun\"H\x82\xd3\xe4\x93\x02BZ\x17:\x01*\"\x12/GetSearchProgress\x12'/v1/strategysearch/searches/{search_id}\x12\xb5\x01\n" +
-	"\rGetBestTrials\x12+.trb.strategysearch.v1.GetBestTrialsRequest\x1a,.trb.strategysearch.v1.GetBestTrialsResponse\"I\x82\xd3\xe4\x93\x02CZ\x13:\x01*\"\x0e/GetBestTrials\x12,/v1/strategysearch/searches/{search_id}/best\x12\xa0\x01\n" +
+	"\rGetBestTrials\x12+.trb.strategysearch.v1.GetBestTrialsRequest\x1a,.trb.strategysearch.v1.GetBestTrialsResponse\"I\x82\xd3\xe4\x93\x02CZ\x13:\x01*\"\x0e/GetBestTrials\x12,/v1/strategysearch/searches/{search_id}/best\x12\xc3\x01\n" +
+	"\x10ListSearchTrials\x12..trb.strategysearch.v1.ListSearchTrialsRequest\x1a/.trb.strategysearch.v1.ListSearchTrialsResponse\"N\x82\xd3\xe4\x93\x02HZ\x16:\x01*\"\x11/ListSearchTrials\x12./v1/strategysearch/searches/{search_id}/trials\x12\xd4\x01\n" +
+	"\x13GetParamImportances\x121.trb.strategysearch.v1.GetParamImportancesRequest\x1a2.trb.strategysearch.v1.GetParamImportancesResponse\"V\x82\xd3\xe4\x93\x02PZ\x19:\x01*\"\x14/GetParamImportances\x123/v1/strategysearch/searches/{search_id}/importances\x12\xa0\x01\n" +
 	"\fListSearches\x12*.trb.strategysearch.v1.ListSearchesRequest\x1a+.trb.strategysearch.v1.ListSearchesResponse\"7\x82\xd3\xe4\x93\x021Z\x12:\x01*\"\r/ListSearches\x12\x1b/v1/strategysearch/searches\x12\xa8\x01\n" +
 	"\fCancelSearch\x12*.trb.strategysearch.v1.CancelSearchRequest\x1a .trb.strategysearch.v1.SearchRun\"J\x82\xd3\xe4\x93\x02DZ\x12:\x01*\"\r/CancelSearch\"./v1/strategysearch/searches/{search_id}:cancel\x12\xac\x01\n" +
 	"\x12CreateSearchPreset\x120.trb.strategysearch.v1.CreateSearchPresetRequest\x1a#.trb.strategysearch.v1.SearchPreset\"?\x82\xd3\xe4\x93\x029:\x01*Z\x18:\x01*\"\x13/CreateSearchPreset\"\x1a/v1/strategysearch/presets\x12\xb3\x01\n" +
@@ -884,71 +1108,82 @@ func file_strategysearch_strategysearch_proto_rawDescGZIP() []byte {
 	return file_strategysearch_strategysearch_proto_rawDescData
 }
 
-var file_strategysearch_strategysearch_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_strategysearch_strategysearch_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_strategysearch_strategysearch_proto_goTypes = []any{
-	(*SubmitSearchRequest)(nil),        // 0: trb.strategysearch.v1.SubmitSearchRequest
-	(*SubmitSearchResponse)(nil),       // 1: trb.strategysearch.v1.SubmitSearchResponse
-	(*GetSearchProgressRequest)(nil),   // 2: trb.strategysearch.v1.GetSearchProgressRequest
-	(*GetBestTrialsRequest)(nil),       // 3: trb.strategysearch.v1.GetBestTrialsRequest
-	(*GetBestTrialsResponse)(nil),      // 4: trb.strategysearch.v1.GetBestTrialsResponse
-	(*ListSearchesRequest)(nil),        // 5: trb.strategysearch.v1.ListSearchesRequest
-	(*ListSearchesResponse)(nil),       // 6: trb.strategysearch.v1.ListSearchesResponse
-	(*CancelSearchRequest)(nil),        // 7: trb.strategysearch.v1.CancelSearchRequest
-	(*SearchPreset)(nil),               // 8: trb.strategysearch.v1.SearchPreset
-	(*CreateSearchPresetRequest)(nil),  // 9: trb.strategysearch.v1.CreateSearchPresetRequest
-	(*ListSearchPresetsRequest)(nil),   // 10: trb.strategysearch.v1.ListSearchPresetsRequest
-	(*ListSearchPresetsResponse)(nil),  // 11: trb.strategysearch.v1.ListSearchPresetsResponse
-	(*DeleteSearchPresetRequest)(nil),  // 12: trb.strategysearch.v1.DeleteSearchPresetRequest
-	(*DeleteSearchPresetResponse)(nil), // 13: trb.strategysearch.v1.DeleteSearchPresetResponse
-	(*StrategySearchSpec)(nil),         // 14: trb.strategysearch.v1.StrategySearchSpec
-	(*ParamRange)(nil),                 // 15: trb.strategysearch.v1.ParamRange
-	(*StudyConfig)(nil),                // 16: trb.strategysearch.v1.StudyConfig
-	(*BacktestConfig)(nil),             // 17: trb.strategysearch.v1.BacktestConfig
-	(RunStatus)(0),                     // 18: trb.strategysearch.v1.RunStatus
-	(*Trial)(nil),                      // 19: trb.strategysearch.v1.Trial
-	(*SearchRun)(nil),                  // 20: trb.strategysearch.v1.SearchRun
-	(*timestamppb.Timestamp)(nil),      // 21: google.protobuf.Timestamp
+	(*SubmitSearchRequest)(nil),         // 0: trb.strategysearch.v1.SubmitSearchRequest
+	(*SubmitSearchResponse)(nil),        // 1: trb.strategysearch.v1.SubmitSearchResponse
+	(*GetSearchProgressRequest)(nil),    // 2: trb.strategysearch.v1.GetSearchProgressRequest
+	(*GetBestTrialsRequest)(nil),        // 3: trb.strategysearch.v1.GetBestTrialsRequest
+	(*GetBestTrialsResponse)(nil),       // 4: trb.strategysearch.v1.GetBestTrialsResponse
+	(*ListSearchTrialsRequest)(nil),     // 5: trb.strategysearch.v1.ListSearchTrialsRequest
+	(*ListSearchTrialsResponse)(nil),    // 6: trb.strategysearch.v1.ListSearchTrialsResponse
+	(*GetParamImportancesRequest)(nil),  // 7: trb.strategysearch.v1.GetParamImportancesRequest
+	(*GetParamImportancesResponse)(nil), // 8: trb.strategysearch.v1.GetParamImportancesResponse
+	(*ListSearchesRequest)(nil),         // 9: trb.strategysearch.v1.ListSearchesRequest
+	(*ListSearchesResponse)(nil),        // 10: trb.strategysearch.v1.ListSearchesResponse
+	(*CancelSearchRequest)(nil),         // 11: trb.strategysearch.v1.CancelSearchRequest
+	(*SearchPreset)(nil),                // 12: trb.strategysearch.v1.SearchPreset
+	(*CreateSearchPresetRequest)(nil),   // 13: trb.strategysearch.v1.CreateSearchPresetRequest
+	(*ListSearchPresetsRequest)(nil),    // 14: trb.strategysearch.v1.ListSearchPresetsRequest
+	(*ListSearchPresetsResponse)(nil),   // 15: trb.strategysearch.v1.ListSearchPresetsResponse
+	(*DeleteSearchPresetRequest)(nil),   // 16: trb.strategysearch.v1.DeleteSearchPresetRequest
+	(*DeleteSearchPresetResponse)(nil),  // 17: trb.strategysearch.v1.DeleteSearchPresetResponse
+	(*StrategySearchSpec)(nil),          // 18: trb.strategysearch.v1.StrategySearchSpec
+	(*ParamRange)(nil),                  // 19: trb.strategysearch.v1.ParamRange
+	(*StudyConfig)(nil),                 // 20: trb.strategysearch.v1.StudyConfig
+	(*BacktestConfig)(nil),              // 21: trb.strategysearch.v1.BacktestConfig
+	(RunStatus)(0),                      // 22: trb.strategysearch.v1.RunStatus
+	(*Trial)(nil),                       // 23: trb.strategysearch.v1.Trial
+	(*ParamImportance)(nil),             // 24: trb.strategysearch.v1.ParamImportance
+	(*SearchRun)(nil),                   // 25: trb.strategysearch.v1.SearchRun
+	(*timestamppb.Timestamp)(nil),       // 26: google.protobuf.Timestamp
 }
 var file_strategysearch_strategysearch_proto_depIdxs = []int32{
-	14, // 0: trb.strategysearch.v1.SubmitSearchRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	15, // 1: trb.strategysearch.v1.SubmitSearchRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	16, // 2: trb.strategysearch.v1.SubmitSearchRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
-	17, // 3: trb.strategysearch.v1.SubmitSearchRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	18, // 4: trb.strategysearch.v1.SubmitSearchResponse.status:type_name -> trb.strategysearch.v1.RunStatus
-	19, // 5: trb.strategysearch.v1.GetBestTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
-	18, // 6: trb.strategysearch.v1.ListSearchesRequest.status:type_name -> trb.strategysearch.v1.RunStatus
-	20, // 7: trb.strategysearch.v1.ListSearchesResponse.items:type_name -> trb.strategysearch.v1.SearchRun
-	14, // 8: trb.strategysearch.v1.SearchPreset.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	15, // 9: trb.strategysearch.v1.SearchPreset.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	16, // 10: trb.strategysearch.v1.SearchPreset.study:type_name -> trb.strategysearch.v1.StudyConfig
-	17, // 11: trb.strategysearch.v1.SearchPreset.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	21, // 12: trb.strategysearch.v1.SearchPreset.created_at:type_name -> google.protobuf.Timestamp
-	14, // 13: trb.strategysearch.v1.CreateSearchPresetRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
-	15, // 14: trb.strategysearch.v1.CreateSearchPresetRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
-	16, // 15: trb.strategysearch.v1.CreateSearchPresetRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
-	17, // 16: trb.strategysearch.v1.CreateSearchPresetRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
-	8,  // 17: trb.strategysearch.v1.ListSearchPresetsResponse.items:type_name -> trb.strategysearch.v1.SearchPreset
-	0,  // 18: trb.strategysearch.v1.StrategySearchService.SubmitSearch:input_type -> trb.strategysearch.v1.SubmitSearchRequest
-	2,  // 19: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:input_type -> trb.strategysearch.v1.GetSearchProgressRequest
-	3,  // 20: trb.strategysearch.v1.StrategySearchService.GetBestTrials:input_type -> trb.strategysearch.v1.GetBestTrialsRequest
-	5,  // 21: trb.strategysearch.v1.StrategySearchService.ListSearches:input_type -> trb.strategysearch.v1.ListSearchesRequest
-	7,  // 22: trb.strategysearch.v1.StrategySearchService.CancelSearch:input_type -> trb.strategysearch.v1.CancelSearchRequest
-	9,  // 23: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:input_type -> trb.strategysearch.v1.CreateSearchPresetRequest
-	10, // 24: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:input_type -> trb.strategysearch.v1.ListSearchPresetsRequest
-	12, // 25: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:input_type -> trb.strategysearch.v1.DeleteSearchPresetRequest
-	1,  // 26: trb.strategysearch.v1.StrategySearchService.SubmitSearch:output_type -> trb.strategysearch.v1.SubmitSearchResponse
-	20, // 27: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:output_type -> trb.strategysearch.v1.SearchRun
-	4,  // 28: trb.strategysearch.v1.StrategySearchService.GetBestTrials:output_type -> trb.strategysearch.v1.GetBestTrialsResponse
-	6,  // 29: trb.strategysearch.v1.StrategySearchService.ListSearches:output_type -> trb.strategysearch.v1.ListSearchesResponse
-	20, // 30: trb.strategysearch.v1.StrategySearchService.CancelSearch:output_type -> trb.strategysearch.v1.SearchRun
-	8,  // 31: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:output_type -> trb.strategysearch.v1.SearchPreset
-	11, // 32: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:output_type -> trb.strategysearch.v1.ListSearchPresetsResponse
-	13, // 33: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:output_type -> trb.strategysearch.v1.DeleteSearchPresetResponse
-	26, // [26:34] is the sub-list for method output_type
-	18, // [18:26] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	18, // 0: trb.strategysearch.v1.SubmitSearchRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	19, // 1: trb.strategysearch.v1.SubmitSearchRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	20, // 2: trb.strategysearch.v1.SubmitSearchRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
+	21, // 3: trb.strategysearch.v1.SubmitSearchRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	22, // 4: trb.strategysearch.v1.SubmitSearchResponse.status:type_name -> trb.strategysearch.v1.RunStatus
+	23, // 5: trb.strategysearch.v1.GetBestTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
+	23, // 6: trb.strategysearch.v1.ListSearchTrialsResponse.items:type_name -> trb.strategysearch.v1.Trial
+	24, // 7: trb.strategysearch.v1.GetParamImportancesResponse.items:type_name -> trb.strategysearch.v1.ParamImportance
+	22, // 8: trb.strategysearch.v1.ListSearchesRequest.status:type_name -> trb.strategysearch.v1.RunStatus
+	25, // 9: trb.strategysearch.v1.ListSearchesResponse.items:type_name -> trb.strategysearch.v1.SearchRun
+	18, // 10: trb.strategysearch.v1.SearchPreset.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	19, // 11: trb.strategysearch.v1.SearchPreset.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	20, // 12: trb.strategysearch.v1.SearchPreset.study:type_name -> trb.strategysearch.v1.StudyConfig
+	21, // 13: trb.strategysearch.v1.SearchPreset.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	26, // 14: trb.strategysearch.v1.SearchPreset.created_at:type_name -> google.protobuf.Timestamp
+	18, // 15: trb.strategysearch.v1.CreateSearchPresetRequest.base_spec:type_name -> trb.strategysearch.v1.StrategySearchSpec
+	19, // 16: trb.strategysearch.v1.CreateSearchPresetRequest.search_space:type_name -> trb.strategysearch.v1.ParamRange
+	20, // 17: trb.strategysearch.v1.CreateSearchPresetRequest.study:type_name -> trb.strategysearch.v1.StudyConfig
+	21, // 18: trb.strategysearch.v1.CreateSearchPresetRequest.config:type_name -> trb.strategysearch.v1.BacktestConfig
+	12, // 19: trb.strategysearch.v1.ListSearchPresetsResponse.items:type_name -> trb.strategysearch.v1.SearchPreset
+	0,  // 20: trb.strategysearch.v1.StrategySearchService.SubmitSearch:input_type -> trb.strategysearch.v1.SubmitSearchRequest
+	2,  // 21: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:input_type -> trb.strategysearch.v1.GetSearchProgressRequest
+	3,  // 22: trb.strategysearch.v1.StrategySearchService.GetBestTrials:input_type -> trb.strategysearch.v1.GetBestTrialsRequest
+	5,  // 23: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:input_type -> trb.strategysearch.v1.ListSearchTrialsRequest
+	7,  // 24: trb.strategysearch.v1.StrategySearchService.GetParamImportances:input_type -> trb.strategysearch.v1.GetParamImportancesRequest
+	9,  // 25: trb.strategysearch.v1.StrategySearchService.ListSearches:input_type -> trb.strategysearch.v1.ListSearchesRequest
+	11, // 26: trb.strategysearch.v1.StrategySearchService.CancelSearch:input_type -> trb.strategysearch.v1.CancelSearchRequest
+	13, // 27: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:input_type -> trb.strategysearch.v1.CreateSearchPresetRequest
+	14, // 28: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:input_type -> trb.strategysearch.v1.ListSearchPresetsRequest
+	16, // 29: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:input_type -> trb.strategysearch.v1.DeleteSearchPresetRequest
+	1,  // 30: trb.strategysearch.v1.StrategySearchService.SubmitSearch:output_type -> trb.strategysearch.v1.SubmitSearchResponse
+	25, // 31: trb.strategysearch.v1.StrategySearchService.GetSearchProgress:output_type -> trb.strategysearch.v1.SearchRun
+	4,  // 32: trb.strategysearch.v1.StrategySearchService.GetBestTrials:output_type -> trb.strategysearch.v1.GetBestTrialsResponse
+	6,  // 33: trb.strategysearch.v1.StrategySearchService.ListSearchTrials:output_type -> trb.strategysearch.v1.ListSearchTrialsResponse
+	8,  // 34: trb.strategysearch.v1.StrategySearchService.GetParamImportances:output_type -> trb.strategysearch.v1.GetParamImportancesResponse
+	10, // 35: trb.strategysearch.v1.StrategySearchService.ListSearches:output_type -> trb.strategysearch.v1.ListSearchesResponse
+	25, // 36: trb.strategysearch.v1.StrategySearchService.CancelSearch:output_type -> trb.strategysearch.v1.SearchRun
+	12, // 37: trb.strategysearch.v1.StrategySearchService.CreateSearchPreset:output_type -> trb.strategysearch.v1.SearchPreset
+	15, // 38: trb.strategysearch.v1.StrategySearchService.ListSearchPresets:output_type -> trb.strategysearch.v1.ListSearchPresetsResponse
+	17, // 39: trb.strategysearch.v1.StrategySearchService.DeleteSearchPreset:output_type -> trb.strategysearch.v1.DeleteSearchPresetResponse
+	30, // [30:40] is the sub-list for method output_type
+	20, // [20:30] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_strategysearch_strategysearch_proto_init() }
@@ -965,7 +1200,7 @@ func file_strategysearch_strategysearch_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_strategysearch_strategysearch_proto_rawDesc), len(file_strategysearch_strategysearch_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
