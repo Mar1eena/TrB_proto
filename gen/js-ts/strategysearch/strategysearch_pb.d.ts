@@ -335,6 +335,16 @@ export class SearchPreset extends jspb.Message {
   hasCreatedAt(): boolean;
   clearCreatedAt(): SearchPreset;
 
+  getTemplate(): strategysearch_search_pb.StrategyTemplate | undefined;
+  setTemplate(value?: strategysearch_search_pb.StrategyTemplate): SearchPreset;
+  hasTemplate(): boolean;
+  clearTemplate(): SearchPreset;
+
+  getMarketSpace(): strategysearch_search_pb.MarketSpace | undefined;
+  setMarketSpace(value?: strategysearch_search_pb.MarketSpace): SearchPreset;
+  hasMarketSpace(): boolean;
+  clearMarketSpace(): SearchPreset;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchPreset.AsObject;
   static toObject(includeInstance: boolean, msg: SearchPreset): SearchPreset.AsObject;
@@ -352,6 +362,8 @@ export namespace SearchPreset {
     study?: strategysearch_search_pb.StudyConfig.AsObject,
     config?: strategysearch_backtest_pb.BacktestConfig.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    template?: strategysearch_search_pb.StrategyTemplate.AsObject,
+    marketSpace?: strategysearch_search_pb.MarketSpace.AsObject,
   }
 }
 
@@ -379,6 +391,16 @@ export class CreateSearchPresetRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): CreateSearchPresetRequest;
 
+  getTemplate(): strategysearch_search_pb.StrategyTemplate | undefined;
+  setTemplate(value?: strategysearch_search_pb.StrategyTemplate): CreateSearchPresetRequest;
+  hasTemplate(): boolean;
+  clearTemplate(): CreateSearchPresetRequest;
+
+  getMarketSpace(): strategysearch_search_pb.MarketSpace | undefined;
+  setMarketSpace(value?: strategysearch_search_pb.MarketSpace): CreateSearchPresetRequest;
+  hasMarketSpace(): boolean;
+  clearMarketSpace(): CreateSearchPresetRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateSearchPresetRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateSearchPresetRequest): CreateSearchPresetRequest.AsObject;
@@ -394,6 +416,8 @@ export namespace CreateSearchPresetRequest {
     searchSpaceList: Array<strategysearch_search_pb.ParamRange.AsObject>,
     study?: strategysearch_search_pb.StudyConfig.AsObject,
     config?: strategysearch_backtest_pb.BacktestConfig.AsObject,
+    template?: strategysearch_search_pb.StrategyTemplate.AsObject,
+    marketSpace?: strategysearch_search_pb.MarketSpace.AsObject,
   }
 }
 

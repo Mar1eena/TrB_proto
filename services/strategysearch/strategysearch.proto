@@ -175,6 +175,11 @@ message SearchPreset {
   StudyConfig study = 5;
   BacktestConfig config = 6;
   google.protobuf.Timestamp created_at = 7;
+  // Снимок структурного/рыночного поиска (см. SearchRun.template/market_space
+  // в search.proto) — market_candidates намеренно не хранится в пресете:
+  // это резолв на момент SubmitSearch, а не часть конфигурации формы.
+  StrategyTemplate template = 8;
+  MarketSpace market_space = 9;
 }
 
 message CreateSearchPresetRequest {
@@ -183,6 +188,8 @@ message CreateSearchPresetRequest {
   repeated ParamRange search_space = 3;
   StudyConfig study = 4;
   BacktestConfig config = 5;
+  StrategyTemplate template = 6;
+  MarketSpace market_space = 7;
 }
 
 message ListSearchPresetsRequest {
